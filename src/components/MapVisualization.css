@@ -1,0 +1,75 @@
+.map-component .map-information {
+  border-bottom: 2px solid #ff6f00;
+}
+
+.map-component .map-information .info-container {
+  width: 100%;
+  margin: 0 auto;
+  height: 96px;
+  /*overflow: hidden;*/
+}
+
+.map-component .map-information .info-container .legend {
+  padding-top: 36px;
+  height: 60px;
+}
+
+.map-component .map-information .info-container .legend .marker {
+  float: left;
+  font-size: smaller;
+}
+
+.map-component .map-information .info-container .legend .marker img {
+  height: 25px;
+  display: block;
+  float: left;
+}
+
+.map-component .map-information .info-container .legend .marker p {
+  float: left;
+  font-weight: 400;
+  color: #333;
+  line-height: 25px;
+  padding-top: 2px;
+  padding-left: 6px;
+  margin-right: 20px;
+}
+
+.map-component .map-information .info-container .details {
+  font-size: smaller;
+}
+
+.map-component .map-information .info-container .details .col {
+  float: left;
+  width: 20%;
+  padding: 3em;
+}
+
+.map-component .map-information .info-container .details .col p {
+  color: #ff6f00;
+  line-height: 20px;
+  font-weight: 400;
+  padding-top: 0;
+}
+
+.map-component .map-information .info-container .details .col:first-child {
+  padding-top: 0;
+}
+
+.map-component .map-information .info-container .details .col:first-child p {
+  font-weight: 500;
+}
+
+.map-component .map-information .info-container .details .col:first-child p:last-child {
+  color: #3f51b2;
+}
+
+.map-component .map-information .info-container .details .arrow-col {
+  width: 31px;
+  float: left;
+  padding-top: 40px;
+}
+
+.map-component .map-information .info-container .details .arrow-col img {
+  height: 15px;
+}

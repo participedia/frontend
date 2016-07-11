@@ -1,0 +1,17 @@
+.addCaseForm {
+  padding: '3em'
+}
+
+.addCaseForm h4 {
+  font-weight: 400;
+  padding-top: 1em;
+  /*padding-bottom: .5em;*/
+}
+
+.choice {
+  padding-bottom: .5em;
+}
+
+.choicelist {
+
+}
