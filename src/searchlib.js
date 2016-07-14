@@ -21,7 +21,7 @@ export function fetchRecentStuff () {
 }
 
 export function fetchCaseById (nodeID) {
-  let url = ES_URL + '/pp/case/' + nodeID
+  let url = __ELASTICSEARCH_URL__ + '/pp/case/' + nodeID
 
   let p = new Promise(function (resolve, reject) {
     fetch(url, {
@@ -39,7 +39,7 @@ export function fetchCaseById (nodeID) {
 }
 
 export function fetchMethodById (methodID) {
-  let url = ES_URL + '/pp/method/' + methodID
+  let url = __ELASTICSEARCH_URL__ + '/pp/method/' + methodID
 
   let p = new Promise(function (resolve, reject) {
     fetch(url, {
