@@ -1,4 +1,4 @@
-const NODE_ENV = process.env.NODE_ENV
+const NODE_ENV = process.env.NODE_ENV || 'development'
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
@@ -23,6 +23,8 @@ const environmentEnv = dotenv.config({
 
 const envVariables = Object.assign({}, dotEnvVars, environmentEnv)
 const isDev = NODE_ENV !== 'production'
+
+console.log(NODE_ENV)
 
 const defines =
   Object.keys(envVariables).reduce((memo, key) => {

@@ -1,10 +1,8 @@
-import {ES_URL} from '../config/data'
-
 /* this library is the single interface to elasticsearch that the entire front-end
    uses.  It returns Promise wrappers around fetch */
 
 export function fetchRecentStuff () {
-  let url = ES_URL + '/pp/case/'
+  let url = __ELASTICSEARCH_URL__ + '/pp/case/'
 
    // search by: LastUpdatedDate
   let p = new Promise(function (resolve, reject) {
