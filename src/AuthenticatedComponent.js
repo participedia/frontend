@@ -6,13 +6,13 @@ export default class AuthenticatedComponent extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.state.loggedIn = false;
+  constructor (props) {
+    super(props)
+    this.state = {}
+    this.state.loggedIn = false
   }
 
-  onAuthStateChange(user) {
+  onAuthStateChange (user) {
     if (user) {
       this.setState({user: user, loggedIn: true})
     } else {

@@ -5,7 +5,9 @@ import MenuItem from 'material-ui/MenuItem'
 import SearchQuery from './containers/SearchQuery'
 import Footer from './components/Footer'
 import LoginAvatar from './LoginAvatar'
+/* eslint-disable no-unused-vars */
 import globalStyles from '!!style-loader!css-loader!../public/global.css'
+/* eslint-enable no-unused-vars */
 import styles from './Layout.css'
 import CSSModules from 'react-css-modules'
 
@@ -52,34 +54,34 @@ class Layout extends React.Component {
 
     return (
       <div>
-        <div styleName="nav-bar-component">
-          <div styleName="nav-bar-wrapper">
-            <div styleName="logo-area">
-              <a href="#" onClick={this.handleToggle} styleName="menu-icon"><img src={menuIcon} alt="" /></a>
-              <a href="/" styleName="logo"><img src={ppLogo} alt="" /></a>
+        <div styleName='nav-bar-component'>
+          <div styleName='nav-bar-wrapper'>
+            <div styleName='logo-area'>
+              <a href='#' onClick={this.handleToggle} styleName='menu-icon'><img src={menuIcon} alt='' /></a>
+              <a href='/' styleName='logo'><img src={ppLogo} alt='' /></a>
             </div>
-            <div styleName="search-box-area">
-              <img src={require('../public/img/search-icon.png')} styleName="searchIcon" alt="" />
+            <div styleName='search-box-area'>
+              <img src={require('../public/img/search-icon.png')} styleName='searchIcon' alt='' />
               <SearchQuery />
             </div>
-            <LoginAvatar auth={this.props.route.auth} styleName="login-area" />
+            <LoginAvatar auth={this.props.route.auth} styleName='login-area' />
           </div>
         </div>
         <div style={substyles.box}></div>
         <Drawer
-          styleName="drawer"
+          styleName='drawer'
           docked={false}
           width={300}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}>
-          <MenuItem containerElement={<Link to="/" />}
+          <MenuItem containerElement={<Link to='/' />}
             onTouchTap={this.handleClose}>Home</MenuItem>
-          <MenuItem containerElement={<Link to="/profile" />}
+          <MenuItem containerElement={<Link to='/profile' />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
-          <MenuItem containerElement={<Link to="/add" />}
+          <MenuItem containerElement={<Link to='/add' />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
         </Drawer>
-        <div styleName="contentArea">
+        <div styleName='contentArea'>
           {children}
         </div>
         <Footer />

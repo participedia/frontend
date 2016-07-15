@@ -1,7 +1,7 @@
 import Auth0Lock from 'auth0-lock'
 import { isTokenExpired } from './jwtHelper'
 import { EventEmitter } from 'events'
-
+/* eslint-env browser */
 export default class AuthService extends EventEmitter {
   constructor (clientId, domain) {
     super()
@@ -32,7 +32,6 @@ export default class AuthService extends EventEmitter {
     console.log('Authentication Error', error)
   }
 
-
   setProfile (profile) {
     // Saves profile data to localStorage
     localStorage.setItem('profile', JSON.stringify(profile))
@@ -50,13 +49,13 @@ export default class AuthService extends EventEmitter {
     // Call the show method to display the widget.
     var comp = this
     this.lock.show({authParams: { scope: 'openid email app_metadata' }},
-      function(err, profile, idToken) {
+      function (err, profile, idToken) {
         if (err) {
-          console.log("There was an error :/", err);
-          return;
+          console.log('There was an error :/', err)
+          return
         }
-        console.log("PROFILE", profile)
-        console.log("idToken", idToken)
+        console.log('PROFILE', profile)
+        console.log('idToken', idToken)
         comp.setProfile(profile)
         comp.setToken(idToken)
       }

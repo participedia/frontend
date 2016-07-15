@@ -1,7 +1,6 @@
 import Profile from '../src/Profile'
 import Layout from '../src/Layout'
 import Home from '../src/Home'
-// import requireAuth from '../src/authUtils'
 import Login from '../src/Login'
 import Add from '../src/components/Add'
 import AddCase from '../src/containers/AddCase'
@@ -10,7 +9,9 @@ import Case from '../src/containers/Case'
 import Method from '../src/containers/Method'
 import AuthService from '../src/utils/AuthService'
 
-const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__);
+/* eslint-disable no-undef */
+const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
+/* eslint-enable no-undef */
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {
