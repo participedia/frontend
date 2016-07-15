@@ -7,15 +7,15 @@ export class Login extends React.Component {
     auth: T.instanceOf(AuthService)
   }
 
-  render() {
+  render () {
     const { auth } = this.props
     return (
       <div>
         <h2>Login</h2>
-          <button onClick={auth.login.bind(this)}>Login</button>
+        <button onClick={auth.login.bind(this)}>Login</button>
       </div>
     )
   }
 }
 
-export default Login;
+export default Login
