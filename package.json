@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "hjs-dev-server",
+    "test": "standard",
     "build": "webpack",
     "deploy": "npm run build && surge -p public -d participedia.xyz"
   },

@@ -9,7 +9,9 @@ export const DO_RECENT_SEARCH = 'DO_RECENT_SEARCH'
 
 import elasticsearch from 'elasticsearch'
 
+/* eslint-disable no-undef */
 let ElasticSearchURL = __ELASTICSEARCH_URL__
+/* eslint-enable no-undef */
 
 import Bodybuilder from 'bodybuilder'
 console.log('ElasticSearchURL', ElasticSearchURL)
