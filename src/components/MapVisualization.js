@@ -6,9 +6,6 @@ import styles from './MapVisualization.css'
 import CSSModules from 'react-css-modules'
 import api from '../utils/api'
 
-console.log("API", api)
-// import request from 'request'
-
 // This is important to make sure that the leaflet.css is included in the document
 // the !! syntax is to avoid CSS-module class rewriting.
 import leafletStyles from '!!style-loader!css-loader!leaflet/dist/leaflet.css'

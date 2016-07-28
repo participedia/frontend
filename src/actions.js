@@ -8,20 +8,6 @@ export const SET_LAYOUT = 'SET_LAYOUT'
 export const DO_RECENT_SEARCH = 'DO_RECENT_SEARCH'
 import api from './utils/api'
 
-import elasticsearch from 'elasticsearch'
-
-/* eslint-disable no-undef */
-let ElasticSearchURL = __ELASTICSEARCH_URL__
-/* eslint-enable no-undef */
-
-import Bodybuilder from 'bodybuilder'
-console.log('ElasticSearchURL', ElasticSearchURL)
-
-var client = new elasticsearch.Client({
-  host: ElasticSearchURL
-  // log: 'trace'
-})
-
 export function doRecentSearch () {
   return {
     type: DO_RECENT_SEARCH
