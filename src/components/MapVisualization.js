@@ -1,22 +1,17 @@
 import React from 'react'
-import Bodybuilder from 'bodybuilder'
-import elasticsearch from 'elasticsearch'
 import { Map, TileLayer } from 'react-leaflet'
 import geojson from '../world-countries.json'
 import Choropleth from 'react-leaflet-choropleth'
 import styles from './MapVisualization.css'
 import CSSModules from 'react-css-modules'
+import api from '../utils/api'
+
+console.log("API", api)
+// import request from 'request'
 
 // This is important to make sure that the leaflet.css is included in the document
 // the !! syntax is to avoid CSS-module class rewriting.
 import leafletStyles from '!!style-loader!css-loader!leaflet/dist/leaflet.css'
-
-let ElasticSearchURL = __ELASTICSEARCH_URL__
-
-var client = new elasticsearch.Client({
-  host: ElasticSearchURL
-// log: 'trace'
-})
 
 const position = [51.505, -0.09]
 
@@ -44,7 +39,7 @@ let scale = ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']
 class MyMap extends React.Component {
   constructor (props) {
     super(props)
-    this.countryCounts = {}
+    this.state = {countryCounts: {'France': 10}}
     this.numCasesPerCountry = this.numCasesPerCountry.bind(this)
     this.labelPerCountry = this.labelPerCountry.bind(this)
     this.isCountryListed = this.isCountryListed.bind(this)
@@ -53,7 +48,7 @@ class MyMap extends React.Component {
 
   numCasesPerCountry (feature) {
     let countryName = feature.properties.name
-    let count = this.countryCounts[countryName]
+    let count = this.state.countryCounts[countryName]
     if (count) {
       return count
     } else {
@@ -77,29 +72,10 @@ class MyMap extends React.Component {
     return this.numCasesPerCountry(feature)
   }
 
-  componentWillMount () {
-    let countryCounts = this.countryCounts
-    let component = this
-
-    let body = new Bodybuilder()
-    let bodyquery = body.aggregation('terms', 'Country', null, {size: 0}).size(0).build()
-    client.search({
-      index: 'pp',
-      type: 'case',
-      body: bodyquery
-    }).then(function (resp) {
-      try {
-        let buckets = resp.aggregations.agg_terms_Country.buckets
-        for (let i in buckets) {
-          countryCounts[buckets[i].key] = buckets[i].doc_count
-        }
-        component.setState({countryCounts: countryCounts})
-      } catch (e) {
-        console.trace(e) // eslint-disable-line no-console
-      }
-    }, function (err) {
-      console.trace(err.message) // eslint-disable-line no-console
-    })
+  componentDidMount () {
+    api.countsByCountry().then(function success (countryCounts) {
+      this.setState({countryCounts: countryCounts})
+    }.bind(this))
   }
 
   onEachFeature (feature, layer) {
@@ -120,6 +96,7 @@ class MyMap extends React.Component {
   }
 
   render () {
+    console.log("rerendering", this.state)
     const position = [51.505, -0.09]
     return (
       <div styleName="map-component">

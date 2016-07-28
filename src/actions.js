@@ -6,6 +6,7 @@ export const SWITCH_CATEGORY = 'SWITCH_CATEGORY'
 export const SET_SORT_ORDER = 'SET_SORT_ORDER'
 export const SET_LAYOUT = 'SET_LAYOUT'
 export const DO_RECENT_SEARCH = 'DO_RECENT_SEARCH'
+import api from './utils/api'
 
 import elasticsearch from 'elasticsearch'
 
@@ -55,34 +56,6 @@ export function setLayoutOrder (layout) {
   }
 }
 
-function performSearch (query, selectedCategory, sortingMethod) {
-  let body = new Bodybuilder()
-  if (query) {
-    body = body.query('match', '_all', query)
-  }
-  // console.log('DOING SEARCH ', query, selectedCategory, sortingMethod)
-  if (sortingMethod === 'chronological') {
-    body = body.sort('LastUpdatedDate', 'desc')
-  } else {
-    body = body.sort('CaseID.raw', 'asc') // Note this requires a non-analyzed field
-  }
-  let bodyquery = body.size(30).build('v2')
-  // console.log("BODYQUERY", bodyquery)
-
-  if (query) {
-    return client.search({
-      index: 'pp',
-      body: bodyquery
-    })
-  } else {
-    return client.search({
-      index: 'pp',
-      match_all: {},
-      body: bodyquery
-    })
-  }
-}
-
 function startSearch (query, selectedCategory, sortingMethod) {
   return {
     type: SEARCHING,
@@ -101,7 +74,7 @@ function receiveData (query, response) {
 export function search (query, selectedCategory, sortingMethod) {
   return dispatch => {
     dispatch(startSearch(query, selectedCategory, sortingMethod))
-    return performSearch(query, selectedCategory, sortingMethod)
+    return api.performSearch(query, selectedCategory, sortingMethod)
       .then(response => dispatch(receiveData(query, response)),
       function (err) {
         console.log('got an error after performSearch', err)
