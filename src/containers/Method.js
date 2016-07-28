@@ -3,27 +3,25 @@ import styles from './Case.css'
 import CSSModules from 'react-css-modules'
 import Map from '../containers/Map'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
-import {fetchMethodById} from '../searchlib'
+import api from '../utils/api'
 
 import { getRandomInt, daysOfWeek } from '../util'
 
 class Method extends React.Component {
   componentWillMount () {
     let component = this
-    fetchMethodById(this.props.params.methodID).then(function (response) {
-      response.json().then(function (json) {
-        let caseData = json['_source']
-        let htmlBody = ''
+    api.fetchMethodById(this.props.params.nodeID).then(function (json) {
+      let caseData = json['_source']
+      let htmlBody = ''
+      console.log(json)
 
-        if (caseData.ArticleHTML) {
-          htmlBody = caseData.ArticleHTML
-        }
-        component.setState({caseData: caseData, htmlBody: htmlBody})
-      }, function (error) {
-        console.error(error.message)
-      })
+      if (caseData.ArticleHTML) {
+        htmlBody = caseData.ArticleHTML
+      }
+      component.setState({caseData: caseData, htmlBody: htmlBody})
     })
   }
+
 
   getInnerHTML () {
     let input = ''

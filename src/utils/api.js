@@ -39,6 +39,33 @@ class API {
         })
     })
   }
-}
+  fetchCaseById = function (caseId) {
+    return new Promise(function (resolve, reject) {
+      fetch(APIURL + '/case/' + caseId)
+        .then(function (response) {
+          response.json().then(function(json) {
+            resolve(json.data)
+          })
+        })
+        .catch(function (error) {
+          console.log('There has been a problem with your fetch operation: ' + error.message);
+          reject(error)
+        })
+    })
+  }
+  fetchMethodById = function (methodId) {
+    return new Promise(function (resolve, reject) {
+      fetch(APIURL + '/method/' + methodId)
+        .then(function (response) {
+          response.json().then(function(json) {
+            resolve(json.data)
+          })
+        })
+        .catch(function (error) {
+          console.log('There has been a problem with your fetch operation: ' + error.message);
+          reject(error)
+        })
+    })
+  }}
 
 export default new API()
