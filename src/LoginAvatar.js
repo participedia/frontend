@@ -8,7 +8,6 @@ import {Link} from 'react-router'
 import styles from './LoginAvatar.css'
 import CSSModules from 'react-css-modules'
 import AuthenticatedComponent from './AuthenticatedComponent'
-import Auth0Lock from 'auth0-lock'
 import AuthService from './utils/AuthService'
 
 class LoginAvatar extends AuthenticatedComponent {

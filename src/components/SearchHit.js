@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import styles from './SearchHit.css'
 import CSSModules from 'react-css-modules'
+import {injectIntl, intlShape} from 'react-intl'
 
 class SearchHit extends React.Component {
 
@@ -11,14 +12,15 @@ class SearchHit extends React.Component {
   render () {
     try {
       let result = this.props.case._source
+      var locale = this.props.intl.locale
       // console.log(result)
       let title, link
       if (result.CaseID) {
         title = 'Case: ' + result.CaseID
-        link = '/case/' + result.NodeId
+        link = '/' + locale + '/case/' + result.NodeId
       } else {
         title = 'Method: ' + result.Title
-        link = '/method/' + result.methodID
+        link = '/' + locale + '/method/' + result.methodID
       }
       let firstSubmit = result.FirstSubmit
       if (!title) {
@@ -26,16 +28,16 @@ class SearchHit extends React.Component {
       }
       let dateString = new Date(result.LastUpdatedDate).toDateString()
       let blob = (
-        <div styleName="result">
-          <div styleName="thumbnail"
+        <div styleName='result'>
+          <div styleName='thumbnail'
             style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
-          <Link to={link} styleName="result-title">
+          <Link to={link} styleName='result-title'>
             {title}
           </Link>
-          <p styleName="result-author">
+          <p styleName='result-author'>
             {firstSubmit}
           </p>
-          <p styleName="result-date">
+          <p styleName='result-date'>
             {dateString}
           </p>
         </div>
@@ -48,7 +50,8 @@ class SearchHit extends React.Component {
 }
 
 SearchHit.propTypes = {
-  case: PropTypes.object.isRequired
+  case: PropTypes.object.isRequired,
+  intl: intlShape.isRequired
 }
 
-export default CSSModules(SearchHit, styles)
+export default injectIntl(CSSModules(SearchHit, styles))

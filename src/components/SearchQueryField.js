@@ -27,7 +27,7 @@ class SearchQueryField extends React.Component {
   render () {
     let onChange = this.onChange
     return (
-      <input styleName="search-bar" type="text" placeholder="Search" value={this.state.query}
+      <input styleName='search-bar' type='text' placeholder='Search' value={this.state.query}
         onChange={onChange} onKeyUp={(val) => this.onKeyUp(val)}></input>
     )
   }

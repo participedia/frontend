@@ -3,23 +3,10 @@ import SearchHit from '../components/SearchHit'
 import SearchHitCategory from '../components/SearchHitCategory'
 import styles from './SearchResultsView.css'
 import CSSModules from 'react-css-modules'
-import ContentContainer from './content-container'
-import {injectIntl, intlShape, FormattedRelative} from 'react-intl'
+import {injectIntl, intlShape} from 'react-intl'
 
 class SearchResultsView extends React.Component {
-  contextTypes: {
-    intl: intlShape.isRequired,
-  }
-
-  constructor (props, context) {
-    super(props, context)
-    console.log("context", context)
-    // this.formatMessage = formatMessage.bind(null, this)
-  }
-
   render () {
-    console.log("this.props.intl = ", this.props.intl)
-    // console.log("intl", intl)
     let caseData = this.props.caseData
     let results = []
     let categories = {'Case': [], 'Organization': [], 'Method': [], 'News': []}

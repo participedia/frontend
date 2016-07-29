@@ -7,7 +7,10 @@
         "jquery": true
     },
     "globals": {
-        "fetch": true
+        "fetch": true,
+        "__AUTH0_CLIENT_ID__": true,
+      "__AUTH0_DOMAIN__": true
+
     },
     "parser": "babel-eslint",
     "parserOptions": {

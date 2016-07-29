@@ -24,8 +24,6 @@ const environmentEnv = dotenv.config({
 const envVariables = Object.assign({}, dotEnvVars, environmentEnv)
 const isDev = NODE_ENV !== 'production'
 
-console.log(NODE_ENV)
-
 const defines =
   Object.keys(envVariables).reduce((memo, key) => {
     const val = JSON.stringify(envVariables[key])
@@ -39,7 +37,7 @@ const defines =
 var myHjsWebpackOptions = {
   in: 'src/index.js',
   out: 'public',
-  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME)'
+  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)'
 }
 var config = getConfig(myHjsWebpackOptions)
 

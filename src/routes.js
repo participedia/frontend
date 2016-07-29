@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route, IndexRedirect, Redirect, IndexRoute } from 'react-router';
+import { Route, IndexRedirect, IndexRoute } from 'react-router'
 import AuthService from './utils/AuthService'
 
 import Home from './Home'
@@ -11,7 +11,6 @@ import Case from './containers/Case'
 import Method from './containers/Method'
 import Add from './components/Add'
 import AddCase from './containers/AddCase'
-
 
 const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
 
@@ -70,7 +69,7 @@ function buildRoutes () {
   var userLocale = getFirstBrowserLanguage()
 
   routes.push(
-    <IndexRedirect key="/" to={'/' + userLocale + '/'} />
+    <IndexRedirect key='/' to={'/' + userLocale + '/'} />
   )
   return routes
 }

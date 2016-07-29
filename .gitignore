@@ -6,6 +6,8 @@ public/index.html
 public/participedia-*.css
 public/participedia-*.js
 
+webpack.json
+
 
 node_modules
 npm-debug.log

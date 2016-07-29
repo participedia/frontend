@@ -21,8 +21,8 @@ export default class Profile extends Component {
     const { profile } = this.state
 
     return (
-      <div styleName="profile">
-        <Avatar styleName="avatar" size={128} src={profile.picture} />
+      <div styleName='profile'>
+        <Avatar styleName='avatar' size={128} src={profile.picture} />
         <h2>{profile.name}</h2>
         <p> This page requires one to be logged in (just for testing purposes right now).</p>
       </div>
