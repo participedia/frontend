@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Map from './containers/Map'
 import SearchResults from './containers/SearchResults'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
 
 class Home extends React.Component {
 

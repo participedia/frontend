@@ -9,12 +9,12 @@ class API {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/countsByCountry')
         .then(function (response) {
-          response.json().then(function(json) {
+          response.json().then(function (json) {
             resolve(json.data.countryCounts)
           })
         })
         .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message);
+          console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
         })
     })
@@ -29,12 +29,12 @@ class API {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/search?' + paramstring)
         .then(function (response) {
-          response.json().then(function(json) {
+          response.json().then(function (json) {
             resolve(json.data)
           })
         })
         .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message);
+          console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
         })
     })
@@ -43,12 +43,12 @@ class API {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/' + caseId)
         .then(function (response) {
-          response.json().then(function(json) {
+          response.json().then(function (json) {
             resolve(json.data)
           })
         })
         .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message);
+          console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
         })
     })
@@ -57,12 +57,12 @@ class API {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/method/' + methodId)
         .then(function (response) {
-          response.json().then(function(json) {
+          response.json().then(function (json) {
             resolve(json.data)
           })
         })
         .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message);
+          console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
         })
     })

@@ -33,4 +33,5 @@ const SearchResults = connect(
   mapDispatchToProps
 )(SearchResultsView)
 
+
 export default SearchResults

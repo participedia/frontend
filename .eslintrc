@@ -1,10 +1,13 @@
 {
-"env": {
+    "env": {
         "browser": true,
         "node": true,
         "es6": true,
         "jest": true,
         "jquery": true
+    },
+    "globals": {
+        "fetch": true
     },
     "parser": "babel-eslint",
     "parserOptions": {

@@ -1,9 +1,9 @@
 /* ===== ./src/utils/jwtHelper.js ===== */
-import decode from 'jwt-decode';
+import decode from 'jwt-decode'
 
-export function getTokenExpirationDate(token){
+export function getTokenExpirationDate (token) {
   const decoded = decode(token)
-  if(!decoded.exp) {
+  if (!decoded.exp) {
     return null
   }
 
@@ -12,7 +12,7 @@ export function getTokenExpirationDate(token){
   return date
 }
 
-export function isTokenExpired(token){
+export function isTokenExpired (token) {
   const date = getTokenExpirationDate(token)
   const offsetSeconds = 0
   if (date === null) {

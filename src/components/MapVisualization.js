@@ -8,9 +8,9 @@ import api from '../utils/api'
 
 // This is important to make sure that the leaflet.css is included in the document
 // the !! syntax is to avoid CSS-module class rewriting.
-import leafletStyles from '!!style-loader!css-loader!leaflet/dist/leaflet.css'
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iI]gnored" }]*/
 
-const position = [51.505, -0.09]
+import leafletStylesIgnored from '!!style-loader!css-loader!leaflet/dist/leaflet.css'
 
 const style = {
   fillColor: 'rgba(0,0,0,0)',
@@ -93,10 +93,9 @@ class MyMap extends React.Component {
   }
 
   render () {
-    console.log("rerendering", this.state)
     const position = [51.505, -0.09]
     return (
-      <div styleName="map-component">
+      <div styleName='map-component'>
         <Map zoom={3} center={position}>
           <TileLayer
             url={mapURL}
@@ -110,7 +109,7 @@ class MyMap extends React.Component {
             visible={this.isCountryListed}
             onEachFeature={this.onEachFeature}
             steps={5}
-            mode="e"
+            mode='e'
             style={style}
           />
         </Map>

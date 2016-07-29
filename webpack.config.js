@@ -45,6 +45,10 @@ var config = getConfig(myHjsWebpackOptions)
 
 config.plugins.push(new webpack.DefinePlugin(defines))
 
+config.plugins.push(new webpack.ProvidePlugin({
+  'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+}))
+
 const replaceLoader = (match, replacer) => (l) => {
   if (l && l.loader && l.loader.match(match)) {
     l.loader = l.loader.replace(match, replacer)

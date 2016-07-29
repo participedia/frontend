@@ -46,21 +46,21 @@ class LoginAvatar extends AuthenticatedComponent {
     const { profile } = this.state
     if (profile.picture) {
       return (
-        <div styleName="avatar">
+        <div styleName='avatar'>
           <IconMenu
             iconButtonElement={<Avatar size={30} src={profile.picture} />}
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
           >
-            <MenuItem linkButton style={buttonStyle} containerElement={<Link to="/profile" />}
+            <MenuItem linkButton style={buttonStyle} containerElement={<Link to='/profile' />}
               onTouchTap={this.handleClose}>Profile</MenuItem>
-            <MenuItem style={buttonStyle} primaryText="Sign out"
+            <MenuItem style={buttonStyle} primaryText='Sign out'
               onTouchTap={this.signOut} />
           </IconMenu>
         </div>
       )
     } else {
-      return (<div styleName="loginButton"><FlatButton onTouchTap={this.signIn} label="login" /></div>)
+      return (<div styleName='loginButton'><FlatButton onTouchTap={this.signIn} label='login' /></div>)
     }
   }
 }
