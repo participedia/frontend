@@ -29,9 +29,9 @@ class SearchHit extends React.Component {
       let dateString = new Date(result.LastUpdatedDate).toDateString()
       let blob = (
         <div styleName='result'>
-          <div styleName='thumbnail'
-            style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
           <Link to={link} styleName='result-title'>
+            <div styleName='thumbnail'
+              style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
             {title}
           </Link>
           <p styleName='result-author'>
