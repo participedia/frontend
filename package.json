@@ -6,10 +6,10 @@
   "scripts": {
     "start": "hjs-dev-server",
     "test": "standard",
-    "postinstall": "npm-run-all build:*",
+    "postinstall": "npm run build:*",
     "build:js": "webpack",
     "build:l10njson": "node scripts/properties2json",
-    "deploy": "NODE_ENV=production npm run build && surge -p public -d participedia.xyz"
+    "deploy": "NODE_ENV=production npm run build:* && surge -p public -d participedia.xyz"
   },
   "standard": {
     "globals": [
