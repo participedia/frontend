@@ -6,6 +6,10 @@ import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 
 class SearchResultsView extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
   render () {
     let caseData = this.props.caseData
     let results = []
@@ -42,13 +46,14 @@ class SearchResultsView extends React.Component {
             <div styleName='search-results-component'>
               <div styleName='sidebar'>
                 <div styleName='sorting-options'>
+                  <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.sortingMethod}</p>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'featured')}
                     styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>Featured</a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'chronological')}
                     styleName={(this.props.sortingMethod === 'chronological') ? 'selected' : 'unselected'}>
-                      {this.props.intl.formatMessage({id: 'most_recent'})}
+                      {"Chronological"||this.props.intl.formatMessage({id: 'most_recent'})}
                   </a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'alphabetical')}

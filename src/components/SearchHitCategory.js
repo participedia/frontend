@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import styles from './SearchHitCategory.css'
+import CSSModules from 'react-css-modules'
+import {injectIntl, intlShape} from 'react-intl'
 
 class SearchHitCategory extends React.Component {
   render () {
     if (this.props.results.length) {
       return (
-        <div className='result-category'>
-          <div className='category-title'>
+        <div styleName='result-category'>
+          <div styleName='category-title'>
             {this.props.title}
           </div>
-          <div className='results'>
+          <div styleName='results'>
             {this.props.results}
           </div>
         </div>
@@ -19,4 +22,8 @@ class SearchHitCategory extends React.Component {
   }
 }
 
-export default SearchHitCategory
+SearchHitCategory.propTypes = {
+  intl: intlShape.isRequired
+}
+
+export default injectIntl(CSSModules(SearchHitCategory, styles))

@@ -32,7 +32,7 @@ class SearchHit extends React.Component {
           <Link to={link} styleName='result-title'>
             <div styleName='thumbnail'
               style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
-            {title}
+            <div styleName='result-title-text'>{title}</div>
           </Link>
           <p styleName='result-author'>
             {firstSubmit}

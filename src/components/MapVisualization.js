@@ -113,6 +113,30 @@ class MyMap extends React.Component {
             style={style}
           />
         </Map>
+        <div styleName="map-information">
+          <div styleName="info-container">
+            <div styleName="legend">
+              <div styleName="marker"><img src="/img/case-marker-icon.png" alt=""/><p>Case</p></div>
+              <div styleName="marker"><img src="/img/method-marker-icon.png" alt=""/><p>Method</p></div>
+              <div styleName="marker"><img src="/img/organization-marker-icon.png" alt=""/><p>Organization</p></div>
+            </div>
+            <div styleName="details">
+              <div styleName="col">
+                <p>Case</p>
+                <p>Participatory Budgeting<br/>(Tower Hamlets, London, UK)</p>
+              </div>
+              <div styleName="col">
+                <p>Last edit:<br/>Scott Fletcher 05/14/2016 - 14:29</p>
+              </div>
+              <div styleName="col">
+                <p>19 Bedford Place,<br/>London WC1B 5JA, U.K.</p>
+              </div>
+              <div styleName="arrow-col">
+                <img src="/img/pp-map-arrow-icon.png" alt=""/>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
