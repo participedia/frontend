@@ -1,22 +1,28 @@
+@media (max-width: 959px) {
+  .map-component {
+    display: none;
+  }
+}
+
 .map-component .map-information {
+  display: none;
   border-bottom: 2px solid #ff6f00;
 }
 
 .map-component .map-information .info-container {
-  width: 100%;
+  width: 1536px;
   margin: 0 auto;
   height: 96px;
-  /*overflow: hidden;*/
 }
 
 .map-component .map-information .info-container .legend {
   padding-top: 36px;
   height: 60px;
+  float: left;
 }
 
 .map-component .map-information .info-container .legend .marker {
   float: left;
-  font-size: smaller;
 }
 
 .map-component .map-information .info-container .legend .marker img {
@@ -36,7 +42,8 @@
 }
 
 .map-component .map-information .info-container .details {
-  font-size: smaller;
+  float: left;
+  width: 1216px;
 }
 
 .map-component .map-information .info-container .details .col {
@@ -68,6 +75,7 @@
   width: 31px;
   float: left;
   padding-top: 40px;
+  margin-left: 88px;
 }
 
 .map-component .map-information .info-container .details .arrow-col img {

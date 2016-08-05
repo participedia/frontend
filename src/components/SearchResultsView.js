@@ -6,6 +6,10 @@ import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 
 class SearchResultsView extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
   render () {
     let caseData = this.props.caseData
     let results = []
@@ -41,18 +45,19 @@ class SearchResultsView extends React.Component {
           <div styleName='main-contents'>
             <div styleName='search-results-component'>
               <div styleName='sidebar'>
-                <div styleName='sorting-options'>
+                <div styleName={'sorting-options' + ((this.state.sortingSelectionOpen)?' open-mobile-menu':'')}>
+                  <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'featured')}
-                    styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>Featured</a>
+                    styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'featured'})}</a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'chronological')}
                     styleName={(this.props.sortingMethod === 'chronological') ? 'selected' : 'unselected'}>
-                      {this.props.intl.formatMessage({id: 'most_recent'})}
+                      {this.props.intl.formatMessage({id: 'chronological'})}
                   </a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'alphabetical')}
-                    styleName={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>Alphabetical</a>
+                    styleName={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'alphabetical'})}</a>
                 </div>
               </div>
               <div styleName='main-area'>
@@ -137,4 +142,6 @@ SearchResultsView.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(SearchResultsView, styles))
+let config = {allowMultiple: true}
+
+export default injectIntl(CSSModules(SearchResultsView, styles, config))
