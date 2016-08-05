@@ -5,7 +5,7 @@
 }
 
 .map-component .map-information {
-  display: none;
+  /*display: none;*/
   border-bottom: 2px solid #ff6f00;
 }
 
