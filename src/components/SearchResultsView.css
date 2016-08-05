@@ -76,6 +76,7 @@
   text-transform: capitalize;
   display: none;
 }
+
 .search-results-component .sidebar .open-mobile-menu {
 }
 
@@ -112,9 +113,9 @@
 
     display: none;
   }
-  /*.search-results-component .sidebar .sorting-options.open-mobile-menu a {
+  .search-results-component .sidebar .sorting-options.open-mobile-menu a {
     display: block;
-  }*/
+  }
   .search-results-component .sidebar .sorting-options .current-sorting-selection {
     display: block;
   }
@@ -134,7 +135,6 @@
 
 @media (max-width: 1279px) {
   .search-results-component .main-area {
-    /*width: 608px;*/
     width: 928px;
     padding-right: 16px;
     padding-left: 16px;
@@ -152,12 +152,6 @@
     width: 288px;
   }
 }
-
-/*@media (max-width: 1599px) {
-  .search-results-component .main-area {
-    width: 928px;
-  }
-}*/
 
 .search-results-component .main-area .search-actions-area {
   border-bottom: 2px solid #eee;
@@ -184,8 +178,8 @@
 
 @media (max-width: 639px) {
   .search-results-component .main-area .search-actions-area .filters a {
-      float: none;
-      border: 0 !important;
+    float: none;
+    border: 0 !important;
   }
 }
 
@@ -466,9 +460,6 @@
   right: 6em;
   top: 4em;
   z-index: 12000;
-  /*float: right;
-  margin-right: 32px;
-  padding-right: 32px;*/
 }
 
 .detailed-case-component .main-area .case-tools .top-icons {

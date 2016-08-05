@@ -45,7 +45,7 @@ class SearchResultsView extends React.Component {
           <div styleName='main-contents'>
             <div styleName='search-results-component'>
               <div styleName='sidebar'>
-                <div styleName='sorting-options'>
+                <div styleName={'sorting-options' + ((this.state.sortingSelectionOpen)?' open-mobile-menu':'')}>
                   <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'featured')}
@@ -142,4 +142,6 @@ SearchResultsView.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(SearchResultsView, styles))
+let config = {allowMultiple: true}
+
+export default injectIntl(CSSModules(SearchResultsView, styles, config))
