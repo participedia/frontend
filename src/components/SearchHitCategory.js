@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styles from './SearchHitCategory.css'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
@@ -18,7 +18,7 @@ class SearchHitCategory extends React.Component {
       )
     } else {
       return (<div></div>)
-    }
+    };
   }
 }
 
