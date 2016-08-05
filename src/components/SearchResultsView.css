@@ -58,6 +58,7 @@
   display: block;
   line-height: 26px;
   transition: 100ms ease-in-out color;
+  text-transform: capitalize;
 }
 
 .search-results-component .sidebar .sorting-options a.selected,

@@ -1,6 +1,8 @@
 {
   "en-US": {
-    "most_recent": "Most Recent"
+    "featured": "Featured",
+    "chronological": "Most Recent",
+    "alphabetical": "Alphabetical"
   },
   "fr": {
     "most_recent": "Plus Récentes"

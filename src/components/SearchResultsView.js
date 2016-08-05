@@ -46,18 +46,18 @@ class SearchResultsView extends React.Component {
             <div styleName='search-results-component'>
               <div styleName='sidebar'>
                 <div styleName='sorting-options'>
-                  <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.sortingMethod}</p>
+                  <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'featured')}
-                    styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>Featured</a>
+                    styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'featured'})}</a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'chronological')}
                     styleName={(this.props.sortingMethod === 'chronological') ? 'selected' : 'unselected'}>
-                      {"Chronological"||this.props.intl.formatMessage({id: 'most_recent'})}
+                      {this.props.intl.formatMessage({id: 'chronological'})}
                   </a>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'alphabetical')}
-                    styleName={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>Alphabetical</a>
+                    styleName={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'alphabetical'})}</a>
                 </div>
               </div>
               <div styleName='main-area'>
