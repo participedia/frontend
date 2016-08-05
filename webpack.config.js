@@ -53,6 +53,13 @@ const replaceLoader = (match, replacer) => (l) => {
   }
 }
 
+config.module.loaders.push({
+  test: /\.scss$/,
+  loaders: [
+    'sass'
+  ]
+})
+
 // Happy, debuggable selectors in dev. Super compact selectors in prod.
 const cssDevIdent = isDev ? '[path][name]___[local]___' : ''
 const cssModulesLoader = `?modules&localIdentName=${cssDevIdent}[hash:base64:5]`
@@ -70,5 +77,4 @@ config.module.loaders.push({
   test: /node_modules[\\\/]auth0-lock[\\\/].*\.ejs$/,
   loader: 'transform-loader/cacheable?ejsify'
 })
-
 module.exports = config
