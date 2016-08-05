@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import SearchHit from '../components/SearchHit'
 import SearchHitCategory from '../components/SearchHitCategory'
-import styles from './SearchResultsView.css'
+import styles from './SearchResultsView.scss'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 
