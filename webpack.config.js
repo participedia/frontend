@@ -41,6 +41,11 @@ var myHjsWebpackOptions = {
 }
 var config = getConfig(myHjsWebpackOptions)
 
+if (isDev) {
+  config.entry[0] = config.entry[0] + '?reload=true'
+  config.entry.unshift('react-hot-loader/patch')
+}
+
 config.plugins.push(new webpack.DefinePlugin(defines))
 
 config.plugins.push(new webpack.ProvidePlugin({
