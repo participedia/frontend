@@ -39,6 +39,7 @@ var myHjsWebpackOptions = {
   out: 'public',
   clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)'
 }
+
 var config = getConfig(myHjsWebpackOptions)
 
 if (isDev) {
