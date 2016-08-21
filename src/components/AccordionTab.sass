@@ -1,55 +1,51 @@
 @import '../UniversalStyles'
 
 @mixin tab()
-	border-bottom: 1px solid #ccc
-	padding: 24px
-	padding-right: 96px
-	position: relative
-	@media (max-width: 639px)
-		padding: 16px
-		padding-right: 16px
-	.title
-		color: $color2
-		font-size: 24px
-		font-weight: 500
-		cursor: pointer
-		width: 100%
-		padding: 24px
-		margin: -24px
-		@media (max-width: 639px)
-			font-size: 24px * 0.75
-			padding: 16px
-			margin: -16px
-	&:after
-		content: ''
-		background-image: url("/img/pp-map-arrow-icon-grey-down.png")
-		background-repeat: no-repeat
-		width: 32px
-		height: 16px
-		display: block
-		background-size: contain
-		opacity: 0.5
-		position: absolute
-		top: 28px
-		right: 24px
-		@media (max-width: 639px)
-			// width: 28px
-			// height: 14px
-			// top: 18px
-			// right: 16px
-			width: 24px
-			height: 12px
-			top: 17px
-			right: 16px
+  border-bottom: 1px solid #ccc
+  padding: 24px
+  padding-right: 96px
+  position: relative
+  @media (max-width: 639px)
+    padding: 16px
+    padding-right: 16px
+  .title
+    color: $color2
+    font-size: 24px
+    font-weight: 500
+    cursor: pointer
+    width: 100%
+    padding: 24px
+    margin: -24px
+    @media (max-width: 639px)
+      font-size: 24px * 0.75
+      padding: 16px
+      margin: -16px
+  &:after
+    content: ''
+    background-image: url("/img/pp-map-arrow-icon-grey-down.png")
+    background-repeat: no-repeat
+    width: 32px
+    height: 16px
+    display: block
+    background-size: contain
+    opacity: 0.5
+    position: absolute
+    top: 28px
+    right: 24px
+    @media (max-width: 639px)
+      width: 24px
+      height: 12px
+      top: 17px
+      right: 16px
 
 .tab
-	@include tab()
-	div:nth-child(2)
-		display: none
+  @include tab()
+  div:nth-child(2)
+    display: none
 
 .tab-open
-	@include tab()
-	&:after
-		background-image: url("/img/pp-map-arrow-icon-grey-up.png")
-	div:nth-child(2)
-		display: block
+  @include tab()
+  &:after
+    background-image: url("/img/pp-map-arrow-icon-grey-up.png")
+  div:nth-child(2)
+    display: block

@@ -1,55 +1,55 @@
 @import '../UniversalStyles'
 
 @mixin tab()
-	padding: 16px
-	padding-right: 96px
-	position: relative
-	@media (max-width: 639px)
-		padding: 12px
-		padding-right: 0
-	.title
-		color: #666
-		font-size: 18px
-		line-height: 22px
-		font-weight: 400
-		display: block
-		margin-top: 8px
-		cursor: pointer
-		width: 100%
-		padding: 16px
-		margin: -16px
-		padding-left: 32px
-		@media (max-width: 639px)
-			font-size: 18px * 0.75
-			line-height: 22px * 0.75
-			padding: 12px
-			margin: -12px
-			padding-left: 24px
-	&:after
-		content: ''
-		background-image: url("/img/pp-map-arrow-icon-grey-down.png")
-		background-repeat: no-repeat
-		width: 18px
-		height: 9px
-		display: block
-		background-size: contain
-		opacity: 0.5
-		position: absolute
-		top: 20px
-		left: 0
-		@media (max-width: 639px)
-			width: 16px
-			height: 8px
-			top: 15px
+  padding: 16px
+  padding-right: 96px
+  position: relative
+  @media (max-width: 639px)
+    padding: 12px
+    padding-right: 0
+  .title
+    color: #666
+    font-size: 18px
+    line-height: 22px
+    font-weight: 400
+    display: block
+    margin-top: 8px
+    cursor: pointer
+    width: 100%
+    padding: 16px
+    margin: -16px
+    padding-left: 32px
+    @media (max-width: 639px)
+      font-size: 18px * 0.75
+      line-height: 22px * 0.75
+      padding: 12px
+      margin: -12px
+      padding-left: 24px
+  &:after
+    content: ''
+    background-image: url("/img/pp-map-arrow-icon-grey-down.png")
+    background-repeat: no-repeat
+    width: 18px
+    height: 9px
+    display: block
+    background-size: contain
+    opacity: 0.5
+    position: absolute
+    top: 20px
+    left: 0
+    @media (max-width: 639px)
+      width: 16px
+      height: 8px
+      top: 15px
 
 .tab
-	@include tab()
-	div:nth-child(2)
-		display: none
+  @include tab()
+  div:nth-child(2)
+    display: none
 
 .tab-open
-	@include tab()
-	&:after
-		background-image: url("/img/pp-map-arrow-icon-grey-up.png")
-	div:nth-child(2)
-		display: block
+  @include tab()
+  &:after
+    background-image: url("/img/pp-map-arrow-icon-grey-up.png")
+  div:nth-child(2)
+    display: block

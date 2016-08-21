@@ -75,9 +75,13 @@ class Layout extends React.Component {
           onRequestChange={(open) => this.setState({open})}>
           <MenuItem containerElement={<Link to='/' />}
             onTouchTap={this.handleClose}>Home</MenuItem>
-          <MenuItem containerElement={<Link to='/profile' />}
+          <MenuItem containerElement={<Link to='/en-US/about' />}
+            onTouchTap={this.handleClose}>About</MenuItem>
+          <MenuItem containerElement={<Link to='/en-US/teaching' />}
+            onTouchTap={this.handleClose}>Teaching</MenuItem>
+          <MenuItem containerElement={<Link to='/en-US/profile' />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
-          <MenuItem containerElement={<Link to='/add' />}
+          <MenuItem containerElement={<Link to='/en-US/add' />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
         </Drawer>
         <div styleName='contentArea'>
