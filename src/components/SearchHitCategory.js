@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './SearchHitCategory.css'
+import styles from './SearchHitCategory.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 

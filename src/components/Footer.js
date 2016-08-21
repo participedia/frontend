@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Footer.css'
+import styles from './Footer.sass'
 import CSSModules from 'react-css-modules'
 
 function Footer () {

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Case.css'
+import styles from './Case.sass'
 import CSSModules from 'react-css-modules'
 import Map from '../containers/Map'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -37,10 +37,13 @@ class Case extends React.Component {
       let caseObject = this.state.caseData
       return (
         <div>
-          <FloatingActionButton styleName='editButton'>
-            <ContentPencil />
-          </FloatingActionButton>
-          <Map />
+          <div styleName="edit-button-container">
+            <div styleName="edit-button-inner">
+              <FloatingActionButton styleName='editButton'>
+                <ContentPencil />
+              </FloatingActionButton>
+            </div>
+          </div>
           <div styleName='main-contents'>
             <div styleName='detailed-case-component'>
               <div styleName='sidebar'>

@@ -8,7 +8,7 @@ import LoginAvatar from './LoginAvatar'
 /* eslint-disable no-unused-vars */
 import globalStyles from '!!style-loader!css-loader!../public/global.css'
 /* eslint-enable no-unused-vars */
-import styles from './Layout.css'
+import styles from './Layout.sass'
 import CSSModules from 'react-css-modules'
 
 var substyles = {
