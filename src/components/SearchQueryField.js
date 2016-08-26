@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './SearchQueryField.css'
+import styles from './SearchQueryField.sass'
 import CSSModules from 'react-css-modules'
 
 class SearchQueryField extends React.Component {

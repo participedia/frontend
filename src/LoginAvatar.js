@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
 import {Link} from 'react-router'
 
-import styles from './LoginAvatar.css'
+import styles from './LoginAvatar.sass'
 import CSSModules from 'react-css-modules'
 import AuthenticatedComponent from './AuthenticatedComponent'
 import AuthService from './utils/AuthService'

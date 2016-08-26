@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 const muiTheme = getMuiTheme()
 
-import styles from './CaseForm.css'
+import styles from './CaseForm.sass'
 import CSSModules from 'react-css-modules'
 
 class CaseForm extends Component {

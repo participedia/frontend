@@ -7,6 +7,8 @@ import Home from './Home'
 import Layout from './Layout'
 import Profile from './Profile'
 import Login from './Login'
+import About from './About'
+import Teaching from './Teaching'
 import Case from './containers/Case'
 import Method from './containers/Method'
 import Add from './components/Add'
@@ -57,6 +59,8 @@ function buildRoutes () {
         <IndexRoute component={Home} />
         <Route path='profile' component={Profile} onEnter={requireAuth} />
         <Route path='login' component={Login} />
+        <Route path='about' component={About} />
+        <Route path='teaching' component={Teaching} />
         <Route path='case/:nodeID' component={Case} />
         <Route path='method/:nodeID' component={Method} />
         <Route path='add' component={Add}>

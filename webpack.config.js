@@ -37,7 +37,10 @@ const defines =
 var myHjsWebpackOptions = {
   in: 'src/index.js',
   out: 'public',
-  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)'
+  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)',
+  devServer: {
+    hot: true
+  }
 }
 
 var config = getConfig(myHjsWebpackOptions)
@@ -58,13 +61,6 @@ const replaceLoader = (match, replacer) => (l) => {
     l.loader = l.loader.replace(match, replacer)
   }
 }
-
-config.module.loaders.push({
-  test: /\.scss$/,
-  loaders: [
-    'sass'
-  ]
-})
 
 // Happy, debuggable selectors in dev. Super compact selectors in prod.
 const cssDevIdent = isDev ? '[path][name]___[local]___' : ''

@@ -8,7 +8,7 @@ import LoginAvatar from './LoginAvatar'
 /* eslint-disable no-unused-vars */
 import globalStyles from '!!style-loader!css-loader!../public/global.css'
 /* eslint-enable no-unused-vars */
-import styles from './Layout.css'
+import styles from './Layout.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl} from 'react-intl'
 
@@ -77,6 +77,10 @@ class Layout extends React.Component {
           onRequestChange={(open) => this.setState({open})}>
           <MenuItem containerElement={<Link to={'/'+locale} />}
             onTouchTap={this.handleClose}>Home</MenuItem>
+          <MenuItem containerElement={<Link to={'/'+locale+'/about'} />}
+            onTouchTap={this.handleClose}>About</MenuItem>
+          <MenuItem containerElement={<Link to={'/'+locale+'/teaching'} />}
+            onTouchTap={this.handleClose}>Teaching</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/profile'} />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/add'} />}

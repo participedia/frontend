@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react'
 import SearchHit from '../components/SearchHit'
 import SearchHitCategory from '../components/SearchHitCategory'
-import styles from './SearchResultsView.scss'
+import styles from './SearchResultsView.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 
 class SearchResultsView extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor () {
+    super()
+    this.state = {}
   }
+
   render () {
     let caseData = this.props.caseData
     let results = []
@@ -45,8 +46,8 @@ class SearchResultsView extends React.Component {
           <div styleName='main-contents'>
             <div styleName='search-results-component'>
               <div styleName='sidebar'>
-                <div styleName={'sorting-options' + ((this.state.sortingSelectionOpen)?' open-mobile-menu':'')}>
-                  <p styleName="current-sorting-selection" onClick={()=>{this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen});}}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
+                <div styleName={'sorting-options' + ((this.state.sortingSelectionOpen) ? ' open-mobile-menu' : '')}>
+                  <p styleName='current-sorting-selection' onClick={() => { this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen}) }}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
                   <a href='#' onClick={this.props.onSortingChange.bind(this,
                       this.props.query, this.props.selectedCategory, 'featured')}
                     styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'featured'})}</a>

@@ -25,6 +25,7 @@
   "dependencies": {
     "accept-language-parser": "^1.1.2",
     "auth0-lock": "^9.2.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "bestlang": "0.0.1",
     "bodybuilder": "^1.11.0",
     "brfs": "^1.4.3",
