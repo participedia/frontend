@@ -22,7 +22,13 @@ React, redux where appropriate; react-router for all routes; `react-intl` locali
 
 ### Development
 
+`npm start` will start a dev server which will detect code changes (both
+in JS and CSS) and do "hot reloading".  It will not detect changes to the 
+webpack config for example.
+
 ### Deployment
+
+`npm build:j
 
 ### Contributing
 

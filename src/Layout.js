@@ -10,6 +10,7 @@ import globalStyles from '!!style-loader!css-loader!../public/global.css'
 /* eslint-enable no-unused-vars */
 import styles from './Layout.css'
 import CSSModules from 'react-css-modules'
+import {injectIntl} from 'react-intl'
 
 var substyles = {
   box: {
@@ -50,6 +51,7 @@ class Layout extends React.Component {
     }
     let menuIcon = require('../public/img/menu-icon.png')
     let ppLogo = require('../public/img/pp-logo.png')
+    let locale = this.props.intl.locale
 
     return (
       <div>
@@ -73,11 +75,11 @@ class Layout extends React.Component {
           width={300}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}>
-          <MenuItem containerElement={<Link to='/' />}
+          <MenuItem containerElement={<Link to={'/'+locale} />}
             onTouchTap={this.handleClose}>Home</MenuItem>
-          <MenuItem containerElement={<Link to='/profile' />}
+          <MenuItem containerElement={<Link to={'/'+locale+'/profile'} />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
-          <MenuItem containerElement={<Link to='/add' />}
+          <MenuItem containerElement={<Link to={'/'+locale+'/add'} />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
         </Drawer>
         <div styleName='contentArea'>
@@ -89,4 +91,4 @@ class Layout extends React.Component {
   }
 }
 
-export default CSSModules(Layout, styles)
+export default injectIntl(CSSModules(Layout, styles))
