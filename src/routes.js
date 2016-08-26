@@ -78,8 +78,6 @@ function buildRoutes () {
   return routes
 }
 
-console.log(buildRoutes())
-
 // just need to handle / redirect now
 module.exports = (
   <Route path='/'>
