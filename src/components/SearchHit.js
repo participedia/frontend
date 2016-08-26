@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import styles from './SearchHit.css'
+import styles from './SearchHit.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
 

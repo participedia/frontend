@@ -1,0 +1,61 @@
+.result
+  width: 288px
+  margin-right: 32px
+  float: left
+  margin-bottom: 32px
+  height: 300px
+  @media (max-width: 639px)
+    margin-right: 0
+    margin-bottom: 16px
+
+@media (min-width: 1600px)
+  .result:nth-child(4n)
+    margin-right: 0
+  
+@media (max-width: 1599px) and (min-width: 1280px)
+  .result:nth-child(3n)
+    margin-right: 0
+  
+@media (max-width: 1279px) and (min-width: 960px)
+  .result:nth-child(3n)
+    margin-right: 0
+  
+@media (max-width: 959px) and (min-width: 640px)
+  .result:nth-child(2n)
+    margin-right: 0
+
+.thumbnail
+  width: 288px
+  height: 160px
+  background-size: cover
+  background-position: center
+  margin-bottom: 10px
+  background-color: #eee
+  cursor: pointer
+
+.result-title
+  opacity: 1
+
+.result-title-text
+  color: #3f51b2
+  font-size: 20px
+  line-height: 26px
+  font-weight: 500
+  margin-bottom: 6px
+  max-height: 78px
+  overflow: hidden
+
+.result-author
+  font-size: 14px
+  font-weight: 400
+  color: #666
+  line-height: 22px
+
+.result-date
+  font-size: 14px
+  font-weight: 100
+  color: #666
+  line-height: 22px
+
+.result.method
+  height: 244px

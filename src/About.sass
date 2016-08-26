@@ -1,0 +1,94 @@
+@import './UniversalStyles'
+
+.about
+	width: 960px
+	margin: 0 auto
+	margin-top: 48px
+	margin-bottom: 48px
+	@media (max-width: 1023px)
+		padding: 0 32px
+		box-sizing: border-box
+		width: 100%
+	h1
+		color: $color2
+		font-size: 60px
+		font-weight: 500
+		line-height: 72px
+		@media (max-width: 639px)
+			font-size: 60px * 0.75
+			line-height: 72px * 0.75
+	h2
+		color: $color1
+		font-size: 36px
+		font-weight: 400
+		line-height: 44px
+		margin-top: 24px
+		margin-bottom: 24px
+		@media (max-width: 639px)
+			font-size: 36px * 0.75
+			line-height: 44px * 0.75
+	.text
+		color: #000
+		font-size: 20px
+		line-height: 28px
+		font-weight: 300
+		margin-top: 16px
+		@media (max-width: 639px)
+			font-size: 20px * 0.75
+			line-height: 28px * 0.75
+			margin-top: 12px
+		& > a
+			color: $color2
+			font-size: 18px
+			line-height: 24px
+			font-weight: 400
+			display: block
+			margin-top: 8px
+			&:nth-of-type(1)
+				margin-top: 12px
+			@media (max-width: 639px)
+				font-size: 18px * 0.75
+				line-height: 24px * 0.75
+				margin-top: 4px
+				&:nth-of-type(1)
+					margin-top: 8px
+	.accordion
+		border-top: 1px solid #ccc
+		margin-top: 24px
+		margin-bottom: 48px
+		@media (max-width: 639px)
+			margin-top: 18px
+			margin-bottom: 32px
+		.content
+			opacity: 1
+		.sub-accordion
+			padding: 12px 0
+		.sub-content
+			padding: 16px 48px
+			padding-bottom: 0
+			@media (max-width: 639px)
+				padding: 8px 32px
+			.name
+				color: $color2
+				font-size: 18px
+				line-height: 24px
+				font-weight: 400
+				display: block
+				margin-top: 8px
+				margin-bottom: 1px
+				@media (max-width: 639px)
+					font-size: 18px * 0.75
+					line-height: 24px * 0.75
+			.department
+				color: #666
+				font-size: 17px
+				line-height: 21px
+				font-weight: 300
+				display: block
+				padding-bottom: 16px
+				@media (max-width: 639px)
+					font-size: 17px * 0.75
+					line-height: 21px * 0.75
+					padding-top: 8px
+				&:last-child
+					padding-bottom: 0

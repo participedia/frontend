@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Case.css'
+import styles from './Case.sass'
 import CSSModules from 'react-css-modules'
 import Map from '../containers/Map'
 import FloatingActionButton from 'material-ui/FloatingActionButton'

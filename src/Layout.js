@@ -8,7 +8,7 @@ import LoginAvatar from './LoginAvatar'
 /* eslint-disable no-unused-vars */
 import globalStyles from '!!style-loader!css-loader!../public/global.css'
 /* eslint-enable no-unused-vars */
-import styles from './Layout.css'
+import styles from './Layout.sass'
 import CSSModules from 'react-css-modules'
 
 var substyles = {
@@ -75,9 +75,13 @@ class Layout extends React.Component {
           onRequestChange={(open) => this.setState({open})}>
           <MenuItem containerElement={<Link to='/' />}
             onTouchTap={this.handleClose}>Home</MenuItem>
-          <MenuItem containerElement={<Link to='/profile' />}
+          <MenuItem containerElement={<Link to='/en-US/about' />}
+            onTouchTap={this.handleClose}>About</MenuItem>
+          <MenuItem containerElement={<Link to='/en-US/teaching' />}
+            onTouchTap={this.handleClose}>Teaching</MenuItem>
+          <MenuItem containerElement={<Link to='/en-US/profile' />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
-          <MenuItem containerElement={<Link to='/add' />}
+          <MenuItem containerElement={<Link to='/en-US/add' />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
         </Drawer>
         <div styleName='contentArea'>

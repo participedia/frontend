@@ -2,7 +2,7 @@ import React from 'react'
 import { Map, TileLayer } from 'react-leaflet'
 import geojson from '../world-countries.json'
 import Choropleth from 'react-leaflet-choropleth'
-import styles from './MapVisualization.css'
+import styles from './MapVisualization.sass'
 import CSSModules from 'react-css-modules'
 import api from '../utils/api'
 

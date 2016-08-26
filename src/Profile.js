@@ -1,7 +1,7 @@
 import React, { Component, PropTypes as T } from 'react'
 import AuthService from './utils/AuthService'
 import Avatar from 'material-ui/Avatar'
-import styles from './Profile.css'
+import styles from './Profile.sass'
 import CSSModules from 'react-css-modules'
 
 export default class Profile extends Component {
