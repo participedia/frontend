@@ -18,7 +18,7 @@ class SearchHitCategory extends React.Component {
       )
     } else {
       return (<div></div>)
-    }
+    };
   }
 }
 

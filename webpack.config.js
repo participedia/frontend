@@ -37,9 +37,18 @@ const defines =
 var myHjsWebpackOptions = {
   in: 'src/index.js',
   out: 'public',
-  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)'
+  clearBeforeBuild: '!(img|favicon.ico|global.css|CORS|CNAME|locales.json)',
+  devServer: {
+    hot: true
+  }
 }
+
 var config = getConfig(myHjsWebpackOptions)
+
+if (isDev) {
+  config.entry[0] = config.entry[0] + '?reload=true'
+  config.entry.unshift('react-hot-loader/patch')
+}
 
 config.plugins.push(new webpack.DefinePlugin(defines))
 
