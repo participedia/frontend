@@ -4,7 +4,7 @@ import SearchResultsView from '../components/SearchResultsView'
 
 const mapStateToProps = (state) => {
   return {
-    caseData: state.cases.caseData || [],
+    data: state.cases.data || [],
     query: state.cases.query || '',
     searching: state.cases.searching || false,
     sortingMethod: state.ui.sort || 'chronological',

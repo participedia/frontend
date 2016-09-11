@@ -52,6 +52,7 @@ class Layout extends React.Component {
     let menuIcon = require('../public/img/menu-icon.png')
     let ppLogo = require('../public/img/pp-logo.png')
     let locale = this.props.intl.locale
+    let home = `/${locale}/`
 
     return (
       <div>
@@ -59,7 +60,7 @@ class Layout extends React.Component {
           <div styleName='nav-bar-wrapper'>
             <div styleName='logo-area'>
               <a href='#' onClick={this.handleToggle} styleName='menu-icon'><img src={menuIcon} alt='' /></a>
-              <a href='/' styleName='logo'><img src={ppLogo} alt='' /></a>
+              <a href={home} styleName='logo'><img src={ppLogo} alt='' /></a>
             </div>
             <div styleName='search-box-area'>
               <img src={require('../public/img/search-icon.png')} styleName='searchIcon' alt='' />

@@ -53,7 +53,7 @@ function startSearch (query, selectedCategory, sortingMethod) {
 function receiveData (query, response) {
   return {
     type: RECEIVED_DATA,
-    caseData: response.hits.hits
+    data: response.hits.hits
   }
 }
 

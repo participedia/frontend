@@ -5,7 +5,7 @@ import MapVisualization from '../components/MapVisualization'
 const mapDispatchToProps = (dispatch) => ({
   onCountryChange: (country) => {
     try {
-      dispatch(search('Country:' + country))
+      dispatch(search('geo_country:' + country))
     } catch (e) {
       console.log(e)
     }

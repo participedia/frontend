@@ -3,20 +3,21 @@ import styles from './Case.sass'
 import CSSModules from 'react-css-modules'
 import Map from '../containers/Map'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentPencil from 'material-ui/svg-icons/image/edit'
 import api from '../utils/api'
 
 class Method extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchMethodById(this.props.params.nodeID).then(function (json) {
-      let caseData = json['_source']
+      let data = json['_source']
       let htmlBody = ''
       console.log(json)
 
-      if (caseData.ArticleHTML) {
-        htmlBody = caseData.ArticleHTML
+      if (data.ArticleHTML) {
+        htmlBody = data.ArticleHTML
       }
-      component.setState({caseData: caseData, htmlBody: htmlBody})
+      component.setState({data: data, htmlBody: htmlBody})
     })
   }
 
@@ -30,8 +31,8 @@ class Method extends React.Component {
   }
 
   render () {
-    if (this.state && this.state.caseData) {
-      let datumObj = this.state.caseData
+    if (this.state && this.state.data) {
+      let datumObj = this.state.data
       console.log('datumObj', datumObj)
       return (
         <div>

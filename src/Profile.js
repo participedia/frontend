@@ -4,10 +4,7 @@ import Avatar from 'material-ui/Avatar'
 import styles from './Profile.sass'
 import CSSModules from 'react-css-modules'
 
-export default class Profile extends Component {
-  static propTypes = {
-    auth: T.instanceOf(AuthService)
-  }
+class Profile extends Component {
 
   constructor (props) {
     super(props)
@@ -28,6 +25,9 @@ export default class Profile extends Component {
       </div>
    )
   }
+}
+Profile.propTypes = {
+  auth: T.instanceOf(AuthService)
 }
 
 export default CSSModules(Profile, styles)

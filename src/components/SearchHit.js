@@ -3,54 +3,54 @@ import { Link } from 'react-router'
 import styles from './SearchHit.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
+import moment from 'moment'
+function capitalize(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 class SearchHit extends React.Component {
 
   getInnerHTML () {
-    return {__html: this.props.case._source.ArticleHTML}
+    return {__html: this.props.record._source.body_en}
   }
   render () {
-    try {
-      let result = this.props.case._source
-      var locale = this.props.intl.locale
-      // console.log(result)
-      let title, link
-      if (result.CaseID) {
-        title = 'Case: ' + result.CaseID
-        link = '/' + locale + '/case/' + result.NodeId
-      } else {
-        title = 'Method: ' + result.Title
-        link = '/' + locale + '/method/' + result.methodID
-      }
-      let firstSubmit = result.FirstSubmit
-      if (!title) {
-        console.log('missing title: ', result)
-      }
-      let dateString = new Date(result.LastUpdatedDate).toDateString()
-      let blob = (
-        <div styleName='result'>
-          <Link to={link} styleName='result-title'>
-            <div styleName='thumbnail'
-              style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
-            <div styleName='result-title-text'>{title}</div>
-          </Link>
-          <p styleName='result-author'>
-            {firstSubmit}
-          </p>
-          <p styleName='result-date'>
-            {dateString}
-          </p>
-        </div>
-      )
-      return blob
-    } catch (e) {
-      console.trace(e)
+    let result = this.props.record._source
+    console.log("result", result);
+    var locale = this.props.intl.locale
+    var id = result.id
+    var type = result.type_
+    console.log(`type: ${type}`)
+    // console.log(result)
+    let title, link
+    title = capitalize(type) + ': ' + result.title_en
+    link = `/${locale}/${type}/${id}`
+    let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY")
+    if (!title) {
+      console.log('missing title: ', result)
     }
+    let dateString = new moment(result.lastmodified).fromNow()
+    let blob = (
+      <div styleName='result'>
+        <Link to={link} styleName='result-title'>
+          <div styleName='thumbnail'
+            style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
+          <div styleName='result-title-text'>{title}</div>
+        </Link>
+        <p styleName='result-author'>
+          {firstSubmit}
+        </p>
+        <p styleName='result-date'>
+          {dateString}
+        </p>
+      </div>
+    )
+    return blob
   }
 }
 
 SearchHit.propTypes = {
-  case: PropTypes.object.isRequired,
+  record: PropTypes.object.isRequired,
   intl: intlShape.isRequired
 }
 

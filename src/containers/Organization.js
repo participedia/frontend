@@ -9,13 +9,13 @@ import ContentPencil from 'material-ui/svg-icons/image/edit'
 
 import { getRandomInt } from '../util'
 
-class Case extends React.Component {
+class Organization extends React.Component {
   componentWillMount () {
     let component = this
-    api.fetchCaseById(this.props.params.nodeID).then(function (json) {
-      console.log('in Case.js componentWillMount, json = ', json)
+    api.fetchOrgById(this.props.params.nodeID).then(function (json) {
+      console.log('in Organization.js componentWillMount, json = ', json)
       let data = json[0]
-      component.setState({data: data, htmlBody: data.body})
+      component.setState({data: data, htmlBody: data.body_en})
     })
   }
 
@@ -99,10 +99,10 @@ class Case extends React.Component {
               <div styleName='main-area'>
                 <div styleName='case-box'>
                   <div styleName='category'>
-                    Case
+                    Organization
                   </div>
                   <p styleName='case-title'>
-                    {caseObject.title}
+                    {caseObject.title_en}
                   </p>
                   <div styleName='case-images'>
                     {[0, 1, 2].map(function (obj, i) { /* XXX */
@@ -132,7 +132,7 @@ class Case extends React.Component {
                     {updated_date}
                     </p>
                   </div>
-                  <div styleName='case-html' dangerouslySetInnerHTML={{__html: caseObject.body}} />
+                  <div styleName='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
                 <div styleName='case-tools'>
                   <div styleName='top-icons'>
@@ -153,8 +153,8 @@ class Case extends React.Component {
   }
 }
 
-Case.propTypes = {
+Organization.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(Case, styles))
+export default injectIntl(CSSModules(Organization, styles))

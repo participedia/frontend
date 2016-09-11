@@ -20,7 +20,7 @@ function searchEngine (state = { }, action) {
       })
     case RECEIVED_DATA:
       return Object.assign({}, state, {
-        caseData: action.caseData,
+        data: action.data,
         searching: false
       })
     default:

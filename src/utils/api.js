@@ -5,7 +5,7 @@ let APIURL = __API_URL__
 import queryString from 'query-string'
 
 class API {
-  countsByCountry = function (resolve, reject) {
+    countsByCountry = function (resolve, reject) {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/countsByCountry')
         .then(function (response) {
@@ -21,7 +21,7 @@ class API {
   }
 
   performSearch = function (query, selectedCategory, sortingMethod, resolve, reject) {
-    let paramstring = queryString.stringify({
+      let paramstring = queryString.stringify({
       query: query,
       selectedCategory: selectedCategory,
       sortingMethod: sortingMethod
@@ -30,7 +30,7 @@ class API {
       fetch(APIURL + '/case/search?' + paramstring)
         .then(function (response) {
           response.json().then(function (json) {
-            resolve(json.data)
+            resolve(json)
           })
         })
         .catch(function (error) {
@@ -66,6 +66,20 @@ class API {
           reject(error)
         })
     })
-  }}
-
+  }
+  fetchOrgById = function (caseId) {
+    return new Promise(function (resolve, reject) {
+      fetch(APIURL + '/organization/' + caseId)
+        .then(function (response) {
+          response.json().then(function (json) {
+            resolve(json.data)
+          })
+        })
+        .catch(function (error) {
+          console.log('There has been a problem with your fetch operation: ' + error.message)
+          reject(error)
+        })
+    })
+  }
+}
 export default new API()

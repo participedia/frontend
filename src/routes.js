@@ -10,6 +10,7 @@ import Login from './Login'
 import About from './About'
 import Teaching from './Teaching'
 import Case from './containers/Case'
+import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
 import AddCase from './containers/AddCase'
@@ -63,6 +64,7 @@ function buildRoutes () {
         <Route path='teaching' component={Teaching} />
         <Route path='case/:nodeID' component={Case} />
         <Route path='method/:nodeID' component={Method} />
+        <Route path='organization/:nodeID' component={Organization} />
         <Route path='add' component={Add}>
           <Route path='case' component={AddCase} />
         </Route>
