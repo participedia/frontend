@@ -102,7 +102,7 @@ class Case extends React.Component {
                     Case
                   </div>
                   <p styleName='case-title'>
-                    {caseObject.title}
+                    {caseObject.title_en}
                   </p>
                   <div styleName='case-images'>
                     {[0, 1, 2].map(function (obj, i) { /* XXX */
@@ -132,7 +132,7 @@ class Case extends React.Component {
                     {updated_date}
                     </p>
                   </div>
-                  <div styleName='case-html' dangerouslySetInnerHTML={{__html: caseObject.body}} />
+                  <div styleName='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
                 <div styleName='case-tools'>
                   <div styleName='top-icons'>
