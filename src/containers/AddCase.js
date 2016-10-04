@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export const fields = [ 'firstName', 'lastName', 'age', 'color', 'bio' ]
 
 let AddCaseForm = reduxForm({
-  form: 'case',
+  form: 'ncase',
   fields: ['firstName', 'lastName', 'email']
 }, mapStateToProps, mapDispatchToProps)(CaseForm)
 

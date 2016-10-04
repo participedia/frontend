@@ -15,7 +15,6 @@ var store = configureStore()
 // More on Colors: http://www.material-ui.com/#/customization/colors
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: 'white',
     primary1Color: '#3f51b2'
   },
   appBar: {

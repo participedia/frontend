@@ -13,7 +13,8 @@ import Case from './containers/Case'
 import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
-import AddCase from './containers/AddCase'
+// import AddCase from './containers/AddCase'
+import EditCase from './containers/EditCase'
 
 const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
 
@@ -62,15 +63,19 @@ function buildRoutes () {
         <Route path='login' component={Login} />
         <Route path='about' component={About} />
         <Route path='teaching' component={Teaching} />
-        <Route path='case/:nodeID' component={Case} />
+        <Route path='case/:nodeID'>
+          <IndexRoute component={Case} />
+          <Route path='edit' component={EditCase} />
+        </Route>
         <Route path='method/:nodeID' component={Method} />
         <Route path='organization/:nodeID' component={Organization} />
-        <Route path='add' component={Add}>
-          <Route path='case' component={AddCase} />
+        <Route path='add'>
+          <IndexRoute component={Add}/>
         </Route>
       </Route>
     )
   })
+          // <Route path='case' component={AddCase} />
 
   var userLocale = getFirstBrowserLanguage()
 

@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Case.sass'
 import CSSModules from 'react-css-modules'
 import {injectIntl, intlShape} from 'react-intl'
+import {Link} from 'react-router'
 import api from '../utils/api'
 import moment from 'moment'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -48,14 +49,20 @@ class Case extends React.Component {
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
       let last_author = "XXX" // TODO
+      let id = this.props.params.nodeID
+      let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
 
       return (
         <div>
           <div styleName="edit-button-container">
             <div styleName="edit-button-inner">
-              <FloatingActionButton styleName='editButton'>
-                <ContentPencil />
-              </FloatingActionButton>
+              <div styleName="editButton">
+                <FloatingActionButton linkButton
+                  containerElement={editLink}
+                  >
+                  <ContentPencil />
+                </FloatingActionButton>
+              </div>
             </div>
           </div>
           <div styleName='main-contents'>
