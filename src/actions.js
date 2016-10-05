@@ -6,7 +6,45 @@ export const SWITCH_CATEGORY = 'SWITCH_CATEGORY'
 export const SET_SORT_ORDER = 'SET_SORT_ORDER'
 export const SET_LAYOUT = 'SET_LAYOUT'
 export const DO_RECENT_SEARCH = 'DO_RECENT_SEARCH'
+export const FETCHING_OBJECT = 'FETCHING_OBJECT'
+export const RECEIVED_OBJECT = 'RECEIVED_OBJECT'
+export const CASE_TYPE = 'CASE'
+
 import api from './utils/api'
+
+export function startFetchObject() {
+  return {
+    type: FETCHING_OBJECT,
+    payload: null
+  }
+}
+export function receiveObject(id, json) {
+  console.log("in receiveObject", json)
+  return {
+    type: RECEIVED_OBJECT,
+    payload: {object: json[0], id: id}
+  }
+}
+
+export function loadObject (type, id) {
+  console.log('in loadObject', type, id)
+  if (type == CASE_TYPE) {
+    console.log("doing case dispatch chain")
+    return dispatch => {
+      dispatch(startFetchObject(id))
+      console.log('about to do fetchCaseById', id)
+      return api.fetchCaseById(id)
+        .then(response => dispatch(receiveObject(id, response)),
+        function (err) {
+          console.log('got an error in fetchCaseById', err)
+        })
+    }
+  } else {
+    console.error('not a case')
+    // XXX deal with things beyond cases
+  }
+}
+
 
 export function doRecentSearch () {
   return {
