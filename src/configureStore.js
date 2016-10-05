@@ -10,7 +10,7 @@ import rootReducer from './reducers'
 
 module.exports = function configureStore () {
   const storageMiddleware = storage.createMiddleware(engine)
-  const loggerMiddleware = createLogger()
+  // const loggerMiddleware = createLogger()
 
   const initialState = {}
   // const withStorage = applyMiddleware(storageMiddleware)(createStore);
@@ -21,22 +21,22 @@ module.exports = function configureStore () {
     compose(
       applyMiddleware(
         thunkMiddleware,
-        loggerMiddleware,
+        // loggerMiddleware,
         storageMiddleware
       ),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   )
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (module.hot) {
-      // Enable Webpack hot module replacement for reducers
-      module.hot.accept('./reducers', () => {
-        var nextRootReducer = require('./reducers')
-        store.replaceReducer(nextRootReducer)
-      })
-    }
+  // if (process.env.NODE_ENV !== 'production') {
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      var nextRootReducer = require('./reducers')
+      store.replaceReducer(nextRootReducer)
+    })
   }
+  // }
 
   return store
 }
