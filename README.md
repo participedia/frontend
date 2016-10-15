@@ -28,6 +28,10 @@ npm install:
 npm install
 ```
 
+### Configuration
+
+One of two configuration files will be loaded depending on whether the code is run in production mode or development mode.  If in development mode, you should specify whether you're running your own instance of the API server, or want to use an existing API server (e.g. api.participedia.xyz).  Edit `config/development.env` accordingly (it comes with two example lines, the last one that isn't commented out will be used.
+
 ### Development
 
 `npm start` will start a dev server which will detect code changes (both
