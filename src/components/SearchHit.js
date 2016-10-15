@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import styles from './SearchHit.sass'
-import CSSModules from 'react-css-modules'
+import './SearchHit.css'
 import {injectIntl, intlShape} from 'react-intl'
 import moment from 'moment'
+import backgroundImage from '../img/pp-thumbnail-1.jpg'
+
 function capitalize(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -16,12 +17,9 @@ class SearchHit extends React.Component {
   }
   render () {
     let result = this.props.record._source
-    console.log("result", result);
     var locale = this.props.intl.locale
     var id = result.id
     var type = result.type_
-    console.log(`type: ${type}`)
-    // console.log(result)
     let title, link
     title = capitalize(type) + ': ' + result.title_en
     link = `/${locale}/${type}/${id}`
@@ -29,18 +27,19 @@ class SearchHit extends React.Component {
     if (!title) {
       console.log('missing title: ', result)
     }
+    let thumbnailStyle = {backgroundImageSrc: backgroundImage}
     let dateString = new moment(result.lastmodified).fromNow()
     let blob = (
-      <div styleName='result'>
-        <Link to={link} styleName='result-title'>
-          <div styleName='thumbnail'
-            style={{backgroundImage: 'url(/img/pp-thumbnail-1.jpg)'}} />
-          <div styleName='result-title-text'>{title}</div>
+      <div className='result'>
+        <Link to={link} className='result-title'>
+          <div className='thumbnail'
+            style={thumbnailStyle} />
+          <div className='result-title-text'>{title}</div>
         </Link>
-        <p styleName='result-author'>
+        <p className='result-author'>
           {firstSubmit}
         </p>
-        <p styleName='result-date'>
+        <p className='result-date'>
           {dateString}
         </p>
       </div>
@@ -54,4 +53,4 @@ SearchHit.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(SearchHit, styles))
+export default injectIntl(SearchHit)

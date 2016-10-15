@@ -1,0 +1,97 @@
+.tab {
+  padding: 16px;
+  padding-right: 96px;
+  position: relative; }
+  @media (max-width: 639px) {
+    .tab {
+      padding: 12px;
+      padding-right: 0; } }
+  .tab .title {
+    color: #666;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    display: block;
+    margin-top: 8px;
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    margin: -16px;
+    padding-left: 32px; }
+    @media (max-width: 639px) {
+      .tab .title {
+        font-size: 13.5px;
+        line-height: 16.5px;
+        padding: 12px;
+        margin: -12px;
+        padding-left: 24px; } }
+  .tab:after {
+    content: "";
+    background-image: url("../img/pp-map-arrow-icon-grey-down.png");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 9px;
+    display: block;
+    background-size: contain;
+    opacity: 0.5;
+    position: absolute;
+    top: 20px;
+    left: 0; }
+    @media (max-width: 639px) {
+      .tab:after {
+        width: 16px;
+        height: 8px;
+        top: 15px; } }
+  .tab div:nth-child(2) {
+    display: none; }
+
+.tab-open {
+  padding: 16px;
+  padding-right: 96px;
+  position: relative; }
+  @media (max-width: 639px) {
+    .tab-open {
+      padding: 12px;
+      padding-right: 0; } }
+  .tab-open .title {
+    color: #666;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    display: block;
+    margin-top: 8px;
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    margin: -16px;
+    padding-left: 32px; }
+    @media (max-width: 639px) {
+      .tab-open .title {
+        font-size: 13.5px;
+        line-height: 16.5px;
+        padding: 12px;
+        margin: -12px;
+        padding-left: 24px; } }
+  .tab-open:after {
+    content: "";
+    background-image: url("../img/pp-map-arrow-icon-grey-down.png");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 9px;
+    display: block;
+    background-size: contain;
+    opacity: 0.5;
+    position: absolute;
+    top: 20px;
+    left: 0; }
+    @media (max-width: 639px) {
+      .tab-open:after {
+        width: 16px;
+        height: 8px;
+        top: 15px; } }
+  .tab-open:after {
+    background-image: url("../img/pp-map-arrow-icon-grey-up.png"); }
+  .tab-open div:nth-child(2) {
+    display: block; }
+
+/*# sourceMappingURL=SubAccordionTab.css.map */

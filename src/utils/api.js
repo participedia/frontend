@@ -1,6 +1,10 @@
 // This is the JS API to talk to api.participedia.xyz
 
-let APIURL = __API_URL__
+let APIURL = process.env.REACT_APP_API_URL
+
+if (! APIURL) {
+  console.error("No API URL was found. REACT_APP_API_URL should be set in environment variables.")
+}
 
 import queryString from 'query-string'
 

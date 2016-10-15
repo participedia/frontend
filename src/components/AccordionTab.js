@@ -1,6 +1,5 @@
 import React from 'react'
-import styles from './AccordionTab.sass'
-import CSSModules from 'react-css-modules'
+import './AccordionTab.css'
 
 class AccordionTab extends React.Component {
 
@@ -11,12 +10,12 @@ class AccordionTab extends React.Component {
 
   render () {
     return (
-      <div styleName={(this.state.open?"tab-open":"tab")}>
-        <p styleName="title" onClick={() => {this.setState({open: !this.state.open})}}>{this.props.title}</p>
+      <div className={(this.state.open?"tab-open":"tab")}>
+        <p className="title" onClick={() => {this.setState({open: !this.state.open})}}>{this.props.title}</p>
         {this.props.children}
       </div>
     )
   }
 }
 
-export default CSSModules(AccordionTab, styles)
+export default AccordionTab

@@ -5,7 +5,7 @@ const engine = createEngine('my-save-key')
 // import persistState from "redux-localstorage"
 // import promiseMiddleware from 'redux-promise-middleware'
 import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
+// import createLogger from 'redux-logger'
 import rootReducer from './reducers'
 
 module.exports = function configureStore () {

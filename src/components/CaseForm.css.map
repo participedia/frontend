@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACX,OAAO,EAAE,KAAK;;AAGhB,eAAgB;EACd,WAAW,EAAE,GAAG;EAChB,WAAW,EAAE,GAAG;;AAGlB,OAAQ;EACN,cAAc,EAAE,KAAK;;AAGvB,WAAY;EACV,OAAO,EAAE,CAAC",
+"sources": ["CaseForm.scss"],
+"names": [],
+"file": "CaseForm.css"
+}

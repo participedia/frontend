@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
 import SearchHit from '../components/SearchHit'
 import SearchHitCategory from '../components/SearchHitCategory'
-import styles from './SearchResultsView.sass'
-import CSSModules from 'react-css-modules'
+import './SearchResultsView.css'
 import {injectIntl, intlShape} from 'react-intl'
+import searchGridIcon from '../img/pp-search-grid-icon.png'
+import searchGridIconActive from '../img/pp-search-grid-icon-active.png'
+import searchListIcon from '../img/pp-search-list-icon.png'
+import searchListIconActive from '../img/pp-search-list-icon-active.png'
 
 class SearchResultsView extends React.Component {
   constructor () {
@@ -15,11 +18,7 @@ class SearchResultsView extends React.Component {
     let data = this.props.data
     let categories = {'case': [], 'organization': [], 'method': [], 'news': []}
 
-    console.log("data", data)
-
-    console.log("this.props.selectedCategory", this.props.selectedCategory)
     data.forEach(function (record) {
-      console.log('pushing record', record._type);
       let category = categories[record._type]
       let index = category.length
       category.push(<SearchHit key={index} record={record} />)
@@ -34,10 +33,6 @@ class SearchResultsView extends React.Component {
     let methods = includeMethods ? categories['method'] : []
     let orgs = includeOrgs ? categories['organization'] : []
     let news = includeNews ? categories['news'] : []
-    console.log("CASES", cases)
-    console.log("METHODS", methods)
-    console.log("ORGS", orgs)
-    console.log("NEWS", news)
 
     let resultsCount = cases.length + methods.length + orgs.length + news.length
     let query = this.props.query
@@ -49,61 +44,61 @@ class SearchResultsView extends React.Component {
       )
     } else {
       return (
-        <div styleName='main-contents'>
-          <div styleName='search-results-component'>
-            <div styleName='sidebar'>
-              <div styleName={'sorting-options' + ((this.state.sortingSelectionOpen) ? ' open-mobile-menu' : '')}>
-                <p styleName='current-sorting-selection' onClick={() => { this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen}) }}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
+        <div className='main-contents'>
+          <div className='search-results-component'>
+            <div className='sidebar'>
+              <div className={'sorting-options' + ((this.state.sortingSelectionOpen) ? ' open-mobile-menu' : '')}>
+                <p className='current-sorting-selection' onClick={() => { this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen}) }}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
                 <a href='#' onClick={this.props.onSortingChange.bind(this,
                     this.props.query, this.props.selectedCategory, 'featured')}
-                  styleName={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'featured'})}</a>
+                  className={(this.props.sortingMethod === 'featured') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'featured'})}</a>
                 <a href='#' onClick={this.props.onSortingChange.bind(this,
                     this.props.query, this.props.selectedCategory, 'chronological')}
-                  styleName={(this.props.sortingMethod === 'chronological') ? 'selected' : 'unselected'}>
+                  className={(this.props.sortingMethod === 'chronological') ? 'selected' : 'unselected'}>
                     {this.props.intl.formatMessage({id: 'chronological'})}
                 </a>
                 <a href='#' onClick={this.props.onSortingChange.bind(this,
                     this.props.query, this.props.selectedCategory, 'alphabetical')}
-                  styleName={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'alphabetical'})}</a>
+                  className={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'alphabetical'})}</a>
               </div>
             </div>
-            <div styleName='main-area'>
-              <div styleName='search-actions-area'>
-                <div styleName='filters'>
+            <div className='main-area'>
+              <div className='search-actions-area'>
+                <div className='filters'>
                   <a href='#' onClick={this.props.onCategoryChange.bind(this, 'All')}
-                    styleName={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
+                    className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
                   <a href='#' onClick={this.props.onCategoryChange.bind(this, 'News')}
-                    styleName={(this.props.selectedCategory === 'News') ? 'selected' : 'unselected'}>News</a>
+                    className={(this.props.selectedCategory === 'News') ? 'selected' : 'unselected'}>News</a>
                   <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Cases')}
-                    styleName={(this.props.selectedCategory === 'Cases') ? 'selected' : 'unselected'}>Cases</a>
+                    className={(this.props.selectedCategory === 'Cases') ? 'selected' : 'unselected'}>Cases</a>
                   <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Methods')}
-                    styleName={(this.props.selectedCategory === 'Methods') ? 'selected' : 'unselected'}>Methods</a>
+                    className={(this.props.selectedCategory === 'Methods') ? 'selected' : 'unselected'}>Methods</a>
                   <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Organizations')}
-                    styleName={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>Organizations</a>
+                    className={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>Organizations</a>
                 </div>
-                <div styleName='view-types'>
+                <div className='view-types'>
                   <a href='#' onClick={this.props.onLayoutChange.bind(this, 'grid')}
-                    styleName={(this.props.selectedViewType === 'grid') ? 'selected' : 'unselected'}>
-                    <img src='/img/pp-search-grid-icon.png' className='grid-icon' alt='' />
-                    <img src='/img/pp-search-grid-icon-active.png' className='grid-icon' alt='' />
+                    className={(this.props.selectedViewType === 'grid') ? 'selected' : 'unselected'}>
+                    <img src={searchGridIcon} className='grid-icon' alt='' />
+                    <img src={searchGridIconActive} className='grid-icon' alt='' />
                   </a>
                   <a href='#' onClick={this.props.onLayoutChange.bind(this, 'list')}
-                    styleName={(this.props.selectedViewType === 'list') ? 'selected' : 'unselected'}>
-                    <img src='/img/pp-search-list-icon.png' className='list-icon' alt='' />
-                    <img src='/img/pp-search-list-icon-active.png' className='list-icon' alt='' />
+                    className={(this.props.selectedViewType === 'list') ? 'selected' : 'unselected'}>
+                    <img src={searchListIcon} className='list-icon' alt='' />
+                    <img src={searchListIconActive} className='list-icon' alt='' />
                   </a>
                   <a href='#' onClick={this.props.startDownload.bind(this)}>
-                    <img src='/img/pp-search-dl-icon.png' className='dl-icon' alt=''></img>
+                    <img src='../img/pp-search-dl-icon.png' className='dl-icon' alt=''></img>
                   </a>
                 </div>
               </div>
-              <div styleName='result-count'>
+              <div className='result-count'>
                 <p>
                   {resultsCount} Result
                   {(resultsCount === 1) ? '' : 's'}
                 </p>
               </div>
-              <div styleName='results-box'>
+              <div className='results-box'>
                 <SearchHitCategory title='News' results={news} />
                 <SearchHitCategory title='Cases' results={cases} />
                 <SearchHitCategory title='Methods' results={methods} />
@@ -130,4 +125,4 @@ SearchResultsView.propTypes = {
 
 let config = {allowMultiple: true}
 
-export default injectIntl(CSSModules(SearchResultsView, styles, config))
+export default injectIntl(SearchResultsView, config)

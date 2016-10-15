@@ -1,10 +1,14 @@
 import React from 'react'
-import styles from './Case.sass'
-import CSSModules from 'react-css-modules'
+import './Case.css'
 import Map from '../containers/Map'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentPencil from 'material-ui/svg-icons/image/edit'
+// import ContentPencil from 'material-ui/svg-icons/image/edit'
 import api from '../utils/api'
+import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
+import caseIconSettings from '../img/pp-case-icon-settings.png'
+import caseIconFB from '../img/pp-case-icon-fb.png'
+import caseIconTW from '../img/pp-case-icon-tw.png'
+import caseIconShare from '../img/pp-case-icon-share.png'
 
 class Method extends React.Component {
   componentWillMount () {
@@ -12,7 +16,6 @@ class Method extends React.Component {
     api.fetchMethodById(this.props.params.nodeID).then(function (json) {
       let data = json['_source']
       let htmlBody = ''
-      console.log(json)
 
       if (data.ArticleHTML) {
         htmlBody = data.ArticleHTML
@@ -23,7 +26,6 @@ class Method extends React.Component {
 
   getInnerHTML () {
     let input = ''
-    console.log(this.state)
     if (this.state && this.state.htmlBody) {
       input = this.state.htmlBody
     }
@@ -33,12 +35,11 @@ class Method extends React.Component {
   render () {
     if (this.state && this.state.data) {
       let datumObj = this.state.data
-      console.log('datumObj', datumObj)
       return (
         <div>
           <Map />
-          <FloatingActionButton styleName='editButton' iconClassName='attach-file' />
-          <div styleName='main-contents'>
+          <FloatingActionButton className='editButton' iconClassName='attach-file' />
+          <div className='main-contents'>
             <div className='detailed-case-component'>
               <div className='sidebar'>
                 <p className='sub-heading'>
@@ -64,11 +65,11 @@ class Method extends React.Component {
                 </div>
                 <div className='case-tools'>
                   <div className='top-icons'>
-                    <a href='#'><img src='/img/pp-case-icon-bookmark.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-settings.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-fb.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-tw.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-share.png' alt='' /></a>
+                    <a href='#'><img src={caseIconBookmark} alt='' /></a>
+                    <a href='#'><img src={caseIconSettings} alt='' /></a>
+                    <a href='#'><img src={caseIconFB} alt='' /></a>
+                    <a href='#'><img src={caseIconTW} alt='' /></a>
+                    <a href='#'><img src={caseIconShare} alt='' /></a>
                   </div>
                   <div className='bottom-icons'>
                     <a href='#'><img src='/img/pp-case-icon-edit.png' alt='' /></a>
@@ -84,4 +85,4 @@ class Method extends React.Component {
   }
 }
 
-export default CSSModules(Method, styles)
+export default Method

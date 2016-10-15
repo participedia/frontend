@@ -16,14 +16,14 @@ function dataStoreReducer (state = { }, action) {
       searching: true
     })
   case RECEIVED_OBJECT:
-    console.log("in RECEIVED_OBJECT reducer", action)
     return Object.assign({}, state, {
       currentObject: action.payload.object,
       currentID: action.payload.ID,
       searching: false
     })
+  default:
+    return state
   }
-  return state
 }
 
 

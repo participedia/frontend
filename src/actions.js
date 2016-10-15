@@ -19,7 +19,6 @@ export function startFetchObject() {
   }
 }
 export function receiveObject(id, json) {
-  console.log("in receiveObject", json)
   return {
     type: RECEIVED_OBJECT,
     payload: {object: json[0], id: id}
@@ -27,12 +26,9 @@ export function receiveObject(id, json) {
 }
 
 export function loadObject (type, id) {
-  console.log('in loadObject', type, id)
-  if (type == CASE_TYPE) {
-    console.log("doing case dispatch chain")
+  if (type === CASE_TYPE) {
     return dispatch => {
       dispatch(startFetchObject(id))
-      console.log('about to do fetchCaseById', id)
       return api.fetchCaseById(id)
         .then(response => dispatch(receiveObject(id, response)),
         function (err) {

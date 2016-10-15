@@ -5,8 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
 import {Link} from 'react-router'
 
-import styles from './LoginAvatar.sass'
-import CSSModules from 'react-css-modules'
+import './LoginAvatar.css'
 import AuthenticatedComponent from './AuthenticatedComponent'
 import AuthService from './utils/AuthService'
 
@@ -45,7 +44,7 @@ class LoginAvatar extends AuthenticatedComponent {
     const { profile } = this.state
     if (profile.picture) {
       return (
-        <div styleName='avatar'>
+        <div className='avatar'>
           <IconMenu
             iconButtonElement={<Avatar size={30} src={profile.picture} />}
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
@@ -59,9 +58,9 @@ class LoginAvatar extends AuthenticatedComponent {
         </div>
       )
     } else {
-      return (<div styleName='loginButton'><FlatButton onTouchTap={this.signIn} label='login' /></div>)
+      return (<div className='loginButton'><FlatButton onClick={this.signIn} onTouchTap={this.signIn} label='login' /></div>)
     }
   }
 }
 
-export default CSSModules(LoginAvatar, styles)
+export default LoginAvatar

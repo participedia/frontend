@@ -1,29 +1,59 @@
 
 import React, {Component} from 'react'
-import TextField from 'material-ui/TextField'
 import {injectIntl, intlShape} from 'react-intl'
 import { Field } from 'redux-form'
 
-import styles from './CaseEditor.sass'
-import CSSModules from 'react-css-modules'
+import './CaseEditor.css'
 import ReactQuill from 'react-quill/dist/react-quill'
 
-// We don't want the Quill CSS to get name-mangled, as the library expects pure names.
-import QuillCoreCSS from '!!style-loader!css-loader!../../node_modules/quill/dist/quill.core.css'
-import QuillSnowCSS from '!!style-loader!css-loader!../../node_modules/quill/dist/quill.snow.css'
+import '../quill.core.css'
+import '../quill.snow.css'
 
+var BodyEditor = React.createClass({
+  _quillModules: {
+      toolbar: [ 
+          [{ 'header': [1, 2, false] }],
+          ['bold', 'italic', 'underline','strike', 'blockquote'],
+          [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}], 
+          ['link', 'image'], 
+          ['clean'] 
+      ]
+      /* ... other modules */
+  },
 
-var _BodyEditor = React.createClass({
+  _quillFormats: [ 
+      "header",
+      "bold", "italic", "underline", "strike", "blockquote",
+      "list", "bullet", "indent",
+      "link", "image" 
+  ],
+
   render: function() {
-    console.log("this.props", this.props)
     return (
-      <div>
-        <ReactQuill value={this.props.value} />
+      <div className='_quill'>
+        <ReactQuill theme='snow' 
+                    modules={this._quillModules}
+                    formats={this._quillFormats}
+                    toolbar={false}
+                    bounds={'._quill'}>
+          <div key="editor"
+                ref="editor"
+                className="quill-contents border_solid_top"
+                dangerouslySetInnerHTML={{__html:this.props.value}} />
+        </ReactQuill>
       </div>
-    )
+    );
   }
+
+  // render: function() {
+  //   console.log("this.props", this.props)
+  //   return (
+  //     <div>
+  //       <ReactQuill value={this.props.value} />
+  //     </div>
+  //   )
+  // }
 })
-var BodyEditor = CSSModules(_BodyEditor, QuillSnowCSS)
 
 class _CaseEditor extends Component {
   render() {
@@ -37,32 +67,32 @@ class _CaseEditor extends Component {
 
     return (
         <div>
-          <div styleName='main-contents'>
-            <div styleName='detailed-case-component'>
-              <div styleName='sidebar'>
-                <p styleName='case-location'>
+          <div className='main-contents'>
+            <div className='detailed-case-component'>
+              <div className='sidebar'>
+                <p className='case-location'>
                   country picker
                 </p>
-                <p styleName='sub-heading'>
+                <p className='sub-heading'>
                   Keywords
                 </p>
                 keyword picker
-                <p styleName='sub-heading'>
+                <p className='sub-heading'>
                   Related Content
                 </p>
-                <div styleName='related-content'>
+                <div className='related-content'>
                   <a href='#'>Cases</a>
                   <a href='#'>Methods</a>
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
               </div>
-              <div styleName='main-area'>
-                <div styleName='case-box'>
-                  <div styleName='category'>
+              <div className='main-area'>
+                <div className='case-box'>
+                  <div className='category'>
                     Case
                   </div>
-                  <p styleName='case-title'>
+                  <p className='case-title'>
                   {caseObject.title_en}
                   </p>
                   <form onSubmit={handleSubmit}>
@@ -91,4 +121,4 @@ _CaseEditor.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(_CaseEditor, styles))
+export default injectIntl(_CaseEditor)

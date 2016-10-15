@@ -1,0 +1,28 @@
+.search-bar {
+  width: 100%;
+  border: 0;
+  padding: 0px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 12px 0;
+  height: 40px;
+  color: #fff;
+  font-weight: 100;
+  padding-left: 36px; }
+  @media (max-width: 959px) {
+    .search-bar {
+      box-sizing: border-box; } }
+
+.search-bar::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8); }
+
+.search-bar::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8); }
+
+.search-bar:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8); }
+
+.search-bar:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8); }
+
+/*# sourceMappingURL=SearchQueryField.css.map */

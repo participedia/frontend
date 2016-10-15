@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react' // eslint-disable-line no-unused-vars
 import RaisedButton from 'material-ui/RaisedButton'
 import {Link} from 'react-router'
-import styles from './Add.sass'
-import CSSModules from 'react-css-modules'
+import './Add.css'
 
 const style = {
   margin: 12
 }
 
 const Add = () => (
-  <div styleName='addForm'>
+  <div className='addForm'>
     <h3>Adding new cases to Participedia</h3>
     <RaisedButton label='New Case'
       style={style} primary
@@ -19,4 +18,4 @@ const Add = () => (
   </div>
 )
 
-export default CSSModules(Add, styles)
+export default Add
