@@ -7,8 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 const muiTheme = getMuiTheme()
 
-import styles from './CaseForm.sass'
-import CSSModules from 'react-css-modules'
+import './CaseForm.css'
 
 class CaseForm extends Component {
   constructor (props) {
@@ -26,9 +25,8 @@ class CaseForm extends Component {
     let bits = []
     choices.forEach(function (choice) {
       let [label, value] = choice
-      console.log('VALUE', value, 'LABEL', label)
       bits.push((<RadioButton
-        styleName='choice'
+        className='choice'
         key={value}
         value={value}
         label={label}
@@ -37,13 +35,12 @@ class CaseForm extends Component {
     let blob =
       <div key={key}>
         <h4 style={style}>{heading}</h4>
-        <RadioButtonGroup styleName='choicelist' name={key}
+        <RadioButtonGroup className='choicelist' name={key}
           onChange={event => this.setState({ [key]: event.target.value })}
         >
           {bits}
         </RadioButtonGroup>
       </div>
-    console.log(blob)
     return blob
   }
 
@@ -54,7 +51,6 @@ class CaseForm extends Component {
     })
   }
   onSubmit = (v) => {
-    console.log(v)
     this.setState({snacking: true, snackMessage: JSON.stringify(v)})
   }
   render () {
@@ -133,7 +129,7 @@ class CaseForm extends Component {
 
     let blob = (<MuiThemeProvider muiTheme={muiTheme}>
       <Paper style={paperStyle}>
-        <form styleName='addCaseForm' style={formStyle} onSubmit={handleSubmit}>
+        <form className='addCaseForm' style={formStyle} onSubmit={handleSubmit}>
           {parts}
         </form>
       </Paper>
@@ -142,4 +138,4 @@ class CaseForm extends Component {
   }
 }
 
-export default CSSModules(CaseForm, styles)
+export default CaseForm

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,OAAQ;EACN,QAAQ,EAAE,KAAK;EACf,KAAK,EAAE,GAAG;EACV,GAAG,EAAE,GAAG;EACR,KAAK,EAAE,KAAK;;AAGd,YAAa;EACX,QAAQ,EAAE,KAAK;EACf,KAAK,EAAE,GAAG;EACV,GAAG,EAAE,GAAG;EAER,gBAAI;IACF,KAAK,EAAE,KAAK",
+"sources": ["LoginAvatar.scss"],
+"names": [],
+"file": "LoginAvatar.css"
+}

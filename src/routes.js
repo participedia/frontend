@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react'  // eslint-disable-line no-unused-vars
 
 import { Route, IndexRedirect, IndexRoute } from 'react-router'
 import AuthService from './utils/AuthService'
@@ -16,7 +16,7 @@ import Add from './components/Add'
 // import AddCase from './containers/AddCase'
 import EditCase from './containers/EditCase'
 
-const auth = new AuthService(__AUTH0_CLIENT_ID__, __AUTH0_DOMAIN__)
+const auth = new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {

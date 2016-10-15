@@ -2,15 +2,14 @@ import React from 'react'
 import { Map, TileLayer } from 'react-leaflet'
 import geojson from '../world-countries.json'
 import Choropleth from 'react-leaflet-choropleth'
-import styles from './MapVisualization.sass'
-import CSSModules from 'react-css-modules'
+import './MapVisualization.css'
 import api from '../utils/api'
+import caseMarkerIcon from '../img/case-marker-icon.png'
+import methodMarkerIcon from '../img/method-marker-icon.png'
+import orgMarkerIcon from '../img/organization-marker-icon.png'
+import mapArrowIcon from '../img/pp-map-arrow-icon.png'
 
-// This is important to make sure that the leaflet.css is included in the document
-// the !! syntax is to avoid CSS-module class rewriting.
-/* eslint-disable no-unused-vars */
-import leafletStylesIgnored from '!!style-loader!css-loader!leaflet/dist/leaflet.css'
-/* eslint-enable no-unused-vars */
+import 'leaflet/dist/leaflet.css'
 
 const style = {
   fillColor: 'rgba(0,0,0,0)',
@@ -19,12 +18,6 @@ const style = {
   opacity: 0,
   fillOpacity: 0.6
 }
-
-// watercolor:  'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png'
-// 'Map tiles by <a href='http://stamen.com'>Stamen Design</a>, <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a> &mdash; Map data &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>'
-
-// let mapURL = 'http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}'
-// let	attribution = 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
 
 let mapURL = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
 let attribution = 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
@@ -95,7 +88,7 @@ class MyMap extends React.Component {
   render () {
     const position = [51.505, -0.09]
     return (
-      <div styleName='map-component'>
+      <div className='map-component'>
         <Map zoom={3} center={position}>
           <TileLayer
             url={mapURL}
@@ -113,26 +106,26 @@ class MyMap extends React.Component {
             style={style}
           />
         </Map>
-        <div styleName='map-information'>
-          <div styleName='info-container'>
-            <div styleName='legend'>
-              <div styleName='marker'><img src='/img/case-marker-icon.png' alt='' /><p>Case</p></div>
-              <div styleName='marker'><img src='/img/method-marker-icon.png' alt='' /><p>Method</p></div>
-              <div styleName='marker'><img src='/img/organization-marker-icon.png' alt='' /><p>Organization</p></div>
+        <div className='map-information'>
+          <div className='info-container'>
+            <div className='legend'>
+              <div className='marker'><img src={caseMarkerIcon} alt='' /><p>Case</p></div>
+              <div className='marker'><img src={methodMarkerIcon} alt='' /><p>Method</p></div>
+              <div className='marker'><img src={orgMarkerIcon} alt='' /><p>Organization</p></div>
             </div>
-            <div styleName='details'>
-              <div styleName='col'>
+            <div className='details'>
+              <div className='col'>
                 <p>Case</p>
                 <p>Participatory Budgeting<br />(Tower Hamlets, London, UK)</p>
               </div>
-              <div styleName='col'>
+              <div className='col'>
                 <p>Last edit:<br />Scott Fletcher 05/14/2016 - 14:29</p>
               </div>
-              <div styleName='col'>
+              <div className='col'>
                 <p>19 Bedford Place,<br />London WC1B 5JA, U.K.</p>
               </div>
-              <div styleName='arrow-col'>
-                <img src='/img/pp-map-arrow-icon.png' alt='' />
+              <div className='arrow-col'>
+                <img src={mapArrowIcon} alt='' />
               </div>
             </div>
           </div>
@@ -148,4 +141,4 @@ class MyMap extends React.Component {
 MyMap.propTypes = {
   onCountryChange: React.PropTypes.func
 }
-export default CSSModules(MyMap, styles)
+export default MyMap

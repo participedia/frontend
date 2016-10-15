@@ -1,0 +1,101 @@
+.contentArea {
+  padding-top: 64px;
+  min-height: 20em; }
+  @media (max-width: 959px) {
+    .contentArea {
+      padding-top: 112px; } }
+
+.drawer div {
+  z-index: 30000;
+  background-color: white;
+  color: black; }
+
+.drawer > div:nth-child(2) {
+  padding: 80px 0 0 20px; }
+
+.menuitem a div div {
+  color: black;
+  background: pink; }
+
+.content {
+  font-family: Roboto, sans-serif; }
+
+.appbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+.nav-bar-component {
+  background-color: #3f51b2;
+  height: 64px;
+  -webkit-box-shadow: 0px 2px rgba(0, 0, 0, 0.25);
+  -mox-box-shadow: 0px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  width: 100%;
+  z-index: 9999; }
+  .nav-bar-component .nav-bar-wrapper {
+    width: 100%;
+    margin: 0 auto; }
+  .nav-bar-component .logo-area {
+    float: left;
+    width: 320px; }
+    .nav-bar-component .logo-area .menu-icon {
+      float: left;
+      padding: 16px;
+      padding-left: 32px; }
+      .nav-bar-component .logo-area .menu-icon img {
+        width: 32px;
+        height: 32px;
+        opacity: 0.5; }
+    .nav-bar-component .logo-area .logo {
+      float: left;
+      padding: 20px 0; }
+      .nav-bar-component .logo-area .logo img {
+        height: 24px; }
+  .nav-bar-component .search-box-area {
+    float: left;
+    width: 40%; }
+    @media (max-width: 959px) {
+      .nav-bar-component .search-box-area {
+        position: absolute;
+        margin-top: 64px;
+        background-color: #3f51b2;
+        width: 100%;
+        padding-left: 36px;
+        padding-right: 36px;
+        box-sizing: border-box;
+        margin-top: 48px; } }
+  .nav-bar-component .login-area {
+    float: right;
+    margin-right: 32px; }
+    .nav-bar-component .login-area .user-actions {
+      float: left; }
+    .nav-bar-component .login-area .user-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.25);
+      margin: 12px 0;
+      font-weight: 100;
+      display: block;
+      color: #fff; }
+    .nav-bar-component .login-area .sign-in {
+      padding: 12px 32px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.25);
+      margin: 12px 0;
+      font-weight: 100;
+      display: block;
+      float: left;
+      color: #fff; }
+
+.searchIcon {
+  float: left;
+  height: 16px;
+  opacity: 0.8;
+  margin-top: 24px;
+  margin-right: -48px;
+  margin-left: 12px; }
+
+/*# sourceMappingURL=Layout.css.map */

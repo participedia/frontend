@@ -7,7 +7,7 @@ export default class AuthService extends EventEmitter {
     super()
     this.domain = domain
     // Configure Auth0
-    this.lock = new Auth0Lock(clientId, domain, {})
+    this.lock = new Auth0Lock(clientId, domain, {auth: {redirectUrl: document.location.origin}})
     // Add callback for lock `authenticated` event
     this.lock.on('authenticated', this._doAuthentication.bind(this))
     this.lock.on('authorization_error', this._authorizationError.bind(this))
@@ -54,8 +54,6 @@ export default class AuthService extends EventEmitter {
           console.log('There was an error :/', err)
           return
         }
-        console.log('PROFILE', profile)
-        console.log('idToken', idToken)
         comp.setProfile(profile)
         comp.setToken(idToken)
       }

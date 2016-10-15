@@ -6,10 +6,9 @@ import SearchQuery from './containers/SearchQuery'
 import Footer from './components/Footer'
 import LoginAvatar from './LoginAvatar'
 /* eslint-disable no-unused-vars */
-import globalStyles from '!!style-loader!css-loader!../public/global.css'
+import globalStyles from './global.css'
 /* eslint-enable no-unused-vars */
-import styles from './Layout.sass'
-import CSSModules from 'react-css-modules'
+import './Layout.css'
 import {injectIntl} from 'react-intl'
 
 var substyles = {
@@ -29,8 +28,6 @@ class Layout extends React.Component {
   }
 
   handleToggle () {
-    console.log('in handleToggle, this is', this)
-    console.log('in handleToggle, state is', this.state)
     this.setState({open: !this.state.open})
   };
 
@@ -49,29 +46,29 @@ class Layout extends React.Component {
         auth: this.props.route.auth // sends auth instance from route to children
       })
     }
-    let menuIcon = require('../public/img/menu-icon.png')
-    let ppLogo = require('../public/img/pp-logo.png')
+    let menuIcon = require('./img/menu-icon.png')
+    let ppLogo = require('./img/pp-logo.png')
     let locale = this.props.intl.locale
     let home = `/${locale}/`
 
     return (
       <div>
-        <div styleName='nav-bar-component'>
-          <div styleName='nav-bar-wrapper'>
-            <div styleName='logo-area'>
-              <a href='#' onClick={this.handleToggle} styleName='menu-icon'><img src={menuIcon} alt='' /></a>
-              <a href={home} styleName='logo'><img src={ppLogo} alt='' /></a>
+        <div className='nav-bar-component'>
+          <div className='nav-bar-wrapper'>
+            <div className='logo-area'>
+              <a href='#' onClick={this.handleToggle} className='menu-icon'><img src={menuIcon} alt='' /></a>
+              <a href={home} className='logo'><img src={ppLogo} alt='' /></a>
             </div>
-            <div styleName='search-box-area'>
-              <img src={require('../public/img/search-icon.png')} styleName='searchIcon' alt='' />
+            <div className='search-box-area'>
+              <img src={require('./img/search-icon.png')} className='searchIcon' alt='' />
               <SearchQuery />
             </div>
-            <LoginAvatar auth={this.props.route.auth} styleName='login-area' />
+            <LoginAvatar auth={this.props.route.auth} className='login-area' />
           </div>
         </div>
         <div style={substyles.box}></div>
         <Drawer
-          styleName='drawer'
+          className='drawer'
           docked={false}
           width={300}
           open={this.state.open}
@@ -87,7 +84,7 @@ class Layout extends React.Component {
           <MenuItem containerElement={<Link to={'/'+locale+'/add'} />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
         </Drawer>
-        <div styleName='contentArea'>
+        <div className='contentArea'>
           {children}
         </div>
         <Footer />
@@ -96,4 +93,4 @@ class Layout extends React.Component {
   }
 }
 
-export default injectIntl(CSSModules(Layout, styles))
+export default injectIntl(Layout)

@@ -1,11 +1,15 @@
 import React from 'react'
-import styles from './Case.sass'
-import CSSModules from 'react-css-modules'
+import './Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import api from '../utils/api'
 import moment from 'moment'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
+import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
+import caseIconSettings from '../img/pp-case-icon-settings.png'
+import caseIconFB from '../img/pp-case-icon-fb.png'
+import caseIconTW from '../img/pp-case-icon-tw.png'
+import caseIconShare from '../img/pp-case-icon-share.png'
 
 import { getRandomInt } from '../util'
 
@@ -13,7 +17,6 @@ class Organization extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchOrgById(this.props.params.nodeID).then(function (json) {
-      console.log('in Organization.js componentWillMount, json = ', json)
       let data = json[0]
       component.setState({data: data, htmlBody: data.body_en})
     })
@@ -51,96 +54,96 @@ class Organization extends React.Component {
 
       return (
         <div>
-          <div styleName="edit-button-container">
-            <div styleName="edit-button-inner">
-              <FloatingActionButton styleName='editButton'>
+          <div className="edit-button-container">
+            <div className="edit-button-inner">
+              <FloatingActionButton className='editButton'>
                 <ContentPencil />
               </FloatingActionButton>
             </div>
           </div>
-          <div styleName='main-contents'>
-            <div styleName='detailed-case-component'>
-              <div styleName='sidebar'>
-                <img src='/img/pp-map-01.png' styleName='case-map' alt='' />
-                <p styleName='case-location'>
+          <div className='main-contents'>
+            <div className='detailed-case-component'>
+              <div className='sidebar'>
+                <img src='/img/pp-map-01.png' className='case-map' alt='' />
+                <p className='case-location'>
                   Kadikoy, Turkey
                 </p>
-                <div styleName='progress-bar'>
-                  <div styleName='progress-fill' style={{ width: progressPercentage + '%' }}></div>
+                <div className='progress-bar'>
+                  <div className='progress-fill' style={{ width: progressPercentage + '%' }}></div>
                 </div>
-                <p styleName='progress-complete'>
+                <p className='progress-complete'>
                   {progressPercentage}% complete
                 </p>
-                <p styleName='sub-heading'>
+                <p className='sub-heading'>
                   Keywords
                 </p>
-                <p styleName='sub-sub-heading'>
+                <p className='sub-sub-heading'>
                   Tags:
                 </p>
-                <div styleName='tags'>
+                <div className='tags'>
                 {tags}
                 </div>
-                <p styleName='sub-sub-heading'>
+                <p className='sub-sub-heading'>
                   Specific Topic(s):
                 </p>
-                <div styleName='tags'>
+                <div className='tags'>
                 {communication_modes}
                 </div>
-                <p styleName='sub-heading'>
+                <p className='sub-heading'>
                   Related Content
                 </p>
-                <div styleName='related-content'>
+                <div className='related-content'>
                   <a href='#'>Cases</a>
                   <a href='#'>Methods</a>
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
               </div>
-              <div styleName='main-area'>
-                <div styleName='case-box'>
-                  <div styleName='category'>
+              <div className='main-area'>
+                <div className='case-box'>
+                  <div className='category'>
                     Organization
                   </div>
-                  <p styleName='case-title'>
+                  <p className='case-title'>
                     {caseObject.title_en}
                   </p>
-                  <div styleName='case-images'>
+                  <div className='case-images'>
                     {[0, 1, 2].map(function (obj, i) { /* XXX */
                       return (
-                        <div styleName='thumbnail' key={i}
+                        <div className='thumbnail' key={i}
                           style={{ backgroundImage: 'url(/img/placeholder/400_' + getRandomInt(0, 30) + '.jpeg)' }} />
                       )
                     })}
                   </div>
-                  <div styleName='authorship-details'>
-                    <p styleName='author-line'>
+                  <div className='authorship-details'>
+                    <p className='author-line'>
                       First submitted by&nbsp;
                       <a href={first_author_url}>
                         {first_author}
                       </a>
                     </p>
-                    <p styleName='date-line'>
+                    <p className='date-line'>
                     {post_date} 
                     </p>
-                    <p styleName='author-line'>
+                    <p className='author-line'>
                       Most recent changes by&nbsp;
                       <a href='#'>
                         {last_author}
                       </a>
                     </p>
-                    <p styleName='date-line'>
+                    <p className='date-line'>
                     {updated_date}
                     </p>
                   </div>
-                  <div styleName='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
+                  <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
-                <div styleName='case-tools'>
-                  <div styleName='top-icons'>
-                    <a href='#'><img src='/img/pp-case-icon-bookmark.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-settings.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-fb.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-tw.png' alt='' /></a>
-                    <a href='#'><img src='/img/pp-case-icon-share.png' alt='' /></a>
+                <div className='case-tools'>
+                  <div className='top-icons'>
+                    <a href='#'><img src={caseIconBookmark} alt='' /></a>
+                    <a href='#'><img src={caseIconSettings} alt='' /></a>
+                    <a href='#'><img src={caseIconFB} alt='' /></a>
+                    <a href='#'><img src={caseIconTW} alt='' /></a>
+                    <a href='#'><img src={caseIconShare} alt='' /></a>
                   </div>
                 </div>
               </div>
@@ -157,4 +160,4 @@ Organization.propTypes = {
   intl: intlShape.isRequired
 }
 
-export default injectIntl(CSSModules(Organization, styles))
+export default injectIntl(Organization)

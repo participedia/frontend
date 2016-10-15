@@ -1,15 +1,11 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from './utils/AuthService'
 
-export default class AuthenticatedComponent extends React.Component {
-  static propTypes = {
-    auth: T.instanceOf(AuthService)
-  }
+class AuthenticatedComponent extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = {}
-    this.state.loggedIn = false
+    this.state = {loggedIn: false}
   }
 
   onAuthStateChange (user) {
@@ -20,3 +16,9 @@ export default class AuthenticatedComponent extends React.Component {
     }
   }
 }
+
+AuthenticatedComponent.propTypes = {
+    auth: T.instanceOf(AuthService)
+}
+
+export default AuthenticatedComponent

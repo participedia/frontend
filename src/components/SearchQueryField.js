@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './SearchQueryField.sass'
-import CSSModules from 'react-css-modules'
+import './SearchQueryField.css'
 
 class SearchQueryField extends React.Component {
   constructor (props) {
@@ -14,7 +13,6 @@ class SearchQueryField extends React.Component {
   }
 
   onChange (event) {
-    console.log(event, this)
     this.setState({query: event.target.value})
   }
 
@@ -27,7 +25,7 @@ class SearchQueryField extends React.Component {
   render () {
     let onChange = this.onChange
     return (
-      <input styleName='search-bar' type='text' placeholder='Search' value={this.state.query}
+      <input className='search-bar' type='text' placeholder='Search' value={this.state.query}
         onChange={onChange} onKeyUp={(val) => this.onKeyUp(val)}></input>
     )
   }
@@ -38,5 +36,4 @@ SearchQueryField.propTypes = {
   query: PropTypes.string.isRequired
 }
 
-export default CSSModules(SearchQueryField, styles)
-// export default SearchQueryField
+export default SearchQueryField

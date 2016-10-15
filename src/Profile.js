@@ -1,8 +1,7 @@
-import React, { Component, PropTypes as T } from 'react'
+import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import AuthService from './utils/AuthService'
 import Avatar from 'material-ui/Avatar'
-import styles from './Profile.sass'
-import CSSModules from 'react-css-modules'
+import './Profile.css'
 
 class Profile extends Component {
 
@@ -18,8 +17,8 @@ class Profile extends Component {
     const { profile } = this.state
 
     return (
-      <div styleName='profile'>
-        <Avatar styleName='avatar' size={128} src={profile.picture} />
+      <div className='profile'>
+        <Avatar className='avatar' size={128} src={profile.picture} />
         <h2>{profile.name}</h2>
         <p> This page requires one to be logged in (just for testing purposes right now).</p>
       </div>
@@ -30,4 +29,4 @@ Profile.propTypes = {
   auth: T.instanceOf(AuthService)
 }
 
-export default CSSModules(Profile, styles)
+export default Profile

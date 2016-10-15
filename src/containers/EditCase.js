@@ -11,9 +11,7 @@ import CaseEditor from '../components/CaseEditor'
 import {loadObject, CASE_TYPE} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('in mapStateToProps:', state, ownProps)
   if (state.objects.currentObject) {
-    console.log("GOT CURRENT OBJECT", state.objects.currentObject)
     return {case: state.objects.currentObject}
     // return {caseID: ownProps.params.nodeID, case: state.objects.currentObject, loading: false}
   } else {
@@ -23,7 +21,6 @@ const mapStateToProps = (state, ownProps) => {
 
 
 function loadData(props) {
-  console.log('in loadData, props is', props)
   props.dispatch(props.loadObject(CASE_TYPE, props.params.nodeID))
 }
 
@@ -45,13 +42,11 @@ class _EditCase extends Component {
   }
 
   componentWillMount() {
-    console.log("in componentWillMount")
     loadData(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.caseID, this.props.caseID);
-    if (nextProps.caseID != this.props.caseID) {
+    if (nextProps.caseID !== this.props.caseID) {
       // loadData(nextProps)
     }
   }
