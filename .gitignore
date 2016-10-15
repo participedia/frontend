@@ -1,6 +1,9 @@
 # IMPORTANT: don't check in environment variables
 .env
 
+build
+# .sass-cache
+
 public/*.png
 public/index.html
 public/participedia-*.css
