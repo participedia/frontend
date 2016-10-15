@@ -1,7 +1,7 @@
-var Parser = require('accept-language-parser')
-var bestLang = require('bestlang')
-var langmap = require('langmap')
-var locales = require('../public/locales.json')
+import Parser from 'accept-language-parser'
+import bestLang from 'bestlang'
+import langmap from 'langmap'
+import locales from '../public/locales.json'
 
 function getLocale (acceptLang) {
   var langHeader = Parser.parse(acceptLang)
@@ -13,7 +13,7 @@ function getLocation (location) {
   return '/' + location.split('/').splice(2).join('/')
 }
 
-module.exports = function (acceptLang, location) {
+export default function (acceptLang, location) {
   var locationSplit = location.split('/')
   var locale = locationSplit[1]
   var redirect = ''

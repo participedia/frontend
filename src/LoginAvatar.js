@@ -1,4 +1,4 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import Avatar from 'material-ui/Avatar'
 import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
@@ -37,7 +37,7 @@ class LoginAvatar extends AuthenticatedComponent {
 
   signIn () {
     this.auth.login()
-  };
+  }
 
   render () {
     let buttonStyle = {color: 'black'}

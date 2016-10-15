@@ -18,7 +18,7 @@ class AuthenticatedComponent extends React.Component {
 }
 
 AuthenticatedComponent.propTypes = {
-    auth: T.instanceOf(AuthService)
+  auth: T.instanceOf(AuthService)
 }
 
 export default AuthenticatedComponent

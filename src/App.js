@@ -3,12 +3,11 @@ import React, { Component } from 'react' // eslint-disable-line no-unused-vars
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-var routeConfig = require('./routes')
+import routeConfig from './routes'
 import {Router, browserHistory} from 'react-router'
 import { Provider } from 'react-redux'
 import locales from '../public/locales.json'
-
-var configureStore = require('./configureStore')
+import configureStore from './configureStore'
 var store = configureStore()
 
 // This replaces the textColor value on the palette
@@ -38,17 +37,6 @@ function createElement (Component, props) {
     </IntlProvider>
   )
 }
-
-// XXX test on Safari
-//
-// if (!window.Intl) {
-//   require.ensure(['intl'], (require) => {
-//     window.Intl = require('intl')
-//     runApp()
-//   }, 'IntlBundle')
-// } else {
-//   runApp()
-// }
 
 export default class App extends Component {
   render () {

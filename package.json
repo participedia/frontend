@@ -39,9 +39,10 @@
   },
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
+    "deploy": "node scripts/properties2json && surge -p public -d participedia.xyz",
     "build": "sass --update src && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "build:l10njson": "node scripts/properties2json",
+    "lint": "eslint src",
     "eject": "react-scripts eject"
   }
 }

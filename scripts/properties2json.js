@@ -1,4 +1,4 @@
-var config = require('../intl-config.js')
+import config from '../intl-config.js'
 var properties = require('properties-parser')
 var path = require('path')
 var FS = require('q-io/fs')

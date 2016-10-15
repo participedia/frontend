@@ -16,7 +16,7 @@ import Add from './components/Add'
 // import AddCase from './containers/AddCase'
 import EditCase from './containers/EditCase'
 
-const auth = new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)
+const auth = new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)  // eslint-disable-line no-undef
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {
@@ -51,7 +51,8 @@ var getFirstBrowserLanguage = function () {
   return null
 }
 
-var locales = Object.keys(require('../public/locales.json'))
+import localesJSON from '../public/locales.json'
+var locales = Object.keys(localesJSON)
 
 function buildRoutes () {
   var routes = []
@@ -75,7 +76,6 @@ function buildRoutes () {
       </Route>
     )
   })
-          // <Route path='case' component={AddCase} />
 
   var userLocale = getFirstBrowserLanguage()
 
@@ -86,7 +86,7 @@ function buildRoutes () {
 }
 
 // just need to handle / redirect now
-module.exports = (
+export default (
   <Route path='/'>
     {buildRoutes()}
   </Route>

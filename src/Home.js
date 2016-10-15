@@ -21,10 +21,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-})
+// const mapDispatchToProps = (dispatch) => ({
+// })
 
-export default Home = connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default connect(
+  mapStateToProps
+  // mapDispatchToProps
 )(Home)

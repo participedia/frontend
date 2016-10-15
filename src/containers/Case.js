@@ -52,7 +52,7 @@ class Case extends React.Component {
       let first_author = caseObject.author.name
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
-      let last_author = "XXX" // TODO
+      let last_author = 'XXX' // TODO
       let id = this.props.params.nodeID
       let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react'  // eslint-disable-line no-unused-vars
 import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -54,7 +54,7 @@ class CaseForm extends Component {
     this.setState({snacking: true, snackMessage: JSON.stringify(v)})
   }
   render () {
-    const {fields: {firstName, lastName, email}, handleSubmit} = this.props
+    const {fields: {firstName /* , lastName, email */}, handleSubmit} = this.props
     var parts = []
     let prefix = (<TextField {...firstName}
       key='firstname'

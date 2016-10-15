@@ -11,21 +11,21 @@ import '../quill.snow.css'
 
 var BodyEditor = React.createClass({
   _quillModules: {
-      toolbar: [ 
-          [{ 'header': [1, 2, false] }],
-          ['bold', 'italic', 'underline','strike', 'blockquote'],
-          [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}], 
-          ['link', 'image'], 
-          ['clean'] 
-      ]
-      /* ... other modules */
+    toolbar: [ 
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}], 
+        ['link', 'image'], 
+        ['clean'] 
+    ]
+    /* ... other modules */
   },
 
   _quillFormats: [ 
-      "header",
-      "bold", "italic", "underline", "strike", "blockquote",
-      "list", "bullet", "indent",
-      "link", "image" 
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image' 
   ],
 
   render: function() {
@@ -42,7 +42,7 @@ var BodyEditor = React.createClass({
                 dangerouslySetInnerHTML={{__html:this.props.value}} />
         </ReactQuill>
       </div>
-    );
+    )
   }
 
   // render: function() {

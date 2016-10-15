@@ -1,7 +1,7 @@
 import CaseForm from '../components/CaseForm'
 import { reduxForm } from 'redux-form'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state /* , ownProps */) => {
   return state.form
 }
 

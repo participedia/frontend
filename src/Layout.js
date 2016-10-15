@@ -10,6 +10,9 @@ import globalStyles from './global.css'
 /* eslint-enable no-unused-vars */
 import './Layout.css'
 import {injectIntl} from 'react-intl'
+import menuIcon from './img/menu-icon.png'
+import ppLogo from './img/pp-logo.png'
+import searchIcon from './img/search-icon.png'
 
 var substyles = {
   box: {
@@ -29,7 +32,7 @@ class Layout extends React.Component {
 
   handleToggle () {
     this.setState({open: !this.state.open})
-  };
+  }
 
   handleClose () {
     this.setState({open: false})
@@ -46,8 +49,6 @@ class Layout extends React.Component {
         auth: this.props.route.auth // sends auth instance from route to children
       })
     }
-    let menuIcon = require('./img/menu-icon.png')
-    let ppLogo = require('./img/pp-logo.png')
     let locale = this.props.intl.locale
     let home = `/${locale}/`
 
@@ -60,7 +61,7 @@ class Layout extends React.Component {
               <a href={home} className='logo'><img src={ppLogo} alt='' /></a>
             </div>
             <div className='search-box-area'>
-              <img src={require('./img/search-icon.png')} className='searchIcon' alt='' />
+              <img src={searchIcon} className='searchIcon' alt='' />
               <SearchQuery />
             </div>
             <LoginAvatar auth={this.props.route.auth} className='login-area' />

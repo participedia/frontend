@@ -7,7 +7,7 @@ import backgroundImage from '../img/pp-thumbnail-1.jpg'
 
 function capitalize(str)
 {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})
 }
 
 class SearchHit extends React.Component {
@@ -23,7 +23,7 @@ class SearchHit extends React.Component {
     let title, link
     title = capitalize(type) + ': ' + result.title_en
     link = `/${locale}/${type}/${id}`
-    let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY")
+    let firstSubmit = moment(result.post_date).format('dddd, MMMM Do YYYY')
     if (!title) {
       console.log('missing title: ', result)
     }

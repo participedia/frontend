@@ -50,7 +50,7 @@ class Organization extends React.Component {
       let first_author = caseObject.author.name
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
-      let last_author = "XXX" // TODO
+      let last_author = 'XXX' // TODO
 
       return (
         <div>

@@ -1,15 +1,15 @@
 // This is the JS API to talk to api.participedia.xyz
 
-let APIURL = process.env.REACT_APP_API_URL
+let APIURL = process.env.REACT_APP_API_URL  // eslint-disable-line no-undef
 
 if (! APIURL) {
-  console.error("No API URL was found. REACT_APP_API_URL should be set in environment variables.")
+  console.error('No API URL was found. REACT_APP_API_URL should be set in environment variables.')
 }
 
 import queryString from 'query-string'
 
 class API {
-    countsByCountry = function (resolve, reject) {
+  countsByCountry = function (/* resolve , reject */) {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/countsByCountry')
         .then(function (response) {
@@ -20,12 +20,13 @@ class API {
         .catch(function (error) {
           console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
-        })
+        }
+      )
     })
   }
 
-  performSearch = function (query, selectedCategory, sortingMethod, resolve, reject) {
-      let paramstring = queryString.stringify({
+  performSearch = function (query, selectedCategory, sortingMethod,  /* resolve, reject */) {
+    let paramstring = queryString.stringify({
       query: query,
       selectedCategory: selectedCategory,
       sortingMethod: sortingMethod

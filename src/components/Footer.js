@@ -1,9 +1,13 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import './Footer.css'
+import ppLogo from  '../img/pp-logo.png'
+import ccIcon from '../img/cc-icon.png'
+import fbIcon from '../img/pp-social-fb.png'
+import rssIcon from '../img/pp-social-rss.png'
+import twitterIcon from '../img/pp-social-tw.png'
+
 
 function Footer () {
-  let ppLogo = require('../img/pp-logo.png')
-  let ccIcon = require('../img/cc-icon.png')
   return (
     <div className='footer-component'>
       <div className='expanded-footer'>
@@ -24,9 +28,9 @@ function Footer () {
           <a href='#'>Contact</a>
         </div>
         <div className='column'>
-          <a className='social-icons' href='#'><img src={require('../img/pp-social-fb.png')} alt='' /></a>
-          <a className='social-icons' href='#'><img src={require('../img/pp-social-tw.png')} alt='' /></a>
-          <a className='social-icons' href='#'><img src={require('../img/pp-social-rss.png')} alt='' /></a>
+          <a className='social-icons' href='#'><img src={fbIcon} alt='' /></a>
+          <a className='social-icons' href='#'><img src={twitterIcon} alt='' /></a>
+          <a className='social-icons' href='#'><img src={rssIcon} alt='' /></a>
         </div>
       </div>
       <div className='copyright-area'>

@@ -3,7 +3,7 @@ the data about a case (from a redux store, or from the network), and sets the pr
 to the corresponding component (the CaseEditor)
 */
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'  // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 

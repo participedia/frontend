@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 // import createLogger from 'redux-logger'
 import rootReducer from './reducers'
 
-module.exports = function configureStore () {
+function configureStore () {
   const storageMiddleware = storage.createMiddleware(engine)
   // const loggerMiddleware = createLogger()
 
@@ -28,15 +28,16 @@ module.exports = function configureStore () {
     )
   )
 
-  // if (process.env.NODE_ENV !== 'production') {
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      var nextRootReducer = require('./reducers')
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+  // // if (process.env.NODE_ENV !== 'production') {
+  // if (module.hot) {
+  //   // Enable Webpack hot module replacement for reducers
+  //   module.hot.accept('./reducers', () => {
+  //     store.replaceReducer(rootReducer)
+  //   })
   // }
+  // // }
 
   return store
 }
+
+export default configureStore
