@@ -30,7 +30,10 @@ npm install
 
 ### Configuration
 
-One of two configuration files will be loaded depending on whether the code is run in production mode or development mode.  If in development mode, you should specify whether you're running your own instance of the API server, or want to use an existing API server (e.g. api.participedia.xyz).  Edit `config/development.env` accordingly (it comes with two example lines, the last one that isn't commented out will be used.
+Copy `sample.env` to `.env`, and adjust it to fit.  In general, the only choice will be whether
+to use your own API server (in case you're changing the server at the same time) or the staging site.
+
+The `sample.env` file has both settings, you just uncomment whichever one you want to use in your setup.
 
 ### Development
 
