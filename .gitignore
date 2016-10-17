@@ -4,11 +4,6 @@
 build
 .sass-cache
 
-public/*.png
-public/index.html
-public/participedia-*.css
-public/participedia-*.js
-
 webpack.json
 
 
