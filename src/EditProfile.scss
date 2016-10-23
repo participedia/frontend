@@ -113,6 +113,10 @@
       padding: 16px 0 24px;
       box-sizing: border-box;
       font-size: 20px;
+      cursor: pointer;
+      &:hover, &:focus {
+        background-color: rgba(0, 0, 0, 0.75);
+      }
     }
   }
   .edit-profile-button {

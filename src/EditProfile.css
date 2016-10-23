@@ -74,7 +74,10 @@
     color: #fff;
     padding: 16px 0 24px;
     box-sizing: border-box;
-    font-size: 20px; }
+    font-size: 20px;
+    cursor: pointer; }
+    .sidebar .user-avatar .change-avatar-button:hover, .sidebar .user-avatar .change-avatar-button:focus {
+      background-color: rgba(0, 0, 0, 0.75); }
 .sidebar .edit-profile-button {
   display: block;
   background-color: #ff6f00;

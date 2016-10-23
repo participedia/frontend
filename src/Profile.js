@@ -1,4 +1,5 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
+import {Link} from 'react-router'
 import AuthService from './utils/AuthService'
 import Avatar from 'material-ui/Avatar'
 import SearchResults from './containers/SearchResults'
@@ -8,10 +9,6 @@ class Profile extends Component {
 
   constructor (props) {
     super(props)
-    // this.state = {
-    //   profile: props.auth.getProfile()
-    // }
-    // this.auth = props.auth
     this.state = {
       profile: {}
     }
@@ -20,12 +17,14 @@ class Profile extends Component {
   render () {
     const { profile } = this.state
 
+    // locale needs to be hooked up in render.
+
     return (
       <div className='profile'>
         <div className="profile-info-section">
           <div className='sidebar'>
             <div className="user-avatar"></div>
-            <a href="#" className="edit-profile-button">Edit Profile</a>
+            <Link to="/en-US/profile/edit" className="edit-profile-button">Edit Profile</Link>
           </div>
           <div className='main-area'>
             <h2 className="name">{profile.name || 'Matthew Chan'}</h2>
