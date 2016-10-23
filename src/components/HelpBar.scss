@@ -1,0 +1,105 @@
+.help-bar {
+  width: 480px;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  margin-right: 64px;
+  height: 60%;
+  @media (max-width: 639px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .top-area {
+    position: relative;
+    .top-area-inner {
+      position: absolute;
+      width: 100%;
+    }
+  }
+  .title-section {
+    background-color: #3f51b2;
+    padding: 24px;
+    height: 20px;
+    .help-title {
+      font-size: 26px;
+      color: #fff;
+      font-weight: 400;
+      float: left;
+    }
+    .close-help {
+      background-image: url(/img/pp-close-icon-white.png);
+      display: block;
+      float: right;
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-top: -2px;
+    }
+  }
+  .search-box-section {
+    background-color: #3f51b2;
+    padding: 0 24px 24px;
+    .search-input {
+      width: 100%;
+      border: 0;
+      padding: 0px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.25);
+      height: 40px;
+      color: #fff;
+      font-weight: 100;
+      padding-left: 36px;
+      background-image: url(/static/media/search-icon.47a5c168.png);
+      background-repeat: no-repeat;
+      background-size: 16px;
+      background-position: 12px 12px;
+      box-sizing: border-box;
+
+      &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      &::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      &:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      &:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+    }
+  }
+  .data-section {
+    border-left: 2px solid #ddd;
+    border-right: 2px solid #ddd;
+    padding: 16px 0;
+    height: 100%;
+    overflow: scroll;
+    box-sizing: border-box;
+    padding-top: 148px;
+    // margin-top: -132px;
+    width: 100%;
+    .data-title {
+      font-size: 24px;
+      color: #3f51b2;
+      padding: 20px;
+    }
+    .data-list {
+      li a {
+        font-size: 20px;
+        padding: 20px;
+        display: block;
+        &:hover, &:focus {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}

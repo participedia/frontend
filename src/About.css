@@ -39,22 +39,25 @@
         font-size: 15px;
         line-height: 21px;
         margin-top: 12px; } }
-    .about .text > a {
+    .about .text > .people {
       color: #ff6f00;
       font-size: 18px;
       line-height: 24px;
       font-weight: 400;
       display: block;
       margin-top: 8px; }
-      .about .text > a:nth-of-type(1) {
+      .about .text > .people:nth-of-type(1) {
         margin-top: 12px; }
       @media (max-width: 639px) {
-        .about .text > a {
+        .about .text > .people {
           font-size: 13.5px;
           line-height: 18px;
           margin-top: 4px; }
-          .about .text > a:nth-of-type(1) {
+          .about .text > .people:nth-of-type(1) {
             margin-top: 8px; } }
+    .about .text a {
+      color: #ff6f00;
+      font-weight: 400; }
   .about .accordion {
     border-top: 1px solid #ccc;
     margin-top: 24px;
@@ -99,5 +102,27 @@
             padding-top: 8px; } }
         .about .accordion .sub-content .department:last-child {
           padding-bottom: 0; }
+
+img.article-image {
+  width: 100%;
+  margin-top: 24px; }
+  @media (max-width: 639px) {
+    img.article-image {
+      width: 100%;
+      margin-top: 16px; } }
+
+.more-orange .tab, .more-orange .tab-open {
+  padding-top: 24px; }
+  .more-orange .tab .title, .more-orange .tab-open .title {
+    color: #ff6f00;
+    font-weight: 500;
+    padding: 24px 16px;
+    font-size: 28px; }
+  .more-orange .tab:after, .more-orange .tab-open:after {
+    left: auto;
+    right: 16px;
+    top: 36px; }
+.more-orange .tab-open {
+  padding: 24px 16px; }
 
 /*# sourceMappingURL=About.css.map */

@@ -8,7 +8,15 @@
   height: 40px;
   color: #fff;
   font-weight: 100;
-  padding-left: 36px; }
+  padding-left: 36px;
+  background-image: url(/img/pp-search-icon.png);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 12px 12px; }
+  .search-bar:focus {
+    background-color: #fff;
+    color: #333;
+    background-image: url(/img/pp-search-icon-dark.png); }
   @media (max-width: 959px) {
     .search-bar {
       box-sizing: border-box; } }
