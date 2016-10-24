@@ -28,6 +28,8 @@ npm install:
 npm install
 ```
 
+Install SASS (see https://sass-lang.com for instructions)
+
 ### Configuration
 
 Copy `sample.env` to `.env`, and adjust it to fit.  In general, the only choice will be whether
