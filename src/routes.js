@@ -5,7 +5,10 @@ import { Route, IndexRedirect, IndexRoute } from 'react-router'
 
 import Home from './Home'
 import Layout from './Layout'
+import Research from './Research'
 import Profile from './Profile'
+import EditProfile from './EditProfile'
+import HelpArticle from './HelpArticle'
 import Login from './Login'
 import About from './About'
 import Teaching from './Teaching'
@@ -55,6 +58,9 @@ var getFirstBrowserLanguage = function () {
 import localesJSON from '../public/locales.json'
 var locales = Object.keys(localesJSON)
 
+// (removed from Profile for development)
+// onEnter={requireAuth} 
+
 function buildRoutes () {
   var routes = []
   console.log('in buildRoutes, auth=', auth)
@@ -62,7 +68,10 @@ function buildRoutes () {
     routes.push(
       <Route auth={auth} key={locale} path={locale} component={Layout}>
         <IndexRoute component={Home} />
-        <Route path='profile' component={Profile} onEnter={requireAuth} />
+        <Route path='profile/edit' component={EditProfile} />
+        <Route path='profile' component={Profile} />
+        <Route path='research' component={Research} />
+        <Route path='help/:id' component={HelpArticle} />
         <Route path='login' component={Login} />
         <Route path='about' component={About} />
         <Route path='teaching' component={Teaching} />
