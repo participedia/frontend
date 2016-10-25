@@ -6,7 +6,6 @@ import api from '../utils/api'
 import moment from 'moment'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
-import map01 from '../img/pp-map-01.png'
 import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
 import caseIconSettings from '../img/pp-case-icon-settings.png'
 import caseIconFB from '../img/pp-case-icon-fb.png'
@@ -14,6 +13,31 @@ import caseIconTW from '../img/pp-case-icon-tw.png'
 import caseIconShare from '../img/pp-case-icon-share.png'
 
 import { getRandomInt } from '../util'
+
+class CountryMap extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {'SVG': ''}
+  }
+  componentWillMount () {
+    let component = this
+    fetch('https://s3.amazonaws.com/assets.participedia.xyz/' + this.props.countrycode + '.svg').then(function (response) {
+      return response.text()
+    }).then(function (SVGtext) {
+      let svg = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><style type="text/css"><![CDATA[path {stroke: none;fill: #ff6f00;}]]></style></defs>' + SVGtext + '</svg>'
+      component.setState({SVG: svg})
+    })
+  }
+
+  render () {
+    return ( 
+      <div>
+        <div dangerouslySetInnerHTML={{__html: this.state.SVG}} />
+        <p>{this.props.countrycode}</p>
+      </div>
+    )
+  }
+}
 
 class Case extends React.Component {
   componentWillMount () {
@@ -61,7 +85,7 @@ class Case extends React.Component {
           <div className="edit-button-container">
             <div className="edit-button-inner">
               <div className="editButton">
-                <FloatingActionButton linkButton
+                <FloatingActionButton
                   containerElement={editLink}
                   >
                   <ContentPencil />
@@ -72,7 +96,7 @@ class Case extends React.Component {
           <div className='main-contents'>
             <div className='detailed-case-component'>
               <div className='sidebar'>
-                <img src={map01} className='case-map' alt='' />
+                <CountryMap countrycode={caseObject.geo_country} />
                 <p className='case-location'>
                   Kadikoy, Turkey
                 </p>

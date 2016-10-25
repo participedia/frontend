@@ -1,16 +1,22 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
-import AuthService from './utils/AuthService'
+import auth from './utils/AuthService'
 import Avatar from 'material-ui/Avatar'
+import {injectIntl, intlShape} from 'react-intl'
 import './Profile.css'
 
 class Profile extends Component {
 
+  static propTypes = {
+    intl: intlShape.isRequired
+  }
+
   constructor (props) {
     super(props)
+    console.log('in Profile.constructor, props = ', props)
     this.state = {
-      profile: props.auth.getProfile()
+      profile: auth.getProfile()
     }
-    this.auth = props.auth
+    this.auth = auth
   }
 
   render () {
@@ -25,8 +31,5 @@ class Profile extends Component {
    )
   }
 }
-Profile.propTypes = {
-  auth: T.instanceOf(AuthService)
-}
 
-export default Profile
+export default injectIntl(Profile)

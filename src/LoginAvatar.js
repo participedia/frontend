@@ -4,15 +4,17 @@ import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
 import {Link} from 'react-router'
+import {injectIntl, intlShape} from 'react-intl'
 
 import './LoginAvatar.css'
 import AuthenticatedComponent from './AuthenticatedComponent'
-import AuthService from './utils/AuthService'
-
+import auth from './utils/AuthService'
+console.log('auth', auth)
+console.log('auth.getProfile', auth.getProfile())
 class LoginAvatar extends AuthenticatedComponent {
 
   static propTypes = {
-    auth: T.instanceOf(AuthService)
+    intl: intlShape.isRequired
   }
 
   constructor (props) {
@@ -22,17 +24,20 @@ class LoginAvatar extends AuthenticatedComponent {
     this.state = {
       profile: props.auth.getProfile()
     }
-    this.auth = props.auth
+    this.auth = auth
     // listen to profile_updated events to update internal state
     // so that we know to re-render
     let comp = this
     props.auth.on('profile_updated', (newProfile) => {
+      console.log('got profile_updated', newProfile)
       comp.setState({profile: newProfile})
     })
   }
 
   signOut () {
     this.auth.logout()
+    let locale = this.props.intl.locale
+    this.props.history.push(`/${locale}/`)
   }
 
   signIn () {
@@ -41,6 +46,7 @@ class LoginAvatar extends AuthenticatedComponent {
 
   render () {
     let buttonStyle = {color: 'black'}
+    let locale = this.props.intl.locale
     const { profile } = this.state
     if (profile.picture) {
       return (
@@ -50,7 +56,7 @@ class LoginAvatar extends AuthenticatedComponent {
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
           >
-            <MenuItem linkButton style={buttonStyle} containerElement={<Link to='/profile' />}
+            <MenuItem style={buttonStyle} containerElement={<Link to={'/'+locale+'/profile'} />}
               onTouchTap={this.handleClose}>Profile</MenuItem>
             <MenuItem style={buttonStyle} primaryText='Sign out'
               onTouchTap={this.signOut} />
@@ -63,4 +69,4 @@ class LoginAvatar extends AuthenticatedComponent {
   }
 }
 
-export default LoginAvatar
+export default injectIntl(LoginAvatar)

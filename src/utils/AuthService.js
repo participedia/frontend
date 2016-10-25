@@ -2,12 +2,16 @@ import Auth0Lock from 'auth0-lock'
 import { isTokenExpired } from './jwtHelper'
 import { EventEmitter } from 'events'
 /* eslint-env browser */
-export default class AuthService extends EventEmitter {
+
+class AuthService extends EventEmitter {
   constructor (clientId, domain) {
     super()
     this.domain = domain
     // Configure Auth0
-    this.lock = new Auth0Lock(clientId, domain, {auth: {redirectUrl: document.location.origin}})
+    // console.log("redirecting to", document.location)
+    this.lock = new Auth0Lock(clientId, domain, {auth: {redirect: true,
+      redirectUrl: document.location.origin
+    }})
     // Add callback for lock `authenticated` event
     this.lock.on('authenticated', this._doAuthentication.bind(this))
     this.lock.on('authorization_error', this._authorizationError.bind(this))
@@ -17,6 +21,7 @@ export default class AuthService extends EventEmitter {
 
   _doAuthentication (authResult) {
     // Saves the user token
+    console.log('in _doAuthentication', authResult)
     this.setToken(authResult.idToken)
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
@@ -34,6 +39,7 @@ export default class AuthService extends EventEmitter {
 
   setProfile (profile) {
     // Saves profile data to localStorage
+    console.log('setProfile',profile)
     localStorage.setItem('profile', JSON.stringify(profile))
     // Triggers profile_updated event to update the UI
     this.emit('profile_updated', profile)
@@ -42,6 +48,7 @@ export default class AuthService extends EventEmitter {
   getProfile () {
     // Retrieves the profile data from localStorage
     const profile = localStorage.getItem('profile')
+    console.log('got profile', profile)
     return profile ? JSON.parse(localStorage.profile) : {}
   }
 
@@ -54,6 +61,7 @@ export default class AuthService extends EventEmitter {
           console.log('There was an error :/', err)
           return
         }
+        console.log('after lock', profile, idToken)
         comp.setProfile(profile)
         comp.setToken(idToken)
       }
@@ -83,3 +91,5 @@ export default class AuthService extends EventEmitter {
     this.emit('profile_updated', {})
   }
 }
+
+export default new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)  // eslint-disable-line no-undef

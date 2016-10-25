@@ -1,7 +1,7 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 
 import { Route, IndexRedirect, IndexRoute } from 'react-router'
-import AuthService from './utils/AuthService'
+// import AuthService from './utils/AuthService'
 
 import Home from './Home'
 import Layout from './Layout'
@@ -16,10 +16,11 @@ import Add from './components/Add'
 // import AddCase from './containers/AddCase'
 import EditCase from './containers/EditCase'
 
-const auth = new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)  // eslint-disable-line no-undef
+import auth from './utils/AuthService'
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {
+  console.log('in requireAuth', nextState)
   if (!auth.loggedIn()) {
     replace({ pathname: '/login' })
   }
@@ -56,6 +57,7 @@ var locales = Object.keys(localesJSON)
 
 function buildRoutes () {
   var routes = []
+  console.log('in buildRoutes, auth=', auth)
   locales.forEach(function (locale) {
     routes.push(
       <Route auth={auth} key={locale} path={locale} component={Layout}>
