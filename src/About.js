@@ -27,7 +27,7 @@ class About extends React.Component {
         <div className="accordion">
           <AccordionTab title="Staff">
             <div className="content">
-              <p className="text">Participedia employs a core staff to maintain day to day operations, support the community and ensure project goals are being met.<a href="#">Pat Scully, Managing Director</a><a href="#">Jesi Carson, Design &amp; Communities Coordinator</a></p>
+              <p className="text">Participedia employs a core staff to maintain day to day operations, support the community and ensure project goals are being met.<a className="people" href="#">Pat Scully, Managing Director</a><a className="people" href="#">Jesi Carson, Design &amp; Communities Coordinator</a></p>
             </div>
           </AccordionTab>
           <AccordionTab title="Partners">
