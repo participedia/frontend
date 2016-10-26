@@ -16,7 +16,7 @@ class Teaching extends React.Component {
   render () {
     return (
       <div className="about">
-        <h1>Teaching</h1>
+        <h1>Participedia in the Classroom</h1>
         <h2>Writing or editing articles for Participedia can be a great assignment for courses that deal with political participation, democratic innovation, or deliberation.</h2>
         <h2>Teaching Resources</h2>
         <div className="text">We’ve collected a variety of teaching resources from the Participedia network and extended academic community. Feel free to adjust the material to suit your class’s needs.</div>

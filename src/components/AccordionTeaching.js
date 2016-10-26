@@ -1,5 +1,5 @@
 import React from 'react'
-import './SubAccordionTab.css'
+import './AccordionTeaching.css'
 import SubResources from './SubResources'
 
 class AccordionTeaching extends React.Component {
@@ -14,9 +14,7 @@ class AccordionTeaching extends React.Component {
       <div className={(this.state.open ? 'tab-open' : 'tab')}>
         <p className="title" onClick={() => {this.setState({open: !this.state.open})}}>{this.props.details.title}</p>
         <div className="content">
-          <p className="text">
-            {this.props.details.desc}
-          </p>
+          <div className="resource-desc" dangerouslySetInnerHTML={ {__html: this.props.details.desc} } />
             {
               this.props.details.categories ?
                 Object

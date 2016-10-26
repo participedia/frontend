@@ -2,12 +2,12 @@
 module.exports = {
   researchResource1: {
     title: 'Methodology',
-    desc: "The strategy is simple: crowdsource data on democratic innovations from around the world and then aggregate this into a public database that continually updates with new contributions. All of Participedia’s content and data is open source. For an in-depth explanation of the history, aspirations, theory and analytical approach of Participedia, see ‘The Participedia Project: An Introduction’, by the two founders of Participedia, Archon Fung and Mark E. Warren.",
+    desc: "<p>The strategy is simple: crowdsource data on democratic innovations from around the world and then aggregate this into a public database that continually updates with new contributions. All of Participedia’s content and data is open source.</p></br><p>For an in-depth explanation of the history, aspirations, theory and analytical approach of Participedia, see ‘The Participedia Project: An Introduction’, by the two founders of Participedia, Archon Fung and Mark E. Warren.</p>",
   },
 
   researchResource2: {
     title: 'Data Repository',
-    desc: 'Search, read, download and gain insight from our database of cases, methods, organizations, surveys, research resources and data sets. Try using Participedia in the classroom as a tool to engage students and showcase their research.',
+    desc: 'A great deal of research on democratic innovations is not publicly available. This includes large datasets, graduate and postgraduate dissertations, and practitioner evaluations and reports. We aim to find a home for such research in an accessible data repository',
     categories: {
       "Sylibi Category 1": {
         resource1: {
@@ -34,7 +34,7 @@ module.exports = {
 
   researchResource3: {
     title: 'Surveys',
-    desc: 'Search, read, download and gain insight from our database of cases, methods, organizations, surveys, teaching resources and data sets. Try using Participedia in the classroom as a tool to engage students and showcase their research.',
+    desc: '<p>Surveys are supplementary to Participedia’s current data and narrative descriptions and are intended to gain further insight on the outcomes and effects of cases.</p></br><p>The Participant Survey will capture the experience of participants directly involved in a participatory process. It could be delivered by organizers at the location of a particular process, or participants could be asked to complete the survey after the event.</p>The Observer Survey will capture views pertaining to the broader impact of a particular case. ‘Observers’ include practitioners, participants or researchers with particular knowledge of that case',
   },
 
 };
