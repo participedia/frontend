@@ -80,6 +80,8 @@ class Layout extends React.Component {
             onTouchTap={this.handleClose}>About</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/teaching'} />}
             onTouchTap={this.handleClose}>Teaching</MenuItem>
+          <MenuItem containerElement={<Link to={'/'+locale+'/research'} />}
+            onTouchTap={this.handleClose}>Research</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/profile'} />}
             onTouchTap={this.handleClose}>Profile</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/add'} />}

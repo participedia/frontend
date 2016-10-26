@@ -9,6 +9,7 @@ import Profile from './Profile'
 import Login from './Login'
 import About from './About'
 import Teaching from './Teaching'
+import Research from './Research'
 import Case from './containers/Case'
 import Organization from './containers/Organization'
 import Method from './containers/Method'
@@ -64,6 +65,7 @@ function buildRoutes () {
         <Route path='login' component={Login} />
         <Route path='about' component={About} />
         <Route path='teaching' component={Teaching} />
+        <Route path='research' component={Research} />
         <Route path='case/:nodeID'>
           <IndexRoute component={Case} />
           <Route path='edit' component={EditCase} />
