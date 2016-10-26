@@ -18,11 +18,11 @@ class Teaching extends React.Component {
               <p className="text">Search, read, download and gain insight from our database of cases, methods, organizations, surveys, teaching resources and data sets. Try using Participedia in the classroom as a tool to engage students and showcase their research.</p>
             </div>
           </AccordionTab>
-          <AccordionTab title="Sylibi">
+          <AccordionTab title="Syllabi">
             <div className="content">
               <p className="text">Search, read, download and gain insight from our database of cases, methods, organizations, surveys, teaching resources and data sets. Try using Participedia in the classroom as a tool to engage students and showcase their research.</p>
               <div className="sub-accordion">
-                <SubAccordionTab title="Sylibi Category 1">
+                <SubAccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
@@ -32,7 +32,7 @@ class Teaching extends React.Component {
                     <p className="department">Description / authorship of document</p>
                   </div>
                 </SubAccordionTab>
-                <SubAccordionTab title="Sylibi Category 1">
+                <SubAccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
@@ -42,7 +42,7 @@ class Teaching extends React.Component {
                     <p className="department">Description / authorship of document</p>
                   </div>
                 </SubAccordionTab>
-                <SubAccordionTab title="Sylibi Category 1">
+                <SubAccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
