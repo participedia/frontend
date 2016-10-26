@@ -12,7 +12,6 @@ import './Layout.css'
 import {injectIntl} from 'react-intl'
 import menuIcon from './img/menu-icon.png'
 import ppLogo from './img/pp-logo.png'
-import searchIcon from './img/search-icon.png'
 
 import HelpBar from './components/HelpBar'
 

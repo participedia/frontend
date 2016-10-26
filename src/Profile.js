@@ -1,10 +1,7 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import auth from './utils/AuthService'
-import Avatar from 'material-ui/Avatar'
 import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
-import AuthService from './utils/AuthService'
-import Avatar from 'material-ui/Avatar'
 import SearchResults from './containers/SearchResults'
 import './Profile.css'
 

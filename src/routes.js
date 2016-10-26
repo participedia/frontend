@@ -59,6 +59,7 @@ import localesJSON from '../public/locales.json'
 var locales = Object.keys(localesJSON)
 
 // (removed from Profile for development)
+// XXX move this to a configuration variable
 // onEnter={requireAuth} 
 
 function buildRoutes () {

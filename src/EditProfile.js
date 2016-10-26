@@ -1,7 +1,5 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import AuthService from './utils/AuthService'
-import Avatar from 'material-ui/Avatar'
-import SearchResults from './containers/SearchResults'
 import './EditProfile.css'
 
 class EditProfile extends Component {

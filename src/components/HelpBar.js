@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import {Link} from 'react-router'
 import './HelpBar.css'
 
@@ -57,7 +57,7 @@ class HelpBar extends React.Component {
               <Link to={this.props.currentPath} className="close-help"></Link>
             </div>
             <div className="search-box-section">
-              <input className='search-input' value={this.state.query || ''} type='text' placeholder='Search Help' value={this.state.query} onChange={onChange}></input>
+              <input className='search-input' value={this.state.query || ''} type='text' placeholder='Search Help' onChange={onChange}></input>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ class HelpBar extends React.Component {
           <h3 className="data-title">FAQ</h3>
           <ul className="data-list">
             {this.state.filteredHelpItems.map((item, i) => (
-              <li key={i}><Link to={'/' + this.props.locale + '/help/' + '1'}>{item}</Link></li>
+              <li key={i}><Link to={'/' + this.props.locale + '/help/1'}>{item}</Link></li>
             ))}
             {(this.state.filteredHelpItems.length === 0)?<li><a>No results found.</a></li>:null}
           </ul>
