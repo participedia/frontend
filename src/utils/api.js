@@ -9,6 +9,24 @@ if (! APIURL) {
 import queryString from 'query-string'
 
 class API {
+
+  fetchGeoJSON = function ( countryCode ) {
+    return new Promise(function (resolve, reject) {
+      fetch(APIURL + '/countries/' + countryCode + '.geo.json')
+        .then(function (response) {
+          response.json().then(function (json) {
+            console.log("JSON", json)
+            resolve(json)
+          })
+        })
+        .catch(function (error) {
+          console.log('There has been a problem with fetchGeoJSON operation: ' + error.message)
+          reject(error)
+        }
+      )
+    })
+  }
+
   countsByCountry = function (/* resolve , reject */) {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/case/countsByCountry')

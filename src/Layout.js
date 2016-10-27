@@ -12,7 +12,8 @@ import './Layout.css'
 import {injectIntl} from 'react-intl'
 import menuIcon from './img/menu-icon.png'
 import ppLogo from './img/pp-logo.png'
-import searchIcon from './img/search-icon.png'
+
+import HelpBar from './components/HelpBar'
 
 var substyles = {
   box: {
@@ -61,7 +62,6 @@ class Layout extends React.Component {
               <a href={home} className='logo'><img src={ppLogo} alt='' /></a>
             </div>
             <div className='search-box-area'>
-              <img src={searchIcon} className='searchIcon' alt='' />
               <SearchQuery />
             </div>
             <LoginAvatar auth={this.props.route.auth} className='login-area' />
@@ -86,11 +86,14 @@ class Layout extends React.Component {
             onTouchTap={this.handleClose}>Profile</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/add'} />}
             onTouchTap={this.handleClose}>Add New</MenuItem>
+          <MenuItem containerElement={<Link to={this.props.location.pathname + '?help'} />}
+            onTouchTap={this.handleClose}>Help</MenuItem>
         </Drawer>
         <div className='contentArea'>
           {children}
         </div>
         <Footer />
+        {('help' in this.props.location.query)?<HelpBar currentPath={this.props.location.pathname} locale={this.props.intl.locale} />:null}
       </div>
     )
   }

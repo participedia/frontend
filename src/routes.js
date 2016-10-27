@@ -1,11 +1,13 @@
 import React from 'react'  // eslint-disable-line no-unused-vars
 
 import { Route, IndexRedirect, IndexRoute } from 'react-router'
-import AuthService from './utils/AuthService'
+// import AuthService from './utils/AuthService'
 
 import Home from './Home'
 import Layout from './Layout'
 import Profile from './Profile'
+import EditProfile from './EditProfile'
+import HelpArticle from './HelpArticle'
 import Login from './Login'
 import About from './About'
 import Teaching from './Teaching'
@@ -17,10 +19,11 @@ import Add from './components/Add'
 // import AddCase from './containers/AddCase'
 import EditCase from './containers/EditCase'
 
-const auth = new AuthService(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)  // eslint-disable-line no-undef
+import auth from './utils/AuthService'
 
 // onEnter callback to validate authentication in private routes
 const requireAuth = (nextState, replace) => {
+  console.log('in requireAuth', nextState)
   if (!auth.loggedIn()) {
     replace({ pathname: '/login' })
   }
@@ -55,13 +58,20 @@ var getFirstBrowserLanguage = function () {
 import localesJSON from '../public/locales.json'
 var locales = Object.keys(localesJSON)
 
+// (removed from Profile for development)
+// XXX move this to a configuration variable
+// onEnter={requireAuth} 
+
 function buildRoutes () {
   var routes = []
+  console.log('in buildRoutes, auth=', auth)
   locales.forEach(function (locale) {
     routes.push(
       <Route auth={auth} key={locale} path={locale} component={Layout}>
         <IndexRoute component={Home} />
-        <Route path='profile' component={Profile} onEnter={requireAuth} />
+        <Route path='profile/edit' component={EditProfile} />
+        <Route path='profile' component={Profile} />
+        <Route path='help/:id' component={HelpArticle} />
         <Route path='login' component={Login} />
         <Route path='about' component={About} />
         <Route path='teaching' component={Teaching} />

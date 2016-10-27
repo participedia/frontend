@@ -4,7 +4,7 @@ import AccordionTeaching from './components/AccordionTeaching'
 import researchResourcesData from './research-resources';
 
 
-class Resources extends React.Component {
+class Research extends React.Component {
 
   constructor (props) {
     super(props)
@@ -30,4 +30,4 @@ class Resources extends React.Component {
   }
 }
 
-export default Resources
+export default Research
