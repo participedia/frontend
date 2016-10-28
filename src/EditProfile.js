@@ -48,7 +48,7 @@ class EditProfile extends Component {
           </div>
         </div>
       </div>
-   )
+    )
   }
 }
 EditProfile.propTypes = {

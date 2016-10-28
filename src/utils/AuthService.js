@@ -9,9 +9,10 @@ class AuthService extends EventEmitter {
     this.domain = domain
     // Configure Auth0
     // console.log("redirecting to", document.location)
-    this.lock = new Auth0Lock(clientId, domain, {auth: {redirect: true,
-      redirectUrl: document.location.origin
-    }})
+    this.lock = new Auth0Lock(
+      clientId,
+      domain
+    )
     // Add callback for lock `authenticated` event
     this.lock.on('authenticated', this._doAuthentication.bind(this))
     this.lock.on('authorization_error', this._authorizationError.bind(this))

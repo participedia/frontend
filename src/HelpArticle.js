@@ -7,7 +7,7 @@ class About extends React.Component {
   render () {
     return (
       <div className="about more-orange">
-        <h1>{"How do I search for content?"}</h1>
+        <h1>How do I search for content?</h1>
         <h2>Search Bar</h2>
         <div className="text">Type any combination of keywords into the search bar found at the top of any page. Content types searched include cases, methods, organizations, users, surveys, datasets and teaching tools. Your results will be displayed on the homepage.</div>
         <img src="/img/pp-search-help.png" alt="" className="article-image" />

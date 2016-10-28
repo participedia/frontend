@@ -5,12 +5,10 @@ import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
 import {Link} from 'react-router'
 import {injectIntl, intlShape} from 'react-intl'
-
 import './LoginAvatar.css'
 import AuthenticatedComponent from './AuthenticatedComponent'
 import auth from './utils/AuthService'
-console.log('auth', auth)
-console.log('auth.getProfile', auth.getProfile())
+
 class LoginAvatar extends AuthenticatedComponent {
 
   static propTypes = {
@@ -25,6 +23,7 @@ class LoginAvatar extends AuthenticatedComponent {
       profile: props.auth.getProfile()
     }
     this.auth = auth
+    console.log('in loginAvatar, profile', this.state.profile)
     // listen to profile_updated events to update internal state
     // so that we know to re-render
     let comp = this

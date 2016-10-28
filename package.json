@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
+    "babel-eslint": "^5.0.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "concurrently": "^3.1.0",
+    "eslint": "^3.9.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-react": "^6.4.1",
     "geojson-extent": "^0.3.2",
@@ -42,7 +46,7 @@
   },
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
-    "deploy": "node scripts/properties2json && surge -p public -d participedia.xyz",
+    "deploy": "node scripts/properties2json && surge -p build -d participedia.xyz",
     "build": "sass --update src && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",
