@@ -61,7 +61,7 @@ class Layout extends React.Component {
           <div className='nav-bar-wrapper'>
             <div className='logo-area'>
               <a href='#' onClick={this.handleToggle} className='menu-icon'><img src={menuIcon} alt='' /></a>
-              <a href={home} className='logo'><img src={ppLogo} alt='' /></a>
+              <Link to={'/'+locale} className='logo'><img src={ppLogo} alt='Go Home' /></Link>
             </div>
             <div className='search-box-area'>
               <SearchQuery />
