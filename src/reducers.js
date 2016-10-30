@@ -12,8 +12,8 @@ function getProfile() {
 }
 
 // The auth reducer. The starting state sets authentication
-// based on a token being in local storage. XXX In a real app,
-// we would also want a util to check if the token is expired.
+// based on a token being in local storage. 
+// TODO figure out if we need to check for expired tokens
 function auth(state = {
     isFetching: false,
     profile: getProfile(),
@@ -42,7 +42,7 @@ function auth(state = {
 
 
 
-// XXX separate actions for UI and actions for content
+// separate actions for UI and actions for content
 
 import { SEARCHING, RECEIVED_DATA, SWITCH_CATEGORY, SET_LAYOUT,
          SET_SORT_ORDER, DO_RECENT_SEARCH,

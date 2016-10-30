@@ -138,7 +138,7 @@ export function loadObject (type, id) {
     }
   } else {
     console.error('not a case')
-    // XXX deal with things beyond cases
+    // TODO loadObject needs to deal with things other than cases
   }
 }
 

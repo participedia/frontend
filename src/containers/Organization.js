@@ -50,7 +50,7 @@ class Organization extends React.Component {
       let first_author = caseObject.author.name
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
-      let last_author = 'XXX' // TODO
+      let last_author = '???' // TODO figure out how last author for organization details
 
       return (
         <div>
@@ -108,7 +108,7 @@ class Organization extends React.Component {
                     {caseObject.title_en}
                   </p>
                   <div className='case-images'>
-                    {[0, 1, 2].map(function (obj, i) { /* XXX */
+                    {[0, 1, 2].map(function (obj, i) { /* TODO load real images in organization details */
                       return (
                         <div className='thumbnail' key={i}
                           style={{ backgroundImage: 'url(/img/placeholder/400_' + getRandomInt(0, 30) + '.jpeg)' }} />
