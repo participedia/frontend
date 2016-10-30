@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
     selectedViewType: state.ui.layout || 'grid'
 
   }
-  console.log('in mapStateToProps', props)
   return props
 }
 

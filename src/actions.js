@@ -10,7 +10,108 @@ export const FETCHING_OBJECT = 'FETCHING_OBJECT'
 export const RECEIVED_OBJECT = 'RECEIVED_OBJECT'
 export const CASE_TYPE = 'CASE'
 
+import Auth0Lock from 'auth0-lock'
 import api from './utils/api'
+
+
+// There are two possible states for our login
+// process and we need actions for each of them.
+//
+// We also need one to show the Lock widget.
+// export const SHOW_LOCK = 'SHOW_LOCK'
+export const LOCK_SUCCESS = 'LOCK_SUCCESS'
+export const LOCK_ERROR = 'LOCK_ERROR'
+
+// function showLock() {
+//   return {
+//     type: SHOW_LOCK
+//   }
+// }
+
+function lockSuccess(profile, token) {
+  return {
+    type: LOCK_SUCCESS,
+    profile,
+    token
+  }
+}
+
+function lockError(err) {
+  return {
+    type: LOCK_ERROR,
+    err
+  }
+}
+
+// Opens the Lock widget and
+// dispatches actions along the way
+export function login() {
+  const lock = new Auth0Lock('lORPmEONgX2K71SX7fk35X5PNZOCaSfU', 'participedia.auth0.com',
+    {
+      'auth': {
+        'redirectUrl': window.location.origin + '/en-US/',
+        'responseType': 'token',
+        'params': {
+          state: JSON.stringify({pathname: window.location.pathname})
+        }
+      }
+    }
+  );
+  return dispatch => {
+    lock.show({auth: { params: { scope: 'openid email app_metadata' }}}, (err, profile, token) => {
+      // TODO figure out why the auth promise never gets called 
+      // TODO when auth promise code fixed, remove code in index.js to do the profile extraction on redirect
+      if (err) {
+        dispatch(lockError(err))
+        return
+      }
+      console.log("in consequnece of show", profile)
+      localStorage.setItem('profile', JSON.stringify(profile))
+      localStorage.setItem('id_token', token)
+      dispatch(lockSuccess(profile, token))
+    })
+  }
+}
+
+// Three possible states for our logout process as well.
+// Since we are using JWTs, we just need to remove the token
+// from localStorage. These actions are more useful if we
+// were calling the API to log the user out
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+
+function requestLogout() {
+  return {
+    type: LOGOUT_REQUEST,
+    isFetching: true,
+    isAuthenticated: true
+  }
+}
+
+function receiveLogout() {
+  return {
+    type: LOGOUT_SUCCESS,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
+
+
+// Logs the user out
+export function logoutUser() {
+  return dispatch => {
+    dispatch(requestLogout())
+    localStorage.removeItem('id_token')
+    dispatch(receiveLogout())
+  }
+}
+
+
+
+
+
+
 
 export function startFetchObject() {
   return {

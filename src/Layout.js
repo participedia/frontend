@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {Link, browserHistory} from 'react-router'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import SearchQuery from './containers/SearchQuery'
 import Footer from './components/Footer'
 import LoginAvatar from './LoginAvatar'
+import { connect } from 'react-redux'
+
 /* eslint-disable no-unused-vars */
 import globalStyles from './global.css'
 /* eslint-enable no-unused-vars */
@@ -15,13 +17,11 @@ import ppLogo from './img/pp-logo.png'
 
 import HelpBar from './components/HelpBar'
 
-var substyles = {
-  box: {
-    // height: 64
-  }
-}
-
 class Layout extends React.Component {
+  static propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    profile: PropTypes.object.isRequired
+  }
   constructor (props) {
     super(props)
     this.state = {open: false}
@@ -44,6 +44,8 @@ class Layout extends React.Component {
   }
 
   render () {
+    const { auth, profile, isAuthenticated } = this.props
+
     let children = null
     if (this.props.children && this.props.route) {
       children = React.cloneElement(this.props.children, {
@@ -64,10 +66,9 @@ class Layout extends React.Component {
             <div className='search-box-area'>
               <SearchQuery />
             </div>
-            <LoginAvatar auth={this.props.route.auth} className='login-area' />
+            <LoginAvatar auth={auth} isAuthenticated={isAuthenticated} profile={profile} className='login-area' />
           </div>
         </div>
-        <div style={substyles.box}></div>
         <Drawer
           className='drawer'
           docked={false}
@@ -99,4 +100,15 @@ class Layout extends React.Component {
   }
 }
 
-export default injectIntl(Layout)
+function mapStateToProps(state) {
+  
+  const { auth } = state
+  const { isAuthenticated, profile } = auth
+  return {
+    auth,
+    isAuthenticated,
+    profile: profile || {}
+  }
+}
+
+export default injectIntl(connect(mapStateToProps)(Layout))
