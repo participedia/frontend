@@ -59,7 +59,7 @@ export function login() {
   );
   return dispatch => {
     lock.show({auth: { params: { scope: 'openid email app_metadata' }}}, (err, profile, token) => {
-      // TODO in actions.js figure out why the auth promise never gets called 
+      // TODO #45 in actions.js figure out why the auth promise never gets called 
       // TODO when auth promise code fixed, remove code in index.js to do the profile extraction on redirect
       if (err) {
         dispatch(lockError(err))
