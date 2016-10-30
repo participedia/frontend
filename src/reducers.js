@@ -1,5 +1,46 @@
-import {combineReducers}  from 'redux'
 import {reducer} from 'redux-form'
+import { combineReducers } from 'redux'
+
+// AUTH reducers
+
+import {
+  LOCK_SUCCESS, LOGOUT_SUCCESS
+} from './actions'
+
+function getProfile() {
+  return JSON.parse(localStorage.getItem('profile'));
+}
+
+// The auth reducer. The starting state sets authentication
+// based on a token being in local storage. XXX In a real app,
+// we would also want a util to check if the token is expired.
+function auth(state = {
+    isFetching: false,
+    profile: getProfile(),
+    token: localStorage.getItem('id_token'),
+    isAuthenticated: localStorage.getItem('id_token') ? true : false
+  }, action) {
+  switch (action.type) {
+    case LOCK_SUCCESS:
+      console.log("in auth, action.type is LOCK_SUCCESS")
+      return Object.assign({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        profile: getProfile(),
+        errorMessage: ''
+      })
+    case LOGOUT_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: true,
+        isAuthenticated: false,
+        profile: null
+      })
+    default:
+      return state
+    }
+}
+
+
 
 // XXX separate actions for UI and actions for content
 
@@ -68,7 +109,9 @@ function uiReducer (state = {}, action) {
   }
 }
 
+
 const rootReducer = combineReducers({
+  auth: auth,
   cases: searchEngine,
   ui: uiReducer,
   objects: dataStoreReducer,
