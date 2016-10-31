@@ -3,7 +3,7 @@ import { switchCategory, setSortOrderAndSearch, setLayoutOrder } from '../action
 import SearchResultsView from '../components/SearchResultsView'
 
 const mapStateToProps = (state) => {
-  return {
+  let props =  {
     data: state.cases.data || [],
     query: state.cases.query || '',
     searching: state.cases.searching || false,
@@ -12,11 +12,12 @@ const mapStateToProps = (state) => {
     selectedViewType: state.ui.layout || 'grid'
 
   }
+  return props
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onCategoryChange (category) {
-    dispatch(switchCategory(category))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onCategoryChange (newCategory) {
+    dispatch(switchCategory(newCategory, this.props.query, this.props.sortingMethod))
   },
   onSortingChange (query, sortingCategory, sort) {
     dispatch(setSortOrderAndSearch(query, sortingCategory, sort))

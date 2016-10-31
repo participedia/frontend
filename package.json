@@ -5,11 +5,17 @@
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
     "eslint-plugin-babel": "^3.3.0",
-    "react-scripts": "0.6.1"
+    "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "auth0": "^2.5.0",
+    "auth0-js": "^7.3.0",
     "auth0-lock": "^10.4.0",
+    "babel-eslint": "^5.0.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "concurrently": "^3.1.0",
+    "eslint": "^3.9.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-react": "^6.4.1",
     "geojson-extent": "^0.3.2",
@@ -24,6 +30,7 @@
     "quill": "github:quilljs/quill#d107d8122363e97f7792bcad040b33a1fbe10cf7",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-dropzone-s3-uploader": "github:davidascher/react-dropzone-s3-uploader",
     "react-intl": "^2.1.5",
     "react-leaflet": "^0.12.3",
     "react-leaflet-choropleth": "^1.1.0",
@@ -42,7 +49,7 @@
   },
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
-    "deploy": "node scripts/properties2json && surge -p public -d participedia.xyz",
+    "deploy": "node scripts/properties2json && surge -p build -d participedia.xyz",
     "build": "sass --update src && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",

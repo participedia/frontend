@@ -5,50 +5,24 @@ import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
 import {Link} from 'react-router'
 import {injectIntl, intlShape} from 'react-intl'
-
 import './LoginAvatar.css'
-import AuthenticatedComponent from './AuthenticatedComponent'
-import auth from './utils/AuthService'
-console.log('auth', auth)
-console.log('auth.getProfile', auth.getProfile())
-class LoginAvatar extends AuthenticatedComponent {
+import { login, logoutUser } from './actions'
+import { connect } from 'react-redux'
+
+class LoginAvatar extends React.Component {
 
   static propTypes = {
-    intl: intlShape.isRequired
-  }
-
-  constructor (props) {
-    super(props)
-    this.signIn = this.signIn.bind(this)
-    this.signOut = this.signOut.bind(this)
-    this.state = {
-      profile: props.auth.getProfile()
-    }
-    this.auth = auth
-    // listen to profile_updated events to update internal state
-    // so that we know to re-render
-    let comp = this
-    props.auth.on('profile_updated', (newProfile) => {
-      console.log('got profile_updated', newProfile)
-      comp.setState({profile: newProfile})
-    })
-  }
-
-  signOut () {
-    this.auth.logout()
-    let locale = this.props.intl.locale
-    this.props.history.push(`/${locale}/`)
-  }
-
-  signIn () {
-    this.auth.login()
+    dispatch: T.func.isRequired,
+    intl: intlShape.isRequired,
+    profile: T.object.isRequired,
+    isAuthenticated: T.bool.isRequired
   }
 
   render () {
+    const { dispatch, profile, isAuthenticated } = this.props
     let buttonStyle = {color: 'black'}
     let locale = this.props.intl.locale
-    const { profile } = this.state
-    if (profile.picture) {
+    if (isAuthenticated) {
       return (
         <div className='avatar'>
           <IconMenu
@@ -59,14 +33,18 @@ class LoginAvatar extends AuthenticatedComponent {
             <MenuItem style={buttonStyle} containerElement={<Link to={'/'+locale+'/profile'} />}
               onTouchTap={this.handleClose}>Profile</MenuItem>
             <MenuItem style={buttonStyle} primaryText='Sign out'
-              onTouchTap={this.signOut} />
+              onTouchTap={() => dispatch(logoutUser())} />
           </IconMenu>
         </div>
       )
     } else {
-      return (<div className='loginButton'><FlatButton onClick={this.signIn} onTouchTap={this.signIn} label='login' /></div>)
+      return (<div className='loginButton'><FlatButton onClick={() => dispatch(login())} onTouchTap={this.signIn} label='login' /></div>)
     }
   }
 }
 
-export default injectIntl(LoginAvatar)
+function mapStateToProps(state) {
+  return state
+}
+
+export default injectIntl(connect(mapStateToProps)(LoginAvatar))

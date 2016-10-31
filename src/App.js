@@ -1,14 +1,10 @@
-import React, { Component } from 'react' // eslint-disable-line no-unused-vars
-
+import React, { PropTypes, Component } from 'react' // eslint-disable-line no-unused-vars
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import routeConfig from './routes'
 import {Router, browserHistory} from 'react-router'
-import { Provider } from 'react-redux'
 import locales from '../public/locales.json'
-import configureStore from './configureStore'
-var store = configureStore()
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
@@ -38,14 +34,14 @@ function createElement (Component, props) {
   )
 }
 
-export default class App extends Component {
+class App extends Component {
   render () {
     return (
-      <Provider store={store}>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <Router createElement={createElement} history={browserHistory} routes={routeConfig} />
-        </MuiThemeProvider>
-      </Provider>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Router createElement={createElement} history={browserHistory} routes={routeConfig} />
+      </MuiThemeProvider>
     )
   }
 }
+
+export default App

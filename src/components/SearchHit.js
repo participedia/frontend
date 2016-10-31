@@ -28,7 +28,7 @@ class SearchHit extends React.Component {
       console.log('missing title: ', result)
     }
     let thumbnailStyle = {backgroundImageSrc: backgroundImage}
-    let dateString = new moment(result.lastmodified).fromNow()
+    let dateString = new moment(result.updated_date).fromNow()
     let blob = (
       <div className='result'>
         <Link to={link} className='result-title'>

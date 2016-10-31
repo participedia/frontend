@@ -1,34 +1,31 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
-import AuthService from './utils/AuthService'
+import Avatar from 'material-ui/Avatar'
+import { connect } from 'react-redux'
 import './EditProfile.css'
 
 class EditProfile extends Component {
 
-  constructor (props) {
-    super(props)
-    // this.state = {
-    //   profile: props.auth.getProfile()
-    // }
-    // this.auth = props.auth
-    this.state = {
-      profile: {}
-    }
+  static propTypes = {
+    dispatch: T.func.isRequired,
+    profile: T.object.isRequired,
+    isAuthenticated: T.bool.isRequired
   }
 
   render () {
-    const { profile } = this.state
+    const { profile } = this.props
 
     return (
       <div className='profile'>
         <div className="profile-info-section">
           <div className='sidebar'>
             <div className="user-avatar">
+              <Avatar size={200} src={profile.picture} />
               <p className="change-avatar-button">Change</p>
             </div>
           </div>
           <div className='main-area'>
             <label className="form-label">Name</label>
-            <input type="text" defaultValue={profile.name || 'Matthew Chan'} className="name-input" />
+            <input type="text" defaultValue={profile.name} className="name-input" />
             <div className="divider"></div>
             <label className="form-label">Organization</label>
             <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
@@ -48,11 +45,12 @@ class EditProfile extends Component {
           </div>
         </div>
       </div>
-   )
+    )
   }
 }
-EditProfile.propTypes = {
-  auth: T.instanceOf(AuthService)
+
+function mapStateToProps(state) {
+  return {profile: state.auth.profile}
 }
 
-export default EditProfile
+export default connect(mapStateToProps)(EditProfile)

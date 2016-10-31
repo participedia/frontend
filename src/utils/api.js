@@ -50,7 +50,7 @@ class API {
       sortingMethod: sortingMethod
     })
     return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/case/search?' + paramstring)
+      fetch(`${APIURL}/search?${paramstring}`)
         .then(function (response) {
           response.json().then(function (json) {
             resolve(json)

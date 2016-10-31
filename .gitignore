@@ -6,6 +6,7 @@ build
 
 webpack.json
 
+.github-todos
 
 node_modules
 npm-debug.log

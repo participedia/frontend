@@ -3,21 +3,21 @@ import {Link} from 'react-router'
 import './HelpBar.css'
 
 const helpItems = [
-  "What is a case?",
-  "What is a method?",
-  "What is an organization?",
-  "How do I create a user account?",
-  "How do I create content?",
-  "What is Quick Submit?",
-  "How do I save my draft entry?",
-  "How do I edit content?",
-  "Can I see who has edited my content?",
-  "How do I create content in another language?",
-  "Can I translate existing content into another language?",
-  "How do I search for content?",
-  "How do I download and interpret data from my search results?",
-  "How do I access my bookmarked content?"
-];
+  'What is a case?',
+  'What is a method?',
+  'What is an organization?',
+  'How do I create a user account?',
+  'How do I create content?',
+  'What is Quick Submit?',
+  'How do I save my draft entry?',
+  'How do I edit content?',
+  'Can I see who has edited my content?',
+  'How do I create content in another language?',
+  'Can I translate existing content into another language?',
+  'How do I search for content?',
+  'How do I download and interpret data from my search results?',
+  'How do I access my bookmarked content?'
+]
 
 class HelpBar extends React.Component {
   constructor (props) {
@@ -31,19 +31,19 @@ class HelpBar extends React.Component {
   }
 
   onChange (event) {
-    this.setState({query: event.target.value}, () => this.filterHelp());
+    this.setState({query: event.target.value}, () => this.filterHelp())
   }
 
   filterHelp () {
-    let query = this.state.query;
-    let allItems = this.state.helpItems;
-    let filteredItems = [];
+    let query = this.state.query
+    let allItems = this.state.helpItems
+    let filteredItems = []
     for (var i = 0; i < allItems.length; i++) {
-      let item = allItems[i];
+      let item = allItems[i]
       if (item.toLowerCase().indexOf(query.toLowerCase()) > -1)
-        filteredItems.push(item);
+        filteredItems.push(item)
     }
-    this.setState({ filteredHelpItems: filteredItems });
+    this.setState({ filteredHelpItems: filteredItems })
   }
 
   render () {

@@ -21,6 +21,7 @@ class CountryMap extends React.Component {
   }
   componentWillMount () {
     let component = this
+    // TODO move to country-specific bucket or at least folder
     fetch('https://s3.amazonaws.com/assets.participedia.xyz/' + this.props.countrycode + '.svg').then(function (response) {
       return response.text()
     }).then(function (SVGtext) {
@@ -76,7 +77,7 @@ class Case extends React.Component {
       let first_author = caseObject.author.name
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
-      let last_author = 'XXX' // TODO
+      let last_author = '???' // TODO figure out how to extract last author information
       let id = this.props.params.nodeID
       let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
 
@@ -140,7 +141,7 @@ class Case extends React.Component {
                     {caseObject.title_en}
                   </p>
                   <div className='case-images'>
-                    {[0, 1, 2].map(function (obj, i) { /* XXX */
+                    {[0, 1, 2].map(function (obj, i) { /* TODO load real images in Case details */
                       return (
                         <div className='thumbnail' key={i}
                           style={{ backgroundImage: 'url(/img/placeholder/400_' + getRandomInt(0, 30) + '.jpeg)' }} />
