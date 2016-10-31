@@ -15,9 +15,9 @@ const mapStateToProps = (state) => {
   return props
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onCategoryChange (category) {
-    dispatch(switchCategory(category))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onCategoryChange (newCategory) {
+    dispatch(switchCategory(newCategory, this.props.query, this.props.sortingMethod))
   },
   onSortingChange (query, sortingCategory, sort) {
     dispatch(setSortOrderAndSearch(query, sortingCategory, sort))

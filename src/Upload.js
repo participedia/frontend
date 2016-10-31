@@ -40,8 +40,8 @@ class Upload extends React.Component {
     const uploaderProps = {
       style, 
       maxFileSize: 1024 * 1024 * 50,   // TODO move maxFilesize to a config file
-      server: 'http://localhost:3001', // TODO move server config in upload to a config file 
-      s3Url: 'http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com',  // TODO move s3Url in upload to a config file 
+      server: process.env.REACT_APP_API_URL, 
+      s3Url: process.env.REACT_APP_UPLOADS_S3_BUCKET, 
       signingUrlHeaders: {
         'Authorization': 'Bearer ' + token
       }

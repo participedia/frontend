@@ -21,6 +21,7 @@ class CountryMap extends React.Component {
   }
   componentWillMount () {
     let component = this
+    // TODO move to country-specific bucket or at least folder
     fetch('https://s3.amazonaws.com/assets.participedia.xyz/' + this.props.countrycode + '.svg').then(function (response) {
       return response.text()
     }).then(function (SVGtext) {

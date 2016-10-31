@@ -142,17 +142,18 @@ export function loadObject (type, id) {
   }
 }
 
-
-export function doRecentSearch () {
-  return {
-    type: DO_RECENT_SEARCH
-  }
-}
-
-export function switchCategory (category) {
+export function changeCategory (category) {
   return {
     type: SWITCH_CATEGORY,
     category: category
+  }
+}
+
+export function switchCategory (category, query, sortingMethod) {
+  // console.log(`in switchCategory: category: ${category}, query: ${query}, sortingMethod: ${sortingMethod}`)
+  return dispatch => {
+    dispatch(changeCategory(category))
+    dispatch(search(query, category, sortingMethod))
   }
 }
 

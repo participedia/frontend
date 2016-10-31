@@ -67,7 +67,6 @@ function dataStoreReducer (state = { }, action) {
   }
 }
 
-
 function searchEngine (state = { }, action) {
   switch (action.type) {
   case SEARCHING:
@@ -90,22 +89,26 @@ function searchEngine (state = { }, action) {
   }
 }
 
-function uiReducer (state = {}, action) {
-  switch (action.type) {
-  case SWITCH_CATEGORY:
-    return Object.assign({}, state, {
-      category: action.category
-    })
-  case SET_SORT_ORDER:
-    return Object.assign({}, state, {
-      sort: action.sort
-    })
-  case SET_LAYOUT:
-    return Object.assign({}, state, {
-      layout: action.layout
-    })
-  default:
-    return state
+function uiReducer (state = {
+    sort: 'chronological',
+    category: 'All'
+  }, action) {
+    console.log("in uiReducer", action)
+    switch (action.type) {
+    case SWITCH_CATEGORY:
+      return Object.assign({}, state, {
+        category: action.category
+      })
+    case SET_SORT_ORDER:
+      return Object.assign({}, state, {
+        sort: action.sort
+      })
+    case SET_LAYOUT:
+      return Object.assign({}, state, {
+        layout: action.layout
+      })
+    default:
+      return state
   }
 }
 
