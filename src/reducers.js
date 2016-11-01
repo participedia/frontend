@@ -93,7 +93,6 @@ function uiReducer (state = {
     sort: 'chronological',
     category: 'All'
   }, action) {
-    console.log("in uiReducer", action)
     switch (action.type) {
     case SWITCH_CATEGORY:
       return Object.assign({}, state, {
