@@ -193,7 +193,20 @@
       padding-top: 32px;
     }
   }
-  .org-input {
+
+  .location-section {
+    position: relative;
+    padding: 32px;
+    padding-top: 0;
+    padding-bottom: 0;
+    @media (max-width: 639px) {
+      padding: 0;
+      padding-top: 32px;
+    }
+
+
+  }
+  .org-input,  {
     font-size: 20px;
     font-weight: 300;
     padding: 12px 16px;
@@ -205,6 +218,10 @@
       width: 100%;
       box-sizing: border-box;
     }
+  }
+
+  .org-input.geosuggest {
+    padding: 0;
   }
   .quick-submit-section {
     overflow: hidden;

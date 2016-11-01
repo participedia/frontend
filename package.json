@@ -29,8 +29,10 @@
     "query-string": "^4.2.3",
     "quill": "github:quilljs/quill#d107d8122363e97f7792bcad040b33a1fbe10cf7",
     "react": "^15.3.2",
+    "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-dropzone-s3-uploader": "github:davidascher/react-dropzone-s3-uploader",
+    "react-geosuggest": "^2.0.0",
     "react-intl": "^2.1.5",
     "react-leaflet": "^0.12.3",
     "react-leaflet-choropleth": "^1.1.0",
@@ -50,7 +52,7 @@
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
     "deploy": "node scripts/properties2json && surge -p build -d participedia.xyz",
-    "build": "sass --update src && react-scripts build",
+    "build": "sass --update src && react-scripts build && cp build/index.html build/200.html",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",
     "eject": "react-scripts eject"
