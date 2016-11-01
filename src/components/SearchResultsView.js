@@ -18,10 +18,11 @@ class SearchResultsView extends React.Component {
     let data = this.props.data
     let categories = {'case': [], 'organization': [], 'method': [], 'news': []}
 
-    data.forEach(function (record) {
-      let category = categories[record._type]
-      let index = category.length
-      category.push(<SearchHit key={index} record={record} />)
+    data.forEach(function (batch) {
+      let category = categories[batch.type]
+      batch.hits.forEach(function (hit, index) {
+        category.push(<SearchHit key={index} record={hit} />)
+      })
     })
 
     let includeCases = this.props.selectedCategory === 'All' || this.props.selectedCategory === 'Cases'

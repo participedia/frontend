@@ -189,7 +189,7 @@ function startSearch (query, selectedCategory, sortingMethod) {
 function receiveData (query, response) {
   return {
     type: RECEIVED_DATA,
-    data: response.hits.hits
+    data: response.results
   }
 }
 
