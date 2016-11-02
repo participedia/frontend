@@ -45,16 +45,6 @@ var BodyEditor = React.createClass({
     )
   }
 
-  // render: function() {
-  //   console.log("this.props", this.props)
-  //   return (
-  //     <div>
-  //       <ReactQuill value={this.props.value} />
-  //     </div>
-  //   )
-  // }
-})
-
 class _CaseEditor extends Component {
   render() {
     const { handleSubmit } = this.props

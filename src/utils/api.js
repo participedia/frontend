@@ -15,7 +15,6 @@ class API {
       fetch(APIURL + '/countries/' + countryCode + '.geo.json')
         .then(function (response) {
           response.json().then(function (json) {
-            console.log("JSON", json)
             resolve(json)
           })
         })

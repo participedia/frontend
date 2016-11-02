@@ -16,7 +16,7 @@ class Profile extends Component {
 
   render () {
     const { profile } = this.props
-    let jobtitle = '';
+    let jobtitle = ''
     profile.identities.forEach(function (identity) {
       if (identity.provider === 'linkedin') {
         jobtitle = identity.profileData.headline
@@ -42,7 +42,7 @@ class Profile extends Component {
         </div>
         <SearchResults />
       </div>
-   )
+    )
   }
 }
 

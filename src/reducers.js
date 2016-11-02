@@ -8,36 +8,35 @@ import {
 } from './actions'
 
 function getProfile() {
-  return JSON.parse(localStorage.getItem('profile'));
+  return JSON.parse(localStorage.getItem('profile'))
 }
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. 
 // TODO figure out if we need to check for expired tokens
 function auth(state = {
-    isFetching: false,
-    profile: getProfile(),
-    token: localStorage.getItem('id_token'),
-    isAuthenticated: localStorage.getItem('id_token') ? true : false
-  }, action) {
+  isFetching: false,
+  profile: getProfile(),
+  token: localStorage.getItem('id_token'),
+  isAuthenticated: localStorage.getItem('id_token') ? true : false
+}, action) {
   switch (action.type) {
-    case LOCK_SUCCESS:
-      console.log("in auth, action.type is LOCK_SUCCESS")
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: true,
-        profile: getProfile(),
-        errorMessage: ''
-      })
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        profile: null
-      })
-    default:
-      return state
-    }
+  case LOCK_SUCCESS:
+    return Object.assign({}, state, {
+      isFetching: false,
+      isAuthenticated: true,
+      profile: getProfile(),
+      errorMessage: ''
+    })
+  case LOGOUT_SUCCESS:
+    return Object.assign({}, state, {
+      isFetching: true,
+      isAuthenticated: false,
+      profile: null
+    })
+  default:
+    return state
+  }
 }
 
 
@@ -90,24 +89,24 @@ function searchEngine (state = { }, action) {
 }
 
 function uiReducer (state = {
-    sort: 'chronological',
-    category: 'All'
-  }, action) {
-    switch (action.type) {
-    case SWITCH_CATEGORY:
-      return Object.assign({}, state, {
-        category: action.category
-      })
-    case SET_SORT_ORDER:
-      return Object.assign({}, state, {
-        sort: action.sort
-      })
-    case SET_LAYOUT:
-      return Object.assign({}, state, {
-        layout: action.layout
-      })
-    default:
-      return state
+  sort: 'chronological',
+  category: 'All'
+}, action) {
+  switch (action.type) {
+  case SWITCH_CATEGORY:
+    return Object.assign({}, state, {
+      category: action.category
+    })
+  case SET_SORT_ORDER:
+    return Object.assign({}, state, {
+      sort: action.sort
+    })
+  case SET_LAYOUT:
+    return Object.assign({}, state, {
+      layout: action.layout
+    })
+  default:
+    return state
   }
 }
 

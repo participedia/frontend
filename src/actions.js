@@ -56,7 +56,7 @@ export function login() {
         }
       }
     }
-  );
+  )
   return dispatch => {
     lock.show({auth: { params: { scope: 'openid email app_metadata' }}}, (err, profile, token) => {
       // TODO #45 in actions.js figure out why the auth promise never gets called 
@@ -65,7 +65,6 @@ export function login() {
         dispatch(lockError(err))
         return
       }
-      console.log("in consequnece of show", profile)
       localStorage.setItem('profile', JSON.stringify(profile))
       localStorage.setItem('id_token', token)
       dispatch(lockSuccess(profile, token))
