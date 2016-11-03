@@ -27,7 +27,6 @@ function loadData(props) {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: function (data) {
-      console.log('FORM PROPS', data, ownProps)
     },
     loadObject: loadObject
   }

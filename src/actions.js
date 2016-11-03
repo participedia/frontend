@@ -106,11 +106,29 @@ export function logoutUser() {
   }
 }
 
+export const ORGANIZATION = 'ORGANIZATION'
+export const RECEIVED_NOUNS = 'RECEIVED_NOUNS'
+
+export function loadNouns (noun) {
+  return dispatch => {
+    return api.fetchNouns(noun)
+      .then(function (response) {
+        dispatch(receiveNouns(noun, response))
+      }),
+      function (err) {
+        console.log('got an error in loadNouns', err)
+      }
+  }
+}
 
 
-
-
-
+export function receiveNouns(noun, json) {
+  return {
+    type: RECEIVED_NOUNS,
+    noun: [noun.toLowerCase()],
+    nouns: json,
+  }
+}
 
 export function startFetchObject() {
   return {
@@ -118,6 +136,7 @@ export function startFetchObject() {
     payload: null
   }
 }
+
 export function receiveObject(id, json) {
   return {
     type: RECEIVED_OBJECT,
@@ -149,7 +168,6 @@ export function changeCategory (category) {
 }
 
 export function switchCategory (category, query, sortingMethod) {
-  // console.log(`in switchCategory: category: ${category}, query: ${query}, sortingMethod: ${sortingMethod}`)
   return dispatch => {
     dispatch(changeCategory(category))
     dispatch(search(query, category, sortingMethod))

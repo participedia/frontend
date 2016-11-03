@@ -17,7 +17,6 @@ class Method extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchMethodById(this.props.params.nodeID).then(function (json) {
-      console.log(json)
       let data = json[0]
       component.setState({data: data, htmlBody: data.body})
     })

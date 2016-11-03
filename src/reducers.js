@@ -4,7 +4,7 @@ import { combineReducers } from 'redux'
 // AUTH reducers
 
 import {
-  LOCK_SUCCESS, LOGOUT_SUCCESS
+  LOCK_SUCCESS, LOGOUT_SUCCESS, RECEIVED_NOUNS
 } from './actions'
 
 function getProfile() {
@@ -110,12 +110,27 @@ function uiReducer (state = {
   }
 }
 
+function nounCache (state = {
+  organization: {}
+}, action) {
+  switch (action.type) {
+  case RECEIVED_NOUNS:
+    return Object.assign({}, state, {
+      [action.noun]: action.nouns
+    })
+  default:
+    return state
+  }
+}
+
+
 
 const rootReducer = combineReducers({
   auth: auth,
   cases: searchEngine,
   ui: uiReducer,
   objects: dataStoreReducer,
+  nouns: nounCache,
   form: reducer
 })
 
