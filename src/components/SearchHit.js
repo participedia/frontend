@@ -20,12 +20,12 @@ class SearchHit extends React.Component {
     let result = this.props.record._source
     let awsUrl = process.env.REACT_APP_ASSETS_URL
     if (result.lead_image) {
-      var comma = result.lead_image.search(",");
-      var pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma-1));
+      var comma = result.lead_image.search(',')
+      var pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma-1))
     }
     if (result.other_images) {
-      var bracket = result.other_images.search("]");
-      var otherImg = awsUrl + encodeURIComponent(result.other_images.slice(2, bracket-1));
+      var bracket = result.other_images.search(']')
+      var otherImg = awsUrl + encodeURIComponent(result.other_images.slice(2, bracket-1))
     }
     var locale = this.props.intl.locale
     var id = result.id
@@ -40,18 +40,18 @@ class SearchHit extends React.Component {
     let thumbnailStyle = {backgroundImageSrc: backgroundImage}
     let dateString = new moment(result.updated_date).fromNow()
     let blob = (
-      <div className={ this.props.selectedViewType == 'grid' ? 'result-grid' : 'result-list'} >
-        { this.props.selectedViewType == 'grid' ?
+      <div className={ this.props.selectedViewType === 'grid' ? 'result-grid' : 'result-list'} >
+        { this.props.selectedViewType === 'grid' ?
         <div className='result'>
           <Link to={link} className='result-title'>
             { (pic && pic.length > awsUrl.length) ?
               <div className='case-images'>
-                <img src={pic} />
+                <img role='presentation' src={pic} />
               </div>
               :
               (otherImg && otherImg.length > awsUrl.length) ?
                 <div className='case-images'>
-                  <img src={otherImg} />
+                  <img role='presentation' src={otherImg} />
                 </div>
                :
                 <div className='thumbnail'
@@ -72,12 +72,12 @@ class SearchHit extends React.Component {
           <div className="pic">
           { (pic && pic.length > awsUrl.length) ?
             <div className='case-images'>
-              <img src={pic} />
+              <img role='presentation' src={pic} />
             </div>
             :
             (otherImg && otherImg.length > awsUrl.length) ?
               <div className='case-images'>
-                <img src={otherImg} />
+                <img role='presentation' src={otherImg} />
               </div>
              :
               <div className='thumbnail'

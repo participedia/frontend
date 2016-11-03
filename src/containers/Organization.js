@@ -108,12 +108,12 @@ class Organization extends React.Component {
                   </p>
                   { (pic && pic.length > awsUrl.length) ?
                     <div className='case-images'>
-                      <img src={pic} />
+                      <img role='presentation' src={pic} />
                     </div>
                     :
                     (otherImg && otherImg.length > awsUrl.length) ?
                       <div className='case-images'>
-                        <img src={otherImg} />
+                        <img role='presentation' src={otherImg} />
                       </div>
                     :
                     undefined
