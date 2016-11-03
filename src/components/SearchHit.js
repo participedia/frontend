@@ -18,10 +18,9 @@ class SearchHit extends React.Component {
 
   render () {
     let result = this.props.record._source
-    const awsUrl = 'http://assets.participedia.xyz.s3.amazonaws.com/'
+    let awsUrl = process.env.REACT_APP_ASSETS_URL
     if (result.lead_image) {
       var comma = result.lead_image.search(",");
-      // var awsUrl = 'http://assets.participedia.xyz.s3.amazonaws.com/'
       var pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma-1));
     }
     if (result.other_images) {
