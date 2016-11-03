@@ -28,6 +28,7 @@
     "react-intl": "^2.1.5",
     "react-leaflet": "^0.12.3",
     "react-leaflet-choropleth": "^1.1.0",
+    "react-prevent-default": "^1.0.0",
     "react-quill": "github:davidascher/react-quill#386edf514b0f7cee4a247d9d4ade5b52823712dc",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
