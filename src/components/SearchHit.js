@@ -15,8 +15,18 @@ class SearchHit extends React.Component {
   getInnerHTML () {
     return {__html: this.props.record._source.body_en}
   }
+
   render () {
     let result = this.props.record._source
+    let awsUrl = process.env.REACT_APP_ASSETS_URL
+    if (result.lead_image) {
+      var comma = result.lead_image.search(",");
+      var pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma-1));
+    }
+    if (result.other_images) {
+      var bracket = result.other_images.search("]");
+      var otherImg = awsUrl + encodeURIComponent(result.other_images.slice(2, bracket-1));
+    }
     var locale = this.props.intl.locale
     var id = result.id
     var type = result.type_
@@ -30,18 +40,62 @@ class SearchHit extends React.Component {
     let thumbnailStyle = {backgroundImageSrc: backgroundImage}
     let dateString = new moment(result.updated_date).fromNow()
     let blob = (
-      <div className='result'>
-        <Link to={link} className='result-title'>
-          <div className='thumbnail'
-            style={thumbnailStyle} />
-          <div className='result-title-text'>{title}</div>
-        </Link>
-        <p className='result-author'>
-          {firstSubmit}
-        </p>
-        <p className='result-date'>
-          {dateString}
-        </p>
+      <div className={ this.props.selectedViewType == 'grid' ? 'result-grid' : 'result-list'} >
+        { this.props.selectedViewType == 'grid' ?
+        <div className='result'>
+          <Link to={link} className='result-title'>
+            { (pic && pic.length > awsUrl.length) ?
+              <div className='case-images'>
+                <img src={pic} />
+              </div>
+              :
+              (otherImg && otherImg.length > awsUrl.length) ?
+                <div className='case-images'>
+                  <img src={otherImg} />
+                </div>
+               :
+                <div className='thumbnail'
+                  style={thumbnailStyle}>
+                </div>  
+            }
+            <div className='result-title-text'>{title}</div>
+          </Link>
+          <p className='result-author'>
+            {firstSubmit}
+          </p>
+          <p className='result-date'>
+            {dateString}
+          </p>
+        </div>
+        :
+        <div className="list-item">
+          <div className="pic">
+          { (pic && pic.length > awsUrl.length) ?
+            <div className='case-images'>
+              <img src={pic} />
+            </div>
+            :
+            (otherImg && otherImg.length > awsUrl.length) ?
+              <div className='case-images'>
+                <img src={otherImg} />
+              </div>
+             :
+              <div className='thumbnail'
+                style={thumbnailStyle}>
+              </div>  
+          }
+          </div>
+          <div className="desc">
+            <div className='result-title-text'>{title}</div>
+            <p className='result-author'>
+              {firstSubmit}
+            </p>
+            <p className='result-date'>
+              {dateString}
+            </p>
+          </div>
+        </div>
+        }
       </div>
     )
     return blob

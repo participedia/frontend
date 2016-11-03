@@ -180,22 +180,8 @@
       }
 
       .case-images {
-        overflow: hidden;
-
-        .thumbnail {
-          width: 288px;
-          height: 160px;
-          background-size: cover;
-          background-position: center;
-          margin-bottom: 10px;
-          background-color: #eee;
-          float: left;
-          margin-right: 10px;
-
-          @media (max-width: 959px) {
-            width: 158px;
-            height: 120px;
-          }
+        img {
+          max-width: 600px;
         }
       }
 
