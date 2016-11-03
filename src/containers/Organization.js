@@ -3,6 +3,7 @@ import './Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import api from '../utils/api'
 import moment from 'moment'
+import CountryMap from '../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
 import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
@@ -11,7 +12,6 @@ import caseIconFB from '../img/pp-case-icon-fb.png'
 import caseIconTW from '../img/pp-case-icon-tw.png'
 import caseIconShare from '../img/pp-case-icon-share.png'
 
-import { getRandomInt } from '../util'
 
 class Organization extends React.Component {
   componentWillMount () {
@@ -31,7 +31,6 @@ class Organization extends React.Component {
   }
 
   render () {
-    let progressPercentage = 50 // TODO
     if (this.state && this.state.data) {
       let caseObject = this.state.data
       let tags, communication_modes = ''
@@ -51,6 +50,15 @@ class Organization extends React.Component {
       let locale = this.props.intl.locale
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
       let last_author = '???' // TODO figure out how last author for organization details
+      let awsUrl = process.env.REACT_APP_ASSETS_URL
+      if (caseObject.lead_image) {
+        var comma = caseObject.lead_image.search(",");
+        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.slice(9, comma-1));
+      }
+      if (caseObject.other_images) {
+        var bracket = caseObject.other_images.search("]");
+        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images.slice(2, bracket-1));
+      }
 
       return (
         <div>
@@ -64,16 +72,7 @@ class Organization extends React.Component {
           <div className='main-contents'>
             <div className='detailed-case-component'>
               <div className='sidebar'>
-                <img src='/img/pp-map-01.png' className='case-map' alt='' />
-                <p className='case-location'>
-                  Kadikoy, Turkey
-                </p>
-                <div className='progress-bar'>
-                  <div className='progress-fill' style={{ width: progressPercentage + '%' }}></div>
-                </div>
-                <p className='progress-complete'>
-                  {progressPercentage}% complete
-                </p>
+                <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
                   Keywords
                 </p>
@@ -107,14 +106,18 @@ class Organization extends React.Component {
                   <p className='case-title'>
                     {caseObject.title_en}
                   </p>
-                  <div className='case-images'>
-                    {[0, 1, 2].map(function (obj, i) { /* TODO load real images in organization details */
-                      return (
-                        <div className='thumbnail' key={i}
-                          style={{ backgroundImage: 'url(/img/placeholder/400_' + getRandomInt(0, 30) + '.jpeg)' }} />
-                      )
-                    })}
-                  </div>
+                  { (pic && pic.length > awsUrl.length) ?
+                    <div className='case-images'>
+                      <img src={pic} />
+                    </div>
+                    :
+                    (otherImg && otherImg.length > awsUrl.length) ?
+                      <div className='case-images'>
+                        <img src={otherImg} />
+                      </div>
+                    :
+                    undefined
+                  }
                   <div className='authorship-details'>
                     <p className='author-line'>
                       First submitted by&nbsp;

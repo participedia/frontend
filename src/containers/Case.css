@@ -1,0 +1,267 @@
+.detailed-case-component {
+  width: 1600px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-bottom: 32px;
+  padding-top: 32px; }
+  @media (max-width: 1599px) {
+    .detailed-case-component {
+      width: 1280px; } }
+  @media (max-width: 1279px) {
+    .detailed-case-component {
+      width: 960px;
+      padding-top: 16px; } }
+  @media (max-width: 959px) {
+    .detailed-case-component {
+      width: 580px;
+      padding-top: 0; } }
+  @media (max-width: 639px) {
+    .detailed-case-component {
+      width: 320px; } }
+  .detailed-case-component .sidebar {
+    padding: 0 32px;
+    width: 200px;
+    float: left;
+    margin-top: 48px; }
+    @media (max-width: 959px) {
+      .detailed-case-component .sidebar {
+        display: none; } }
+    .detailed-case-component .sidebar .case-map {
+      width: 100%; }
+    .detailed-case-component .sidebar .case-location {
+      font-weight: 500;
+      color: #3f51b2;
+      margin-top: 16px;
+      margin-bottom: 16px; }
+    .detailed-case-component .sidebar .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      height: 16px; }
+      .detailed-case-component .sidebar .progress-bar .progress-fill {
+        height: 16px;
+        background-color: #3f51b2; }
+    .detailed-case-component .sidebar .progress-complete {
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 400; }
+    .detailed-case-component .sidebar .sub-heading {
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 40px;
+      margin-bottom: 12px;
+      margin-top: 16px; }
+    .detailed-case-component .sidebar .sub-sub-heading {
+      font-size: 14px;
+      font-weight: 500;
+      color: #777;
+      line-height: 18px;
+      margin-bottom: 8px;
+      margin-top: 16px; }
+    .detailed-case-component .sidebar .tags a {
+      display: block;
+      font-size: 14px;
+      color: #888;
+      font-weight: 400;
+      line-height: 18px;
+      margin-bottom: 4px; }
+    .detailed-case-component .sidebar .related-content a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #777;
+      line-height: 18px;
+      margin-bottom: 8px;
+      margin-top: 8px;
+      position: relative;
+      display: block;
+      padding-left: 32px; }
+      .detailed-case-component .sidebar .related-content a:before {
+        content: "";
+        background-image: url("/img/arrow-down-icon.png");
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        opacity: 0.5;
+        margin-top: -4px; }
+  .detailed-case-component .main-area {
+    float: left;
+    width: 1248px;
+    padding-right: 32px;
+    position: relative; }
+    @media (max-width: 1599px) {
+      .detailed-case-component .main-area {
+        width: 928px; } }
+    @media (max-width: 1279px) {
+      .detailed-case-component .main-area {
+        width: 608px; } }
+    @media (max-width: 959px) {
+      .detailed-case-component .main-area {
+        width: 528px; } }
+    @media (max-width: 639px) {
+      .detailed-case-component .main-area {
+        width: 288px; } }
+    .detailed-case-component .main-area .case-box {
+      float: left;
+      padding: 32px 0;
+      width: 928px; }
+      @media (max-width: 1599px) {
+        .detailed-case-component .main-area .case-box {
+          width: 608px; } }
+      @media (max-width: 1279px) {
+        .detailed-case-component .main-area .case-box {
+          width: 608px; } }
+      @media (max-width: 959px) {
+        .detailed-case-component .main-area .case-box {
+          width: 508px; } }
+      @media (max-width: 639px) {
+        .detailed-case-component .main-area .case-box {
+          width: 288px; } }
+      .detailed-case-component .main-area .case-box .category {
+        color: #ff6f00;
+        font-size: 48px;
+        line-height: 60px;
+        font-weight: 500;
+        margin-bottom: 8px; }
+      .detailed-case-component .main-area .case-box .case-title {
+        color: #3f51b2;
+        font-size: 48px;
+        line-height: 60px;
+        font-weight: 500;
+        margin-bottom: 48px;
+        width: 80%; }
+      .detailed-case-component .main-area .case-box .case-images img {
+        max-width: 600px; }
+      .detailed-case-component .main-area .case-box .authorship-details {
+        margin-top: 32px;
+        margin-bottom: 32px; }
+        .detailed-case-component .main-area .case-box .authorship-details .author-line {
+          font-size: 14px;
+          font-weight: 500;
+          color: #777;
+          line-height: 18px; }
+          .detailed-case-component .main-area .case-box .authorship-details .author-line a {
+            color: #ff6f00;
+            font-weight: 500; }
+        .detailed-case-component .main-area .case-box .authorship-details .date-line {
+          font-size: 14px;
+          color: #777;
+          font-weight: 400;
+          line-height: 18px;
+          margin-bottom: 6px; }
+      .detailed-case-component .main-area .case-box .case-html h3 {
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 40px;
+        margin-bottom: 12px;
+        margin-top: 32px; }
+      .detailed-case-component .main-area .case-box .case-html p, .detailed-case-component .main-area .case-box .case-html li {
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 24px;
+        margin-bottom: 16px; }
+      .detailed-case-component .main-area .case-box .case-html li {
+        list-style-type: square;
+        margin-left: 32px;
+        margin-bottom: 8px;
+        padding-left: 8px; }
+      .detailed-case-component .main-area .case-box .case-html ol li {
+        list-style-type: lower-roman; }
+      .detailed-case-component .main-area .case-box .case-html a {
+        color: #ff6f00;
+        font-weight: 400; }
+    .detailed-case-component .main-area .case-tools {
+      float: right;
+      margin-right: 32px;
+      padding-right: 32px;
+      position: absolute;
+      right: 32px; }
+      @media (max-width: 1279px) {
+        .detailed-case-component .main-area .case-tools {
+          right: -48px; } }
+      .detailed-case-component .main-area .case-tools .top-icons {
+        margin-top: 40px;
+        position: fixed; }
+        .detailed-case-component .main-area .case-tools .top-icons a {
+          display: block;
+          margin-bottom: 16px; }
+          .detailed-case-component .main-area .case-tools .top-icons a img {
+            width: 40px; }
+          .detailed-case-component .main-area .case-tools .top-icons a:first-child img {
+            width: 32px;
+            margin: 4px; }
+      .detailed-case-component .main-area .case-tools .bottom-icons {
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 48px;
+        position: fixed; }
+        .detailed-case-component .main-area .case-tools .bottom-icons a {
+          position: relative;
+          display: block; }
+          .detailed-case-component .main-area .case-tools .bottom-icons a img {
+            width: 80px;
+            margin-left: -20px; }
+          .detailed-case-component .main-area .case-tools .bottom-icons a::before {
+            content: "";
+            background-color: #ff6f00;
+            position: absolute;
+            color: #fff;
+            font-weight: 400;
+            left: 65px;
+            top: 19px;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            display: none; }
+          .detailed-case-component .main-area .case-tools .bottom-icons a::after {
+            content: "Edit";
+            background-color: #ff6f00;
+            padding: 6px 12px;
+            position: absolute;
+            display: none;
+            color: #fff;
+            font-weight: 400;
+            left: 70px;
+            top: 10px; }
+          .detailed-case-component .main-area .case-tools .bottom-icons a:hover::before, .detailed-case-component .main-area .case-tools .bottom-icons a:hover::after {
+            display: block; }
+
+.main-contents {
+  min-height: 200px; }
+
+.edit-button-container {
+  z-index: 3000;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+  .edit-button-container .edit-button-inner {
+    width: 1600px;
+    margin: 0 auto;
+    position: relative; }
+    @media (max-width: 1599px) {
+      .edit-button-container .edit-button-inner {
+        width: 1280px; } }
+    @media (max-width: 1279px) {
+      .edit-button-container .edit-button-inner {
+        width: 960px; } }
+    @media (max-width: 959px) {
+      .edit-button-container .edit-button-inner {
+        width: 580px; } }
+    @media (max-width: 639px) {
+      .edit-button-container .edit-button-inner {
+        width: 320px; } }
+    .edit-button-container .edit-button-inner .editButton {
+      float: right;
+      margin-right: 104px;
+      margin-bottom: 40px; }
+      @media (max-width: 1279px) {
+        .edit-button-container .edit-button-inner .editButton {
+          margin-right: 20px; } }
+      @media (max-width: 959px) {
+        .edit-button-container .edit-button-inner .editButton {
+          margin-right: -14px; } }
+      @media (max-width: 639px) {
+        .edit-button-container .edit-button-inner .editButton {
+          margin-right: -32px; } }
+
+/*# sourceMappingURL=Case.css.map */
