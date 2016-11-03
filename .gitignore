@@ -3,11 +3,11 @@
 
 build
 .sass-cache
-#*.css.map
+*.css.map
 webpack.json
 
 .github-todos
-#src/**/*.css
+src/**/*.css
 
 node_modules
 npm-debug.log
