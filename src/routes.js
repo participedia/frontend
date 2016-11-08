@@ -5,7 +5,7 @@ import { Route, IndexRedirect, IndexRoute } from 'react-router'
 import Home from './Home'
 import Layout from './Layout'
 import Profile from './Profile'
-import EditProfile from './EditProfile'
+import ProfileEditor from './containers/ProfileEditor'
 import HelpArticle from './HelpArticle'
 import About from './About'
 import Teaching from './Teaching'
@@ -52,7 +52,7 @@ function buildRoutes () {
     routes.push(
       <Route key={locale} path={locale} component={Layout}>
         <IndexRoute component={Home} />
-        <Route path='profile/edit' component={EditProfile} />
+        <Route path='profile/edit' component={ProfileEditor} />
         <Route path='profile' component={Profile} />
         <Route path='help/:id' component={HelpArticle} />
         <Route path='about' component={About} />

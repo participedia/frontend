@@ -3,6 +3,7 @@ import SearchHit from '../components/SearchHit'
 import SearchHitCategory from '../components/SearchHitCategory'
 import './SearchResultsView.css'
 import {injectIntl, intlShape} from 'react-intl'
+import preventDefault from 'react-prevent-default'
 import searchGridIcon from '../img/pp-search-grid-icon.png'
 import searchGridIconActive from '../img/pp-search-grid-icon-active.png'
 import searchListIcon from '../img/pp-search-list-icon.png'
@@ -17,11 +18,13 @@ class SearchResultsView extends React.Component {
   render () {
     let data = this.props.data
     let categories = {'case': [], 'organization': [], 'method': [], 'news': []}
+    let selectedViewType = this.props.selectedViewType
 
-    data.forEach(function (record) {
-      let category = categories[record._type]
-      let index = category.length
-      category.push(<SearchHit key={index} record={record} />)
+    data.forEach(function (batch) {
+      let category = categories[batch.type]
+      batch.hits.forEach(function (hit, index) {
+        category.push(<SearchHit selectedViewType={selectedViewType} key={index} record={hit} />)
+      })
     })
 
     let includeCases = this.props.selectedCategory === 'All' || this.props.selectedCategory === 'Cases'
@@ -81,24 +84,24 @@ class SearchResultsView extends React.Component {
           <div className='main-area'>
             <div className='search-actions-area'>
               <div className='filters'>
-                <a href='#' onClick={this.props.onCategoryChange.bind(this, 'All')}
+                <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'All'))}
                   className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
-                <a href='#' onClick={this.props.onCategoryChange.bind(this, 'News')}
+                <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'News'))}
                   className={(this.props.selectedCategory === 'News') ? 'selected' : 'unselected'}>News</a>
-                <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Cases')}
+                <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Cases'))}
                   className={(this.props.selectedCategory === 'Cases') ? 'selected' : 'unselected'}>Cases</a>
-                <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Methods')}
+                <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Methods'))}
                   className={(this.props.selectedCategory === 'Methods') ? 'selected' : 'unselected'}>Methods</a>
-                <a href='#' onClick={this.props.onCategoryChange.bind(this, 'Organizations')}
+                <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Organizations'))}
                   className={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>Organizations</a>
               </div>
               <div className='view-types'>
-                <a href='#' onClick={this.props.onLayoutChange.bind(this, 'grid')}
+                <a href='#' onClick={preventDefault(this.props.onLayoutChange.bind(this, 'grid'))}
                   className={(this.props.selectedViewType === 'grid') ? 'selected' : 'unselected'}>
                   <img src={searchGridIcon} className='grid-icon' alt='' />
                   <img src={searchGridIconActive} className='grid-icon' alt='' />
                 </a>
-                <a href='#' onClick={this.props.onLayoutChange.bind(this, 'list')}
+                <a href='#' onClick={preventDefault(this.props.onLayoutChange.bind(this, 'list'))}
                   className={(this.props.selectedViewType === 'list') ? 'selected' : 'unselected'}>
                   <img src={searchListIcon} className='list-icon' alt='' />
                   <img src={searchListIconActive} className='list-icon' alt='' />

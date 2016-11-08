@@ -8,7 +8,6 @@ const mapStateToProps = (state /* , ownProps */) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: (data) => {
-      console.log('FORM PROPS', data, ownProps)
     }
   }
 }

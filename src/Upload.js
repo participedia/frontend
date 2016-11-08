@@ -3,10 +3,10 @@ import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import { connect } from 'react-redux'
 
 const box = {
-  margin: "1em",
+  margin: '1em',
   height: 200,
-  maxHeight: "200px",
-  maxWidth: "200px",
+  maxHeight: '200px',
+  maxWidth: '200px',
   border: 'dashed 2px #999',
   borderRadius: 5,
   position: 'relative',
@@ -14,12 +14,12 @@ const box = {
 }
 
 let legend = {
-  margin: "1em",
+  margin: '1em',
 }
 
 class Upload extends React.Component {
   handleFinishedUpload (args) {
-    console.log("in handleFinishedUploads:", args)
+    console.log('in handleFinishedUploads:', args)
   }
 
   render () {
@@ -32,9 +32,9 @@ class Upload extends React.Component {
       )
     }
     let style = {
-      border: "none",
-      width: "100%",
-      height: "100%"
+      border: 'none',
+      width: '100%',
+      height: '100%'
     }
 
     const uploaderProps = {

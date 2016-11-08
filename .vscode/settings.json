@@ -1,3 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+  "files.exclude": {
+    "build/**": true,
+    "src/**/*.css": true,
+    "src/**/*.css.map": true
+  }
 }

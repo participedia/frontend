@@ -56,7 +56,7 @@ export function login() {
         }
       }
     }
-  );
+  )
   return dispatch => {
     lock.show({auth: { params: { scope: 'openid email app_metadata' }}}, (err, profile, token) => {
       // TODO #45 in actions.js figure out why the auth promise never gets called 
@@ -65,7 +65,6 @@ export function login() {
         dispatch(lockError(err))
         return
       }
-      console.log("in consequnece of show", profile)
       localStorage.setItem('profile', JSON.stringify(profile))
       localStorage.setItem('id_token', token)
       dispatch(lockSuccess(profile, token))
@@ -107,11 +106,29 @@ export function logoutUser() {
   }
 }
 
+export const ORGANIZATION = 'ORGANIZATION'
+export const RECEIVED_NOUNS = 'RECEIVED_NOUNS'
+
+export function loadNouns (noun) {
+  return dispatch => {
+    return api.fetchNouns(noun)
+      .then(function (response) {
+        dispatch(receiveNouns(noun, response))
+      }),
+      function (err) {
+        console.log('got an error in loadNouns', err)
+      }
+  }
+}
 
 
-
-
-
+export function receiveNouns(noun, json) {
+  return {
+    type: RECEIVED_NOUNS,
+    noun: [noun.toLowerCase()],
+    nouns: json,
+  }
+}
 
 export function startFetchObject() {
   return {
@@ -119,6 +136,7 @@ export function startFetchObject() {
     payload: null
   }
 }
+
 export function receiveObject(id, json) {
   return {
     type: RECEIVED_OBJECT,
@@ -150,7 +168,6 @@ export function changeCategory (category) {
 }
 
 export function switchCategory (category, query, sortingMethod) {
-  // console.log(`in switchCategory: category: ${category}, query: ${query}, sortingMethod: ${sortingMethod}`)
   return dispatch => {
     dispatch(changeCategory(category))
     dispatch(search(query, category, sortingMethod))
@@ -189,7 +206,7 @@ function startSearch (query, selectedCategory, sortingMethod) {
 function receiveData (query, response) {
   return {
     type: RECEIVED_DATA,
-    data: response.hits.hits
+    data: response.results
   }
 }
 

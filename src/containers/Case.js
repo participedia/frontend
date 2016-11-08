@@ -4,6 +4,7 @@ import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
 import api from '../utils/api'
 import moment from 'moment'
+import CountryMap from '../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
 import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
@@ -12,33 +13,6 @@ import caseIconFB from '../img/pp-case-icon-fb.png'
 import caseIconTW from '../img/pp-case-icon-tw.png'
 import caseIconShare from '../img/pp-case-icon-share.png'
 
-import { getRandomInt } from '../util'
-
-class CountryMap extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {'SVG': ''}
-  }
-  componentWillMount () {
-    let component = this
-    // TODO move to country-specific bucket or at least folder
-    fetch('https://s3.amazonaws.com/assets.participedia.xyz/' + this.props.countrycode + '.svg').then(function (response) {
-      return response.text()
-    }).then(function (SVGtext) {
-      let svg = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><style type="text/css"><![CDATA[path {stroke: none;fill: #ff6f00;}]]></style></defs>' + SVGtext + '</svg>'
-      component.setState({SVG: svg})
-    })
-  }
-
-  render () {
-    return ( 
-      <div>
-        <div dangerouslySetInnerHTML={{__html: this.state.SVG}} />
-        <p>{this.props.countrycode}</p>
-      </div>
-    )
-  }
-}
 
 class Case extends React.Component {
   componentWillMount () {
@@ -58,7 +32,6 @@ class Case extends React.Component {
   }
 
   render () {
-    let progressPercentage = 50 // TODO
     if (this.state && this.state.data) {
       let caseObject = this.state.data
       let tags, communication_modes = ''
@@ -80,6 +53,15 @@ class Case extends React.Component {
       let last_author = '???' // TODO figure out how to extract last author information
       let id = this.props.params.nodeID
       let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let awsUrl = process.env.REACT_APP_ASSETS_URL
+      if (caseObject.lead_image) {
+        var comma = caseObject.lead_image.search(",");
+        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.slice(9, comma-1));
+      }
+      if (caseObject.other_images) {
+        var bracket = caseObject.other_images.search("]");
+        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images.slice(2, bracket-1));
+      }
 
       return (
         <div>
@@ -97,16 +79,7 @@ class Case extends React.Component {
           <div className='main-contents'>
             <div className='detailed-case-component'>
               <div className='sidebar'>
-                <CountryMap countrycode={caseObject.geo_country} />
-                <p className='case-location'>
-                  Kadikoy, Turkey
-                </p>
-                <div className='progress-bar'>
-                  <div className='progress-fill' style={{ width: progressPercentage + '%' }}></div>
-                </div>
-                <p className='progress-complete'>
-                  {progressPercentage}% complete
-                </p>
+                <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
                   Keywords
                 </p>
@@ -140,14 +113,18 @@ class Case extends React.Component {
                   <p className='case-title'>
                     {caseObject.title_en}
                   </p>
-                  <div className='case-images'>
-                    {[0, 1, 2].map(function (obj, i) { /* TODO load real images in Case details */
-                      return (
-                        <div className='thumbnail' key={i}
-                          style={{ backgroundImage: 'url(/img/placeholder/400_' + getRandomInt(0, 30) + '.jpeg)' }} />
-                      )
-                    })}
-                  </div>
+                  { (pic && pic.length > awsUrl.length) ?
+                    <div className='case-images'>
+                      <img role='presentation' src={pic} />
+                    </div>
+                    :
+                    (otherImg && otherImg.length > awsUrl.length) ?
+                      <div className='case-images'>
+                        <img role='presentation' src={otherImg} />
+                      </div>
+                    :
+                    undefined
+                  }
                   <div className='authorship-details'>
                     <p className='author-line'>
                       First submitted by&nbsp;

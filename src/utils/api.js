@@ -15,7 +15,6 @@ class API {
       fetch(APIURL + '/countries/' + countryCode + '.geo.json')
         .then(function (response) {
           response.json().then(function (json) {
-            console.log("JSON", json)
             resolve(json)
           })
         })
@@ -102,6 +101,25 @@ class API {
           console.log('There has been a problem with your fetch operation: ' + error.message)
           reject(error)
         })
+    })
+  }
+  fetchNouns = function (noun) {
+    return new Promise(function (resolve, reject) {
+      try {
+        let url =APIURL + '/search/getAllForType?objType=' + noun 
+        fetch(url)
+          .then(function (response) {
+            response.json().then(function (json) {
+              resolve(json)
+            })
+          })
+          .catch(function (error) {
+            console.log('There has been a problem with your fetch operation: ' + error.message)
+            reject(error)
+          })
+      } catch (e) {
+        console.log(e)
+      }
     })
   }
 }
