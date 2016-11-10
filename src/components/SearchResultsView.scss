@@ -221,7 +221,7 @@
   }
 
   .result-count {
-    border-bottom: 2px solid #eee;
+    // border-bottom: 2px solid #eee;
     padding: 14px 0;
 
     p {
@@ -238,14 +238,14 @@
       font-weight: 400;
       color: #ff6f00;
       line-height: 30px;
-      padding: 20px 0;
-      border-bottom: 2px solid #eee;
+      padding: 21px 0 7px 0;
+      // border-bottom: 2px solid #eee;
     }
 
     .results {
-      padding: 32px 0 0;
+      // padding: 32px 0 0;
       overflow: hidden;
-      border-bottom: 2px solid #eee;
+      // border-bottom: 2px solid #eee;
     }
   }
 }

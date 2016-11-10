@@ -44,6 +44,7 @@ var BodyEditor = React.createClass({
       </div>
     )
   }
+})
 
 class _CaseEditor extends Component {
   render() {
