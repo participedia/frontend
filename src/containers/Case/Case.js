@@ -2,16 +2,17 @@ import React from 'react'
 import './Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
-import api from '../utils/api'
+import api from '../../utils/api'
 import moment from 'moment'
-import CountryMap from '../components/CountryMap'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
+import CountryMap from '../../components/CountryMap'
+import Floating from '../../components/Floating'
+// import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
-import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
-import caseIconSettings from '../img/pp-case-icon-settings.png'
-import caseIconFB from '../img/pp-case-icon-fb.png'
-import caseIconTW from '../img/pp-case-icon-tw.png'
-import caseIconShare from '../img/pp-case-icon-share.png'
+import caseIconBookmark from '../../img/pp-case-icon-bookmark.png'
+import caseIconSettings from '../../img/pp-case-icon-settings.png'
+import caseIconFB from '../../img/pp-case-icon-fb.png'
+import caseIconTW from '../../img/pp-case-icon-tw.png'
+import caseIconShare from '../../img/pp-case-icon-share.png'
 
 
 class Case extends React.Component {
@@ -52,7 +53,8 @@ class Case extends React.Component {
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
       let last_author = '???' // TODO figure out how to extract last author information
       let id = this.props.params.nodeID
-      let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let editLink = `/${locale}/case/${id}/edit`
+      // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
       let awsUrl = process.env.REACT_APP_ASSETS_URL
       if (caseObject.lead_image) {
         var comma = caseObject.lead_image.search(",");
@@ -68,11 +70,7 @@ class Case extends React.Component {
           <div className="edit-button-container">
             <div className="edit-button-inner">
               <div className="editButton">
-                <FloatingActionButton
-                  containerElement={editLink}
-                  >
-                  <ContentPencil />
-                </FloatingActionButton>
+                <Floating link={editLink} />
               </div>
             </div>
           </div>

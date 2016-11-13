@@ -4,7 +4,7 @@ import './SearchHit.css'
 import {injectIntl, intlShape} from 'react-intl'
 import { Container, Row, Col } from 'reactstrap';
 import moment from 'moment'
-import backgroundImage from '../img/pp-thumbnail-1.jpg'
+import backgroundImage from '../../img/pp-thumbnail-1.jpg'
 
 function capitalize(str)
 {
