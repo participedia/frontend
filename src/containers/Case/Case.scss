@@ -2,39 +2,12 @@
 // @import "quill/dist/quill.snow.css";
 
 .detailed-case-component {
-  width: 1600px;
-  margin: 0 auto;
-  overflow: hidden;
   padding-bottom: 32px;
   padding-top: 32px;
 
-  @media (max-width: 1599px) {
-    width: 1280px;
-  }
-
-  @media (max-width: 1279px) {
-    width: 960px;
-    padding-top: 16px;
-  }
-
-  @media (max-width: 959px) {
-    width: 580px;
-    padding-top: 0;
-  }
-
-  @media (max-width: 639px) {
-    width: 320px;
-  }
-
-  .sidebar {
+  .sidepanel {
     padding: 0 32px;
-    width: 200px;
-    float: left;
     margin-top: 48px;
-
-    @media (max-width: 959px) {
-      display: none;
-    }
 
     .case-map {
       width: 100%;
@@ -119,64 +92,103 @@
     }
   }
 
+  .case-tools {
+    // float: right;
+    // margin-right: 32px;
+    // padding-right: 32px;
+    // position: absolute;
+    // right: 63px;
+
+    // @media (max-width: 1279px) {
+    //   right: -48px;
+    // }
+
+    .top-icons {
+      margin-top: 40px;
+      // position: fixed;
+
+      a {
+        display: block;
+        margin-bottom: 16px;
+
+        img {
+          width: 40px;
+        }
+
+        &:first-child {
+          img {
+            width: 32px;
+            margin: 4px;
+          }
+        }
+      }
+    }
+
+    .bottom-icons {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 48px;
+      position: fixed;
+
+      a {
+        position: relative;
+        display: block;
+
+        img {
+          width: 80px;
+          margin-left: -20px;
+        }
+
+        &::before {
+          content: "";
+          background-color: $color2;
+          position: absolute;
+          color: #fff;
+          font-weight: 400;
+          left: 65px;
+          top: 19px;
+          width: 12px;
+          height: 12px;
+          transform: rotate(45deg);
+          display: none;
+        }
+
+        &::after {
+          content: "Edit";
+          background-color: $color2;
+          padding: 6px 12px;
+          position: absolute;
+          display: none;
+          color: #fff;
+          font-weight: 400;
+          left: 70px;
+          top: 10px;
+        }
+
+        &:hover {
+          &::before, &::after {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
   .main-area {
-    float: left;
-    width: 1280px - 32px;
-    padding-right: 32px;
-    position: relative;
-
-    @media (max-width: 1599px) {
-      width: 928px;
-    }
-
-    @media (max-width: 1279px) {
-      width: 608px;
-    }
-
-    @media (max-width: 959px) {
-      width: 528px;
-    }
-
-    @media (max-width: 639px) {
-      width: 288px;
-    }
 
     .case-box {
-      float: left;
       padding: 32px 0;
-      width: 928px;
-
-      @media (max-width: 1599px) {
-        width: 608px;
-      }
-
-      @media (max-width: 1279px) {
-        width: 608px;
-      }
-
-      @media (max-width: 959px) {
-        width: 508px;
-      }
-
-      @media (max-width: 639px) {
-        width: 288px;
-      }
 
       .category {
         color: $color2;
-        font-size: 48px;
-        line-height: 60px;
         font-weight: 500;
         margin-bottom: 8px;
       }
 
       .case-title {
         color: $color1;
-        font-size: 48px;
-        line-height: 60px;
         font-weight: 500;
         margin-bottom: 48px;
-        width: 80%;
       }
 
       .case-images {
@@ -246,137 +258,19 @@
       }
     }
 
-    .case-tools {
-      float: right;
-      margin-right: 32px;
-      padding-right: 32px;
-      position: absolute;
-      right: 32px;
 
-      @media (max-width: 1279px) {
-        right: -48px;
-      }
-
-      .top-icons {
-        margin-top: 40px;
-        position: fixed;
-
-        a {
-          display: block;
-          margin-bottom: 16px;
-
-          img {
-            width: 40px;
-          }
-
-          &:first-child {
-            img {
-              width: 32px;
-              margin: 4px;
-            }
-          }
-        }
-      }
-
-      .bottom-icons {
-        position: absolute;
-        bottom: 0;
-        margin-bottom: 48px;
-        position: fixed;
-
-        a {
-          position: relative;
-          display: block;
-
-          img {
-            width: 80px;
-            margin-left: -20px;
-          }
-
-          &::before {
-            content: "";
-            background-color: $color2;
-            position: absolute;
-            color: #fff;
-            font-weight: 400;
-            left: 65px;
-            top: 19px;
-            width: 12px;
-            height: 12px;
-            transform: rotate(45deg);
-            display: none;
-          }
-
-          &::after {
-            content: "Edit";
-            background-color: $color2;
-            padding: 6px 12px;
-            position: absolute;
-            display: none;
-            color: #fff;
-            font-weight: 400;
-            left: 70px;
-            top: 10px;
-          }
-
-          &:hover {
-            &::before, &::after {
-              display: block;
-            }
-          }
-        }
-      }
-    }
   }
 }
 
 .main-contents {
   min-height: 200px;
+  position: relative;
 }
 
-.edit-button-container {
+.editButton {
   z-index: 3000;
   position: fixed;
   bottom: 0;
-  width: 100%;
-
-  .edit-button-inner {
-    width: 1600px;
-    margin: 0 auto;
-    position: relative;
-
-    @media (max-width: 1599px) {
-      width: 1280px;
-    }
-
-    @media (max-width: 1279px) {
-      width: 960px;
-    }
-
-    @media (max-width: 959px) {
-      width: 580px;
-    }
-
-    @media (max-width: 639px) {
-      width: 320px;
-    }
-
-    .editButton {
-      float: right;
-      margin-right: 104px;
-      margin-bottom: 40px;
-
-      @media (max-width: 1279px) {
-        margin-right: 20px;
-      }
-
-      @media (max-width: 959px) {
-        margin-right: -14px;
-      }
-
-      @media (max-width: 639px) {
-        margin-right: -32px;
-      }
-    }
-  }
+  right: 63px;
+  bottom: 28px;
 }

@@ -3,7 +3,9 @@ import React, {Component} from 'react'
 import {injectIntl, intlShape} from 'react-intl'
 import { Field } from 'redux-form'
 
+import '../containers/Case/Case.css'
 import './CaseEditor.css'
+import { Container, Row, Col } from 'reactstrap';
 import ReactQuill from 'react-quill/dist/react-quill'
 
 import '../quill.core.css'
@@ -59,8 +61,8 @@ class _CaseEditor extends Component {
     return (
         <div>
           <div className='main-contents'>
-            <div className='detailed-case-component'>
-              <div className='sidebar'>
+            <Container className='detailed-case-component' fluid='true'>
+              <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
                 <p className='case-location'>
                   country picker
                 </p>
@@ -77,15 +79,15 @@ class _CaseEditor extends Component {
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
-              </div>
-              <div className='main-area'>
+              </Col>
+              <Col md='8' xs='12' className='main-area'>
                 <div className='case-box'>
-                  <div className='category'>
+                  <h2 className='category'>
                     Case
-                  </div>
-                  <p className='case-title'>
+                  </h2>
+                  <h2 className='case-title'>
                   {caseObject.title_en}
-                  </p>
+                  </h2>
                   <form onSubmit={handleSubmit}>
                     <div>
                       <label htmlFor="title_en">Title</label>
@@ -100,8 +102,8 @@ class _CaseEditor extends Component {
                     <button type="submit">Submit</button>
                   </form>
                 </div>
-              </div>
-          </div>
+              </Col>
+          </Container>
         </div>
       </div>
     )

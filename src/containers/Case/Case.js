@@ -4,9 +4,9 @@ import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
 import api from '../../utils/api'
 import moment from 'moment'
+import { Container, Row, Col } from 'reactstrap';
 import CountryMap from '../../components/CountryMap'
-import Floating from '../../components/Floating'
-// import FloatingActionButton from 'material-ui/FloatingActionButton'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
 import caseIconBookmark from '../../img/pp-case-icon-bookmark.png'
 import caseIconSettings from '../../img/pp-case-icon-settings.png'
@@ -67,16 +67,9 @@ class Case extends React.Component {
 
       return (
         <div>
-          <div className="edit-button-container">
-            <div className="edit-button-inner">
-              <div className="editButton">
-                <Floating link={editLink} />
-              </div>
-            </div>
-          </div>
           <div className='main-contents'>
-            <div className='detailed-case-component'>
-              <div className='sidebar'>
+            <Container className='detailed-case-component' fluid='true'>
+              <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
                 <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
                   Keywords
@@ -102,15 +95,15 @@ class Case extends React.Component {
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
-              </div>
-              <div className='main-area'>
+              </Col>
+              <Col md='8' xs='12' className='main-area'>
                 <div className='case-box'>
-                  <div className='category'>
+                  <h2 className='category'>
                     Case
-                  </div>
-                  <p className='case-title'>
+                  </h2>
+                  <h2 className='case-title'>
                     {caseObject.title_en}
-                  </p>
+                  </h2>
                   { (pic && pic.length > awsUrl.length) ?
                     <div className='case-images'>
                       <img role='presentation' src={pic} />
@@ -145,17 +138,22 @@ class Case extends React.Component {
                   </div>
                   <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
-                <div className='case-tools'>
-                  <div className='top-icons'>
-                    <a href='#'><img src={caseIconBookmark} alt='' /></a>
-                    <a href='#'><img src={caseIconSettings} alt='' /></a>
-                    <a href='#'><img src={caseIconFB} alt='' /></a>
-                    <a href='#'><img src={caseIconTW} alt='' /></a>
-                    <a href='#'><img src={caseIconShare} alt='' /></a>
-                  </div>
+              </Col>
+              <Col md='1' className='case-tools hidden-sm-down'>
+                <div className='top-icons'>
+                  <a href='#'><img src={caseIconBookmark} alt='' /></a>
+                  <a href='#'><img src={caseIconSettings} alt='' /></a>
+                  <a href='#'><img src={caseIconFB} alt='' /></a>
+                  <a href='#'><img src={caseIconTW} alt='' /></a>
+                  <a href='#'><img src={caseIconShare} alt='' /></a>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Container>
+            <Link to={editLink}>
+              <FloatingActionButton className='editButton'>
+                <ContentPencil />
+              </FloatingActionButton>
+            </Link>
           </div>
         </div>)
     } else {
