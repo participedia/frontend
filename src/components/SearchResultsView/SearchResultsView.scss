@@ -7,32 +7,10 @@
 }
 
 .search-results-component {
-  // width: 1600px;
-  // margin: 0 auto;
-  // overflow: hidden;
-  // padding-bottom: 32px;
   padding-top: 32px;
-
-  // @media (max-width: 1599px) {
-  //   width: 1280px;
-  // }
-
-  // @media (max-width: 1279px) {
-  //   width: 960px;
-  // }
-
-  // @media (max-width: 959px) {
-  //   width: 640px;
-  // }
-
-  // @media (max-width: 639px) {
-  //   width: 320px;
-  // }
 
   .sidepanel {
     padding: 0 32px;
-    // width: 200px;
-    // float: left;
 
     .sorting-options {
       padding: 12px 0;
@@ -69,87 +47,8 @@
   }
 }
 
-// @media (max-width: 1279px) {
-//   .search-results-component .sidebar {
-//     padding: 0 16px;
-//     width: 928px;
-
-//     .sorting-options {
-//       margin-top: 0;
-//       border-top: 0;
-//       overflow: hidden;
-//       margin-bottom: -16px;
-
-//       a {
-//         float: left;
-//         margin-right: 32px;
-//       }
-//     }
-//   }
-// }
-
-// @media (max-width: 959px) {
-//   .search-results-component .sidebar {
-//     width: 608px;
-//   }
-// }
-
-// @media (max-width: 639px) {
-//   .search-results-component .sidebar {
-//     width: 288px;
-
-//     .sorting-options a {
-//       float: none;
-//       margin-right: 0;
-//       display: none;
-
-//       &.open-mobile-menu a {
-//         display: block;
-//       }
-
-//       .current-sorting-selection {
-//         display: block;
-//       }
-//     }
-//   }
-// }
-
-// .search-results-component .main-area {
-//   padding-right: 32px;
-//   width: 1248px;
-//   float: right;
-// }
-
-// @media (max-width: 1599px) {
-//   .search-results-component .main-area {
-//     width: 928px;
-//   }
-// }
-
-// @media (max-width: 1279px) {
-//   .search-results-component .main-area {
-//     width: 928px;
-//     padding-right: 16px;
-//     padding-left: 16px;
-//   }
-// }
-
-// @media (max-width: 959px) {
-//   .search-results-component .main-area {
-//     width: 608px;
-//   }
-// }
-
-// @media (max-width: 639px) {
-//   .search-results-component .main-area {
-//     width: 288px;
-//   }
-// }
-
-// .search-results-component .main-area {
   .search-actions-area {
     border-bottom: 2px solid #eee;
-    // overflow: hidden;
     padding-top: 32px;
 
     .filters {
@@ -179,6 +78,7 @@
     .filters a.selected,
     .filters a:hover,
     .filters a:focus {
+      text-decoration: none;
       color: #ff6f00;
       border-bottom: 4px solid #ff6f00;
     }
@@ -218,7 +118,6 @@
         }
       }
     }
-  // }
 
 
   .results-box {
@@ -228,19 +127,15 @@
       color: #ff6f00;
       line-height: 30px;
       padding: 21px 0 7px 0;
-      // border-bottom: 2px solid #eee;
     }
 
     .results {
-      // padding: 32px 0 0;
       overflow: hidden;
-      // border-bottom: 2px solid #eee;
     }
   }
 }
 
 .result-count {
-  // border-bottom: 2px solid #eee;
   padding: 14px 0;
 
   p {
