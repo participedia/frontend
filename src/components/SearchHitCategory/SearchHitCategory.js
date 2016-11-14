@@ -10,7 +10,7 @@ class SearchHitCategory extends React.Component {
           <div className='category-title'>
             {this.props.title}
           </div>
-          <div className='results'>
+          <div className='row results'>
             {this.props.results}
           </div>
         </div>

@@ -2,16 +2,17 @@ import React from 'react'
 import './Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
-import api from '../utils/api'
+import api from '../../utils/api'
 import moment from 'moment'
-import CountryMap from '../components/CountryMap'
+import { Container, Row, Col } from 'reactstrap';
+import CountryMap from '../../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
-import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
-import caseIconSettings from '../img/pp-case-icon-settings.png'
-import caseIconFB from '../img/pp-case-icon-fb.png'
-import caseIconTW from '../img/pp-case-icon-tw.png'
-import caseIconShare from '../img/pp-case-icon-share.png'
+import caseIconBookmark from '../../img/pp-case-icon-bookmark.png'
+import caseIconSettings from '../../img/pp-case-icon-settings.png'
+import caseIconFB from '../../img/pp-case-icon-fb.png'
+import caseIconTW from '../../img/pp-case-icon-tw.png'
+import caseIconShare from '../../img/pp-case-icon-share.png'
 
 
 class Case extends React.Component {
@@ -52,7 +53,8 @@ class Case extends React.Component {
       let first_author_url = '/' + locale + '/users/' + caseObject.author.id
       let last_author = '???' // TODO figure out how to extract last author information
       let id = this.props.params.nodeID
-      let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let editLink = `/${locale}/case/${id}/edit`
+      // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
       let awsUrl = process.env.REACT_APP_ASSETS_URL
       if (caseObject.lead_image) {
         var comma = caseObject.lead_image.search(",");
@@ -65,20 +67,9 @@ class Case extends React.Component {
 
       return (
         <div>
-          <div className="edit-button-container">
-            <div className="edit-button-inner">
-              <div className="editButton">
-                <FloatingActionButton
-                  containerElement={editLink}
-                  >
-                  <ContentPencil />
-                </FloatingActionButton>
-              </div>
-            </div>
-          </div>
           <div className='main-contents'>
-            <div className='detailed-case-component'>
-              <div className='sidebar'>
+            <Container className='detailed-case-component' fluid='true'>
+              <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
                 <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
                   Keywords
@@ -104,15 +95,15 @@ class Case extends React.Component {
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
-              </div>
-              <div className='main-area'>
+              </Col>
+              <Col md='8' xs='12' className='main-area'>
                 <div className='case-box'>
-                  <div className='category'>
+                  <h2 className='category'>
                     Case
-                  </div>
-                  <p className='case-title'>
+                  </h2>
+                  <h2 className='case-title'>
                     {caseObject.title_en}
-                  </p>
+                  </h2>
                   { (pic && pic.length > awsUrl.length) ?
                     <div className='case-images'>
                       <img role='presentation' src={pic} />
@@ -147,17 +138,22 @@ class Case extends React.Component {
                   </div>
                   <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
-                <div className='case-tools'>
-                  <div className='top-icons'>
-                    <a href='#'><img src={caseIconBookmark} alt='' /></a>
-                    <a href='#'><img src={caseIconSettings} alt='' /></a>
-                    <a href='#'><img src={caseIconFB} alt='' /></a>
-                    <a href='#'><img src={caseIconTW} alt='' /></a>
-                    <a href='#'><img src={caseIconShare} alt='' /></a>
-                  </div>
+              </Col>
+              <Col md='1' className='case-tools hidden-sm-down'>
+                <div className='top-icons'>
+                  <a href='#'><img src={caseIconBookmark} alt='' /></a>
+                  <a href='#'><img src={caseIconSettings} alt='' /></a>
+                  <a href='#'><img src={caseIconFB} alt='' /></a>
+                  <a href='#'><img src={caseIconTW} alt='' /></a>
+                  <a href='#'><img src={caseIconShare} alt='' /></a>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Container>
+            <Link to={editLink}>
+              <FloatingActionButton className='editButton'>
+                <ContentPencil />
+              </FloatingActionButton>
+            </Link>
           </div>
         </div>)
     } else {

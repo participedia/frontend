@@ -1,13 +1,14 @@
 import React, { PropTypes } from 'react'
-import SearchHit from '../components/SearchHit'
-import SearchHitCategory from '../components/SearchHitCategory'
+import SearchHit from '../../components/SearchHit/SearchHit'
+import SearchHitCategory from '../../components/SearchHitCategory/SearchHitCategory'
+import { Container, Row, Col } from 'reactstrap';
 import './SearchResultsView.css'
 import {injectIntl, intlShape} from 'react-intl'
 import preventDefault from 'react-prevent-default'
-import searchGridIcon from '../img/pp-search-grid-icon.png'
-import searchGridIconActive from '../img/pp-search-grid-icon-active.png'
-import searchListIcon from '../img/pp-search-list-icon.png'
-import searchListIconActive from '../img/pp-search-list-icon-active.png'
+import searchGridIcon from '../../img/pp-search-grid-icon.png'
+import searchGridIconActive from '../../img/pp-search-grid-icon-active.png'
+import searchListIcon from '../../img/pp-search-list-icon.png'
+import searchListIconActive from '../../img/pp-search-list-icon-active.png'
 
 class SearchResultsView extends React.Component {
   constructor () {
@@ -64,8 +65,8 @@ class SearchResultsView extends React.Component {
     }
     return (
       <div className='main-contents'>
-        <div className='search-results-component'>
-          <div className='sidebar'>
+        <Container className='search-results-component' fluid='true'>
+          <Col md='3' className='sidepanel hidden-sm-down'>
             <div className={'sorting-options' + ((this.state.sortingSelectionOpen) ? ' open-mobile-menu' : '')}>
               <p className='current-sorting-selection' onClick={() => { this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen}) }}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
               <a href='#' onClick={this.props.onSortingChange.bind(this,
@@ -80,9 +81,9 @@ class SearchResultsView extends React.Component {
                   this.props.query, this.props.selectedCategory, 'alphabetical')}
                 className={(this.props.sortingMethod === 'alphabetical') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'alphabetical'})}</a>
             </div>
-          </div>
-          <div className='main-area'>
-            <div className='search-actions-area'>
+          </Col>
+          <Col md='9'>
+            <div className='clearfix search-actions-area'>
               <div className='filters'>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'All'))}
                   className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
@@ -112,8 +113,8 @@ class SearchResultsView extends React.Component {
               </div>
             </div>
             {results}
-          </div>
-        </div>
+          </Col>
+        </Container>
       </div>
     )
   }
