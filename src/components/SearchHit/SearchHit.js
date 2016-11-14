@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import './SearchHit.css'
 import {injectIntl, intlShape} from 'react-intl'
+import { Container, Row, Col } from 'reactstrap';
 import moment from 'moment'
-import backgroundImage from '../img/pp-thumbnail-1.jpg'
+import backgroundImage from '../../img/pp-thumbnail-1.jpg'
 
 function capitalize(str)
 {
@@ -40,9 +41,9 @@ class SearchHit extends React.Component {
     let thumbnailStyle = {backgroundImageSrc: backgroundImage}
     let dateString = new moment(result.updated_date).fromNow()
     let blob = (
-      <div className={ this.props.selectedViewType === 'grid' ? 'result-grid' : 'result-list'} >
+      <Col md={ this.props.selectedViewType === 'grid' ? '4' : '12'}>
         { this.props.selectedViewType === 'grid' ?
-        <div className='result'>
+        <div className="grid-item">
           <Link to={link} className='result-title'>
             { (pic && pic.length > awsUrl.length) ?
               <div className='case-images'>
@@ -68,35 +69,44 @@ class SearchHit extends React.Component {
           </p>
         </div>
         :
-        <div className="list-item">
-          <div className="pic">
+        <Row className="list-item">
+          <Col md="3">
           { (pic && pic.length > awsUrl.length) ?
-            <div className='case-images'>
-              <img role='presentation' src={pic} />
-            </div>
+            <Link to={link}>
+              <div className='case-images'>
+                <img role='presentation' src={pic} />
+              </div>
+            </Link>
             :
             (otherImg && otherImg.length > awsUrl.length) ?
+            <Link to={link}>
               <div className='case-images'>
                 <img role='presentation' src={otherImg} />
               </div>
+            </Link>
              :
+            <Link to={link}>
               <div className='thumbnail'
                 style={thumbnailStyle}>
               </div>  
+            </Link>
           }
-          </div>
-          <div className="desc">
-            <div className='result-title-text'>{title}</div>
+          </Col>
+          <Col md="6">
+            <Link to={link}>
+              <div className='result-title-text'>{title}</div>
+            </Link>
             <p className='result-author'>
               {firstSubmit}
             </p>
             <p className='result-date'>
               {dateString}
             </p>
-          </div>
-        </div>
+          </Col>
+          <div className="separator"></div>
+        </Row>
         }
-      </div>
+      </Col>
     )
     return blob
   }
