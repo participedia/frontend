@@ -1,34 +1,42 @@
 /**
  * The geosuggest module
+ * NOTE: duplicated font-sizes' are for browsers which don't support rem (only IE 8)
  */
 .geosuggest {
-  font-size: inherit;
   position: relative;
-  // width: 100%;
-  margin: 1em 0;
   text-align: left;
+  @media (max-width: 639px) {
+    width: 100%;
+  }
 }
 .geosuggest__input {
-  font-size: inherit;
-  padding: 0;
-  margin: 0;
-  border: 2px solid transparent;
-  padding: 12px 16px;
-  width: 400px;
-  // box-shadow: 0 0 1px #3d464d;
-  // padding: .5em 1em;
-  -webkit-transition: border 0.2s, box-shadow 0.2s;
-          transition: border 0.2s, box-shadow 0.2s;
+  border: none;
+  width: 98%;
 }
+
+.geosuggest__input-wrapper {
+  border: 2px solid #eee;
+  width: 400px;
+  @media (max-width: 639px) {
+    width: 100%;
+  }
+  padding: 16px;
+  box-sizing: border-box;
+  input {
+    font-size: 20px;
+  }
+}
+  
 .geosuggest__input:focus {
   border-color: #267dc0;
   box-shadow: 0 0 0 transparent;
 }
+
 .geosuggest__suggests {
+  width: 400px;
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
   max-height: 25em;
   padding: 0;
   margin-top: -1px;
@@ -39,13 +47,28 @@
   overflow-y: auto;
   list-style: none;
   z-index: 5;
-  -webkit-transition: max-height 0.2s, border 0.2s;
-          transition: max-height 0.2s, border 0.2s;
+  box-sizing: border-box;
+  @media (max-width: 639px) {
+    width: 100%;
+  }
 }
+
+
+.geosuggest__suggests-wrapper {
+  position: relative;
+}
+
 .geosuggest__suggests--hidden {
   max-height: 0;
   overflow: hidden;
   border-width: 0;
+  width: 400px;
+  @media (max-width: 639px) {
+    width: 100%;
+    padding-left: 0;
+  }
+  // border: 2px solid red;
+  // box-sizing: border-box;
 }
 
 /**
