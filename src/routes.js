@@ -15,6 +15,7 @@ import Case from './containers/Case'
 import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
+import NewItem from './components/NewItem'
 import EditCase from './containers/EditCase'
 
 var getFirstBrowserLanguage = function () {
@@ -59,6 +60,7 @@ function buildRoutes () {
         <Route path='about' component={About} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
+        <Route path='new-item' component={NewItem} />
         <Route path='case/:nodeID'>
           <IndexRoute component={Case} />
           <Route path='edit' component={EditCase} />
