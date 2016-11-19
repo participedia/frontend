@@ -1,0 +1,54 @@
+@import "./UniversalStyles";
+
+img {
+  max-width: 100%;
+}
+
+.case-images {
+  overflow: hidden;
+  img {
+    max-height: 160px;
+  }
+}
+
+.list-item, .grid-item {
+  padding-top: 28px;
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.separator {
+  padding-top: 28px;
+  float: left;
+  width: 100%;
+  &:before {
+    content : "";
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    height: 1px;
+    width: calc(100% - 30px);
+    border-bottom: 2px solid #eee;
+  }
+}
+
+.thumbnail {
+  width: 100%;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.result-title-text {
+  color: #3f51b2;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  max-height: 78px;
+  overflow: hidden;
+}

@@ -4,14 +4,14 @@ import { Route, IndexRedirect, IndexRoute } from 'react-router'
 
 import Home from './Home'
 import Layout from './Layout'
-import Research from './Research'
 import Profile from './Profile'
 import ProfileEditor from './containers/ProfileEditor'
 import HelpArticle from './HelpArticle'
 import About from './About'
 import Teaching from './Teaching'
+import Research from './Research'
 import Upload from './Upload'
-import Case from './containers/Case'
+import Case from './containers/Case/Case'
 import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
@@ -54,11 +54,11 @@ function buildRoutes () {
         <IndexRoute component={Home} />
         <Route path='profile/edit' component={ProfileEditor} />
         <Route path='profile' component={Profile} />
-        <Route path='research' component={Research} />
         <Route path='help/:id' component={HelpArticle} />
         <Route path='about' component={About} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
+        <Route path='research' component={Research} />
         <Route path='case/:nodeID'>
           <IndexRoute component={Case} />
           <Route path='edit' component={EditCase} />

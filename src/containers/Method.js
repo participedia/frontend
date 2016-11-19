@@ -1,5 +1,5 @@
 import React from 'react'
-import './Case.css'
+import './Case/Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
 import FloatingActionButton from 'material-ui/FloatingActionButton'

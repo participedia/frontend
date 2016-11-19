@@ -1,5 +1,5 @@
 import React from 'react'
-import './SubAccordionTab.css'
+import './AccordionTab.css'
 
 class SubAccordionTab extends React.Component {
 
