@@ -1,12 +1,18 @@
 import React from 'react';
+import ItemForm from '../components/ItemForm'
 import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './NewItem.css'
 
 class NewItem extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.goToStore = this.goToStore.bind(this);
-  // }
+  constructor() {
+    super();
+    // this.goToStore = this.goToStore.bind(this);
+
+    // getinitialState
+    this.state = {
+      pickedItem: null,
+    };
+  }
 
 	handleSubmit(event) {
     event.preventDefault();
@@ -23,25 +29,15 @@ class NewItem extends React.Component {
 
 	render() {
 		return (
-      <Container>
-  			<Form className="quick-submit" onSubmit={this.handleSubmit.bind(this)}>
-  				<h2>Add a Case</h2>
-          <FormGroup>
-            <Label>Title</Label>
-    				<Input type="text" required placeholder="Title placeholder" defaultValue="hello" ref={(input) => {this.titleInput = input}} />
-          </FormGroup>
-          <FormGroup>
-            <Label>Summary</Label>
-            <Input type="text" required placeholder="Summary placeholder" defaultValue="hello" ref={(input) => {this.SummaryInput = input}} />
-          </FormGroup>
-          <FormGroup>Media
-            <Label>Images</Label>
-            <Label>Videos</Label>
-          </FormGroup>
-            <label>Location</label>
-  				<button type="submit">Submit</button>
-  			</Form>
-      </Container>
+      <div>
+        { this.state.pickedItem ? 
+        <Container>
+          <ItemForm />
+        </Container>
+        :
+        <h2>ok</h2>
+        }
+      </div>
 		)
 	}
 }
