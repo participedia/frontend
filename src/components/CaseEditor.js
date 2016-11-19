@@ -1,9 +1,7 @@
-
 import React, {Component} from 'react'
 import {injectIntl, intlShape} from 'react-intl'
 import { Field } from 'redux-form'
 
-import '../containers/Case/Case.css'
 import './CaseEditor.css'
 import { Container, Row, Col } from 'reactstrap';
 import ReactQuill from 'react-quill/dist/react-quill'
