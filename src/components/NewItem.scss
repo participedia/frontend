@@ -1,9 +1,39 @@
 @import "../UniversalStyles";
 
-.quick-submit {
+form.quick-submit {
   padding-top: 7%;
-	h2 {
+  padding-bottom: 7%;
+  label {
+    display: block;
+    font-size: 1.2rem;
+  }
+  .dismiss {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    color: gray;
+  }
+  .title {
+    font-size: 2rem;
+    color: $color1;
+  }
+  h2 {
     color: $color1;
     text-align: center;
+  }
+}
+
+.select-type {
+  padding-top: 7%;
+  padding-bottom: 7%;
+  text-align: center;
+  .col-xs-10 {
+    padding-top: 3%;
+  }
+	p {
+    padding: 14px 0;
+    text-align: center;
+    background: $color2;
+    color: white;
   }
 }

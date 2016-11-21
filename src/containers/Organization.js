@@ -1,8 +1,9 @@
 import React from 'react'
-import './Case.css'
+import './Case/Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import api from '../utils/api'
 import moment from 'moment'
+import { Container, Row, Col } from 'reactstrap';
 import CountryMap from '../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
@@ -62,16 +63,9 @@ class Organization extends React.Component {
 
       return (
         <div>
-          <div className="edit-button-container">
-            <div className="edit-button-inner">
-              <FloatingActionButton className='editButton'>
-                <ContentPencil />
-              </FloatingActionButton>
-            </div>
-          </div>
           <div className='main-contents'>
-            <div className='detailed-case-component'>
-              <div className='sidebar'>
+            <Container className='detailed-case-component' fluid='true'>
+              <Col md='3' className='sidepanel hidden-sm-down'>
                 <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
                   Keywords
@@ -97,15 +91,15 @@ class Organization extends React.Component {
                   <a href='#'>Surveys</a>
                   <a href='#'>Datasets</a>
                 </div>
-              </div>
-              <div className='main-area'>
+              </Col>
+              <Col md='8' xs='12' className='main-area'>
                 <div className='case-box'>
-                  <div className='category'>
+                  <h2 className='category'>
                     Organization
-                  </div>
-                  <p className='case-title'>
+                  </h2>
+                  <h2 className='case-title'>
                     {caseObject.title_en}
-                  </p>
+                  </h2>
                   { (pic && pic.length > awsUrl.length) ?
                     <div className='case-images'>
                       <img role='presentation' src={pic} />
@@ -140,17 +134,20 @@ class Organization extends React.Component {
                   </div>
                   <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
                 </div>
-                <div className='case-tools'>
-                  <div className='top-icons'>
-                    <a href='#'><img src={caseIconBookmark} alt='' /></a>
-                    <a href='#'><img src={caseIconSettings} alt='' /></a>
-                    <a href='#'><img src={caseIconFB} alt='' /></a>
-                    <a href='#'><img src={caseIconTW} alt='' /></a>
-                    <a href='#'><img src={caseIconShare} alt='' /></a>
-                  </div>
+              </Col>
+              <Col md='1' className='case-tools hidden-sm-down'>
+                <div className='top-icons'>
+                  <a href='#'><img src={caseIconBookmark} alt='' /></a>
+                  <a href='#'><img src={caseIconSettings} alt='' /></a>
+                  <a href='#'><img src={caseIconFB} alt='' /></a>
+                  <a href='#'><img src={caseIconTW} alt='' /></a>
+                  <a href='#'><img src={caseIconShare} alt='' /></a>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Container>
+            <FloatingActionButton className='editButton'>
+              <ContentPencil />
+            </FloatingActionButton>
           </div>
         </div>)
     } else {

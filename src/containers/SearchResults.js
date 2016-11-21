@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { switchCategory, setSortOrderAndSearch, setLayoutOrder } from '../actions'
-import SearchResultsView from '../components/SearchResultsView'
+import SearchResultsView from '../components/SearchResultsView/SearchResultsView'
 
 const mapStateToProps = (state) => {
   let props =  {
