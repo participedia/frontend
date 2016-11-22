@@ -6,10 +6,13 @@ import imgIcon from '../img/img-icon.png'
 import vidIcon from '../img/vid-icon.png'
 import locationIcon from '../img/location-icon.png'
 import Upload from '../Upload'
+import Geosuggest from 'react-geosuggest'
+import './GeoSuggest.css'
+
 
 class ItemForm extends React.Component {
   render() {
-    const { fields: {title, summary}, handleSubmit } = this.props;
+    const { fields: {title, summary, videoURL}, handleSubmit } = this.props;
     return (
       <Form className="quick-submit" onSubmit={handleSubmit} >
         <Row>
@@ -42,6 +45,7 @@ class ItemForm extends React.Component {
           </Col>
           <Col xs='10' className='pt-14 pl-0'>
             <span>Add a video</span>
+            <Input type='text' required placeholder='Paste YouTube or Vimeo URL here' defaultValue='' {...videoURL} />
           </Col>
         </Row>
         <Label>Location</Label>
@@ -51,6 +55,7 @@ class ItemForm extends React.Component {
           </Col>
           <Col xs='10' className='pt-14 pl-0'>
             <span>Add a location</span>
+            <Geosuggest onSuggestSelect={this.props.onLocationSuggest}/>
           </Col>
         </Row>
         <RaisedButton onClick={handleSubmit} type="submit" label="Submit" primary={true} />
@@ -59,10 +64,11 @@ class ItemForm extends React.Component {
   }
 }
 
+
 ItemForm = reduxForm({
   form: 'contact',                      // the name of your form and the key to
                                         // where your form's state will be mounted
-  fields: ['title', 'summary'],         // a list of all your fields in your form
+  fields: ['title', 'summary','videoURL'],         // a list of all your fields in your form
 })(ItemForm);
 
 export default ItemForm;

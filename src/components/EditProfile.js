@@ -38,7 +38,6 @@ class EditProfile extends Component {
             <div className="org-section">
               <div className="quick-submit-section">
                 <AutoComplete dataSource={this.props.organizations} />
-
                 <input type="text" className="org-input" placeholder="Begin Typing an Organization" />
                 <a href="#" className="quick-submit-button">Quick Submit</a>
                 <a href="#" className="help-button">?</a>
