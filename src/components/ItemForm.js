@@ -9,6 +9,16 @@ import Geosuggest from 'react-geosuggest'
 import RaisedButton from 'material-ui/RaisedButton'
 import './GeoSuggest.css'
 
+const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
+  const onSuggestSelect = (suggest) => {
+    input.onChange(suggest);
+  };
+  return (
+    <Geosuggest
+        onSuggestSelect={onSuggestSelect}/>
+  )
+};
+
 class ItemForm extends Component {
   render() {
     const { handleSubmit } = this.props;
@@ -53,7 +63,7 @@ class ItemForm extends Component {
           </Col>
           <Col xs='10' className='pt-14 pl-0'>
             <span>Add a location</span>
-            <Geosuggest onSuggestSelect={this.props.onLocationSuggest}/>
+            <Field name="location" component={renderGeoField}  />
           </Col>
         </Row>
         <RaisedButton onClick={handleSubmit} type="submit" label="Submit" primary={true} />
