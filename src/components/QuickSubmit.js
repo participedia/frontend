@@ -1,11 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { initialize } from 'redux-form';
+import React, { Component } from 'react';
+import ItemForm from './ItemForm';
 import { Container, Row, Col } from 'reactstrap';
-import ItemForm from '../components/ItemForm'
 import './QuickSubmit.css'
 
 class QuickSubmit extends React.Component {
+
   constructor(props) {
     super(props);
     // getinitialState
@@ -14,9 +13,9 @@ class QuickSubmit extends React.Component {
     };
   }
 
-  handleSubmit(data) {
-    console.log('Submission received!', data);
-    this.props.dispatch(initialize('contact', {})); // clear form
+  handleSubmit = (values) => {
+    // Do something with the form values
+    console.log(values);
   }
 
   resetItem(event) {
@@ -28,7 +27,7 @@ class QuickSubmit extends React.Component {
       <div>
         <Container>
         { this.state.pickedItem ? 
-            <ItemForm closeForm={this.resetItem.bind(this)} pickedItem={this.state.pickedItem} onSubmit={this.handleSubmit.bind(this)}/>
+            <ItemForm closeForm={this.resetItem.bind(this)} pickedItem={this.state.pickedItem} onSubmit={this.handleSubmit}/>
             :
           <Row className='select-type' >
             <h2>Select type</h2>
@@ -45,7 +44,6 @@ class QuickSubmit extends React.Component {
       </div>
     );
   }
-
 }
 
-export default connect()(QuickSubmit);
+export default QuickSubmit;

@@ -1,18 +1,17 @@
-import React from 'react';
-import { reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import RaisedButton from 'material-ui/RaisedButton'
 import imgIcon from '../img/img-icon.png'
 import vidIcon from '../img/vid-icon.png'
 import locationIcon from '../img/location-icon.png'
 import Upload from '../Upload'
 import Geosuggest from 'react-geosuggest'
+import RaisedButton from 'material-ui/RaisedButton'
 import './GeoSuggest.css'
 
-
-class ItemForm extends React.Component {
+class ItemForm extends Component {
   render() {
-    const { fields: {title, summary, videoURL}, handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <Form className="quick-submit" onSubmit={handleSubmit} >
         <Row>
@@ -23,13 +22,12 @@ class ItemForm extends React.Component {
         </Row>
         <FormGroup>
           <Label>Title</Label>
-          <Input type="textarea" className='title' required placeholder='Neighbourhood Safety Jam' defaultValue='' {...title} />
+          <Field name='title' className='title' placeholder='Neighbourhood Safety Jam' component='input' type='text'/>
         </FormGroup>
         <FormGroup>
           <Label>Summary</Label>
-          <Input type='textarea' required placeholder='Summary placeholder' defaultValue='' {...summary} />
+          <Field name='summary' className='title' placeholder='Summary placeholder' component='input' type='text'/>
         </FormGroup>
-        <Label>Media</Label>
         <Row className='imgField'>
           <Col xs='2' className='pr-0'>
             <img src={imgIcon} alt=""/>
@@ -45,7 +43,7 @@ class ItemForm extends React.Component {
           </Col>
           <Col xs='10' className='pt-14 pl-0'>
             <span>Add a video</span>
-            <Input type='text' required placeholder='Paste YouTube or Vimeo URL here' defaultValue='' {...videoURL} />
+            <Field name='vidURL' component='input' type='text' placeholder='Paste YouTube or Vimeo URL here' />
           </Col>
         </Row>
         <Label>Location</Label>
@@ -64,11 +62,9 @@ class ItemForm extends React.Component {
   }
 }
 
-
+// Decorate the form component
 ItemForm = reduxForm({
-  form: 'contact',                      // the name of your form and the key to
-                                        // where your form's state will be mounted
-  fields: ['title', 'summary','videoURL'],         // a list of all your fields in your form
+  form: 'contact' // a unique name for this form
 })(ItemForm);
 
 export default ItemForm;
