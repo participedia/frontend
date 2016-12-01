@@ -13,7 +13,13 @@ import searchListIconActive from '../../img/pp-search-list-icon-active.png'
 class SearchResultsView extends React.Component {
   constructor () {
     super()
-    this.state = {}
+    this.state = {value: 'All'}
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+    this.props.onCategoryChange.bind(this, event.target.value)();
   }
 
   render () {
@@ -84,7 +90,7 @@ class SearchResultsView extends React.Component {
           </Col>
           <Col md='9'>
             <div className='clearfix search-actions-area'>
-              <div className='filters'>
+              <div className='filters hidden-sm-down'>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'All'))}
                   className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'News'))}
@@ -96,7 +102,14 @@ class SearchResultsView extends React.Component {
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Organizations'))}
                   className={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>Organizations</a>
               </div>
-              <div className='view-types'>
+              <select className='mobile-select hidden-sm-up' value={this.state.value} onChange={this.handleChange}>
+                <option value="All">All</option>
+                <option value="News">News</option>
+                <option value="Cases">Cases</option>
+                <option value="Methods">Methods</option>
+                <option value="Organizations">Organizations</option>
+              </select>
+              <div className='view-types hidden-sm-down'>
                 <a href='#' onClick={preventDefault(this.props.onLayoutChange.bind(this, 'grid'))}
                   className={(this.props.selectedViewType === 'grid') ? 'selected' : 'unselected'}>
                   <img src={searchGridIcon} className='grid-icon' alt='' />
