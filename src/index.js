@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import queryString from 'query-string'
 import App from './App'
-var Auth0 = require('auth0-js')
+import Auth0 from 'auth0-js'
 
 let auth0 = new Auth0({
   domain:       process.env.REACT_APP_AUTH0_DOMAIN,
@@ -17,11 +17,11 @@ let id_token = localStorage.getItem('id_token')
 if (id_token) {
   auth0.getProfile(id_token, function (err, profile) {
     if (err) {
-      console.log("error getting profile", err)
+      console.log('error getting profile', err)
     } else {
       localStorage.setItem('profile', JSON.stringify(profile))
     }
-  });
+  })
 }
 
 // make store configuration happen after we set the profile in localstorage

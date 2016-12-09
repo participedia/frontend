@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React, { Component } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { Row, Col, Form, FormGroup, Label } from 'reactstrap'
 import imgIcon from '../img/img-icon.png'
 import vidIcon from '../img/vid-icon.png'
 import locationIcon from '../img/location-icon.png'
@@ -11,17 +11,17 @@ import './GeoSuggest.css'
 
 const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
   const onSuggestSelect = (suggest) => {
-    input.onChange(suggest);
-  };
+    input.onChange(suggest)
+  }
   return (
     <Geosuggest
         onSuggestSelect={onSuggestSelect}/>
   )
-};
+}
 
 class ItemForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props
     return (
       <Form className="quick-submit" onSubmit={handleSubmit} >
         <Row>
@@ -68,13 +68,13 @@ class ItemForm extends Component {
         </Row>
         <RaisedButton onClick={handleSubmit} type="submit" label="Submit" primary={true} />
       </Form>
-    );
+    )
   }
 }
 
 // Decorate the form component
 ItemForm = reduxForm({
   form: 'contact' // a unique name for this form
-})(ItemForm);
+})(ItemForm)
 
-export default ItemForm;
+export default ItemForm

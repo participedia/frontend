@@ -62,11 +62,11 @@ function mapStateToProps(state) {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = () => {
   return {
-    onSubmit: (data) => {
+    onSubmit: () => {
     },
-    onLocationSuggest: (suggest) => {
+    onLocationSuggest: () => {
     }
   }
 }

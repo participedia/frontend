@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import ItemForm from './ItemForm';
-import { Container, Row, Col } from 'reactstrap';
+import React from 'react'
+import ItemForm from './ItemForm'
+import { Container, Row, Col } from 'reactstrap'
 import './QuickSubmit.css'
 
 class QuickSubmit extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     // getinitialState
     this.state = {
       pickedItem: undefined,
-    };
+    }
   }
 
   handleSubmit = (values) => {
     // Do something with the form values
-    console.log(values);
+    console.log(values)
   }
 
-  resetItem(event) {
+  resetItem() {
     this.setState({pickedItem: undefined})
   }
 
@@ -42,8 +42,8 @@ class QuickSubmit extends React.Component {
         }
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default QuickSubmit;
+export default QuickSubmit

@@ -3,7 +3,7 @@ import {injectIntl, intlShape} from 'react-intl'
 import { Field } from 'redux-form'
 
 import './CaseEditor.css'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap'
 import ReactQuill from 'react-quill/dist/react-quill'
 
 import '../quill.core.css'
@@ -59,7 +59,7 @@ class _CaseEditor extends Component {
     return (
         <div>
           <div className='main-contents'>
-            <Container className='detailed-case-component' fluid='true'>
+            <Container className='detailed-case-component' fluid={true}>
               <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
                 <p className='case-location'>
                   country picker

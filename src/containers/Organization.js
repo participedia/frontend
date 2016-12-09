@@ -3,7 +3,7 @@ import './Case/Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import api from '../utils/api'
 import moment from 'moment'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap'
 import CountryMap from '../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
@@ -53,18 +53,18 @@ class Organization extends React.Component {
       let last_author = '???' // TODO figure out how last author for organization details
       let awsUrl = process.env.REACT_APP_ASSETS_URL
       if (caseObject.lead_image) {
-        var comma = caseObject.lead_image.search(",");
-        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.slice(9, comma-1));
+        var comma = caseObject.lead_image.search(',')
+        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.slice(9, comma-1))
       }
       if (caseObject.other_images) {
-        var bracket = caseObject.other_images.search("]");
-        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images.slice(2, bracket-1));
+        var bracket = caseObject.other_images.search(']')
+        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images.slice(2, bracket-1))
       }
 
       return (
         <div>
           <div className='main-contents'>
-            <Container className='detailed-case-component' fluid='true'>
+            <Container className='detailed-case-component' fluid={true}>
               <Col md='3' className='sidepanel hidden-sm-down'>
                 <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
                 <p className='sub-heading'>
