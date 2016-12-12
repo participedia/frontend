@@ -114,10 +114,10 @@ export function loadNouns (noun) {
     return api.fetchNouns(noun)
       .then(function (response) {
         dispatch(receiveNouns(noun, response))
-      }),
+      },
       function (err) {
         console.log('got an error in loadNouns', err)
-      }
+      })
   }
 }
 

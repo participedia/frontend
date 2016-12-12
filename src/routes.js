@@ -16,6 +16,7 @@ import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
 import EditCase from './containers/EditCase'
+import QuickSubmit from './components/QuickSubmit'
 
 var getFirstBrowserLanguage = function () {
   var nav = window.navigator
@@ -58,6 +59,7 @@ function buildRoutes () {
         <Route path='about' component={About} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
+        <Route path='quick-submit' component={QuickSubmit} />
         <Route path='research' component={Research} />
         <Route path='case/:nodeID'>
           <IndexRoute component={Case} />

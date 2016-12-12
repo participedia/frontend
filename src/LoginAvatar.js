@@ -3,6 +3,7 @@ import Avatar from 'material-ui/Avatar'
 import MenuItem from 'material-ui/MenuItem'
 import FlatButton from 'material-ui/FlatButton'
 import IconMenu from 'material-ui/IconMenu'
+import IconButton from 'material-ui/IconButton'
 import {Link} from 'react-router'
 import {injectIntl, intlShape} from 'react-intl'
 import './LoginAvatar.css'
@@ -26,14 +27,14 @@ class LoginAvatar extends React.Component {
       return (
         <div className='avatar'>
           <IconMenu
-            iconButtonElement={<Avatar size={30} src={profile.picture} />}
+            iconButtonElement={<IconButton><Avatar size={30} src={profile.picture} /></IconButton>}
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
           >
             <MenuItem style={buttonStyle} containerElement={<Link to={'/'+locale+'/profile'} />}
-              onTouchTap={this.handleClose}>Profile</MenuItem>
+              onClick={this.handleClose}>Profile</MenuItem>
             <MenuItem style={buttonStyle} primaryText='Sign out'
-              onTouchTap={() => dispatch(logoutUser())} />
+              onClick={() => dispatch(logoutUser())} />
           </IconMenu>
         </div>
       )

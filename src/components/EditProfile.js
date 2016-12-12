@@ -25,14 +25,28 @@ class EditProfile extends Component {
             <Avatar size={200} src={profile.picture} />
             <p className="change-avatar-button">Change</p>
           </div>
-        </Col>
-        <Col md='7' className='main-area'>
-          <label className="form-label">Name</label>
-          <input type="text" defaultValue={profile.name} className="name-input" />
-          <div className="divider"></div>
-          <label className="form-label">Location</label>
-          <div>
-            <Geosuggest onSuggestSelect={this.props.onLocationSuggest}/>
+          <div className='main-area'>
+            <label className="form-label">Name</label>
+            <input type="text" defaultValue={profile.name} className="name-input" />
+            <div className="divider"></div>
+            <label className="form-label">Location</label>
+            <div className="location-section">
+              <Geosuggest className="org-input" onSuggestSelect={this.props.onLocationSuggest}/>
+            </div>
+            <label className="form-label">Organization</label>
+            <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
+            <div className="org-section">
+              <AutoComplete hintText="Organization autocomplete" dataSource={this.props.organizations} />
+              <input type="text" className="org-input" placeholder="Department" />
+              <input type="text" className="org-input" placeholder="Job Title" />
+              <input type="text" className="org-input" placeholder="Website" />
+            </div>
+            <div className="divider"></div>
+            <label className="form-label">Biography</label>
+            <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
+            <div className="quick-submit-section">
+              <a href="#" className="quick-submit-button">Quick Submit</a>
+            </div>
           </div>
           <label className="form-label organization">Organization</label>
           <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
@@ -63,11 +77,11 @@ function mapStateToProps(state) {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = () => {
   return {
-    onSubmit: (data) => {
+    onSubmit: () => {
     },
-    onLocationSuggest: (suggest) => {
+    onLocationSuggest: () => {
     }
   }
 }

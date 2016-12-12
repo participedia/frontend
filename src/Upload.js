@@ -13,10 +13,6 @@ const box = {
   cursor: 'pointer',
 }
 
-let legend = {
-  margin: '1em',
-}
-
 class Upload extends React.Component {
   handleFinishedUpload (args) {
     console.log('in handleFinishedUploads:', args)
@@ -50,9 +46,6 @@ class Upload extends React.Component {
     return (
       <div style={box}>
         <DropzoneS3Uploader onFinish={this.handleFinishedUpload} {...uploaderProps}>
-          <div style={legend}>
-            Drop an image on here or click to select
-          </div>
         </DropzoneS3Uploader>
       </div>
     )

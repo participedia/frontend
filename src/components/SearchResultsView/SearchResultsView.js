@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import SearchHit from '../../components/SearchHit/SearchHit'
 import SearchHitCategory from '../../components/SearchHitCategory/SearchHitCategory'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Col } from 'reactstrap'
 import './SearchResultsView.css'
 import {injectIntl, intlShape} from 'react-intl'
 import preventDefault from 'react-prevent-default'
@@ -71,7 +71,7 @@ class SearchResultsView extends React.Component {
     }
     return (
       <div className='main-contents'>
-        <Container className='search-results-component' fluid='true'>
+        <Container className='search-results-component' fluid={true}>
           <Col md='3' className='sidepanel hidden-sm-down'>
             <div className={'sorting-options' + ((this.state.sortingSelectionOpen) ? ' open-mobile-menu' : '')}>
               <p className='current-sorting-selection' onClick={() => { this.setState({sortingSelectionOpen: !this.state.sortingSelectionOpen}) }}>{this.props.intl.formatMessage({id: this.props.sortingMethod})}</p>
