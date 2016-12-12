@@ -36,12 +36,7 @@ class EditProfile extends Component {
             <label className="form-label">Organization</label>
             <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
             <div className="org-section">
-              <div className="quick-submit-section">
-                <AutoComplete dataSource={this.props.organizations} />
-                <input type="text" className="org-input" placeholder="Begin Typing an Organization" />
-                <a href="#" className="quick-submit-button">Quick Submit</a>
-                <a href="#" className="help-button">?</a>
-              </div>
+              <AutoComplete hintText="Organization autocomplete" dataSource={this.props.organizations} />
               <input type="text" className="org-input" placeholder="Department" />
               <input type="text" className="org-input" placeholder="Job Title" />
               <input type="text" className="org-input" placeholder="Website" />
@@ -49,6 +44,9 @@ class EditProfile extends Component {
             <div className="divider"></div>
             <label className="form-label">Biography</label>
             <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
+            <div className="quick-submit-section">
+              <a href="#" className="quick-submit-button">Quick Submit</a>
+            </div>
           </div>
         </div>
       </div>

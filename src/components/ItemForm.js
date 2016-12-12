@@ -19,7 +19,7 @@ const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
   )
 }
 
-class ItemForm extends Component {
+class _ItemForm extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
@@ -73,8 +73,8 @@ class ItemForm extends Component {
 }
 
 // Decorate the form component
-ItemForm = reduxForm({
-  form: 'contact' // a unique name for this form
-})(ItemForm)
+let ItemForm = reduxForm({
+  form: 'quicksubmit' // a unique name for this form
+})(_ItemForm)
 
 export default ItemForm

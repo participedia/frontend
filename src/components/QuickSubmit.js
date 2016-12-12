@@ -1,9 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ItemForm from './ItemForm'
 import { Container, Row, Col } from 'reactstrap'
 import './QuickSubmit.css'
 
-class QuickSubmit extends React.Component {
+class _QuickSubmit extends React.Component {
 
   constructor(props) {
     super(props)
@@ -15,7 +16,15 @@ class QuickSubmit extends React.Component {
 
   handleSubmit = (values) => {
     // Do something with the form values
-    console.log(values)
+    console.log("this.props", this.props)
+    // return api.fetchNouns(noun)
+    //   .then(function (response) {
+    //     dispatch(receiveNouns(noun, response))
+    //   },
+    //   function (err) {
+    //     console.log('got an error in loadNouns', err)
+    //   })
+    // console.log(values)
   }
 
   resetItem() {
@@ -46,4 +55,15 @@ class QuickSubmit extends React.Component {
   }
 }
 
-export default QuickSubmit
+
+const mapStateToProps = (state) => {
+  let props =  {
+    quicksubmit: state.form.quicksubmit
+  }
+  return props
+}
+
+export default connect(
+  mapStateToProps
+)(_QuickSubmit)
+
