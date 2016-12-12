@@ -1,3 +1,5 @@
+@import "./UniversalStyles";
+
 .main-contents {
   min-height: 200px;
 }
@@ -28,14 +30,14 @@
         text-transform: capitalize;
 
         &.selected, &:hover, &:focus {
-          color: #ff6f00;
+          color: $color2;
         }
       }
 
       .current-sorting-selection {
         font-size: 16px;
         font-weight: 400;
-        color: #ff6f00;
+        color: $color2;
         display: block;
         line-height: 26px;
         text-transform: capitalize;
@@ -144,4 +146,13 @@
     color: #999;
     line-height: 26px;
   }
+}
+
+.mobile-select {
+  width: 100%;
+  color: $color2;
+  padding: 7px;
+  background-color: white;
+  appearance: none;
+  background: url('../../img/dropdown.png') no-repeat right;
 }
