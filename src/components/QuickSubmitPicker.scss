@@ -1,0 +1,20 @@
+@import "../UniversalStyles";
+
+.select-type {
+  padding-top: 7%;
+  padding-bottom: 7%;
+  text-align: center;
+  .col-xs-10 {
+    padding-top: 3%;
+  }
+	p {
+    padding: 14px 0;
+    text-align: center;
+    background: $color2;
+    color: white;
+  }
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

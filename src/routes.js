@@ -16,7 +16,8 @@ import Organization from './containers/Organization'
 import Method from './containers/Method'
 import Add from './components/Add'
 import EditCase from './containers/EditCase'
-import QuickSubmit from './components/QuickSubmit'
+import QuickSubmitPicker from './components/QuickSubmitPicker'
+import { CaseForm, MethodForm, OrganizationForm, DatasetForm, SurveyForm } from './components/QuickSubmit'
 
 var getFirstBrowserLanguage = function () {
   var nav = window.navigator
@@ -59,7 +60,14 @@ function buildRoutes () {
         <Route path='about' component={About} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
-        <Route path='quick-submit' component={QuickSubmit} />
+        <Route path='quick-submit'>
+          <IndexRoute component={QuickSubmitPicker} />
+          <Route path='case' component={CaseForm} />
+          <Route path='method' component={MethodForm} />
+          <Route path='organization' component={OrganizationForm} />
+          <Route path='dataset' component={DatasetForm} />
+          <Route path='survey' component={SurveyForm} />
+        </Route>
         <Route path='research' component={Research} />
         <Route path='case/:nodeID'>
           <IndexRoute component={Case} />

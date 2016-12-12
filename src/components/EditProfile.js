@@ -1,9 +1,9 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import Avatar from 'material-ui/Avatar'
 import { connect } from 'react-redux'
-import { Container, Col, Row } from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap'
 import Geosuggest from 'react-geosuggest'
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton'
 import './EditProfile.css'
 import './GeoSuggest.css'
 import AutoComplete from 'material-ui/AutoComplete'

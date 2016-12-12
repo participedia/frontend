@@ -49,7 +49,6 @@ var BodyEditor = React.createClass({
 class _CaseEditor extends Component {
   render() {
     const { handleSubmit } = this.props
-    console.log('in CaseEditor.render, props=', this.props)
     const caseObject = this.props.case
 
     if (! caseObject) {

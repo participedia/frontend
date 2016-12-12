@@ -107,6 +107,8 @@ export function logoutUser() {
 }
 
 export const ORGANIZATION = 'ORGANIZATION'
+export const CASE = 'CASE'
+export const METHOD = 'METHOD'
 export const RECEIVED_NOUNS = 'RECEIVED_NOUNS'
 
 export function loadNouns (noun) {
