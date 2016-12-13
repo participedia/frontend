@@ -26,7 +26,7 @@ class EditProfile extends Component {
     }
 
     return (
-      <Container fluid='true' className='profile'>
+      <Container fluid={true} className='profile'>
         <Col md='3' className='sidebar'>
           <div className="user-avatar">
             <Avatar size={200} src={profile.picture} />
