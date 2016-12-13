@@ -1,9 +1,8 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import Avatar from 'material-ui/Avatar'
 import { connect } from 'react-redux'
-import { Container, Col, Row } from 'reactstrap'
+import { Container, Col } from 'reactstrap'
 import Geosuggest from 'react-geosuggest'
-import RaisedButton from 'material-ui/RaisedButton'
 import './EditProfile.css'
 import './GeoSuggest.css'
 import AutoComplete from 'material-ui/AutoComplete'
@@ -35,7 +34,7 @@ class EditProfile extends Component {
         </Col>  
         <Col md='9' className='main-area'>
           <label className="form-label">Name</label>
-          <TextField inputStyle={nameStyle} defaultValue={profile.name} className="name-input" /><br />
+          <TextField inputStyle={nameStyle} hintText="Name" defaultValue={profile.name} className="name-input" /><br />
           <div className="divider"></div>
           <label className="form-label">Location</label>
           <Geosuggest className="org-input" onSuggestSelect={this.props.onLocationSuggest}/>
