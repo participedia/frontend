@@ -1,3 +1,5 @@
+@import "./UniversalStyles";
+
 .main-contents {
   min-height: 200px;
 }
@@ -11,48 +13,9 @@
   padding-bottom: 7%;
 }
 
-.org-submit {
-  width: 100%;
-  span {
-    text-transform: none !important;
-  }
-}
-
-.org-field {
-  padding-top: 14px;
-  @media (max-width: 639px) {
-    padding-bottom: 28px;
-  }  
-  .col-md-7 {
-    >div {
-      width: 100% !important;
-      margin-bottom: 14px;
-      margin-top: -14px !important;
-      .auto-org {
-        width: 100% !important;
-        label {
-          padding-left: 16px;
-        }
-      }
-    }
-  }
-  .col-md-5 {
-    .org-submit, .help-button {
-      float: left;
-    }
-    .org-submit {
-      width: 80%;
-    }
-    padding-top: 14px;
-  }
-}
-
-  .auto-org {
-    font-size: 20px !important;
-  }
-
 .sidebar {
   .user-avatar {
+    margin: 0 auto;
     width: 200px;
     height: 200px;
     background-color: #ccc;
@@ -99,7 +62,7 @@
 .profile .main-area {
   .form-label {
     color: #666;
-    font-size: 36px;
+    font-size: 2rem;
     font-weight: 400;
     line-height: 48px;
     margin-bottom: 24px;
@@ -110,22 +73,6 @@
     }
     &.organization {
       padding-top: 28px;
-    }
-  }
-  .name-input {
-    color: #3f51b2;
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 60px;
-    padding: 24px 32px;
-    border: 2px solid #eee;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    @media (max-width: 639px) {
-      font-size: 32px;
-      line-height: 36px;
-      padding: 16px 24px;
     }
   }
   .divider {
@@ -161,44 +108,9 @@
       padding: 0;
       padding-top: 32px;
     }
-
-
-  }
-  .org-input {
-    font-size: 20px;
-    font-weight: 300;
-    padding: 12px 16px;
-    box-sizing: border-box;
-    display: block;
-    border: 2px solid #eee;
-    margin-bottom: 16px;
-    width: 400px;
-    @media (max-width: 639px) {
-      width: 100%;
-    }
   }
 
-  .help-button {
-    width: 20%;
-    a {
-      display: block;
-      margin: 0 auto;
-      position: relative;
-      border: 4px solid #ddd;
-      color: #ddd;
-      width: 2.4em;
-      height: 2.4em;
-      text-align: center;
-      border-radius: 50%;
-      box-sizing: border-box;
-      .question {
-        position: absolute;
-        font-size: 1.7rem;
-        left: 25%;
-        top: -3px;
-      }
-    }
-  }
+
   .biography-input {
     display: block;
     border: 2px solid #eee;
