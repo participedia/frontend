@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import './EditProfile.css'
 import './GeoSuggest.css'
 import AutoComplete from 'material-ui/AutoComplete'
+import TextField from 'material-ui/TextField';
 
 class EditProfile extends Component {
 
@@ -18,6 +19,12 @@ class EditProfile extends Component {
   render () {
     const { profile } = this.props
 
+    const nameStyle = {
+      color: '#3f51b2',
+      fontSize: 2.2 + 'rem',
+      paddingBottom: 7 + 'px',
+    }
+
     return (
       <Container fluid='true' className='profile'>
         <Col md='3' className='sidebar'>
@@ -25,43 +32,19 @@ class EditProfile extends Component {
             <Avatar size={200} src={profile.picture} />
             <p className="change-avatar-button">Change</p>
           </div>
-          <div className='main-area'>
-            <label className="form-label">Name</label>
-            <input type="text" defaultValue={profile.name} className="name-input" />
-            <div className="divider"></div>
-            <label className="form-label">Location</label>
-            <div className="location-section">
-              <Geosuggest className="org-input" onSuggestSelect={this.props.onLocationSuggest}/>
-            </div>
-            <label className="form-label">Organization</label>
-            <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
-            <div className="org-section">
-              <AutoComplete hintText="Organization autocomplete" dataSource={this.props.organizations} />
-              <input type="text" className="org-input" placeholder="Department" />
-              <input type="text" className="org-input" placeholder="Job Title" />
-              <input type="text" className="org-input" placeholder="Website" />
-            </div>
-            <div className="divider"></div>
-            <label className="form-label">Biography</label>
-            <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
-            <div className="quick-submit-section">
-              <a href="#" className="quick-submit-button">Quick Submit</a>
-            </div>
-          </div>
+        </Col>  
+        <Col md='9' className='main-area'>
+          <label className="form-label">Name</label>
+          <TextField inputStyle={nameStyle} defaultValue={profile.name} className="name-input" /><br />
+          <div className="divider"></div>
+          <label className="form-label">Location</label>
+          <Geosuggest className="org-input" onSuggestSelect={this.props.onLocationSuggest}/>
           <label className="form-label organization">Organization</label>
           <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
-          <Row className='org-field'>
-            <Col md='7'>
-              <AutoComplete className="auto-org" floatingLabelText="Begin Typing an Organization" dataSource={this.props.organizations} />
-            </Col>
-            <Col md='5'>
-              <RaisedButton label="Quick Submit" className="org-submit" primary={true} />
-              <div className="help-button"><a href="#"><span className="question">?</span></a></div>
-            </Col>
-          </Row>
-            <input type="text" className="org-input" placeholder="Department" />
-            <input type="text" className="org-input" placeholder="Job Title" />
-            <input type="text" className="org-input" placeholder="Website" />
+          <AutoComplete className="auto-org" floatingLabelText="Begin Typing an Organization" dataSource={this.props.organizations} /><br />
+          <TextField hintText="Department" /><br />
+          <TextField hintText="Job Title" /><br />
+          <TextField hintText="Website" /><br />
           <div className="divider"></div>
           <label className="form-label">Biography</label>
           <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
