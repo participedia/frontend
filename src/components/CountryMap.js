@@ -12,7 +12,7 @@ class CountryMap extends React.Component {
     fetch('https://s3.amazonaws.com/assets.participedia.xyz/' + this.props.countrycode + '.svg').then(function (response) {
       return response.text()
     }).then(function (SVGtext) {
-      let svg = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><style type="text/css"><![CDATA[path {stroke: none;fill: #ff6f00;}]]></style></defs>' + SVGtext + '</svg>'
+      let svg = '<svg class="country-map" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><style type="text/css"><![CDATA[.country-map path {stroke: none;fill: #ff6f00;}]]></style></defs>' + SVGtext + '</svg>'
       component.setState({SVG: svg})
     })
   }
