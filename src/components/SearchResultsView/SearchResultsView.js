@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react'
 import SearchHit from '../../components/SearchHit/SearchHit'
 import SearchHitCategory from '../../components/SearchHitCategory/SearchHitCategory'
 import { Container, Col } from 'reactstrap'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Plus from 'material-ui/svg-icons/content/add'
+import {Link} from 'react-router'
 import './SearchResultsView.css'
 import {injectIntl, intlShape} from 'react-intl'
 import preventDefault from 'react-prevent-default'
@@ -14,16 +17,19 @@ class SearchResultsView extends React.Component {
   constructor () {
     super()
     this.state = {value: 'All'}
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange = (event) => {
-    this.setState({value: event.target.value});
-    this.props.onCategoryChange.bind(this, event.target.value)();
+    this.setState({value: event.target.value})
+    this.props.onCategoryChange.bind(this, event.target.value)()
   }
 
   render () {
     let data = this.props.data
+    let locale = this.props.intl.locale
+    let addLink = `/${locale}/quick-submit`
+
     let categories = {'case': [], 'organization': [], 'method': [], 'news': []}
     let selectedViewType = this.props.selectedViewType
 
@@ -128,6 +134,11 @@ class SearchResultsView extends React.Component {
             {results}
           </Col>
         </Container>
+        <Link to={addLink}>
+          <FloatingActionButton className='editButton'>
+            <Plus />
+          </FloatingActionButton>
+        </Link>
       </div>
     )
   }
