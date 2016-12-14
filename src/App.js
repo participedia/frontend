@@ -5,6 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import routeConfig from './routes'
 import {Router, browserHistory} from 'react-router'
 import locales from '../public/locales.json'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // This replaces the textColor value on the palette
 // and then update the keys for each component that depends on it.
