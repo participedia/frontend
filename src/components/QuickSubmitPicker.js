@@ -8,7 +8,7 @@ const QuickSubmitPicker = (props) =>
     <Container>
       <Row className='select-type' >
         <h2>Select type</h2>
-        <Col xs={{ size: 10, offset: 1 }}>
+        <Col xs={{ size: 10, offset: 1 }} lg={{ size: 4, offset: 4 }} md={{ size: 6, offset: 3 }}>
           <Link to={`${props.location.pathname}/case`}><p>Case</p></Link>
           <Link to={`${props.location.pathname}/method`}><p>Method</p></Link>
           <Link to={`${props.location.pathname}/organization`}><p>Organization</p></Link>
