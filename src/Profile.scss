@@ -1,3 +1,9 @@
+@import "./UniversalStyles";
+
+.profile {
+  padding-top: 3%;
+}
+
 .main-contents {
   min-height: 200px;
 }
@@ -6,108 +12,22 @@
   color: black;
 }
 
-.profile-info-section {
-  width: 1600px;
-  margin: 0 auto;
-  overflow: hidden;
-  padding-bottom: 0;
-  padding-top: 32px;
-
-  @media (max-width: 1599px) {
-    width: 1280px;
-  }
-
-  @media (max-width: 1279px) {
-    width: 960px;
-  }
-
-  @media (max-width: 959px) {
-    width: 640px;
-  }
-
-  @media (max-width: 639px) {
-    width: 320px;
-  }
-
-  .sidebar {
-    padding: 0 32px;
-    width: 200px;
-    float: left;
-  }
-}
-
-@media (max-width: 1279px) {
-  .profile-info-section .sidebar {
-    // padding: 0 16px;
-    // width: 928px;
-  }
-}
-
-@media (max-width: 959px) {
-  .profile-info-section .sidebar {
-    width: 608px;
-    padding-left: 0;
-  }
-}
-
-@media (max-width: 639px) {
-  .profile-info-section .sidebar {
-    width: 288px;
-    padding: 0 16px;
-  }
-}
-
-.profile-info-section .main-area {
-  padding-right: 32px;
-  width: 1248px;
-  float: right;
-}
-
-@media (max-width: 1599px) {
-  .profile-info-section .main-area {
-    width: 928px;
-  }
-}
-
-@media (max-width: 1279px) {
-  .profile-info-section .main-area {
-    width: 638px;
-    // padding-right: 16px;
-    // padding-left: 16px;
-  }
-}
-
-@media (max-width: 959px) {
-  .profile-info-section .main-area {
-    width: 608px;
-  }
-}
-
-@media (max-width: 639px) {
-  .profile-info-section .main-area {
-    width: 288px;
-    padding: 0 16px;
-  }
-}
-
 .sidebar {
   .user-avatar {
-    width: 200px;
-    height: 200px;
-    background-color: #ccc;
-    border-radius: 100px;
+    margin: 0 auto;
+    text-align: center;
   }
   .edit-profile-button {
     display: block;
     background-color: #ff6f00;
     color: #fff;
-    font-size: 22px;
+    font-size: 1.3rem;
     font-weight: 100;
     text-align: center;
     border-radius: 4px;
     line-height: 40px;
     padding-top: 6px;
-    margin-top: 32px;
+    margin: 14px auto;
     width: 200px;
     margin-bottom: 32px;
   }
@@ -116,9 +36,11 @@
 .profile-info-section .main-area {
   .name {
     color: #3f51b2;
-    font-size: 60px;
     font-weight: 500;
     line-height: 72px;
+    @include media-breakpoint-between(xs, sm) {
+      text-align: center;
+    }
   }
   .credentials {
     padding-left: 64px;
@@ -137,33 +59,14 @@
       top: 0;
     }
     p {
-      font-size: 22px;
       color: #999;
       font-weight: 100;
       line-height: 32px;
     }
   }
   .description {
-    font-size: 24px;
     font-weight: 100;
     line-height: 32px;
-  }
-  @media (max-width: 959px) {
-    .name {
-      font-size: 48px;
-      line-height: 60px;
-    }
-    .credentials {
-      margin: 20px 0;
-      p {
-        font-size: 18px;
-        line-height: 26px;
-      }
-    }
-    .description {
-      font-size: 20px;
-      line-height: 28px;
-    }
   }
 }
 

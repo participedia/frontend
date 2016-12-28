@@ -3,7 +3,7 @@ import {Link, browserHistory} from 'react-router'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import SearchQuery from './containers/SearchQuery'
-import Footer from './components/Footer'
+import Footer from './components/Footer/Footer'
 import LoginAvatar from './LoginAvatar'
 import { connect } from 'react-redux'
 
@@ -15,7 +15,7 @@ import {injectIntl} from 'react-intl'
 import menuIcon from './img/menu-icon.png'
 import ppLogo from './img/pp-logo.png'
 
-import HelpBar from './components/HelpBar'
+import HelpBar from './components/HelpBar/HelpBar'
 
 class Layout extends React.Component {
   static propTypes = {

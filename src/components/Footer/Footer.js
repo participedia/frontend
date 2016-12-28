@@ -1,10 +1,10 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import './Footer.css'
-import ppLogo from  '../img/pp-logo.png'
-import ccIcon from '../img/cc-icon.png'
-import fbIcon from '../img/pp-social-fb.png'
-import rssIcon from '../img/pp-social-rss.png'
-import twitterIcon from '../img/pp-social-tw.png'
+import ppLogo from  '../../img/pp-logo.png'
+import ccIcon from '../../img/cc-icon.png'
+import fbIcon from '../../img/pp-social-fb.png'
+import rssIcon from '../../img/pp-social-rss.png'
+import twitterIcon from '../../img/pp-social-tw.png'
 
 
 function Footer () {

@@ -14,10 +14,10 @@ import Upload from './Upload'
 import Case from './containers/Case/Case'
 import Organization from './containers/Organization'
 import Method from './containers/Method'
-import Add from './components/Add'
+import Add from './components/Add/Add'
 import EditCase from './containers/EditCase'
-import QuickSubmitPicker from './components/QuickSubmitPicker'
-import { CaseForm, MethodForm, OrganizationForm, DatasetForm, SurveyForm } from './components/QuickSubmit'
+import QuickSubmitPicker from './components/QuickSubmitPicker/QuickSubmitPicker'
+import { CaseForm, MethodForm, OrganizationForm, DatasetForm, SurveyForm } from './components/QuickSubmit/QuickSubmit'
 
 var getFirstBrowserLanguage = function () {
   var nav = window.navigator

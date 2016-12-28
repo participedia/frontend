@@ -1,9 +1,7 @@
-@import "../UniversalStyles";
+@import "../../UniversalStyles";
 
 .map-component {
-  // padding-top: 64px
-  // margin-bottom: -64px
-  @media (max-width: 959px) {
+  @include media-breakpoint-down(md) {
     display: none;
   }
 

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'  // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux'
 
-import EditProfile from '../components/EditProfile'
+import EditProfile from '../components/EditProfile/EditProfile'
 import {loadNouns, ORGANIZATION} from '../actions'
 
 function mapStateToProps(state) {

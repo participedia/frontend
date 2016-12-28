@@ -8,7 +8,7 @@
   color: black;
 }
 
-.profile {
+.edit-profile {
   padding-top: 7%;
   padding-bottom: 7%;
 }
@@ -22,10 +22,6 @@
     border-radius: 100px;
     position: relative;
     overflow: hidden;
-    @media (max-width: 639px) {
-      margin: 0 auto;
-      margin-bottom: 32px;
-    }
     .change-avatar-button {
       background-color: rgba(0, 0, 0, 0.5);
       position: absolute;
@@ -59,7 +55,7 @@
   }
 }
 
-.profile .main-area {
+.edit-profile .main-area {
   .form-label {
     color: #666;
     font-size: 2rem;
@@ -67,7 +63,7 @@
     line-height: 48px;
     margin-bottom: 24px;
     display: block;
-    @media (max-width: 639px) {
+    @include media-breakpoint-down(sm) {
       font-size: 24px;
       line-height: 32px;
     }
@@ -80,7 +76,7 @@
     background-color: #eee;
     width: 100%;
     margin: 64px 0 48px;
-    @media (max-width: 639px) {
+    @include media-breakpoint-down(sm) {
       margin: 48px 0 32px;
     }
   }
@@ -93,7 +89,7 @@
   .org-section {
     padding: 32px;
     padding-bottom: 0;
-    @media (max-width: 639px) {
+    @include media-breakpoint-down(sm) {
       padding: 0;
       padding-top: 32px;
     }
@@ -104,7 +100,7 @@
     padding: 32px;
     padding-top: 0;
     padding-bottom: 0;
-    @media (max-width: 639px) {
+    @include media-breakpoint-down(sm) {
       padding: 0;
       padding-top: 32px;
     }
@@ -125,7 +121,7 @@
 
   .name {
     color: #3f51b2;
-    font-size: 60px;
+    font-size: 3.75rem;
     font-weight: 500;
     line-height: 72px;
   }
@@ -157,7 +153,7 @@
     font-weight: 100;
     line-height: 32px;
   }
-  @media (max-width: 959px) {
+  @include media-breakpoint-down(md) {
     .name {
       font-size: 48px;
       line-height: 60px;

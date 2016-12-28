@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { search } from '../actions'
-import MapVisualization from '../components/MapVisualization'
+import MapVisualization from '../components/MapVisualization/MapVisualization'
 
 const mapDispatchToProps = (dispatch) => ({
   onCountryChange: (country) => {

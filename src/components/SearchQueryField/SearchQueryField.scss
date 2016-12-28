@@ -1,8 +1,10 @@
+@import "../../UniversalStyles";
+
 .search-bar {
   width: 100%;
   border: 0;
   padding: 0px;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: rgba(255, 255, 255, 0.25);
   margin: 12px 0;
   height: 40px;
@@ -21,7 +23,7 @@
     background-image: url(/img/pp-search-icon-dark.png);
   }
 
-  @media (max-width: 959px) {
+  @include media-breakpoint-down(md) {
     box-sizing: border-box;
   }
 

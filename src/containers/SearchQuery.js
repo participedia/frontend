@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { search } from '../actions'
-import SearchQueryField from '../components/SearchQueryField'
+import SearchQueryField from '../components/SearchQueryField/SearchQueryField'
 
 const mapStateToProps = (state) => {
   return {

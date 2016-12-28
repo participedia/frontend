@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 import { Container, Row, Col, Form, FormGroup, Label } from 'reactstrap'
-import imgIcon from '../img/img-icon.png'
-import vidIcon from '../img/vid-icon.png'
-import locationIcon from '../img/location-icon.png'
+import imgIcon from '../../img/img-icon.png'
+import vidIcon from '../../img/vid-icon.png'
 import TextField from 'material-ui/TextField'
 import AutoComplete from 'material-ui/AutoComplete'
-import Upload from '../Upload'
+import locationIcon from '../../img/location-icon.png'
+import Upload from '../../Upload'
 import Geosuggest from 'react-geosuggest'
 import RaisedButton from 'material-ui/RaisedButton'
-import './GeoSuggest.css'
-import './QuickSubmit.css'
+import '../GeoSuggest/GeoSuggest.css'
+import '../QuickSubmit/QuickSubmit.css'
 
 const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
   const onSuggestSelect = (suggest) => {
