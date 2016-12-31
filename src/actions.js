@@ -9,6 +9,7 @@ export const DO_RECENT_SEARCH = 'DO_RECENT_SEARCH'
 export const FETCHING_OBJECT = 'FETCHING_OBJECT'
 export const RECEIVED_OBJECT = 'RECEIVED_OBJECT'
 export const CASE_TYPE = 'CASE'
+export const PROFILE_UPDATED = 'PROFILE_UPDATED'
 
 import Auth0Lock from 'auth0-lock'
 import api from './utils/api'
@@ -58,7 +59,7 @@ export function login() {
     }
   )
   return dispatch => {
-    lock.show({auth: { params: { scope: 'openid email app_metadata' }}}, (err, profile, token) => {
+    lock.show({auth: { params: { scope: 'openid email read:users update:users update:users_app_metadata user_metadata app_metadata' }}}, (err, profile, token) => {
       // TODO #45 in actions.js figure out why the auth promise never gets called 
       // TODO when auth promise code fixed, remove code in index.js to do the profile extraction on redirect
       if (err) {
@@ -69,6 +70,20 @@ export function login() {
       localStorage.setItem('id_token', token)
       dispatch(lockSuccess(profile, token))
     })
+  }
+}
+
+export function updateUserMetaData (userId, data) {
+  return function (dispatch) {
+    const payload = {user_metadata: data}
+    const url = `https://participedia.auth0.com/api/v2/users/${userId}`
+    return api.secureFetch(url, 'PATCH', payload)
+      .then(response => {
+        localStorage.setItem('profile', JSON.stringify(response))
+        dispatch({
+          type: PROFILE_UPDATED
+        })
+      })
   }
 }
 

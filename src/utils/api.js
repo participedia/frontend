@@ -10,6 +10,31 @@ import queryString from 'query-string'
 
 class API {
 
+  secureFetch = function (url, method, payload) {
+    var opts = {
+      method: method || 'get',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('id_token'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+    if (payload) opts.body = JSON.stringify(payload)
+    return new Promise(function (resolve, reject) {
+      fetch(url, opts)
+        .then(function (response) {
+          response.json().then(function (json) {
+            resolve(json)
+          })
+        })
+        .catch(function (error) {
+          console.log('There has been a problem:' + error.message)
+          reject(error)
+        }
+      )
+    })
+  }
+
   fetchGeoJSON = function ( countryCode ) {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/countries/' + countryCode + '.geo.json')
