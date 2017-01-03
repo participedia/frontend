@@ -3,9 +3,9 @@ import { Field } from 'redux-form'
 import { Container, Row, Col, Form, FormGroup, Label } from 'reactstrap'
 import imgIcon from '../img/img-icon.png'
 import vidIcon from '../img/vid-icon.png'
+import locationIcon from '../img/location-icon.png'
 import TextField from 'material-ui/TextField'
 import AutoComplete from 'material-ui/AutoComplete'
-import locationIcon from '../img/location-icon.png'
 import Upload from '../Upload'
 import Geosuggest from 'react-geosuggest'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -23,58 +23,54 @@ const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
 }
 
 // to avoid the warnings from react about unnecessary props
-const renderTextField = field => <TextField {...field.input}/>
+const renderTextField = field => <TextField hintText={field.placeholder}  {...field.input}/>
 
 class ItemForm extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
       <Container>
-        <Form className="quick-submit" onSubmit={handleSubmit} >
-          <Row>
-            <Col xs={{ size: 10, offset: 1 }}>
-              <h2>Add {this.props.itemType === 'Organization' ? 'an' : 'a'} {this.props.itemType}</h2>
-            </Col>
-          </Row>
+        <Form className='quick-submit' onSubmit={handleSubmit} >
+          <h2 className='form-title'>Add {this.props.itemType === 'organization' ? 'an' : 'a'} {this.props.itemType}</h2>
           <FormGroup>
             <Label>Title</Label>
             <Field name='title' className='title' placeholder='Neighbourhood Safety Jam' component={renderTextField} type='text'/>
           </FormGroup>
           <FormGroup>
             <Label>Summary</Label>
-            <Field name='summary' className='title' placeholder='Summary placeholder' component={renderTextField} type='text'/>
+            <Field name='summary' className='title' placeholder='Placeholder for summary ' component={renderTextField} type='text'/>
           </FormGroup>
           <Row className='imgField'>
-            <Col xs='2' className='pr-0'>
-              <img src={imgIcon} alt=""/>
+            <Col xs={2} sm={1}>
+              <img className="img-fluid" src={imgIcon} alt=""/>
             </Col>
-            <Col xs='10' className='pt-14 pl-0'>
+            <Col xs={10} sm={11}>
               <span>Add a photo</span>
-              <Upload/>
             </Col>
           </Row>
+          <Upload/>
           <Row className='vidField'>
-            <Col xs='2' className='pr-0'>
-              <img src={vidIcon} alt=""/>
+            <Col xs={2} sm={1}>
+              <img className="img-fluid" src={vidIcon} alt=""/>
             </Col>
-            <Col xs='10' className='pt-14 pl-0'>
-              <span>Add a video</span>
-              <Field name='vidURL' component={renderTextField} type='text' placeholder='Paste YouTube or Vimeo URL here' />
+            <Col xs={10} sm={11}>
+              <p>Add a video</p>
+              <Field name='vidURL' component={renderTextField} placeholder='Paste YouTube or Vimeo URL here'  type='text' />
             </Col>
           </Row>
-          <Label>Location</Label>
-          <Row className='locationField pb-14'>
-            <Col xs='2' className='pr-0'>
-              <img src={locationIcon} alt=""/>
+          <Row className='locationField pb-1'>
+            <Col xs={2} sm={1}>
+              <img className="img-fluid" src={locationIcon} alt=""/>
             </Col>
-            <Col xs='10' className='pt-14 pl-0'>
+            <Col xs={10} sm={11}>
               <span>Add a location</span>
               <Field name="location" component={renderGeoField}  />
             </Col>
           </Row>
-          <Row className='relatedCases pb-14'>
-            <AutoComplete hintText="Related cases" dataSource={this.props.cases} />
-          </Row>
+          <FormGroup className='relatedCases pb-1'>
+            <Label>Related cases</Label>
+            <AutoComplete hintText="Search for related cases" dataSource={this.props.cases} />
+          </FormGroup>
           <RaisedButton onClick={handleSubmit} type="submit" label="Submit" primary={true} />
         </Form>
       </Container>
