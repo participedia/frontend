@@ -1,7 +1,5 @@
 import React from 'react'
-import AccordionTab from './components/AccordionTab'
-import SubAccordionTab from './components/SubAccordionTab'
-// import './Teaching.css'
+import AccordionTab from './components/AccordionTab/AccordionTab'
 
 class Teaching extends React.Component {
 
@@ -22,7 +20,7 @@ class Teaching extends React.Component {
             <div className="content">
               <p className="text">Search, read, download and gain insight from our database of cases, methods, organizations, surveys, teaching resources and data sets. Try using Participedia in the classroom as a tool to engage students and showcase their research.</p>
               <div className="sub-accordion">
-                <SubAccordionTab title="Syllabi Category 1">
+                <AccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
@@ -31,8 +29,8 @@ class Teaching extends React.Component {
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
                   </div>
-                </SubAccordionTab>
-                <SubAccordionTab title="Syllabi Category 1">
+                </AccordionTab>
+                <AccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
@@ -41,8 +39,8 @@ class Teaching extends React.Component {
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
                   </div>
-                </SubAccordionTab>
-                <SubAccordionTab title="Syllabi Category 1">
+                </AccordionTab>
+                <AccordionTab title="Syllabi Category 1">
                   <div className="sub-content">
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
@@ -51,7 +49,7 @@ class Teaching extends React.Component {
                     <p className="name">Name of downloadable content</p>
                     <p className="department">Description / authorship of document</p>
                   </div>
-                </SubAccordionTab>
+                </AccordionTab>
               </div>
             </div>
           </AccordionTab>

@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line no-unused-vars 
-import AccordionTab from './components/AccordionTab'
+import AccordionTab from './components/AccordionTab/AccordionTab'
 import './About.css'
 
 class About extends React.Component {

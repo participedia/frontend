@@ -1,3 +1,5 @@
+@import "./UniversalStyles";
+
 .help-bar {
   width: 480px;
   background-color: #fff;
@@ -7,7 +9,7 @@
   z-index: 10000;
   margin-right: 64px;
   height: 60%;
-  @media (max-width: 639px) {
+  @include media-breakpoint-down(sm) {
     width: 80%;
     margin: 0 auto;
   }
@@ -46,7 +48,7 @@
       width: 100%;
       border: 0;
       padding: 0px;
-      font-size: 16px;
+      font-size: 1rem;
       background-color: rgba(255, 255, 255, 0.25);
       height: 40px;
       color: #fff;
@@ -84,7 +86,6 @@
     overflow: scroll;
     box-sizing: border-box;
     padding-top: 148px;
-    // margin-top: -132px;
     width: 100%;
     .data-title {
       font-size: 24px;

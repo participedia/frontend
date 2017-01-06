@@ -4,7 +4,7 @@
   border-bottom: 2px solid #eee;
   width: 28%;
   @include media-breakpoint-between(xs, sm) {
-    width: 80%;
+    width: 100%;
   }
   input {
     border: none;
@@ -28,7 +28,7 @@
   list-style: none;
   z-index: 5;
   box-sizing: border-box;
-  @media (max-width: 639px) {
+  @include media-breakpoint-down(sm) {
     width: 100%;
   }
 }

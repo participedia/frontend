@@ -1,8 +1,10 @@
+@import "./UniversalStyles";
+
 .contentArea {
   padding-top: 64px;
   min-height: 20em;
 
-  @media (max-width: 959px) {
+  @include media-breakpoint-down(md) {
     padding-top: 112px;
   }
 }
@@ -78,7 +80,7 @@
     float: left;
     width: 40%;
 
-    @media (max-width: 959px) {
+    @include media-breakpoint-down(md) {
       position: absolute;
       margin-top: 64px;
       background-color: #3f51b2;
@@ -110,7 +112,7 @@
 
     .sign-in {
       padding: 12px 32px;
-      font-size: 16px;
+      font-size: 1rem;
       background-color: rgba(255, 255, 255, 0.25);
       margin: 12px 0;
       font-weight: 100;

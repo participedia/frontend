@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'  // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux'
-import ItemForm from './ItemForm'
+import ItemForm from '../ItemForm/ItemForm'
 import { reduxForm } from 'redux-form'
-import {loadNouns, ORGANIZATION, CASE, METHOD} from '../actions'
+import {loadNouns, ORGANIZATION, CASE, METHOD} from '../../actions'
 
 class QuickSubmit extends React.Component {
   static propTypes = {

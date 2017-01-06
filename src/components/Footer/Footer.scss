@@ -1,3 +1,5 @@
+@import "./UniversalStyles";
+
 .footer-component {
   background-color: #3f51b2;
   overflow: hidden;
@@ -23,7 +25,7 @@
       }
 
       a, p {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
         line-height: 20px;
         margin-bottom: 8px;
@@ -48,7 +50,7 @@
         float: right;
         width: auto;
 
-        @media (max-width: 699px) {
+        @include media-breakpoint-down(sm) {
           float: left;
         }
       }
@@ -73,7 +75,7 @@
     }
 
     .copyright-text {
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 20px;
       color: #fff;
       padding-top: 24px;

@@ -7,7 +7,7 @@ import React, { Component, PropTypes } from 'react'  // eslint-disable-line no-u
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
-import CaseEditor from '../components/CaseEditor'
+import CaseEditor from '../components/CaseEditor/CaseEditor'
 import {loadObject, CASE_TYPE} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {

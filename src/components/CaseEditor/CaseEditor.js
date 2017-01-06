@@ -6,8 +6,8 @@ import './CaseEditor.css'
 import { Container, Col } from 'reactstrap'
 import ReactQuill from 'react-quill/dist/react-quill'
 
-import '../quill.core.css'
-import '../quill.snow.css'
+import '../../quill.core.css'
+import '../../quill.snow.css'
 
 var BodyEditor = React.createClass({
   _quillModules: {
