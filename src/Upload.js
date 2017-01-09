@@ -1,6 +1,7 @@
 import React from 'react'
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import { connect } from 'react-redux'
+import { updateUserMetaData } from './actions'
 
 const box = {
   margin: '1em',
@@ -14,8 +15,19 @@ const box = {
 }
 
 class Upload extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      hidePic: false,
+    };
+  }
+
   handleFinishedUpload (args) {
-    console.log('in handleFinishedUploads:', args)
+    const { dispatch, profile } = this.props
+    if (this.props.updatePicture) {
+      dispatch(updateUserMetaData(profile.user_id, { 'customPic': `http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/${args.filename}` }))
+      this.setState({hidePic: true})
+    }
   }
 
   render () {
@@ -27,14 +39,9 @@ class Upload extends React.Component {
         </div>
       )
     }
-    let style = {
-      border: 'none',
-      width: '100%',
-      height: '100%'
-    }
 
     const uploaderProps = {
-      style, 
+      style: this.props.customStyle ? this.props.customStyle : box, 
       maxFileSize: 1024 * 1024 * 50,   // TODO move maxFilesize to a config file
       server: process.env.REACT_APP_API_URL, 
       s3Url: process.env.REACT_APP_UPLOADS_S3_BUCKET, 
@@ -44,8 +51,13 @@ class Upload extends React.Component {
     }
 
     return (
-      <div style={box}>
-        <DropzoneS3Uploader onFinish={this.handleFinishedUpload} {...uploaderProps}>
+      <div className={(this.state.hidePic) ? 'hide' : undefined}>
+        <DropzoneS3Uploader onFinish={this.handleFinishedUpload.bind(this)} {...uploaderProps}>
+          { this.props.updatePicture ? 
+            <span>Change</span>
+            :
+            undefined
+          }
         </DropzoneS3Uploader>
       </div>
     )

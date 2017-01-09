@@ -27,7 +27,7 @@ class LoginAvatar extends React.Component {
       return (
         <div className='avatar'>
           <IconMenu
-            iconButtonElement={<IconButton><Avatar size={30} src={profile.picture} /></IconButton>}
+            iconButtonElement={<IconButton><Avatar size={30} src={profile.user_metadata && profile.user_metadata.customPic ? profile.user_metadata.customPic : profile.picture} /></IconButton>}
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
           >

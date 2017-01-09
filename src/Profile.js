@@ -30,7 +30,11 @@ class Profile extends Component {
         <Row className='profile-info-section'>
           <Col lg={3} md={4} className='sidebar'>
             <div className="user-avatar">
-              <Avatar size={200} src={profile.picture} />
+              { profile.user_metadata && profile.user_metadata.customPic ? 
+                <Avatar size={200} src={ profile.user_metadata.customPic} />
+                :
+                <Avatar size={200} src={ profile.picture} />
+              } 
             </div>
             <Link to="/en-US/profile/edit" className="edit-profile-button">Edit Profile</Link>
           </Col>

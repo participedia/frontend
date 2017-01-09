@@ -1,12 +1,13 @@
 import React, { Component, PropTypes as T } from 'react'  // eslint-disable-line no-unused-vars
 import Avatar from 'material-ui/Avatar'
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Col } from 'reactstrap'
 import Geosuggest from 'react-geosuggest'
 import './EditProfile.css'
 import '../GeoSuggest/GeoSuggest.css'
 import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField';
+import Upload from '../../Upload'
 
 class EditProfile extends Component {
 
@@ -15,8 +16,9 @@ class EditProfile extends Component {
     profile: T.object.isRequired,
     isAuthenticated: T.bool.isRequired
   }
+
   render () {
-    const { profile } = this.props
+    const { isAuthenticated, profile } = this.props
 
     const nameStyle = {
       color: '#3f51b2',
@@ -24,16 +26,35 @@ class EditProfile extends Component {
       paddingBottom: 7 + 'px',
     }
 
+    const customStyle = {
+      borderRadius: 5,
+      position: 'absolute',
+      cursor: 'pointer',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      bottom: '28px',
+      left: 0,
+      width: '100%',
+      textAlign: 'center',
+      color: '#fff',
+      padding: '7px 0',
+      boxSizing: 'border-box'
+    }
+
     return (
       <Container fluid={true} className='edit-profile'>
-        <Row>
-          <Col lg={3} md={4} className='sidebar'>
+      { isAuthenticated ? 
+        <div>
+          <Col md='3' className='sidebar'>
             <div className="user-avatar">
-              <Avatar size={200} src={profile.picture} />
-              <p className="change-avatar-button">Change</p>
+              { profile.user_metadata && profile.user_metadata.customPic ? 
+                <Avatar size={200} src={ profile.user_metadata.customPic} />
+                :
+                <Avatar size={200} src={ profile.picture} />
+              }  
+                <Upload customStyle={customStyle} profile={profile} updatePicture={true} />
             </div>
           </Col>  
-          <Col lg={9} md={8} className='main-area'>
+          <Col md='9' className='main-area'>
             <label className="form-label">Name</label>
             <TextField inputStyle={nameStyle} hintText="Name" defaultValue={profile.name} className="name-input" /><br />
             <div className="divider"></div>
@@ -49,7 +70,12 @@ class EditProfile extends Component {
             <label className="form-label">Biography</label>
             <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
           </Col>
-        </Row>
+        </div>
+        :
+        <Col md={{size:9, offset:1}} className='main-area'>
+          <p>Sorry, you need to log in to see this page.</p>
+        </Col>
+      }
       </Container>
     )
   }

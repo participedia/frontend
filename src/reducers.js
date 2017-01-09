@@ -4,7 +4,7 @@ import { combineReducers } from 'redux'
 // AUTH reducers
 
 import {
-  LOCK_SUCCESS, LOGOUT_SUCCESS, RECEIVED_NOUNS
+  LOCK_SUCCESS, LOGOUT_SUCCESS, RECEIVED_NOUNS, PROFILE_UPDATED
 } from './actions'
 
 function getProfile() {
@@ -33,6 +33,13 @@ function auth(state = {
       isFetching: true,
       isAuthenticated: false,
       profile: null
+    })
+  case PROFILE_UPDATED:
+    return Object.assign({}, state, {
+      isFetching: false,
+      isAuthenticated: true,
+      profile: getProfile(),
+      errorMessage: ''
     })
   default:
     return state
