@@ -13,7 +13,7 @@ import searchGridIconActive from '../../img/pp-search-grid-icon-active.png'
 import searchListIcon from '../../img/pp-search-list-icon.png'
 import searchListIconActive from '../../img/pp-search-list-icon-active.png'
 
-class SearchResultsView extends React.Component {
+export class SearchResultsView extends React.Component {
   constructor () {
     super()
     this.state = {value: 'All'}

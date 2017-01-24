@@ -10,7 +10,7 @@ import './LoginAvatar.css'
 import { login, logoutUser } from './actions'
 import { connect } from 'react-redux'
 
-class LoginAvatar extends React.Component {
+export class LoginAvatar extends React.Component {
 
   static propTypes = {
     dispatch: T.func.isRequired,
@@ -38,6 +38,7 @@ class LoginAvatar extends React.Component {
           </IconMenu>
         </div>
       )
+
     } else {
       return (<div className='loginButton'><FlatButton onClick={() => dispatch(login())} onTouchTap={this.signIn} label='login' /></div>)
     }
