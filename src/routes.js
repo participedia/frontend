@@ -18,6 +18,7 @@ import Add from './components/Add/Add'
 import EditCase from './containers/EditCase'
 import QuickSubmitPicker from './components/QuickSubmitPicker/QuickSubmitPicker'
 import { CaseForm, MethodForm, OrganizationForm, DatasetForm, SurveyForm } from './components/QuickSubmit/QuickSubmit'
+import queryString from 'query-string'
 
 var getFirstBrowserLanguage = function () {
   var nav = window.navigator
@@ -45,6 +46,13 @@ var getFirstBrowserLanguage = function () {
   return null
 }
 
+var onEnter = function() {
+  let parsedParams = queryString.parse(window.location.hash)
+  let path = JSON.parse(JSON.stringify(parsedParams.state)).slice(13, -2)
+  window.location.replace (path)
+}
+
+
 import localesJSON from '../public/locales.json'
 var locales = Object.keys(localesJSON)
 
@@ -58,6 +66,7 @@ function buildRoutes () {
         <Route path='profile' component={Profile} />
         <Route path='help/:id' component={HelpArticle} />
         <Route path='about' component={About} />
+        <Route path='redirect' onEnter={onEnter} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
         <Route path='quick-submit'>

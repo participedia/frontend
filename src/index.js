@@ -10,12 +10,13 @@ let auth0 = new Auth0({
   clientID:     process.env.REACT_APP_AUTH0_CLIENT_ID
 })
 let parsed = queryString.parse(window.location.hash)
-if (parsed.id_token) {
+if (parsed.access_token) {
+  localStorage.setItem('access_token', parsed.access_token)
   localStorage.setItem('id_token', parsed.id_token)
 }
-let id_token = localStorage.getItem('id_token')
-if (id_token) {
-  auth0.getProfile(id_token, function (err, profile) {
+let access_token = localStorage.getItem('access_token')
+if (access_token) {
+  auth0.getUserInfo(access_token, function (err, profile) {
     if (err) {
       console.log('error getting profile', err)
     } else {
@@ -37,4 +38,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-      
