@@ -23,54 +23,32 @@ import api from './utils/api'
 export const LOCK_SUCCESS = 'LOCK_SUCCESS'
 export const LOCK_ERROR = 'LOCK_ERROR'
 
-// function showLock() {
-//   return {
-//     type: SHOW_LOCK
-//   }
-// }
-
-function lockSuccess(profile, token) {
-  return {
-    type: LOCK_SUCCESS,
-    profile,
-    token
-  }
-}
-
-function lockError(err) {
-  return {
-    type: LOCK_ERROR,
-    err
-  }
-}
-
 // Opens the Lock widget and
 // dispatches actions along the way
 export function login() {
-  const lock = new Auth0Lock('lORPmEONgX2K71SX7fk35X5PNZOCaSfU', 'participedia.auth0.com',
-    {
-      'auth': {
-        'redirectUrl': window.location.origin + '/en-US/',
-        'responseType': 'token',
-        'params': {
-          state: JSON.stringify({pathname: window.location.pathname})
-        }
+  const options = {
+    auth: {
+      'redirectUrl': window.location.origin + '/en-US/redirect',
+      'responseType': 'token',
+      'params': {
+        scope: 'openid email read:users update:users update:users_app_metadata user_metadata app_metadata',
+        state: JSON.stringify({pathname: window.location.pathname})
       }
-    }
-  )
-  return dispatch => {
-    lock.show({auth: { params: { scope: 'openid email read:users update:users update:users_app_metadata user_metadata app_metadata' }}}, (err, profile, token) => {
-      // TODO #45 in actions.js figure out why the auth promise never gets called 
-      // TODO when auth promise code fixed, remove code in index.js to do the profile extraction on redirect
-      if (err) {
-        dispatch(lockError(err))
-        return
-      }
-      localStorage.setItem('profile', JSON.stringify(profile))
-      localStorage.setItem('id_token', token)
-      dispatch(lockSuccess(profile, token))
-    })
-  }
+    },
+    autoclose: true,
+  };
+
+  const lock = new Auth0Lock(
+    'lORPmEONgX2K71SX7fk35X5PNZOCaSfU',
+    'participedia.auth0.com',
+    options,
+  );
+
+  return (dispatch) => {
+
+    lock.show()
+    
+  };
 }
 
 export function updateUserMetaData (userId, data) {
