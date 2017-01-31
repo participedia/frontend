@@ -46,9 +46,9 @@ var getFirstBrowserLanguage = function () {
   return null
 }
 
-var onEnter = function() {
+var onRedirect = function() {
   let parsedParams = queryString.parse(window.location.hash)
-  let path = JSON.parse(JSON.stringify(parsedParams.state)).slice(13, -2)
+  let path = JSON.parse(parsedParams.state).pathname
   window.location.replace (path)
 }
 
@@ -66,7 +66,7 @@ function buildRoutes () {
         <Route path='profile' component={Profile} />
         <Route path='help/:id' component={HelpArticle} />
         <Route path='about' component={About} />
-        <Route path='redirect' onEnter={onEnter} />
+        <Route path='redirect' onEnter={onRedirect} />
         <Route path='_upload' component={Upload} />
         <Route path='teaching' component={Teaching} />
         <Route path='quick-submit'>
