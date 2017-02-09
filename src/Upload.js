@@ -3,6 +3,8 @@ import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import { connect } from 'react-redux'
 import { updateUserMetaData } from './actions'
 
+const S3BUCKET_URL = process.env.REACT_APP_UPLOADS_S3_BUCKET
+
 const box = {
   margin: '1em',
   height: 200,
@@ -23,9 +25,11 @@ class Upload extends React.Component {
   }
 
   handleFinishedUpload (args) {
+    console.log("in handleFinishedUpload", args)
     const { dispatch, profile } = this.props
     if (this.props.updatePicture) {
-      dispatch(updateUserMetaData(profile.user_id, { 'customPic': `http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/${args.filename}` }))
+      dispatch(updateUserMetaData(profile.user_id, 
+        { 'customPic': `${S3BUCKET_URL}/${args.filename}` }))
       this.setState({hidePic: true})
     }
   }
@@ -44,7 +48,7 @@ class Upload extends React.Component {
       style: this.props.customStyle ? this.props.customStyle : box, 
       maxFileSize: 1024 * 1024 * 50,   // TODO move maxFilesize to a config file
       server: process.env.REACT_APP_API_URL, 
-      s3Url: process.env.REACT_APP_UPLOADS_S3_BUCKET, 
+      s3Url: S3BUCKET_URL, 
       signingUrlHeaders: {
         'Authorization': 'Bearer ' + token
       }
