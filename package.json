@@ -13,6 +13,7 @@
     "concurrently": "^3.1.0",
     "geojson-extent": "^0.3.2",
     "geojson2svg": "^1.0.3",
+    "habitat": "^3.1.2",
     "jwt-decode": "^2.1.0",
     "leaflet": "^1.0.2",
     "material-ui": "^0.16.4",
@@ -49,6 +50,7 @@
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
     "deploy": "node scripts/properties2json && surge -p build -d participedia.xyz",
+    "deploysam": "rm -f build/CNAME && rm -f build/CORS && node scripts/properties2json && surge -p build -d participedia-sam.surge.sh",
     "build": "sass --update src && react-scripts build && cp build/index.html build/200.html",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",
