@@ -14,18 +14,23 @@
       position:absolute;
       top:0;
       bottom:0;
-      right:20px;
+      right:10px;
       width:3px;
       background:$grey;
     }
 
+    svg.country-map {
+      border:2px solid $grey;
+      padding:15px;
+    }
+    
     .case-map {
       width: 100%;
     }
 
     .case-location {
       font-weight: 500;
-      color: $blue;
+      color: $red;
       margin-top: 16px;
       margin-bottom: 16px;
     }
@@ -48,11 +53,13 @@
     }
 
     .sub-heading {
-      font-size: 32px;
-      font-weight: 400;
+      font-size: 20px;
+      font-weight: 600;
       line-height: 40px;
-      margin-bottom: 12px;
-      margin-top: 16px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      border-bottom:2px solid $grey;
     }
 
     .sub-sub-heading {
@@ -177,7 +184,7 @@
   .main-area {
 
     .case-box {
-      padding: 32px 0;
+      padding: 48px 0;
 
       .category {
         color: $red;
@@ -207,11 +214,12 @@
         .author-line {
           font-size: 14px;
           font-weight: 500;
-          color: #777;
+          color: $black;
           line-height: 18px;
+          margin-bottom:0;
 
           a {
-            color: $orange;
+            color: $red;
             font-weight: 500;
           }
         }
@@ -221,13 +229,13 @@
           color: #777;
           font-weight: 400;
           line-height: 18px;
-          margin-bottom: 6px;
+          margin-bottom: 16px;
         }
       }
 
       .case-html {
         h3 {
-          font-weight: 500;
+          font-weight: 600;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
@@ -238,7 +246,11 @@
           font-weight: 100;
           line-height: 1.7rem;
           margin-bottom: 16px;
-          max-width:750px;
+          max-width:720px;
+        }
+        
+        em {
+          font-weight:500;
         }
 
         li {
@@ -256,7 +268,11 @@
 
         a {
           color: $red;
-          font-weight: 500;
+          font-weight: 600;
+          text-decoration:underline;
+          &:hover, &:focus {
+            color:darken($red, 10%);
+          }
         }
       }
     }

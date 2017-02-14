@@ -16,8 +16,8 @@
 
     .sorting-options {
       padding: 12px 0;
-      border-top: 2px solid #eee;
-      border-bottom: 2px solid #eee;
+      border-top: 2px solid #f3efec;
+      border-bottom: 2px solid #f3efec;
       margin-top: 70px;
 
       a {
@@ -50,8 +50,8 @@
 }
 
   .search-actions-area {
-    //border-bottom: 2px solid #eee;
-    background:#eee;
+    //border-bottom: 2px solid #f3efec;
+    background:#f3efec;
     padding: 0;
     position:relative;
     &:before {
@@ -79,7 +79,7 @@
       padding: 14px 20px 10px;
       //margin-right: 24px;
       transition: 100ms ease-in-out color, 100ms ease-in-out border;
-      border-bottom: 4px solid #eee;
+      border-bottom: 4px solid #f3efec;
     }
 
     @include media-breakpoint-down(sm) {
