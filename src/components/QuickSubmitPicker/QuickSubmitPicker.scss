@@ -10,8 +10,12 @@
 	p {
     padding: 14px 0;
     text-align: center;
-    background: $color2;
+    background: $red;
+    text-transform:uppercase;
     color: white;
+    &:hover, &:focus {
+      background: lighten($red, 10%);
+    }
   }
   a:hover {
     text-decoration: none;

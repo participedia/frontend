@@ -30,14 +30,14 @@
         text-transform: capitalize;
 
         &.selected, &:hover, &:focus {
-          color: $color2;
+          color: $red;
         }
       }
 
       .current-sorting-selection {
         font-size: 1rem;
         font-weight: 400;
-        color: $color2;
+        color: $red;
         display: block;
         line-height: 26px;
         text-transform: capitalize;
@@ -50,8 +50,19 @@
 }
 
   .search-actions-area {
-    border-bottom: 2px solid #eee;
-    padding-top: 32px;
+    //border-bottom: 2px solid #eee;
+    background:#eee;
+    padding: 0;
+    position:relative;
+    &:before {
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,.05);
+      height:4px;
+    }
 
     .filters {
       float: left;
@@ -59,15 +70,16 @@
 
     .filters a {
       font-size: 1rem;
-      font-weight: 400;
-      color: #000;
+      font-weight: 600;
+      text-transform:uppercase;
+      color: $black;
       display: block;
       line-height: 26px;
       float: left;
-      padding: 0 4px 8px 4px;
-      margin-right: 24px;
+      padding: 14px 20px 10px;
+      //margin-right: 24px;
       transition: 100ms ease-in-out color, 100ms ease-in-out border;
-      border-bottom: 4px solid #fff;
+      border-bottom: 4px solid #eee;
     }
 
     @include media-breakpoint-down(sm) {
@@ -76,17 +88,28 @@
         border: 0 !important;
       }
     }
-
-    .filters a.selected,
+    .filters a.selected {
+      background: $red;
+      border-bottom: 4px solid darken($red,10%);
+      color:#fff;
+      &:hover, &:focus {
+        background: $red;
+        color:#fff;
+        border-bottom: 4px solid darken($red,10%);
+      }
+    }
     .filters a:hover,
     .filters a:focus {
       text-decoration: none;
-      color: #ff6f00;
-      border-bottom: 4px solid #ff6f00;
+      color: $red;
+      background: #ddd;
+      border-bottom: 4px solid $red;
     }
 
     .view-types {
       float: right;
+      margin-top:10px;
+      margin-right:10px;
 
       a {
         display: block;
@@ -139,18 +162,21 @@
 
 .result-count {
   padding: 14px 0;
-
   p {
     font-size: 1rem;
     font-weight: 400;
     color: #999;
     line-height: 26px;
   }
+  .result-author {
+    margin-bottom:0;
+    color:$black;
+  }
 }
 
 .mobile-select {
   width: 100%;
-  color: $color2;
+  color: $red;
   padding: 7px;
   background-color: white;
   appearance: none;

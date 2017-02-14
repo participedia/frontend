@@ -8,6 +8,16 @@
   .sidepanel {
     padding: 0 32px;
     margin-top: 48px;
+    position:relative;
+    &:before {
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      right:20px;
+      width:3px;
+      background:$grey;
+    }
 
     .case-map {
       width: 100%;
@@ -15,7 +25,7 @@
 
     .case-location {
       font-weight: 500;
-      color: $color1;
+      color: $blue;
       margin-top: 16px;
       margin-bottom: 16px;
     }
@@ -27,7 +37,7 @@
 
       .progress-fill {
         height: 16px;
-        background-color: $color1;
+        background-color: $blue;
       }
     }
 
@@ -131,7 +141,7 @@
 
         &::before {
           content: "";
-          background-color: $color2;
+          background-color: $orange;
           position: absolute;
           color: #fff;
           font-weight: 400;
@@ -145,7 +155,7 @@
 
         &::after {
           content: "Edit";
-          background-color: $color2;
+          background-color: $orange;
           padding: 6px 12px;
           position: absolute;
           display: none;
@@ -170,15 +180,18 @@
       padding: 32px 0;
 
       .category {
-        color: $color2;
-        font-weight: 500;
+        color: $red;
+        font-weight: 600;
+        text-transform: uppercase;
         margin-bottom: 8px;
+        font-size:20px;
       }
 
       .case-title {
-        color: $color1;
+        color: $black;
         font-weight: 500;
         margin-bottom: 48px;
+        font-size:2.25rem;
       }
 
       .case-images {
@@ -198,7 +211,7 @@
           line-height: 18px;
 
           a {
-            color: $color2;
+            color: $orange;
             font-weight: 500;
           }
         }
@@ -214,17 +227,18 @@
 
       .case-html {
         h3 {
-          font-weight: 400;
+          font-weight: 500;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
         }
 
         p, li {
-          font-size: 1rem;
+          font-size: 1.05rem;
           font-weight: 100;
-          line-height: 24px;
+          line-height: 1.7rem;
           margin-bottom: 16px;
+          max-width:750px;
         }
 
         li {
@@ -241,8 +255,8 @@
         }
 
         a {
-          color: $color2;
-          font-weight: 400;
+          color: $red;
+          font-weight: 500;
         }
       }
     }

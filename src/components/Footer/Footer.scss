@@ -1,11 +1,11 @@
 @import "./UniversalStyles";
 
 .footer-component {
-  background-color: #3f51b2;
+  background-color: $black;
   overflow: hidden;
   z-index: 1000;
   position: absolute;
-  width: 100%;
+  width: 100%; 
 
   .expanded-footer {
     padding-top: 32px;

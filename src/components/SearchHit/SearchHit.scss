@@ -2,6 +2,7 @@
 
 .case-images {
   overflow: hidden;
+  margin-bottom:10px;
   img {
     max-height: 160px;
   }
@@ -40,11 +41,14 @@
 }
 
 .result-title-text {
-  color: #3f51b2;
+  color: $red;
   font-size: 20px;
   line-height: 26px;
   font-weight: 500;
   margin-bottom: 6px;
   max-height: 78px;
   overflow: hidden;
+  &:hover, &:focus {
+    text-decoration:underline;
+  }
 }
