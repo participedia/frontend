@@ -150,3 +150,9 @@
   margin-right: -48px;
   margin-left: 12px;
 }
+
+// reset the extra padding in this div for consistency 
+.container-fluid {
+  padding-left:0;
+  padding-right:0;
+}
