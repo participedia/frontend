@@ -9,6 +9,8 @@
     "auth0": "^2.5.0",
     "auth0-js": "^7.3.0",
     "auth0-lock": "^10.4.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
     "bootstrap": "4.0.0-alpha.5",
     "concurrently": "^3.1.0",
     "geojson-extent": "^0.3.2",
