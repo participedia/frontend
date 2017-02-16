@@ -33,7 +33,7 @@
     "react-leaflet": "^1.0.1",
     "react-leaflet-choropleth": "github:davidascher/react-leaflet-choropleth",
     "react-prevent-default": "^1.0.0",
-    "react-quill": "github:davidascher/react-quill#386edf514b0f7cee4a247d9d4ade5b52823712dc",
+    "react-quill": "^0.4.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-tap-event-plugin": "^2.0.1",
