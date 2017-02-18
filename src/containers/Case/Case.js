@@ -15,7 +15,7 @@ import caseIconTW from '../../img/pp-case-icon-tw.png'
 import caseIconShare from '../../img/pp-case-icon-share.png'
 
 
-class Case extends React.Component {
+export class Case extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchCaseById(this.props.params.nodeID).then(function (json) {

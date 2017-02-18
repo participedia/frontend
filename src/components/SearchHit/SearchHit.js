@@ -11,7 +11,7 @@ function capitalize(str)
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})
 }
 
-class SearchHit extends React.Component {
+export class SearchHit extends React.Component {
 
   getInnerHTML () {
     return {__html: this.props.record._source.body_en}
