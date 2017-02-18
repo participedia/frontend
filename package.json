@@ -63,7 +63,7 @@
     "deploy": "node scripts/properties2json && surge -p build -d participedia.xyz",
     "deploysam": "rm -f build/CNAME && rm -f build/CORS && node scripts/properties2json && surge -p build -d participedia-sam.surge.sh",
     "build": "sass --update src && react-scripts build && cp build/index.html build/200.html",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",
     "eject": "react-scripts eject"
   }
