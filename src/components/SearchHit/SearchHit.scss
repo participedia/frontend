@@ -40,15 +40,23 @@
   cursor: pointer;
 }
 
+.list-item {
+  .thumbnail {
+    margin-bottom:0;
+  }
+}
+
 .result-title-text {
-  color: $red;
+  color: $black;
   font-size: 20px;
   line-height: 26px;
   font-weight: 500;
   margin-bottom: 6px;
   max-height: 78px;
   overflow: hidden;
+  font-weight:600;
   &:hover, &:focus {
     text-decoration:underline;
+    color:$red;
   }
 }

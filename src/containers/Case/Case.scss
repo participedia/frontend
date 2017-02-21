@@ -42,7 +42,7 @@
 
       .progress-fill {
         height: 16px;
-        background-color: $blue;
+        background-color: $black;
       }
     }
 
@@ -250,7 +250,7 @@
         }
         
         em {
-          font-weight:500;
+          font-weight:400;
         }
 
         li {
@@ -267,11 +267,11 @@
         }
 
         a {
-          color: $red;
+          color: $black;
           font-weight: 600;
           text-decoration:underline;
           &:hover, &:focus {
-            color:darken($red, 10%);
+            color:$red;
           }
         }
       }
@@ -290,5 +290,8 @@
   z-index: 3000;
   position: fixed;
   right: 47px;
-  bottom: 28px;
+  bottom: 65px;
+  button {
+    background-color: $red !important;
+  }
 }

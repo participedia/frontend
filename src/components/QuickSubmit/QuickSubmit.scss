@@ -29,12 +29,23 @@
   }
   .title {
     font-size: 2rem;
-    color: $blue;
+    color: $black;
   }
   h2 {
-    color: $blue;
+    color: $black;
     text-align: center;
     margin-bottom: 3rem;
+  }
+  div {
+    > hr:last-child {
+      border-bottom:2px solid $black !important;
+    }
+  }
+  button[type=submit] {
+    background-color:$red !important;
+    &:hover, &:focus {
+      background-color:lighten($red, 10%) !important;
+    }
   }
 }
 
