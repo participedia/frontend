@@ -3,7 +3,7 @@
 .about {
   padding-top: 3%;
   h1 {
-    color: $orange;
+    color: $black;
     font-weight: 500;
     line-height: 72px;
   }
@@ -50,8 +50,12 @@
       }
     }
     a {
-      color: $orange;
-      font-weight: 400;
+      color: $black;
+      font-weight: 600;
+      text-decoration:underline;
+      &:hover, &:focus {
+        color:$red;
+      }
     }
   }
 
@@ -124,10 +128,13 @@ img.article-image {
   .tab, .tab-open {
     padding-top: 24px;
     .title {
-      color: #ff6f00;
+      color: $black;
       font-weight: 500;
       padding: 24px 16px;
       font-size: 28px;
+      &:hover, &:focus {
+        color:$red;
+      }
     }
     &:after {
       left: auto;

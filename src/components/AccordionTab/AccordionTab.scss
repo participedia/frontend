@@ -12,13 +12,16 @@
   }
 
   .title {
-    color: $orange;
+    color: $black;
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     width: 100%;
     padding: 24px;
     margin: -24px;
+    &:hover, &:focus {
+      color:$red;
+    }
 
     @include media-breakpoint-down(sm) { 
       padding: 16px;

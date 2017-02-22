@@ -30,7 +30,7 @@
 
     .case-location {
       font-weight: 500;
-      color: $red;
+      color: $grey-text;
       margin-top: 16px;
       margin-bottom: 16px;
     }
@@ -187,7 +187,7 @@
       padding: 48px 0;
 
       .category {
-        color: $red;
+        color: $grey-text;
         font-weight: 600;
         text-transform: uppercase;
         margin-bottom: 8px;
@@ -219,8 +219,12 @@
           margin-bottom:0;
 
           a {
-            color: $red;
-            font-weight: 500;
+            color: $black;
+            font-weight: 600;
+            text-decoration: underline;
+            &:hover, &:focus {
+              color:$red;
+            }
           }
         }
 

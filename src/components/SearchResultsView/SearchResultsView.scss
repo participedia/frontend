@@ -15,9 +15,7 @@
     padding: 0 32px;
 
     .sorting-options {
-      padding: 12px 0;
-      border-top: 2px solid #f3efec;
-      border-bottom: 2px solid #f3efec;
+      border-top: 2px solid $grey;
       margin-top: 70px;
 
       a {
@@ -26,11 +24,14 @@
         color: #666;
         display: block;
         line-height: 26px;
+        padding:12px 10px;
+        border-bottom:1px solid $dark-grey;
         transition: 100ms ease-in-out color;
         text-transform: capitalize;
-
+        cursor:pointer;
         &.selected, &:hover, &:focus {
           color: $red;
+          background: lighten($grey,3%);
         }
       }
 
