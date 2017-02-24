@@ -17,10 +17,11 @@ import caseIconShare from '../../img/pp-case-icon-share.png'
 
 export class Case extends React.Component {
   componentWillMount () {
+      console.log('componentWillMount, gets case from API');
     let component = this
-    api.fetchCaseById(this.props.params.nodeID).then(function (json) {
-      let data = json[0]
-      component.setState({data: data, htmlBody: data.body})
+    api.fetchCaseById(this.props.params.nodeID).then(function (the_case) {
+        console.log('componentWillMount, got case: %o', the_case);
+      component.setState({data: the_case, htmlBody: the_case.body})
     })
   }
 
@@ -35,23 +36,22 @@ export class Case extends React.Component {
   render () {
     if (this.state && this.state.data) {
       let caseObject = this.state.data
-      let tags, communication_modes = ''
-      if (caseObject.specific_topics) {
-        tags = caseObject.specific_topics.split(',').map(function (tag, i) {
-          return (<a key={i} href='#'>{tag.trim()}</a>)
-        })
+      let tag, communication_mode = ''
+      if (caseObject.specific_topic) {
+        tag = <a href='#'>{caseObject.specific_topic}</a>
       }
       if (caseObject.communication_mode) {
-        communication_modes = caseObject.communication_mode.split(',').map(function (tag, i) {
-          return (<a key={i} href='#'>{tag.trim()}</a>)
-        })
+        communication_mode = <a href='#'>{caseObject.communication_mode}</a>
       }
       let post_date = moment(caseObject.post_date).format('LL')
       let updated_date = moment(caseObject.updated_date).format('LL')
-      let first_author = caseObject.author.name
+      let first_author = caseObject.authors[0]
       let locale = this.props.intl.locale
-      let first_author_url = '/' + locale + '/users/' + caseObject.author.id
-      let last_author = '???' // TODO figure out how to extract last author information
+      let first_author_url = '/' + locale + '/users/' + first_author.id
+      let first_author_name = first_author.name
+      let last_author = caseObject.authors.slice(-1)[0]
+      let last_author_name = last_author.name
+      let last_author_url = '/' + locale + '/users/' + last_author.id
       let id = this.props.params.nodeID
       let editLink = `/${locale}/case/${id}/edit`
       // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
@@ -76,16 +76,16 @@ export class Case extends React.Component {
                     Keywords
                   </p>
                   <p className='sub-sub-heading'>
-                    Tags:
+                    Tag:
                   </p>
                   <div className='tags'>
-                  {tags}
+                  {tag}
                   </div>
                   <p className='sub-sub-heading'>
-                    Specific Topic(s):
+                    Specific Topic:
                   </p>
                   <div className='tags'>
-                  {communication_modes}
+                  {communication_mode}
                   </div>
                   <p className='sub-heading'>
                     Related Content
@@ -103,7 +103,7 @@ export class Case extends React.Component {
                       Case
                     </h2>
                     <h2 className='case-title'>
-                      {caseObject.title_en}
+                      {caseObject.title}
                     </h2>
                     { (pic && pic.length > awsUrl.length) ?
                       <div className='case-images'>
@@ -121,23 +121,23 @@ export class Case extends React.Component {
                       <p className='author-line'>
                         First submitted by&nbsp;
                         <a href={first_author_url}>
-                          {first_author}
+                          {first_author_name}
                         </a>
                       </p>
                       <p className='date-line'>
-                      {post_date} 
+                      {post_date}
                       </p>
                       <p className='author-line'>
                         Most recent changes by&nbsp;
-                        <a href='#'>
-                          {last_author}
+                        <a href={last_author_url}>
+                          {last_author_name}
                         </a>
                       </p>
                       <p className='date-line'>
                       {updated_date}
                       </p>
                     </div>
-                    <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body_en}} />
+                    <div className='case-html' dangerouslySetInnerHTML={{__html: caseObject.body}} />
                   </div>
                 </Col>
                 <Col md='1' className='case-tools hidden-sm-down'>
@@ -149,7 +149,7 @@ export class Case extends React.Component {
                     <a href='#'><img src={caseIconShare} alt='' /></a>
                   </div>
                 </Col>
-              </Row>  
+              </Row>
             </Container>
             <Link to={editLink}>
               <FloatingActionButton className='editButton'>

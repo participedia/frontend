@@ -91,6 +91,7 @@ class API {
       fetch(APIURL + '/case/' + caseId)
         .then(function (response) {
           response.json().then(function (json) {
+              console.log('in the heart of fetchCaseById, got the new case: %o', json.data);
             resolve(json.data)
           })
         })
@@ -131,7 +132,7 @@ class API {
   fetchNouns = function (noun) {
     return new Promise(function (resolve, reject) {
       try {
-        let url =APIURL + '/search/getAllForType?objType=' + noun 
+        let url =APIURL + '/search/getAllForType?objType=' + noun
         fetch(url)
           .then(function (response) {
             response.json().then(function (json) {
