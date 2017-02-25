@@ -71,7 +71,7 @@ export class Case extends React.Component {
             <Container className='detailed-case-component' fluid={true}>
               <Row>
                 <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
-                  <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
+                  <CountryMap city={caseObject.location.city} countrycode={caseObject.location.country} />
                   <p className='sub-heading'>
                     Keywords
                   </p>
