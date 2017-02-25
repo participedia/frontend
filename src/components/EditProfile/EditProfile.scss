@@ -24,7 +24,7 @@
     margin: 0 auto;
     width: 200px;
     height: 200px;
-    background-color: #ccc;
+    background-color: #ece8e6;
     border-radius: 100px;
     position: relative;
     overflow: hidden;
@@ -81,7 +81,7 @@
   }
   .divider {
     height: 2px;
-    background-color: #eee;
+    background-color: #f3efec;
     width: 100%;
     margin: 64px 0 48px;
     @include media-breakpoint-down(sm) {
@@ -117,7 +117,7 @@
 
   .biography-input {
     display: block;
-    border: 2px solid #eee;
+    border: 2px solid #f3efec;
     font-weight: 300;
     padding: 16px;
     width: 100%;

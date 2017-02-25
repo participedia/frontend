@@ -1,7 +1,7 @@
 @import "./UniversalStyles";
 
 .footer-component {
-  background-color: #3f51b2;
+  background-color: $primary-color;
   overflow: hidden;
   z-index: 1000;
   position: absolute;
