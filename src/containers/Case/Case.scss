@@ -8,14 +8,29 @@
   .sidepanel {
     padding: 0 32px;
     margin-top: 48px;
+    position:relative;
+    &:before {
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      right:10px;
+      width:3px;
+      background:$light-grey;
+    }
 
+    svg.country-map {
+      border:2px solid $light-grey;
+      padding:15px;
+    }
+    
     .case-map {
       width: 100%;
     }
 
     .case-location {
       font-weight: 500;
-      color: $color1;
+      color: $grey-text;
       margin-top: 16px;
       margin-bottom: 16px;
     }
@@ -27,7 +42,7 @@
 
       .progress-fill {
         height: 16px;
-        background-color: $color1;
+        background-color: $primary-color;
       }
     }
 
@@ -38,11 +53,13 @@
     }
 
     .sub-heading {
-      font-size: 32px;
-      font-weight: 400;
+      font-size: 20px;
+      font-weight: 600;
       line-height: 40px;
-      margin-bottom: 12px;
-      margin-top: 16px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      border-bottom:2px solid $light-grey;
     }
 
     .sub-sub-heading {
@@ -131,7 +148,7 @@
 
         &::before {
           content: "";
-          background-color: $color2;
+          background-color: $orange;
           position: absolute;
           color: #fff;
           font-weight: 400;
@@ -145,7 +162,7 @@
 
         &::after {
           content: "Edit";
-          background-color: $color2;
+          background-color: $orange;
           padding: 6px 12px;
           position: absolute;
           display: none;
@@ -167,18 +184,21 @@
   .main-area {
 
     .case-box {
-      padding: 32px 0;
+      padding: 48px 0;
 
       .category {
-        color: $color2;
-        font-weight: 500;
+        color: $grey-text;
+        font-weight: 600;
+        text-transform: uppercase;
         margin-bottom: 8px;
+        font-size:20px;
       }
 
       .case-title {
-        color: $color1;
+        color: $primary-color;
         font-weight: 500;
         margin-bottom: 48px;
+        font-size:2.25rem;
       }
 
       .case-images {
@@ -194,12 +214,17 @@
         .author-line {
           font-size: 14px;
           font-weight: 500;
-          color: #777;
+          color: $primary-color;
           line-height: 18px;
+          margin-bottom:0;
 
           a {
-            color: $color2;
-            font-weight: 500;
+            color: $primary-color;
+            font-weight: 600;
+            text-decoration: underline;
+            &:hover, &:focus {
+              color:$interactive-color;
+            }
           }
         }
 
@@ -208,23 +233,28 @@
           color: #777;
           font-weight: 400;
           line-height: 18px;
-          margin-bottom: 6px;
+          margin-bottom: 16px;
         }
       }
 
       .case-html {
         h3 {
-          font-weight: 400;
+          font-weight: 600;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
         }
 
         p, li {
-          font-size: 1rem;
+          font-size: 1.1rem;
           font-weight: 100;
-          line-height: 24px;
+          line-height: 1.7rem;
           margin-bottom: 16px;
+          max-width:720px;
+        }
+        
+        em {
+          font-weight:400;
         }
 
         li {
@@ -241,8 +271,12 @@
         }
 
         a {
-          color: $color2;
-          font-weight: 400;
+          color: $primary-color;
+          font-weight: 600;
+          text-decoration:underline;
+          &:hover, &:focus {
+            color:$interactive-color;
+          }
         }
       }
     }
@@ -260,5 +294,8 @@
   z-index: 3000;
   position: fixed;
   right: 47px;
-  bottom: 28px;
+  bottom: 65px;
+  button {
+    background-color: $interactive-color !important;
+  }
 }

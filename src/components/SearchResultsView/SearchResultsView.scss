@@ -15,9 +15,7 @@
     padding: 0 32px;
 
     .sorting-options {
-      padding: 12px 0;
-      border-top: 2px solid #eee;
-      border-bottom: 2px solid #eee;
+      border-top: 2px solid $light-grey;
       margin-top: 70px;
 
       a {
@@ -26,18 +24,21 @@
         color: #666;
         display: block;
         line-height: 26px;
+        padding:12px 10px;
+        border-bottom:1px solid $dark-grey;
         transition: 100ms ease-in-out color;
         text-transform: capitalize;
-
+        cursor:pointer;
         &.selected, &:hover, &:focus {
-          color: $color2;
+          color: $interactive-color;
+          background: lighten($light-grey,3%);
         }
       }
 
       .current-sorting-selection {
         font-size: 1rem;
         font-weight: 400;
-        color: $color2;
+        color: $interactive-color;
         display: block;
         line-height: 26px;
         text-transform: capitalize;
@@ -50,8 +51,18 @@
 }
 
   .search-actions-area {
-    border-bottom: 2px solid #eee;
-    padding-top: 32px;
+    background:#f3efec;
+    padding: 0;
+    position:relative;
+    &:before {
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,.05);
+      height:4px;
+    }
 
     .filters {
       float: left;
@@ -59,15 +70,15 @@
 
     .filters a {
       font-size: 1rem;
-      font-weight: 400;
-      color: #000;
+      font-weight: 600;
+      text-transform:uppercase;
+      color: $primary-color;
       display: block;
       line-height: 26px;
       float: left;
-      padding: 0 4px 8px 4px;
-      margin-right: 24px;
+      padding: 14px 20px 10px;
       transition: 100ms ease-in-out color, 100ms ease-in-out border;
-      border-bottom: 4px solid #fff;
+      border-bottom: 4px solid #f3efec;
     }
 
     @include media-breakpoint-down(sm) {
@@ -76,17 +87,28 @@
         border: 0 !important;
       }
     }
-
-    .filters a.selected,
+    .filters a.selected {
+      background: $interactive-color;
+      border-bottom: 4px solid darken($interactive-color,10%);
+      color:#fff;
+      &:hover, &:focus {
+        background: $interactive-color;
+        color:#fff;
+        border-bottom: 4px solid darken($interactive-color,10%);
+      }
+    }
     .filters a:hover,
     .filters a:focus {
       text-decoration: none;
-      color: #ff6f00;
-      border-bottom: 4px solid #ff6f00;
+      color: $interactive-color;
+      background: #ddd;
+      border-bottom: 4px solid $interactive-color;
     }
 
     .view-types {
       float: right;
+      margin-top:10px;
+      margin-right:10px;
 
       a {
         display: block;
@@ -139,18 +161,21 @@
 
 .result-count {
   padding: 14px 0;
-
   p {
     font-size: 1rem;
     font-weight: 400;
     color: #999;
     line-height: 26px;
   }
+  .result-author {
+    margin-bottom:0;
+    color:$primary-color;
+  }
 }
 
 .mobile-select {
   width: 100%;
-  color: $color2;
+  color: $interactive-color;
   padding: 7px;
   background-color: white;
   appearance: none;

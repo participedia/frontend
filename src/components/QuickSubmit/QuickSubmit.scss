@@ -29,12 +29,23 @@
   }
   .title {
     font-size: 2rem;
-    color: $color1;
+    color: $primary-color;
   }
   h2 {
-    color: $color1;
+    color: $primary-color;
     text-align: center;
     margin-bottom: 3rem;
+  }
+  div {
+    > hr:last-child {
+      border-bottom:2px solid $primary-color !important;
+    }
+  }
+  button[type=submit] {
+    background-color:$interactive-color !important;
+    &:hover, &:focus {
+      background-color:lighten($interactive-color, 10%) !important;
+    }
   }
 }
 

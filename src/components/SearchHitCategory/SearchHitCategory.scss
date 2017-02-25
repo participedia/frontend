@@ -1,13 +1,16 @@
 .result-category {
   color: #000;
+  margin-bottom:20px;
 }
 
 .category-title {
   font-size: 30px;
-  font-weight: 400;
-  color: #ff6f00;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #323232;
   line-height: 30px;
   padding: 20px 0 14px;
+  border-bottom:2px solid #f3efec;
 }
 
 .results {

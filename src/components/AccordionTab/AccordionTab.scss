@@ -1,7 +1,7 @@
 @import "./UniversalStyles";
 
 @mixin tab {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ece8e6;
   padding: 24px;
   padding-right: 96px;
   position: relative;
@@ -12,13 +12,16 @@
   }
 
   .title {
-    color: $color2;
+    color: $primary-color;
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     width: 100%;
     padding: 24px;
     margin: -24px;
+    &:hover, &:focus {
+      color:$interactive-color;
+    }
 
     @include media-breakpoint-down(sm) { 
       padding: 16px;

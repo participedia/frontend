@@ -3,13 +3,13 @@
 .about {
   padding-top: 3%;
   h1 {
-    color: $color2;
+    color: $primary-color;
     font-weight: 500;
     line-height: 72px;
   }
 
   h2 {
-    color: $color1;
+    color: $primary-color;
     font-weight: 400;
     line-height: 44px;
     margin-top: 24px;
@@ -30,7 +30,7 @@
     margin-top: 16px;
 
     & > .people {
-      color: $color2;
+      color: $orange;
       font-size: 1.1rem;
       line-height: 24px;
       font-weight: 400;
@@ -50,13 +50,17 @@
       }
     }
     a {
-      color: $color2;
-      font-weight: 400;
+      color: $primary-color;
+      font-weight: 600;
+      text-decoration:underline;
+      &:hover, &:focus {
+        color:$interactive-color;
+      }
     }
   }
 
   .accordion {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ece8e6;
     margin-top: 24px;
     margin-bottom: 48px;
 
@@ -77,7 +81,7 @@
       }
 
       .name {
-        color: $color2;
+        color: $orange;
         font-size: 1.1rem;
         line-height: 24px;
         font-weight: 400;
@@ -124,10 +128,13 @@ img.article-image {
   .tab, .tab-open {
     padding-top: 24px;
     .title {
-      color: #ff6f00;
+      color: $primary-color;
       font-weight: 500;
       padding: 24px 16px;
       font-size: 28px;
+      &:hover, &:focus {
+        color:$interactive-color;
+      }
     }
     &:after {
       left: auto;
