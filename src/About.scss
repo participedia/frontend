@@ -3,13 +3,13 @@
 .about {
   padding-top: 3%;
   h1 {
-    color: $black;
+    color: $primary-color;
     font-weight: 500;
     line-height: 72px;
   }
 
   h2 {
-    color: $black;
+    color: $primary-color;
     font-weight: 400;
     line-height: 44px;
     margin-top: 24px;
@@ -50,11 +50,11 @@
       }
     }
     a {
-      color: $black;
+      color: $primary-color;
       font-weight: 600;
       text-decoration:underline;
       &:hover, &:focus {
-        color:$red;
+        color:$interactive-color;
       }
     }
   }
@@ -128,12 +128,12 @@ img.article-image {
   .tab, .tab-open {
     padding-top: 24px;
     .title {
-      color: $black;
+      color: $primary-color;
       font-weight: 500;
       padding: 24px 16px;
       font-size: 28px;
       &:hover, &:focus {
-        color:$red;
+        color:$interactive-color;
       }
     }
     &:after {

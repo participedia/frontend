@@ -12,7 +12,7 @@
   }
 
   .title {
-    color: $black;
+    color: $primary-color;
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
@@ -20,7 +20,7 @@
     padding: 24px;
     margin: -24px;
     &:hover, &:focus {
-      color:$red;
+      color:$interactive-color;
     }
 
     @include media-breakpoint-down(sm) { 

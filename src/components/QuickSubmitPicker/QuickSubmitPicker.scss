@@ -10,11 +10,11 @@
 	p {
     padding: 14px 0;
     text-align: center;
-    background: $red;
+    background: $interactive-color;
     text-transform:uppercase;
     color: white;
     &:hover, &:focus {
-      background: lighten($red, 10%);
+      background: lighten($interactive-color, 10%);
     }
   }
   a:hover {

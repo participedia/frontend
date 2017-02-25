@@ -15,7 +15,7 @@
     padding: 0 32px;
 
     .sorting-options {
-      border-top: 2px solid $grey;
+      border-top: 2px solid $light-grey;
       margin-top: 70px;
 
       a {
@@ -30,15 +30,15 @@
         text-transform: capitalize;
         cursor:pointer;
         &.selected, &:hover, &:focus {
-          color: $red;
-          background: lighten($grey,3%);
+          color: $interactive-color;
+          background: lighten($light-grey,3%);
         }
       }
 
       .current-sorting-selection {
         font-size: 1rem;
         font-weight: 400;
-        color: $red;
+        color: $interactive-color;
         display: block;
         line-height: 26px;
         text-transform: capitalize;
@@ -51,7 +51,6 @@
 }
 
   .search-actions-area {
-    //border-bottom: 2px solid #f3efec;
     background:#f3efec;
     padding: 0;
     position:relative;
@@ -73,12 +72,11 @@
       font-size: 1rem;
       font-weight: 600;
       text-transform:uppercase;
-      color: $black;
+      color: $primary-color;
       display: block;
       line-height: 26px;
       float: left;
       padding: 14px 20px 10px;
-      //margin-right: 24px;
       transition: 100ms ease-in-out color, 100ms ease-in-out border;
       border-bottom: 4px solid #f3efec;
     }
@@ -90,21 +88,21 @@
       }
     }
     .filters a.selected {
-      background: $red;
-      border-bottom: 4px solid darken($red,10%);
+      background: $interactive-color;
+      border-bottom: 4px solid darken($interactive-color,10%);
       color:#fff;
       &:hover, &:focus {
-        background: $red;
+        background: $interactive-color;
         color:#fff;
-        border-bottom: 4px solid darken($red,10%);
+        border-bottom: 4px solid darken($interactive-color,10%);
       }
     }
     .filters a:hover,
     .filters a:focus {
       text-decoration: none;
-      color: $red;
+      color: $interactive-color;
       background: #ddd;
-      border-bottom: 4px solid $red;
+      border-bottom: 4px solid $interactive-color;
     }
 
     .view-types {
@@ -171,13 +169,13 @@
   }
   .result-author {
     margin-bottom:0;
-    color:$black;
+    color:$primary-color;
   }
 }
 
 .mobile-select {
   width: 100%;
-  color: $red;
+  color: $interactive-color;
   padding: 7px;
   background-color: white;
   appearance: none;
