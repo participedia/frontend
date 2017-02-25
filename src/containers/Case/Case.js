@@ -17,10 +17,8 @@ import caseIconShare from '../../img/pp-case-icon-share.png'
 
 export class Case extends React.Component {
   componentWillMount () {
-      console.log('componentWillMount, gets case from API');
     let component = this
     api.fetchCaseById(this.props.params.nodeID).then(function (the_case) {
-        console.log('componentWillMount, got case: %o', the_case);
       component.setState({data: the_case, htmlBody: the_case.body})
     })
   }
