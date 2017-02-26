@@ -17,7 +17,7 @@ import ppLogo from './img/pp-logo.png'
 
 import HelpBar from './components/HelpBar/HelpBar'
 
-class Layout extends React.Component {
+export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     profile: PropTypes.object.isRequired

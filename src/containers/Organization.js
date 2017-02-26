@@ -14,7 +14,7 @@ import caseIconTW from '../img/pp-case-icon-tw.png'
 import caseIconShare from '../img/pp-case-icon-share.png'
 
 
-class Organization extends React.Component {
+export class Organization extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchOrgById(this.props.params.nodeID).then(function (json) {
@@ -66,7 +66,11 @@ class Organization extends React.Component {
           <div className='main-contents'>
             <Container className='detailed-case-component' fluid={true}>
               <Col md='3' className='sidepanel hidden-sm-down'>
-                <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
+                { caseObject.geo_country ?
+                  <CountryMap city={caseObject.geo_city} countrycode={caseObject.geo_country} />
+                  :
+                  undefined
+                }
                 <p className='sub-heading'>
                   Keywords
                 </p>

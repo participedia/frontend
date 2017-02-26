@@ -2,6 +2,7 @@ import React from 'react'
 import './Case/Case.css'
 import {injectIntl, intlShape} from 'react-intl'
 import {Link} from 'react-router'
+import { Container, Row, Col } from 'reactstrap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import CountryMap from '../components/CountryMap'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
@@ -13,7 +14,7 @@ import caseIconTW from '../img/pp-case-icon-tw.png'
 import caseIconShare from '../img/pp-case-icon-share.png'
 import moment from 'moment'
 
-class Method extends React.Component {
+export class Method extends React.Component {
   componentWillMount () {
     let component = this
     api.fetchMethodById(this.props.params.nodeID).then(function (json) {
@@ -63,96 +64,87 @@ class Method extends React.Component {
         var bracket = methodObject.other_images.search("]");
         var otherImg = awsUrl + encodeURIComponent(methodObject.other_images.slice(2, bracket-1));
       }
-      let map = (<div/>)
-      if (methodObject.geo_country) {
-        map = (<CountryMap city={methodObject.geo_city} countrycode={methodObject.geo_country} />)
-      }
 
       return (
         <div>
-          <div className="edit-button-container">
-            <div className="edit-button-inner">
-              <div className="editButton">
-                <FloatingActionButton
-                  containerElement={editLink}
-                  >
-                  <ContentPencil />
-                </FloatingActionButton>
-              </div>
-            </div>
-          </div>
           <div className='main-contents'>
-            <div className='detailed-case-component'>
-              <div className='sidebar'>
-                {map}
-                <p className='sub-heading'>
-                  Keywords
-                </p>
-                <p className='sub-sub-heading'>
-                  Tags:
-                </p>
-                <div className='tags'>
-                {tags}
-                </div>
-                <p className='sub-sub-heading'>
-                  Specific Topic(s):
-                </p>
-                <div className='tags'>
-                {communication_modes}
-                </div>
-                <p className='sub-heading'>
-                  Related Content
-                </p>
-                <div className='related-content'>
-                  <a href='#'>Cases</a>
-                  <a href='#'>Methods</a>
-                  <a href='#'>Surveys</a>
-                  <a href='#'>Datasets</a>
-                </div>
-              </div>
-              <div className='main-area'>
-                <div className='case-box'>
-                  <div className='category'>
-                    Case
-                  </div>
-                  <p className='case-title'>
-                    {methodObject.title_en}
-                  </p>
-                  { (pic && pic.length > awsUrl.length) ?
-                    <div className='case-images'>
-                      <img role='presentation' src={pic} />
-                    </div>
-                    :
-                    (otherImg && otherImg.length > awsUrl.length) ?
-                      <div className='case-images'>
-                        <img role='presentation' src={otherImg} />
-                      </div>
+            <Container className='detailed-case-component' fluid={true}>
+              <Row>
+                <Col md='3' className='hidden-sm-down sidepanel hidden-sm-down'>
+                  { methodObject.geo_country ?
+                    <CountryMap city={methodObject.geo_city} countrycode={methodObject.geo_country} />
                     :
                     undefined
                   }
-                  <div className='authorship-details'>
-                    <p className='author-line'>
-                      First submitted by&nbsp;
-                      <a href={first_author_url}>
-                        {first_author}
-                      </a>
-                    </p>
-                    <p className='date-line'>
-                    {post_date} 
-                    </p>
-                    <p className='author-line'>
-                      Most recent changes by&nbsp;
-                      <a href='#'>
-                        {last_author}
-                      </a>
-                    </p>
-                    <p className='date-line'>
-                    {updated_date}
-                    </p>
+                  <p className='sub-heading'>
+                    Keywords
+                  </p>
+                  <p className='sub-sub-heading'>
+                    Tags:
+                  </p>
+                  <div className='tags'>
+                  {tags}
                   </div>
-                  <div className='case-html' dangerouslySetInnerHTML={{__html: methodObject.body_en}} />
-                </div>
-                <div className='case-tools'>
+                  <p className='sub-sub-heading'>
+                    Specific Topic(s):
+                  </p>
+                  <div className='tags'>
+                  {communication_modes}
+                  </div>
+                  <p className='sub-heading'>
+                    Related Content
+                  </p>
+                  <div className='related-content'>
+                    <a href='#'>Cases</a>
+                    <a href='#'>Methods</a>
+                    <a href='#'>Surveys</a>
+                    <a href='#'>Datasets</a>
+                  </div>
+                </Col>
+                <Col md='8' xs='12' className='main-area'>
+                  <div className='case-box'>
+                    <div className='category'>
+                      Method
+                    </div>
+                    <h2 className='case-title'>
+                      {methodObject.title_en}
+                    </h2>
+                    { (pic && pic.length > awsUrl.length) ?
+                      <div className='case-images'>
+                        <img role='presentation' src={pic} />
+                      </div>
+                      :
+                      (otherImg && otherImg.length > awsUrl.length) ?
+                        <div className='case-images'>
+                          <img role='presentation' src={otherImg} />
+                        </div>
+                      :
+                      undefined
+                    }
+                    <div className='authorship-details'>
+                      <p className='author-line'>
+                        First submitted by&nbsp;
+                        <a href={first_author_url}>
+                          {first_author}
+                        </a>
+                      </p>
+                      <p className='date-line'>
+                      {post_date} 
+                      </p>
+                      <p className='author-line'>
+                        Most recent changes by&nbsp;
+                        <a href='#'>
+                          {last_author}
+                        </a>
+                      </p>
+                      <p className='date-line'>
+                      {updated_date}
+                      </p>
+                    </div>
+                    <div className='case-html' dangerouslySetInnerHTML={{__html: methodObject.body_en}} />
+                  </div>
+                </Col>
+                <Col md='1' className='case-tools hidden-sm-down'>
                   <div className='top-icons'>
                     <a href='#'><img src={caseIconBookmark} alt='' /></a>
                     <a href='#'><img src={caseIconSettings} alt='' /></a>
@@ -160,9 +152,14 @@ class Method extends React.Component {
                     <a href='#'><img src={caseIconTW} alt='' /></a>
                     <a href='#'><img src={caseIconShare} alt='' /></a>
                   </div>
-                </div>
-              </div>
-            </div>
+                </Col>
+              </Row>
+            </Container>
+            <Link to={editLink}>
+              <FloatingActionButton className='editButton'>
+                <ContentPencil />
+              </FloatingActionButton>
+            </Link>
           </div>
         </div>)
     } else {

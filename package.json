@@ -3,12 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "auth0-js": "^7.6.1",
+    "babel-jest": "^18.0.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "enzyme": "^2.7.1",
+    "jest": "^18.1.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts": "0.7.0",
+    "react-test-renderer": "^15.4.2"
   },
   "dependencies": {
     "auth0": "^2.5.0",
     "auth0-js": "^7.3.0",
     "auth0-lock": "^10.4.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-preset-stage-2": "^6.22.0",
     "bootstrap": "4.0.0-alpha.5",
     "concurrently": "^3.1.0",
     "geojson-extent": "^0.3.2",
@@ -33,7 +44,7 @@
     "react-leaflet": "^1.0.1",
     "react-leaflet-choropleth": "github:davidascher/react-leaflet-choropleth",
     "react-prevent-default": "^1.0.0",
-    "react-quill": "github:davidascher/react-quill#386edf514b0f7cee4a247d9d4ade5b52823712dc",
+    "react-quill": "^0.4.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-tap-event-plugin": "^2.0.1",
