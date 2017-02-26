@@ -100,6 +100,7 @@ class API {
         })
     })
   }
+
   fetchMethodById = function (methodId) {
     return new Promise(function (resolve, reject) {
       fetch(APIURL + '/method/' + methodId)
@@ -131,7 +132,7 @@ class API {
   fetchNouns = function (noun) {
     return new Promise(function (resolve, reject) {
       try {
-        let url =APIURL + '/search/getAllForType?objType=' + noun 
+        let url = APIURL + '/search/getAllForType?objType=' + noun
         fetch(url)
           .then(function (response) {
             response.json().then(function (json) {
