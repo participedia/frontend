@@ -1,27 +1,28 @@
 import React from 'react'
 import {Link} from 'react-router'
 import './HelpBar.css'
+import {injectIntl} from 'react-intl'
 
-const helpItems = [
-  'What is a case?',
-  'What is a method?',
-  'What is an organization?',
-  'How do I create a user account?',
-  'How do I create content?',
-  'What is Quick Submit?',
-  'How do I save my draft entry?',
-  'How do I edit content?',
-  'Can I see who has edited my content?',
-  'How do I create content in another language?',
-  'Can I translate existing content into another language?',
-  'How do I search for content?',
-  'How do I download and interpret data from my search results?',
-  'How do I access my bookmarked content?'
-]
 
 class HelpBar extends React.Component {
   constructor (props) {
     super(props)
+    const helpItems = [
+      this.props.intl.formatMessage({id: 'help_q1'}),
+      this.props.intl.formatMessage({id: 'help_q2'}),
+      this.props.intl.formatMessage({id: 'help_q3'}),
+      this.props.intl.formatMessage({id: 'help_q4'}),
+      this.props.intl.formatMessage({id: 'help_q5'}),
+      this.props.intl.formatMessage({id: 'help_q6'}),
+      this.props.intl.formatMessage({id: 'help_q7'}),
+      this.props.intl.formatMessage({id: 'help_q8'}),
+      this.props.intl.formatMessage({id: 'help_q9'}),
+      this.props.intl.formatMessage({id: 'help_q10'}),
+      this.props.intl.formatMessage({id: 'help_q11'}),
+      this.props.intl.formatMessage({id: 'help_q12'}),
+      this.props.intl.formatMessage({id: 'help_q13'}),
+      this.props.intl.formatMessage({id: 'help_q14'}),
+    ]
     this.state = {
       query: '',
       helpItems: helpItems,
@@ -47,13 +48,14 @@ class HelpBar extends React.Component {
   }
 
   render () {
+
     let onChange = this.onChange
     return (
       <div className="help-bar">
         <div className="top-area">
           <div className="top-area-inner">
             <div className="title-section">
-              <h2 className="help-title">Participedia Help</h2>
+              <h2 className="help-title">{this.props.intl.formatMessage({id: 'participedia_help'})}</h2>
               <Link to={this.props.currentPath} className="close-help"></Link>
             </div>
             <div className="search-box-section">
@@ -62,12 +64,12 @@ class HelpBar extends React.Component {
           </div>
         </div>
         <div className="data-section">
-          <h3 className="data-title">FAQ</h3>
+          <h3 className="data-title">{this.props.intl.formatMessage({id: 'faq'})}</h3>
           <ul className="data-list">
             {this.state.filteredHelpItems.map((item, i) => (
               <li key={i}><Link to={'/' + this.props.locale + '/help/1'}>{item}</Link></li>
             ))}
-            {(this.state.filteredHelpItems.length === 0)?<li><a>No results found.</a></li>:null}
+            {(this.state.filteredHelpItems.length === 0)?<li><a>{this.props.intl.formatMessage({id: 'no_results_found'})}</a></li>:null}
           </ul>
         </div>
       </div>
@@ -75,4 +77,4 @@ class HelpBar extends React.Component {
   }
 }
 
-export default HelpBar
+export default injectIntl(HelpBar)

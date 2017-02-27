@@ -33,14 +33,14 @@ export class LoginAvatar extends React.Component {
           >
             <MenuItem style={buttonStyle} containerElement={<Link to={'/'+locale+'/profile'} />}
               onClick={this.handleClose}>Profile</MenuItem>
-            <MenuItem style={buttonStyle} primaryText='Sign out'
+            <MenuItem style={buttonStyle} primaryText={this.props.intl.formatMessage({id: 'sign_out'})}
               onClick={() => dispatch(logoutUser())} />
           </IconMenu>
         </div>
       )
 
     } else {
-      return (<div className='loginButton'><FlatButton onClick={() => dispatch(login())} onTouchTap={this.signIn} label='login' /></div>)
+      return (<div className='loginButton'><FlatButton onClick={() => dispatch(login())} onTouchTap={this.signIn} label={this.props.intl.formatMessage({id: 'login'})} /></div>)
     }
   }
 }

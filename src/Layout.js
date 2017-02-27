@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import globalStyles from './global.css'
 /* eslint-enable no-unused-vars */
 import './Layout.css'
-import {injectIntl} from 'react-intl'
+import {injectIntl, intlShape} from 'react-intl'
 import menuIcon from './img/menu-icon.png'
 import ppLogo from './img/pp-logo.png'
 
@@ -76,19 +76,19 @@ export class Layout extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}>
           <MenuItem containerElement={<Link to={'/'+locale} />}
-            onTouchTap={this.handleClose}>Home</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'home'})}</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/about'} />}
-            onTouchTap={this.handleClose}>About</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'about'})}</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/teaching'} />}
-            onTouchTap={this.handleClose}>Teaching</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'teaching'})}</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/research'} />}
-            onTouchTap={this.handleClose}>Research</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'research'})}</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/profile'} />}
-            onTouchTap={this.handleClose}>Profile</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'profile'})}</MenuItem>
           <MenuItem containerElement={<Link to={'/'+locale+'/quick-submit'} />}
-            onTouchTap={this.handleClose}>Add New</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'add_new'})}</MenuItem>
           <MenuItem containerElement={<Link to={this.props.location.pathname + '?help'} />}
-            onTouchTap={this.handleClose}>Help</MenuItem>
+            onTouchTap={this.handleClose}>{this.props.intl.formatMessage({id: 'help'})}</MenuItem>
         </Drawer>
         <div className='contentArea'>
           {children}
@@ -109,6 +109,10 @@ function mapStateToProps(state) {
     isAuthenticated,
     profile: profile || {}
   }
+}
+
+Layout.propTypes = {
+  intl: intlShape.isRequired
 }
 
 export default injectIntl(connect(mapStateToProps)(Layout))
