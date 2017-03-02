@@ -23,7 +23,7 @@ describe('containers', () => {
     it('should render proper data for org', () => {
 
       const { enzymeWrapper } = setup()
-      enzymeWrapper.setState({data: orgData})
+      // enzymeWrapper.setState({data: orgData})
       expect(enzymeWrapper.find('.sub-heading').length).toBe(2);
       expect(enzymeWrapper.find('h2.case-title').text()).not.toBe("");
 
