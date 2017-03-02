@@ -2,6 +2,7 @@ import React from 'react'
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import { connect } from 'react-redux'
 import { updateUserMetaData } from './actions'
+import {injectIntl} from 'react-intl'
 
 const S3BUCKET_URL = process.env.REACT_APP_UPLOADS_S3_BUCKET
 
@@ -39,7 +40,7 @@ class Upload extends React.Component {
     if (! isAuthenticated) {
       return (
         <div>
-          Sorry, upload only works if you're logged in.
+          {this.props.intl.formatMessage({id: 'sorry_upload'})}
         </div>
       )
     }
@@ -75,4 +76,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Upload)
+export default injectIntl(connect(mapStateToProps)(Upload))

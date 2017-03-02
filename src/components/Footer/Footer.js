@@ -5,42 +5,48 @@ import ccIcon from '../../img/cc-icon.png'
 import fbIcon from '../../img/pp-social-fb.png'
 import rssIcon from '../../img/pp-social-rss.png'
 import twitterIcon from '../../img/pp-social-tw.png'
+import {injectIntl} from 'react-intl'
+import {Link} from 'react-router'
 
+export class Footer extends React.Component {
 
-function Footer () {
-  return (
-    <div className='footer-component'>
-      <div className='expanded-footer'>
-        <div className='column'>
-          <a href='#'>About</a>
-          <a href='#'>Research</a>
-          <a href='#'>Teaching</a>
+  render () {
+    let locale = this.props.intl.locale
+
+    return (
+      <div className='footer-component'>
+        <div className='expanded-footer'>
+          <div className='column'>
+            <Link to={'/'+locale+'/about'}>{this.props.intl.formatMessage({id: 'about'})}</Link>
+            <Link to={'/'+locale+'/research'}>{this.props.intl.formatMessage({id: 'research'})}</Link>
+            <Link to={'/'+locale+'/teaching'}>{this.props.intl.formatMessage({id: 'teaching'})}</Link>
+          </div>
+          <div className='column'>
+            <a href='#'>{this.props.intl.formatMessage({id: 'cases'})}</a>
+            <a href='#'>{this.props.intl.formatMessage({id: 'methods'})}</a>
+            <a href='#'>{this.props.intl.formatMessage({id: 'organizations'})}</a>
+            <a href='#'>{this.props.intl.formatMessage({id: 'users'})}</a>
+          </div>
+          <div className='column'>
+            <a href='#'>{this.props.intl.formatMessage({id: 'news'})}</a>
+            <Link to={'?help'}>{this.props.intl.formatMessage({id: 'help'})}</Link>
+            <a href='#'>Contact</a>
+          </div>
+          <div className='column'>
+            <a className='social-icons' href='#'><img src={fbIcon} alt='' /></a>
+            <a className='social-icons' href='#'><img src={twitterIcon} alt='' /></a>
+            <a className='social-icons' href='#'><img src={rssIcon} alt='' /></a>
+          </div>
         </div>
-        <div className='column'>
-          <a href='#'>Cases</a>
-          <a href='#'>Methods</a>
-          <a href='#'>Organizations</a>
-          <a href='#'>Users</a>
-        </div>
-        <div className='column'>
-          <a href='#'>News</a>
-          <a href='#'>Help</a>
-          <a href='#'>Contact</a>
-        </div>
-        <div className='column'>
-          <a className='social-icons' href='#'><img src={fbIcon} alt='' /></a>
-          <a className='social-icons' href='#'><img src={twitterIcon} alt='' /></a>
-          <a className='social-icons' href='#'><img src={rssIcon} alt='' /></a>
+        <div className='copyright-area'>
+          <a href='/' className='logo'><img src={ppLogo} alt='' /></a>
+          <p className='copyright-text'>
+            <img src={ccIcon} alt='' />Participedia 2016
+          </p>
         </div>
       </div>
-      <div className='copyright-area'>
-        <a href='/' className='logo'><img src={ppLogo} alt='' /></a>
-        <p className='copyright-text'>
-          <img src={ccIcon} alt='' />Participedia 2016
-        </p>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default Footer
+export default injectIntl(Footer)
