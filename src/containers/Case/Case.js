@@ -55,12 +55,10 @@ export class Case extends React.Component {
       // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
       let awsUrl = process.env.REACT_APP_ASSETS_URL
       if (caseObject.lead_image) {
-        var comma = caseObject.lead_image.search(',')
-        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.slice(9, comma-1))
+        var pic = awsUrl + encodeURIComponent(caseObject.lead_image.url)
       }
-      if (caseObject.other_images) {
-        var bracket = caseObject.other_images.search(']')
-        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images.slice(2, bracket-1))
+      if (caseObject.other_images.length) {
+        var otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url)
       }
 
       return (
