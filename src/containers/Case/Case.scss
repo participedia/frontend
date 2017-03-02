@@ -6,7 +6,7 @@
   padding-top: 32px;
 
   .sidepanel {
-    padding: 0 42px 0 32px;
+    padding: 0 32px;
     margin-top: 48px;
     position:relative;
 
@@ -173,6 +173,7 @@
   }
 
   .main-area {
+    padding:0 40px;
 
     .case-box {
       padding: 48px 0;
@@ -212,9 +213,23 @@
           a {
             color: $primary-color;
             font-weight: 600;
-            text-decoration: underline;
+            position:relative;
+            cursor:pointer;
+            &:after {
+              content:"";
+              position:absolute;
+              left:0;
+              right:0;
+              bottom:-2px;
+              height:2px;
+              background:$black;
+            }
             &:hover, &:focus {
               color:$interactive-color;
+              text-decoration:none;
+              &:after {
+                background:$interactive-color;
+              }
             }
           }
         }
@@ -264,9 +279,23 @@
         a {
           color: $primary-color;
           font-weight: 600;
-          text-decoration:underline;
+          position:relative;
+          cursor:pointer;
+          &:after {
+            content:"";
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:-2px;
+            height:2px;
+            background:$black;
+          }
           &:hover, &:focus {
             color:$interactive-color;
+            text-decoration:none;
+            &:after {
+              background:$interactive-color;
+            }
           }
         }
       }

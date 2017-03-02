@@ -181,12 +181,14 @@
   p {
     font-size: 1rem;
     font-weight: 400;
-    color: #999;
+    color: $grey-text;
     line-height: 26px;
   }
   .result-author {
     margin-bottom:0;
     color:$primary-color;
+    line-height:1rem;
+    margin-top:10px;
   }
 }
 

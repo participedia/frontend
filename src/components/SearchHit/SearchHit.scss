@@ -45,7 +45,14 @@
     margin-bottom:0;
   }
 }
-
+.result-type-text {
+  text-transform:uppercase;
+  color:$grey-text;
+  font-weight:600;
+  font-size:.9rem;
+  margin:20px 0 5px;
+  letter-spacing:0.075rem;
+}
 .result-title-text {
   color: $primary-color;
   font-size: 20px;

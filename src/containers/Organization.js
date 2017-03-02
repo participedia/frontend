@@ -7,11 +7,11 @@ import { Container, Col } from 'reactstrap'
 import CountryMap from '../components/CountryMap'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentPencil from 'material-ui/svg-icons/image/edit'
-import caseIconBookmark from '../img/pp-case-icon-bookmark.png'
-import caseIconSettings from '../img/pp-case-icon-settings.png'
-import caseIconFB from '../img/pp-case-icon-fb.png'
-import caseIconTW from '../img/pp-case-icon-tw.png'
-import caseIconShare from '../img/pp-case-icon-share.png'
+import caseIconBookmark from '../img/pp-case-icon-bookmark.svg'
+import caseIconSettings from '../img/pp-case-icon-settings.svg'
+import caseIconFB from '../img/pp-case-icon-fb.svg'
+import caseIconTW from '../img/pp-case-icon-tw.svg'
+import caseIconShare from '../img/pp-case-icon-share.svg'
 
 
 export class Organization extends React.Component {

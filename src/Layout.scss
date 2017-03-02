@@ -95,7 +95,7 @@
     @include media-breakpoint-down(md) {
       position: absolute;
       margin-top: 64px;
-      background-color: $interactive-color;
+      background-color: lighten($black,10%);
       width: 100%;
       padding-left: 36px;
       padding-right: 36px;
