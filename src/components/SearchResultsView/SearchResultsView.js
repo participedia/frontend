@@ -56,21 +56,21 @@ export class SearchResultsView extends React.Component {
     if (this.props.searching) {
       results = (        
         <div>
-          <h3>Searching for {query}</h3>
+          <h3>{this.props.intl.formatMessage({id: 'searching_for'})} &nbsp;{query}</h3>
         </div>
         )
     } else {
       results = (
         <div className='result-count'>
           <p>
-            {resultsCount} Result
-            {(resultsCount === 1) ? '' : 's'}
+            {resultsCount}&nbsp;
+            {this.props.intl.formatMessage({id: 'result' + (resultsCount === 1 ? '' : 's')})}
           </p>
           <div className='results-box'>
-            <SearchHitCategory title='News' results={news} />
-            <SearchHitCategory title='Cases' results={cases} />
-            <SearchHitCategory title='Methods' results={methods} />
-            <SearchHitCategory title='Organizations' results={orgs} />
+            <SearchHitCategory title={this.props.intl.formatMessage({id: 'news'})} results={news} />
+            <SearchHitCategory title={this.props.intl.formatMessage({id: 'cases'})} results={cases} />
+            <SearchHitCategory title={this.props.intl.formatMessage({id: 'methods'})} results={methods} />
+            <SearchHitCategory title={this.props.intl.formatMessage({id: 'organizations'})} results={orgs} />
           </div>
         </div>
       )
@@ -98,22 +98,22 @@ export class SearchResultsView extends React.Component {
             <div className='clearfix search-actions-area'>
               <div className='filters hidden-sm-down'>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'All'))}
-                  className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>All</a>
+                  className={(this.props.selectedCategory === 'All') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'all'})}</a>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'News'))}
-                  className={(this.props.selectedCategory === 'News') ? 'selected' : 'unselected'}>News</a>
+                  className={(this.props.selectedCategory === 'News') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'news'})}</a>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Cases'))}
-                  className={(this.props.selectedCategory === 'Cases') ? 'selected' : 'unselected'}>Cases</a>
+                  className={(this.props.selectedCategory === 'Cases') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'cases'})}</a>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Methods'))}
-                  className={(this.props.selectedCategory === 'Methods') ? 'selected' : 'unselected'}>Methods</a>
+                  className={(this.props.selectedCategory === 'Methods') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'methods'})}</a>
                 <a href='#' onClick={preventDefault(this.props.onCategoryChange.bind(this, 'Organizations'))}
-                  className={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>Organizations</a>
+                  className={(this.props.selectedCategory === 'Organizations') ? 'selected' : 'unselected'}>{this.props.intl.formatMessage({id: 'organizations'})}</a>
               </div>
               <select className='mobile-select hidden-sm-up' value={this.state.value} onChange={this.handleChange}>
-                <option value="All">All</option>
-                <option value="News">News</option>
-                <option value="Cases">Cases</option>
-                <option value="Methods">Methods</option>
-                <option value="Organizations">Organizations</option>
+                <option value="All">{this.props.intl.formatMessage({id: 'all'})}</option>
+                <option value="News">{this.props.intl.formatMessage({id: 'news'})}</option>
+                <option value="Cases">{this.props.intl.formatMessage({id: 'cases'})}</option>
+                <option value="Methods">{this.props.intl.formatMessage({id: 'methods'})}</option>
+                <option value="Organizations">{this.props.intl.formatMessage({id: 'organizations'})}</option>
               </select>
               <div className='view-types hidden-sm-down'>
                 <a href='#' onClick={preventDefault(this.props.onLayoutChange.bind(this, 'grid'))}

@@ -8,6 +8,7 @@ import '../GeoSuggest/GeoSuggest.css'
 import AutoComplete from 'material-ui/AutoComplete'
 import TextField from 'material-ui/TextField';
 import Upload from '../../Upload'
+import {injectIntl} from 'react-intl'
 
 class EditProfile extends Component {
 
@@ -55,25 +56,25 @@ class EditProfile extends Component {
             </div>
           </Col>  
           <Col md='9' className='main-area'>
-            <label className="form-label">Name</label>
-            <TextField inputStyle={nameStyle} hintText="Name" defaultValue={profile.name} className="name-input" /><br />
+            <label className="form-label">{this.props.intl.formatMessage({id: 'name'})}</label>
+            <TextField inputStyle={nameStyle} hintText={this.props.intl.formatMessage({id: 'name'})} defaultValue={profile.name} className="name-input" /><br />
             <div className="divider"></div>
-            <label className="form-label">Location</label>
+            <label className="form-label">{this.props.intl.formatMessage({id: 'location'})}</label>
             <Geosuggest className="org-input" onSuggestSelect={this.props.onLocationSuggest}/>
-            <label className="form-label organization">Organization</label>
-            <div className="label-description">You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.</div>
-            <AutoComplete className="auto-org" floatingLabelText="Begin Typing an Organization" dataSource={this.props.organizations} /><br />
-            <TextField hintText="Department" /><br />
-            <TextField hintText="Job Title" /><br />
-            <TextField hintText="Website" /><br />
+            <label className="form-label organization">{this.props.intl.formatMessage({id: 'organization'})}</label>
+            <div className="label-description">{this.props.intl.formatMessage({id: 'organization_text'})}</div>
+            <AutoComplete className="auto-org" floatingLabelText={this.props.intl.formatMessage({id: 'type_org'})} dataSource={this.props.organizations} /><br />
+            <TextField hintText={this.props.intl.formatMessage({id: 'department'})} /><br />
+            <TextField hintText={this.props.intl.formatMessage({id: 'job_title'})} /><br />
+            <TextField hintText={this.props.intl.formatMessage({id: 'website'})} /><br />
             <div className="divider"></div>
-            <label className="form-label">Biography</label>
-            <textarea className="biography-input" placeholder="Tell us about yourself"></textarea>
+            <label className="form-label">{this.props.intl.formatMessage({id: 'biography'})}</label>
+            <textarea className="biography-input" placeholder={this.props.intl.formatMessage({id: 'tell_us'})}></textarea>
           </Col>
         </div>
         :
         <Col md={{size:9, offset:1}} className='main-area'>
-          <p>Sorry, you need to log in to see this page.</p>
+          <p>{this.props.intl.formatMessage({id: 'sorry'})}</p>
         </Col>
       }
       </Container>
@@ -96,4 +97,4 @@ const mapDispatchToProps = () => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(EditProfile))
