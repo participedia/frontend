@@ -1,5 +1,7 @@
 // This is the JS API to talk to api.participedia.xyz
 
+fetch = require('isomorphic-fetch');
+
 let APIURL = process.env.REACT_APP_API_URL  // eslint-disable-line no-undef
 
 if (! APIURL) {
