@@ -11,27 +11,27 @@ import '../../quill.snow.css'
 
 var BodyEditor = React.createClass({
   _quillModules: {
-    toolbar: [ 
+    toolbar: [
         [{ 'header': [1, 2, false] }],
         ['bold', 'italic', 'underline','strike', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}], 
-        ['link', 'image'], 
-        ['clean'] 
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['link', 'image'],
+        ['clean']
     ]
     /* ... other modules */
   },
 
-  _quillFormats: [ 
+  _quillFormats: [
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
-    'link', 'image' 
+    'link', 'image'
   ],
 
   render: function() {
     return (
       <div className='_quill'>
-        <ReactQuill theme='snow' 
+        <ReactQuill theme='snow'
                     modules={this._quillModules}
                     formats={this._quillFormats}
                     toolbar={false}
@@ -44,7 +44,7 @@ var BodyEditor = React.createClass({
       </div>
     )
   }
-}) 
+})
 
 class _CaseEditor extends Component {
   render() {
@@ -83,19 +83,19 @@ class _CaseEditor extends Component {
                     Case
                   </h2>
                   <h2 className='case-title'>
-                  {caseObject.title_en}
+                  {caseObject.title}
                   </h2>
                   <form onSubmit={handleSubmit}>
                     <div>
-                      <label htmlFor="title_en">Title</label>
+                      <label htmlFor="title">Title</label>
                     </div>
                     <Field
                       component='input'
-                      name="title_en" type="text" value={caseObject.title_en}/>
+                      name="title" type="text" value={caseObject.title}/>
                     <div>
-                    <label htmlFor="body_en">Body</label>
+                    <label htmlFor="body">Body</label>
                     </div>
-                    <BodyEditor value={caseObject.body_en}/>
+                    <BodyEditor value={caseObject.body}/>
                     <button type="submit">Submit</button>
                   </form>
                 </div>

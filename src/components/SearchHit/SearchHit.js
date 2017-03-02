@@ -14,25 +14,23 @@ function capitalize(str)
 export class SearchHit extends React.Component {
 
   getInnerHTML () {
-    return {__html: this.props.record._source.body_en}
+    return {__html: this.props.record._source.body}
   }
 
   render () {
     let result = this.props.record._source
     let awsUrl = process.env.REACT_APP_ASSETS_URL
     if (result.lead_image) {
-      var comma = result.lead_image.search(',')
-      var pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma-1))
+      var pic = awsUrl + encodeURIComponent(result.lead_image.url)
     }
-    if (result.other_images) {
-      var bracket = result.other_images.search(']')
-      var otherImg = awsUrl + encodeURIComponent(result.other_images.slice(2, bracket-1))
+    if (result.other_images.length) {
+      var otherImg = awsUrl + encodeURIComponent(result.other_images[0].url)
     }
     var locale = this.props.intl.locale
     var id = result.id
     var type = result.type_
     let title, link
-    title = capitalize(type) + ': ' + result.title_en
+    title = capitalize(type) + ': ' + result.title
     link = `/${locale}/${type}/${id}`
     let firstSubmit = moment(result.post_date).format('dddd, MMMM Do YYYY')
     if (!title) {
@@ -57,7 +55,7 @@ export class SearchHit extends React.Component {
                :
                 <div className='thumbnail'
                   style={thumbnailStyle}>
-                </div>  
+                </div>
             }
             <div className='result-title-text'>{title}</div>
           </Link>
@@ -88,7 +86,7 @@ export class SearchHit extends React.Component {
             <Link to={link}>
               <div className='thumbnail'
                 style={thumbnailStyle}>
-              </div>  
+              </div>
             </Link>
           }
           </Col>

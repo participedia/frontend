@@ -55,7 +55,6 @@ export class Organization extends React.Component {
       let last_author_url = '/' + locale + '/users/' + last_author.id
       let awsUrl = process.env.REACT_APP_ASSETS_URL
       if (organizationObject.lead_image) {
-        var comma = organizationObject.lead_image.search(',')
         var pic = awsUrl + encodeURIComponent(organizationObject.lead_image.url)
       }
       if (organizationObject.other_images.length) {
@@ -129,7 +128,7 @@ export class Organization extends React.Component {
                     </p>
                     <p className='author-line'>
                       Most recent changes by&nbsp;
-                      <a href='{last_author_url}'>
+                      <a href={last_author_url}>
                         {last_author_name}
                       </a>
                     </p>
@@ -137,7 +136,7 @@ export class Organization extends React.Component {
                     {updated_date}
                     </p>
                   </div>
-                  <div className='case-html' dangerouslySetInnerHTML={{__html: organizationObject.body_en}} />
+                  <div className='case-html' dangerouslySetInnerHTML={{__html: organizationObject.body}} />
                 </div>
               </Col>
               <Col md='1' className='case-tools hidden-sm-down'>

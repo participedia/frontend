@@ -1,19 +1,21 @@
 {
-  "body_en": "**Definition**\n\n**Problems and Purpose**\n\n**History**\n\n**Participant Selection**\n\n**Deliberation, Decisions, and Public Interaction**\n\n**Influence, Outcomes, and Effects**\n\n**Analysis and Criticism**\n\n**Secondary Sources**\n\n**External Links**\n\n**Notes**",
-  "published": "Yes",
+  "body": "**Definition**\n\n**Problems and Purpose**\n\n**History**\n\n**Participant Selection**\n\n**Deliberation, Decisions, and Public Interaction**\n\n**Influence, Outcomes, and Effects**\n\n**Analysis and Criticism**\n\n**Secondary Sources**\n\n**External Links**\n\n**Notes**",
+  "published": true,
   "path": "/methods/petition",
   "post_date": "2011-11-30T17:20:28",
-  "lastmodified": 1484364769807,
+  "lastmodified": "2011-12-01T19:31:01",
   "language": "English",
   "completeness": "partial",
   "author_uid": "33",
-  "facilitated": "No",
+  "facilitated": false,
   "type_": "method",
-  "other_images": "[]",
+  "other_images": [],
+  "files": [],
+  "tags": [],
   "id": "387",
-  "title_en": "Petition",
+  "title": "Petition",
   "updated_date": "2011-12-01T19:31:01",
-  "author": {
+  "authors": [{
     "login": "1465335757",
     "language_1": "en",
     "type_": "user",
@@ -26,5 +28,5 @@
     "lastmodified": 1484364693409,
     "name": "Gsmith",
     "language": "en"
-  }
+  }]
 }

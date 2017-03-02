@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export const fields = [ 'title_en', 'body_en' ]
+export const fields = [ 'title', 'body' ]
 
 
 class _EditCase extends Component {
@@ -53,10 +53,8 @@ class _EditCase extends Component {
   render() {
     return (<CaseEditor {...this.props} />)
   }
-} 
+}
 
 export default reduxForm({
   form: 'caseform'
 })(connect(mapStateToProps, mapDispatchToProps)(_EditCase))
-
-

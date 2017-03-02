@@ -126,7 +126,7 @@ export class Method extends React.Component {
                       </p>
                       <p className='author-line'>
                         Most recent changes by&nbsp;
-                        <a href='{last_author_url}'>
+                        <a href={last_author_url}>
                           {last_author_name}
                         </a>
                       </p>

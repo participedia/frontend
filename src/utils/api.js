@@ -68,6 +68,7 @@ class API {
   }
 
   performSearch = function (query, selectedCategory, sortingMethod,  /* resolve, reject */) {
+      console.log('query: << %s >>, selectedCategory: << %s >>, sortingMethod: << %s >>', query, selectedCategory, sortingMethod);
     let paramstring = queryString.stringify({
       query: query,
       selectedCategory: selectedCategory,
