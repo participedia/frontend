@@ -1,5 +1,4 @@
 {
-  "en-US": {
     "featured": "Featured",
     "chronological": "Most Recent",
     "alphabetical": "Alphabetical",
@@ -173,8 +172,4 @@
     "add_a_survey": "Add a Survey",
     "add_a_dataset": "Add a Data Set",
     "sorry_upload": "Sorry, upload only works if you're logged in."
-  },
-  "fr": {
-    "chronological": "Plus Récentes"
-  }
 }
