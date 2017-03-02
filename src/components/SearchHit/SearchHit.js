@@ -32,7 +32,7 @@ export class SearchHit extends React.Component {
     var id = result.id
     var type = result.type_
     let title, link
-    title = capitalize(type) + ': ' + result.title_en
+    title = result.title_en
     link = `/${locale}/${type}/${id}`
     let firstSubmit = moment(result.post_date).format('dddd, MMMM Do YYYY')
     if (!title) {
@@ -59,6 +59,7 @@ export class SearchHit extends React.Component {
                   style={thumbnailStyle}>
                 </div>  
             }
+            <div className='result-type-text'>{type}</div>
             <div className='result-title-text'>{title}</div>
           </Link>
           <p className='result-author'>
@@ -94,6 +95,7 @@ export class SearchHit extends React.Component {
           </Col>
           <Col md="6">
             <Link to={link}>
+              <div className='result-type-text'>{type}</div>
               <div className='result-title-text'>{title}</div>
             </Link>
             <p className='result-author'>
