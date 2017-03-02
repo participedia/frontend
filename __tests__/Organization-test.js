@@ -8,7 +8,7 @@ import intlProps from '../src/helpers/intl-props-test-helper.js';
 function setup() {
   const props = {
     intl: intlProps,
-    params: {nodeID: 4219}
+    params: {nodeID: 199}
   }
 
   const enzymeWrapper = shallowWithIntl(<Organization {...props} />)
