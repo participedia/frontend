@@ -81,7 +81,7 @@
   }
   .divider {
     height: 2px;
-    background-color: #f3efec;
+    background-color: $dark-grey;
     width: 100%;
     margin: 64px 0 48px;
     @include media-breakpoint-down(sm) {
@@ -117,7 +117,7 @@
 
   .biography-input {
     display: block;
-    border: 2px solid #f3efec;
+    border: 2px solid $dark-grey;
     font-weight: 300;
     padding: 16px;
     width: 100%;
