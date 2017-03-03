@@ -11,9 +11,10 @@ before_install:
 - gem install sass
 before_script:
 - sass --update src
-- unset CI
 before_deploy:
+- unset CI
 - react-scripts build
+- CI=true
 - cp build/index.html build/200.html
 - node scripts/properties2json
 deploy:
