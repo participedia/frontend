@@ -6,11 +6,6 @@ import { Row, Col } from 'reactstrap'
 import moment from 'moment'
 import backgroundImage from '../../img/pp-thumbnail-1.jpg'
 
-function capitalize(str)
-{
-  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()})
-}
-
 export class SearchHit extends React.Component {
 
   getInnerHTML () {
@@ -32,7 +27,7 @@ export class SearchHit extends React.Component {
     var id = result.id
     var type = result.type_
     let title, link
-    title = capitalize(type) + ': ' + result.title_en
+    title = result.title_en
     link = `/${locale}/${type}/${id}`
     let firstSubmit = moment(result.post_date).format('dddd, MMMM Do YYYY')
     if (!title) {
@@ -59,6 +54,7 @@ export class SearchHit extends React.Component {
                   style={thumbnailStyle}>
                 </div>  
             }
+            <div className='result-type-text'>{type}</div>
             <div className='result-title-text'>{title}</div>
           </Link>
           <p className='result-author'>
@@ -94,6 +90,7 @@ export class SearchHit extends React.Component {
           </Col>
           <Col md="6">
             <Link to={link}>
+              <div className='result-type-text'>{type}</div>
               <div className='result-title-text'>{title}</div>
             </Link>
             <p className='result-author'>

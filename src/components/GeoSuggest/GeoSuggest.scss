@@ -1,7 +1,7 @@
 @import "./UniversalStyles";
 
 .geosuggest__input-wrapper {
-  border-bottom: 2px solid #f3efec;
+  border-bottom: 2px solid $dark-grey;
   width: 28%;
   @include media-breakpoint-between(xs, sm) {
     width: 100%;
