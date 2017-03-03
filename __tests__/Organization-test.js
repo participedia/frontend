@@ -8,7 +8,7 @@ import intlProps from '../src/helpers/intl-props-test-helper.js';
 function setup() {
   const props = {
     intl: intlProps,
-    params: {nodeID: 4219}
+    params: {nodeID: 199}
   }
 
   const enzymeWrapper = shallowWithIntl(<Organization {...props} />)
@@ -23,7 +23,7 @@ describe('containers', () => {
     it('should render proper data for org', () => {
 
       const { enzymeWrapper } = setup()
-      enzymeWrapper.setState({data: orgData})
+      // enzymeWrapper.setState({data: orgData})
       expect(enzymeWrapper.find('.sub-heading').length).toBe(2);
       expect(enzymeWrapper.find('h2.case-title').text()).not.toBe("");
 
