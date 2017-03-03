@@ -64,7 +64,6 @@ class MyMap extends React.Component {
 
   componentDidMount () {
     api.countsByCountry().then(function success (countryCounts) {
-      console.log("Got counts by country", countryCounts)
       this.setState({countryCounts: countryCounts})
     }.bind(this))
   }
