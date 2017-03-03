@@ -11,6 +11,7 @@ before_install:
 - gem install sass
 before_script:
 - sass --update src
+- unset CI
 before_deploy:
 - react-scripts build
 - cp build/index.html build/200.html
