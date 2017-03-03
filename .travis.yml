@@ -12,7 +12,9 @@ before_install:
 before_script:
 - sass --update src
 before_deploy:
-- npm run build
+- react-scripts build
+- cp build/index.html build/200.html
+- node scripts/properties2json
 deploy:
   skip_cleanup: true
   provider: surge
