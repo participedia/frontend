@@ -4,7 +4,7 @@ import { Field } from 'redux-form'
 
 import './CaseEditor.css'
 import { Container, Col } from 'reactstrap'
-import ReactQuill from 'react-quill/dist/react-quill'
+import ReactQuill from 'react-quill'
 
 import '../../quill.core.css'
 import '../../quill.snow.css'
