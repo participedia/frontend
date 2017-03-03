@@ -29,7 +29,7 @@ let scale = ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']
 class MyMap extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {countryCounts: {'France': 10}}
+    this.state = {countryCounts: {}}
     this.numCasesPerCountry = this.numCasesPerCountry.bind(this)
     this.labelPerCountry = this.labelPerCountry.bind(this)
     this.isCountryListed = this.isCountryListed.bind(this)
@@ -38,7 +38,7 @@ class MyMap extends React.Component {
 
   numCasesPerCountry (feature) {
     let countryName = feature.properties.name
-    let count = this.state.countryCounts[countryName]
+    let count = this.state.countryCounts[countryName.toLowerCase()]
     if (count) {
       return count
     } else {
