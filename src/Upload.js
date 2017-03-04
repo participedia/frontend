@@ -5,6 +5,7 @@ import { updateUserMetaData } from "./actions";
 import { injectIntl } from "react-intl";
 
 const S3BUCKET_URL = process.env.REACT_APP_UPLOADS_S3_BUCKET;
+const UPLOADS_CDN_URL = process.env.REACT_APP_UPLOADS_CDN_URL;
 
 const box = {
   margin: "1em",
@@ -31,7 +32,7 @@ class Upload extends React.Component {
     if (this.props.updatePicture) {
       dispatch(
         updateUserMetaData(profile.user_id, {
-          customPic: `${S3BUCKET_URL}/${args.filename}`
+          customPic: `${UPLOADS_CDN_URL}cropped-to-square/${args.filename}`
         })
       );
       this.setState({ hidePic: true });
