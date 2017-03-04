@@ -15,12 +15,12 @@
     padding: 0 32px;
 
     .sorting-options {
-      border-top: 2px solid $light-grey;
+      border-top: 1px solid $dark-grey;
       margin-top: 70px;
 
       a {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 500;
         color: #666;
         display: block;
         line-height: 26px;
@@ -51,7 +51,6 @@
 }
 
   .search-actions-area {
-    background:#f3efec;
     padding: 0;
     position:relative;
     &:before {
@@ -69,16 +68,35 @@
     }
 
     .filters a {
-      font-size: 1rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      text-transform:uppercase;
       color: $primary-color;
       display: block;
       line-height: 26px;
       float: left;
-      padding: 14px 20px 10px;
-      transition: 100ms ease-in-out color, 100ms ease-in-out border;
-      border-bottom: 4px solid #f3efec;
+      padding: 16px 20px 14px;
+      transition: 100ms ease-in-out color, 100ms ease-in-out border, 100ms ease-in-out background;
+      position:relative;
+      &:first-child {
+        &:before {
+          content:"";
+          position:absolute;
+          top:12px;
+          bottom:10px;
+          left:0;
+          width:2px;
+          background:$light-grey;
+        }
+      }
+      &:after {
+        content:"";
+        position:absolute;
+        top:12px;
+        bottom:10px;
+        right:-2px;
+        width:2px;
+        background:$light-grey;
+      }
     }
 
     @include media-breakpoint-down(sm) {
@@ -88,12 +106,8 @@
       }
     }
     .filters a.selected {
-      background: $interactive-color;
       border-bottom: 4px solid darken($interactive-color,10%);
-      color:#fff;
       &:hover, &:focus {
-        background: $interactive-color;
-        color:#fff;
         border-bottom: 4px solid darken($interactive-color,10%);
       }
     }
@@ -101,8 +115,11 @@
     .filters a:focus {
       text-decoration: none;
       color: $interactive-color;
-      background: #ddd;
+      background: $light-grey;
       border-bottom: 4px solid $interactive-color;
+      &:after {
+        display:none;
+      }
     }
 
     .view-types {
@@ -164,12 +181,14 @@
   p {
     font-size: 1rem;
     font-weight: 400;
-    color: #999;
+    color: $grey-text;
     line-height: 26px;
   }
   .result-author {
     margin-bottom:0;
     color:$primary-color;
+    line-height:1rem;
+    margin-top:10px;
   }
 }
 
