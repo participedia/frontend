@@ -33,7 +33,8 @@ export class Case extends React.Component {
   render() {
     if (this.state && this.state.data) {
       let caseObject = this.state.data;
-      let tag, communication_mode = "";
+      let tag = "";
+      let communication_mode = "";
       if (caseObject.specific_topic) {
         tag = <a href="#">{caseObject.specific_topic}</a>;
       }
@@ -59,8 +60,7 @@ export class Case extends React.Component {
         pic = awsUrl + encodeURIComponent(caseObject.lead_image.url);
       }
       if (caseObject.other_images.length) {
-        otherImg = awsUrl +
-          encodeURIComponent(caseObject.other_images[0].url);
+        otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url);
       }
 
       return (

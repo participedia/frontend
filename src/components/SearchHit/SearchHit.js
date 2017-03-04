@@ -24,8 +24,7 @@ export class SearchHit extends React.Component {
     let otherImg = "";
     if (result.lead_image) {
       let comma = result.lead_image.search(",");
-      pic = awsUrl +
-        encodeURIComponent(result.lead_image.slice(9, comma - 1));
+      pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma - 1));
     }
     if (result.other_images) {
       let bracket = result.other_images.search("]");
