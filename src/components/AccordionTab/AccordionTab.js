@@ -1,21 +1,25 @@
-import React from 'react'
-import './AccordionTab.css'
+import React from "react";
+import "./AccordionTab.css";
 
 class AccordionTab extends React.Component {
-
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
-  render () {
+  render() {
     return (
-      <div className={(this.state.open ? 'tab-open' : 'tab')}>
-        <p className="title" onClick={() => {this.setState({open: !this.state.open})}}>{this.props.title}</p>
+      <div className={this.state.open ? "tab-open" : "tab"}>
+        <p
+          className="title"
+          onClick={() => {
+            this.setState({ open: !this.state.open });
+          }}
+        >{this.props.title}</p>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
 
-export default AccordionTab
+export default AccordionTab;

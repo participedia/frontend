@@ -35,12 +35,13 @@ let getFirstBrowserLanguage = function() {
     "systemLanguage",
     "userLanguage"
   ];
-  let i, language;
+  let i = 0;
+  let language = "";
 
   // support for HTML 5.1 "navigator.languages"
   if (Array.isArray(nav.languages)) {
-    for (i = 0; i < nav.languages.length; i++) {
-      language = nav.languages[i];
+    for (let i = 0; i < nav.languages.length; i++) {
+      let language = nav.languages[i];
       if (language && language.length) {
         return language;
       }

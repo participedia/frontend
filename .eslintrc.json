@@ -10,6 +10,7 @@
     "react",
     "prettier"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2016,
     "sourceType": "module",
@@ -22,6 +23,9 @@
     "node": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "require-jsdoc": "off",
+    "react/prop-types": "off",
+    "camelcase": "off",
+    "prettier/prettier": "warn"
   }
 }
