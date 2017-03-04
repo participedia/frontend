@@ -1,4 +1,4 @@
-var intlProps = {
+let intlProps = {
   formatDate: jest.fn(),
   formatTime: jest.fn(),
   formatRelative: jest.fn(),
@@ -6,7 +6,7 @@ var intlProps = {
   formatPlural: jest.fn(),
   formatMessage: jest.fn(),
   formatHTMLMessage: jest.fn(),
-  now: jest.fn(),
-}
+  now: jest.fn()
+};
 
 module.exports = intlProps;
