@@ -28,7 +28,7 @@ export class SearchHit extends React.Component {
     let locale = this.props.intl.locale;
     let id = result.id;
     let type = result.type_;
-    let title = capitalize(type) + ": " + result.title_en;
+    let title = type + ": " + result.title_en;
     let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
     if (!title) {
