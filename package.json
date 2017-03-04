@@ -8,6 +8,10 @@
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
     "enzyme": "^2.7.1",
+    "eslint": "^3.17.0",
+    "eslint-config-standard": "^7.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
     "jest": "^18.0.0",
     "lint-staged": "^3.3.1",
     "pre-commit": "^1.2.2",
@@ -23,6 +27,10 @@
     "babel-preset-stage-2": "^6.22.0",
     "bootstrap": "4.0.0-alpha.5",
     "concurrently": "^3.1.0",
+    "eslint": "^3.17.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-config-prettier": "^1.5.0",
+    "eslint-plugin-prettier": "^2.0.1",
     "geojson-extent": "^0.3.2",
     "geojson2svg": "^1.0.3",
     "habitat": "^3.1.2",
@@ -66,7 +74,7 @@
     "deploysam": "rm -f build/CNAME && rm -f build/CORS && node scripts/properties2json && surge -p build -d participedia-sam.surge.sh",
     "build": "sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json",
     "test": "react-scripts test --env=jsdom",
-    "lint": "prettier",
+    "lint": "eslint 'src/**.js'",
     "lint-staged": "prettier --write",
     "eject": "react-scripts eject"
   },
@@ -76,5 +84,5 @@
       "git add"
     ]
   },
-  "pre-commit": "lint:staged"
+  "pre-commit": "lint-staged"
 }

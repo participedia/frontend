@@ -27,15 +27,15 @@ import {
 } from "./components/QuickSubmit/QuickSubmit";
 import queryString from "query-string";
 
-var getFirstBrowserLanguage = function() {
-  var nav = window.navigator;
-  var browserLanguagePropertyKeys = [
+let getFirstBrowserLanguage = function() {
+  let nav = window.navigator;
+  let browserLanguagePropertyKeys = [
     "language",
     "browserLanguage",
     "systemLanguage",
     "userLanguage"
   ];
-  var i, language;
+  let i, language;
 
   // support for HTML 5.1 "navigator.languages"
   if (Array.isArray(nav.languages)) {
@@ -58,17 +58,17 @@ var getFirstBrowserLanguage = function() {
   return null;
 };
 
-var onRedirect = function() {
+let onRedirect = function() {
   let parsedParams = queryString.parse(window.location.hash);
   let path = JSON.parse(parsedParams.state).pathname;
   window.location.replace(path);
 };
 
 import localesJSON from "../public/locales.json";
-var locales = Object.keys(localesJSON);
+let locales = Object.keys(localesJSON);
 
 function buildRoutes() {
-  var routes = [];
+  let routes = [];
   locales.forEach(function(locale) {
     routes.push(
       <Route key={locale} path={locale} component={Layout}>
@@ -102,7 +102,7 @@ function buildRoutes() {
     );
   });
 
-  var userLocale = getFirstBrowserLanguage();
+  let userLocale = getFirstBrowserLanguage();
 
   routes.push(<IndexRedirect key="/" to={"/" + userLocale + "/"} />);
   return routes;
