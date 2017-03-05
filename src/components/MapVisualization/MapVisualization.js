@@ -8,6 +8,8 @@ import caseMarkerIcon from "../../img/case-marker-icon.png";
 import methodMarkerIcon from "../../img/method-marker-icon.png";
 import orgMarkerIcon from "../../img/organization-marker-icon.png";
 import mapArrowIcon from "../../img/pp-map-arrow-icon.png";
+// eslint-disable-next-line
+import sleep from "leaflet-sleep";
 
 import "leaflet/dist/leaflet.css";
 
@@ -91,7 +93,14 @@ class MyMap extends React.Component {
     const position = [51.505, -0.09];
     return (
       <div className="map-component">
-        <Map zoom={3} center={position}>
+        <Map
+          zoom={3}
+          center={position}
+          sleep={true}
+          hoverToWake={false}
+          wakeMessage="Click to wake map"
+          sleepOpacity={0.9}
+        >
           <TileLayer url={mapURL} attribution={attribution} maxZoom={maxZoom} />
           <Choropleth
             data={geojson}
