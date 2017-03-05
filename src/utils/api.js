@@ -98,21 +98,17 @@ class API {
     });
   };
   fetchCaseById = function(caseId) {
-    return new Promise(function(resolve, reject) {
-      fetch(APIURL + "/case/" + caseId)
-        .then(function(response) {
-          response.json().then(function(json) {
-            resolve(json.data);
-          });
-        })
-        .catch(function(error) {
-          console.log(
-            "There has been a problem with your fetch operation: " +
-              error.message
-          );
-          reject(error);
-        });
-    });
+    return fetch(APIURL + "/case/" + caseId)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          "There has been a problem with your fetch operation: " + error
+        );
+        throw error;
+      });
   };
 
   fetchMethodById = function(methodId) {
