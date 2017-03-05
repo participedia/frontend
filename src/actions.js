@@ -130,7 +130,7 @@ export function startFetchObject() {
 export function receiveObject(id, json) {
   return {
     type: RECEIVED_OBJECT,
-    payload: { object: json[0], id: id }
+    payload: { object: json, id: id }
   };
 }
 
@@ -140,7 +140,8 @@ export function loadObject(type, id) {
       dispatch(startFetchObject(id));
       return api
         .fetchCaseById(id)
-        .then(response => dispatch(receiveObject(id, response)), function(err) {
+        .then(response => dispatch(receiveObject(id, response)))
+        .catch(function(err) {
           console.log("got an error in fetchCaseById", err);
         });
     };

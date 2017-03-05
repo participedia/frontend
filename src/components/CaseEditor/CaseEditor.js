@@ -47,7 +47,6 @@ let BodyEditor = React.createClass({
           theme="snow"
           modules={this._quillModules}
           formats={this._quillFormats}
-          toolbar={false}
           bounds={"._quill"}
         >
           <div
@@ -99,22 +98,22 @@ class _CaseEditor extends Component {
                   Case
                 </h2>
                 <h2 className="case-title">
-                  {caseObject.title_en}
+                  {caseObject.title}
                 </h2>
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <label htmlFor="title_en">Title</label>
+                    <label htmlFor="title">Title</label>
                   </div>
                   <Field
                     component="input"
-                    name="title_en"
+                    name="title"
                     type="text"
-                    value={caseObject.title_en}
+                    value={caseObject.title}
                   />
                   <div>
                     <label htmlFor="body_en">Body</label>
                   </div>
-                  <BodyEditor value={caseObject.body_en} />
+                  <BodyEditor value={caseObject.body} />
                   <button type="submit">Submit</button>
                 </form>
               </div>
