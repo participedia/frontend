@@ -1,20 +1,17 @@
-import { connect } from 'react-redux'
-import { search } from '../actions'
-import MapVisualization from '../components/MapVisualization'
+import { connect } from "react-redux";
+import { search } from "../actions";
+import MapVisualization from "../components/MapVisualization";
 
-const mapDispatchToProps = (dispatch) => ({
-  onCountryChange: (country) => {
+const mapDispatchToProps = dispatch => ({
+  onCountryChange: country => {
     try {
-      dispatch(search('geo_country:' + country))
+      dispatch(search("geo_country:" + country));
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
-})
+});
 
-const Map = connect(
-  undefined,
-  mapDispatchToProps
-)(MapVisualization)
+const Map = connect(undefined, mapDispatchToProps)(MapVisualization);
 
-export default Map
+export default Map;

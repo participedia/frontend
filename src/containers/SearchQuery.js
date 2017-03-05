@@ -1,31 +1,30 @@
-import { connect } from 'react-redux'
-import { search } from '../actions'
-import SearchQueryField from '../components/SearchQueryField/SearchQueryField'
+import { connect } from "react-redux";
+import { search } from "../actions";
+import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    query: state.cases.query || '',
+    query: state.cases.query || "",
     searching: state.cases.searching || false,
-    sortingMethod: state.ui.sort || 'chronological',
-    selectedCategory: state.ui.category || 'All',
-    selectedViewType: state.ui.layout || 'grid'
-  }
-}
+    sortingMethod: state.ui.sort || "chronological",
+    selectedCategory: state.ui.category || "All",
+    selectedViewType: state.ui.layout || "grid"
+  };
+};
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onPerformQuery: (query, selectedCategory, sortingMethod) => {
     try {
-      let action = search(query, selectedCategory, sortingMethod)
-      dispatch(action)
+      let action = search(query, selectedCategory, sortingMethod);
+      dispatch(action);
     } catch (e) {
-      console.log('error in onPerformQuery', e)
+      console.log("error in onPerformQuery", e);
     }
   }
-})
+});
 
-const SearchQuery = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchQueryField)
+const SearchQuery = connect(mapStateToProps, mapDispatchToProps)(
+  SearchQueryField
+);
 
-export default SearchQuery
+export default SearchQuery;
