@@ -16,7 +16,7 @@
     "lint-staged": "^3.3.1",
     "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.4.2",
-    "react-scripts": "0.9.3",
+    "react-scripts": "0.9.4",
     "react-test-renderer": "^15.4.2"
   },
   "dependencies": {
