@@ -3,9 +3,9 @@ import { injectIntl, intlShape } from "react-intl";
 import { Field } from "redux-form";
 
 import "./CaseEditor.css";
-import { Container, Col } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import ReactQuill from "react-quill";
-
+import Upload from "../../Upload";
 import "../../quill.core.css";
 import "../../quill.snow.css";
 
@@ -62,9 +62,34 @@ let BodyEditor = React.createClass({
 });
 
 class _CaseEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.makeLead = this.makeLead.bind(this);
+    this.state = { 
+      //need to make this conditional, set equal to leadImg (see below) if it exists
+      lead: ''
+    };
+  }
+
+  makeLead(src) {
+    this.setState({ lead: src }); 
+  }
+
   render() {
     const { handleSubmit } = this.props;
     const caseObject = this.props.case;
+    let awsUrl = process.env.REACT_APP_ASSETS_URL;
+    let leadImg = "";
+    let otherImgs = [];
+    if (caseObject && caseObject.lead_image) {
+      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url)
+    }
+    if (caseObject && caseObject.other_images.length) {
+      Object.keys(caseObject.other_images).forEach(function (key) {
+        let obj = caseObject.other_images[key]
+        otherImgs.push(awsUrl + encodeURIComponent(obj.url))
+      });
+    }
 
     if (!caseObject) {
       return <div>Loading...</div>;
@@ -101,6 +126,41 @@ class _CaseEditor extends Component {
                   {caseObject.title}
                 </h2>
                 <form onSubmit={handleSubmit}>
+                  <Row className="itemPics">
+                    { leadImg ?
+                      <Col sm="6" md="3">
+                        <div className={this.state.lead === leadImg ? "box lead" : "box"}>
+                          <div className="checkbox"></div>
+                          <img className="img-fluid" onClick={this.makeLead.bind(this, leadImg)} src={leadImg} />
+                            { this.state.lead === leadImg ?
+                            <small>Lead Image</small>
+                            : 
+                            undefined
+                            }
+                        </div>  
+                      </Col>
+                      :
+                      undefined
+                    }
+                    { otherImgs ?
+                      otherImgs.map((photo, id) => 
+                      <Col key={id} sm="6" md="3">
+                        <div className={this.state.lead === photo ? "box lead" : "box"}>
+                          <div className="checkbox"></div>
+                          <img key={id} className="img-fluid" onClick={this.makeLead.bind(this, photo)} src={photo} />
+                          { this.state.lead === photo ?
+                            <small>Lead Image</small>
+                            :
+                            undefined 
+                          } 
+                        </div>
+                      </Col>
+                      )
+                      :
+                      undefined
+                    }
+                    <Col md="3"><Upload /></Col>
+                  </Row>
                   <div>
                     <label htmlFor="title">Title</label>
                   </div>

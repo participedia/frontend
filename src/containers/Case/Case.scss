@@ -1,5 +1,19 @@
 @import "../../UniversalStyles";
-// @import "quill/dist/quill.snow.css";
+@import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+section.image-gallery {
+  margin: 0 auto;
+  .image-gallery-image {
+    max-height: 500px;
+    overflow: hidden;
+    @include media-breakpoint-down(md) {
+      max-height: 220px;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+}
 
 .detailed-case-component {
   padding-bottom: 32px;
