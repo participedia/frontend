@@ -106,13 +106,13 @@
       }
     }
     .filters a.selected {
-      border-bottom: 4px solid darken($interactive-color,10%);
-      &:hover, &:focus {
+      background: transparent;
+      border-bottom: 4px solid $black;
+      &:hover {
         border-bottom: 4px solid darken($interactive-color,10%);
       }
     }
-    .filters a:hover,
-    .filters a:focus {
+    .filters a:hover {
       text-decoration: none;
       color: $interactive-color;
       background: $light-grey;
