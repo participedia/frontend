@@ -28,9 +28,10 @@ export class SearchHit extends React.Component {
     let locale = this.props.intl.locale;
     let id = result.id;
     let type = result.type_;
-    let title = type + ": " + result.title_en;
+    let title = result.title_en;
     let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
+    let thumbnailClass = "thumbnail " + type;
     if (!title) {
       console.log("missing title: ", result);
     }
@@ -41,6 +42,7 @@ export class SearchHit extends React.Component {
         {this.props.selectedViewType === "grid"
           ? <div className="grid-item">
               <Link to={link} className="result-title">
+                <div className="result-type-text">{type}</div>
                 {pic && pic.length > awsUrl.length
                   ? <div className="case-images">
                       <img role="presentation" src={pic} />
@@ -49,7 +51,7 @@ export class SearchHit extends React.Component {
                       ? <div className="case-images">
                           <img role="presentation" src={otherImg} />
                         </div>
-                      : <div className="thumbnail" style={thumbnailStyle} />}
+                      : <div className={thumbnailClass} style={thumbnailStyle} />}
                 <div className="result-title-text">{title}</div>
               </Link>
               <p className="result-author">
