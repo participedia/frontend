@@ -37,7 +37,7 @@
     "jwt-decode": "^2.1.0",
     "leaflet": "^1.0.2",
     "leaflet-sleep": "^0.5.1",
-    "material-ui": "^0.17.0",
+    "material-ui": "^1.0.0-alpha.7",
     "moment": "^2.15.1",
     "prettier": "^0.22.0",
     "properties-parser": "^0.3.1",
