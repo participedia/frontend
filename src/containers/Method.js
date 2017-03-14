@@ -17,9 +17,8 @@ import moment from "moment";
 export class Method extends React.Component {
   componentWillMount() {
     let component = this;
-    api.fetchMethodById(this.props.params.nodeID).then(function(json) {
-      let data = json[0];
-      component.setState({ data: data, htmlBody: data.body });
+    api.fetchMethodById(this.props.params.nodeID).then(function(data) {
+      component.setState({ data: data, htmlBody: data.body_en });
     });
   }
 

@@ -12,11 +12,15 @@
     "eslint-config-standard": "^7.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
+    "fetch-mock": "^5.9.4",
     "jest": "^18.0.0",
+    "jest-fetch-mock": "^1.0.8",
     "lint-staged": "^3.3.1",
+    "mock-local-storage": "^1.0.2",
     "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.4.2",
-    "react-scripts": "0.9.3",
+    "react-router-dom": "^4.0.0",
+    "react-scripts": "0.9.5",
     "react-test-renderer": "^15.4.2"
   },
   "dependencies": {
@@ -67,7 +71,8 @@
     "redux-storage": "^4.1.1",
     "redux-storage-engine-localstorage": "^1.1.2",
     "redux-thunk": "^2.1.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "winston": "^2.3.1"
   },
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
