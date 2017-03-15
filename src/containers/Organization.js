@@ -16,8 +16,7 @@ import caseIconShare from "../img/pp-case-icon-share.png";
 export class Organization extends React.Component {
   componentWillMount() {
     let component = this;
-    api.fetchOrgById(this.props.params.nodeID).then(function(json) {
-      let data = json[0];
+    api.fetchOrgById(this.props.params.nodeID).then(function(data) {
       component.setState({ data: data, htmlBody: data.body_en });
     });
   }
