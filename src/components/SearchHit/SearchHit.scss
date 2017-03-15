@@ -3,8 +3,10 @@
 .case-images {
   overflow: hidden;
   margin-bottom:10px;
+  min-height:160px;
   img {
     max-height: 160px;
+    max-width:100%;
   }
 }
 
