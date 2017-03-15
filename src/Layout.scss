@@ -144,6 +144,38 @@
   margin-left: 12px;
 }
 
+// Create content button 
+.createButton {
+  background:#fff;
+  display:inline-block;
+  position:absolute;
+  right:120px;
+  height:40px;
+  top:12px;
+  padding:0 16px;
+  padding-top:8px;
+  border-radius:2px;
+  transition:background .2s;
+  &:before {
+    content:"Create";
+    position:relative;
+    color:$black;
+    font-weight:500;
+  }
+  &:after {
+    content:"+";
+    position:relative;
+    color:$black;
+    font-weight:500;
+    padding-left:10px;
+    margin-left:10px;
+    border-left:1px solid $black;
+  }
+  &:hover {
+    background:$dark-grey;
+  }
+}
+
 // reset the extra padding in this div for consistency 
 .container-fluid {
   padding-left:0;

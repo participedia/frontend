@@ -8,7 +8,18 @@
 .loginButton {
   position: fixed;
   right: 1em;
-  top: 1em;
+  top: 12px;
+  
+  button {
+    height: 40px !important;
+    font-family:'Fakt' !important;
+    div {
+      span {
+        text-transform:none !important;
+        font-size:100% !important;
+      }
+    }
+  }
 
   div {
     color: white;

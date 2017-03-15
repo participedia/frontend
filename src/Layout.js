@@ -54,6 +54,7 @@ export class Layout extends React.Component {
     }
     let locale = this.props.intl.locale;
     let home = `/${locale}/`;
+    let addLink = `/${locale}/quick-submit`;
 
     return (
       <div>
@@ -70,6 +71,11 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery />
             </div>
+            <Link to={addLink}>
+              <div className="createButton">
+                
+              </div>
+            </Link>
             <LoginAvatar
               auth={auth}
               isAuthenticated={isAuthenticated}
