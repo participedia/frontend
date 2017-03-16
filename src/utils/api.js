@@ -1,153 +1,122 @@
 // This is the JS API to talk to api.participedia.xyz
+import log from "winston";
+let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
-let APIURL = process.env.REACT_APP_API_URL  // eslint-disable-line no-undef
-
-if (! APIURL) {
-  console.error('No API URL was found. REACT_APP_API_URL should be set in environment variables.')
+if (!APIURL) {
+  console.error(
+    "No API URL was found. REACT_APP_API_URL should be set in environment variables."
+  );
 }
 
-import queryString from 'query-string'
+import queryString from "query-string";
 
 class API {
-
-  secureFetch = function (url, method, payload) {
-    var opts = {
-      method: method || 'get',
+  secureFetch = function(url, method, payload) {
+    let opts = {
+      method: method || "get",
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('id_token'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Authorization: "Bearer " + localStorage.getItem("id_token"),
+        Accept: "application/json",
+        "Content-Type": "application/json"
       }
-    }
-    if (payload) opts.body = JSON.stringify(payload)
-    return new Promise(function (resolve, reject) {
-      fetch(url, opts)
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem:' + error.message)
-          reject(error)
-        }
-      )
-    })
-  }
+    };
+    if (payload) opts.body = JSON.stringify(payload);
+    return fetch(url, opts)
+      .then(response => response.json())
+      .catch(function(error) {
+        log.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
 
-  fetchGeoJSON = function ( countryCode ) {
-    return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/countries/' + countryCode + '.geo.json')
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with fetchGeoJSON operation: ' + error.message)
-          reject(error)
-        }
-      )
-    })
-  }
+  fetchGeoJSON = function(countryCode) {
+    let url = APIURL + "/countries/" + countryCode + ".geo.json";
+    return fetch(url).then(response => response.json()).catch(function(error) {
+      log.error(
+        `There has been a problem with your fetch operation: (${url}) ${error}`
+      );
+      return error;
+    });
+  };
 
-  countsByCountry = function (/* resolve , reject */) {
-    return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/case/countsByCountry')
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json.data.countryCounts)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message)
-          reject(error)
-        }
-      )
-    })
-  }
+  countsByCountry = function() {
+    let url = APIURL + "/case/countsByCountry";
+    return fetch(url)
+      .then(response => response.json())
+      .then(function(json) {
+        // log.error("countsByCountry", json);
+        return json.data.countryCounts;
+      })
+      .catch(function(error) {
+        log.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
 
-  performSearch = function (query, selectedCategory, sortingMethod,  /* resolve, reject */) {
-      console.log('query: << %s >>, selectedCategory: << %s >>, sortingMethod: << %s >>', query, selectedCategory, sortingMethod);
+  performSearch = function (query, selectedCategory, sortingMethod) {
+  performSearch = function(query, selectedCategory, sortingMethod) {
     let paramstring = queryString.stringify({
       query: query,
       selectedCategory: selectedCategory,
       sortingMethod: sortingMethod
-    })
-    return new Promise(function (resolve, reject) {
-      fetch(`${APIURL}/search?${paramstring}`)
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message)
-          reject(error)
-        })
-    })
-  }
-  fetchCaseById = function (caseId) {
-    return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/case/' + caseId)
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json.data)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message)
-          reject(error)
-        })
-    })
-  }
+    });
+    let url = `${APIURL}/search?${paramstring}`;
+    return fetch(url).then(response => response.json()).catch(function(error) {
+      console.log(
+        `There has been a problem with your fetch operation: (${url}) ${error}`
+      );
+      return error;
+    });
+  };
+  fetchCaseById = function(caseId) {
+    let url = APIURL + "/case/" + caseId;
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
 
-  fetchMethodById = function (methodId) {
-    return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/method/' + methodId)
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json.data)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message)
-          reject(error)
-        })
-    })
-  }
-  fetchOrgById = function (caseId) {
-    return new Promise(function (resolve, reject) {
-      fetch(APIURL + '/organization/' + caseId)
-        .then(function (response) {
-          response.json().then(function (json) {
-            resolve(json.data)
-          })
-        })
-        .catch(function (error) {
-          console.log('There has been a problem with your fetch operation: ' + error.message)
-          reject(error)
-        })
-    })
-  }
-  fetchNouns = function (noun) {
-    return new Promise(function (resolve, reject) {
-      try {
-        let url = APIURL + '/search/getAllForType?objType=' + noun
-        fetch(url)
-          .then(function (response) {
-            response.json().then(function (json) {
-              resolve(json)
-            })
-          })
-          .catch(function (error) {
-            console.log('There has been a problem with your fetch operation: ' + error.message)
-            reject(error)
-          })
-      } catch (e) {
-        console.log(e)
-      }
-    })
-  }
+  fetchMethodById = function(methodId) {
+    let url = APIURL + "/method/" + methodId;
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
+  fetchOrgById = function(caseId) {
+    let url = APIURL + "/organization/" + caseId;
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
+  fetchNouns = function(noun) {
+    let url = APIURL + "/search/getAllForType?objType=" + noun;
+    fetch(url).then(response => response.json()).catch(function(error) {
+      console.log(
+        `There has been a problem with your fetch operation: (${url}) ${error}`
+      );
+      return error;
+    });
+  };
 }
-export default new API()
+export default new API();

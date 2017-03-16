@@ -1,5 +1,7 @@
 ## Participedia Front-end code
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/participedia/frontend.svg)](https://greenkeeper.io/)
+
 This is a static content front-end site which powers the upcoming version 3
 of Participedia.net.
 
