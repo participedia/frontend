@@ -17,17 +17,16 @@ export class SearchHit extends React.Component {
         let pic = "";
         let otherImg = "";
         if (result.lead_image) {
-            var pic = awsUrl + encodeURIComponent(result.lead_image.url);
+            pic = awsUrl + encodeURIComponent(result.lead_image.url);
         }
         if (result.other_images.length) {
-            var otherImg = awsUrl +
-                encodeURIComponent(result.other_images[0].url);
+            otherImg = awsUrl + encodeURIComponent(result.other_images[0].url);
         }
-        var locale = this.props.intl.locale;
-        var id = result.id;
-        var type = result.type_;
+        let locale = this.props.intl.locale;
+        let id = result.id;
+        let type = result.type_;
         let title, link;
-        title = capitalize(type) + ": " + result.title;
+        title = type + ": " + result.title;
         link = `/${locale}/${type}/${id}`;
         let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
         if (!title) {
