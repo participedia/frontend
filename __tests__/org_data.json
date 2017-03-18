@@ -13,7 +13,7 @@
   "lastmodified": "2015-05-13T18:58:25",
   "language": "English",
   "author_uid": "78241",
-  "type_": "organization",
+  "type": "organization",
   "other_images": [],
   "id": "4219",
   "tags": ["civic engagement", "digital participation", "planning", "public"],
@@ -22,7 +22,7 @@
   "authors": [{
     "login": "1470068013",
     "language_1": "en",
-    "type_": "user",
+    "type": "user",
     "status": "1",
     "access": "1470071797",
     "mail": "ecrespin@urbaninteractivestudio.com",

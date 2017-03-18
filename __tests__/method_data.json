@@ -8,7 +8,7 @@
   "completeness": "partial",
   "author_uid": "33",
   "facilitated": false,
-  "type_": "method",
+  "type": "method",
   "other_images": [],
   "files": [],
   "tags": [],
@@ -18,7 +18,7 @@
   "authors": [{
     "login": "1465335757",
     "language_1": "en",
-    "type_": "user",
+    "type": "user",
     "status": "1",
     "access": "1465436224",
     "mail": "g.smith@westminster.ac.uk",

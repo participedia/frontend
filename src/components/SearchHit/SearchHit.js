@@ -8,11 +8,11 @@ import backgroundImage from "../../img/pp-thumbnail-1.jpg";
 
 export class SearchHit extends React.Component {
     getInnerHTML() {
-        return { __html: this.props.record._source.body };
+        return { __html: this.props.record.body };
     }
 
     render() {
-        let result = this.props.record._source;
+        let result = this.props.record;
         let awsUrl = process.env.REACT_APP_ASSETS_URL;
         let pic = "";
         let otherImg = "";
@@ -24,7 +24,7 @@ export class SearchHit extends React.Component {
         }
         let locale = this.props.intl.locale;
         let id = result.id;
-        let type = result.type_;
+        let type = result.type;
         let title, link;
         title = type + ": " + result.title;
         link = `/${locale}/${type}/${id}`;
