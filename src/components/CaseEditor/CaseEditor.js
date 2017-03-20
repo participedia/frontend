@@ -132,11 +132,11 @@ class _CaseEditor extends Component {
                         <div className={this.state.lead === leadImg ? "box lead" : "box"}>
                           <div className="checkbox"></div>
                           <img className="img-fluid" onClick={this.makeLead.bind(this, leadImg)} src={leadImg} />
-                            { this.state.lead === leadImg ?
-                            <small>Lead Image</small>
-                            : 
-                            undefined
-                            }
+                          { this.state.lead === leadImg ?
+                          <small>Lead Image</small>
+                          : 
+                          undefined
+                          }
                         </div>  
                       </Col>
                       :

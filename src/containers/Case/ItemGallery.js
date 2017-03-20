@@ -15,8 +15,8 @@ class ItemGallery extends React.Component {
   }
 
 
-  defineImage(url){
-    if (url){
+  defineImage(url) {
+    if (url) {
       let width = this.getWidth(url);
       if (width < 500) {
         return ('portrait');
