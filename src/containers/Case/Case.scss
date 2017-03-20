@@ -5,9 +5,14 @@ section.image-gallery {
   margin: 0 auto;
   .image-gallery-image {
     max-height: 500px;
+    background-color: #000;
+    text-align: center;
     overflow: hidden;
     @include media-breakpoint-down(md) {
       max-height: 220px;
+    }
+    img.portrait {
+      width: auto;
     }
   }
   button:focus {
