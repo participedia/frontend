@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { injectIntl, intlShape } from "react-intl";
 import { Field } from "redux-form";
-
+import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
 import { Container, Row, Col } from "reactstrap";
 import ReactQuill from "react-quill";
 import Upload from "../../Upload";
+import "../GeoSuggest/GeoSuggest.css";
 import "../../quill.core.css";
 import "../../quill.snow.css";
 
@@ -61,6 +62,13 @@ let BodyEditor = React.createClass({
   }
 });
 
+const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
+  const onSuggestSelect = suggest => {
+    input.onChange(suggest);
+  };
+  return <Geosuggest onSuggestSelect={onSuggestSelect} />;
+};
+
 class _CaseEditor extends Component {
   constructor(props) {
     super(props);
@@ -100,9 +108,12 @@ class _CaseEditor extends Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-              <p className="case-location">
-                country picker
-              </p>
+              <div className="case-location">
+                <p className="sub-heading">
+                  {this.props.intl.formatMessage({ id: "country_picker" })}
+                </p>
+                <Field name="location" component={renderGeoField} />
+              </div>
               <p className="sub-heading">
                 Keywords
               </p>

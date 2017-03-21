@@ -172,7 +172,8 @@
     "add_an_organization": "Add an Organization",
     "add_a_survey": "Add a Survey",
     "add_a_dataset": "Add a Data Set",
-    "sorry_upload": "Sorry, upload only works if you're logged in."
+    "sorry_upload": "Sorry, upload only works if you're logged in.",
+    "country_picker": "Country Picker"
   },
   "fr": {
     "chronological": "Plus Récentes"

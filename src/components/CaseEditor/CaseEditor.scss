@@ -16,6 +16,12 @@
   opacity: 1;
 }
 
+.case-location {
+  .geosuggest__input-wrapper, .geosuggest__suggests {
+    width: 100%;
+  }
+}
+
 .itemPics {
   .col {
     height: 11.3rem;
