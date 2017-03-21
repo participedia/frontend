@@ -10,11 +10,6 @@ class ItemGallery extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  componentDidMount() {
-    this.props.loadGalleryPhotos();
-  }
-
-
   defineImage(url) {
     if (url) {
       let width = this.getWidth(url);

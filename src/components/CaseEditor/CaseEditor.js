@@ -129,10 +129,10 @@ class _CaseEditor extends Component {
                   <Row className="itemPics">
                     { leadImg ?
                       <Col sm="6" md="3">
-                        <div className={this.state.lead === leadImg ? "box lead" : "box"}>
+                        <div className={this.state.lead === leadImg || this.state.lead === '' ? "box lead" : "box"}>
                           <div className="checkbox"></div>
                           <img className="img-fluid" onClick={this.makeLead.bind(this, leadImg)} src={leadImg} />
-                          { this.state.lead === leadImg ?
+                          { this.state.lead === leadImg ||  this.state.lead === '' ?
                           <small>Lead Image</small>
                           : 
                           undefined
