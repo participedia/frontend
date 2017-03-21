@@ -3,9 +3,10 @@ import { injectIntl, intlShape } from "react-intl";
 import { Field } from "redux-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import ReactQuill from "react-quill";
 import Upload from "../../Upload";
+import AutoComplete from "material-ui/AutoComplete";
 import "../GeoSuggest/GeoSuggest.css";
 import "../../quill.core.css";
 import "../../quill.snow.css";
@@ -122,8 +123,33 @@ class _CaseEditor extends Component {
                 Related Content
               </p>
               <div className="related-content">
-                <a href="#">Cases</a>
-                <a href="#">Methods</a>
+                <FormGroup className="relatedCases pb-1">
+                  <h5>{this.props.intl.formatMessage({ id: "cases" })}</h5>
+                  <AutoComplete
+                    hintText={this.props.intl.formatMessage({
+                      id: "search_related_cases"
+                    })}
+                    dataSource={this.props.cases}
+                  />
+                </FormGroup>
+                <FormGroup className="relatedCases pb-1">
+                  <h5>{this.props.intl.formatMessage({ id: "methods" })}</h5>
+                  <AutoComplete
+                    hintText={this.props.intl.formatMessage({
+                      id: "search_related_methods"
+                    })}
+                    dataSource={this.props.methods}
+                  />
+                </FormGroup>
+                <FormGroup className="relatedCases pb-1">
+                  <h5>{this.props.intl.formatMessage({ id: "organizations" })}</h5>
+                  <AutoComplete
+                    hintText={this.props.intl.formatMessage({
+                      id: "search_related_orgs"
+                    })}
+                    dataSource={this.props.organizations}
+                  />
+                </FormGroup>
                 <a href="#">Surveys</a>
                 <a href="#">Datasets</a>
               </div>
