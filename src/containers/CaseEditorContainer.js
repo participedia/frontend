@@ -5,16 +5,18 @@ import api from "../utils/api";
 export default class CaseEditorContainer extends Component {
   componentWillMount() {
     let component = this;
-    console.log("PARAMS", this.props.params.nodeID);
     api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
-      console.log("the_case", the_case);
-      component.setState({ data: the_case, htmlBody: the_case.body });
+      component.setState(the_case);
     });
   }
 
+  onSubmit(form) {
+    console.log("in onSubmit", form);
+  }
+
   render() {
-    if (this.state && this.state.data) {
-      return <CaseEditor case={this.state} />;
+    if (this.state) {
+      return <CaseEditor case={this.state} onSubmit={this.onSubmit} />;
     } else {
       return <div />;
     }

@@ -64,13 +64,13 @@ export class SearchHit extends React.Component {
                 {pic && pic.length > awsUrl.length
                   ? <Link to={link}>
                       <div className="case-images">
-                        <img role="presentation" src={pic} />
+                        <img alt="" src={pic} />
                       </div>
                     </Link>
                   : otherImg && otherImg.length > awsUrl.length
                       ? <Link to={link}>
                           <div className="case-images">
-                            <img role="presentation" src={otherImg} />
+                            <img alt="" src={otherImg} />
                           </div>
                         </Link>
                       : <Link to={link}>

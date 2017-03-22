@@ -63,7 +63,7 @@ let BodyEditor = React.createClass({
 
 class _CaseEditor extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
     const caseObject = this.props.case;
 
     if (!caseObject) {
@@ -76,19 +76,15 @@ class _CaseEditor extends Component {
           onSubmit={values => {
             console.log("Success!", values);
           }}
+          defaultValues={caseObject}
           validate={({ name }) => {
             return {
               name: !name ? "A name is required" : undefined
             };
           }}
         >
-          {({ submitForm }) => {
-            return (
-              <form onSubmit={submitForm}>
-                <Text field="name" />
-                <button type="submit">Submit</button>
-              </form>
-            );
+          {({ values }) => {
+            console.log(values);
           }}
           <div className="main-contents">
             <Container className="detailed-case-component" fluid={true}>
@@ -118,16 +114,11 @@ class _CaseEditor extends Component {
                   <h2 className="case-title">
                     {caseObject.title}
                   </h2>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={onSubmit}>
                     <div>
                       <label htmlFor="title">Title</label>
                     </div>
-                    <Text
-                      // component="input"
-                      name="title"
-                      type="text"
-                      value={caseObject.title}
-                    />
+                    <Text field="title" placeholder="case title" />
                     <div>
                       <label htmlFor="body_en">Body</label>
                     </div>
