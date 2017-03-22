@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl, intlShape } from "react-intl";
-import { Field } from "redux-form";
+import { Form, Text } from "react-form";
 
 import "./CaseEditor.css";
 import { Container, Col } from "reactstrap";
@@ -72,54 +72,73 @@ class _CaseEditor extends Component {
 
     return (
       <div>
-        <div className="main-contents">
-          <Container className="detailed-case-component" fluid={true}>
-            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-              <p className="case-location">
-                country picker
-              </p>
-              <p className="sub-heading">
-                Keywords
-              </p>
-              keyword picker
-              <p className="sub-heading">
-                Related Content
-              </p>
-              <div className="related-content">
-                <a href="#">Cases</a>
-                <a href="#">Methods</a>
-                <a href="#">Surveys</a>
-                <a href="#">Datasets</a>
-              </div>
-            </Col>
-            <Col md="8" xs="12" className="main-area">
-              <div className="case-box">
-                <h2 className="category">
-                  Case
-                </h2>
-                <h2 className="case-title">
-                  {caseObject.title}
-                </h2>
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <label htmlFor="title">Title</label>
-                  </div>
-                  <Field
-                    component="input"
-                    name="title"
-                    type="text"
-                    value={caseObject.title}
-                  />
-                  <div>
-                    <label htmlFor="body_en">Body</label>
-                  </div>
-                  <BodyEditor value={caseObject.body} />
-                  <button type="submit">Submit</button>
-                </form>
-              </div>
-            </Col>
-          </Container>
-        </div>
+        <Form
+          onSubmit={values => {
+            console.log("Success!", values);
+          }}
+          validate={({ name }) => {
+            return {
+              name: !name ? "A name is required" : undefined
+            };
+          }}
+        >
+          {({ submitForm }) => {
+            return (
+              <form onSubmit={submitForm}>
+                <Text field="name" />
+                <button type="submit">Submit</button>
+              </form>
+            );
+          }}
+          <div className="main-contents">
+            <Container className="detailed-case-component" fluid={true}>
+              <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
+                <p className="case-location">
+                  country picker
+                </p>
+                <p className="sub-heading">
+                  Keywords
+                </p>
+                keyword picker
+                <p className="sub-heading">
+                  Related Content
+                </p>
+                <div className="related-content">
+                  <a href="#">Cases</a>
+                  <a href="#">Methods</a>
+                  <a href="#">Surveys</a>
+                  <a href="#">Datasets</a>
+                </div>
+              </Col>
+              <Col md="8" xs="12" className="main-area">
+                <div className="case-box">
+                  <h2 className="category">
+                    Case
+                  </h2>
+                  <h2 className="case-title">
+                    {caseObject.title}
+                  </h2>
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      <label htmlFor="title">Title</label>
+                    </div>
+                    <Text
+                      // component="input"
+                      name="title"
+                      type="text"
+                      value={caseObject.title}
+                    />
+                    <div>
+                      <label htmlFor="body_en">Body</label>
+                    </div>
+                    <BodyEditor value={caseObject.body} />
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+              </Col>
+            </Container>
+          </div>
+        </Form>
       </div>
     );
   }
