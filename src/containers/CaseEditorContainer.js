@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CaseEditor from "../components/CaseEditor/CaseEditor";
 import api from "../utils/api";
+import history from "history";
 
 export default class CaseEditorContainer extends Component {
   componentWillMount() {
@@ -11,12 +12,18 @@ export default class CaseEditorContainer extends Component {
   }
 
   onSubmit(form) {
-    console.log("in onSubmit", form);
+    // console.log("in onSubmit", form);
+    // This is where we would do the api call to save the new case, and redirect to the non-'/edit' URL
+    let pathparts = this.props.location.pathname.split("/");
+    pathparts.pop();
+    this.props.router.push(pathparts.join("/"));
   }
 
   render() {
     if (this.state) {
-      return <CaseEditor case={this.state} onSubmit={this.onSubmit} />;
+      return (
+        <CaseEditor case={this.state} onSubmit={this.onSubmit.bind(this)} />
+      );
     } else {
       return <div />;
     }

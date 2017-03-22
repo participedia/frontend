@@ -73,9 +73,7 @@ class _CaseEditor extends Component {
     return (
       <div>
         <Form
-          onSubmit={values => {
-            console.log("Success!", values);
-          }}
+          onSubmit={onSubmit}
           defaultValues={caseObject}
           validate={({ name }) => {
             return {
@@ -83,9 +81,6 @@ class _CaseEditor extends Component {
             };
           }}
         >
-          {({ values }) => {
-            console.log(values);
-          }}
           <div className="main-contents">
             <Container className="detailed-case-component" fluid={true}>
               <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
@@ -123,7 +118,7 @@ class _CaseEditor extends Component {
                       <label htmlFor="body_en">Body</label>
                     </div>
                     <BodyEditor value={caseObject.body} />
-                    <button type="submit">Submit</button>
+                    <button type="button" onClick={onSubmit}>Submit</button>
                   </form>
                 </div>
               </Col>
