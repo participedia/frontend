@@ -11,47 +11,47 @@ import CaseEditor from "../components/CaseEditor/CaseEditor";
 import { loadObject, CASE_TYPE } from "../actions";
 
 const mapStateToProps = (state, ownProps) => {
-  if (state.objects.currentObject) {
-    return { case: state.objects.currentObject };
-    // return {caseID: ownProps.params.nodeID, case: state.objects.currentObject, loading: false}
-  } else {
-    return { caseID: ownProps.params.nodeID, case: null, loading: true };
-  }
+    if (state.objects.currentObject) {
+        return { case: state.objects.currentObject };
+        // return {caseID: ownProps.params.nodeID, case: state.objects.currentObject, loading: false}
+    } else {
+        return { caseID: ownProps.params.nodeID, case: null, loading: true };
+    }
 };
 
 function loadData(props) {
-  props.dispatch(props.loadObject(CASE_TYPE, props.params.nodeID));
+    props.dispatch(props.loadObject(CASE_TYPE, props.params.nodeID));
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onSubmit: function(data) {},
-    loadObject: loadObject
-  };
+    return {
+        onSubmit: function(data) {},
+        loadObject: loadObject
+    };
 };
 
-export const fields = ["title_en", "body_en"];
+export const fields = ["title", "body"];
 
 class _EditCase extends Component {
-  static propTypes = {
-    loadObject: PropTypes.func.isRequired
-  };
+    static propTypes = {
+        loadObject: PropTypes.func.isRequired
+    };
 
-  componentWillMount() {
-    loadData(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.caseID !== this.props.caseID) {
-      // loadData(nextProps)
+    componentWillMount() {
+        loadData(this.props);
     }
-  }
 
-  render() {
-    return <CaseEditor {...this.props} />;
-  }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.caseID !== this.props.caseID) {
+            // loadData(nextProps)
+        }
+    }
+
+    render() {
+        return <CaseEditor {...this.props} />;
+    }
 }
 
 export default reduxForm({
-  form: "caseform"
+    form: "caseform"
 })(connect(mapStateToProps, mapDispatchToProps)(_EditCase));
