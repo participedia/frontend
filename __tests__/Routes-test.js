@@ -84,7 +84,7 @@ const MyProvider = () => (
   </Provider>
 );
 // the actual test!
-skip("navigates around", done => {
+it.skip("navigates around", done => {
   try {
     afterPromises(done, () => {
       renderTestSequence({

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CaseEditor from "../components/CaseEditor/CaseEditor";
 import api from "../utils/api";
-import history from "history";
 
 export default class CaseEditorContainer extends Component {
   componentWillMount() {
