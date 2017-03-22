@@ -1,7 +1,6 @@
 import { render, unmountComponentAtNode } from "react-dom";
 import React from "react";
 import { Route, MemoryRouter } from "react-router-dom";
-import { Simulate } from "react-addons-test-utils";
 import { Provider } from "react-redux";
 import searchData from "./search_data.json";
 import countryData from "./country_data.json";
@@ -78,6 +77,8 @@ const renderTestSequence = (
   render(<Test />, div);
 };
 
+// require.requireMock("Map");
+
 const MyProvider = () => (
   <Provider store={store}>
     <App />
@@ -96,31 +97,6 @@ it.skip("navigates around", done => {
           ({ history, div }) => {
             // assert the screen says what we think it should
             expect(div.innerHTML).toContain("Participedia");
-            // now we can imperatively navigate as the test
-            //   Simulate.click(div.querySelector(".menu-icon"), {
-            //     button: 0
-            //   });
-            //   // history.push("/dashboard");
-            // },
-            // // second render from same location (after click)
-            // ({ div }) => {
-            //   expect(div.innerHTML).toContain("Add New");
-            //   //   console.log(div.innerHTML);
-            //   //   console.assert(div.innerHTML.match(/Dashboard/));
-            //   //   // or we can simulate clicks on Links instead of
-            //   //   // using history.push
-            //   Simulate.click(div.querySelector(".menu-icon"), {
-            //     button: 0
-            //   });
-            // },
-            // // final render
-            // ({ location }) => {
-            //   expect(div.innerHTML).toNotContain("Add New");
-
-            //   //   console.assert(location.pathname === "/");
-            //   //   // you'll want something like `done()` so your test
-            //   //   // fails if you never make it here.
-            //   done();
           }
         ]
       });

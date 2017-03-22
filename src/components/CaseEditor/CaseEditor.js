@@ -71,61 +71,59 @@ class _CaseEditor extends Component {
     }
 
     return (
-      <div>
-        <Form
-          onSubmit={onSubmit}
-          defaultValues={caseObject}
-          validate={({ name }) => {
-            return {
-              name: !name ? "A name is required" : undefined
-            };
-          }}
-        >
-          <div className="main-contents">
-            <Container className="detailed-case-component" fluid={true}>
-              <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-                <p className="case-location">
-                  country picker
-                </p>
-                <p className="sub-heading">
-                  Keywords
-                </p>
-                keyword picker
-                <p className="sub-heading">
-                  Related Content
-                </p>
-                <div className="related-content">
-                  <a href="#">Cases</a>
-                  <a href="#">Methods</a>
-                  <a href="#">Surveys</a>
-                  <a href="#">Datasets</a>
-                </div>
-              </Col>
-              <Col md="8" xs="12" className="main-area">
-                <div className="case-box">
-                  <h2 className="category">
-                    Case
-                  </h2>
-                  <h2 className="case-title">
-                    {caseObject.title}
-                  </h2>
-                  <form onSubmit={onSubmit}>
-                    <div>
-                      <label htmlFor="title">Title</label>
+      <Form onSubmit={onSubmit} defaultValues={caseObject}>
+        {({ submitForm }) => {
+          return (
+            <form onSubmit={submitForm}>
+              <div className="main-contents">
+                <Container className="detailed-case-component" fluid={true}>
+                  <Col
+                    md="3"
+                    className="hidden-sm-down sidepanel hidden-sm-down"
+                  >
+                    <p className="case-location">
+                      country picker
+                    </p>
+                    <p className="sub-heading">
+                      Keywords
+                    </p>
+                    keyword picker
+                    <p className="sub-heading">
+                      Related Content
+                    </p>
+                    <div className="related-content">
+                      <a href="#">Cases</a>
+                      <a href="#">Methods</a>
+                      <a href="#">Surveys</a>
+                      <a href="#">Datasets</a>
                     </div>
-                    <Text field="title" placeholder="case title" />
-                    <div>
-                      <label htmlFor="body_en">Body</label>
+                  </Col>
+                  <Col md="8" xs="12" className="main-area">
+                    <div className="case-box">
+                      <h2 className="category">
+                        Case
+                      </h2>
+                      <h2 className="case-title">
+                        {caseObject.title}
+                      </h2>
+                      <div>
+                        <label htmlFor="title">Title</label>
+                      </div>
+                      <Text field="title" placeholder="case title" />
+                      <div>
+                        <label htmlFor="body_en">Body</label>
+                      </div>
+                      <BodyEditor value={caseObject.body} />
                     </div>
-                    <BodyEditor value={caseObject.body} />
-                    <button type="button" onClick={onSubmit}>Submit</button>
-                  </form>
-                </div>
-              </Col>
-            </Container>
-          </div>
-        </Form>
-      </div>
+                    <button type="submit">Submit</button>
+                  </Col>
+                </Container>
+              </div>
+            </form>
+          );
+        }}
+
+      </Form>
     );
   }
 }
