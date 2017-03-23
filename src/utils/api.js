@@ -110,7 +110,7 @@ class API {
   };
   fetchNouns = function(noun) {
     let url = APIURL + "/search/getAllForType?objType=" + noun;
-    fetch(url).then(response => response.json()).catch(function(error) {
+    return fetch(url).then(response => response.json()).catch(function(error) {
       console.log(
         `There has been a problem with your fetch operation: (${url}) ${error}`
       );
