@@ -1,21 +1,22 @@
-{"_source":
-  {
-    "body_en": "<p>In the last decades we have been experiencing an incredible technology boom in the field of participatory methods and procedures. Currently we have already hundreds of tools of how to organize processes of public deliberation, community organizing and participatory governance as well as organizational development, conflict resolution  and project management. Especially through internet and telecommunications every day new tools and platforms of social media and political interaction are generated.</p><p>That is wonderful! But: What do we know about these new political techniques? Which competencies do we need to use them properly?  Because: The more tools we have, the more important it is to have the procedural knowledge ,when to use which tool in which situation!</p><p>For that we - in the Procedere-Network - generated the Meta-Matching-Method©, based on a general theory on procedures (Verfahrenstheorie), to guide practitioners and scientists in how to order and communicate on procedures (Taxonomy) and on how to develop, adopt and apply them properly (Praxeology). This procedural meta-competencies we want to exchange with colleagues al around the world.  </p><p>You are invited to visit us at <a href=\"http://www.procedere.org\">www.procedere.org</a> or contact us by mailing to <a href=\"mailto:fuhrmann@procedere.org\">fuhrmann@procedere.org</a></p>",
-    "geo_latitude": "0° 0' 0\" N",
-    "geo_longitude": "0° 0' 0\" E",
+{
+    "body": "<p>In the last decades we have been experiencing an incredible technology boom in the field of participatory methods and procedures. Currently we have already hundreds of tools of how to organize processes of public deliberation, community organizing and participatory governance as well as organizational development, conflict resolution  and project management. Especially through internet and telecommunications every day new tools and platforms of social media and political interaction are generated.</p><p>That is wonderful! But: What do we know about these new political techniques? Which competencies do we need to use them properly?  Because: The more tools we have, the more important it is to have the procedural knowledge ,when to use which tool in which situation!</p><p>For that we - in the Procedere-Network - generated the Meta-Matching-Method©, based on a general theory on procedures (Verfahrenstheorie), to guide practitioners and scientists in how to order and communicate on procedures (Taxonomy) and on how to develop, adopt and apply them properly (Praxeology). This procedural meta-competencies we want to exchange with colleagues al around the world.  </p><p>You are invited to visit us at <a href=\"http://www.procedere.org\">www.procedere.org</a> or contact us by mailing to <a href=\"mailto:fuhrmann@procedere.org\">fuhrmann@procedere.org</a></p>",
+    "location": {
+        "latitude": "0° 0' 0\" N",
+        "longitude": "0° 0' 0\" E",
+        "country": ""
+    },
     "language": "English",
-    "other_images": "[]",
-    "lead_image": "{\"src\": \"Procedere-logo-kurz.jpg\", \"title\": \"Procedere Verbund\"}",
-    "published": "Yes",
+    "other_images": [],
+    "lead_image": {"src": "Procedere-logo-kurz.jpg", "title": "Procedere Verbund"},
+    "published": true,
     "content_language": "English||Deutsch - German",
-    "tags": "procedural competencies||meta-theory||theory on procedures||toolbox",
+    "tags": ["procedural competencies", "meta-theory", "theory on procedures", "toolbox"],
     "path": "/organizations/procedere",
     "author_uid": "111417",
-    "lastmodified": 1484364742822,
+    "lastmodified": "2016-01-03T22:51:34",
     "post_date": "2016-01-03T22:51:34",
-    "title_en": "Procedere",
+    "title": "Procedere",
     "id": "4290",
     "updated_date": "2016-01-03T22:51:34",
-    "type_": "organization"
-  }
+    "type": "organization"
 }
