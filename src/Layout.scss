@@ -57,7 +57,7 @@
 
   .logo-area {
     float: left;
-    width: 320px;
+    width: 250px;
     @include media-breakpoint-up(lg){
       width:25%;
     }
@@ -66,7 +66,10 @@
       float: left;
       padding: 16px 20px;
       background:#222;
-      margin-right:16px;
+      margin-right:10px;
+      @include media-breakpoint-up(sm){
+        margin-right:16px;
+      }
       &:hover{
         background:#444;
       }
@@ -89,18 +92,19 @@
 
   .search-box-area {
     float: left;
-    width: 40%;
-    padding-left: 15px;
-
-    @include media-breakpoint-down(md) {
-      position: absolute;
-      margin-top: 64px;
-      background-color: lighten($black,10%);
-      width: 100%;
-      padding-left: 36px;
-      padding-right: 36px;
-      box-sizing: border-box;
-      margin-top: 64px;
+    padding:0 15px;
+    position: absolute;
+    margin-top: 64px;
+    background-color: lighten($black,10%);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 64px;
+    @include media-breakpoint-up(lg) {
+      padding:0;
+      position:relative;
+      margin-top:0;
+      width:40%;
+      background-color:transparent;
     }
   }
 
@@ -147,29 +151,40 @@
 // Create content button 
 .createButton {
   background:#fff;
-  display:inline-block;
   position:absolute;
-  right:120px;
-  height:40px;
+  display:inline-block;
+  right:110px;
   top:12px;
-  padding:0 16px;
-  padding-top:8px;
+  height:40px;
+  padding:8px 14px 0;
   border-radius:2px;
   transition:background .2s;
+  @include media-breakpoint-up(sm) {
+    position:absolute;
+    display:inline-block;
+    padding:8px 16px 0;
+    right:120px;
+    top:12px;
+    right:120px;
+  }
   &:before {
-    content:"Create";
-    position:relative;
-    color:$black;
-    font-weight:500;
+    @include media-breakpoint-up(sm) {
+      content:"Create";
+      position:relative;
+      color:$black;
+      font-weight:500;
+    }
   }
   &:after {
     content:"+";
     position:relative;
     color:$black;
     font-weight:500;
-    padding-left:10px;
-    margin-left:10px;
-    border-left:1px solid $black;
+    @include media-breakpoint-up(sm) {
+      border-left:1px solid $black;
+      margin-left:10px;
+      padding-left:10px;
+    }
   }
   &:hover {
     background:$dark-grey;

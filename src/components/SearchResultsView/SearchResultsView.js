@@ -181,7 +181,7 @@ export class SearchResultsView extends React.Component {
           </Col>
           <Col md="9">
             <div className="clearfix search-actions-area">
-              <div className="filters hidden-sm-down">
+              <div className="filters hidden-xs-down">
                 <a
                   href="#"
                   onClick={preventDefault(
