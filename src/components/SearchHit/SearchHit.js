@@ -8,32 +8,30 @@ import backgroundImage from "../../img/pp-thumbnail-1.jpg";
 
 export class SearchHit extends React.Component {
   getInnerHTML() {
-    return { __html: this.props.record._source.body_en };
+    return { __html: this.props.record.body };
   }
 
   render() {
-    let result = this.props.record._source;
+    let result = this.props.record;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
     let pic = "";
     let otherImg = "";
     if (result.lead_image) {
-      let comma = result.lead_image.search(",");
-      pic = awsUrl + encodeURIComponent(result.lead_image.slice(9, comma - 1));
+      pic = awsUrl + encodeURIComponent(result.lead_image.url);
     }
-    if (result.other_images) {
-      let bracket = result.other_images.search("]");
-      otherImg = awsUrl +
-        encodeURIComponent(result.other_images.slice(2, bracket - 1));
+    if (result.other_images.length) {
+      otherImg = awsUrl + encodeURIComponent(result.other_images[0].url);
     }
     let locale = this.props.intl.locale;
     let id = result.id;
-    let type = result.type_;
-    let title = result.title_en;
-    let link = `/${locale}/${type}/${id}`;
+    let type = result.type;
+    let title, link;
+    title = result.title;
+    link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
     let thumbnailClass = "thumbnail " + type;
     if (!title) {
-      console.log("missing title: ", result);
+        console.log("missing title: ", result);
     }
     let thumbnailStyle = { backgroundImageSrc: backgroundImage };
     let dateString = moment(result.updated_date).fromNow();
@@ -43,45 +41,62 @@ export class SearchHit extends React.Component {
           ? <div className="grid-item">
               <Link to={link} className="result-title">
                 <div className="result-type-text">{type}</div>
-                {pic && pic.length > awsUrl.length
-                  ? <div className="case-images">
-                      <img role="presentation" src={pic} />
-                    </div>
-                  : otherImg && otherImg.length > awsUrl.length
-                      ? <div className="case-images">
-                          <img role="presentation" src={otherImg} />
-                        </div>
-                      : <div className={thumbnailClass} style={thumbnailStyle} />}
-                <div className="result-title-text">{title}</div>
-              </Link>
-              <p className="result-author">
-                {firstSubmit}
-              </p>
-              <p className="result-date">
-                {dateString}
-              </p>
+                  {pic && pic.length > awsUrl.length
+                    ? <div className="case-images">
+                        <img role="presentation" src={pic} />
+                      </div>
+                    : otherImg && otherImg.length > awsUrl.length
+                    ? <div className="case-images">
+                        <img
+                          role="presentation"
+                          src={otherImg}
+                        />
+                      </div>
+                    : <div 
+                        className={thumbnailClass}
+                        style={thumbnailStyle}
+                      />}
+                  <div className="result-title-text">{title}</div>
+                </Link>
+                <p className="result-author">
+                  {firstSubmit}
+                </p>
+                <p className="result-date">
+                  {dateString}
+                </p>
             </div>
           : <Row className="list-item">
               <Col md="3">
                 {pic && pic.length > awsUrl.length
                   ? <Link to={link}>
                       <div className="case-images">
-                        <img role="presentation" src={pic} />
+                        <img
+                            role="presentation"
+                            src={pic}
+                        />
                       </div>
                     </Link>
                   : otherImg && otherImg.length > awsUrl.length
-                      ? <Link to={link}>
-                          <div className="case-images">
-                            <img role="presentation" src={otherImg} />
-                          </div>
-                        </Link>
-                      : <Link to={link}>
-                          <div className="thumbnail" style={thumbnailStyle} />
-                        </Link>}
+                  ? <Link to={link}>
+                      <div className="case-images">
+                        <img
+                          role="presentation"
+                          src={otherImg}
+                        />
+                      </div>
+                    </Link>
+                  : <Link to={link}>
+                      <div
+                        className="thumbnail"
+                        style={thumbnailStyle}
+                      />
+                    </Link>}
               </Col>
               <Col md="6">
                 <Link to={link}>
-                  <div className="result-title-text">{title}</div>
+                  <div className="result-title-text">
+                    {title}
+                  </div>
                 </Link>
                 <p className="result-author">
                   {firstSubmit}
