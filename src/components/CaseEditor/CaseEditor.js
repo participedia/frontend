@@ -111,6 +111,7 @@ class _CaseEditor extends Component {
                       <p className="sub-heading">
                         {this.props.intl.formatMessage({ id: "country_picker" })}
                       </p>
+                      <Geosuggest />
                     </div>
                     <p className="sub-heading">
                       Keywords

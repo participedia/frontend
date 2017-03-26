@@ -33,8 +33,8 @@ export default class CaseEditorContainer extends Component {
   }
 
   render() {
-    if (this.state) {
-      // Need to make this less repetitive
+    if (this.state && this.state.cases && this.state.methods && this.state.organizations) {
+      // need to turn this into a loop
       let casesArr = Object.keys(this.state.cases).map((k) => k)
       let methodsArr = Object.keys(this.state.methods).map((k) => k)
       let orgsArr = Object.keys(this.state.organizations).map((k) => k)
