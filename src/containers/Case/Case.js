@@ -6,6 +6,7 @@ import api from "../../utils/api";
 import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
+import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconBookmark from "../../img/pp-case-icon-bookmark.svg";
@@ -62,6 +63,18 @@ export class Case extends React.Component {
       if (caseObject.other_images.length) {
         otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url);
       }
+      let theLength = "";
+      let pics = [];
+      if (caseObject && caseObject.lead_image) {
+        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url))
+      }
+      if (caseObject && caseObject.other_images.length) {
+        theLength = caseObject.other_images
+        Object.keys(theLength).forEach(function (key) {
+          let obj = theLength[key]
+          pics.push(awsUrl + encodeURIComponent(obj.url))
+        });
+      }
 
       return (
         <div>
@@ -106,15 +119,7 @@ export class Case extends React.Component {
                     <h2 className="case-title">
                       {caseObject.title}
                     </h2>
-                    {pic && pic.length > awsUrl.length
-                      ? <div className="case-images">
-                          <img alt="" src={pic} />
-                        </div>
-                      : otherImg && otherImg.length > awsUrl.length
-                          ? <div className="case-images">
-                              <img alt="" src={otherImg} />
-                            </div>
-                          : undefined}
+                    <ItemGallery items={pics} />
                     <div className="authorship-details">
                       <p className="author-line">
                         First submitted by&nbsp;
