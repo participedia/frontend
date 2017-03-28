@@ -166,13 +166,16 @@
     "add_location": "Add a location",
     "related_cases": "Related cases",
     "search_related_cases": "Search for related cases",
+    "search_related_methods": "Search for related methods",
+    "search_related_orgs": "Search for related organizations",
     "submit": "Submit",
     "add_a_case": "Add a Case",
     "add_a_method": "Add a Method",
     "add_an_organization": "Add an Organization",
     "add_a_survey": "Add a Survey",
     "add_a_dataset": "Add a Data Set",
-    "sorry_upload": "Sorry, upload only works if you're logged in."
+    "sorry_upload": "Sorry, upload only works if you're logged in.",
+    "country_picker": "Country Picker"
   },
   "fr": {
     "chronological": "Plus Récentes"

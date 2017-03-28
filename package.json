@@ -56,6 +56,7 @@
     "react-dropzone-s3-uploader": "^0.11.0",
     "react-form": "^1.2.6",
     "react-geosuggest": "^2.0.0",
+    "react-image-gallery": "^0.7.13",
     "react-intl": "^2.1.5",
     "react-leaflet": "^1.0.1",
     "react-leaflet-choropleth": "github:davidascher/react-leaflet-choropleth",
