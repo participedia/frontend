@@ -71,6 +71,7 @@ class API {
       return error;
     });
   };
+
   fetchCaseById = function(caseId) {
     let url = APIURL + "/case/" + caseId;
     return fetch(url)
@@ -79,6 +80,32 @@ class API {
       .catch(function(error) {
         console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
+
+  saveNewCase = function(caseObj) {
+    let url = APIURL + "/case/new";
+    return fetch(url, { method: "POST", body: caseObj })
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with saving the case: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
+
+  saveCase = function(caseObj) {
+    let url = APIURL + "/case/" + caseObj.id;
+    return fetch(url, { method: "PUT", body: caseObj })
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with saving the case: (${url}) ${error}`
         );
         throw error;
       });
@@ -96,6 +123,7 @@ class API {
         return error;
       });
   };
+
   fetchOrgById = function(caseId) {
     let url = APIURL + "/organization/" + caseId;
     return fetch(url)
@@ -108,6 +136,7 @@ class API {
         return error;
       });
   };
+
   fetchNouns = function(noun) {
     let url = APIURL + "/search/getAllForType?objType=" + noun;
     return fetch(url).then(response => response.json()).catch(function(error) {
