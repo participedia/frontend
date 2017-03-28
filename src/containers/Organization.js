@@ -17,7 +17,7 @@ export class Organization extends React.Component {
   componentWillMount() {
     let component = this;
     api.fetchOrgById(this.props.params.nodeID).then(function(data) {
-      component.setState({ data: data, htmlBody: data.body_en });
+      component.setState({ data: data, htmlBody: data.body });
     });
   }
 
@@ -31,39 +31,41 @@ export class Organization extends React.Component {
 
   render() {
     if (this.state && this.state.data) {
-      let caseObject = this.state.data;
+      let organizationObject = this.state.data;
       let tags = "";
       let communication_modes = "";
-      if (caseObject.specific_topics) {
-        tags = caseObject.specific_topics.split(",").map(function(tag, i) {
-          return <a key={i} href="#">{tag.trim()}</a>;
-        });
-      }
-      if (caseObject.communication_mode) {
-        communication_modes = caseObject.communication_mode
+      if (organizationObject.specific_topics) {
+        tags = organizationObject.specific_topics
           .split(",")
           .map(function(tag, i) {
             return <a key={i} href="#">{tag.trim()}</a>;
           });
       }
-      let post_date = moment(caseObject.post_date).format("LL");
-      let updated_date = moment(caseObject.updated_date).format("LL");
-      let first_author = caseObject.author.name;
+      if (organizationObject.communication_mode) {
+        communication_modes = organizationObject.communication_mode
+          .split(",")
+          .map(function(tag, i) {
+            return <a key={i} href="#">{tag.trim()}</a>;
+          });
+      }
+      let post_date = moment(organizationObject.post_date).format("LL");
+      let updated_date = moment(organizationObject.updated_date).format("LL");
       let locale = this.props.intl.locale;
-      let first_author_url = "/" + locale + "/users/" + caseObject.author.id;
-      let last_author = "???"; // TODO figure out how last author for organization details
+      let author = organizationObject.authors[0];
+      let first_author = (author && author.name) || "unknown";
+      let first_author_url = author ? "/" + locale + "/users/" + author.id : "";
+      let last_author = organizationObject.authors.slice(-1)[0];
+      let last_author_name = last_author.name;
+      let last_author_url = "/" + locale + "/users/" + last_author.id;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
       let pic = "";
       let otherImg = "";
-      if (caseObject.lead_image) {
-        let comma = caseObject.lead_image.search(",");
-        pic = awsUrl +
-          encodeURIComponent(caseObject.lead_image.slice(9, comma - 1));
+      if (organizationObject.lead_image) {
+        pic = awsUrl + encodeURIComponent(organizationObject.lead_image.url);
       }
-      if (caseObject.other_images) {
-        let bracket = caseObject.other_images.search("]");
+      if (organizationObject.other_images.length) {
         otherImg = awsUrl +
-          encodeURIComponent(caseObject.other_images.slice(2, bracket - 1));
+          encodeURIComponent(organizationObject.other_images[0].url);
       }
 
       return (
@@ -71,10 +73,10 @@ export class Organization extends React.Component {
           <div className="main-contents">
             <Container className="detailed-case-component" fluid={true}>
               <Col md="3" className="sidepanel hidden-sm-down">
-                {caseObject.geo_country
+                {organizationObject.location.country
                   ? <CountryMap
-                      city={caseObject.geo_city}
-                      countrycode={caseObject.geo_country}
+                      city={organizationObject.location.city}
+                      countrycode={organizationObject.location.country}
                     />
                   : undefined}
                 <p className="sub-heading">
@@ -108,7 +110,7 @@ export class Organization extends React.Component {
                     Organization
                   </h2>
                   <h2 className="case-title">
-                    {caseObject.title_en}
+                    {organizationObject.title}
                   </h2>
                   {pic && pic.length > awsUrl.length
                     ? <div className="case-images">
@@ -131,8 +133,8 @@ export class Organization extends React.Component {
                     </p>
                     <p className="author-line">
                       Most recent changes by&nbsp;
-                      <a href="#">
-                        {last_author}
+                      <a href={last_author_url}>
+                        {last_author_name}
                       </a>
                     </p>
                     <p className="date-line">
@@ -141,17 +143,29 @@ export class Organization extends React.Component {
                   </div>
                   <div
                     className="case-html"
-                    dangerouslySetInnerHTML={{ __html: caseObject.body_en }}
+                    dangerouslySetInnerHTML={{
+                      __html: organizationObject.body
+                    }}
                   />
                 </div>
               </Col>
               <Col md="1" className="case-tools hidden-sm-down">
                 <div className="top-icons">
-                  <a href="#"><img src={caseIconBookmark} alt="" /></a>
-                  <a href="#"><img src={caseIconSettings} alt="" /></a>
-                  <a href="#"><img src={caseIconFB} alt="" /></a>
-                  <a href="#"><img src={caseIconTW} alt="" /></a>
-                  <a href="#"><img src={caseIconShare} alt="" /></a>
+                  <a href="#">
+                    <img src={caseIconBookmark} alt="" />
+                  </a>
+                  <a href="#">
+                    <img src={caseIconSettings} alt="" />
+                  </a>
+                  <a href="#">
+                    <img src={caseIconFB} alt="" />
+                  </a>
+                  <a href="#">
+                    <img src={caseIconTW} alt="" />
+                  </a>
+                  <a href="#">
+                    <img src={caseIconShare} alt="" />
+                  </a>
                 </div>
               </Col>
             </Container>
