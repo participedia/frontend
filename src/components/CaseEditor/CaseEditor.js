@@ -182,6 +182,7 @@ class _CaseEditor extends Component {
                                 <div className="checkbox" />
                                 <img
                                   className="img-fluid"
+                                  alt=""
                                   onClick={this.makeLead.bind(this, leadImg)}
                                   src={leadImg}
                                 />
@@ -205,6 +206,7 @@ class _CaseEditor extends Component {
                                   <div className="checkbox" />
                                   <img
                                     key={id}
+                                    alt=""
                                     className="img-fluid"
                                     onClick={this.makeLead.bind(this, photo)}
                                     src={photo}

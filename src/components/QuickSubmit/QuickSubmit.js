@@ -2,24 +2,27 @@ import React, { Component, PropTypes } from "react"; // eslint-disable-line no-u
 import { connect } from "react-redux";
 import ItemForm from "../ItemForm/ItemForm";
 import { reduxForm } from "redux-form";
-import { loadNouns, ORGANIZATION, CASE, METHOD } from "../../actions";
+import { loadNouns, ORGANIZATION, CASE, METHOD, makeCase } from "../../actions";
 
 class QuickSubmit extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     loadOrganizationList: PropTypes.func.isRequired
   };
-  handleSubmit = values => {
+  handleSubmit(values, event) {
     // Do something with the form values
-    console.log("values", values);
-  };
+    console.log("values", values, "event", event, "this", this);
+    if (this.props.itemType === "case") {
+    }
+    // this.props.router.push("/");
+  }
 
   componentDidMount() {
     loadOrganizationList(this.props);
   }
 
   render() {
-    return <ItemForm {...this.props} onSubmit={this.handleSubmit} />;
+    return <ItemForm {...this.props} onSubmit={this.handleSubmit.bind(this)} />;
   }
 }
 
