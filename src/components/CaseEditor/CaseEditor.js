@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl, intlShape } from "react-intl";
-import { Form, FormField, Text } from "react-form";
+import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
 import { Container, Row, Col } from "reactstrap";
@@ -67,13 +67,13 @@ class _CaseEditor extends Component {
   constructor(props) {
     super(props);
     this.makeLead = this.makeLead.bind(this);
-    this.state = { 
-      lead: ''
+    this.state = {
+      lead: ""
     };
   }
 
   makeLead(src) {
-    this.setState({ lead: src }); 
+    this.setState({ lead: src });
   }
 
   render() {
@@ -83,12 +83,12 @@ class _CaseEditor extends Component {
     let leadImg = "";
     let otherImgs = [];
     if (caseObject && caseObject.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url)
+      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url);
     }
     if (caseObject && caseObject.other_images) {
-      Object.keys(caseObject.other_images).forEach(function (key) {
-        let obj = caseObject.other_images[key]
-        otherImgs.push(awsUrl + encodeURIComponent(obj.url))
+      Object.keys(caseObject.other_images).forEach(function(key) {
+        let obj = caseObject.other_images[key];
+        otherImgs.push(awsUrl + encodeURIComponent(obj.url));
       });
     }
 
@@ -109,20 +109,24 @@ class _CaseEditor extends Component {
                   >
                     <div className="case-location">
                       <p className="sub-heading">
-                        {this.props.intl.formatMessage({ id: "country_picker" })}
+                        {this.props.intl.formatMessage({
+                          id: "country_picker"
+                        })}
                       </p>
                       <Geosuggest />
                     </div>
                     <p className="sub-heading">
                       Keywords
                     </p>
-                      keyword picker
+                    keyword picker
                     <p className="sub-heading">
                       Related Content
                     </p>
                     <div className="related-content">
                       <div className="pb-1">
-                        <h5>{this.props.intl.formatMessage({ id: "cases" })}</h5>
+                        <h5>
+                          {this.props.intl.formatMessage({ id: "cases" })}
+                        </h5>
                         <AutoComplete
                           hintText={this.props.intl.formatMessage({
                             id: "search_related_cases"
@@ -131,7 +135,9 @@ class _CaseEditor extends Component {
                         />
                       </div>
                       <div className="pb-1">
-                        <h5>{this.props.intl.formatMessage({ id: "methods" })}</h5>
+                        <h5>
+                          {this.props.intl.formatMessage({ id: "methods" })}
+                        </h5>
                         <AutoComplete
                           hintText={this.props.intl.formatMessage({
                             id: "search_related_methods"
@@ -140,7 +146,11 @@ class _CaseEditor extends Component {
                         />
                       </div>
                       <div className="pb-1">
-                        <h5>{this.props.intl.formatMessage({ id: "organizations" })}</h5>
+                        <h5>
+                          {this.props.intl.formatMessage({
+                            id: "organizations"
+                          })}
+                        </h5>
                         <AutoComplete
                           hintText={this.props.intl.formatMessage({
                             id: "search_related_orgs"
@@ -159,38 +169,53 @@ class _CaseEditor extends Component {
                         {caseObject.title}
                       </h2>
                       <Row className="itemPics">
-                        { leadImg ?
-                          <Col sm="6" md="3">
-                            <div className={this.state.lead === leadImg || this.state.lead === '' ? "box lead" : "box"}>
-                              <div className="checkbox"></div>
-                              <img className="img-fluid" onClick={this.makeLead.bind(this, leadImg)} src={leadImg} />
-                              { this.state.lead === leadImg ||  this.state.lead === '' ?
-                              <small>Lead Image</small>
-                              : 
-                              undefined
-                              }
-                            </div>  
-                          </Col>
-                          :
-                          undefined
-                        }
-                        { otherImgs ?
-                          otherImgs.map((photo, id) => 
-                          <Col key={id} sm="6" md="3">
-                            <div className={this.state.lead === photo ? "box lead" : "box"}>
-                              <div className="checkbox"></div>
-                              <img key={id} className="img-fluid" onClick={this.makeLead.bind(this, photo)} src={photo} />
-                              { this.state.lead === photo ?
-                                <small>Lead Image</small>
-                                :
-                                undefined 
-                              } 
-                            </div>
-                          </Col>
-                          )
-                          :
-                          undefined
-                        }
+                        {leadImg
+                          ? <Col sm="6" md="3">
+                              <div
+                                className={
+                                  this.state.lead === leadImg ||
+                                    this.state.lead === ""
+                                    ? "box lead"
+                                    : "box"
+                                }
+                              >
+                                <div className="checkbox" />
+                                <img
+                                  className="img-fluid"
+                                  onClick={this.makeLead.bind(this, leadImg)}
+                                  src={leadImg}
+                                />
+                                {this.state.lead === leadImg ||
+                                  this.state.lead === ""
+                                  ? <small>Lead Image</small>
+                                  : undefined}
+                              </div>
+                            </Col>
+                          : undefined}
+                        {otherImgs
+                          ? otherImgs.map((photo, id) => (
+                              <Col key={id} sm="6" md="3">
+                                <div
+                                  className={
+                                    this.state.lead === photo
+                                      ? "box lead"
+                                      : "box"
+                                  }
+                                >
+                                  <div className="checkbox" />
+                                  <img
+                                    key={id}
+                                    className="img-fluid"
+                                    onClick={this.makeLead.bind(this, photo)}
+                                    src={photo}
+                                  />
+                                  {this.state.lead === photo
+                                    ? <small>Lead Image</small>
+                                    : undefined}
+                                </div>
+                              </Col>
+                            ))
+                          : undefined}
                         <Col md="3"><Upload /></Col>
                       </Row>
                       <div>

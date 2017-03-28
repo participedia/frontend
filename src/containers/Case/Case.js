@@ -52,27 +52,18 @@ export class Case extends React.Component {
       let last_author_name = last_author.name;
       let last_author_url = "/" + locale + "/users/" + last_author.id;
       let id = this.props.params.nodeID;
-      let editLink = `/${locale}/case/${id}/edit`;
-      // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let editLinkUrl = `/${locale}/case/${id}/edit`;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
-      let pic = "";
-      let otherImg = "";
-      if (caseObject.lead_image) {
-        pic = awsUrl + encodeURIComponent(caseObject.lead_image.url);
-      }
-      if (caseObject.other_images.length) {
-        otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url);
-      }
       let theLength = "";
       let pics = [];
       if (caseObject && caseObject.lead_image) {
-        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url))
+        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url));
       }
       if (caseObject && caseObject.other_images.length) {
-        theLength = caseObject.other_images
-        Object.keys(theLength).forEach(function (key) {
-          let obj = theLength[key]
-          pics.push(awsUrl + encodeURIComponent(obj.url))
+        theLength = caseObject.other_images;
+        Object.keys(theLength).forEach(function(key) {
+          let obj = theLength[key];
+          pics.push(awsUrl + encodeURIComponent(obj.url));
         });
       }
 
@@ -157,7 +148,7 @@ export class Case extends React.Component {
                 </Col>
               </Row>
             </Container>
-            <Link to={editLink}>
+            <Link to={editLinkUrl}>
               <FloatingActionButton className="editButton">
                 <ContentPencil />
               </FloatingActionButton>
