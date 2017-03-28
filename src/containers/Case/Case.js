@@ -108,11 +108,11 @@ export class Case extends React.Component {
                     </h2>
                     {pic && pic.length > awsUrl.length
                       ? <div className="case-images">
-                          <img role="presentation" src={pic} />
+                          <img alt="" src={pic} />
                         </div>
                       : otherImg && otherImg.length > awsUrl.length
                           ? <div className="case-images">
-                              <img role="presentation" src={otherImg} />
+                              <img alt="" src={otherImg} />
                             </div>
                           : undefined}
                     <div className="authorship-details">
