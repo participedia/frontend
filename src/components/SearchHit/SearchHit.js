@@ -8,7 +8,7 @@ import backgroundImage from "../../img/pp-thumbnail-1.jpg";
 
 export class SearchHit extends React.Component {
   getInnerHTML() {
-    return { __html: this.props.record.body_en };
+    return { __html: this.props.record.body };
   }
   render() {
     let result = this.props.record;
