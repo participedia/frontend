@@ -2,27 +2,28 @@ import React, { Component, PropTypes } from "react"; // eslint-disable-line no-u
 import { connect } from "react-redux";
 import ItemForm from "../ItemForm/ItemForm";
 import { reduxForm } from "redux-form";
-import { loadNouns, ORGANIZATION, CASE, METHOD, makeCase } from "../../actions";
+import {
+  loadNouns,
+  ORGANIZATION,
+  CASE,
+  METHOD,
+  makeObject,
+  CASE_TYPE
+} from "../../actions";
 
 class QuickSubmit extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    itemType: PropTypes.string.isRequired,
     loadOrganizationList: PropTypes.func.isRequired
   };
-  handleSubmit(values, event) {
-    // Do something with the form values
-    console.log("values", values, "event", event, "this", this);
-    if (this.props.itemType === "case") {
-    }
-    // this.props.router.push("/");
-  }
 
   componentDidMount() {
     loadOrganizationList(this.props);
   }
 
   render() {
-    return <ItemForm {...this.props} onSubmit={this.handleSubmit.bind(this)} />;
+    return <ItemForm {...this.props} />;
   }
 }
 
@@ -58,9 +59,15 @@ function loadOrganizationList(props) {
   props.dispatch(loadNouns(METHOD));
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
-    onSubmit: function(data) {},
+    onSubmit: function(data) {
+      if (data["type"] === "case") {
+        let payload = Object.assign({}, data);
+        delete payload["type"];
+        dispatch(makeObject(CASE_TYPE, payload));
+      }
+    },
     loadOrganizationList: function() {
       // XXX should make sure this is lazy
       dispatch(loadNouns(ORGANIZATION));
@@ -100,23 +107,29 @@ class _QuickSurvey extends React.Component {
   }
 }
 
-let redform = reduxForm({ form: "quicksubmit" });
-
 // Decorate the form component
 let CaseForm = connect(mapStateToProps, mapDispatchToProps)(
-  redform(_QuickCase)
+  reduxForm({ form: "quickcase", initialValues: { type: "case" } })(_QuickCase)
 );
 let MethodForm = connect(mapStateToProps, mapDispatchToProps)(
-  redform(_QuickMethod)
+  reduxForm({ form: "quickmethod", initialValues: { type: "method" } })(
+    _QuickMethod
+  )
 );
 let OrganizationForm = connect(mapStateToProps, mapDispatchToProps)(
-  redform(_QuickOrganization)
+  reduxForm({ form: "quickorg", initialValues: { type: "organization" } })(
+    _QuickOrganization
+  )
 );
 let DatasetForm = connect(mapStateToProps, mapDispatchToProps)(
-  redform(_QuickDataset)
+  reduxForm({ form: "quickdataset", initialValues: { type: "dataset" } })(
+    _QuickDataset
+  )
 );
 let SurveyForm = connect(mapStateToProps, mapDispatchToProps)(
-  redform(_QuickSurvey)
+  reduxForm({ form: "quicksurvey", initialValues: { type: "survey" } })(
+    _QuickSurvey
+  )
 );
 
 export { CaseForm, MethodForm, OrganizationForm, DatasetForm, SurveyForm };

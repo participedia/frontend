@@ -10,6 +10,19 @@ if (!APIURL) {
 
 import queryString from "query-string";
 
+const signedFetch = function(url, method, payload) {
+  let opts = {
+    method: method || "get",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("id_token"),
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  if (payload) opts.body = JSON.stringify(payload);
+  return fetch(url, opts);
+};
+
 class API {
   secureFetch = function(url, method, payload) {
     let opts = {
@@ -21,14 +34,7 @@ class API {
       }
     };
     if (payload) opts.body = JSON.stringify(payload);
-    return fetch(url, opts)
-      .then(response => response.json())
-      .catch(function(error) {
-        log.error(
-          `There has been a problem with your fetch operation: (${url}) ${error}`
-        );
-        return error;
-      });
+    return fetch(url, opts);
   };
 
   fetchGeoJSON = function(countryCode) {
@@ -87,8 +93,14 @@ class API {
 
   saveNewCase = function(caseObj) {
     let url = APIURL + "/case/new";
-    return fetch(url, { method: "POST", body: caseObj })
+    return signedFetch(url, "POST", caseObj)
       .then(response => response.json())
+      .then(function(response) {
+        if (!response.ok) {
+          throw Error(response.message);
+        }
+        return response;
+      })
       .then(json => json.data)
       .catch(function(error) {
         console.error(
@@ -100,7 +112,7 @@ class API {
 
   saveCase = function(caseObj) {
     let url = APIURL + "/case/" + caseObj.id;
-    return fetch(url, { method: "PUT", body: caseObj })
+    return signedFetch(url, "PUT", caseObj)
       .then(response => response.json())
       .then(json => json.data)
       .catch(function(error) {

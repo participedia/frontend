@@ -27,16 +27,10 @@ const renderTextField = field => (
 
 class ItemForm extends Component {
   render() {
-    const { onSubmit } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <Container>
-        <Form
-          className="quick-submit"
-          onSubmit={function(event, values) {
-            event.preventDefault();
-            onSubmit(event, values);
-          }}
-        >
+        <Form className="quick-submit" onSubmit={handleSubmit}>
           <h2 className="form-title">
             {this.props.intl.formatMessage({
               id: "add_" +
