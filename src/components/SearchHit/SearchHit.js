@@ -10,93 +10,62 @@ export class SearchHit extends React.Component {
   getInnerHTML() {
     return { __html: this.props.record.body };
   }
-
   render() {
     let result = this.props.record;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
     let pic = "";
-    let otherImg = "";
     if (result.lead_image) {
       pic = awsUrl + encodeURIComponent(result.lead_image.url);
-    }
-    if (result.other_images.length) {
-      otherImg = awsUrl + encodeURIComponent(result.other_images[0].url);
+    } else if (result.other_images && result.other_images.length > 0) {
+      pic = awsUrl + encodeURIComponent(result.other_images[0].url);
     }
     let locale = this.props.intl.locale;
     let id = result.id;
     let type = result.type;
-    let title, link;
-    title = result.title;
-    link = `/${locale}/${type}/${id}`;
+    let title = type + ": " + result.title;
+    let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
-    let thumbnailClass = "thumbnail " + type;
     if (!title) {
-        console.log("missing title: ", result);
+      console.log("missing title: ", result);
     }
-    let thumbnailStyle = { backgroundImageSrc: backgroundImage };
+    let thumbnailStyle = {
+      backgroundImageSrc: backgroundImage
+    };
     let dateString = moment(result.updated_date).fromNow();
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
         {this.props.selectedViewType === "grid"
           ? <div className="grid-item">
               <Link to={link} className="result-title">
-                <div className="result-type-text">{type}</div>
-                  {pic && pic.length > awsUrl.length
-                    ? <div className="case-images">
-                        <img role="presentation" src={pic} />
-                      </div>
-                    : otherImg && otherImg.length > awsUrl.length
-                    ? <div className="case-images">
-                        <img
-                          role="presentation"
-                          src={otherImg}
-                        />
-                      </div>
-                    : <div 
-                        className={thumbnailClass}
-                        style={thumbnailStyle}
-                      />}
-                  <div className="result-title-text">{title}</div>
-                </Link>
-                <p className="result-author">
-                  {firstSubmit}
-                </p>
-                <p className="result-date">
-                  {dateString}
-                </p>
+                {pic
+                  ? <div className="case-images">
+                      <img alt="" src={pic} />
+                    </div>
+                  : <div className="thumbnail" style={thumbnailStyle} />}
+                <div className="result-title-text">{title}</div>
+              </Link>
+              <p className="result-author">
+                {firstSubmit}
+              </p>
+              <p className="result-date">
+                {dateString}
+              </p>
             </div>
           : <Row className="list-item">
               <Col md="3">
-                {pic && pic.length > awsUrl.length
+                {pic
                   ? <Link to={link}>
                       <div className="case-images">
-                        <img
-                            role="presentation"
-                            src={pic}
-                        />
-                      </div>
-                    </Link>
-                  : otherImg && otherImg.length > awsUrl.length
-                  ? <Link to={link}>
-                      <div className="case-images">
-                        <img
-                          role="presentation"
-                          src={otherImg}
-                        />
+                        <img alt="" src={pic} />
                       </div>
                     </Link>
                   : <Link to={link}>
-                      <div
-                        className="thumbnail"
-                        style={thumbnailStyle}
-                      />
+                      <div className="thumbnail" style={thumbnailStyle} />
                     </Link>}
               </Col>
               <Col md="6">
                 <Link to={link}>
-                  <div className="result-title-text">
-                    {title}
-                  </div>
+                  <div className="result-title-text">{title}</div>
                 </Link>
                 <p className="result-author">
                   {firstSubmit}
