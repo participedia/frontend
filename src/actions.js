@@ -7,7 +7,9 @@ export const SET_SORT_ORDER = "SET_SORT_ORDER";
 export const SET_LAYOUT = "SET_LAYOUT";
 export const DO_RECENT_SEARCH = "DO_RECENT_SEARCH";
 export const FETCHING_OBJECT = "FETCHING_OBJECT";
+export const SAVING_OBJECT = "SAVING_OBJECT";
 export const RECEIVED_OBJECT = "RECEIVED_OBJECT";
+export const RECEIVED_OBJECT_SAVED = "RECEIVED_OBJECT_SAVED";
 export const CASE_TYPE = "CASE";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
 
@@ -149,6 +151,36 @@ export function loadObject(type, id) {
     console.error("not a case");
     // TODO loadObject needs to deal with things other than cases
   }
+}
+
+export function startSaveObject() {
+  return {
+    type: SAVING_OBJECT,
+    payload: null
+  };
+}
+
+export function receiveObjectSaved(state, json) {
+  return {
+    type: RECEIVED_OBJECT_SAVED,
+    payload: { object: json }
+  };
+}
+
+export function makeObject(type, object) {
+  return dispatch => {
+    dispatch(startSaveObject(object));
+    if (type === CASE_TYPE) {
+      return api
+        .saveNewCase(object)
+        .then(response => dispatch(receiveObjectSaved(object, response)))
+        .catch(reason => {
+          console.error("Error saving case", reason);
+        });
+    } else {
+      // XXX not cases
+    }
+  };
 }
 
 export function changeCategory(category) {

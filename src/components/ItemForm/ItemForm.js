@@ -107,7 +107,6 @@ class ItemForm extends Component {
             />
           </FormGroup>
           <RaisedButton
-            onClick={handleSubmit}
             type="submit"
             label={this.props.intl.formatMessage({ id: "submit" })}
             primary={true}
