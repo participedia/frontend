@@ -6,6 +6,7 @@ import api from "../../utils/api";
 import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
+import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconBookmark from "../../img/pp-case-icon-bookmark.svg";
@@ -51,16 +52,19 @@ export class Case extends React.Component {
       let last_author_name = last_author.name;
       let last_author_url = "/" + locale + "/users/" + last_author.id;
       let id = this.props.params.nodeID;
-      let editLink = `/${locale}/case/${id}/edit`;
-      // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let editLinkUrl = `/${locale}/case/${id}/edit`;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
-      let pic = "";
-      let otherImg = "";
-      if (caseObject.lead_image) {
-        pic = awsUrl + encodeURIComponent(caseObject.lead_image.url);
+      let theLength = "";
+      let pics = [];
+      if (caseObject && caseObject.lead_image) {
+        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url));
       }
-      if (caseObject.other_images.length) {
-        otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url);
+      if (caseObject && caseObject.other_images.length) {
+        theLength = caseObject.other_images;
+        Object.keys(theLength).forEach(function(key) {
+          let obj = theLength[key];
+          pics.push(awsUrl + encodeURIComponent(obj.url));
+        });
       }
 
       return (
@@ -106,15 +110,7 @@ export class Case extends React.Component {
                     <h2 className="case-title">
                       {caseObject.title}
                     </h2>
-                    {pic && pic.length > awsUrl.length
-                      ? <div className="case-images">
-                          <img role="presentation" src={pic} />
-                        </div>
-                      : otherImg && otherImg.length > awsUrl.length
-                          ? <div className="case-images">
-                              <img role="presentation" src={otherImg} />
-                            </div>
-                          : undefined}
+                    <ItemGallery items={pics} />
                     <div className="authorship-details">
                       <p className="author-line">
                         First submitted by&nbsp;
@@ -152,7 +148,7 @@ export class Case extends React.Component {
                 </Col>
               </Row>
             </Container>
-            <Link to={editLink}>
+            <Link to={editLinkUrl}>
               <FloatingActionButton className="editButton">
                 <ContentPencil />
               </FloatingActionButton>
