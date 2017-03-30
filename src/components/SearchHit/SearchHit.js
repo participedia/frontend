@@ -22,9 +22,10 @@ export class SearchHit extends React.Component {
     let locale = this.props.intl.locale;
     let id = result.id;
     let type = result.type;
-    let title = type + ": " + result.title;
+    let title = result.title;
     let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
+    let thumbnailClass = "thumbnail " + type;
     if (!title) {
       console.log("missing title: ", result);
     }
@@ -41,7 +42,7 @@ export class SearchHit extends React.Component {
                   ? <div className="case-images">
                       <img alt="" src={pic} />
                     </div>
-                  : <div className="thumbnail" style={thumbnailStyle} />}
+                  : <div className={thumbnailClass} style={thumbnailStyle} />}
                 <div className="result-title-text">{title}</div>
               </Link>
               <p className="result-author">
@@ -60,7 +61,7 @@ export class SearchHit extends React.Component {
                       </div>
                     </Link>
                   : <Link to={link}>
-                      <div className="thumbnail" style={thumbnailStyle} />
+                      <div className={thumbnailClass} style={thumbnailStyle} />
                     </Link>}
               </Col>
               <Col md="6">
