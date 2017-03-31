@@ -66,9 +66,9 @@ class MyMap extends React.Component {
 
   componentDidMount() {
     api.countsByCountry().then(
-      (function success(countryCounts) {
+      function success(countryCounts) {
         this.setState({ countryCounts: countryCounts });
-      }).bind(this)
+      }.bind(this)
     );
   }
 
@@ -77,10 +77,10 @@ class MyMap extends React.Component {
     let component = this;
     layer.on({
       click: function(event) {
-        L.popup() // eslint-disable-line no-undef
+        L.popup()
           .setLatLng(event.latlng)
           .setContent(labelPerCountry(feature))
-          .openOn(layer._map);
+          .openOn(layer._map); // eslint-disable-line no-undef
         /* do a per-country search */
         if (component.props.onCountryChange) {
           component.props.onCountryChange(feature.properties.name);
