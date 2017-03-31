@@ -11,12 +11,15 @@ if (!APIURL) {
 import queryString from "query-string";
 
 const signedFetch = function(url, method, payload) {
+  let profile = JSON.parse(localStorage.profile);
   let opts = {
     method: method || "get",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("id_token"),
       Accept: "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "X-Auth0-Name": profile.name,
+      "X-Auth0-UserId": profile.user_id
     }
   };
   if (payload) opts.body = JSON.stringify(payload);
