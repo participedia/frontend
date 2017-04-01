@@ -2,9 +2,19 @@ import { connect } from "react-redux";
 import { search } from "../actions";
 import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, { location }) => {
+  let query = "";
+  if (location) {
+    let queryObj = location.query;
+    query = Object.keys(queryObj)
+      .map(function(a) {
+        return a + ":" + JSON.stringify(queryObj[a]);
+      })
+      .join(",");
+  }
+
   return {
-    query: state.cases.query || "",
+    query: state.cases.query || query,
     searching: state.cases.searching || false,
     sortingMethod: state.ui.sort || "chronological",
     selectedCategory: state.ui.category || "All",

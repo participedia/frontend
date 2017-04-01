@@ -69,7 +69,7 @@ export class Layout extends React.Component {
               </Link>
             </div>
             <div className="search-box-area">
-              <SearchQuery />
+              <SearchQuery {...this.props} />
             </div>
             <Link to={addLink}>
               <div className="createButton" />

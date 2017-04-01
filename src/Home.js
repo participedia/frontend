@@ -8,7 +8,7 @@ class Home extends React.Component {
     return (
       <div>
         <Map />
-        <SearchResults />
+        <SearchResults {...this.props} />
       </div>
     );
   }
@@ -16,7 +16,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cases: state.cases
+    search: state.cases
   };
 };
 
