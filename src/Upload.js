@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { updateUserMetaData } from "./actions";
 import { injectIntl } from "react-intl";
 import CheckCircle from "material-ui/svg-icons/action/check-circle";
+import AddToPhotos from "material-ui/svg-icons/image/add-to-photos";
 
 const S3BUCKET_URL = process.env.REACT_APP_UPLOADS_S3_BUCKET;
 const UPLOADS_CDN_URL = process.env.REACT_APP_UPLOADS_CDN_URL;
@@ -23,28 +24,84 @@ class Preview extends React.Component {
   render(props) {
     let blob = this.props.preview;
     let done = this.props.done;
-    let progress = done
-      ? <div>
-          <CheckCircle />
-        </div>
-      : <div><progress max="100" value={this.props.progress} /></div>;
+    let checkmark = <div />;
+    let progress = <div />;
+    if (!done) {
+      progress = (
+        <progress
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            maxWidth: "100%",
+            maxHeight: "100%"
+          }}
+          max="100"
+          value={this.props.progress}
+        />
+      );
+    }
     if (!this.props.started) {
       return (
-        <div style={{ width: "100%", height: "100%" }}>
-          Drop here
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            marginLeft: "33%",
+            marginTop: "33%"
+          }}
+        >
+          <AddToPhotos
+            color="grey"
+            hoverColor="red"
+            style={{
+              width: "33%",
+              height: "33%"
+            }}
+          />
         </div>
       );
     } else {
+      if (done) {
+        checkmark = (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              marginLeft: "33%",
+              marginTop: "33%"
+            }}
+          >
+            <CheckCircle
+              color="lightgreen"
+              style={{
+                width: "33%",
+                height: "33%"
+              }}
+            />
+          </div>
+        );
+      }
       return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
           <div style={{ maxWidth: "100%", maxHeight: "80%" }}>
             <img
               alt=""
-              style={{ maxWidth: "100%", maxHeight: "100%" }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                maxWidth: "100%",
+                maxHeight: "100%"
+              }}
               src={blob}
             />
+            {progress}
+            {checkmark}
           </div>
-          {progress}
         </div>
       );
     }
