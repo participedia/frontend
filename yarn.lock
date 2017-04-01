@@ -312,8 +312,8 @@ autoprefixer@6.7.2, autoprefixer@^6.3.1:
     postcss-value-parser "^3.2.3"
 
 aws-sdk@2.x:
-  version "2.7.13"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.7.13.tgz#bb2384b6b49d45d0bcc6ff1701aff32db042a57c"
+  version "2.36.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.36.0.tgz#e13b7abbfef3b4476fe1c646fa7587fd6b4808de"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
@@ -4201,9 +4201,9 @@ leaflet-sleep@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/leaflet-sleep/-/leaflet-sleep-0.5.1.tgz#91f8433f38edbb6b8a9b78d3d04ec7396e9f60f6"
 
-leaflet@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.2.tgz#fa4fbcb7844944fc2bfb0bcf9ca0dea13463ca21"
+leaflet@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.0.3.tgz#1f401b98b45c8192134c6c8d69686253805007c8"
 
 leven@^2.0.0:
   version "2.1.0"
@@ -4374,7 +4374,7 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
-lodash.debounce@^4.0.6:
+lodash.debounce@^4.0.6, lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
@@ -5545,11 +5545,11 @@ pseudomap@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-punycode@1.3.2:
+punycode@1.3.2, punycode@^1.2.4:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
 
-punycode@^1.2.4, punycode@^1.4.1:
+punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
@@ -5702,16 +5702,16 @@ react-dev-utils@^0.5.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-dropzone-s3-uploader@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/react-dropzone-s3-uploader/-/react-dropzone-s3-uploader-0.11.0.tgz#784d6ea4dad3c48693485d7fe471f5ec1258eda1"
+"react-dropzone-s3-uploader@github:davidascher/react-dropzone-s3-uploader":
+  version "1.0.0-rc.2"
+  resolved "https://codeload.github.com/davidascher/react-dropzone-s3-uploader/tar.gz/20edf8d2eb335c30434c17ae5ff355794a4d042d"
   dependencies:
     react-dropzone "^3.7.3"
     react-s3-uploader "^4.0.0"
 
-react-dropzone@^3.7.3:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.7.3.tgz#7852b6652a43afc7fa072021f3369123ea4a61e0"
+react-dropzone@^3.12.2, react-dropzone@^3.7.3:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.12.2.tgz#7e66a37322a80cf26a205d749ecf8cad0d90aa6f"
   dependencies:
     attr-accept "^1.0.3"
 
@@ -5735,6 +5735,14 @@ react-geosuggest@^2.0.0:
   dependencies:
     classnames "^2.2.3"
     lodash.debounce "^4.0.6"
+
+react-image-gallery@^0.7.13:
+  version "0.7.15"
+  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-0.7.15.tgz#8930b0b5d5c04b22dd69434d5497889fd7e9d5dc"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
+    react-swipeable "^3.5.1"
 
 react-intl@^2.1.5:
   version "2.1.5"
@@ -5806,7 +5814,7 @@ react-router@^4.0.0:
     path-to-regexp "^1.5.3"
     warning "^3.0.0"
 
-react-s3-uploader@^4.0.0:
+react-s3-uploader@^4.0.0, react-s3-uploader@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/react-s3-uploader/-/react-s3-uploader-4.0.3.tgz#14e9b3db9e8486acd5f6048c2ed12083091aa170"
   dependencies:
@@ -5858,6 +5866,10 @@ react-scripts@0.9.5:
     whatwg-fetch "2.0.2"
   optionalDependencies:
     fsevents "1.0.17"
+
+react-swipeable@^3.5.1:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-3.9.2.tgz#bbaab62688b1aed4a4f73830d272eedd168f3627"
 
 react-tap-event-plugin@^2.0.1:
   version "2.0.1"
