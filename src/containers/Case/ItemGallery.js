@@ -52,14 +52,18 @@ class ItemGallery extends React.Component {
       };
     });
 
-    return (
-      <ImageGallery
-        items={images}
-        showFullscreenButton={false}
-        renderItem={this.renderItem}
-        slideInterval={2000}
-      />
-    );
+    if (images.length > 1) {
+      return (
+        <ImageGallery
+          items={images}
+          showFullscreenButton={false}
+          renderItem={this.renderItem}
+          slideInterval={2000}
+        />
+      );
+    } else {
+      return this.renderItem(images[0]);
+    }
   }
 }
 
