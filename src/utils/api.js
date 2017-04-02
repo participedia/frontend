@@ -1,5 +1,4 @@
 // This is the JS API to talk to api.participedia.xyz
-import log from "winston";
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
 if (!APIURL) {
@@ -46,7 +45,7 @@ class API {
   fetchGeoJSON = function(countryCode) {
     let url = APIURL + "/countries/" + countryCode + ".geo.json";
     return fetch(url).then(response => response.json()).catch(function(error) {
-      log.error(
+      console.error(
         `There has been a problem with your fetch operation: (${url}) ${error}`
       );
       return error;
@@ -58,11 +57,10 @@ class API {
     return fetch(url)
       .then(response => response.json())
       .then(function(json) {
-        // log.error("countsByCountry", json);
         return json.data.countryCounts;
       })
       .catch(function(error) {
-        log.error(
+        console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`
         );
         return error;
