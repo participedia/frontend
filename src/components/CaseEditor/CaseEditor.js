@@ -152,6 +152,7 @@ class _CaseEditor extends Component {
                     keyword picker
                     <p className="sub-heading">
                       Related Content
+                      {this.state.andrea}
                     </p>
                     <div className="related-content">
                       <div className="pb-1">
