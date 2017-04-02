@@ -169,7 +169,6 @@ export function receiveObjectSaved(state, id) {
 }
 
 export function makeObject(type, object) {
-  console.log("in makeObject");
   return dispatch => {
     dispatch(startSaveObject(object));
     if (type === CASE_TYPE) {

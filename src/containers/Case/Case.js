@@ -102,7 +102,8 @@ export class Case extends React.Component {
         />
       );
 
-      let facilitated = intl.formatMessage({ id: caseObject.facilitated });
+      let facilitated = caseObject.facilitated || "not_specified";
+      facilitated = intl.formatMessage({ id: facilitated });
       facilitated = (
         <SearchLink locale={locale} tag="facilitated" value={facilitated} />
       );
