@@ -127,6 +127,9 @@ class Upload extends React.Component {
       progress: 0,
       preview: args.file.preview
     });
+    if (this.props.onChange) {
+      this.props.onChange(args.filename);
+    }
     if (this.props.updatePicture) {
       dispatch(
         updateUserMetaData(profile.user_id, {
