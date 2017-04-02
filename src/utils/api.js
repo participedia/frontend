@@ -26,7 +26,7 @@ const signedFetch = function(url, method, payload) {
 };
 
 class API {
-  secureFetch = function(url, method, payload) {
+  signedFetch = function(url, method, payload) {
     let profile = JSON.parse(localStorage.profile);
     let opts = {
       method: method || "get",
@@ -160,6 +160,19 @@ class API {
       );
       return error;
     });
+  };
+
+  getBookmarkedItems = function() {
+    let userid = JSON.parse(localStorage.getItem("profile"))["user_id"];
+    let url = APIURL + "/bookmark/" + userid;
+    return signedFetch(url)
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
   };
 }
 

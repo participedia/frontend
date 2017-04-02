@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { injectIntl, intlShape } from "react-intl";
 import { Link } from "react-router";
 import { connect } from "react-redux";
-import SearchResults from "./containers/SearchResults";
+import Bookmarked from "./containers/Bookmarked";
 
 import "./Profile.css";
 
@@ -47,7 +47,7 @@ class Profile extends Component {
             </p>
           </Col>
         </Row>
-        <SearchResults />
+        <Bookmarked />
       </Container>
     );
   }
