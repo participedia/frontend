@@ -124,6 +124,7 @@ class Upload extends React.Component {
     this.setState({
       hidePic: false,
       done: true,
+      started: false,
       progress: 0,
       preview: args.file.preview
     });
@@ -138,10 +139,11 @@ class Upload extends React.Component {
 
   handleProgress(progress, textState, file) {
     this.setState({
-      started: true,
+      started: false,
       preview: file.preview,
       progress: progress
     });
+    this.props.onSelectLanguage(file.preview); 
   }
 
   render() {

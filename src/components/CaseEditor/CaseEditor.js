@@ -67,14 +67,26 @@ class _CaseEditor extends Component {
   constructor(props) {
     super(props);
     this.makeLead = this.makeLead.bind(this);
+    this.handleLanguage = this.handleLanguage.bind(this);
     this.state = {
-      lead: ""
+      lead: "",
+      andrea:""
     };
   }
 
   makeLead(src) {
     this.setState({ lead: src });
   }
+
+  handleLanguage(langValue) {
+    this.setState({andrea: langValue});
+    console.log('AY MI DIOS',langValue)
+    console.log('AY MI DIOS1',this.props.case.other_images[3])
+    console.log('AY MI DIOS2',this.props.case.other_images.length)
+    let currentImgs = this.props.case.other_images.length
+    this.props.case.other_images[currentImgs] = {url:langValue};
+  }
+
 
   render() {
     const { onSubmit } = this.props;
@@ -88,7 +100,12 @@ class _CaseEditor extends Component {
     if (caseObject && caseObject.other_images) {
       Object.keys(caseObject.other_images).forEach(function(key) {
         let obj = caseObject.other_images[key];
-        otherImgs.push(awsUrl + encodeURIComponent(obj.url));
+        console.log(key, obj,'key')
+        if ((obj.url).substring(0,4) === 'blob') {
+          otherImgs.push(obj.url);
+        } else {
+          otherImgs.push(awsUrl + encodeURIComponent(obj.url));
+        }
       });
     }
 
@@ -121,6 +138,7 @@ class _CaseEditor extends Component {
                     keyword picker
                     <p className="sub-heading">
                       Related Content
+                      {this.state.andrea}
                     </p>
                     <div className="related-content">
                       <div className="pb-1">
@@ -218,7 +236,7 @@ class _CaseEditor extends Component {
                               </Col>
                             ))
                           : undefined}
-                        <Col md="3"><Upload /></Col>
+                        <Col md="3"><Upload itemEdit={true} onSelectLanguage={this.handleLanguage} /></Col>
                       </Row>
                       <div>
                         <label htmlFor="title">Title</label>
