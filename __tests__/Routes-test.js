@@ -8,11 +8,10 @@ import afterPromises from "../src/helpers/afterPromises";
 import App from "../src/App";
 
 let fetchMock = require("fetch-mock");
-import configureStore from "../src/configureStore";
+import store from "../src/store";
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-let store = configureStore();
 fetchMock.get(
   process.env.REACT_APP_API_URL +
     "/search?query=&selectedCategory=All&sortingMethod=chronological",
