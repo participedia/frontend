@@ -68,7 +68,8 @@ class _CaseEditor extends Component {
     super(props);
     this.makeLead = this.makeLead.bind(this);
     this.handleNewImg = this.handleNewImg.bind(this);
-    this.deleteImg = this.deleteNewImg.bind(this);
+    this.deleteImg = this.deleteImg.bind(this);
+    this.deleteLead = this.deleteLead.bind(this);
     this.state = {
       lead: "",
       newImg: false,
@@ -86,15 +87,19 @@ class _CaseEditor extends Component {
     this.props.case.other_images[currentImgs] = {url:img};
   }
 
-  deleteNewImg(photo) {
+  deleteImg(photo) {
     this.setState({ delImg: true });
-    // Is this img from otherImgs or lead? Is it from the DB or newly uploaded?
     let currentImgs = this.props.case.other_images
-    let index = Object.keys(currentImgs).find(key => 'http://assets.participedia.xyz.s3-website-us-east-1.amazonaws.com/' + currentImgs[key]['url'] === photo);
-    console.log(index, 'index')
+    let awsUrl = process.env.REACT_APP_ASSETS_URL;
+    let index = Object.keys(currentImgs).find(key => awsUrl + currentImgs[key]['url'] === photo || currentImgs[key]['url'] === photo);
     if (index) {
-      this.props.case.other_images.splice(index,1)
+      this.props.case.other_images.splice(index, 1)
     }
+  }
+
+  deleteLead(photo) {
+    this.setState({ delImg: true });
+    this.props.case.lead_image = null;
   }
 
 
@@ -147,7 +152,6 @@ class _CaseEditor extends Component {
                     keyword picker
                     <p className="sub-heading">
                       Related Content
-                      {this.state.andrea}
                     </p>
                     <div className="related-content">
                       <div className="pb-1">
@@ -207,7 +211,7 @@ class _CaseEditor extends Component {
                                 }
                               >
                                 <div className="checkbox" onClick={this.makeLead.bind(this, leadImg)} />
-                                <div className="trash" onClick={this.deleteImg.bind(this, leadImg)} />
+                                <div className="trash" onClick={this.deleteLead.bind(this, leadImg)} />
                                 <img
                                   className="img-fluid"
                                   alt=""
@@ -247,7 +251,7 @@ class _CaseEditor extends Component {
                           : undefined}
                         <Col md="3"><Upload itemEdit={true} addToList={this.handleNewImg} /></Col>
                       </Row>
-                      <div>
+                      <div className="title-edit">
                         <label htmlFor="title">Title</label>
                       </div>
                       <Text field="title" placeholder="case title" />

@@ -22,6 +22,12 @@
   }
 }
 
+.main-area {
+  .title-edit {
+    padding-top: 2rem;
+  }
+}
+
 .itemPics {
   .col {
     height: 11.3rem;
@@ -41,12 +47,15 @@
         height: 1.4rem;
         right: 0;
         background: #fff;
+        border: 2px solid $interactive-color;
+        cursor: pointer;
       }
       .trash {
         position: absolute;
+        cursor: pointer;
         width: 1.4rem;
         height: 1.4rem;
-        bottom: 6px;
+        bottom: 8px;
         right:0;
         background-image: url("../../img/trash.png");
         background-repeat: no-repeat;
@@ -71,7 +80,8 @@
           border: none;
         }
         .checkbox {
-          background-image: url("../../img/check.png");
+          border: none;
+          background-image: url("../../img/star.png");
           background-repeat: no-repeat;
           background-size: 1.4rem;
         }
