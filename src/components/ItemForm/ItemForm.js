@@ -4,7 +4,8 @@ import { Container, Row, Col, Form, FormGroup, Label } from "reactstrap";
 import imgIcon from "../../img/img-icon.png";
 import vidIcon from "../../img/vid-icon.png";
 import TextField from "material-ui/TextField";
-import AutoComplete from "material-ui/AutoComplete";
+import { AutoComplete } from "redux-form-material-ui";
+
 import locationIcon from "../../img/location-icon.png";
 import Upload from "../../Upload";
 import Geosuggest from "react-geosuggest";
@@ -103,7 +104,9 @@ class ItemForm extends Component {
             <Label>
               {this.props.intl.formatMessage({ id: "related_cases" })}
             </Label>
-            <AutoComplete
+            <Field
+              name="related_cases"
+              component={AutoComplete}
               hintText={this.props.intl.formatMessage({
                 id: "search_related_cases"
               })}
