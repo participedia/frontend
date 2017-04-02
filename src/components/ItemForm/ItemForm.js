@@ -25,7 +25,9 @@ const renderTextField = field => (
   <TextField hintText={field.placeholder} {...field.input} />
 );
 
-const renderUpload = field => <Upload />;
+const renderUpload = field => (
+  <Upload onChange={param => field.input.onChange(param)} />
+);
 
 class ItemForm extends Component {
   render() {
