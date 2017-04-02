@@ -121,9 +121,11 @@ class Upload extends React.Component {
 
   handleFinishedUpload(args) {
     const { dispatch, profile } = this.props;
+    console.log(args,'afgs')
     this.setState({
       hidePic: false,
       done: true,
+      started: false,
       progress: 0,
       preview: args.file.preview
     });
@@ -137,11 +139,12 @@ class Upload extends React.Component {
         })
       );
     }
+    this.props.addToList(args.file.preview); 
   }
 
   handleProgress(progress, textState, file) {
     this.setState({
-      started: true,
+      started: false,
       preview: file.preview,
       progress: progress
     });
