@@ -7,9 +7,9 @@ import {
 import SearchResultsView
   from "../components/SearchResultsView/SearchResultsView";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, { data }) => {
   let props = {
-    data: state.cases.data || [],
+    data: state.cases.data || data || [],
     query: state.cases.query || "",
     searching: state.cases.searching || false,
     sortingMethod: state.ui.sort || "chronological",
