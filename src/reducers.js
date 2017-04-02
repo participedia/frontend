@@ -1,5 +1,6 @@
 import { reducer } from "redux-form";
 import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
 
 // AUTH reducers
 
@@ -159,7 +160,8 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   objects: dataStoreReducer,
   nouns: nounCache,
-  form: reducer
+  form: reducer,
+  routing: routerReducer
 });
 
 export default rootReducer;

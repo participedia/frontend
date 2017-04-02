@@ -77,8 +77,6 @@ const renderTestSequence = (
   render(<Test />, div);
 };
 
-// require.requireMock("Map");
-
 const MyProvider = () => (
   <Provider store={store}>
     <App />
