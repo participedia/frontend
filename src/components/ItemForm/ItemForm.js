@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, FormGroup, Label } from "reactstrap";
 import imgIcon from "../../img/img-icon.png";
 import vidIcon from "../../img/vid-icon.png";
 import TextField from "material-ui/TextField";
-import AutoComplete from "material-ui/AutoComplete";
+import { AutoComplete } from "redux-form-material-ui";
 import locationIcon from "../../img/location-icon.png";
 import Upload from "../../Upload";
 import Geosuggest from "react-geosuggest";
@@ -23,6 +23,10 @@ const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
 // to avoid the warnings from react about unnecessary props
 const renderTextField = field => (
   <TextField hintText={field.placeholder} {...field.input} />
+);
+
+const renderUpload = field => (
+  <Upload onChange={param => field.input.onChange(param)} />
 );
 
 class ItemForm extends Component {
@@ -67,7 +71,7 @@ class ItemForm extends Component {
               <span>{this.props.intl.formatMessage({ id: "add_photo" })}</span>
             </Col>
           </Row>
-          <Upload />
+          <Field name="image" component={renderUpload} />
           <Row className="vidField">
             <Col xs={2} sm={1}>
               <img className="img-fluid" src={vidIcon} alt="" />
@@ -99,7 +103,9 @@ class ItemForm extends Component {
             <Label>
               {this.props.intl.formatMessage({ id: "related_cases" })}
             </Label>
-            <AutoComplete
+            <Field
+              name="related_cases"
+              component={AutoComplete}
               hintText={this.props.intl.formatMessage({
                 id: "search_related_cases"
               })}
