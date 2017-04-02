@@ -8,13 +8,14 @@ class SearchQueryField extends React.Component {
     this.state = { query: this.props.query }; // is there another way?
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
-    if (this.props.query === "") {
-      this.props.onPerformQuery(
-        "",
-        this.props.selectedCategory,
-        this.props.sortingMethod
-      );
-    }
+  }
+
+  componentDidMount() {
+    this.props.onPerformQuery(
+      this.props.query,
+      this.props.selectedCategory,
+      this.props.sortingMethod
+    );
   }
 
   onChange(event) {
