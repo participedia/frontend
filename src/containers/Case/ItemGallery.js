@@ -51,6 +51,10 @@ class ItemGallery extends React.Component {
         thumbnail: src
       };
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     if (images.length > 1) {
       return (
         <ImageGallery
