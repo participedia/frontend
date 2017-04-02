@@ -1,5 +1,6 @@
 import { reducer } from "redux-form";
 import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
 
 // AUTH reducers
 
@@ -62,7 +63,8 @@ import {
   SET_SORT_ORDER,
   DO_RECENT_SEARCH,
   FETCHING_OBJECT,
-  RECEIVED_OBJECT
+  RECEIVED_OBJECT,
+  RECEIVED_OBJECT_SAVED
 } from "./actions";
 
 function dataStoreReducer(state = {}, action) {
@@ -76,6 +78,11 @@ function dataStoreReducer(state = {}, action) {
     case RECEIVED_OBJECT:
       return Object.assign({}, state, {
         currentObject: action.payload.object,
+        currentID: action.payload.ID,
+        searching: false
+      });
+    case RECEIVED_OBJECT_SAVED:
+      return Object.assign({}, state, {
         currentID: action.payload.ID,
         searching: false
       });
@@ -153,7 +160,8 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   objects: dataStoreReducer,
   nouns: nounCache,
-  form: reducer
+  form: reducer,
+  routing: routerReducer
 });
 
 export default rootReducer;

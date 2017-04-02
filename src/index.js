@@ -1,9 +1,13 @@
-import React from "react"; // eslint-disable-line no-unused-vars
+import React, { PropTypes, Component } from "react"; // eslint-disable-line no-unused-vars
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import queryString from "query-string";
-import App from "./App";
 import Auth0 from "auth0-js";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import injectTapEventPlugin from "react-tap-event-plugin";
+import { App, store } from "./App";
 
 let auth0 = new Auth0({
   domain: process.env.REACT_APP_AUTH0_DOMAIN,
@@ -25,16 +29,20 @@ if (access_token) {
   });
 }
 
-// make store configuration happen after we set the profile in localstorage
-import configureStore from "./configureStore";
-import injectTapEventPlugin from "react-tap-event-plugin";
-injectTapEventPlugin();
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: "#3f51b2"
+  },
+  appBar: {}
+});
 
-let store = configureStore();
+injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <App />
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

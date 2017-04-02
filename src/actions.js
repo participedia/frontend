@@ -12,6 +12,7 @@ export const RECEIVED_OBJECT = "RECEIVED_OBJECT";
 export const RECEIVED_OBJECT_SAVED = "RECEIVED_OBJECT_SAVED";
 export const CASE_TYPE = "CASE";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
+import { push } from "react-router-redux";
 
 import Auth0Lock from "auth0-lock";
 import api from "./utils/api";
@@ -160,20 +161,24 @@ export function startSaveObject() {
   };
 }
 
-export function receiveObjectSaved(state, json) {
+export function receiveObjectSaved(state, id) {
   return {
     type: RECEIVED_OBJECT_SAVED,
-    payload: { object: json }
+    payload: { ID: id }
   };
 }
 
 export function makeObject(type, object) {
+  console.log("in makeObject");
   return dispatch => {
     dispatch(startSaveObject(object));
     if (type === CASE_TYPE) {
       return api
         .saveNewCase(object)
         .then(response => dispatch(receiveObjectSaved(object, response)))
+        .then(function(thing) {
+          dispatch(push("/en-US/case/" + thing.payload.ID.case_id));
+        })
         .catch(reason => {
           console.error("Error saving case", reason);
         });
