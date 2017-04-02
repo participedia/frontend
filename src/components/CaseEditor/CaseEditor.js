@@ -71,8 +71,8 @@ class _CaseEditor extends Component {
     this.deleteImg = this.deleteNewImg.bind(this);
     this.state = {
       lead: "",
-      newImg: '',
-      delImg: ''
+      newImg: false,
+      delImg: false
     };
   }
 
@@ -87,10 +87,14 @@ class _CaseEditor extends Component {
   }
 
   deleteNewImg(photo) {
-    // this.setState({ delImg: true });
-    console.log('delete', photo)
-    // let currentImgs = this.props.case.other_images.length
-    // this.props.case.other_images[currentImgs] = {url:img};
+    this.setState({ delImg: true });
+    // Is this img from otherImgs or lead? Is it from the DB or newly uploaded?
+    let currentImgs = this.props.case.other_images
+    let index = Object.keys(currentImgs).find(key => 'http://assets.participedia.xyz.s3-website-us-east-1.amazonaws.com/' + currentImgs[key]['url'] === photo);
+    console.log(index, 'index')
+    if (index) {
+      this.props.case.other_images.splice(index,1)
+    }
   }
 
 
