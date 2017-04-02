@@ -33,11 +33,21 @@ export class Case extends React.Component {
 
   render() {
     if (this.state && this.state.data) {
+      const locale = this.props.intl.locale;
       let caseObject = this.state.data;
-      let tag = "";
       let communication_mode = "";
-      if (caseObject.specific_topic) {
-        tag = <a href="#">{caseObject.specific_topic}</a>;
+      let tags = <div />;
+      if (caseObject.tags) {
+        tags = caseObject.tags.map(tag => (
+          <Link
+            to={{
+              pathname: "/" + locale + "/search",
+              query: { tag: tag }
+            }}
+          >
+            {tag}
+          </Link>
+        ));
       }
       if (caseObject.communication_mode) {
         communication_mode = <a href="#">{caseObject.communication_mode}</a>;
@@ -45,7 +55,6 @@ export class Case extends React.Component {
       let post_date = moment(caseObject.post_date).format("LL");
       let updated_date = moment(caseObject.updated_date).format("LL");
       let first_author = caseObject.authors[0];
-      let locale = this.props.intl.locale;
       let first_author_url = "/" + locale + "/users/" + first_author.id;
       let first_author_name = first_author.name;
       let last_author = caseObject.authors.slice(-1)[0];
@@ -84,7 +93,7 @@ export class Case extends React.Component {
                     Tag:
                   </p>
                   <div className="tags">
-                    {tag}
+                    {tags}
                   </div>
                   <p className="sub-sub-heading">
                     Specific Topic:
