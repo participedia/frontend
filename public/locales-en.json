@@ -171,5 +171,19 @@
     "add_an_organization": "Add an Organization",
     "add_a_survey": "Add a Survey",
     "add_a_dataset": "Add a Data Set",
-    "sorry_upload": "Sorry, upload only works if you're logged in."
+    "sorry_upload": "Sorry, upload only works if you're logged in.",
+    "country_picker": "Country Picker",
+    "facetoface_not_specified": "Not specified",
+    "facetoface_facetoface": "Face-to-face",
+    "facetoface_online": "Online",
+    "facetoface_both": "Both online and face-to-face",
+    "yes": "Yes",
+    "no": "No",
+    "true": "True",
+    "false": "False",
+    "majority": "Majority",
+    "none": "None",
+    "preferential": "Preferential",
+    "supermajority": "Supermajority",
+    "consensus": "Consensus"
 }
