@@ -62,7 +62,8 @@ import {
   SET_SORT_ORDER,
   DO_RECENT_SEARCH,
   FETCHING_OBJECT,
-  RECEIVED_OBJECT
+  RECEIVED_OBJECT,
+  RECEIVED_OBJECT_SAVED
 } from "./actions";
 
 function dataStoreReducer(state = {}, action) {
@@ -76,6 +77,11 @@ function dataStoreReducer(state = {}, action) {
     case RECEIVED_OBJECT:
       return Object.assign({}, state, {
         currentObject: action.payload.object,
+        currentID: action.payload.ID,
+        searching: false
+      });
+    case RECEIVED_OBJECT_SAVED:
+      return Object.assign({}, state, {
         currentID: action.payload.ID,
         searching: false
       });

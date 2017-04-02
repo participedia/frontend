@@ -160,14 +160,15 @@ export function startSaveObject() {
   };
 }
 
-export function receiveObjectSaved(state, json) {
+export function receiveObjectSaved(state, id) {
   return {
     type: RECEIVED_OBJECT_SAVED,
-    payload: { object: json }
+    payload: { ID: id }
   };
 }
 
 export function makeObject(type, object) {
+  console.log("in makeObject");
   return dispatch => {
     dispatch(startSaveObject(object));
     if (type === CASE_TYPE) {

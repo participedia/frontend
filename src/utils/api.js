@@ -100,12 +100,11 @@ class API {
   saveNewCase = function(caseObj) {
     let url = APIURL + "/case/new";
     return signedFetch(url, "POST", caseObj)
-      .then(response => response.json())
       .then(function(response) {
         if (!response.ok) {
           throw Error(response.message);
         }
-        return response;
+        return response.json();
       })
       .then(json => json.data)
       .catch(function(error) {
