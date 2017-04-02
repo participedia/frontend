@@ -25,6 +25,8 @@ const renderTextField = field => (
   <TextField hintText={field.placeholder} {...field.input} />
 );
 
+const renderUpload = field => <Upload />;
+
 class ItemForm extends Component {
   render() {
     const { handleSubmit } = this.props;
@@ -67,7 +69,7 @@ class ItemForm extends Component {
               <span>{this.props.intl.formatMessage({ id: "add_photo" })}</span>
             </Col>
           </Row>
-          <Upload />
+          <Field name="image" component={renderUpload} />
           <Row className="vidField">
             <Col xs={2} sm={1}>
               <img className="img-fluid" src={vidIcon} alt="" />
