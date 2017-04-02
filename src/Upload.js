@@ -121,7 +121,6 @@ class Upload extends React.Component {
 
   handleFinishedUpload(args) {
     const { dispatch, profile } = this.props;
-    console.log(args,'afgs')
     this.setState({
       hidePic: false,
       done: true,
@@ -144,7 +143,7 @@ class Upload extends React.Component {
 
   handleProgress(progress, textState, file) {
     this.setState({
-      started: false,
+      started: true,
       preview: file.preview,
       progress: progress
     });
