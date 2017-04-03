@@ -102,16 +102,12 @@ export class Case extends React.Component {
         />
       );
 
-<<<<<<< HEAD
       let facilitated = String(caseObject.facilitated);
       if (facilitated) facilitated = facilitated.toLowerCase();
       if (facilitated)
         facilitated = intl.formatMessage({
           id: facilitated
         });
-=======
-      let facilitated = intl.formatMessage({ id: caseObject.facilitated });
->>>>>>> parent of 8e7da20... Adding a bookmark button to toggle bookmark state
       facilitated = (
         <SearchLink locale={locale} tag="facilitated" value={facilitated} />
       );
