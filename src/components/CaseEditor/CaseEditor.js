@@ -99,7 +99,11 @@ class _CaseEditor extends Component {
 
   deleteLead(photo) {
     this.setState({ delImg: true });
+    let currentImgs = this.props.case.other_images
     this.props.case.lead_image = null;
+    if (currentImgs.length > 0) {
+      this.setState({ lead: currentImgs[0]['url'] });
+    }
   }
 
 
