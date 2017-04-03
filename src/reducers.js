@@ -3,49 +3,43 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
 // AUTH reducers
+import * as ActionTypes from "./actions";
+import AuthService from "./utils/AuthService";
 
-import {
-  LOCK_SUCCESS,
-  LOGOUT_SUCCESS,
-  RECEIVED_NOUNS,
-  PROFILE_UPDATED
-} from "./actions";
-
-function getProfile() {
-  return JSON.parse(localStorage.getItem("profile"));
-}
-
-// The auth reducer. The starting state sets authentication
-// based on a token being in local storage.
-// TODO figure out if we need to check for expired tokens
 function auth(
   state = {
+    isAuthenticated: !AuthService.isTokenExpired(),
     isFetching: false,
-    profile: getProfile(),
-    token: localStorage.getItem("id_token"),
-    isAuthenticated: localStorage.getItem("id_token") ? true : false
+    profile: AuthService.getProfile(),
+    error: null
   },
   action
 ) {
   switch (action.type) {
-    case LOCK_SUCCESS:
-      return Object.assign({}, state, {
+    case ActionTypes.LOGIN_REQUEST:
+      return { ...state, isFetching: true, error: null };
+    case ActionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
-        profile: getProfile(),
-        errorMessage: ""
-      });
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: true,
+        profile: action.profile
+      };
+    case ActionTypes.LOGIN_ERROR:
+      return {
+        ...state,
+        isFetching: false,
         isAuthenticated: false,
-        profile: null
-      });
-    case PROFILE_UPDATED:
+        profile: {},
+        error: action.error
+      };
+    case ActionTypes.LOGOUT_SUCCESS:
+      return { ...state, isAuthenticated: false, profile: {} };
+    case ActionTypes.PROFILE_UPDATED:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        profile: getProfile(),
+        profile: AuthService.getProfile(),
         errorMessage: ""
       });
     default:
@@ -145,7 +139,7 @@ function nounCache(
   action
 ) {
   switch (action.type) {
-    case RECEIVED_NOUNS:
+    case ActionTypes.RECEIVED_NOUNS:
       return Object.assign({}, state, {
         [action.noun]: action.nouns
       });
