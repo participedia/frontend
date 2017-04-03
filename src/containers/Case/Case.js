@@ -9,7 +9,7 @@ import CountryMap from "../../components/CountryMap";
 import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
-import BookmarkToggle from "../../components/BookmarkToggle";
+import caseIconBookmark from "../../img/pp-case-icon-bookmark.svg";
 import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
@@ -38,7 +38,6 @@ class SearchLink extends React.Component {
     }
   }
 }
-
 export class Case extends React.Component {
   componentWillMount() {
     let component = this;
@@ -103,12 +102,16 @@ export class Case extends React.Component {
         />
       );
 
+<<<<<<< HEAD
       let facilitated = String(caseObject.facilitated);
       if (facilitated) facilitated = facilitated.toLowerCase();
       if (facilitated)
         facilitated = intl.formatMessage({
           id: facilitated
         });
+=======
+      let facilitated = intl.formatMessage({ id: caseObject.facilitated });
+>>>>>>> parent of 8e7da20... Adding a bookmark button to toggle bookmark state
       facilitated = (
         <SearchLink locale={locale} tag="facilitated" value={facilitated} />
       );
@@ -263,11 +266,7 @@ export class Case extends React.Component {
                 </Col>
                 <Col md="1" className="case-tools hidden-sm-down">
                   <div className="top-icons">
-                    <BookmarkToggle
-                      thingType="case"
-                      thingID={caseObject.id}
-                      enabled={false}
-                    />
+                    <a href="#"><img src={caseIconBookmark} alt="" /></a>
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
                     <a href="#"><img src={caseIconFB} alt="" /></a>
                     <a href="#"><img src={caseIconTW} alt="" /></a>

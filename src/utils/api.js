@@ -161,32 +161,6 @@ class API {
       return error;
     });
   };
-
-  addBookmark = function(bookmarkType, thingID) {
-    let url = APIURL + "/bookmark/add";
-    return signedFetch(url, "POST", { bookmarkType, thingID })
-      .then(response => response.json())
-      .catch(function(error) {
-        console.log(
-          `There has been a problem with API:addBookmark: (${url}) ${error}`
-        );
-        return error;
-      });
-  };
-  removeBookmark = function(bookmarkType, thingID) {
-    let url = APIURL + "/bookmark/delete";
-    return signedFetch(url, "delete", {
-      bookmarkType,
-      thingID
-    })
-      .then(response => response.json())
-      .catch(function(error) {
-        console.log(
-          `There has been a problem with API:removeBookmark: (${url}) ${error}`
-        );
-        return error;
-      });
-  };
 }
 
 export default new API();
