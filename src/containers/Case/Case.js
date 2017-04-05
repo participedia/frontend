@@ -82,6 +82,16 @@ export class Case extends React.Component {
       let intl = this.props.intl;
       let caseObject = this.state.data;
       let bookmarked = isAuthenticated && caseObject.bookmarked;
+      let bookmarkIcon = <div />;
+      if (isAuthenticated) {
+        bookmarkIcon = (
+          <BookmarkToggle
+            thingType="case"
+            thingID={caseObject.id}
+            bookmarked={bookmarked}
+          />
+        );
+      }
       let issue = caseObject.issue;
       let audience = (
         <SearchLink
@@ -282,11 +292,7 @@ export class Case extends React.Component {
                 </Col>
                 <Col md="1" className="case-tools hidden-sm-down">
                   <div className="top-icons">
-                    <BookmarkToggle
-                      thingType="case"
-                      thingID={caseObject.id}
-                      bookmarked={bookmarked}
-                    />
+                    {bookmarkIcon}
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
                     <a href="#"><img src={caseIconFB} alt="" /></a>
                     <a href="#"><img src={caseIconTW} alt="" /></a>
