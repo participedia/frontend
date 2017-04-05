@@ -47,11 +47,11 @@ export class Layout extends React.Component {
     const { auth, profile, isAuthenticated } = this.props;
 
     let children = null;
-    if (this.props.children && this.props.route) {
-      children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth // sends auth instance from route to children
+    children = React.Children.map(this.props.children, function(child) {
+      return React.cloneElement(child, {
+        auth: auth
       });
-    }
+    });
     let locale = this.props.intl.locale;
     let home = `/${locale}/`;
     let addLink = `/${locale}/quick-submit`;
@@ -149,8 +149,7 @@ export class Layout extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { auth } = state;
+function mapStateToProps({ auth }) {
   const { isAuthenticated, profile } = auth;
   return {
     auth,

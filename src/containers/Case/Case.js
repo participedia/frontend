@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./Case.css";
 import { injectIntl, intlShape } from "react-intl";
 import { Link } from "react-router";
@@ -39,11 +40,30 @@ class SearchLink extends React.Component {
   }
 }
 
+function mapStateToProps({ auth }) {
+  const { isAuthenticated } = auth;
+
+  return {
+    isAuthenticated
+  };
+}
+
 export class Case extends React.Component {
   componentWillMount() {
     let component = this;
+    let isAuthenticated = this.props.isAuthenticated;
     api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
-      component.setState({ data: the_case, htmlBody: the_case.body });
+      component.setState({
+        data: the_case,
+        htmlBody: the_case.body,
+        isAuthenticated: isAuthenticated
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isAuthenticated: nextProps.isAuthenticated
     });
   }
 
@@ -58,8 +78,10 @@ export class Case extends React.Component {
   render() {
     if (this.state && this.state.data) {
       const locale = this.props.intl.locale;
+      const isAuthenticated = this.props.isAuthenticated;
       let intl = this.props.intl;
       let caseObject = this.state.data;
+      let bookmarked = isAuthenticated && caseObject.bookmarked;
       let issue = caseObject.issue;
       let audience = (
         <SearchLink
@@ -263,7 +285,7 @@ export class Case extends React.Component {
                     <BookmarkToggle
                       thingType="case"
                       thingID={caseObject.id}
-                      enabled={false}
+                      bookmarked={bookmarked}
                     />
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
                     <a href="#"><img src={caseIconFB} alt="" /></a>
@@ -291,4 +313,4 @@ Case.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(Case);
+export default connect(mapStateToProps)(injectIntl(Case));

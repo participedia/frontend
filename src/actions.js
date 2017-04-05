@@ -91,8 +91,9 @@ function receiveLogout() {
 // Logs the user out
 export function logoutUser() {
   return dispatch => {
-    dispatch(requestLogout());
     localStorage.removeItem("id_token");
+    localStorage.removeItem("profile");
+    dispatch(requestLogout());
     dispatch(receiveLogout());
   };
 }

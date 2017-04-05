@@ -23,6 +23,8 @@ if (access_token) {
   auth0.getUserInfo(access_token, function(err, profile) {
     if (err) {
       console.log("error getting profile", err);
+      localStorage.removeItem("profile");
+      localStorage.removeItem("access_token");
     } else {
       localStorage.setItem("profile", JSON.stringify(profile));
     }

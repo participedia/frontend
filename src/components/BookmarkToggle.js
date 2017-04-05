@@ -34,18 +34,32 @@ const styles = {
   }
 };
 
+class BookmarkIcon extends React.Component {
+  render() {
+    if (this.props.bookmarked) {
+      return <Bookmark style={styles.mediumIcon} />;
+    } else
+      return <BookmarkBorder style={styles.mediumIcon} />;
+  }
+}
+
 export default class BookmarkToggle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { enabled: props.enabled };
+    this.state = { bookmarked: props.bookmarked };
   }
   effectSwitch() {
-    this.setState({ enabled: !this.state.enabled });
+    this.setState({ bookmarked: !this.state.bookmarked });
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      bookmarked: nextProps.bookmarked
+    });
+  }
+
   toggleBookmark(thingType, thingID) {
-    console.log("this.state.enabled", this.state.enabled);
     let effectSwitch = this.effectSwitch.bind(this);
-    if (this.state.enabled) {
+    if (this.state.bookmarked) {
       // We are unbookmarking
       api
         .removeBookmark(this.props.thingType, this.props.thingID)
@@ -73,17 +87,10 @@ export default class BookmarkToggle extends React.Component {
   }
   render() {
     let toggle = this.toggleBookmark.bind(this);
-    let icon = <BookmarkBorder />;
-    if (this.state.enabled) {
-      icon = <Bookmark />;
-    }
+    let bookmarked = this.state.bookmarked;
     return (
-      <IconButton
-        iconStyle={styles.mediumIcon}
-        style={styles.medium}
-        onClick={toggle}
-      >
-        {icon}
+      <IconButton style={styles.medium} onClick={toggle}>
+        <BookmarkIcon bookmarked={bookmarked} />
       </IconButton>
     );
   }
