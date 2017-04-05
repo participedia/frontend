@@ -135,9 +135,13 @@ export class Case extends React.Component {
         />
       );
 
-      let facilitated = intl.formatMessage({
-        id: caseObject.facilitated.toLowerCase()
-      });
+      let facilitated = String(caseObject.facilitated);
+      if (facilitated === "null") facilitated = "not_specified";
+      if (facilitated) facilitated = facilitated.toLowerCase();
+      if (facilitated)
+        facilitated = intl.formatMessage({
+          id: facilitated
+        });
       facilitated = (
         <SearchLink locale={locale} tag="facilitated" value={facilitated} />
       );

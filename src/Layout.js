@@ -6,6 +6,7 @@ import SearchQuery from "./containers/SearchQuery";
 import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
+import { checkLogin } from "./actions";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -20,10 +21,12 @@ import HelpBar from "./components/HelpBar/HelpBar";
 export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    checkLogin: React.PropTypes.func.isRequired
   };
   constructor(props) {
     super(props);
+    this.props.checkLogin(); // check is Auth0 lock is authenticating after login callback
     this.state = { open: false };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -149,6 +152,12 @@ export class Layout extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    checkLogin: () => dispatch(checkLogin())
+  };
+};
+
 function mapStateToProps({ auth }) {
   const { isAuthenticated, profile } = auth;
   return {
@@ -162,4 +171,4 @@ Layout.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(connect(mapStateToProps)(Layout));
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Layout));
