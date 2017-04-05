@@ -25,12 +25,13 @@ export default class CaseEditorContainer extends Component {
   }
 
   onSubmit(values, state, props, instance) {
-    console.log("in onSubmit", values, state, props, instance);
-    // This is where we would do the api call to save the new case, and redirect to the non-'/edit' URL
-    // and on success of the API save, do the redirect:
-    let pathparts = this.props.location.pathname.split("/");
-    pathparts.pop();
-    this.props.router.push(pathparts.join("/"));
+    let router = this.props.router;
+    let location = this.props.location;
+    api.saveCase(state).then(function(the_case) {
+      let pathparts = location.pathname.split("/");
+      pathparts.pop();
+      router.push(pathparts.join("/"));
+    });
   }
 
   render() {

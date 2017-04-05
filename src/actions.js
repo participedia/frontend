@@ -7,9 +7,12 @@ export const SET_SORT_ORDER = "SET_SORT_ORDER";
 export const SET_LAYOUT = "SET_LAYOUT";
 export const DO_RECENT_SEARCH = "DO_RECENT_SEARCH";
 export const FETCHING_OBJECT = "FETCHING_OBJECT";
+export const SAVING_OBJECT = "SAVING_OBJECT";
 export const RECEIVED_OBJECT = "RECEIVED_OBJECT";
+export const RECEIVED_OBJECT_SAVED = "RECEIVED_OBJECT_SAVED";
 export const CASE_TYPE = "CASE";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
+import { push } from "react-router-redux";
 
 import Auth0Lock from "auth0-lock";
 import api from "./utils/api";
@@ -149,6 +152,40 @@ export function loadObject(type, id) {
     console.error("not a case");
     // TODO loadObject needs to deal with things other than cases
   }
+}
+
+export function startSaveObject() {
+  return {
+    type: SAVING_OBJECT,
+    payload: null
+  };
+}
+
+export function receiveObjectSaved(state, id) {
+  return {
+    type: RECEIVED_OBJECT_SAVED,
+    payload: { ID: id }
+  };
+}
+
+export function makeObject(type, object) {
+  // console.log("in makeObject", object);
+  return dispatch => {
+    dispatch(startSaveObject(object));
+    if (type === CASE_TYPE) {
+      return api
+        .saveNewCase(object)
+        .then(response => dispatch(receiveObjectSaved(object, response)))
+        .then(function(thing) {
+          dispatch(push("/en-US/case/" + thing.payload.ID.case_id));
+        })
+        .catch(reason => {
+          console.error("Error saving case", reason);
+        });
+    } else {
+      // XXX not cases
+    }
+  };
 }
 
 export function changeCategory(category) {

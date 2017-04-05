@@ -3,9 +3,6 @@ import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";
 import { Container, Col } from "reactstrap";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import Plus from "material-ui/svg-icons/content/add";
-import { Link } from "react-router";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
@@ -28,7 +25,6 @@ export class SearchResultsView extends React.Component {
 
   render() {
     let data = this.props.data;
-    let locale = this.props.intl.locale;
 
     let categories = { case: [], organization: [], method: [], news: [] };
     let selectedViewType = this.props.selectedViewType;

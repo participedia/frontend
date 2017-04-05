@@ -1,5 +1,4 @@
 // This is the JS API to talk to api.participedia.xyz
-import log from "winston";
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
 if (!APIURL) {
@@ -10,31 +9,43 @@ if (!APIURL) {
 
 import queryString from "query-string";
 
+const signedFetch = function(url, method, payload) {
+  let profile = JSON.parse(localStorage.profile);
+  let opts = {
+    method: method || "get",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("id_token"),
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-Auth0-Name": profile.name,
+      "X-Auth0-UserId": profile.user_id
+    }
+  };
+  if (payload) opts.body = JSON.stringify(payload);
+  return fetch(url, opts);
+};
+
 class API {
   secureFetch = function(url, method, payload) {
+    let profile = JSON.parse(localStorage.profile);
     let opts = {
       method: method || "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("id_token"),
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-Auth0-Name": profile.name,
+        "X-Auth0-UserId": profile.user_id
       }
     };
     if (payload) opts.body = JSON.stringify(payload);
-    return fetch(url, opts)
-      .then(response => response.json())
-      .catch(function(error) {
-        log.error(
-          `There has been a problem with your fetch operation: (${url}) ${error}`
-        );
-        return error;
-      });
+    return fetch(url, opts);
   };
 
   fetchGeoJSON = function(countryCode) {
     let url = APIURL + "/countries/" + countryCode + ".geo.json";
     return fetch(url).then(response => response.json()).catch(function(error) {
-      log.error(
+      console.error(
         `There has been a problem with your fetch operation: (${url}) ${error}`
       );
       return error;
@@ -46,11 +57,10 @@ class API {
     return fetch(url)
       .then(response => response.json())
       .then(function(json) {
-        // log.error("countsByCountry", json);
         return json.data.countryCounts;
       })
       .catch(function(error) {
-        log.error(
+        console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`
         );
         return error;
@@ -71,6 +81,7 @@ class API {
       return error;
     });
   };
+
   fetchCaseById = function(caseId) {
     let url = APIURL + "/case/" + caseId;
     return fetch(url)
@@ -79,6 +90,37 @@ class API {
       .catch(function(error) {
         console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
+
+  saveNewCase = function(caseObj) {
+    let url = APIURL + "/case/new";
+    return signedFetch(url, "POST", caseObj)
+      .then(function(response) {
+        if (!response.ok) {
+          throw Error(response.message);
+        }
+        return response.json();
+      })
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with saving the case: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
+
+  saveCase = function(caseObj) {
+    let url = APIURL + "/case/" + caseObj.id;
+    return signedFetch(url, "PUT", caseObj)
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with saving the case: (${url}) ${error}`
         );
         throw error;
       });
@@ -96,6 +138,7 @@ class API {
         return error;
       });
   };
+
   fetchOrgById = function(caseId) {
     let url = APIURL + "/organization/" + caseId;
     return fetch(url)
@@ -108,6 +151,7 @@ class API {
         return error;
       });
   };
+
   fetchNouns = function(noun) {
     let url = APIURL + "/search/getAllForType?objType=" + noun;
     return fetch(url).then(response => response.json()).catch(function(error) {

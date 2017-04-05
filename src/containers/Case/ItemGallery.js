@@ -1,8 +1,7 @@
-import React from 'react';
-import ImageGallery from 'react-image-gallery';
+import React from "react";
+import ImageGallery from "react-image-gallery";
 
 class ItemGallery extends React.Component {
-
   constructor(props) {
     super(props);
     this.defineImage = this.defineImage.bind(this);
@@ -14,25 +13,25 @@ class ItemGallery extends React.Component {
     if (url) {
       let width = this.getWidth(url);
       if (width < 500) {
-        return ('portrait');
+        return "portrait";
       } else {
-        return ('landscape');
+        return "landscape";
       }
     } else {
       return;
     }
   }
 
-  getWidth(url){
-    var img = new Image();
+  getWidth(url) {
+    let img = new Image();
     img.src = url;
-    return img.naturalWidth
+    return img.naturalWidth;
   }
 
   renderItem(item) {
     const imageClass = this.defineImage(item.original);
     return (
-      <div className='image-gallery-image'>
+      <div className="image-gallery-image">
         <img
           className={imageClass}
           src={item.original}
@@ -45,24 +44,27 @@ class ItemGallery extends React.Component {
   }
 
   render() {
-
-    const images = this.props.items.map((photo) => {
+    const images = this.props.items.map(photo => {
       const src = photo;
-      return ({
+      return {
         original: src,
-        thumbnail: src,
-      });
+        thumbnail: src
+      };
     });
 
-    return (
-      <ImageGallery
-        items={images}
-        showFullscreenButton={false}
-        renderItem={this.renderItem}
-        slideInterval={2000} />
-    );
+    if (images.length > 1) {
+      return (
+        <ImageGallery
+          items={images}
+          showFullscreenButton={false}
+          renderItem={this.renderItem}
+          slideInterval={2000}
+        />
+      );
+    } else {
+      return this.renderItem(images[0]);
+    }
   }
-
 }
 
 export default ItemGallery;

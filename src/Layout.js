@@ -69,12 +69,10 @@ export class Layout extends React.Component {
               </Link>
             </div>
             <div className="search-box-area">
-              <SearchQuery />
+              <SearchQuery {...this.props} />
             </div>
             <Link to={addLink}>
-              <div className="createButton">
-                
-              </div>
+              <div className="createButton" />
             </Link>
             <LoginAvatar
               auth={auth}
