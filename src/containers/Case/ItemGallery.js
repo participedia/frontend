@@ -51,8 +51,11 @@ class ItemGallery extends React.Component {
         thumbnail: src
       };
     });
+    console.log("this.props.items", this.props.items);
 
-    if (images.length > 1) {
+    if (images.length == 0) {
+      return <div />;
+    } else if (images.length > 1) {
       return (
         <ImageGallery
           items={images}
