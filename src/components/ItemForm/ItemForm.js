@@ -71,7 +71,7 @@ class ItemForm extends Component {
               <span>{this.props.intl.formatMessage({ id: "add_photo" })}</span>
             </Col>
           </Row>
-          <Field name="image" component={renderUpload} />
+          <Field name="lead_image" component={renderUpload} />
           <Row className="vidField">
             <Col xs={2} sm={1}>
               <img className="img-fluid" src={vidIcon} alt="" />

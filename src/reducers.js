@@ -11,6 +11,7 @@ function auth(
     isAuthenticated: !AuthService.isTokenExpired(),
     isFetching: false,
     profile: AuthService.getProfile(),
+    token: AuthService.getToken(),
     error: null
   },
   action
@@ -23,6 +24,7 @@ function auth(
         ...state,
         isFetching: false,
         isAuthenticated: true,
+        token: AuthService.getToken(),
         profile: action.profile
       };
     case ActionTypes.LOGIN_ERROR:

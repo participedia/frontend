@@ -8,7 +8,9 @@ import {
   CASE,
   METHOD,
   makeObject,
-  CASE_TYPE
+  CASE_TYPE,
+  METHOD_TYPE,
+  ORGANIZATION_TYPE
 } from "../../actions";
 
 class QuickSubmit extends React.Component {
@@ -62,10 +64,15 @@ function loadOrganizationList(props) {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmit: function(data) {
-      if (data["type"] === "case") {
+      let thingType = data["type"];
+      if (
+        thingType === CASE_TYPE ||
+        thingType === METHOD_TYPE ||
+        thingType === ORGANIZATION_TYPE
+      ) {
         let payload = Object.assign({}, data);
         delete payload["type"];
-        dispatch(makeObject(CASE_TYPE, payload));
+        dispatch(makeObject(thingType, payload));
       }
     },
     loadOrganizationList: function() {
