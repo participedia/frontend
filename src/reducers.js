@@ -136,12 +136,15 @@ function uiReducer(
 
 function nounCache(
   state = {
-    organization: {}
+    organization: {},
+    case: {},
+    method: {}
   },
   action
 ) {
   switch (action.type) {
     case ActionTypes.RECEIVED_NOUNS:
+      console.log("received nouns", action.noun, action.nouns);
       return Object.assign({}, state, {
         [action.noun]: action.nouns
       });

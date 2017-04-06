@@ -16,12 +16,11 @@ import {
 class QuickSubmit extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    itemType: PropTypes.string.isRequired,
-    loadOrganizationList: PropTypes.func.isRequired
+    itemType: PropTypes.string.isRequired
   };
 
   componentDidMount() {
-    loadOrganizationList(this.props);
+    loadAllTheNouns(this.props);
   }
 
   render() {
@@ -29,36 +28,33 @@ class QuickSubmit extends React.Component {
   }
 }
 
+function loadAllTheNouns(props) {
+  props.dispatch(loadNouns(ORGANIZATION));
+  props.dispatch(loadNouns(CASE));
+  props.dispatch(loadNouns(METHOD));
+}
+
+function dict2list(obj) {
+  return Object.getOwnPropertyNames(obj).map(function(e) {
+    return { text: e, value: obj[e] };
+  });
+}
+
 const mapStateToProps = state => {
   const { auth } = state;
   const { isAuthenticated } = auth;
 
-  let organizations = [];
-  if (state && state.nouns && state.nouns.organization) {
-    organizations = Object.keys(state.nouns.organization);
-  }
-  let methods = [];
-  if (state && state.nouns && state.nouns.method) {
-    methods = Object.keys(state.nouns.method);
-  }
-  let cases = [];
-  if (state && state.nouns && state.nouns.case) {
-    cases = Object.keys(state.nouns.case);
-  }
-
   return {
     quicksubmit: state.form.quicksubmit,
     isAuthenticated,
-    organizations,
-    methods,
-    cases
+    organizations: dict2list(state.nouns.organization),
+    methods: dict2list(state.nouns.method),
+    cases: dict2list(state.nouns.case)
   };
 };
 
-function loadOrganizationList(props) {
-  props.dispatch(loadNouns(ORGANIZATION));
-  props.dispatch(loadNouns(CASE));
-  props.dispatch(loadNouns(METHOD));
+function extract_ids(list_of_dicts) {
+  return list_of_dicts.map(m => m["value"]);
 }
 
 const mapDispatchToProps = dispatch => {
@@ -72,6 +68,13 @@ const mapDispatchToProps = dispatch => {
       ) {
         let payload = Object.assign({}, data);
         delete payload["type"];
+        console.log("payload", payload);
+        payload["related_cases"] = extract_ids(payload["related_cases"]);
+        payload["related_methods"] = extract_ids(payload["related_methods"]);
+        payload["related_organizations"] = extract_ids(
+          payload["related_organizations"]
+        );
+        console.log("payload", payload);
         dispatch(makeObject(thingType, payload));
       }
     },

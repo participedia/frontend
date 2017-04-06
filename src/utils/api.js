@@ -98,6 +98,7 @@ class API {
       console.error(error);
       throw error;
     }
+    console.log("saving new thing", thingType, caseObj);
 
     let url = APIURL + "/" + thingType + "/new";
     return signedFetch(url, "POST", caseObj)
