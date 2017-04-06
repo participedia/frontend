@@ -77,7 +77,7 @@
     "redux-storage-engine-localstorage": "^1.1.2",
     "redux-thunk": "^2.1.0",
     "surge": "^0.19.0",
-    "surge-review": "^1.0.1",
+    "surge-review": "^1.0.2",
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
