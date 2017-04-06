@@ -83,7 +83,7 @@
   "scripts": {
     "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
     "deploy": "surge -p build -d participedia.xyz",
-    "deployreview": "surge-review -p ./build",
+    "deployreview": "sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && surge-review",
     "deploysam": "rm -f build/CNAME && rm -f build/CORS && node scripts/properties2json && surge -p build -d participedia-sam.surge.sh",
     "build": "sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json",
     "test": "react-scripts test --env=jsdom",
