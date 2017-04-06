@@ -144,7 +144,6 @@ function nounCache(
 ) {
   switch (action.type) {
     case ActionTypes.RECEIVED_NOUNS:
-      console.log("received nouns", action.noun, action.nouns);
       return Object.assign({}, state, {
         [action.noun]: action.nouns
       });

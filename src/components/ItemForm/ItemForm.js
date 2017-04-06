@@ -184,11 +184,4 @@ class ItemForm extends Component {
   }
 }
 
-// <AutoComplete
-//   hintText={this.props.intl.formatMessage({
-//     id: "search_related_cases"
-//   })}
-//   dataSource={this.props.cases}
-// />
-
 export default injectIntl(ItemForm);
