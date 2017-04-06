@@ -17,7 +17,7 @@ before_deploy:
 - CI=true
 - cp build/index.html build/200.html
 - node scripts/properties2json
-after_deploy:
+after_build:
 - export BUILD_ID=$TRAVIS_BUILD_NUMBER
 - export GH_PULL_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
 - export GH_PROJECT_OWNER=$TRAVIS_REPO_SLUG
