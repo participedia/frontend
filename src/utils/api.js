@@ -88,11 +88,22 @@ class API {
       });
   };
 
-  saveNewCase = function(caseObj) {
-    let url = APIURL + "/case/new";
+  saveNewThing = function(thingType, caseObj) {
+    if (
+      thingType !== "case" &&
+      thingType !== "method" &&
+      thingType !== "organization"
+    ) {
+      let error = `Can only create cases, methods, and organizations. You sent: ${thingType}`;
+      console.error(error);
+      throw error;
+    }
+
+    let url = APIURL + "/" + thingType + "/new";
     return signedFetch(url, "POST", caseObj)
       .then(function(response) {
         if (!response.ok) {
+          console.log("Error doing saveNewThing's signedFetch: ", response);
           throw Error(response.message);
         }
         return response.json();
