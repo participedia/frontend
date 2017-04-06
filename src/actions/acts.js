@@ -27,6 +27,7 @@ export function updateUserMetaData(userId, data) {
     });
   };
 }
+
 export const ORGANIZATION = "ORGANIZATION";
 export const CASE = "CASE";
 export const METHOD = "METHOD";

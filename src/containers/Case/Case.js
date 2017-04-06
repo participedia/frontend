@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./Case.css";
 import { injectIntl, intlShape } from "react-intl";
 import { Link } from "react-router";
@@ -9,7 +10,7 @@ import CountryMap from "../../components/CountryMap";
 import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
-import caseIconBookmark from "../../img/pp-case-icon-bookmark.svg";
+import BookmarkToggle from "../../components/BookmarkToggle";
 import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
@@ -38,11 +39,31 @@ class SearchLink extends React.Component {
     }
   }
 }
+
+function mapStateToProps({ auth }) {
+  const { isAuthenticated } = auth;
+
+  return {
+    isAuthenticated
+  };
+}
+
 export class Case extends React.Component {
   componentWillMount() {
     let component = this;
+    let isAuthenticated = this.props.isAuthenticated;
     api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
-      component.setState({ data: the_case, htmlBody: the_case.body });
+      component.setState({
+        data: the_case,
+        htmlBody: the_case.body,
+        isAuthenticated: isAuthenticated
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isAuthenticated: nextProps.isAuthenticated
     });
   }
 
@@ -57,8 +78,20 @@ export class Case extends React.Component {
   render() {
     if (this.state && this.state.data) {
       const locale = this.props.intl.locale;
+      const isAuthenticated = this.props.isAuthenticated;
       let intl = this.props.intl;
       let caseObject = this.state.data;
+      let bookmarked = isAuthenticated && caseObject.bookmarked;
+      let bookmarkIcon = <div />;
+      if (isAuthenticated) {
+        bookmarkIcon = (
+          <BookmarkToggle
+            thingType="case"
+            thingID={caseObject.id}
+            bookmarked={bookmarked}
+          />
+        );
+      }
       let issue = caseObject.issue;
       let audience = (
         <SearchLink
@@ -103,6 +136,7 @@ export class Case extends React.Component {
       );
 
       let facilitated = String(caseObject.facilitated);
+      if (facilitated === "null") facilitated = "not_specified";
       if (facilitated) facilitated = facilitated.toLowerCase();
       if (facilitated)
         facilitated = intl.formatMessage({
@@ -262,7 +296,7 @@ export class Case extends React.Component {
                 </Col>
                 <Col md="1" className="case-tools hidden-sm-down">
                   <div className="top-icons">
-                    <a href="#"><img src={caseIconBookmark} alt="" /></a>
+                    {bookmarkIcon}
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
                     <a href="#"><img src={caseIconFB} alt="" /></a>
                     <a href="#"><img src={caseIconTW} alt="" /></a>
@@ -289,4 +323,4 @@ Case.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(Case);
+export default connect(mapStateToProps)(injectIntl(Case));
