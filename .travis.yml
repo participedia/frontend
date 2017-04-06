@@ -24,8 +24,8 @@ after_success:
 - echo "machine surge.surge.sh" >> ~/.netrc
 - echo "    login $SURGE_LOGIN" >> ~/.netrc
 - echo "    password $SURGE_TOKEN" >> ~/.netrc
-- npm install -g surge-review 
-- if [ "$TRAVIS_PULL_REQUEST_BRANCH" ]; then surge-review -p ./build/ || true; fi
+- npm install -g surge surge-review 
+- if [ "$TRAVIS_PULL_REQUEST_BRANCH" ]; then surge-review -p ./build || true; fi
 deploy:
   skip_cleanup: true
   provider: surge
