@@ -42,6 +42,7 @@
     "leaflet": "^1.0.3",
     "leaflet-sleep": "^0.5.1",
     "material-ui": "^0.17.0",
+    "material-ui-chip-input": "^0.13.1",
     "moment": "^2.15.1",
     "prettier": "^0.22.0",
     "properties-parser": "^0.3.1",
