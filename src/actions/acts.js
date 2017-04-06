@@ -10,7 +10,9 @@ export const FETCHING_OBJECT = "FETCHING_OBJECT";
 export const SAVING_OBJECT = "SAVING_OBJECT";
 export const RECEIVED_OBJECT = "RECEIVED_OBJECT";
 export const RECEIVED_OBJECT_SAVED = "RECEIVED_OBJECT_SAVED";
-export const CASE_TYPE = "CASE";
+export const CASE_TYPE = "case";
+export const METHOD_TYPE = "method";
+export const ORGANIZATION_TYPE = "organization";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
 import { push } from "react-router-redux";
 import api from "../utils/api";
@@ -34,6 +36,7 @@ export const METHOD = "METHOD";
 export const RECEIVED_NOUNS = "RECEIVED_NOUNS";
 
 export function loadNouns(noun) {
+  console.log("doing loadNouns", noun);
   return dispatch => {
     return api.fetchNouns(noun).then(
       function(response) {
@@ -99,22 +102,29 @@ export function receiveObjectSaved(state, id) {
   };
 }
 
-export function makeObject(type, object) {
+export function makeObject(thingType, object) {
   // console.log("in makeObject", object);
   return dispatch => {
     dispatch(startSaveObject(object));
-    if (type === CASE_TYPE) {
+    if (
+      thingType === CASE_TYPE ||
+      thingType === METHOD_TYPE ||
+      thingType === ORGANIZATION_TYPE
+    ) {
       return api
-        .saveNewCase(object)
+        .saveNewThing(thingType, object)
         .then(response => dispatch(receiveObjectSaved(object, response)))
         .then(function(thing) {
-          dispatch(push("/en-US/case/" + thing.payload.ID.case_id));
+          let id = thing.payload.ID[thingType + "_id"];
+          dispatch(push(`/en-US/${thingType}/${id}`));
         })
         .catch(reason => {
           console.error("Error saving case", reason);
         });
     } else {
-      // XXX not cases
+      let error = `don't know how to create: ${thingType}`;
+      console.error(error);
+      throw error;
     }
   };
 }
