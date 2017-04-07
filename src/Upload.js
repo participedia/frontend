@@ -120,20 +120,28 @@ class Upload extends React.Component {
   }
 
   handleFinishedUpload(args) {
+    // if addToList is specified, then we clear out the uploader. If not,
+    // we display the happy checkmark.
     const { dispatch, profile } = this.props;
     this.setState({
       hidePic: false,
       done: true,
-      started: false,
+      started: this.props.addToList ? false : true,
       progress: 0,
       preview: args.file.preview
     });
+    if (this.props.onChange) {
+      this.props.onChange(args.filename);
+    }
     if (this.props.updatePicture) {
       dispatch(
         updateUserMetaData(profile.user_id, {
           customPic: `${UPLOADS_CDN_URL}cropped-to-square/${args.filename}`
         })
       );
+    }
+    if (this.props.addToList) {
+      this.props.addToList(args.file.preview);
     }
   }
 

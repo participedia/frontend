@@ -67,10 +67,13 @@ class _CaseEditor extends Component {
   constructor(props) {
     super(props);
     this.makeLead = this.makeLead.bind(this);
-    this.handleLanguage = this.handleLanguage.bind(this);
+    this.handleNewImg = this.handleNewImg.bind(this);
+    this.deleteImg = this.deleteImg.bind(this);
+    this.deleteLead = this.deleteLead.bind(this);
     this.state = {
       lead: "",
-      andrea:""
+      newImg: false,
+      delImg: false
     };
   }
 
@@ -78,13 +81,29 @@ class _CaseEditor extends Component {
     this.setState({ lead: src });
   }
 
-  handleLanguage(langValue) {
-    this.setState({andrea: langValue});
-    console.log('AY MI DIOS',langValue)
-    console.log('AY MI DIOS1',this.props.case.other_images[3])
-    console.log('AY MI DIOS2',this.props.case.other_images.length)
+  handleNewImg(img) {
+    this.setState({ newImg: true });
     let currentImgs = this.props.case.other_images.length
-    this.props.case.other_images[currentImgs] = {url:langValue};
+    this.props.case.other_images[currentImgs] = {url:img};
+  }
+
+  deleteImg(photo) {
+    this.setState({ delImg: true });
+    let currentImgs = this.props.case.other_images
+    let awsUrl = process.env.REACT_APP_ASSETS_URL;
+    let index = Object.keys(currentImgs).find(key => awsUrl + currentImgs[key]['url'] === photo || currentImgs[key]['url'] === photo);
+    if (index) {
+      this.props.case.other_images.splice(index, 1)
+    }
+  }
+
+  deleteLead(photo) {
+    this.setState({ delImg: true });
+    let currentImgs = this.props.case.other_images
+    this.props.case.lead_image = null;
+    if (currentImgs.length > 0) {
+      this.setState({ lead: currentImgs[0]['url'] });
+    }
   }
 
 
@@ -100,7 +119,6 @@ class _CaseEditor extends Component {
     if (caseObject && caseObject.other_images) {
       Object.keys(caseObject.other_images).forEach(function(key) {
         let obj = caseObject.other_images[key];
-        console.log(key, obj,'key')
         if ((obj.url).substring(0,4) === 'blob') {
           otherImgs.push(obj.url);
         } else {
@@ -197,11 +215,11 @@ class _CaseEditor extends Component {
                                     : "box"
                                 }
                               >
-                                <div className="checkbox" />
+                                <div className="checkbox" onClick={this.makeLead.bind(this, leadImg)} />
+                                <div className="trash" onClick={this.deleteLead.bind(this, leadImg)} />
                                 <img
                                   className="img-fluid"
                                   alt=""
-                                  onClick={this.makeLead.bind(this, leadImg)}
                                   src={leadImg}
                                 />
                                 {this.state.lead === leadImg ||
@@ -221,12 +239,12 @@ class _CaseEditor extends Component {
                                       : "box"
                                   }
                                 >
-                                  <div className="checkbox" />
+                                  <div className="checkbox" onClick={this.makeLead.bind(this, photo)} />
+                                  <div className="trash" onClick={this.deleteImg.bind(this, photo)} />
                                   <img
                                     key={id}
                                     alt=""
                                     className="img-fluid"
-                                    onClick={this.makeLead.bind(this, photo)}
                                     src={photo}
                                   />
                                   {this.state.lead === photo
@@ -236,9 +254,9 @@ class _CaseEditor extends Component {
                               </Col>
                             ))
                           : undefined}
-                        <Col md="3"><Upload itemEdit={true} onSelectLanguage={this.handleLanguage} /></Col>
+                        <Col md="3"><Upload itemEdit={true} addToList={this.handleNewImg} /></Col>
                       </Row>
-                      <div>
+                      <div className="title-edit">
                         <label htmlFor="title">Title</label>
                       </div>
                       <Text field="title" placeholder="case title" />

@@ -22,6 +22,12 @@
   }
 }
 
+.main-area {
+  .title-edit {
+    padding-top: 2rem;
+  }
+}
+
 .itemPics {
   .col {
     height: 11.3rem;
@@ -41,6 +47,37 @@
         height: 1.4rem;
         right: 0;
         background: #fff;
+        border: 2px solid $interactive-color;
+        cursor: pointer;
+      }
+      .trash {
+        position: absolute;
+        cursor: pointer;
+        width: 1.4rem;
+        height: 1.4rem;
+        bottom: 8px;
+        right:0;
+        background-image: url("../../img/trash.png");
+        background-repeat: no-repeat;
+        background-size: 0.9rem;
+        background-color: #fff;
+        background-position: center;
+        border: 1px solid black;
+        z-index: 1;
+      }
+      .trash {
+        position: absolute;
+        width: 1.4rem;
+        height: 1.4rem;
+        bottom: 6px;
+        right:0;
+        background-image: url("../../img/trash.png");
+        background-repeat: no-repeat;
+        background-size: 0.9rem;
+        background-color: #fff;
+        background-position: center;
+        border: 1px solid black;
+        z-index: 1;
       }
       small {
         background: #fff;
@@ -52,8 +89,13 @@
       text-align: center;
       &.lead {
         border: 4px solid $interactive-color;
+        .trash {
+          bottom: 1px;
+          border: none;
+        }
         .checkbox {
-          background-image: url("../../img/check.png");
+          border: none;
+          background-image: url("../../img/star.png");
           background-repeat: no-repeat;
           background-size: 1.4rem;
         }

@@ -25,7 +25,6 @@ import {
   DatasetForm,
   SurveyForm
 } from "./components/QuickSubmit/QuickSubmit";
-import queryString from "query-string";
 
 let getFirstBrowserLanguage = function() {
   let nav = window.navigator;
@@ -59,12 +58,6 @@ let getFirstBrowserLanguage = function() {
   return null;
 };
 
-let onRedirect = function() {
-  let parsedParams = queryString.parse(window.location.hash);
-  let path = JSON.parse(parsedParams.state).pathname;
-  window.location.replace(path);
-};
-
 import localesJSON from "../public/locales.json";
 let locales = Object.keys(localesJSON);
 
@@ -73,12 +66,12 @@ function buildRoutes() {
   locales.forEach(function(locale) {
     routes.push(
       <Route key={locale} path={locale} component={Layout}>
+        <Route path="redirect" />
         <IndexRoute component={Home} />
         <Route path="profile/edit" component={ProfileEditor} />
         <Route path="profile" component={Profile} />
         <Route path="help/:id" component={HelpArticle} />
         <Route path="about" component={About} />
-        <Route path="redirect" onEnter={onRedirect} />
         <Route path="search" component={Home} />
         <Route path="_upload" component={Upload} />
         <Route path="teaching" component={Teaching} />

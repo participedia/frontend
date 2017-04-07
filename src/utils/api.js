@@ -1,5 +1,4 @@
 // This is the JS API to talk to api.participedia.xyz
-import log from "winston";
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
 if (!APIURL) {
@@ -11,42 +10,35 @@ if (!APIURL) {
 import queryString from "query-string";
 
 const signedFetch = function(url, method, payload) {
-  let profile = JSON.parse(localStorage.profile);
   let opts = {
     method: method || "get",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("id_token"),
       Accept: "application/json",
-      "Content-Type": "application/json",
-      "X-Auth0-Name": profile.name,
-      "X-Auth0-UserId": profile.user_id
+      "Content-Type": "application/json"
     }
   };
+  if (localStorage.profile) {
+    let profile = JSON.parse(localStorage.profile);
+    if (localStorage.getItem("id_token")) {
+      opts["headers"]["Authorization"] = "Bearer " +
+        localStorage.getItem("id_token");
+    }
+    opts["headers"]["X-Auth0-Name"] = profile.name;
+    opts["headers"]["X-Auth0-UserId"] = profile.user_id;
+  } else {
+    delete opts["headers"]["authorization"];
+  }
   if (payload) opts.body = JSON.stringify(payload);
   return fetch(url, opts);
 };
 
 class API {
-  secureFetch = function(url, method, payload) {
-    let profile = JSON.parse(localStorage.profile);
-    let opts = {
-      method: method || "get",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("id_token"),
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "X-Auth0-Name": profile.name,
-        "X-Auth0-UserId": profile.user_id
-      }
-    };
-    if (payload) opts.body = JSON.stringify(payload);
-    return fetch(url, opts);
-  };
+  secureFetch = signedFetch;
 
   fetchGeoJSON = function(countryCode) {
     let url = APIURL + "/countries/" + countryCode + ".geo.json";
     return fetch(url).then(response => response.json()).catch(function(error) {
-      log.error(
+      console.error(
         `There has been a problem with your fetch operation: (${url}) ${error}`
       );
       return error;
@@ -58,11 +50,10 @@ class API {
     return fetch(url)
       .then(response => response.json())
       .then(function(json) {
-        // log.error("countsByCountry", json);
         return json.data.countryCounts;
       })
       .catch(function(error) {
-        log.error(
+        console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`
         );
         return error;
@@ -86,7 +77,7 @@ class API {
 
   fetchCaseById = function(caseId) {
     let url = APIURL + "/case/" + caseId;
-    return fetch(url)
+    return signedFetch(url, "get")
       .then(response => response.json())
       .then(json => json.data)
       .catch(function(error) {
@@ -97,15 +88,25 @@ class API {
       });
   };
 
-  saveNewCase = function(caseObj) {
-    let url = APIURL + "/case/new";
+  saveNewThing = function(thingType, caseObj) {
+    if (
+      thingType !== "case" &&
+      thingType !== "method" &&
+      thingType !== "organization"
+    ) {
+      let error = `Can only create cases, methods, and organizations. You sent: ${thingType}`;
+      console.error(error);
+      throw error;
+    }
+
+    let url = APIURL + "/" + thingType + "/new";
     return signedFetch(url, "POST", caseObj)
-      .then(response => response.json())
       .then(function(response) {
         if (!response.ok) {
+          console.log("Error doing saveNewThing's signedFetch: ", response);
           throw Error(response.message);
         }
-        return response;
+        return response.json();
       })
       .then(json => json.data)
       .catch(function(error) {
@@ -163,6 +164,32 @@ class API {
       );
       return error;
     });
+  };
+
+  addBookmark = function(bookmarkType, thingID) {
+    let url = APIURL + "/bookmark/add";
+    return signedFetch(url, "POST", { bookmarkType, thingID })
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:addBookmark: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
+  removeBookmark = function(bookmarkType, thingID) {
+    let url = APIURL + "/bookmark/delete";
+    return signedFetch(url, "delete", {
+      bookmarkType,
+      thingID
+    })
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:removeBookmark: (${url}) ${error}`
+        );
+        return error;
+      });
   };
 }
 
