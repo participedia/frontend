@@ -102,7 +102,6 @@ export function receiveObjectSaved(state, id) {
 }
 
 export function makeObject(thingType, object) {
-  console.log("in makeObject", thingType, object);
   return dispatch => {
     dispatch(startSaveObject(object));
     if (

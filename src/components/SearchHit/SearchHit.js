@@ -26,9 +26,6 @@ export class SearchHit extends React.Component {
     let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
     let thumbnailClass = "thumbnail " + type;
-    if (!title) {
-      console.log("missing title: ", result);
-    }
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
