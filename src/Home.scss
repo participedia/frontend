@@ -1,0 +1,29 @@
+@import "./UniversalStyles";
+
+.home {
+  .description {
+    .col-sm-2 {
+      @include media-breakpoint-up(sm) {
+        margin-top: 5rem;
+      }
+      text-align: right;
+      p.dismiss {
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+    h5 {
+      padding-top: 0.5rem;
+    }
+    padding: 3rem 0 1rem 0;  
+    img {
+      float: left;
+      width: 90px;
+      margin-right: 1rem;
+    }
+    a.learn {
+      text-decoration: underline;
+      color: #000;
+    }
+  }
+}
