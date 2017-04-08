@@ -100,6 +100,7 @@ class API {
     }
 
     let url = APIURL + "/" + thingType + "/new";
+    console.log("calling ", url);
     return signedFetch(url, "POST", caseObj)
       .then(function(response) {
         if (!response.ok) {

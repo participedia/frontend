@@ -74,10 +74,11 @@ const mapDispatchToProps = dispatch => {
         payload["related_organizations"] = extract_ids(
           payload["related_organizations"]
         );
-        console.log("payload", payload);
+        console.log("payload", thingType, payload);
         dispatch(makeObject(thingType, payload));
       }
     },
+
     loadOrganizationList: function() {
       // XXX should make sure this is lazy
       dispatch(loadNouns(ORGANIZATION));
