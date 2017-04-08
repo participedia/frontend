@@ -83,43 +83,46 @@ class _CaseEditor extends Component {
 
   handleNewImg(img) {
     this.setState({ newImg: true });
-    let currentImgs = this.props.case.other_images.length
-    this.props.case.other_images[currentImgs] = {url:img};
+    let currentImgs = this.props.case.other_images.length;
+    this.props.case.other_images[currentImgs] = { url: img };
   }
 
   deleteImg(photo) {
     this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
+    let currentImgs = this.props.case.other_images;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let index = Object.keys(currentImgs).find(key => awsUrl + currentImgs[key]['url'] === photo || currentImgs[key]['url'] === photo);
+    let index = Object.keys(currentImgs).find(
+      key =>
+        awsUrl + currentImgs[key]["url"] === photo ||
+        currentImgs[key]["url"] === photo
+    );
     if (index) {
-      this.props.case.other_images.splice(index, 1)
+      this.props.case.other_images.splice(index, 1);
     }
   }
 
   deleteLead(photo) {
     this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
+    let currentImgs = this.props.case.other_images;
     this.props.case.lead_image = null;
     if (currentImgs.length > 0) {
-      this.setState({ lead: currentImgs[0]['url'] });
+      this.setState({ lead: currentImgs[0]["url"] });
     }
   }
 
-
   render() {
     const { onSubmit } = this.props;
-    const caseObject = this.props.case;
+    const thing = this.props.case;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
     let leadImg = "";
     let otherImgs = [];
-    if (caseObject && caseObject.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url);
+    if (thing && thing.lead_image) {
+      leadImg = awsUrl + encodeURIComponent(thing.lead_image.url);
     }
-    if (caseObject && caseObject.other_images) {
-      Object.keys(caseObject.other_images).forEach(function(key) {
-        let obj = caseObject.other_images[key];
-        if ((obj.url).substring(0,4) === 'blob') {
+    if (thing && thing.other_images) {
+      Object.keys(thing.other_images).forEach(function(key) {
+        let obj = thing.other_images[key];
+        if (obj.url.substring(0, 4) === "blob") {
           otherImgs.push(obj.url);
         } else {
           otherImgs.push(awsUrl + encodeURIComponent(obj.url));
@@ -127,12 +130,12 @@ class _CaseEditor extends Component {
       });
     }
 
-    if (!caseObject) {
+    if (!thing) {
       return <div>Loading...</div>;
     }
 
     return (
-      <Form onSubmit={onSubmit} defaultValues={caseObject}>
+      <Form onSubmit={onSubmit} defaultValues={thing}>
         {({ submitForm }) => {
           return (
             <form onSubmit={submitForm}>
@@ -188,7 +191,7 @@ class _CaseEditor extends Component {
                         </h5>
                         <AutoComplete
                           hintText={this.props.intl.formatMessage({
-                            id: "search_related_orgs"
+                            id: "search_related_organizations"
                           })}
                           dataSource={this.props.organizations}
                         />
@@ -201,7 +204,7 @@ class _CaseEditor extends Component {
                         Case
                       </h2>
                       <h2 className="case-title">
-                        {caseObject.title}
+                        {thing.title}
                       </h2>
                       <Row className="itemPics">
                         {leadImg
@@ -214,8 +217,14 @@ class _CaseEditor extends Component {
                                     : "box"
                                 }
                               >
-                                <div className="checkbox" onClick={this.makeLead.bind(this, leadImg)} />
-                                <div className="trash" onClick={this.deleteLead.bind(this, leadImg)} />
+                                <div
+                                  className="checkbox"
+                                  onClick={this.makeLead.bind(this, leadImg)}
+                                />
+                                <div
+                                  className="trash"
+                                  onClick={this.deleteLead.bind(this, leadImg)}
+                                />
                                 <img
                                   className="img-fluid"
                                   alt=""
@@ -238,8 +247,14 @@ class _CaseEditor extends Component {
                                       : "box"
                                   }
                                 >
-                                  <div className="checkbox" onClick={this.makeLead.bind(this, photo)} />
-                                  <div className="trash" onClick={this.deleteImg.bind(this, photo)} />
+                                  <div
+                                    className="checkbox"
+                                    onClick={this.makeLead.bind(this, photo)}
+                                  />
+                                  <div
+                                    className="trash"
+                                    onClick={this.deleteImg.bind(this, photo)}
+                                  />
                                   <img
                                     key={id}
                                     alt=""
@@ -253,7 +268,12 @@ class _CaseEditor extends Component {
                               </Col>
                             ))
                           : undefined}
-                        <Col md="3"><Upload itemEdit={true} addToList={this.handleNewImg} /></Col>
+                        <Col md="3">
+                          <Upload
+                            itemEdit={true}
+                            addToList={this.handleNewImg}
+                          />
+                        </Col>
                       </Row>
                       <div className="title-edit">
                         <label htmlFor="title">Title</label>
@@ -262,7 +282,7 @@ class _CaseEditor extends Component {
                       <div>
                         <label htmlFor="body_en">Body</label>
                       </div>
-                      <BodyEditor value={caseObject.body} />
+                      <BodyEditor value={thing.body} />
                     </div>
                     <button type="submit">Submit</button>
                   </Col>

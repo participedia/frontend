@@ -1,6 +1,9 @@
 import React from "react";
 import { Method } from "../src/containers/Method";
-import { shallowWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+const muiTheme = getMuiTheme({});
+import { mountWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
 import methodData from "./method_data.json";
 import intlProps from "../src/helpers/intl-props-test-helper.js";
 import afterPromises from "../src/helpers/afterPromises";
@@ -18,7 +21,11 @@ function setup() {
     params: { nodeID: 145 }
   };
 
-  const enzymeWrapper = shallowWithIntl(<Method {...props} />);
+  const enzymeWrapper = mountWithIntl(
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Method {...props} />
+    </MuiThemeProvider>
+  );
   return {
     props,
     enzymeWrapper
@@ -30,7 +37,7 @@ describe("containers", () => {
     it("should render proper data for method", done => {
       const { enzymeWrapper } = setup();
       afterPromises(done, () => {
-        expect(enzymeWrapper.find(".sub-heading").length).toBe(2);
+        expect(enzymeWrapper.find(".sub-heading").length).toBe(1);
         expect(enzymeWrapper.find("h2.case-title").text()).not.toBe("");
       });
     });

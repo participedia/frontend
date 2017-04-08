@@ -194,7 +194,18 @@
     "none": "None",
     "preferential": "Preferential",
     "supermajority": "Supermajority",
-    "consensus": "Consensus"
+    "consensus": "Consensus",
+    "kind_of_influence": "Kind of influence",
+    "communication_with_audience": "Communication with audience",
+    "decision_method": "Decision method",
+    "face_to_face_online_or_both": "Face-to-face, online or both",
+    "facilitated": "Facilitated",
+    "communication_mode": "Communication mode",
+    "best_for": "Best for",
+    "governance_contribution": "Governance contribution",
+    "typical_funding_source": "Typical funding source",
+    "typical_sponsoring_entity": "Typical sponsoring entity",
+    "typical_implementing_entity": "Typical implementing entity"
   },
   "fr": {
     "chronological": "Plus Récentes"

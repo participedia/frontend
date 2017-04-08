@@ -1,0 +1,341 @@
+@import "../../UniversalStyles";
+@import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+section.image-gallery {
+  margin: 0 auto;
+  .image-gallery-image {
+    max-height: 500px;
+    background-color: #000;
+    text-align: center;
+    overflow: hidden;
+    @include media-breakpoint-down(md) {
+      max-height: 220px;
+    }
+    img.portrait {
+      width: auto;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+}
+
+.detailed-case-component {
+  padding-bottom: 32px;
+  padding-top: 32px;
+
+  .sidepanel {
+    padding: 0 30px;
+    margin-top: 48px;
+    position:relative;
+
+    svg.country-map {
+      border:2px solid $dark-grey;
+      padding:15px;
+    }
+    
+    .case-map {
+      width: 100%;
+    }
+
+    .case-location {
+      font-weight: 500;
+      color: $grey-text;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      height: 16px;
+
+      .progress-fill {
+        height: 16px;
+        background-color: $primary-color;
+      }
+    }
+
+    .progress-complete {
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    .sub-heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 40px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      border-bottom:2px solid $dark-grey;
+    }
+
+    .sub-sub-heading {
+      font-size: 14px;
+      font-weight: 500;
+      color: $grey-text;
+      line-height: 18px;
+      margin-bottom: 8px;
+      margin-top: 16px;
+    }
+
+    .tags {
+      a {
+        display: block;
+        font-size: 14px;
+        color: #888;
+        font-weight: 400;
+        line-height: 18px;
+        margin-bottom: 4px;
+      }
+    }
+
+    .related-content {
+      a {
+        font-size: 14px;
+        font-weight: 500;
+        color: $grey-text;
+        line-height: 18px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        position: relative;
+        display: block;
+        padding-left: 32px;
+
+        &:before {
+          content: "";
+          background-image: url("/img/arrow-down-icon.png");
+          display: block;
+          position: absolute;
+          left: 0;
+          width: 24px;
+          height: 24px;
+          opacity: 0.5;
+          margin-top: -4px;
+        }
+      }
+    }
+  }
+
+  .case-tools {
+
+    .top-icons {
+      margin-top: 40px;
+
+      a {
+        display: block;
+        margin-bottom: 16px;
+
+        img {
+          width: 40px;
+        }
+
+        &:first-child {
+          img {
+            width: 32px;
+            margin: 4px;
+          }
+        }
+      }
+    }
+
+    .bottom-icons {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 48px;
+      position: fixed;
+
+      a {
+        position: relative;
+        display: block;
+
+        img {
+          width: 80px;
+          margin-left: -20px;
+        }
+
+        &::before {
+          content: "";
+          background-color: $orange;
+          position: absolute;
+          color: #fff;
+          font-weight: 400;
+          left: 65px;
+          top: 19px;
+          width: 12px;
+          height: 12px;
+          transform: rotate(45deg);
+          display: none;
+        }
+
+        &::after {
+          content: "Edit";
+          background-color: $orange;
+          padding: 6px 12px;
+          position: absolute;
+          display: none;
+          color: #fff;
+          font-weight: 400;
+          left: 70px;
+          top: 10px;
+        }
+
+        &:hover {
+          &::before, &::after {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .main-area {
+    padding:0 15px;
+
+    .case-box {
+      padding: 48px 0;
+
+      .category {
+        color: $grey-text;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        font-size:20px;
+        text-transform: uppercase;
+      }
+
+      .case-title {
+        color: $primary-color;
+        font-weight: 500;
+        margin-bottom: 48px;
+        font-size:2.25rem;
+      }
+
+      .case-images {
+        img {
+          max-width: 600px;
+        }
+      }
+
+      .authorship-details {
+        margin-top: 32px;
+        margin-bottom: 32px;
+
+        .author-line {
+          font-size: 14px;
+          font-weight: 500;
+          color: $primary-color;
+          line-height: 18px;
+          margin-bottom:0;
+
+          a {
+            color: $primary-color;
+            font-weight: 600;
+            position:relative;
+            cursor:pointer;
+            &:after {
+              content:"";
+              position:absolute;
+              left:0;
+              right:0;
+              bottom:-2px;
+              height:2px;
+              background:$black;
+            }
+            &:hover, &:focus {
+              color:$interactive-color;
+              text-decoration:none;
+              &:after {
+                background:$interactive-color;
+              }
+            }
+          }
+        }
+
+        .date-line {
+          font-size: 14px;
+          color: $grey-text;
+          font-weight: 400;
+          line-height: 18px;
+          margin-bottom: 16px;
+        }
+      }
+
+      .case-html {
+        h3 {
+          font-weight: 600;
+          line-height: 40px;
+          margin-bottom: 12px;
+          margin-top: 32px;
+        }
+
+        p, li {
+          font-size: 1.2rem; 
+          font-weight: 400;
+          line-height: 1.9rem;
+          margin-bottom: 20px;
+          max-width:720px;
+        }
+        
+        em {
+          font-weight:400;
+        }
+
+        li {
+          list-style-type: square;
+          margin-left: 32px;
+          margin-bottom: 8px;
+          padding-left: 8px;
+        }
+
+        ol {
+          li {
+            list-style-type: lower-roman;
+          }
+        }
+
+        a {
+          color: $primary-color;
+          font-weight: 600;
+          position:relative;
+          cursor:pointer;
+          &:after {
+            content:"";
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:-2px;
+            height:2px;
+            background:$black;
+          }
+          &:hover, &:focus {
+            color:$interactive-color;
+            text-decoration:none;
+            &:after {
+              background:$interactive-color;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+.main-contents {
+  min-height: 200px;
+  position: relative;
+}
+
+.editButton {
+  z-index: 3000;
+  position: fixed;
+  right: 47px;
+  bottom: 65px;
+  button {
+    background-color: $interactive-color !important;
+  }
+}
