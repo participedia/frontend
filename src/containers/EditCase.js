@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export const fields = ["title_en", "body_en"];
+export const fields = ["title", "body"];
 
 class _EditCase extends Component {
   static propTypes = {

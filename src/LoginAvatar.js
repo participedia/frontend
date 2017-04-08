@@ -7,7 +7,7 @@ import IconButton from "material-ui/IconButton";
 import { Link } from "react-router";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
-import { login, logoutUser } from "./actions";
+import { loginRequest, logoutSuccess } from "./actions";
 import { connect } from "react-redux";
 
 export class LoginAvatar extends React.Component {
@@ -51,7 +51,7 @@ export class LoginAvatar extends React.Component {
             <MenuItem
               style={buttonStyle}
               primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={() => dispatch(logoutUser())}
+              onClick={() => dispatch(logoutSuccess())}
             />
           </IconMenu>
         </div>
@@ -60,7 +60,7 @@ export class LoginAvatar extends React.Component {
       return (
         <div className="loginButton">
           <FlatButton
-            onClick={() => dispatch(login())}
+            onClick={() => dispatch(loginRequest())}
             onTouchTap={this.signIn}
             label={this.props.intl.formatMessage({ id: "login" })}
           />

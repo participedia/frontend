@@ -6,6 +6,7 @@ import SearchQuery from "./containers/SearchQuery";
 import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
+import { checkLogin } from "./actions";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -20,10 +21,12 @@ import HelpBar from "./components/HelpBar/HelpBar";
 export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    checkLogin: React.PropTypes.func.isRequired
   };
   constructor(props) {
     super(props);
+    this.props.checkLogin(); // check is Auth0 lock is authenticating after login callback
     this.state = { open: false };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -47,13 +50,14 @@ export class Layout extends React.Component {
     const { auth, profile, isAuthenticated } = this.props;
 
     let children = null;
-    if (this.props.children && this.props.route) {
-      children = React.cloneElement(this.props.children, {
-        auth: this.props.route.auth // sends auth instance from route to children
+    children = React.Children.map(this.props.children, function(child) {
+      return React.cloneElement(child, {
+        auth: auth
       });
-    }
+    });
     let locale = this.props.intl.locale;
     let home = `/${locale}/`;
+    let addLink = `/${locale}/quick-submit`;
 
     return (
       <div>
@@ -68,8 +72,11 @@ export class Layout extends React.Component {
               </Link>
             </div>
             <div className="search-box-area">
-              <SearchQuery />
+              <SearchQuery {...this.props} />
             </div>
+            <Link to={addLink}>
+              <div className="createButton" />
+            </Link>
             <LoginAvatar
               auth={auth}
               isAuthenticated={isAuthenticated}
@@ -145,8 +152,13 @@ export class Layout extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { auth } = state;
+const mapDispatchToProps = dispatch => {
+  return {
+    checkLogin: () => dispatch(checkLogin())
+  };
+};
+
+function mapStateToProps({ auth }) {
   const { isAuthenticated, profile } = auth;
   return {
     auth,
@@ -159,4 +171,4 @@ Layout.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(connect(mapStateToProps)(Layout));
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Layout));

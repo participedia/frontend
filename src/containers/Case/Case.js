@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./Case.css";
 import { injectIntl, intlShape } from "react-intl";
 import { Link } from "react-router";
@@ -6,19 +7,63 @@ import api from "../../utils/api";
 import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
+import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
-import caseIconBookmark from "../../img/pp-case-icon-bookmark.svg";
+import BookmarkToggle from "../../components/BookmarkToggle";
 import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
 import caseIconShare from "../../img/pp-case-icon-share.svg";
 
+class SearchLink extends React.Component {
+  render() {
+    let tag = this.props.tag;
+    let value = this.props.value;
+    let locale = this.props.locale;
+    if (tag && value && locale) {
+      let mapping = {};
+      mapping[tag] = value;
+      return (
+        <Link
+          to={{
+            pathname: "/" + locale + "/search",
+            query: mapping
+          }}
+        >
+          {value}
+        </Link>
+      );
+    } else {
+      return <div>None specified</div>; // L10N
+    }
+  }
+}
+
+function mapStateToProps({ auth }) {
+  const { isAuthenticated } = auth;
+
+  return {
+    isAuthenticated
+  };
+}
+
 export class Case extends React.Component {
   componentWillMount() {
     let component = this;
+    let isAuthenticated = this.props.isAuthenticated;
     api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
-      component.setState({ data: the_case, htmlBody: the_case.body });
+      component.setState({
+        data: the_case,
+        htmlBody: the_case.body,
+        isAuthenticated: isAuthenticated
+      });
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isAuthenticated: nextProps.isAuthenticated
     });
   }
 
@@ -32,35 +77,109 @@ export class Case extends React.Component {
 
   render() {
     if (this.state && this.state.data) {
+      const locale = this.props.intl.locale;
+      const isAuthenticated = this.props.isAuthenticated;
+      let intl = this.props.intl;
       let caseObject = this.state.data;
-      let tag = "";
-      let communication_mode = "";
-      if (caseObject.specific_topic) {
-        tag = <a href="#">{caseObject.specific_topic}</a>;
+      let bookmarked = isAuthenticated && caseObject.bookmarked;
+      let bookmarkIcon = <div />;
+      if (isAuthenticated) {
+        bookmarkIcon = (
+          <BookmarkToggle
+            thingType="case"
+            thingID={caseObject.id}
+            bookmarked={bookmarked}
+          />
+        );
       }
-      if (caseObject.communication_mode) {
-        communication_mode = <a href="#">{caseObject.communication_mode}</a>;
+      let issue = caseObject.issue;
+      let audience = (
+        <SearchLink
+          locale={locale}
+          tag="communication_with_audience"
+          value={caseObject.communication_with_audience}
+        />
+      );
+      let tags = <div />;
+      if (caseObject.tags) {
+        tags = caseObject.tags.map(tag => (
+          <SearchLink key={tag} locale={locale} tag="tag" value={tag} />
+        ));
       }
+      let communication_mode = (
+        <SearchLink
+          locale={locale}
+          tag="communication_mode"
+          value={caseObject.communication_mode}
+        />
+      );
+      let decision_method = (
+        <SearchLink
+          locale={locale}
+          tag="decision_method"
+          value={caseObject.decision_method}
+        />
+      );
+      let facetoface = caseObject.facetoface_online_or_both;
+      if (!facetoface) {
+        facetoface = "facetoface_not_specified";
+      } else {
+        facetoface = "facetoface_" + facetoface;
+      }
+      facetoface = intl.formatMessage({ id: facetoface });
+      facetoface = (
+        <SearchLink
+          locale={locale}
+          tag="facetoface_online_or_both"
+          value={facetoface}
+        />
+      );
+
+      let facilitated = String(caseObject.facilitated);
+      if (facilitated === "null") facilitated = "not_specified";
+      if (facilitated) facilitated = facilitated.toLowerCase();
+      if (facilitated)
+        facilitated = intl.formatMessage({
+          id: facilitated
+        });
+      facilitated = (
+        <SearchLink locale={locale} tag="facilitated" value={facilitated} />
+      );
+
+      let voting = intl.formatMessage({ id: caseObject.voting });
+      voting = <SearchLink locale={locale} tag="voting" value={voting} />;
+
+      let numberDays = caseObject.number_of_meeting_days;
+      numberDays = (
+        <SearchLink
+          locale={locale}
+          tag="number_of_meeting_days"
+          value={numberDays}
+        />
+      );
+
       let post_date = moment(caseObject.post_date).format("LL");
       let updated_date = moment(caseObject.updated_date).format("LL");
       let first_author = caseObject.authors[0];
-      let locale = this.props.intl.locale;
-      let first_author_url = "/" + locale + "/users/" + first_author.id;
+      let first_author_url = "/" + locale + "/users/" + first_author.user_id;
       let first_author_name = first_author.name;
       let last_author = caseObject.authors.slice(-1)[0];
       let last_author_name = last_author.name;
-      let last_author_url = "/" + locale + "/users/" + last_author.id;
+      let last_author_url = "/" + locale + "/users/" + last_author.user_id;
       let id = this.props.params.nodeID;
-      let editLink = `/${locale}/case/${id}/edit`;
-      // let editLink = (<Link to={`/${locale}/case/${id}/edit`} />)
+      let editLinkUrl = `/${locale}/case/${id}/edit`;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
-      let pic = "";
-      let otherImg = "";
-      if (caseObject.lead_image) {
-        pic = awsUrl + encodeURIComponent(caseObject.lead_image.url);
+      let theLength = "";
+      let pics = [];
+      if (caseObject && caseObject.lead_image) {
+        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url));
       }
-      if (caseObject.other_images.length) {
-        otherImg = awsUrl + encodeURIComponent(caseObject.other_images[0].url);
+      if (caseObject && caseObject.other_images.length) {
+        theLength = caseObject.other_images;
+        Object.keys(theLength).forEach(function(key) {
+          let obj = theLength[key];
+          pics.push(awsUrl + encodeURIComponent(obj.url));
+        });
       }
 
       return (
@@ -77,16 +196,58 @@ export class Case extends React.Component {
                     Keywords
                   </p>
                   <p className="sub-sub-heading">
-                    Tag:
+                    Tags:
                   </p>
                   <div className="tags">
-                    {tag}
+                    {tags}
                   </div>
                   <p className="sub-sub-heading">
                     Specific Topic:
                   </p>
                   <div className="tags">
+                    {issue}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Communication Mode:
+                  </p>
+                  <div className="tags">
                     {communication_mode}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Communication with audience:
+                  </p>
+                  <div className="tags">
+                    {audience}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Decision Method:
+                  </p>
+                  <div className="tags">
+                    {decision_method}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Face to face, online, or both:
+                  </p>
+                  <div className="tags">
+                    {facetoface}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Facilitated:
+                  </p>
+                  <div className="tags">
+                    {facilitated}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Voting:
+                  </p>
+                  <div className="tags">
+                    {voting}
+                  </div>
+                  <p className="sub-sub-heading">
+                    Number of meeting Days:
+                  </p>
+                  <div className="tags">
+                    {numberDays}
                   </div>
                   <p className="sub-heading">
                     Related Content
@@ -106,30 +267,22 @@ export class Case extends React.Component {
                     <h2 className="case-title">
                       {caseObject.title}
                     </h2>
-                    {pic && pic.length > awsUrl.length
-                      ? <div className="case-images">
-                          <img role="presentation" src={pic} />
-                        </div>
-                      : otherImg && otherImg.length > awsUrl.length
-                          ? <div className="case-images">
-                              <img role="presentation" src={otherImg} />
-                            </div>
-                          : undefined}
+                    <ItemGallery items={pics} />
                     <div className="authorship-details">
                       <p className="author-line">
                         First submitted by&nbsp;
-                        <a href={first_author_url}>
+                        <Link to={first_author_url}>
                           {first_author_name}
-                        </a>
+                        </Link>
                       </p>
                       <p className="date-line">
                         {post_date}
                       </p>
                       <p className="author-line">
                         Most recent changes by&nbsp;
-                        <a href={last_author_url}>
+                        <Link to={last_author_url}>
                           {last_author_name}
-                        </a>
+                        </Link>
                       </p>
                       <p className="date-line">
                         {updated_date}
@@ -143,7 +296,7 @@ export class Case extends React.Component {
                 </Col>
                 <Col md="1" className="case-tools hidden-sm-down">
                   <div className="top-icons">
-                    <a href="#"><img src={caseIconBookmark} alt="" /></a>
+                    {bookmarkIcon}
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
                     <a href="#"><img src={caseIconFB} alt="" /></a>
                     <a href="#"><img src={caseIconTW} alt="" /></a>
@@ -152,7 +305,7 @@ export class Case extends React.Component {
                 </Col>
               </Row>
             </Container>
-            <Link to={editLink}>
+            <Link to={editLinkUrl}>
               <FloatingActionButton className="editButton">
                 <ContentPencil />
               </FloatingActionButton>
@@ -170,4 +323,4 @@ Case.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(Case);
+export default connect(mapStateToProps)(injectIntl(Case));

@@ -10,6 +10,7 @@ import orgMarkerIcon from "../../img/organization-marker-icon.png";
 import mapArrowIcon from "../../img/pp-map-arrow-icon.png";
 // eslint-disable-next-line
 import sleep from "leaflet-sleep";
+import leaflet from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 
@@ -66,9 +67,9 @@ class MyMap extends React.Component {
 
   componentDidMount() {
     api.countsByCountry().then(
-      (function success(countryCounts) {
+      function success(countryCounts) {
         this.setState({ countryCounts: countryCounts });
-      }).bind(this)
+      }.bind(this)
     );
   }
 
@@ -77,10 +78,11 @@ class MyMap extends React.Component {
     let component = this;
     layer.on({
       click: function(event) {
-        L.popup() // eslint-disable-line no-undef
+        leaflet
+          .popup()
           .setLatLng(event.latlng)
           .setContent(labelPerCountry(feature))
-          .openOn(layer._map);
+          .openOn(layer._map); // eslint-disable-line no-undef
         /* do a per-country search */
         if (component.props.onCountryChange) {
           component.props.onCountryChange(feature.properties.name);

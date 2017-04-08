@@ -5,5 +5,6 @@
     "build/**": true,
     "src/**/*.css": true,
     "src/**/*.css.map": true
-  }
+  },
+  "eslint.enable": true
 }

@@ -1,12 +1,31 @@
 @import "../../UniversalStyles";
-// @import "quill/dist/quill.snow.css";
+@import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+section.image-gallery {
+  margin: 0 auto;
+  .image-gallery-image {
+    max-height: 500px;
+    background-color: #000;
+    text-align: center;
+    overflow: hidden;
+    @include media-breakpoint-down(md) {
+      max-height: 220px;
+    }
+    img.portrait {
+      width: auto;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+}
 
 .detailed-case-component {
   padding-bottom: 32px;
   padding-top: 32px;
 
   .sidepanel {
-    padding: 0 32px;
+    padding: 0 30px;
     margin-top: 48px;
     position:relative;
 
@@ -173,7 +192,7 @@
   }
 
   .main-area {
-    padding:0 40px;
+    padding:0 15px;
 
     .case-box {
       padding: 48px 0;

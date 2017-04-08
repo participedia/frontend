@@ -4,7 +4,6 @@ import { Container, Row, Col, Form, FormGroup, Label } from "reactstrap";
 import imgIcon from "../../img/img-icon.png";
 import vidIcon from "../../img/vid-icon.png";
 import TextField from "material-ui/TextField";
-import AutoComplete from "material-ui/AutoComplete";
 import locationIcon from "../../img/location-icon.png";
 import Upload from "../../Upload";
 import Geosuggest from "react-geosuggest";
@@ -12,22 +11,63 @@ import RaisedButton from "material-ui/RaisedButton";
 import "../GeoSuggest/GeoSuggest.css";
 import "../QuickSubmit/QuickSubmit.css";
 import { injectIntl } from "react-intl";
+import ChipInput from "material-ui-chip-input";
 
 const renderGeoField = ({ input, label, type, meta: { touched, error } }) => {
   const onSuggestSelect = suggest => {
     input.onChange(suggest);
   };
-  return <Geosuggest onSuggestSelect={onSuggestSelect} />;
+  return <Geosuggest fullWidth={true} onSuggestSelect={onSuggestSelect} />;
 };
 
 // to avoid the warnings from react about unnecessary props
 const renderTextField = field => (
-  <TextField hintText={field.placeholder} {...field.input} />
+  <TextField hintText={field.placeholder} fullWidth={true} {...field.input} />
+);
+
+const renderUpload = field => (
+  <Upload onChange={param => field.input.onChange(param)} />
+);
+
+const renderChip = (
+  {
+    input,
+    hintText,
+    dataSource,
+    dataSourceConfig,
+    possibles,
+    floatingLabelText
+  }
+) => (
+  <ChipInput
+    {...input}
+    value={input.value || []}
+    fullWidth={true}
+    menuStyle={{ width: 400 }}
+    listStyle={{ width: 400 }}
+    onRequestAdd={addedChip => {
+      let values = input.value || [];
+      values = values.slice();
+      values.push(addedChip);
+      input.onChange(values);
+    }}
+    onRequestDelete={deletedChip => {
+      console.log(input.value, deletedChip);
+      let values = input.value || [];
+      values = values.filter(v => v.value !== deletedChip);
+      input.onChange(values);
+    }}
+    onBlur={() => input.onBlur()}
+    dataSource={dataSource}
+    dataSourceConfig={dataSourceConfig}
+    hintText={hintText}
+    floatingLabelText={floatingLabelText}
+  />
 );
 
 class ItemForm extends Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, cases, organizations, methods } = this.props;
     return (
       <Container>
         <Form className="quick-submit" onSubmit={handleSubmit}>
@@ -67,7 +107,7 @@ class ItemForm extends Component {
               <span>{this.props.intl.formatMessage({ id: "add_photo" })}</span>
             </Col>
           </Row>
-          <Upload />
+          <Field name="lead_image" component={renderUpload} />
           <Row className="vidField">
             <Col xs={2} sm={1}>
               <img className="img-fluid" src={vidIcon} alt="" />
@@ -99,15 +139,41 @@ class ItemForm extends Component {
             <Label>
               {this.props.intl.formatMessage({ id: "related_cases" })}
             </Label>
-            <AutoComplete
+            <Field
+              name="related_cases"
+              component={renderChip}
               hintText={this.props.intl.formatMessage({
                 id: "search_related_cases"
               })}
-              dataSource={this.props.cases}
+              dataSource={cases}
+              dataSourceConfig={{ text: "text", value: "value" }}
+            />
+            <Label>
+              {this.props.intl.formatMessage({ id: "related_methods" })}
+            </Label>
+            <Field
+              name="related_methods"
+              component={renderChip}
+              hintText={this.props.intl.formatMessage({
+                id: "search_related_methods"
+              })}
+              dataSource={methods}
+              dataSourceConfig={{ text: "text", value: "value" }}
+            />
+            <Label>
+              {this.props.intl.formatMessage({ id: "related_organizations" })}
+            </Label>
+            <Field
+              name="related_organizations"
+              component={renderChip}
+              hintText={this.props.intl.formatMessage({
+                id: "search_related_organizations"
+              })}
+              dataSource={organizations}
+              dataSourceConfig={{ text: "text", value: "value" }}
             />
           </FormGroup>
           <RaisedButton
-            onClick={handleSubmit}
             type="submit"
             label={this.props.intl.formatMessage({ id: "submit" })}
             primary={true}

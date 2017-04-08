@@ -4,7 +4,6 @@ import { injectIntl, intlShape } from "react-intl";
 import { Link } from "react-router";
 import { Container, Row, Col } from "reactstrap";
 import FloatingActionButton from "material-ui/FloatingActionButton";
-import CountryMap from "../components/CountryMap";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import api from "../utils/api";
 import caseIconBookmark from "../img/pp-case-icon-bookmark.png";
@@ -17,8 +16,7 @@ import moment from "moment";
 export class Method extends React.Component {
   componentWillMount() {
     let component = this;
-    api.fetchMethodById(this.props.params.nodeID).then(function(json) {
-      let data = json[0];
+    api.fetchMethodById(this.props.params.nodeID).then(function(data) {
       component.setState({ data: data, htmlBody: data.body });
     });
   }
@@ -52,26 +50,23 @@ export class Method extends React.Component {
       let updated_date = moment(methodObject.updated_date).format("LL");
       let locale = this.props.intl.locale;
 
-      let author = methodObject.author;
+      let author = methodObject.authors[0];
       let first_author = (author && author.name) || "unknown";
-      let first_author_url = author
-        ? "/" + locale + "/users/" + methodObject.author.id
-        : "";
-      let last_author = "???"; // TODO figure out how to extract last author information
+      let first_author_url = author ? "/" + locale + "/users/" + author.id : "";
+      let last_author = methodObject.authors.slice(-1)[0];
+      let last_author_name = last_author.name;
+      let last_author_url = "/" + locale + "/users/" + last_author.id;
       let id = this.props.params.nodeID;
       let editLink = <Link to={`/${locale}/case/${id}/edit`} />;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
       let pic = "";
       let otherImg = "";
       if (methodObject.lead_image) {
-        let comma = methodObject.lead_image.search(",");
-        pic = awsUrl +
-          encodeURIComponent(methodObject.lead_image.slice(9, comma - 1));
+        pic = awsUrl + encodeURIComponent(methodObject.lead_image.url);
       }
-      if (methodObject.other_images) {
-        let bracket = methodObject.other_images.search("]");
+      if (methodObject.other_images.length) {
         otherImg = awsUrl +
-          encodeURIComponent(methodObject.other_images.slice(2, bracket - 1));
+          encodeURIComponent(methodObject.other_images[0].url);
       }
 
       return (
@@ -80,12 +75,6 @@ export class Method extends React.Component {
             <Container className="detailed-case-component" fluid={true}>
               <Row>
                 <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-                  {methodObject.geo_country
-                    ? <CountryMap
-                        city={methodObject.geo_city}
-                        countrycode={methodObject.geo_country}
-                      />
-                    : undefined}
                   <p className="sub-heading">
                     Keywords
                   </p>
@@ -117,15 +106,15 @@ export class Method extends React.Component {
                       Method
                     </div>
                     <h2 className="case-title">
-                      {methodObject.title_en}
+                      {methodObject.title}
                     </h2>
                     {pic && pic.length > awsUrl.length
                       ? <div className="case-images">
-                          <img role="presentation" src={pic} />
+                          <img alt="" src={pic} />
                         </div>
                       : otherImg && otherImg.length > awsUrl.length
                           ? <div className="case-images">
-                              <img role="presentation" src={otherImg} />
+                              <img alt="" src={otherImg} />
                             </div>
                           : undefined}
                     <div className="authorship-details">
@@ -140,8 +129,8 @@ export class Method extends React.Component {
                       </p>
                       <p className="author-line">
                         Most recent changes by&nbsp;
-                        <a href="#">
-                          {last_author}
+                        <a href={last_author_url}>
+                          {last_author_name}
                         </a>
                       </p>
                       <p className="date-line">
@@ -150,17 +139,29 @@ export class Method extends React.Component {
                     </div>
                     <div
                       className="case-html"
-                      dangerouslySetInnerHTML={{ __html: methodObject.body_en }}
+                      dangerouslySetInnerHTML={{
+                        __html: methodObject.body
+                      }}
                     />
                   </div>
                 </Col>
                 <Col md="1" className="case-tools hidden-sm-down">
                   <div className="top-icons">
-                    <a href="#"><img src={caseIconBookmark} alt="" /></a>
-                    <a href="#"><img src={caseIconSettings} alt="" /></a>
-                    <a href="#"><img src={caseIconFB} alt="" /></a>
-                    <a href="#"><img src={caseIconTW} alt="" /></a>
-                    <a href="#"><img src={caseIconShare} alt="" /></a>
+                    <a href="#">
+                      <img src={caseIconBookmark} alt="" />
+                    </a>
+                    <a href="#">
+                      <img src={caseIconSettings} alt="" />
+                    </a>
+                    <a href="#">
+                      <img src={caseIconFB} alt="" />
+                    </a>
+                    <a href="#">
+                      <img src={caseIconTW} alt="" />
+                    </a>
+                    <a href="#">
+                      <img src={caseIconShare} alt="" />
+                    </a>
                   </div>
                 </Col>
               </Row>
