@@ -7,6 +7,7 @@ import api from "../../utils/api";
 import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
+import SearchLink from "../../components/SearchLink";
 import ItemGallery from "./ItemGallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
@@ -15,30 +16,6 @@ import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
 import caseIconShare from "../../img/pp-case-icon-share.svg";
-
-class SearchLink extends React.Component {
-  render() {
-    let tag = this.props.tag;
-    let value = this.props.value;
-    let locale = this.props.locale;
-    if (tag && value && locale) {
-      let mapping = {};
-      mapping[tag] = value;
-      return (
-        <Link
-          to={{
-            pathname: "/" + locale + "/search",
-            query: mapping
-          }}
-        >
-          {value}
-        </Link>
-      );
-    } else {
-      return <div>None specified</div>; // L10N
-    }
-  }
-}
 
 function mapStateToProps({ auth }) {
   const { isAuthenticated } = auth;
@@ -95,7 +72,7 @@ export class Case extends React.Component {
       let issue = caseObject.issue;
       let audience = (
         <SearchLink
-          locale={locale}
+          intl={intl}
           tag="communication_with_audience"
           value={caseObject.communication_with_audience}
         />
@@ -103,19 +80,19 @@ export class Case extends React.Component {
       let tags = <div />;
       if (caseObject.tags) {
         tags = caseObject.tags.map(tag => (
-          <SearchLink key={tag} locale={locale} tag="tag" value={tag} />
+          <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
         ));
       }
       let communication_mode = (
         <SearchLink
-          locale={locale}
+          intl={intl}
           tag="communication_mode"
           value={caseObject.communication_mode}
         />
       );
       let decision_method = (
         <SearchLink
-          locale={locale}
+          intl={intl}
           tag="decision_method"
           value={caseObject.decision_method}
         />
@@ -129,7 +106,7 @@ export class Case extends React.Component {
       facetoface = intl.formatMessage({ id: facetoface });
       facetoface = (
         <SearchLink
-          locale={locale}
+          intl={intl}
           tag="facetoface_online_or_both"
           value={facetoface}
         />
@@ -143,16 +120,16 @@ export class Case extends React.Component {
           id: facilitated
         });
       facilitated = (
-        <SearchLink locale={locale} tag="facilitated" value={facilitated} />
+        <SearchLink intl={intl} tag="facilitated" value={facilitated} />
       );
 
       let voting = intl.formatMessage({ id: caseObject.voting });
-      voting = <SearchLink locale={locale} tag="voting" value={voting} />;
+      voting = <SearchLink intl={intl} tag="voting" value={voting} />;
 
       let numberDays = caseObject.number_of_meeting_days;
       numberDays = (
         <SearchLink
-          locale={locale}
+          intl={intl}
           tag="number_of_meeting_days"
           value={numberDays}
         />
