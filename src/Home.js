@@ -6,6 +6,7 @@ import SearchResults from "./containers/SearchResults";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router";
 import iconInfo from "./img/icon-info.svg";
+import DismissButton from "material-ui/svg-icons/navigation/close";
 import "./Home.css";
 
 class Home extends React.Component {
@@ -46,7 +47,7 @@ class Home extends React.Component {
                 </Link>
               </Col>
               <Col sm={{size: 2}}>
-                <p className="dismiss" onClick={this.handleDismiss.bind(this)} >{this.props.intl.formatMessage({ id: "got_it" })} X</p>
+                <span className="dismiss" onClick={this.handleDismiss.bind(this)} >{this.props.intl.formatMessage({ id: "got_it" })} </span><DismissButton/>
               </Col>
             </Row>
           </Container>
