@@ -47,7 +47,7 @@ class Home extends React.Component {
                 </Link>
               </Col>
               <Col sm={{size: 2}}>
-                <span className="dismiss" onClick={this.handleDismiss.bind(this)} >{this.props.intl.formatMessage({ id: "got_it" })} </span><DismissButton/>
+                <span className="dismiss" onClick={this.handleDismiss.bind(this)} >{this.props.intl.formatMessage({ id: "got_it" })} <DismissButton/></span>
               </Col>
             </Row>
           </Container>
