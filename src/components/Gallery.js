@@ -1,12 +1,31 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 
-class ItemGallery extends React.Component {
+// This component knows how to process a "thing" (case, method, etc) and extract the images
+// and other data that the ImageGallery component needs.
+
+class Gallery extends React.Component {
   constructor(props) {
     super(props);
+    let thing = props.thing;
     this.defineImage = this.defineImage.bind(this);
     this.getWidth = this.getWidth.bind(this);
     this.renderItem = this.renderItem.bind(this);
+
+    let awsUrl = process.env.REACT_APP_ASSETS_URL;
+    let theLength = "";
+    let pics = [];
+    if (thing && thing.lead_image) {
+      pics.push(awsUrl + encodeURIComponent(thing.lead_image.url));
+    }
+    if (thing && thing.other_images.length) {
+      theLength = thing.other_images;
+      Object.keys(theLength).forEach(function(key) {
+        let obj = theLength[key];
+        pics.push(awsUrl + encodeURIComponent(obj.url));
+      });
+    }
+    this.state = { pics };
   }
 
   defineImage(url) {
@@ -44,7 +63,7 @@ class ItemGallery extends React.Component {
   }
 
   render() {
-    const images = this.props.items.map(photo => {
+    const images = this.state.pics.map(photo => {
       const src = photo;
       return {
         original: src,
@@ -69,4 +88,4 @@ class ItemGallery extends React.Component {
   }
 }
 
-export default ItemGallery;
+export default Gallery;

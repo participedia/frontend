@@ -8,7 +8,8 @@ import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
 import SearchLink from "../../components/SearchLink";
-import ItemGallery from "./ItemGallery";
+import RelatedContent from "../../components/RelatedContent";
+import Gallery from "../../components/Gallery";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import BookmarkToggle from "../../components/BookmarkToggle";
@@ -29,10 +30,9 @@ export class Case extends React.Component {
   componentWillMount() {
     let component = this;
     let isAuthenticated = this.props.isAuthenticated;
-    api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
+    api.fetchCaseById(this.props.params.nodeID).then(function(data) {
       component.setState({
-        data: the_case,
-        htmlBody: the_case.body,
+        data: data,
         isAuthenticated: isAuthenticated
       });
     });
@@ -44,42 +44,34 @@ export class Case extends React.Component {
     });
   }
 
-  getInnerHTML() {
-    let input = "";
-    if (this.state && this.state.htmlBody) {
-      input = this.state.htmlBody;
-    }
-    return { __html: input };
-  }
-
   render() {
     if (this.state && this.state.data) {
       const locale = this.props.intl.locale;
       const isAuthenticated = this.props.isAuthenticated;
       let intl = this.props.intl;
-      let caseObject = this.state.data;
-      let bookmarked = isAuthenticated && caseObject.bookmarked;
+      let thing = this.state.data;
+      let bookmarked = isAuthenticated && thing.bookmarked;
       let bookmarkIcon = <div />;
       if (isAuthenticated) {
         bookmarkIcon = (
           <BookmarkToggle
             thingType="case"
-            thingID={caseObject.id}
+            thingID={thing.id}
             bookmarked={bookmarked}
           />
         );
       }
-      let issue = caseObject.issue;
+      let issue = thing.issue;
       let audience = (
         <SearchLink
           intl={intl}
           tag="communication_with_audience"
-          value={caseObject.communication_with_audience}
+          value={thing.communication_with_audience}
         />
       );
       let tags = <div />;
-      if (caseObject.tags) {
-        tags = caseObject.tags.map(tag => (
+      if (thing.tags) {
+        tags = thing.tags.map(tag => (
           <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
         ));
       }
@@ -87,17 +79,17 @@ export class Case extends React.Component {
         <SearchLink
           intl={intl}
           tag="communication_mode"
-          value={caseObject.communication_mode}
+          value={thing.communication_mode}
         />
       );
       let decision_method = (
         <SearchLink
           intl={intl}
           tag="decision_method"
-          value={caseObject.decision_method}
+          value={thing.decision_method}
         />
       );
-      let facetoface = caseObject.facetoface_online_or_both;
+      let facetoface = thing.facetoface_online_or_both;
       if (!facetoface) {
         facetoface = "facetoface_not_specified";
       } else {
@@ -112,7 +104,7 @@ export class Case extends React.Component {
         />
       );
 
-      let facilitated = String(caseObject.facilitated);
+      let facilitated = String(thing.facilitated);
       if (facilitated === "null") facilitated = "not_specified";
       if (facilitated) facilitated = facilitated.toLowerCase();
       if (facilitated)
@@ -123,10 +115,10 @@ export class Case extends React.Component {
         <SearchLink intl={intl} tag="facilitated" value={facilitated} />
       );
 
-      let voting = intl.formatMessage({ id: caseObject.voting });
+      let voting = intl.formatMessage({ id: thing.voting });
       voting = <SearchLink intl={intl} tag="voting" value={voting} />;
 
-      let numberDays = caseObject.number_of_meeting_days;
+      let numberDays = thing.number_of_meeting_days;
       numberDays = (
         <SearchLink
           intl={intl}
@@ -135,30 +127,18 @@ export class Case extends React.Component {
         />
       );
 
-      let post_date = moment(caseObject.post_date).format("LL");
-      let updated_date = moment(caseObject.updated_date).format("LL");
-      let first_author = caseObject.authors[0];
+      let post_date = moment(thing.post_date).format("LL");
+      let updated_date = moment(thing.updated_date).format("LL");
+      let first_author = thing.authors[0];
       let first_author_url = "/" + locale + "/users/" + first_author.user_id;
       let first_author_name = first_author.name;
-      let last_author = caseObject.authors.slice(-1)[0];
+      let last_author = thing.authors.slice(-1)[0];
       let last_author_name = last_author.name;
       let last_author_url = "/" + locale + "/users/" + last_author.user_id;
       let id = this.props.params.nodeID;
       let editLinkUrl = `/${locale}/case/${id}/edit`;
-      let awsUrl = process.env.REACT_APP_ASSETS_URL;
-      let theLength = "";
-      let pics = [];
-      if (caseObject && caseObject.lead_image) {
-        pics.push(awsUrl + encodeURIComponent(caseObject.lead_image.url));
-      }
-      if (caseObject && caseObject.other_images.length) {
-        theLength = caseObject.other_images;
-        Object.keys(theLength).forEach(function(key) {
-          let obj = theLength[key];
-          pics.push(awsUrl + encodeURIComponent(obj.url));
-        });
-      }
 
+      // XXX L10N -- lots of strings to extract.
       return (
         <div>
           <div className="main-contents">
@@ -166,8 +146,8 @@ export class Case extends React.Component {
               <Row>
                 <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
                   <CountryMap
-                    city={caseObject.location.city}
-                    countrycode={caseObject.location.country}
+                    city={thing.location.city}
+                    countrycode={thing.location.country}
                   />
                   <p className="sub-heading">
                     Keywords
@@ -226,15 +206,7 @@ export class Case extends React.Component {
                   <div className="tags">
                     {numberDays}
                   </div>
-                  <p className="sub-heading">
-                    Related Content
-                  </p>
-                  <div className="related-content">
-                    <a href="#">Cases</a>
-                    <a href="#">Methods</a>
-                    <a href="#">Surveys</a>
-                    <a href="#">Datasets</a>
-                  </div>
+                  <RelatedContent thing={thing} intl={intl} />
                 </Col>
                 <Col md="8" xs="12" className="main-area">
                   <div className="case-box">
@@ -242,9 +214,9 @@ export class Case extends React.Component {
                       Case
                     </h2>
                     <h2 className="case-title">
-                      {caseObject.title}
+                      {thing.title}
                     </h2>
-                    <ItemGallery items={pics} />
+                    <Gallery thing={thing} />
                     <div className="authorship-details">
                       <p className="author-line">
                         First submitted by&nbsp;
@@ -267,7 +239,7 @@ export class Case extends React.Component {
                     </div>
                     <div
                       className="case-html"
-                      dangerouslySetInnerHTML={{ __html: caseObject.body }}
+                      dangerouslySetInnerHTML={{ __html: thing.body }}
                     />
                   </div>
                 </Col>
