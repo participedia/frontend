@@ -8,6 +8,7 @@ import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 import CountryMap from "../../components/CountryMap";
 import ItemGallery from "./ItemGallery";
+import ReactPlayer from 'react-player'
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import BookmarkToggle from "../../components/BookmarkToggle";
@@ -267,6 +268,11 @@ export class Case extends React.Component {
                     <h2 className="case-title">
                       {caseObject.title}
                     </h2>
+                    { caseObject.vidURL ?
+                      <ReactPlayer controls={true} url={caseObject.vidURL} />
+                      :
+                      undefined
+                    }
                     <ItemGallery items={pics} />
                     <div className="authorship-details">
                       <p className="author-line">
