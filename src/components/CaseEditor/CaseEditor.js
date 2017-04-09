@@ -4,64 +4,10 @@ import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
 import { Container, Row, Col } from "reactstrap";
-import ReactQuill from "react-quill";
 import Upload from "../../Upload";
 import AutoComplete from "material-ui/AutoComplete";
+import BodyEditor from "./BodyEditor";
 import "../GeoSuggest/GeoSuggest.css";
-import "../../quill.core.css";
-import "../../quill.snow.css";
-
-let BodyEditor = React.createClass({
-  _quillModules: {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" }
-      ],
-      ["link", "image"],
-      ["clean"]
-    ]
-    /* ... other modules */
-  },
-
-  _quillFormats: [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image"
-  ],
-
-  render: function() {
-    return (
-      <div className="_quill">
-        <ReactQuill
-          theme="snow"
-          modules={this._quillModules}
-          formats={this._quillFormats}
-          bounds={"._quill"}
-        >
-          <div
-            key="editor"
-            ref="editor"
-            className="quill-contents border_solid_top"
-            dangerouslySetInnerHTML={{ __html: this.props.value }}
-          />
-        </ReactQuill>
-      </div>
-    );
-  }
-});
 
 class _CaseEditor extends Component {
   constructor(props) {
@@ -83,29 +29,32 @@ class _CaseEditor extends Component {
 
   handleNewImg(img) {
     this.setState({ newImg: true });
-    let currentImgs = this.props.case.other_images.length
-    this.props.case.other_images[currentImgs] = {url:img};
+    let currentImgs = this.props.case.other_images.length;
+    this.props.case.other_images[currentImgs] = { url: img };
   }
 
   deleteImg(photo) {
     this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
+    let currentImgs = this.props.case.other_images;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let index = Object.keys(currentImgs).find(key => awsUrl + currentImgs[key]['url'] === photo || currentImgs[key]['url'] === photo);
+    let index = Object.keys(currentImgs).find(
+      key =>
+        awsUrl + currentImgs[key]["url"] === photo ||
+        currentImgs[key]["url"] === photo
+    );
     if (index) {
-      this.props.case.other_images.splice(index, 1)
+      this.props.case.other_images.splice(index, 1);
     }
   }
 
   deleteLead(photo) {
     this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
+    let currentImgs = this.props.case.other_images;
     this.props.case.lead_image = null;
     if (currentImgs.length > 0) {
-      this.setState({ lead: currentImgs[0]['url'] });
+      this.setState({ lead: currentImgs[0]["url"] });
     }
   }
-
 
   render() {
     const { onSubmit } = this.props;
@@ -119,7 +68,7 @@ class _CaseEditor extends Component {
     if (caseObject && caseObject.other_images) {
       Object.keys(caseObject.other_images).forEach(function(key) {
         let obj = caseObject.other_images[key];
-        if ((obj.url).substring(0,4) === 'blob') {
+        if (obj.url.substring(0, 4) === "blob") {
           otherImgs.push(obj.url);
         } else {
           otherImgs.push(awsUrl + encodeURIComponent(obj.url));
@@ -214,8 +163,14 @@ class _CaseEditor extends Component {
                                     : "box"
                                 }
                               >
-                                <div className="checkbox" onClick={this.makeLead.bind(this, leadImg)} />
-                                <div className="trash" onClick={this.deleteLead.bind(this, leadImg)} />
+                                <div
+                                  className="checkbox"
+                                  onClick={this.makeLead.bind(this, leadImg)}
+                                />
+                                <div
+                                  className="trash"
+                                  onClick={this.deleteLead.bind(this, leadImg)}
+                                />
                                 <img
                                   className="img-fluid"
                                   alt=""
@@ -238,8 +193,14 @@ class _CaseEditor extends Component {
                                       : "box"
                                   }
                                 >
-                                  <div className="checkbox" onClick={this.makeLead.bind(this, photo)} />
-                                  <div className="trash" onClick={this.deleteImg.bind(this, photo)} />
+                                  <div
+                                    className="checkbox"
+                                    onClick={this.makeLead.bind(this, photo)}
+                                  />
+                                  <div
+                                    className="trash"
+                                    onClick={this.deleteImg.bind(this, photo)}
+                                  />
                                   <img
                                     key={id}
                                     alt=""
@@ -253,7 +214,12 @@ class _CaseEditor extends Component {
                               </Col>
                             ))
                           : undefined}
-                        <Col md="3"><Upload itemEdit={true} addToList={this.handleNewImg} /></Col>
+                        <Col md="3">
+                          <Upload
+                            itemEdit={true}
+                            addToList={this.handleNewImg}
+                          />
+                        </Col>
                       </Row>
                       <div className="title-edit">
                         <label htmlFor="title">Title</label>
