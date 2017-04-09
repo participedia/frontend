@@ -205,7 +205,9 @@
     "governance_contribution": "Governance contribution",
     "typical_funding_source": "Typical funding source",
     "typical_sponsoring_entity": "Typical sponsoring entity",
-    "typical_implementing_entity": "Typical implementing entity"
+    "typical_implementing_entity": "Typical implementing entity",
+    "sector": "Sector",
+    "executive_director": "Executive Director"
   },
   "fr": {
     "chronological": "Plus Récentes"
