@@ -2,6 +2,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "../quill.core.css";
 import "../quill.snow.css";
+import "./BodyEditor.css";
 
 let BodyEditor = React.createClass({
   _quillModules: {
