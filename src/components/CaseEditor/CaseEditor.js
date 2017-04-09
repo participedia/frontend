@@ -5,7 +5,6 @@ import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
 import { Container, Col } from "reactstrap";
-import AutoComplete from "material-ui/AutoComplete";
 import BodyEditor from "../BodyEditor";
 import ImageListEditor from "../ImageListEditor";
 import "../GeoSuggest/GeoSuggest.css";
@@ -18,15 +17,11 @@ import {
 class _CaseEditor extends Component {
   render() {
     const thing = this.props.case;
-    const { onSubmit } = this.props;
+    const { onSubmit, cases, methods, organizations, intl } = this.props;
 
     if (!thing) {
       return <div />;
     }
-    let cases = this.props.cases;
-    let methods = this.props.methods;
-    let organizations = this.props.organizations;
-    let intl = this.props.intl;
 
     return (
       <Form onSubmit={onSubmit} defaultValues={thing}>

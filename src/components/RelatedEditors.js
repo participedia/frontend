@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { Field } from "redux-form";
-import { Label } from "reactstrap";
-import { injectIntl } from "react-intl";
 import ChipInput from "material-ui-chip-input";
 
 const renderChip = (
