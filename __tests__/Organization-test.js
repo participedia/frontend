@@ -7,6 +7,8 @@ import { mountWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
 import orgData from "./org_data.json";
 import intlProps from "../src/helpers/intl-props-test-helper.js";
 import afterPromises from "../src/helpers/afterPromises";
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
 
 let fetchMock = require("fetch-mock");
 

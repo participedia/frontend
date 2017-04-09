@@ -15,6 +15,34 @@ function mapStateToProps({ auth }) {
   };
 }
 
+/* Properties that are specific to methods:
+// best_for
+// communication_mode,
+// decision_method
+// facilitated
+// governance_contribution
+// issue_interdependency
+// issue_polarization,
+// issue_technical_complexity
+// kind_of_influence
+// method_of_interaction,
+// public_interaction_method
+// typical_funding_source
+// typical_implementing_entity,
+// typical_sponsoring_entity
+
+/* Generic properties */
+// post_date,
+// published
+// updated_date,
+// lead_image
+// other_images,
+// files
+// videos
+// tags
+// featured
+// original_language
+
 class MethodDetails extends React.Component {
   render() {
     let thing = this.props.case;
@@ -43,6 +71,12 @@ class MethodDetails extends React.Component {
           property="kind_of_influence"
           thing={thing}
         />
+        <p className="sub-sub-heading">
+          Specific Topic:
+        </p>
+        <div className="tags">
+          {thing.issue}
+        </div>
         <LinkedPropertyGroupWithHeading
           intl={intl}
           heading="communication_mode"
