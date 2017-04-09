@@ -8,7 +8,6 @@ class CountryMap extends React.Component {
   componentWillMount() {
     let component = this;
     // TODO move to country-specific bucket or at least folder
-    console.log("this.props");
     if (this.props.countrycode && this.props.countrycode !== null) {
       fetch(process.env.REACT_APP_ASSETS_URL + this.props.countrycode + ".svg")
         .then(function(response) {

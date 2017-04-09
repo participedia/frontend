@@ -43,8 +43,8 @@ describe("containers", () => {
     it("should render proper data for org", done => {
       const { enzymeWrapper } = setup();
       afterPromises(done, () => {
-        // expect(enzymeWrapper.find(".sub-heading").length).toBe(1);
-        // expect(enzymeWrapper.find("h2.case-title").text()).not.toBe("");
+        expect(enzymeWrapper.find(".sub-heading").length).toBe(1);
+        expect(enzymeWrapper.find("h2.case-title").text()).not.toBe("");
       });
     });
   });
