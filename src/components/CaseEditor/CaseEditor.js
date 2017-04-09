@@ -109,4 +109,6 @@ _CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
+// should the redux wrapper be in this comp or the container parent?
+
 export default injectIntl(reduxForm({ form: "case" })(_CaseEditor));

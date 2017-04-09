@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import CaseEditor from "../components/CaseEditor/CaseEditor";
 import api from "../utils/api";
 
+// May make sense to revert back to redux for this work. this is duplicative.
+// Merge with EditCase, which is similar but not currently being used.
+
 export default class CaseEditorContainer extends Component {
   getNouns() {
     let component = this;
@@ -18,8 +21,8 @@ export default class CaseEditorContainer extends Component {
 
   componentWillMount() {
     let component = this;
-    api.fetchCaseById(this.props.params.nodeID).then(function(the_case) {
-      component.setState({ case: the_case });
+    api.fetchCaseById(this.props.params.nodeID).then(function(thing) {
+      component.setState({ case: thing });
     });
     this.getNouns();
   }
@@ -27,7 +30,7 @@ export default class CaseEditorContainer extends Component {
   onSubmit(values, state, props, instance) {
     let router = this.props.router;
     let location = this.props.location;
-    api.saveCase(state).then(function(the_case) {
+    api.saveCase(state).then(function(thing) {
       let pathparts = location.pathname.split("/");
       pathparts.pop();
       router.push(pathparts.join("/"));
