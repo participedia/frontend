@@ -32,6 +32,7 @@ export class SearchHit extends React.Component {
     let dateString = moment(result.updated_date).fromNow();
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
+        <small className="label">{result.type}</small>
         {this.props.selectedViewType === "grid"
           ? <div className="grid-item">
               <Link to={link} className="result-title">
