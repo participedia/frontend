@@ -15,7 +15,7 @@ fetchMock.get(
   JSON.stringify({ data: caseData })
 );
 fetchMock.get(
-  "https://d3im063erkq9w4.cloudfront.net/Italy.svg",
+  process.env.REACT_APP_ASSETS_URL + "Italy.svg",
   JSON.stringify({ data: caseData })
 );
 
