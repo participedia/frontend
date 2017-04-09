@@ -11,7 +11,7 @@ import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
 import Upload from "./Upload";
-import Case from "./containers/Case/Case";
+import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
 import Add from "./components/Add/Add";

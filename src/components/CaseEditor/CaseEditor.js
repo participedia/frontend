@@ -58,16 +58,16 @@ class _CaseEditor extends Component {
 
   render() {
     const { onSubmit } = this.props;
-    const caseObject = this.props.case;
+    const thing = this.props.case;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
     let leadImg = "";
     let otherImgs = [];
-    if (caseObject && caseObject.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url);
+    if (thing && thing.lead_image) {
+      leadImg = awsUrl + encodeURIComponent(thing.lead_image.url);
     }
-    if (caseObject && caseObject.other_images) {
-      Object.keys(caseObject.other_images).forEach(function(key) {
-        let obj = caseObject.other_images[key];
+    if (thing && thing.other_images) {
+      Object.keys(thing.other_images).forEach(function(key) {
+        let obj = thing.other_images[key];
         if (obj.url.substring(0, 4) === "blob") {
           otherImgs.push(obj.url);
         } else {
@@ -76,12 +76,12 @@ class _CaseEditor extends Component {
       });
     }
 
-    if (!caseObject) {
+    if (!thing) {
       return <div>Loading...</div>;
     }
 
     return (
-      <Form onSubmit={onSubmit} defaultValues={caseObject}>
+      <Form onSubmit={onSubmit} defaultValues={thing}>
         {({ submitForm }) => {
           return (
             <form onSubmit={submitForm}>
@@ -137,7 +137,7 @@ class _CaseEditor extends Component {
                         </h5>
                         <AutoComplete
                           hintText={this.props.intl.formatMessage({
-                            id: "search_related_orgs"
+                            id: "search_related_organizations"
                           })}
                           dataSource={this.props.organizations}
                         />
@@ -150,7 +150,7 @@ class _CaseEditor extends Component {
                         Case
                       </h2>
                       <h2 className="case-title">
-                        {caseObject.title}
+                        {thing.title}
                       </h2>
                       <Row className="itemPics">
                         {leadImg
@@ -228,7 +228,7 @@ class _CaseEditor extends Component {
                       <div>
                         <label htmlFor="body_en">Body</label>
                       </div>
-                      <BodyEditor value={caseObject.body} />
+                      <BodyEditor value={thing.body} />
                     </div>
                     <button type="submit">Submit</button>
                   </Col>

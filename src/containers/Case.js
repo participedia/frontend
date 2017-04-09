@@ -2,10 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { injectIntl, intlShape } from "react-intl";
 import api from "../utils/api";
-import SearchLink from "../components/SearchLink";
+import CountryMap from "../components/CountryMap";
+import ItemDetails from "../components/ItemDetails/ItemDetails";
 import LinkedPropertyGroupWithHeading
   from "../components/LinkedPropertyGroupWithHeading";
-import ItemDetails from "../components/ItemDetails/ItemDetails";
+import Tags from "../components/Tags";
+import {
+  DateProp,
+  BooleanProp,
+  TextProp,
+  NumberProp
+} from "../components/Props";
 
 function mapStateToProps({ auth }) {
   const { isAuthenticated } = auth;
@@ -15,68 +22,32 @@ function mapStateToProps({ auth }) {
   };
 }
 
-/* Properties that are specific to methods:
-// best_for
-// communication_mode,
-// decision_method
-// facilitated
-// governance_contribution
-// issue_interdependency
-// issue_polarization,
-// issue_technical_complexity
-// kind_of_influence
-// method_of_interaction,
-// public_interaction_method
-// typical_funding_source
-// typical_implementing_entity,
-// typical_sponsoring_entity
-
-/* Generic properties */
-// post_date,
-// published
-// updated_date,
-// lead_image
-// other_images,
-// files
-// videos
-// tags
-// featured
-// original_language
-
-class MethodDetails extends React.Component {
+class CaseDetails extends React.Component {
   render() {
     let thing = this.props.case;
     let intl = this.props.intl;
-    let tags = <div />;
-    if (thing.tags) {
-      tags = thing.tags.map(tag => (
-        <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
-      ));
-    }
     return (
       <div>
+        <CountryMap
+          city={thing.location.city}
+          countrycode={thing.location.country}
+        />
         <p className="sub-heading">
           Keywords
         </p>
-        <p className="sub-sub-heading">
-          Tags:
-        </p>
-        <div className="tags">
-          {tags}
-        </div>
-
+        <Tags thing={thing} intl={intl} />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="kind_of_influence"
-          property="kind_of_influence"
+          heading="specific_topic"
+          property="specific_topic"
           thing={thing}
         />
-        <p className="sub-sub-heading">
-          Specific Topic:
-        </p>
-        <div className="tags">
-          {thing.issue}
-        </div>
+        <LinkedPropertyGroupWithHeading
+          intl={intl}
+          heading="issue"
+          property="issue"
+          thing={thing}
+        />
         <LinkedPropertyGroupWithHeading
           intl={intl}
           heading="communication_mode"
@@ -109,38 +80,21 @@ class MethodDetails extends React.Component {
         />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="best_for"
-          property="best_for"
+          heading="voting"
+          property="voting"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="decision_method"
-          property="decision_method"
+          heading="number_of_meeting_days"
+          property="number_of_meeting_days"
           thing={thing}
         />
+
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="governance_contribution"
-          property="governance_contribution"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
-          heading="issue_interdependency"
-          property="issue_interdependency"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
-          heading="issue_polarization"
-          property="issue_polarization"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
-          heading="issue_technical_complexity"
-          property="issue_technical_complexity"
+          heading="targeted_participant_demographic"
+          property="targeted_participant_demographic"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
@@ -151,26 +105,27 @@ class MethodDetails extends React.Component {
         />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="method_of_interaction"
-          property="method_of_interaction"
+          heading="targeted_participants_public_role"
+          property="targeted_participants_public_role"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="public_interaction_method"
-          property="public_interaction_method"
+          heading="targeted_audience"
+          property="targeted_audience"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="method_of_interaction"
-          property="method_of_interaction"
+          heading="participant_selection"
+          property="participant_selection"
           thing={thing}
         />
+
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="typical_funding_source"
-          property="typical_funding_source"
+          heading="type_of_funding_entity"
+          property="type_of_funding_entity"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
@@ -185,30 +140,71 @@ class MethodDetails extends React.Component {
           property="typical_sponsoring_entity"
           thing={thing}
         />
+        <BooleanProp
+          intl={intl}
+          label="ongoing"
+          property="ongoing"
+          thing={thing}
+        />
+        <DateProp
+          intl={intl}
+          label="start_date"
+          property="start_date"
+          thing={thing}
+        />
+        <DateProp
+          intl={intl}
+          label="end_date"
+          property="end_date"
+          thing={thing}
+        />
+        <DateProp
+          intl={intl}
+          label="updated_date"
+          property="updated_date"
+          thing={thing}
+        />
+        <NumberProp
+          intl={intl}
+          label="total_number_of_participants"
+          property="total_number_of_participants"
+          thing={thing}
+        />
+        <TextProp
+          intl={intl}
+          label="staff_type"
+          property="staff_type"
+          thing={thing}
+        />
+        <TextProp
+          intl={intl}
+          label="who_else_supported_the_initiative"
+          property="who_else_supported_the_initiative"
+          thing={thing}
+        />
       </div>
     );
   }
 }
 
-export class Method extends React.Component {
+export class Case extends React.Component {
   render() {
     let id = this.props.params.nodeID;
     let intl = this.props.intl;
     let isAuthenticated = this.props.isAuthenticated;
     return (
       <ItemDetails
-        api={api.fetchMethodById}
+        api={api.fetchCaseById}
         isAuthenticated={isAuthenticated}
         id={id}
         intl={intl}
-        details={MethodDetails}
+        details={CaseDetails}
       />
     );
   }
 }
-
-Method.propTypes = {
+Case.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default connect(mapStateToProps)(injectIntl(Method));
+export default connect(mapStateToProps)(injectIntl(Case));
