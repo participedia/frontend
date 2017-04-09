@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
-import "../../quill.core.css";
-import "../../quill.snow.css";
+import "../quill.core.css";
+import "../quill.snow.css";
 
 let BodyEditor = React.createClass({
   _quillModules: {

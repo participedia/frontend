@@ -9,11 +9,11 @@ import { reduxForm } from "redux-form";
 
 import CaseEditor from "../components/CaseEditor/CaseEditor";
 import { loadObject, CASE_TYPE } from "../actions";
+import withNouns from "../../hocs/withNouns";
 
 const mapStateToProps = (state, ownProps) => {
   if (state.objects.currentObject) {
     return { case: state.objects.currentObject };
-    // return {caseID: ownProps.params.nodeID, case: state.objects.currentObject, loading: false}
   } else {
     return { caseID: ownProps.params.nodeID, case: null, loading: true };
   }
@@ -54,4 +54,4 @@ class _EditCase extends Component {
 
 export default reduxForm({
   form: "caseform"
-})(connect(mapStateToProps, mapDispatchToProps)(_EditCase));
+})(withNouns(connect(mapStateToProps, mapDispatchToProps)(_EditCase)));

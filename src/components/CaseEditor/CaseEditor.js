@@ -1,84 +1,32 @@
 import React, { Component } from "react";
+import { reduxForm } from "redux-form";
 import { injectIntl, intlShape } from "react-intl";
 import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
-import { Container, Row, Col } from "reactstrap";
-import Upload from "../../Upload";
+import { Container, Col } from "reactstrap";
 import AutoComplete from "material-ui/AutoComplete";
-import BodyEditor from "./BodyEditor";
+import BodyEditor from "../BodyEditor";
+import ImageListEditor from "../ImageListEditor";
 import "../GeoSuggest/GeoSuggest.css";
+import {
+  RelatedCases,
+  RelatedMethods,
+  RelatedOrganizations
+} from "../RelatedEditors";
 
 class _CaseEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.makeLead = this.makeLead.bind(this);
-    this.handleNewImg = this.handleNewImg.bind(this);
-    this.deleteImg = this.deleteImg.bind(this);
-    this.deleteLead = this.deleteLead.bind(this);
-    this.state = {
-      lead: "",
-      newImg: false,
-      delImg: false
-    };
-  }
-
-  makeLead(src) {
-    this.setState({ lead: src });
-  }
-
-  handleNewImg(img) {
-    this.setState({ newImg: true });
-    let currentImgs = this.props.case.other_images.length;
-    this.props.case.other_images[currentImgs] = { url: img };
-  }
-
-  deleteImg(photo) {
-    this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images;
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let index = Object.keys(currentImgs).find(
-      key =>
-        awsUrl + currentImgs[key]["url"] === photo ||
-        currentImgs[key]["url"] === photo
-    );
-    if (index) {
-      this.props.case.other_images.splice(index, 1);
-    }
-  }
-
-  deleteLead(photo) {
-    this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images;
-    this.props.case.lead_image = null;
-    if (currentImgs.length > 0) {
-      this.setState({ lead: currentImgs[0]["url"] });
-    }
-  }
-
   render() {
-    const { onSubmit } = this.props;
     const thing = this.props.case;
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let leadImg = "";
-    let otherImgs = [];
-    if (thing && thing.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(thing.lead_image.url);
-    }
-    if (thing && thing.other_images) {
-      Object.keys(thing.other_images).forEach(function(key) {
-        let obj = thing.other_images[key];
-        if (obj.url.substring(0, 4) === "blob") {
-          otherImgs.push(obj.url);
-        } else {
-          otherImgs.push(awsUrl + encodeURIComponent(obj.url));
-        }
-      });
-    }
+    const { onSubmit } = this.props;
 
     if (!thing) {
-      return <div>Loading...</div>;
+      return <div />;
     }
+    let cases = this.props.cases;
+    let methods = this.props.methods;
+    let organizations = this.props.organizations;
+    let intl = this.props.intl;
 
     return (
       <Form onSubmit={onSubmit} defaultValues={thing}>
@@ -111,23 +59,13 @@ class _CaseEditor extends Component {
                         <h5>
                           {this.props.intl.formatMessage({ id: "cases" })}
                         </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_cases"
-                          })}
-                          dataSource={this.props.cases}
-                        />
+                        <RelatedCases cases={cases} intl={intl} />
                       </div>
                       <div className="pb-1">
                         <h5>
                           {this.props.intl.formatMessage({ id: "methods" })}
                         </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_methods"
-                          })}
-                          dataSource={this.props.methods}
-                        />
+                        <RelatedMethods methods={methods} intl={intl} />
                       </div>
                       <div className="pb-1">
                         <h5>
@@ -135,11 +73,9 @@ class _CaseEditor extends Component {
                             id: "organizations"
                           })}
                         </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_organizations"
-                          })}
-                          dataSource={this.props.organizations}
+                        <RelatedOrganizations
+                          organizations={organizations}
+                          intl={intl}
                         />
                       </div>
                     </div>
@@ -152,75 +88,7 @@ class _CaseEditor extends Component {
                       <h2 className="case-title">
                         {thing.title}
                       </h2>
-                      <Row className="itemPics">
-                        {leadImg
-                          ? <Col sm="6" md="3">
-                              <div
-                                className={
-                                  this.state.lead === leadImg ||
-                                    this.state.lead === ""
-                                    ? "box lead"
-                                    : "box"
-                                }
-                              >
-                                <div
-                                  className="checkbox"
-                                  onClick={this.makeLead.bind(this, leadImg)}
-                                />
-                                <div
-                                  className="trash"
-                                  onClick={this.deleteLead.bind(this, leadImg)}
-                                />
-                                <img
-                                  className="img-fluid"
-                                  alt=""
-                                  src={leadImg}
-                                />
-                                {this.state.lead === leadImg ||
-                                  this.state.lead === ""
-                                  ? <small>Lead Image</small>
-                                  : undefined}
-                              </div>
-                            </Col>
-                          : undefined}
-                        {otherImgs
-                          ? otherImgs.map((photo, id) => (
-                              <Col key={id} sm="6" md="3">
-                                <div
-                                  className={
-                                    this.state.lead === photo
-                                      ? "box lead"
-                                      : "box"
-                                  }
-                                >
-                                  <div
-                                    className="checkbox"
-                                    onClick={this.makeLead.bind(this, photo)}
-                                  />
-                                  <div
-                                    className="trash"
-                                    onClick={this.deleteImg.bind(this, photo)}
-                                  />
-                                  <img
-                                    key={id}
-                                    alt=""
-                                    className="img-fluid"
-                                    src={photo}
-                                  />
-                                  {this.state.lead === photo
-                                    ? <small>Lead Image</small>
-                                    : undefined}
-                                </div>
-                              </Col>
-                            ))
-                          : undefined}
-                        <Col md="3">
-                          <Upload
-                            itemEdit={true}
-                            addToList={this.handleNewImg}
-                          />
-                        </Col>
-                      </Row>
+                      <ImageListEditor thing={thing} />
                       <div className="title-edit">
                         <label htmlFor="title">Title</label>
                       </div>
@@ -246,4 +114,4 @@ _CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(_CaseEditor);
+export default injectIntl(reduxForm({ form: "case" })(_CaseEditor));
