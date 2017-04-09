@@ -6,6 +6,10 @@ import { routerReducer } from "react-router-redux";
 import * as ActionTypes from "./actions";
 import AuthService from "./utils/AuthService";
 
+if (AuthService.isTokenExpired()) {
+  AuthService.logout();
+}
+
 function auth(
   state = {
     isAuthenticated: !AuthService.isTokenExpired(),

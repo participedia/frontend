@@ -93,6 +93,8 @@ export default class AuthService {
     if (date === null) {
       return false;
     }
-    return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
+    let expired = !(date.valueOf() >
+      new Date().valueOf() + offsetSeconds * 1000);
+    return expired;
   }
 }
