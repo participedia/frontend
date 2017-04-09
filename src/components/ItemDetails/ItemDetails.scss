@@ -24,6 +24,12 @@ section.image-gallery {
   padding-bottom: 32px;
   padding-top: 32px;
 
+  .main-area {
+    .case-html {
+      word-wrap: break-word;
+    }
+  }
+
   .sidepanel {
     padding: 0 30px;
     margin-top: 48px;
