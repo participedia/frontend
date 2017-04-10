@@ -59,3 +59,18 @@
     }
   }
 }
+
+
+._quill {
+  .body-editor-box.fixed {
+    margin-top: 40px;  
+    .quill {
+      .ql-toolbar {
+        position: fixed;
+        top: 75px;
+        background-color: #fff;
+        z-index: 10;
+      }
+    }
+  }
+}
