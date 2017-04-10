@@ -4,6 +4,7 @@ import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
 import { Container, Row, Col } from "reactstrap";
+import ScrollEvent from 'react-onscroll';
 import ReactQuill from "react-quill";
 import Upload from "../../Upload";
 import AutoComplete from "material-ui/AutoComplete";
@@ -70,11 +71,22 @@ class _CaseEditor extends Component {
     this.handleNewImg = this.handleNewImg.bind(this);
     this.deleteImg = this.deleteImg.bind(this);
     this.deleteLead = this.deleteLead.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
     this.state = {
       lead: "",
       newImg: false,
-      delImg: false
+      delImg: false,
+      fixedBar: false,
     };
+  }
+
+  handleScroll() {
+    let height = window.scrollY;
+    if (height > 540) {
+      this.setState({ fixedBar: true });
+    } else {
+      this.setState({ fixedBar: false });
+    }
   }
 
   makeLead(src) {
@@ -282,7 +294,10 @@ class _CaseEditor extends Component {
                       <div>
                         <label htmlFor="body_en">Body</label>
                       </div>
-                      <BodyEditor value={thing.body} />
+                      <div className={this.state.fixedBar ? "body-editor-box fixed" : "body-editor-box"}>
+                        <ScrollEvent handleScrollCallback={this.handleScroll} />
+                        <BodyEditor value={thing.body} />
+                      </div>
                     </div>
                     <button type="submit">Submit</button>
                   </Col>

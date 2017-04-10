@@ -50,7 +50,7 @@ class Gallery extends React.Component {
   renderItem(item) {
     const imageClass = this.defineImage(item.original);
     return (
-      <div className="image-gallery-image">
+      <div className="single-image">
         <img
           className={imageClass}
           src={item.original}
