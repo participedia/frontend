@@ -81,8 +81,9 @@ class _CaseEditor extends Component {
   }
 
   handleScroll() {
-    let height = window.scrollY;
-    if (height > 540) {
+    let el = this.toolBarContainer
+    var rect = el.getBoundingClientRect();
+    if (rect.top <= 0) {
       this.setState({ fixedBar: true });
     } else {
       this.setState({ fixedBar: false });
@@ -294,7 +295,7 @@ class _CaseEditor extends Component {
                       <div>
                         <label htmlFor="body_en">Body</label>
                       </div>
-                      <div className={this.state.fixedBar ? "body-editor-box fixed" : "body-editor-box"}>
+                      <div ref={ref => this.toolBarContainer = ref} className={this.state.fixedBar ? "body-editor-box fixed" : "body-editor-box"}>
                         <ScrollEvent handleScrollCallback={this.handleScroll} />
                         <BodyEditor value={thing.body} />
                       </div>
