@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import { bool, object, func } from "prop-types";
 import { Link, browserHistory } from "react-router";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
@@ -20,9 +21,9 @@ import HelpBar from "./components/HelpBar/HelpBar";
 
 export class Layout extends React.Component {
   static propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    profile: PropTypes.object.isRequired,
-    checkLogin: React.PropTypes.func.isRequired
+    isAuthenticated: bool.isRequired,
+    profile: object.isRequired,
+    checkLogin: func.isRequired
   };
   constructor(props) {
     super(props);

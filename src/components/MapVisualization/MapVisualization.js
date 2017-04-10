@@ -1,4 +1,5 @@
 import React from "react";
+import { func } from "prop-types";
 import { Map, TileLayer } from "react-leaflet";
 import geojson from "../../world-countries.json";
 import Choropleth from "react-leaflet-choropleth";
@@ -154,6 +155,6 @@ class MyMap extends React.Component {
 // <div className='map' style={{backgroundImage: 'url(/img/pp-home-map.jpg)'}}></div>
 
 MyMap.propTypes = {
-  onCountryChange: React.PropTypes.func
+  onCountryChange: func
 };
 export default MyMap;

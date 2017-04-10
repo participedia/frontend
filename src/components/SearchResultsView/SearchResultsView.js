@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";

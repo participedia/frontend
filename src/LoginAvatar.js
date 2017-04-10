@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
@@ -12,10 +13,10 @@ import { connect } from "react-redux";
 
 export class LoginAvatar extends React.Component {
   static propTypes = {
-    dispatch: T.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    profile: T.object.isRequired,
-    isAuthenticated: T.bool.isRequired
+    profile: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
   };
 
   render() {
