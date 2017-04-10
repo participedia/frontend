@@ -24,6 +24,24 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
       intl={intl}
     />
   );
+  let related_methods = (
+    <Related
+      thing={thing}
+      property="related_methods"
+      value={thing.related_methods || []}
+      dataSource={methods}
+      intl={intl}
+    />
+  );
+  let related_organizations = (
+    <Related
+      thing={thing}
+      property="related_organizations"
+      value={thing.related_organizations || []}
+      dataSource={organizations}
+      intl={intl}
+    />
+  );
 
   return (
     <div>
@@ -49,7 +67,18 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
           </h5>
           {related_cases}
         </div>
-
+        <div className="pb-1">
+          <h5>
+            {intl.formatMessage({ id: "methods" })}
+          </h5>
+          {related_methods}
+        </div>
+        <div className="pb-1">
+          <h5>
+            {intl.formatMessage({ id: "organizations" })}
+          </h5>
+          {related_organizations}
+        </div>
         <ChoicePropEditor
           intl={intl}
           label="specific_topic"
@@ -104,7 +133,6 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
           property="number_of_meeting_days"
           thing={thing}
         />
-
         <ChoicePropEditor
           intl={intl}
           label="targeted_participant_demographic"
@@ -135,7 +163,6 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
           property="participant_selection"
           thing={thing}
         />
-
         <ChoicePropEditor
           intl={intl}
           label="type_of_funding_entity"
