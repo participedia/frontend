@@ -39,7 +39,7 @@ export default class ItemEditor extends Component {
                         <label htmlFor="title">Title</label>
                       </div>
                       <TextField
-                        field="title"
+                        name="title"
                         placeholder="case title"
                         fullWidth={true}
                       />
