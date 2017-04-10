@@ -11,6 +11,8 @@ import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
 import caseIconShare from "../../img/pp-case-icon-share.svg";
+import { ShareButtons } from 'react-share';
+import htmlToText from 'html-to-text';
 import "./ItemDetails.css";
 
 export default class ItemDetails extends React.Component {
@@ -32,6 +34,12 @@ export default class ItemDetails extends React.Component {
   }
 
   render() {
+
+    const {
+      FacebookShareButton, TwitterShareButton
+    } = ShareButtons;
+
+
     if (this.state && this.state.data) {
       const locale = this.props.intl.locale;
       const isAuthenticated = this.props.isAuthenticated;
@@ -47,6 +55,14 @@ export default class ItemDetails extends React.Component {
             bookmarked={bookmarked}
           />
         );
+      }
+      var bodyText = htmlToText.fromString(thing.body);
+      let textFacebook = bodyText.substring(0, 240) + "...";
+
+      let lead;
+      let awsUrl = process.env.REACT_APP_ASSETS_URL;
+      if (thing && thing.lead_image) {
+         lead = awsUrl + encodeURIComponent(thing.lead_image.url);
       }
 
       let post_date = moment(thing.post_date).format("LL");
@@ -114,8 +130,17 @@ export default class ItemDetails extends React.Component {
                   <div className="top-icons">
                     {bookmarkIcon}
                     <a href="#"><img src={caseIconSettings} alt="" /></a>
-                    <a href="#"><img src={caseIconFB} alt="" /></a>
-                    <a href="#"><img src={caseIconTW} alt="" /></a>
+                    <FacebookShareButton
+                      url={this.props.location.pathname}
+                      title={thing.title}
+                      description={textFacebook} picture={lead} >
+                      <img src={caseIconFB} alt="" />
+                    </FacebookShareButton>
+                    <TwitterShareButton
+                      url={this.props.location.pathname}
+                      title={thing.title} >
+                      <img src={caseIconTW} alt="" />
+                    </TwitterShareButton>
                     <a href="#"><img src={caseIconShare} alt="" /></a>
                   </div>
                 </Col>

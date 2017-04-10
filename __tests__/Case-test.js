@@ -24,6 +24,7 @@ fetchMock.get(
 function setup() {
   const props = {
     intl: intlProps,
+    location: {pathname: "/en-US/method/123"},
     params: { nodeID: 123 }
   };
 

@@ -191,12 +191,14 @@ export class Case extends React.Component {
   render() {
     let id = this.props.params.nodeID;
     let intl = this.props.intl;
+    let location = this.props.location;
     let isAuthenticated = this.props.isAuthenticated;
     return (
       <ItemDetails
         api={api.fetchCaseById}
         isAuthenticated={isAuthenticated}
         id={id}
+        location={location}
         intl={intl}
         details={CaseDetails}
       />
