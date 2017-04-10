@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-// import { reduxForm } from "redux-form";
+import React from "react";
 import { injectIntl, intlShape } from "react-intl";
-import { Form, Text } from "react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
-import { Container, Col } from "reactstrap";
-import BodyEditor from "../BodyEditor";
-import ImageListEditor from "../ImageListEditor";
 import "../GeoSuggest/GeoSuggest.css";
 import { Related } from "../RelatedEditors";
+import ItemEditor from "../ItemEditor";
 
 import {
   TextPropEditor,
@@ -17,57 +13,6 @@ import {
   DatePropEditor,
   ChoicePropEditor
 } from "../PropEditors";
-
-class ItemEditor extends Component {
-  render() {
-    let { thing, sidebar, onSubmit } = this.props;
-
-    if (!thing) {
-      return <div />;
-    }
-
-    return (
-      <Form onSubmit={onSubmit}>
-        {({ submitForm }) => {
-          return (
-            <form onSubmit={submitForm}>
-              <div className="main-contents">
-                <Container className="detailed-case-component" fluid={true}>
-                  <Col
-                    md="3"
-                    className="hidden-sm-down sidepanel hidden-sm-down"
-                  >
-                    {sidebar}
-                  </Col>
-                  <Col md="8" xs="12" className="main-area">
-                    <div className="case-box">
-                      <h2 className="category">
-                        Case
-                      </h2>
-                      <h2 className="case-title">
-                        {thing.title}
-                      </h2>
-                      <ImageListEditor thing={thing} />
-                      <div className="title-edit">
-                        <label htmlFor="title">Title</label>
-                      </div>
-                      <Text field="title" placeholder="case title" />
-                      <div>
-                        <label htmlFor="body_en">Body</label>
-                      </div>
-                      <BodyEditor value={thing.body} />
-                    </div>
-                    <button type="submit">Submit</button>
-                  </Col>
-                </Container>
-              </div>
-            </form>
-          );
-        }}
-      </Form>
-    );
-  }
-}
 
 function CaseSidebar({ thing, intl, cases, methods, organizations }) {
   let related_cases = (
@@ -265,7 +210,5 @@ function _CaseEditor(props) {
 _CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
-
-// should the redux wrapper be in this comp or the container parent?
 
 export default injectIntl(_CaseEditor);
