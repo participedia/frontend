@@ -225,7 +225,12 @@
     "typical_sponsoring_entity": "Typical sponsoring entity",
     "typical_implementing_entity": "Typical implementing entity",
     "sector": "Sector",
-    "executive_director": "Executive Director"
+    "executive_director": "Executive Director",
+    "strawberry": "Strawberry",
+    "chocolate": "Chocolate",
+    "vanilla": "Vanilla",
+    "war": "War",
+    "peace": "Peace"
   },
   "fr": {
     "chronological": "Plus Récentes"

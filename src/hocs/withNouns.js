@@ -1,4 +1,5 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import { loadNouns, ORGANIZATION, CASE, METHOD } from "../actions";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {

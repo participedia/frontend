@@ -22,6 +22,11 @@ export default class CaseEditorContainer extends Component {
   componentWillMount() {
     let component = this;
     api.fetchCaseById(this.props.params.nodeID).then(function(thing) {
+      if (thing) {
+        thing.start_date = new Date(thing.start_date);
+        thing.end_date = new Date(thing.end_date);
+        thing.updated_date = new Date(thing.updated_date);
+      }
       component.setState({ case: thing });
     });
     this.getNouns();
@@ -40,6 +45,7 @@ export default class CaseEditorContainer extends Component {
   render() {
     if (
       this.state &&
+      this.state.case &&
       this.state.cases &&
       this.state.methods &&
       this.state.organizations
@@ -48,12 +54,16 @@ export default class CaseEditorContainer extends Component {
       let casesArr = Object.keys(this.state.cases).map(k => k);
       let methodsArr = Object.keys(this.state.methods).map(k => k);
       let orgsArr = Object.keys(this.state.organizations).map(k => k);
+      console.log(
+        this.state.case.start_date,
+        typeof this.state.case.start_date
+      );
       return (
         <CaseEditor
           cases={casesArr}
           methods={methodsArr}
           organizations={orgsArr}
-          case={this.state.case}
+          thing={this.state.case}
           onSubmit={this.onSubmit.bind(this)}
         />
       );

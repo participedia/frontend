@@ -9,13 +9,13 @@ import { reduxForm } from "redux-form";
 
 import CaseEditor from "../components/CaseEditor/CaseEditor";
 import { loadObject, CASE_TYPE } from "../actions";
-import withNouns from "../../hocs/withNouns";
+import withNouns from "../hocs/withNouns";
 
 const mapStateToProps = (state, ownProps) => {
   if (state.objects.currentObject) {
-    return { case: state.objects.currentObject };
+    return { thing: state.objects.currentObject };
   } else {
-    return { caseID: ownProps.params.nodeID, case: null, loading: true };
+    return { caseID: ownProps.params.nodeID, thing: null, loading: true };
   }
 };
 
