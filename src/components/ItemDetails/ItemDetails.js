@@ -58,7 +58,8 @@ export default class ItemDetails extends React.Component {
       let last_author_name = last_author.name;
       let last_author_url = "/" + locale + "/users/" + last_author.user_id;
       let id = this.props.id;
-      let editLinkUrl = `/${locale}/case/${id}/edit`;
+      let type = thing.type;
+      let editLinkUrl = `/${locale}/${type}/${id}/edit`;
       let detailedBits = React.createElement(this.props.details, {
         case: thing,
         intl

@@ -15,7 +15,11 @@ import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
 import Add from "./components/Add/Add";
-import CaseEditorContainer from "./containers/CaseEditorContainer";
+import {
+  CaseEditorContainer,
+  MethodEditorContainer,
+  OrganizationEditorContainer
+} from "./containers/EditorContainers";
 import QuickSubmitPicker
   from "./components/QuickSubmitPicker/QuickSubmitPicker";
 import {
@@ -88,8 +92,14 @@ function buildRoutes() {
           <IndexRoute component={Case} />
           <Route path="edit" component={CaseEditorContainer} />
         </Route>
-        <Route path="method/:nodeID" component={Method} />
-        <Route path="organization/:nodeID" component={Organization} />
+        <Route path="method/:nodeID">
+          <IndexRoute component={Method} />
+          <Route path="edit" component={MethodEditorContainer} />
+        </Route>
+        <Route path="organization/:nodeID">
+          <IndexRoute component={Organization} />
+          <Route path="edit" component={OrganizationEditorContainer} />
+        </Route>
         <Route path="add">
           <IndexRoute component={Add} />
         </Route>
