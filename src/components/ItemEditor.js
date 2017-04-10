@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Form, Text } from "react-form";
+import { Form } from "react-form";
+import TextField from "material-ui/TextField";
 import { Container, Col } from "reactstrap";
 import BodyEditor from "./BodyEditor";
 import ImageListEditor from "./ImageListEditor";
@@ -37,7 +38,11 @@ export default class ItemEditor extends Component {
                       <div className="title-edit">
                         <label htmlFor="title">Title</label>
                       </div>
-                      <Text field="title" placeholder="case title" />
+                      <TextField
+                        field="title"
+                        placeholder="case title"
+                        fullWidth={true}
+                      />
                       <div>
                         <label htmlFor="body_en">Body</label>
                       </div>
