@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
@@ -111,7 +112,6 @@ function DatePropEditor({ label, property, thing, intl }) {
     </div>
   );
 }
-// <DatePicker name={property} hintText="Portrait Dialog" />
 
 DatePropEditor.propTypes = {
   label: PropTypes.string.isRequired,
@@ -162,21 +162,6 @@ class ChoicePropEditor extends React.Component {
     );
   }
 }
-
-// function ChoicePropEditor({ label, property, thing, intl, thingType }) {
-//   // let handleChange = (event, index, value) => this.setState({ value });
-
-//   return (
-//     <div>
-//       <p className="sub-sub-heading">
-//         {intl.formatMessage({ id: label ? label : "not_specified" })}
-//       </p>
-//     </div>
-//   );
-// }
-// <SelectField value={thing[property]} onChange={handleChange}>
-//   {choices}
-// </SelectField>
 
 ChoicePropEditor.propTypes = {
   label: PropTypes.string.isRequired,

@@ -125,16 +125,6 @@ export class Related extends React.Component {
   }
 }
 
-// return renderChip({
-//   input: input,
-//   name: "related_cases",
-//   hintText: intl.formatMessage({
-//     id: "search_related_cases"
-//   }),
-//   dataSource: cases,
-//   dataSourceConfig: { text: "text", value: "value" }
-// });
-
 export function RelatedMethods({ intl, methods }) {
   return (
     <Field
