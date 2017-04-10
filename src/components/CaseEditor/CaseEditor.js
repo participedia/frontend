@@ -141,7 +141,7 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
           property="facetoface_online_or_both"
           thing={thing}
         />
-        <ChoicePropEditor
+        <BooleanPropEditor
           intl={intl}
           label="facilitated"
           property="facilitated"

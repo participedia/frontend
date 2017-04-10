@@ -13,7 +13,6 @@ function renderChip(
     floatingLabelText
   }
 ) {
-  console.log("input", input);
   return (
     <ChipInput
       {...input}
@@ -22,7 +21,6 @@ function renderChip(
       menuStyle={{ width: 400 }}
       listStyle={{ width: 400 }}
       onRequestAdd={addedChip => {
-        console.log("in onRequestAdd", addedChip);
         let values = input.value || [];
         values = values.slice();
         values.push(addedChip);
@@ -83,22 +81,15 @@ export class Related extends React.Component {
   }
 
   handleChange(value) {
-    console.log("in handleChange", this.thing, this.property, value);
-    try {
-      this.thing[this.property] = value;
-    } catch (e) {
-      console.error(e);
-    }
+    this.thing[this.property] = value;
   }
 
   handleRequestAdd(chip) {
-    console.log("in handleRequestAdd", chip);
     let chips = [...this.state.chips, chip];
     this.setState({
       chips: chips
     });
     this.thing[this.property] = chips;
-    console.log(this.thing);
   }
 
   handleRequestDelete(deletedChip) {
@@ -110,15 +101,6 @@ export class Related extends React.Component {
   }
 
   render() {
-    // console.log(
-    //   "Setting ",
-    //   this.property,
-    //   "on",
-    //   this.thing,
-    //   "with",
-    //   this.state.chips
-    // );
-
     let rest = omit(this.props, ["intl", "thing", "property", "dataSource"]);
     let handleRequestAdd = this.handleRequestAdd.bind(this);
     let handleRequestDelete = this.handleRequestDelete.bind(this);

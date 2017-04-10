@@ -54,10 +54,6 @@ export default class CaseEditorContainer extends Component {
       let casesArr = Object.keys(this.state.cases).map(k => k);
       let methodsArr = Object.keys(this.state.methods).map(k => k);
       let orgsArr = Object.keys(this.state.organizations).map(k => k);
-      console.log(
-        this.state.case.start_date,
-        typeof this.state.case.start_date
-      );
       return (
         <CaseEditor
           cases={casesArr}
