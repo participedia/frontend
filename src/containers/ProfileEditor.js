@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import EditProfile from "../components/EditProfile/EditProfile";
