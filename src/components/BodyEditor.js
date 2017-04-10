@@ -3,10 +3,9 @@ import ReactQuill from "react-quill";
 import "../quill.core.css";
 import "../quill.snow.css";
 import "./BodyEditor.css";
-import { Container, Row, Col } from "reactstrap";
 import ScrollEvent from "react-onscroll";
 
-_quillModules: {
+const _quillModules = {
   toolbar: [
     [{ header: [1, 2, false] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
@@ -18,11 +17,10 @@ _quillModules: {
     ],
     ["link", "image"],
     ["clean"]
-  ];
-  /* ... other modules */
-}
+  ]
+};
 
-_quillFormats: [
+const _quillFormats = [
   "header",
   "bold",
   "italic",
@@ -46,7 +44,6 @@ class BodyEditor extends React.Component {
   handleScroll() {
     let el = this.toolBarContainer;
     let rect = el.getBoundingClientRect();
-    console.log("rect", rect);
     if (rect.top <= 0) {
       this.setState({ fixedBar: true });
     } else {
@@ -66,8 +63,8 @@ class BodyEditor extends React.Component {
           <ScrollEvent handleScrollCallback={this.handleScroll} />
           <ReactQuill
             theme="snow"
-            modules={this._quillModules}
-            formats={this._quillFormats}
+            modules={_quillModules}
+            formats={_quillFormats}
             bounds={"._quill"}
           >
             <div
