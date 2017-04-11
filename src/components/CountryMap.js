@@ -13,7 +13,7 @@ class CountryMap extends React.Component {
         process.env.REACT_APP_ASSETS_URL +
           "countries/fullname/" +
           this.props.countrycode +
-          ".svg?"
+          ".svg"
       )
         .then(function(response) {
           return response.text();

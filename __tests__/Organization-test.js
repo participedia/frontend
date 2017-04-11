@@ -17,7 +17,7 @@ fetchMock.get(
   JSON.stringify({ data: orgData })
 );
 fetchMock.get(
-  process.env.REACT_APP_ASSETS_URL + "Italy.svg",
+  process.env.REACT_APP_ASSETS_URL + "countries/fullname/Italy.svg",
   JSON.stringify({ data: orgData })
 );
 
