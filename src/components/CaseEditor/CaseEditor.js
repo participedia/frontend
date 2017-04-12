@@ -243,20 +243,9 @@ function CaseSidebar({ thing, intl, cases, methods, organizations }) {
   );
 }
 
-function submitCase(thing) {
-  console.log("in submitCase", thing);
-}
-
 function _CaseEditor(props) {
   let sidebar = <CaseSidebar {...props} />;
-  return (
-    <ItemEditor
-      {...props}
-      thing={props.thing}
-      sidebar={sidebar}
-      onSubmit={submitCase}
-    />
-  );
+  return <ItemEditor {...props} thing={props.thing} sidebar={sidebar} />;
 }
 
 _CaseEditor.propTypes = {
