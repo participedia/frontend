@@ -1,170 +1,86 @@
 import React from "react";
-import "./Case/Case.css";
+import { connect } from "react-redux";
 import { injectIntl, intlShape } from "react-intl";
 import api from "../utils/api";
-import moment from "moment";
-import { Container, Col } from "reactstrap";
+import SearchLink from "../components/SearchLink";
 import CountryMap from "../components/CountryMap";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentPencil from "material-ui/svg-icons/image/edit";
-import caseIconBookmark from "../img/pp-case-icon-bookmark.png";
-import caseIconSettings from "../img/pp-case-icon-settings.png";
-import caseIconFB from "../img/pp-case-icon-fb.png";
-import caseIconTW from "../img/pp-case-icon-tw.png";
-import caseIconShare from "../img/pp-case-icon-share.png";
+import LinkedPropertyGroupWithHeading
+  from "../components/LinkedPropertyGroupWithHeading";
+import ItemDetails from "../components/ItemDetails/ItemDetails";
 
-export class Organization extends React.Component {
-  componentWillMount() {
-    let component = this;
-    api.fetchOrgById(this.props.params.nodeID).then(function(json) {
-      let data = json[0];
-      component.setState({ data: data, htmlBody: data.body_en });
-    });
-  }
+function mapStateToProps({ auth }) {
+  const { isAuthenticated } = auth;
 
-  getInnerHTML() {
-    let input = "";
-    if (this.state && this.state.htmlBody) {
-      input = this.state.htmlBody;
-    }
-    return { __html: input };
-  }
+  return {
+    isAuthenticated
+  };
+}
 
+class OrganizationDetails extends React.Component {
   render() {
-    if (this.state && this.state.data) {
-      let caseObject = this.state.data;
-      let tags = "";
-      let communication_modes = "";
-      if (caseObject.specific_topics) {
-        tags = caseObject.specific_topics.split(",").map(function(tag, i) {
-          return <a key={i} href="#">{tag.trim()}</a>;
-        });
-      }
-      if (caseObject.communication_mode) {
-        communication_modes = caseObject.communication_mode
-          .split(",")
-          .map(function(tag, i) {
-            return <a key={i} href="#">{tag.trim()}</a>;
-          });
-      }
-      let post_date = moment(caseObject.post_date).format("LL");
-      let updated_date = moment(caseObject.updated_date).format("LL");
-      let first_author = caseObject.author.name;
-      let locale = this.props.intl.locale;
-      let first_author_url = "/" + locale + "/users/" + caseObject.author.id;
-      let last_author = "???"; // TODO figure out how last author for organization details
-      let awsUrl = process.env.REACT_APP_ASSETS_URL;
-      let pic = "";
-      let otherImg = "";
-      if (caseObject.lead_image) {
-        let comma = caseObject.lead_image.search(",");
-        pic = awsUrl +
-          encodeURIComponent(caseObject.lead_image.slice(9, comma - 1));
-      }
-      if (caseObject.other_images) {
-        let bracket = caseObject.other_images.search("]");
-        otherImg = awsUrl +
-          encodeURIComponent(caseObject.other_images.slice(2, bracket - 1));
-      }
-
-      return (
+    let thing = this.props.case;
+    let intl = this.props.intl;
+    let tags = <div />;
+    if (thing.tags) {
+      tags = thing.tags.map(tag => (
+        <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
+      ));
+    }
+    let ed = null;
+    if (thing.executive_director) {
+      ed = (
         <div>
-          <div className="main-contents">
-            <Container className="detailed-case-component" fluid={true}>
-              <Col md="3" className="sidepanel hidden-sm-down">
-                {caseObject.geo_country
-                  ? <CountryMap
-                      city={caseObject.geo_city}
-                      countrycode={caseObject.geo_country}
-                    />
-                  : undefined}
-                <p className="sub-heading">
-                  Keywords
-                </p>
-                <p className="sub-sub-heading">
-                  Tags:
-                </p>
-                <div className="tags">
-                  {tags}
-                </div>
-                <p className="sub-sub-heading">
-                  Specific Topic(s):
-                </p>
-                <div className="tags">
-                  {communication_modes}
-                </div>
-                <p className="sub-heading">
-                  Related Content
-                </p>
-                <div className="related-content">
-                  <a href="#">Cases</a>
-                  <a href="#">Methods</a>
-                  <a href="#">Surveys</a>
-                  <a href="#">Datasets</a>
-                </div>
-              </Col>
-              <Col md="8" xs="12" className="main-area">
-                <div className="case-box">
-                  <h2 className="category">
-                    Organization
-                  </h2>
-                  <h2 className="case-title">
-                    {caseObject.title_en}
-                  </h2>
-                  {pic && pic.length > awsUrl.length
-                    ? <div className="case-images">
-                        <img role="presentation" src={pic} />
-                      </div>
-                    : otherImg && otherImg.length > awsUrl.length
-                        ? <div className="case-images">
-                            <img role="presentation" src={otherImg} />
-                          </div>
-                        : undefined}
-                  <div className="authorship-details">
-                    <p className="author-line">
-                      First submitted by&nbsp;
-                      <a href={first_author_url}>
-                        {first_author}
-                      </a>
-                    </p>
-                    <p className="date-line">
-                      {post_date}
-                    </p>
-                    <p className="author-line">
-                      Most recent changes by&nbsp;
-                      <a href="#">
-                        {last_author}
-                      </a>
-                    </p>
-                    <p className="date-line">
-                      {updated_date}
-                    </p>
-                  </div>
-                  <div
-                    className="case-html"
-                    dangerouslySetInnerHTML={{ __html: caseObject.body_en }}
-                  />
-                </div>
-              </Col>
-              <Col md="1" className="case-tools hidden-sm-down">
-                <div className="top-icons">
-                  <a href="#"><img src={caseIconBookmark} alt="" /></a>
-                  <a href="#"><img src={caseIconSettings} alt="" /></a>
-                  <a href="#"><img src={caseIconFB} alt="" /></a>
-                  <a href="#"><img src={caseIconTW} alt="" /></a>
-                  <a href="#"><img src={caseIconShare} alt="" /></a>
-                </div>
-              </Col>
-            </Container>
-            <FloatingActionButton className="editButton">
-              <ContentPencil />
-            </FloatingActionButton>
+          <p className="sub-heading">
+            {intl.formatMessage({ id: "executive_director" })}
+          </p>
+          <div className="sub-sub-heading">
+            {thing.executive_director}
           </div>
         </div>
       );
-    } else {
-      return <div />;
     }
+    return (
+      <div>
+        <CountryMap
+          city={thing.location.city}
+          countrycode={thing.location.country}
+        />
+        <p className="sub-heading">
+          Keywords
+        </p>
+        <p className="sub-sub-heading">
+          Tags:
+        </p>
+        <div className="tags">
+          {tags}
+        </div>
+        {ed}
+
+        <LinkedPropertyGroupWithHeading
+          intl={intl}
+          heading="sector"
+          property="sector"
+          thing={thing}
+        />
+      </div>
+    );
+  }
+}
+
+export class Organization extends React.Component {
+  render() {
+    let id = this.props.params.nodeID;
+    let intl = this.props.intl;
+    let isAuthenticated = this.props.isAuthenticated;
+    return (
+      <ItemDetails
+        api={api.fetchOrgById}
+        isAuthenticated={isAuthenticated}
+        id={id}
+        intl={intl}
+        details={OrganizationDetails}
+      />
+    );
   }
 }
 
@@ -172,4 +88,4 @@ Organization.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(Organization);
+export default connect(mapStateToProps)(injectIntl(Organization));

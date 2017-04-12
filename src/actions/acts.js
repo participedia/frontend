@@ -7,46 +7,15 @@ export const SET_SORT_ORDER = "SET_SORT_ORDER";
 export const SET_LAYOUT = "SET_LAYOUT";
 export const DO_RECENT_SEARCH = "DO_RECENT_SEARCH";
 export const FETCHING_OBJECT = "FETCHING_OBJECT";
+export const SAVING_OBJECT = "SAVING_OBJECT";
 export const RECEIVED_OBJECT = "RECEIVED_OBJECT";
-export const CASE_TYPE = "CASE";
+export const RECEIVED_OBJECT_SAVED = "RECEIVED_OBJECT_SAVED";
+export const CASE_TYPE = "case";
+export const METHOD_TYPE = "method";
+export const ORGANIZATION_TYPE = "organization";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
-
-import Auth0Lock from "auth0-lock";
-import api from "./utils/api";
-
-// There are two possible states for our login
-// process and we need actions for each of them.
-//
-// We also need one to show the Lock widget.
-// export const SHOW_LOCK = 'SHOW_LOCK'
-export const LOCK_SUCCESS = "LOCK_SUCCESS";
-export const LOCK_ERROR = "LOCK_ERROR";
-
-// Opens the Lock widget and
-// dispatches actions along the way
-export function login() {
-  const options = {
-    auth: {
-      redirectUrl: window.location.origin + "/en-US/redirect",
-      responseType: "token",
-      params: {
-        scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
-        state: JSON.stringify({ pathname: window.location.pathname })
-      }
-    },
-    autoclose: true
-  };
-
-  const lock = new Auth0Lock(
-    "lORPmEONgX2K71SX7fk35X5PNZOCaSfU",
-    "participedia.auth0.com",
-    options
-  );
-
-  return dispatch => {
-    lock.show();
-  };
-}
+import { push } from "react-router-redux";
+import api from "../utils/api";
 
 export function updateUserMetaData(userId, data) {
   return function(dispatch) {
@@ -58,39 +27,6 @@ export function updateUserMetaData(userId, data) {
         type: PROFILE_UPDATED
       });
     });
-  };
-}
-
-// Three possible states for our logout process as well.
-// Since we are using JWTs, we just need to remove the token
-// from localStorage. These actions are more useful if we
-// were calling the API to log the user out
-export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
-
-function requestLogout() {
-  return {
-    type: LOGOUT_REQUEST,
-    isFetching: true,
-    isAuthenticated: true
-  };
-}
-
-function receiveLogout() {
-  return {
-    type: LOGOUT_SUCCESS,
-    isFetching: false,
-    isAuthenticated: false
-  };
-}
-
-// Logs the user out
-export function logoutUser() {
-  return dispatch => {
-    dispatch(requestLogout());
-    localStorage.removeItem("id_token");
-    dispatch(receiveLogout());
   };
 }
 
@@ -149,6 +85,46 @@ export function loadObject(type, id) {
     console.error("not a case");
     // TODO loadObject needs to deal with things other than cases
   }
+}
+
+export function startSaveObject() {
+  return {
+    type: SAVING_OBJECT,
+    payload: null
+  };
+}
+
+export function receiveObjectSaved(state, id) {
+  return {
+    type: RECEIVED_OBJECT_SAVED,
+    payload: { ID: id }
+  };
+}
+
+export function makeObject(thingType, object) {
+  return dispatch => {
+    dispatch(startSaveObject(object));
+    if (
+      thingType === CASE_TYPE ||
+      thingType === METHOD_TYPE ||
+      thingType === ORGANIZATION_TYPE
+    ) {
+      return api
+        .saveNewThing(thingType, object)
+        .then(response => dispatch(receiveObjectSaved(object, response)))
+        .then(function(thing) {
+          let id = thing.payload.ID[thingType + "_id"];
+          dispatch(push(`/en-US/${thingType}/${id}`));
+        })
+        .catch(reason => {
+          console.error("Error saving case", reason);
+        });
+    } else {
+      let error = `don't know how to create: ${thingType}`;
+      console.error(error);
+      throw error;
+    }
+  };
 }
 
 export function changeCategory(category) {

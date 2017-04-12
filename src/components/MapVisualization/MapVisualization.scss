@@ -4,7 +4,17 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
-
+  position:relative;
+  z-index:10;
+  &:before {
+    content:"";
+    position:absolute;
+    top:-3px;
+    height:3px;
+    left:0;
+    right:0;
+    background:$light-grey;
+  }
   .map {
     width: 100%;
     height: 400px;
@@ -13,7 +23,7 @@
   }
 
   .map-information {
-    border-bottom: 5px solid $dark-grey;
+    border-bottom: 4px solid $dark-grey;
     height: 0px;
     overflow: hidden;
 

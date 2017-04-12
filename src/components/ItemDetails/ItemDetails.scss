@@ -1,12 +1,43 @@
 @import "../../UniversalStyles";
-// @import "quill/dist/quill.snow.css";
+@import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+.single-image {
+  img {
+    max-width: 100%;
+  }
+}
+
+section.image-gallery {
+  margin: 0 auto;
+  .image-gallery-image {
+    max-height: 500px;
+    background-color: #000;
+    text-align: center;
+    overflow: hidden;
+    @include media-breakpoint-down(md) {
+      max-height: 220px;
+    }
+    img.portrait {
+      width: auto;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+}
 
 .detailed-case-component {
   padding-bottom: 32px;
   padding-top: 32px;
 
+  .main-area {
+    .case-html {
+      word-wrap: break-word;
+    }
+  }
+
   .sidepanel {
-    padding: 0 32px;
+    padding: 0 30px;
     margin-top: 48px;
     position:relative;
 
@@ -54,22 +85,35 @@
     }
 
     .sub-sub-heading {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
       color: $grey-text;
       line-height: 18px;
-      margin-bottom: 8px;
-      margin-top: 16px;
+      margin-bottom: 5px;
+      margin-top: 14px;
+      padding-top:14px;
+      border-top:1px solid $light-grey;
+    }
+    
+    .sub-sub-heading + div a {
+      color:$black;
+      font-size:14px;
+      position:relative;
+      text-decoration:underline;
+      &:hover {
+        color:$interactive-color;
+      }
     }
 
     .tags {
+      margin-top:18px;
       a {
         display: block;
         font-size: 14px;
         color: #888;
         font-weight: 400;
         line-height: 18px;
-        margin-bottom: 4px;
+        margin-bottom: 10px;
       }
     }
 
@@ -173,7 +217,7 @@
   }
 
   .main-area {
-    padding:0 40px;
+    padding:0 15px;
 
     .case-box {
       padding: 48px 0;
@@ -184,6 +228,7 @@
         text-transform: uppercase;
         margin-bottom: 8px;
         font-size:20px;
+        text-transform: uppercase;
       }
 
       .case-title {

@@ -1,11 +1,9 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";
 import { Container, Col } from "reactstrap";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import Plus from "material-ui/svg-icons/content/add";
-import { Link } from "react-router";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
@@ -28,8 +26,6 @@ export class SearchResultsView extends React.Component {
 
   render() {
     let data = this.props.data;
-    let locale = this.props.intl.locale;
-    let addLink = `/${locale}/quick-submit`;
 
     let categories = { case: [], organization: [], method: [], news: [] };
     let selectedViewType = this.props.selectedViewType;
@@ -182,7 +178,7 @@ export class SearchResultsView extends React.Component {
           </Col>
           <Col md="9">
             <div className="clearfix search-actions-area">
-              <div className="filters hidden-sm-down">
+              <div className="filters hidden-xs-down">
                 <a
                   href="#"
                   onClick={preventDefault(
@@ -319,11 +315,6 @@ export class SearchResultsView extends React.Component {
             {results}
           </Col>
         </Container>
-        <Link to={addLink}>
-          <FloatingActionButton className="editButton">
-            <Plus />
-          </FloatingActionButton>
-        </Link>
       </div>
     );
   }

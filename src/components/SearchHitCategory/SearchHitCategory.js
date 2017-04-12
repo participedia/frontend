@@ -7,9 +7,6 @@ class SearchHitCategory extends React.Component {
     if (this.props.results.length) {
       return (
         <div className="result-category">
-          <div className="category-title">
-            {this.props.title}
-          </div>
           <div className="row results">
             {this.props.results}
           </div>

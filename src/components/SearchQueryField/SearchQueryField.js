@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { injectIntl } from "react-intl";
 import "./SearchQueryField.css";
 
@@ -8,13 +9,14 @@ class SearchQueryField extends React.Component {
     this.state = { query: this.props.query }; // is there another way?
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
-    if (this.props.query === "") {
-      this.props.onPerformQuery(
-        "",
-        this.props.selectedCategory,
-        this.props.sortingMethod
-      );
-    }
+  }
+
+  componentDidMount() {
+    this.props.onPerformQuery(
+      this.props.query,
+      this.props.selectedCategory,
+      this.props.sortingMethod
+    );
   }
 
   onChange(event) {

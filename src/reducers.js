@@ -1,50 +1,51 @@
 import { reducer } from "redux-form";
 import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
 
 // AUTH reducers
+import * as ActionTypes from "./actions";
+import AuthService from "./utils/AuthService";
 
-import {
-  LOCK_SUCCESS,
-  LOGOUT_SUCCESS,
-  RECEIVED_NOUNS,
-  PROFILE_UPDATED
-} from "./actions";
-
-function getProfile() {
-  return JSON.parse(localStorage.getItem("profile"));
+if (AuthService.isTokenExpired()) {
+  AuthService.logout();
 }
 
-// The auth reducer. The starting state sets authentication
-// based on a token being in local storage.
-// TODO figure out if we need to check for expired tokens
 function auth(
   state = {
+    isAuthenticated: !AuthService.isTokenExpired(),
     isFetching: false,
-    profile: getProfile(),
-    token: localStorage.getItem("id_token"),
-    isAuthenticated: localStorage.getItem("id_token") ? true : false
+    profile: AuthService.getProfile(),
+    token: AuthService.getToken(),
+    error: null
   },
   action
 ) {
   switch (action.type) {
-    case LOCK_SUCCESS:
-      return Object.assign({}, state, {
+    case ActionTypes.LOGIN_REQUEST:
+      return { ...state, isFetching: true, error: null };
+    case ActionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
-        profile: getProfile(),
-        errorMessage: ""
-      });
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: true,
+        token: AuthService.getToken(),
+        profile: action.profile
+      };
+    case ActionTypes.LOGIN_ERROR:
+      return {
+        ...state,
+        isFetching: false,
         isAuthenticated: false,
-        profile: null
-      });
-    case PROFILE_UPDATED:
+        profile: {},
+        error: action.error
+      };
+    case ActionTypes.LOGOUT_SUCCESS:
+      return { ...state, isAuthenticated: false, profile: {} };
+    case ActionTypes.PROFILE_UPDATED:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        profile: getProfile(),
+        profile: AuthService.getProfile(),
         errorMessage: ""
       });
     default:
@@ -62,7 +63,8 @@ import {
   SET_SORT_ORDER,
   DO_RECENT_SEARCH,
   FETCHING_OBJECT,
-  RECEIVED_OBJECT
+  RECEIVED_OBJECT,
+  RECEIVED_OBJECT_SAVED
 } from "./actions";
 
 function dataStoreReducer(state = {}, action) {
@@ -76,6 +78,11 @@ function dataStoreReducer(state = {}, action) {
     case RECEIVED_OBJECT:
       return Object.assign({}, state, {
         currentObject: action.payload.object,
+        currentID: action.payload.ID,
+        searching: false
+      });
+    case RECEIVED_OBJECT_SAVED:
+      return Object.assign({}, state, {
         currentID: action.payload.ID,
         searching: false
       });
@@ -133,12 +140,14 @@ function uiReducer(
 
 function nounCache(
   state = {
-    organization: {}
+    organization: {},
+    case: {},
+    method: {}
   },
   action
 ) {
   switch (action.type) {
-    case RECEIVED_NOUNS:
+    case ActionTypes.RECEIVED_NOUNS:
       return Object.assign({}, state, {
         [action.noun]: action.nouns
       });
@@ -153,7 +162,8 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   objects: dataStoreReducer,
   nouns: nounCache,
-  form: reducer
+  form: reducer,
+  routing: routerReducer
 });
 
 export default rootReducer;

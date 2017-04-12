@@ -3,13 +3,28 @@
 .case-images {
   overflow: hidden;
   margin-bottom:10px;
+  height:180px;
+  max-width:400px;
+  @include media-breakpoint-up(md) {
+    height:160px;
+  }
+  @include media-breakpoint-up(xl) {
+    height:200px;
+  }
   img {
-    max-height: 160px;
+    width:100%;
+    height:auto;
+    position:relative;
+    top:50%;
+    transform:translate(0, -50%);
   }
 }
 
+small.label {
+  text-transform: uppercase;
+}
+
 .list-item, .grid-item {
-  padding-top: 28px;
   a:hover {
     text-decoration: none;
   }
@@ -32,12 +47,53 @@
 
 .thumbnail {
   width: 100%;
-  height: 160px;
+  max-width:400px;
+  height: 180px;
   background-size: cover;
   background-position: center;
   margin-bottom: 10px;
   background-color: $dark-grey;
   cursor: pointer;
+  position:relative;
+  @include media-breakpoint-up(md) {
+    height:160px;
+  }
+  @include media-breakpoint-up(xl) {
+    height:200px;
+  }
+  &:after {
+    content:"";
+    position:absolute;
+    opacity:.25;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+  }
+  &.case {
+    &:after {
+      background:url('../../img/icon-thumbnail-case.svg') no-repeat center center;
+      background-size:20%;
+    }
+  }
+  &.method {
+    &:after {
+      background:url('../../img/icon-thumbnail-method.svg') no-repeat center center;
+      background-size:20%;
+    }
+  }
+  &.organization {
+    &:after {
+      background:url('../../img/icon-thumbnail-organization.svg') no-repeat center center;
+      background-size:20%;
+    }
+  }
+  &.news {
+    &:after {
+      background:url('../../img/icon-thumbnail-news.svg') no-repeat center center;
+      background-size:20%;
+    }
+  }
 }
 
 .list-item {
@@ -50,7 +106,7 @@
   color:$grey-text;
   font-weight:600;
   font-size:.9rem;
-  margin:20px 0 5px;
+  margin:20px 0 10px;
   letter-spacing:0.075rem;
 }
 .result-title-text {
@@ -62,6 +118,7 @@
   max-height: 78px;
   overflow: hidden;
   font-weight:600;
+  word-break:break-word;
   &:hover, &:focus {
     text-decoration:underline;
     color:$interactive-color;

@@ -15,7 +15,9 @@ class AccordionTab extends React.Component {
           onClick={() => {
             this.setState({ open: !this.state.open });
           }}
-        >{this.props.title}</p>
+        >
+          {this.props.title}
+        </p>
         {this.props.children}
       </div>
     );
