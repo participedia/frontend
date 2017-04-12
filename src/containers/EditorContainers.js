@@ -50,7 +50,8 @@ class EditorContainer extends Component {
     this.getNouns();
   }
 
-  onSubmit(values, state, props, instance) {
+  onSubmit(thing) {
+    // console.log("in onSubmit", thing);
     let router = this.props.router;
     let location = this.props.location;
     let saveFunc;
@@ -64,7 +65,7 @@ class EditorContainer extends Component {
       console.error("got unknown type in onSubmit");
     }
 
-    saveFunc(state).then(function(thing) {
+    saveFunc(thing).then(function(thing) {
       let pathparts = location.pathname.split("/");
       pathparts.pop();
       router.push(pathparts.join("/"));
