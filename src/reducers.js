@@ -4,18 +4,18 @@ import { routerReducer } from "react-router-redux";
 
 // AUTH reducers
 import * as ActionTypes from "./actions";
-import AuthService from "./utils/AuthService";
+import authService from "./utils/AuthService";
 
-if (AuthService.isTokenExpired()) {
-  AuthService.logout();
+if (authService.isTokenExpired()) {
+  authService.logout();
 }
 
 function auth(
   state = {
-    isAuthenticated: !AuthService.isTokenExpired(),
+    isAuthenticated: !authService.isTokenExpired(),
     isFetching: false,
-    profile: AuthService.getProfile(),
-    token: AuthService.getToken(),
+    profile: authService.getProfile(),
+    token: authService.getToken(),
     error: null
   },
   action
@@ -28,7 +28,7 @@ function auth(
         ...state,
         isFetching: false,
         isAuthenticated: true,
-        token: AuthService.getToken(),
+        token: authService.getToken(),
         profile: action.profile
       };
     case ActionTypes.LOGIN_ERROR:
@@ -45,7 +45,7 @@ function auth(
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        profile: AuthService.getProfile(),
+        profile: authService.getProfile(),
         errorMessage: ""
       });
     default:
