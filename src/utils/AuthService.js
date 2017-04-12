@@ -2,7 +2,7 @@ import Auth0Lock from "auth0-lock";
 import jwtDecode from "jwt-decode";
 import ppLogo from "../img/pp-logo-dark.png";
 
-export default class AuthService {
+class AuthService {
   constructor(clientId, domain) {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
@@ -26,55 +26,59 @@ export default class AuthService {
     this.login = this.login.bind(this);
   }
 
-  login(params) {
+  login(redirectUrl) {
     // Call the show method to display the widget.
-    let state = JSON.stringify({ pathname: window.location.pathname });
+    let state = { pathname: window.location.pathname };
+    if (redirectUrl) {
+      state["return_url"] = redirectUrl;
+    }
+    let stateString = JSON.stringify(state);
     this.lock.show({
       auth: {
         params: {
           scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
-          state: state
+          state: stateString
         }
       }
     });
   }
 
-  static logout() {
+  logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     localStorage.removeItem("profile");
   }
 
-  static getProfile() {
+  getProfile() {
     // Retrieves the profile data from localStorage
     const profile = localStorage.getItem("profile");
     return profile ? JSON.parse(localStorage.profile) : {};
   }
 
-  static loggedIn() {
+  loggedIn() {
     // Checks if there is a saved token and it's still valid
-    const token = AuthService.getToken();
-    return !!token && !AuthService.isTokenExpired(token);
+    const token = this.getToken();
+    return !!token && !this.isTokenExpired(token);
   }
 
-  static setProfile(profile) {
+  setProfile(profile) {
     // Saves profile data to localStorage
     localStorage.setItem("profile", JSON.stringify(profile));
     // Triggers profile_updated event to update the UI
   }
 
-  static setToken(idToken) {
+  setToken(idToken) {
     // Saves user token to localStorage
     localStorage.setItem("id_token", idToken);
   }
 
-  static getToken() {
+  getToken() {
     // Retrieves the user token from localStorage
     return localStorage.getItem("id_token");
   }
 
-  static getTokenExpirationDate() {
-    const token = AuthService.getToken();
+  getTokenExpirationDate() {
+    const token = this.getToken();
     const decoded = jwtDecode(token);
     if (!decoded.exp) {
       return null;
@@ -85,10 +89,10 @@ export default class AuthService {
     return date;
   }
 
-  static isTokenExpired() {
-    const token = AuthService.getToken();
+  isTokenExpired() {
+    const token = this.getToken();
     if (!token) return true;
-    const date = AuthService.getTokenExpirationDate(token);
+    const date = this.getTokenExpirationDate(token);
     const offsetSeconds = 0;
     if (date === null) {
       return false;
@@ -98,3 +102,10 @@ export default class AuthService {
     return expired;
   }
 }
+
+const authService = new AuthService(
+  process.env.REACT_APP_AUTH0_CLIENT_ID,
+  process.env.REACT_APP_AUTH0_DOMAIN
+);
+
+export default authService;

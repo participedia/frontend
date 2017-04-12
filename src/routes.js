@@ -1,6 +1,7 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 
 import { Route, IndexRedirect, IndexRoute } from "react-router";
+import authService from "./utils/AuthService";
 
 import Home from "./Home";
 import Layout from "./Layout";
@@ -62,6 +63,12 @@ let getFirstBrowserLanguage = function() {
   return null;
 };
 
+function requireAuth(nextState, replace) {
+  if (!authService.loggedIn()) {
+    authService.login(nextState.location.pathname);
+  }
+}
+
 import localesJSON from "../public/locales.json";
 let locales = Object.keys(localesJSON);
 
@@ -72,7 +79,11 @@ function buildRoutes() {
       <Route key={locale} path={locale} component={Layout}>
         <Route path="redirect" />
         <IndexRoute component={Home} />
-        <Route path="profile/edit" component={ProfileEditor} />
+        <Route
+          path="profile/edit"
+          component={ProfileEditor}
+          onEnter={requireAuth}
+        />
         <Route path="profile" component={Profile} />
         <Route path="help/:id" component={HelpArticle} />
         <Route path="about" component={About} />
@@ -90,18 +101,30 @@ function buildRoutes() {
         <Route path="research" component={Research} />
         <Route path="case/:nodeID">
           <IndexRoute component={Case} />
-          <Route path="edit" component={CaseEditorContainer} />
+          <Route
+            path="edit"
+            component={CaseEditorContainer}
+            onEnter={requireAuth}
+          />
         </Route>
         <Route path="method/:nodeID">
           <IndexRoute component={Method} />
-          <Route path="edit" component={MethodEditorContainer} />
+          <Route
+            path="edit"
+            component={MethodEditorContainer}
+            onEnter={requireAuth}
+          />
         </Route>
         <Route path="organization/:nodeID">
           <IndexRoute component={Organization} />
-          <Route path="edit" component={OrganizationEditorContainer} />
+          <Route
+            path="edit"
+            component={OrganizationEditorContainer}
+            onEnter={requireAuth}
+          />
         </Route>
         <Route path="add">
-          <IndexRoute component={Add} />
+          <IndexRoute component={Add} onEnter={requireAuth} />
         </Route>
       </Route>
     );
