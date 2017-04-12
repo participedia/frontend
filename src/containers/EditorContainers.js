@@ -7,6 +7,12 @@ import api from "../utils/api";
 // May make sense to revert back to redux for this work. this is duplicative.
 // Merge with EditCase, which is similar but not currently being used.
 
+function dict2list(obj) {
+  return Object.getOwnPropertyNames(obj).map(function(e) {
+    return { text: e, value: obj[e] };
+  });
+}
+
 class EditorContainer extends Component {
   getNouns() {
     let component = this;
@@ -73,15 +79,15 @@ class EditorContainer extends Component {
       this.state.methods &&
       this.state.organizations
     ) {
-      let casesArr = Object.keys(this.state.cases).map(k => k);
-      let methodsArr = Object.keys(this.state.methods).map(k => k);
-      let orgsArr = Object.keys(this.state.organizations).map(k => k);
+      let cases = dict2list(this.state.cases);
+      let methods = dict2list(this.state.methods);
+      let organizations = dict2list(this.state.organizations);
       if (this.props.type === "case") {
         return (
           <CaseEditor
-            cases={casesArr}
-            methods={methodsArr}
-            organizations={orgsArr}
+            cases={cases}
+            methods={methods}
+            organizations={organizations}
             thing={this.state.thing}
             onSubmit={this.onSubmit.bind(this)}
           />
@@ -89,9 +95,9 @@ class EditorContainer extends Component {
       } else if (this.props.type === "method") {
         return (
           <MethodEditor
-            cases={casesArr}
-            methods={methodsArr}
-            organizations={orgsArr}
+            cases={cases}
+            methods={methods}
+            organizations={organizations}
             thing={this.state.thing}
             onSubmit={this.onSubmit.bind(this)}
           />
@@ -99,9 +105,9 @@ class EditorContainer extends Component {
       } else if (this.props.type === "organization") {
         return (
           <OrganizationEditor
-            cases={casesArr}
-            methods={methodsArr}
-            organizations={orgsArr}
+            cases={cases}
+            methods={methods}
+            organizations={organizations}
             thing={this.state.thing}
             onSubmit={this.onSubmit.bind(this)}
           />
