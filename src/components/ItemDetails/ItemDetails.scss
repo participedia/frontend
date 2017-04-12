@@ -1,6 +1,12 @@
 @import "../../UniversalStyles";
 @import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 
+.single-image {
+  img {
+    max-width: 100%;
+  }
+}
+
 section.image-gallery {
   margin: 0 auto;
   .image-gallery-image {
@@ -23,6 +29,12 @@ section.image-gallery {
 .detailed-case-component {
   padding-bottom: 32px;
   padding-top: 32px;
+
+  .main-area {
+    .case-html {
+      word-wrap: break-word;
+    }
+  }
 
   .sidepanel {
     padding: 0 30px;
@@ -203,6 +215,7 @@ section.image-gallery {
         text-transform: uppercase;
         margin-bottom: 8px;
         font-size:20px;
+        text-transform: uppercase;
       }
 
       .case-title {

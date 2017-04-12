@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router";
 import "./SearchHit.css";
 import { injectIntl, intlShape } from "react-intl";
@@ -26,15 +27,13 @@ export class SearchHit extends React.Component {
     let link = `/${locale}/${type}/${id}`;
     let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
     let thumbnailClass = "thumbnail " + type;
-    if (!title) {
-      console.log("missing title: ", result);
-    }
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
     let dateString = moment(result.updated_date).fromNow();
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
+        <small className="label">{result.type}</small>
         {this.props.selectedViewType === "grid"
           ? <div className="grid-item">
               <Link to={link} className="result-title">

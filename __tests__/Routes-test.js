@@ -9,8 +9,6 @@ import App from "../src/App";
 
 let fetchMock = require("fetch-mock");
 import store from "../src/store";
-import injectTapEventPlugin from "react-tap-event-plugin";
-injectTapEventPlugin();
 
 fetchMock.get(
   process.env.REACT_APP_API_URL +

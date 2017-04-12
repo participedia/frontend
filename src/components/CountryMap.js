@@ -8,29 +8,33 @@ class CountryMap extends React.Component {
   componentWillMount() {
     let component = this;
     // TODO move to country-specific bucket or at least folder
-    fetch(process.env.REACT_APP_ASSETS_URL + this.props.countrycode + ".svg")
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(SVGtext) {
-        let svg = '<svg class="country-map" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><style type="text/css"><![CDATA[.country-map path {stroke: none;fill: #d8382c;}]]></style></defs>' +
-          SVGtext +
-          "</svg>";
-        component.setState({ SVG: svg });
-      });
+    if (this.props.countrycode && this.props.countrycode !== null) {
+      fetch(
+        process.env.REACT_APP_ASSETS_URL +
+          "countries/fullname/" +
+          this.props.countrycode +
+          ".svg"
+      )
+        .then(function(response) {
+          return response.text();
+        })
+        .then(function(SVGtext) {
+          component.setState({ SVG: SVGtext });
+        });
+    }
   }
 
   render() {
-    return (
-      <div>
-        <div dangerouslySetInnerHTML={{ __html: this.state.SVG }} />
-        {this.props.city
-          ? <p className="case-location">
-              {this.props.city}, {this.props.countrycode}
-            </p>
-          : <p className="case-location">{this.props.countrycode}</p>}
-      </div>
-    );
+    return this.props.countrycode
+      ? <div className="case-map">
+          <div dangerouslySetInnerHTML={{ __html: this.state.SVG }} />
+          {this.props.city
+            ? <p className="case-location">
+                {this.props.city}, {this.props.countrycode}
+              </p>
+            : <p className="case-location">{this.props.countrycode}</p>}
+        </div>
+      : <div />;
   }
 }
 

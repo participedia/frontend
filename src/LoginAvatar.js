@@ -1,4 +1,5 @@
-import React, { PropTypes as T } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
@@ -7,15 +8,15 @@ import IconButton from "material-ui/IconButton";
 import { Link } from "react-router";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
-import { login, logoutUser } from "./actions";
+import { loginRequest, logoutSuccess } from "./actions";
 import { connect } from "react-redux";
 
 export class LoginAvatar extends React.Component {
   static propTypes = {
-    dispatch: T.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    profile: T.object.isRequired,
-    isAuthenticated: T.bool.isRequired
+    profile: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
   };
 
   render() {
@@ -51,7 +52,7 @@ export class LoginAvatar extends React.Component {
             <MenuItem
               style={buttonStyle}
               primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={() => dispatch(logoutUser())}
+              onClick={() => dispatch(logoutSuccess())}
             />
           </IconMenu>
         </div>
@@ -60,7 +61,7 @@ export class LoginAvatar extends React.Component {
       return (
         <div className="loginButton">
           <FlatButton
-            onClick={() => dispatch(login())}
+            onClick={() => dispatch(loginRequest())}
             onTouchTap={this.signIn}
             label={this.props.intl.formatMessage({ id: "login" })}
           />

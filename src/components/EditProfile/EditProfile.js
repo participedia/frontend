@@ -1,4 +1,5 @@
-import React, { Component, PropTypes as T } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import { func, object, bool } from "prop-types";
 import Avatar from "material-ui/Avatar";
 import { connect } from "react-redux";
 import { Container, Col } from "reactstrap";
@@ -12,9 +13,9 @@ import { injectIntl } from "react-intl";
 
 class EditProfile extends Component {
   static propTypes = {
-    dispatch: T.func.isRequired,
-    profile: T.object.isRequired,
-    isAuthenticated: T.bool.isRequired
+    dispatch: func.isRequired,
+    profile: object.isRequired,
+    isAuthenticated: bool.isRequired
   };
 
   render() {

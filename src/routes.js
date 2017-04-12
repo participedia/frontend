@@ -11,11 +11,15 @@ import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
 import Upload from "./Upload";
-import Case from "./containers/Case/Case";
+import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
 import Add from "./components/Add/Add";
-import CaseEditorContainer from "./containers/CaseEditorContainer";
+import {
+  CaseEditorContainer,
+  MethodEditorContainer,
+  OrganizationEditorContainer
+} from "./containers/EditorContainers";
 import QuickSubmitPicker
   from "./components/QuickSubmitPicker/QuickSubmitPicker";
 import {
@@ -25,7 +29,6 @@ import {
   DatasetForm,
   SurveyForm
 } from "./components/QuickSubmit/QuickSubmit";
-import queryString from "query-string";
 
 let getFirstBrowserLanguage = function() {
   let nav = window.navigator;
@@ -59,12 +62,6 @@ let getFirstBrowserLanguage = function() {
   return null;
 };
 
-let onRedirect = function() {
-  let parsedParams = queryString.parse(window.location.hash);
-  let path = JSON.parse(parsedParams.state).pathname;
-  window.location.replace(path);
-};
-
 import localesJSON from "../public/locales.json";
 let locales = Object.keys(localesJSON);
 
@@ -73,12 +70,12 @@ function buildRoutes() {
   locales.forEach(function(locale) {
     routes.push(
       <Route key={locale} path={locale} component={Layout}>
+        <Route path="redirect" />
         <IndexRoute component={Home} />
         <Route path="profile/edit" component={ProfileEditor} />
         <Route path="profile" component={Profile} />
         <Route path="help/:id" component={HelpArticle} />
         <Route path="about" component={About} />
-        <Route path="redirect" onEnter={onRedirect} />
         <Route path="search" component={Home} />
         <Route path="_upload" component={Upload} />
         <Route path="teaching" component={Teaching} />
@@ -95,8 +92,14 @@ function buildRoutes() {
           <IndexRoute component={Case} />
           <Route path="edit" component={CaseEditorContainer} />
         </Route>
-        <Route path="method/:nodeID" component={Method} />
-        <Route path="organization/:nodeID" component={Organization} />
+        <Route path="method/:nodeID">
+          <IndexRoute component={Method} />
+          <Route path="edit" component={MethodEditorContainer} />
+        </Route>
+        <Route path="organization/:nodeID">
+          <IndexRoute component={Organization} />
+          <Route path="edit" component={OrganizationEditorContainer} />
+        </Route>
         <Route path="add">
           <IndexRoute component={Add} />
         </Route>
