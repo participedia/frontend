@@ -4,8 +4,8 @@ import { Link } from "react-router";
 import "./SearchHit.css";
 import { injectIntl, intlShape } from "react-intl";
 import { Row, Col } from "reactstrap";
-import moment from "moment";
 import backgroundImage from "../../img/pp-thumbnail-1.jpg";
+import TimeAgo from "react-timeago";
 
 export class SearchHit extends React.Component {
   getInnerHTML() {
@@ -25,12 +25,12 @@ export class SearchHit extends React.Component {
     let type = result.type;
     let title = result.title;
     let link = `/${locale}/${type}/${id}`;
-    let firstSubmit = moment(result.post_date).format("dddd, MMMM Do YYYY");
+    let firstSubmit = new Date(result.post_date).toLocaleString();
     let thumbnailClass = "thumbnail " + type;
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
-    let dateString = moment(result.updated_date).fromNow();
+    console.log(result.updated_date);
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
         <small className="label">{result.type}</small>
@@ -48,7 +48,7 @@ export class SearchHit extends React.Component {
                 {firstSubmit}
               </p>
               <p className="result-date">
-                {dateString}
+                <TimeAgo date={result.updated_date} />
               </p>
             </div>
           : <Row className="list-item">
@@ -71,7 +71,8 @@ export class SearchHit extends React.Component {
                   {firstSubmit}
                 </p>
                 <p className="result-date">
-                  {dateString}
+                  <TimeAgo date={result.updated_date} />
+
                 </p>
               </Col>
               <div className="separator" />
