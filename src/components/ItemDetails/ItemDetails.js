@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import { Link } from "react-router";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
@@ -14,6 +13,7 @@ import caseIconShare from "../../img/pp-case-icon-share.svg";
 import { ShareButtons } from 'react-share';
 import htmlToText from 'html-to-text';
 import "./ItemDetails.css";
+import TimeAgo from "react-timeago";
 
 export default class ItemDetails extends React.Component {
   componentWillMount() {
@@ -65,8 +65,6 @@ export default class ItemDetails extends React.Component {
          lead = awsUrl + encodeURIComponent(thing.lead_image.url);
       }
 
-      let post_date = moment(thing.post_date).format("LL");
-      let updated_date = moment(thing.updated_date).format("LL");
       let first_author = thing.authors[0];
       let first_author_url = "/" + locale + "/users/" + first_author.user_id;
       let first_author_name = first_author.name;
@@ -108,7 +106,7 @@ export default class ItemDetails extends React.Component {
                         </Link>
                       </p>
                       <p className="date-line">
-                        {post_date}
+                        <TimeAgo date={thing.post_date} />
                       </p>
                       <p className="author-line">
                         Most recent changes by&nbsp;
@@ -117,7 +115,7 @@ export default class ItemDetails extends React.Component {
                         </Link>
                       </p>
                       <p className="date-line">
-                        {updated_date}
+                        <TimeAgo date={thing.updated_date} />
                       </p>
                     </div>
                     <div
