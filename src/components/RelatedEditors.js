@@ -54,21 +54,8 @@ export function RelatedCases({ intl, cases }) {
   );
 }
 
-export function RelatedCasesRaw({ intl, cases, input }) {
-  delete input.thing;
-  return (
-    <ChipInput
-      {...input}
-      value={input.value || []}
-      fullWidth={true}
-      menuStyle={{ width: 400 }}
-      listStyle={{ width: 400 }}
-      onChange={v => input.onChange(v)}
-      dataSource={cases}
-      dataSourceConfig={{ text: "text", value: "value" }}
-    />
-  );
-}
+// This is a very similar class, but not in a redux context -- it expects to live in a simple-react-form Form
+// TBD: this all needs cleaning up, it feels baroque.
 
 export class Related extends React.Component {
   constructor(props) {
@@ -101,7 +88,18 @@ export class Related extends React.Component {
   }
 
   render() {
-    let rest = omit(this.props, ["intl", "thing", "property", "dataSource"]);
+    let rest = omit(this.props, [
+      "intl",
+      "thing",
+      "property",
+      "dataSource",
+      "useHint",
+      "errorMessage",
+      "fieldSchema",
+      "fieldName",
+      "schema",
+      "passProps"
+    ]);
     let handleRequestAdd = this.handleRequestAdd.bind(this);
     let handleRequestDelete = this.handleRequestDelete.bind(this);
     let handleChange = this.handleChange.bind(this);
@@ -120,6 +118,57 @@ export class Related extends React.Component {
           }
         }}
         fullWidth
+      />
+    );
+  }
+}
+
+export class SimpleRelatedCases extends React.Component {
+  render() {
+    return (
+      <Related
+        property="related_cases"
+        value={this.props.passProps.related_cases || []}
+        dataSource={this.props.passProps.dataSource}
+        intl={this.props.passProps.intl}
+        thing={this.props.passProps.thing}
+        onChange={v => {
+          this.props.onChange(event.target.value);
+        }}
+      />
+    );
+  }
+}
+
+export class SimpleRelatedMethods extends React.Component {
+  render() {
+    return (
+      <Related
+        property="related_methods"
+        value={this.props.passProps.related_methods || []}
+        dataSource={this.props.passProps.dataSource}
+        intl={this.props.passProps.intl}
+        thing={this.props.passProps.thing}
+        onChange={v => {
+          this.props.onChange(event.target.value);
+        }}
+      />
+    );
+  }
+}
+
+export class SimpleRelatedOrganizations extends React.Component {
+  render() {
+    return (
+      <Related
+        property="related_organizations"
+        value={this.props.passProps.related_organizations || []}
+        dataSource={this.props.passProps.dataSource}
+        intl={this.props.passProps.intl}
+        thing={this.props.passProps.thing}
+        onChange={v => {
+          this.props.onChange(event.target.value);
+        }}
       />
     );
   }

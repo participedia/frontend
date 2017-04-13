@@ -1,17 +1,12 @@
 import { browserHistory } from "react-router";
-import AuthService from "../utils/AuthService";
+import authService from "../utils/AuthService";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
-const authService = new AuthService(
-  process.env.REACT_APP_AUTH0_CLIENT_ID,
-  process.env.REACT_APP_AUTH0_DOMAIN
-);
-
-// Listen to authenticated event from AuthService and get the profile of the user
+// Listen to authenticated event from authService and get the profile of the user
 // Done on every page startup
 export function checkLogin() {
   return dispatch => {
@@ -20,8 +15,8 @@ export function checkLogin() {
         if (error) {
           return dispatch(loginError(error));
         }
-        AuthService.setToken(authResult.idToken);
-        AuthService.setProfile(profile);
+        authService.setToken(authResult.idToken);
+        authService.setProfile(profile);
         return dispatch(loginSuccess(profile, JSON.parse(authResult.state)));
       });
     });

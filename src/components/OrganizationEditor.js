@@ -1,9 +1,14 @@
 import React from "react";
 import { injectIntl, intlShape } from "react-intl";
+import { Field } from "simple-react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor/CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import { Related } from "./RelatedEditors";
+import {
+  SimpleRelatedCases,
+  SimpleRelatedMethods,
+  SimpleRelatedOrganizations
+} from "./RelatedEditors";
 import ItemEditor from "./ItemEditor";
 
 // import {
@@ -16,8 +21,11 @@ import ItemEditor from "./ItemEditor";
 
 function OrganizationSidebar({ thing, intl, cases, methods, organizations }) {
   let related_cases = (
-    <Related
+    <Field
+      fieldName="related_cases"
+      name="related_cases"
       thing={thing}
+      type={SimpleRelatedCases}
       property="related_cases"
       value={thing.related_cases || []}
       dataSource={cases}
@@ -25,8 +33,11 @@ function OrganizationSidebar({ thing, intl, cases, methods, organizations }) {
     />
   );
   let related_methods = (
-    <Related
+    <Field
+      fieldName="related_methods"
+      name="related_methods"
       thing={thing}
+      type={SimpleRelatedMethods}
       property="related_methods"
       value={thing.related_methods || []}
       dataSource={methods}
@@ -34,15 +45,17 @@ function OrganizationSidebar({ thing, intl, cases, methods, organizations }) {
     />
   );
   let related_organizations = (
-    <Related
+    <Field
+      fieldName="related_organizations"
+      name="related_organizations"
       thing={thing}
+      type={SimpleRelatedOrganizations}
       property="related_organizations"
       value={thing.related_organizations || []}
       dataSource={organizations}
       intl={intl}
     />
   );
-
   return (
     <div>
       <div className="case-location">
