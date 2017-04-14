@@ -1,6 +1,8 @@
 import React from "react";
+import { Route } from "react-router";
 import { bool, object, func } from "prop-types";
-import { Link, browserHistory } from "react-router";
+import { Link, browserHistory } from "react-router-dom";
+import Home from "./Home";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import SearchQuery from "./containers/SearchQuery";
@@ -8,6 +10,33 @@ import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
 import { checkLogin } from "./actions";
+
+import authService from "./utils/AuthService";
+import Profile from "./Profile";
+import ProfileEditor from "./containers/ProfileEditor";
+import HelpArticle from "./HelpArticle";
+import About from "./About";
+import Teaching from "./Teaching";
+import Research from "./Research";
+import Upload from "./Upload";
+import Case from "./containers/Case";
+import Organization from "./containers/Organization";
+import Method from "./containers/Method";
+import Add from "./components/Add/Add";
+import {
+  CaseEditorContainer,
+  MethodEditorContainer,
+  OrganizationEditorContainer
+} from "./containers/EditorContainers";
+import QuickSubmitPicker
+  from "./components/QuickSubmitPicker/QuickSubmitPicker";
+import {
+  CaseForm,
+  MethodForm,
+  OrganizationForm,
+  DatasetForm,
+  SurveyForm
+} from "./components/QuickSubmit/QuickSubmit";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -17,7 +46,25 @@ import { injectIntl, intlShape } from "react-intl";
 import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
 
-import HelpBar from "./components/HelpBar/HelpBar";
+import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
+
+function requireAuth(nextState, replace) {
+  if (!authService.loggedIn()) {
+    authService.login(nextState.location.pathname);
+  }
+}
+
+// This is a bit hacky (calling login() in a render()), but seems
+// needed given how react-router-v4 works.
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      authService.isAuthenticated
+        ? <Component {...props} />
+        : authService.login(props.location.state) ? <div /> : <div />}
+  />
+);
 
 export class Layout extends React.Component {
   static propTypes = {
@@ -49,16 +96,6 @@ export class Layout extends React.Component {
 
   render() {
     const { auth, profile, isAuthenticated } = this.props;
-
-    let children = null;
-    children = React.Children.map(this.props.children, function(child) {
-      return React.cloneElement(child, {
-        auth: auth
-      });
-    });
-    let home = "/";
-    let addLink = "/quick-submit";
-
     return (
       <div>
         <div className="nav-bar-component">
@@ -67,14 +104,14 @@ export class Layout extends React.Component {
               <a href="#" onClick={this.handleToggle} className="menu-icon">
                 <img src={menuIcon} alt="" />
               </a>
-              <Link to={home} className="logo">
+              <Link to="/" className="logo">
                 <img src={ppLogo} alt="Go Home" />
               </Link>
             </div>
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link to={addLink}>
+            <Link to="/quick-submit">
               <div className="createButton" />
             </Link>
             <LoginAvatar
@@ -138,12 +175,60 @@ export class Layout extends React.Component {
           </MenuItem>
         </Drawer>
         <div className="contentArea">
-          {children}
+          <Route exact path="/" component={Home} />
+          <Route path="/redirect" />
+          <Route path="/profile" component={Profile} />
+          <PrivateRoute
+            path="/profile/edit"
+            component={ProfileEditor}
+            onEnter={requireAuth}
+          />
+          <Route path="/help/:id" component={HelpArticle} />
+          <Route path="/about" component={About} />
+          <Route path="/search" component={Home} />
+          <Route path="/_upload" component={Upload} />
+          <Route path="/teaching" component={Teaching} />
+          <PrivateRoute
+            exact
+            path="/quick-submit"
+            component={QuickSubmitPicker}
+          />
+          <PrivateRoute path="/quick-submit/case" component={CaseForm} />
+          <PrivateRoute path="/quick-submit/method" component={MethodForm} />
+          <PrivateRoute
+            path="/quick-submit/organization"
+            component={OrganizationForm}
+          />
+          <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
+          <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
+          <Route path="/research" component={Research} />
+          <Route exact path="/case/:nodeID" component={Case} />
+          <PrivateRoute
+            path="/case/:nodeID/edit"
+            component={CaseEditorContainer}
+            onEnter={requireAuth}
+          />
+          <Route exact path="/method/:nodeID" component={Method} />
+          <PrivateRoute
+            path="/method/:nodeID/edit"
+            component={MethodEditorContainer}
+            onEnter={requireAuth}
+          />
+          <Route exact path="/organization/:nodeID" component={Organization} />
+          <PrivateRoute
+            path="/organization/:nodeID/edit"
+            component={OrganizationEditorContainer}
+            onEnter={requireAuth}
+          />
+          <PrivateRoute
+            exact
+            path="/add"
+            component={Add}
+            onEnter={requireAuth}
+          />
+
         </div>
         <Footer />
-        {"help" in this.props.location.query
-          ? <HelpBar currentPath={this.props.location.pathname} />
-          : null}
       </div>
     );
   }

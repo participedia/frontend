@@ -189,7 +189,7 @@ class CaseDetails extends React.Component {
 
 export class Case extends React.Component {
   render() {
-    let id = this.props.params.nodeID;
+    let id = this.props.match.params.nodeID;
     let intl = this.props.intl;
     let location = this.props.location;
     let isAuthenticated = this.props.isAuthenticated;

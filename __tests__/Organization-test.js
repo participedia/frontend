@@ -1,4 +1,5 @@
 import React from "react";
+import { MemoryRouter } from "react-router";
 import { Organization } from "../src/containers/Organization";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -24,14 +25,16 @@ fetchMock.get(
 function setup() {
   const props = {
     intl: intlProps,
-    location: {pathname: "/en-US/organization/4219"},
-    params: { nodeID: 4219 }
+    location: { pathname: "/organization/4219" },
+    match: { params: { nodeID: 4219 } }
   };
 
   const enzymeWrapper = mountWithIntl(
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Organization {...props} />
-    </MuiThemeProvider>
+    <MemoryRouter>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Organization {...props} />
+      </MuiThemeProvider>
+    </MemoryRouter>
   );
   return {
     props,

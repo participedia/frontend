@@ -4,7 +4,10 @@ import { Provider } from "react-redux";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import injectTapEventPlugin from "react-tap-event-plugin";
-import { App, store } from "./App";
+import { ConnectedRouter } from "react-router-redux";
+
+import App from "./App";
+import store from "./store";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -15,10 +18,14 @@ const muiTheme = getMuiTheme({
 
 injectTapEventPlugin();
 
+import myhistory from "./utils/history";
+
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
-      <App />
+      <ConnectedRouter history={myhistory}>
+        <App />
+      </ConnectedRouter>
     </MuiThemeProvider>
   </Provider>,
   document.getElementById("root")

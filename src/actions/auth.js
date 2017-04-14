@@ -1,5 +1,5 @@
-import { browserHistory } from "react-router";
 import authService from "../utils/AuthService";
+import myhistory from "../utils/history";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -33,7 +33,7 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile, state) {
-  browserHistory.push(state.pathname);
+  myhistory.push(state.pathname);
   return {
     type: LOGIN_SUCCESS,
     profile

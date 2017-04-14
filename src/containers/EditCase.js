@@ -16,12 +16,12 @@ const mapStateToProps = (state, ownProps) => {
   if (state.objects.currentObject) {
     return { thing: state.objects.currentObject };
   } else {
-    return { caseID: ownProps.params.nodeID, thing: null, loading: true };
+    return { caseID: ownProps.match.params.nodeID, thing: null, loading: true };
   }
 };
 
 function loadData(props) {
-  props.dispatch(props.loadObject(CASE_TYPE, props.params.nodeID));
+  props.dispatch(props.loadObject(CASE_TYPE, props.match.params.nodeID));
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

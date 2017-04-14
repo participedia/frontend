@@ -30,7 +30,7 @@ class EditorContainer extends Component {
   componentWillMount() {
     let component = this;
     if (this.props.type === "case") {
-      api.fetchCaseById(this.props.params.nodeID).then(function(thing) {
+      api.fetchCaseById(this.props.match.params.nodeID).then(function(thing) {
         if (thing) {
           thing.start_date = new Date(thing.start_date);
           thing.end_date = new Date(thing.end_date);
@@ -39,11 +39,11 @@ class EditorContainer extends Component {
         component.setState({ thing });
       });
     } else if (this.props.type === "method") {
-      api.fetchMethodById(this.props.params.nodeID).then(function(thing) {
+      api.fetchMethodById(this.props.match.params.nodeID).then(function(thing) {
         component.setState({ thing });
       });
     } else if (this.props.type === "organization") {
-      api.fetchOrgById(this.props.params.nodeID).then(function(thing) {
+      api.fetchOrgById(this.props.match.params.nodeID).then(function(thing) {
         component.setState({ thing });
       });
     }

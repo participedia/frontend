@@ -6,7 +6,7 @@ import fbIcon from "../../img/pp-social-fb.png";
 import rssIcon from "../../img/pp-social-rss.png";
 import twitterIcon from "../../img/pp-social-tw.png";
 import { injectIntl } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 export class Footer extends React.Component {
   render() {

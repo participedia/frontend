@@ -4,7 +4,7 @@ import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
 
 const mapStateToProps = (state, { location }) => {
   let query = "";
-  if (location) {
+  if (location && location.queryObj) {
     let queryObj = location.query;
     query = Object.keys(queryObj)
       .map(function(a) {

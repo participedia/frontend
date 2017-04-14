@@ -3,7 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import { injectIntl, FormattedMessage } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 class Research extends React.Component {
   render() {

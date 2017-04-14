@@ -192,7 +192,7 @@ class MethodDetails extends React.Component {
 
 export class Method extends React.Component {
   render() {
-    let id = this.props.params.nodeID;
+    let id = this.props.match.params.nodeID;
     let intl = this.props.intl;
     let isAuthenticated = this.props.isAuthenticated;
     return (
