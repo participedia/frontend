@@ -1,6 +1,5 @@
 import React from "react"; // eslint-disable-line
 import { Route, IndexRoute } from "react-router";
-// import routeConfig from "./routes";
 import { Router, browserHistory } from "react-router";
 import { IntlProvider, addLocaleData } from "react-intl";
 import en from "react-intl/locale-data/en";
