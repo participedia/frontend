@@ -79,12 +79,23 @@ let getFirstBrowserLanguage = function() {
   return null;
 };
 
+function getBestMatchingMessages(locale) {
+  if (locale in locales) {
+    return locales[locale];
+  }
+  let [language] = locale.split("-");
+  if (language in locales) {
+    return locales[language];
+  }
+  return locales["en"];
+}
+
 const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends React.Component {
   render() {
     let locale = getFirstBrowserLanguage();
-    let messages = locales[locale];
+    let messages = getBestMatchingMessages(locale);
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Router history={history}>

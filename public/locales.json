@@ -1,5 +1,5 @@
 {
-  "en-US": {
+  "en": {
     "featured": "Featured",
     "chronological": "Most Recent",
     "alphabetical": "Alphabetical",
@@ -656,7 +656,7 @@
     "nongovernmental_organization_nonprofit": "Non-Governmental Organization (Non-profit)",
     "faithbased_organization": "Faith-Based Organization"
   },
-  "fr-FR": {
+  "fr": {
     "chronological": "Plus Récentes"
   }
 }
