@@ -200,6 +200,7 @@ export class Method extends React.Component {
         api={api.fetchMethodById}
         isAuthenticated={isAuthenticated}
         id={id}
+        location={location}
         intl={intl}
         details={MethodDetails}
       />

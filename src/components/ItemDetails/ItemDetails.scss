@@ -2,8 +2,10 @@
 @import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 
 .single-image {
+  text-align: center;
   img {
     max-width: 100%;
+    max-height: 500px;
   }
 }
 
@@ -148,6 +150,14 @@ section.image-gallery {
 
     .top-icons {
       margin-top: 40px;
+
+      .SocialMediaShareButton {
+        img {
+          width: 40px;
+          margin-bottom: 16px;
+          cursor: pointer;
+        }
+      }
 
       a {
         display: block;

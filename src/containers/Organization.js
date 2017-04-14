@@ -78,6 +78,7 @@ export class Organization extends React.Component {
         isAuthenticated={isAuthenticated}
         id={id}
         intl={intl}
+        location={location}
         details={OrganizationDetails}
       />
     );
