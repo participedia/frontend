@@ -83,7 +83,7 @@ DateProp.propTypes = {
 function ItemProp({ label, property, thing, intl, thingType }) {
   if (!(property in thing)) return <div />;
 
-  let url = `/${intl.locale}/${thingType}/${thing[property]}`;
+  let url = `/${thingType}/${thing[property]}`;
   return thing[property]
     ? <div>
         <p className="sub-sub-heading">

@@ -10,19 +10,17 @@ import { Link } from "react-router";
 
 export class Footer extends React.Component {
   render() {
-    let locale = this.props.intl.locale;
-
     return (
       <div className="footer-component">
         <div className="expanded-footer">
           <div className="column">
-            <Link to={"/" + locale + "/about"}>
+            <Link to="/about">
               {this.props.intl.formatMessage({ id: "about" })}
             </Link>
-            <Link to={"/" + locale + "/research"}>
+            <Link to="/research">
               {this.props.intl.formatMessage({ id: "research" })}
             </Link>
-            <Link to={"/" + locale + "/teaching"}>
+            <Link to="/teaching">
               {this.props.intl.formatMessage({ id: "teaching" })}
             </Link>
           </div>

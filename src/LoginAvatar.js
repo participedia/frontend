@@ -22,7 +22,6 @@ export class LoginAvatar extends React.Component {
   render() {
     const { dispatch, profile, isAuthenticated } = this.props;
     let buttonStyle = { color: "black" };
-    let locale = this.props.intl.locale;
     if (isAuthenticated) {
       return (
         <div className="avatar">
@@ -44,7 +43,7 @@ export class LoginAvatar extends React.Component {
           >
             <MenuItem
               style={buttonStyle}
-              containerElement={<Link to={"/" + locale + "/profile"} />}
+              containerElement={<Link to={"/profile"} />}
               onClick={this.handleClose}
             >
               Profile

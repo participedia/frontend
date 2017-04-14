@@ -20,17 +20,15 @@ export class SearchHit extends React.Component {
     } else if (result.other_images && result.other_images.length > 0) {
       pic = awsUrl + encodeURIComponent(result.other_images[0].url);
     }
-    let locale = this.props.intl.locale;
     let id = result.id;
     let type = result.type;
     let title = result.title;
-    let link = `/${locale}/${type}/${id}`;
+    let link = `/${type}/${id}`;
     let firstSubmit = new Date(result.post_date).toLocaleString();
     let thumbnailClass = "thumbnail " + type;
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
-    console.log(result.updated_date);
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
         <small className="label">{result.type}</small>

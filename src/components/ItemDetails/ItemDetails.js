@@ -10,8 +10,8 @@ import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
 import caseIconShare from "../../img/pp-case-icon-share.svg";
-import { ShareButtons } from 'react-share';
-import htmlToText from 'html-to-text';
+import { ShareButtons } from "react-share";
+import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import TimeAgo from "react-timeago";
 
@@ -34,14 +34,9 @@ export default class ItemDetails extends React.Component {
   }
 
   render() {
-
-    const {
-      FacebookShareButton, TwitterShareButton
-    } = ShareButtons;
-
+    const { FacebookShareButton, TwitterShareButton } = ShareButtons;
 
     if (this.state && this.state.data) {
-      const locale = this.props.intl.locale;
       const isAuthenticated = this.props.isAuthenticated;
       let intl = this.props.intl;
       let thing = this.state.data;
@@ -56,24 +51,24 @@ export default class ItemDetails extends React.Component {
           />
         );
       }
-      var bodyText = htmlToText.fromString(thing.body);
+      let bodyText = htmlToText.fromString(thing.body);
       let textFacebook = bodyText.substring(0, 240) + "...";
 
       let lead;
       let awsUrl = process.env.REACT_APP_ASSETS_URL;
       if (thing && thing.lead_image) {
-         lead = awsUrl + encodeURIComponent(thing.lead_image.url);
+        lead = awsUrl + encodeURIComponent(thing.lead_image.url);
       }
 
       let first_author = thing.authors[0];
-      let first_author_url = "/" + locale + "/users/" + first_author.user_id;
+      let first_author_url = "/users/" + first_author.user_id;
       let first_author_name = first_author.name;
       let last_author = thing.authors.slice(-1)[0];
       let last_author_name = last_author.name;
-      let last_author_url = "/" + locale + "/users/" + last_author.user_id;
+      let last_author_url = "/users/" + last_author.user_id;
       let id = this.props.id;
       let type = thing.type;
-      let editLinkUrl = `/${locale}/${type}/${id}/edit`;
+      let editLinkUrl = `/${type}/${id}/edit`;
       let detailedBits = React.createElement(this.props.details, {
         case: thing,
         intl
@@ -131,12 +126,15 @@ export default class ItemDetails extends React.Component {
                     <FacebookShareButton
                       url={this.props.location.pathname}
                       title={thing.title}
-                      description={textFacebook} picture={lead} >
+                      description={textFacebook}
+                      picture={lead}
+                    >
                       <img src={caseIconFB} alt="" />
                     </FacebookShareButton>
                     <TwitterShareButton
                       url={this.props.location.pathname}
-                      title={thing.title} >
+                      title={thing.title}
+                    >
                       <img src={caseIconTW} alt="" />
                     </TwitterShareButton>
                     <a href="#"><img src={caseIconShare} alt="" /></a>
