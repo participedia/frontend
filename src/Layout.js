@@ -56,9 +56,8 @@ export class Layout extends React.Component {
         auth: auth
       });
     });
-    let locale = this.props.intl.locale;
-    let home = `/${locale}/`;
-    let addLink = `/${locale}/quick-submit`;
+    let home = "/";
+    let addLink = "/quick-submit";
 
     return (
       <div>
@@ -94,37 +93,37 @@ export class Layout extends React.Component {
           onRequestChange={open => this.setState({ open })}
         >
           <MenuItem
-            containerElement={<Link to={"/" + locale} />}
+            containerElement={<Link to={"/"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "home" })}
           </MenuItem>
           <MenuItem
-            containerElement={<Link to={"/" + locale + "/about"} />}
+            containerElement={<Link to={"/about"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "about" })}
           </MenuItem>
           <MenuItem
-            containerElement={<Link to={"/" + locale + "/teaching"} />}
+            containerElement={<Link to={"/teaching"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "teaching" })}
           </MenuItem>
           <MenuItem
-            containerElement={<Link to={"/" + locale + "/research"} />}
+            containerElement={<Link to={"/research"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
           <MenuItem
-            containerElement={<Link to={"/" + locale + "/profile"} />}
+            containerElement={<Link to={"/profile"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "profile" })}
           </MenuItem>
           <MenuItem
-            containerElement={<Link to={"/" + locale + "/quick-submit"} />}
+            containerElement={<Link to={"/quick-submit"} />}
             onTouchTap={this.handleClose}
           >
             {this.props.intl.formatMessage({ id: "add_new" })}
@@ -143,10 +142,7 @@ export class Layout extends React.Component {
         </div>
         <Footer />
         {"help" in this.props.location.query
-          ? <HelpBar
-              currentPath={this.props.location.pathname}
-              locale={this.props.intl.locale}
-            />
+          ? <HelpBar currentPath={this.props.location.pathname} />
           : null}
       </div>
     );

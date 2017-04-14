@@ -10,7 +10,6 @@ import DismissButton from "material-ui/svg-icons/navigation/close";
 import "./Home.css";
 
 class Home extends React.Component {
-
   constructor() {
     super();
     this.state = { showWelcome: true };
@@ -21,40 +20,43 @@ class Home extends React.Component {
     const skipWelcome = localStorage.getItem("skipWelcome");
 
     if (skipWelcome) {
-      this.setState({showWelcome: false});
+      this.setState({ showWelcome: false });
     }
   }
 
-  handleDismiss(){
-    this.setState({showWelcome: false});
+  handleDismiss() {
+    this.setState({ showWelcome: false });
     localStorage.setItem("skipWelcome", "true");
   }
 
   render() {
-    let locale = this.props.intl.locale;
-
     return (
       <div className="home">
-        { ( this.state.showWelcome ?
-          <Container>
-            <Row className="description">
-              <Col sm={{size: 8, offset: 2 }}>
-                <img src={iconInfo} alt="" />
-                <h5>{this.props.intl.formatMessage({ id: "welcome_message" })}
-                </h5>
-                <Link className="learn" to={"/" + locale + "/about"}>
-                  {this.props.intl.formatMessage({ id: "learn_more" })}>
-                </Link>
-              </Col>
-              <Col sm={{size: 2}}>
-                <span className="dismiss" onClick={this.handleDismiss.bind(this)} >{this.props.intl.formatMessage({ id: "got_it" })} <DismissButton/></span>
-              </Col>
-            </Row>
-          </Container>
-          :
-            undefined
-          )
-        }
+        {this.state.showWelcome
+          ? <Container>
+              <Row className="description">
+                <Col sm={{ size: 8, offset: 2 }}>
+                  <img src={iconInfo} alt="" />
+                  <h5>
+                    {this.props.intl.formatMessage({ id: "welcome_message" })}
+                  </h5>
+                  <Link className="learn" to={"/about"}>
+                    {this.props.intl.formatMessage({ id: "learn_more" })}&gt;
+                  </Link>
+                </Col>
+                <Col sm={{ size: 2 }}>
+                  <span
+                    className="dismiss"
+                    onClick={this.handleDismiss.bind(this)}
+                  >
+                    {this.props.intl.formatMessage({ id: "got_it" })}
+                    {" "}
+                    <DismissButton />
+                  </span>
+                </Col>
+              </Row>
+            </Container>
+          : undefined}
         <Map />
         <SearchResults {...this.props} />
       </div>

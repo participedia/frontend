@@ -7,7 +7,7 @@ class AuthService {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: window.location.origin + "/en-US/redirect", // XXX fix locale hardcoding
+        redirectUrl: window.location.origin + "/redirect",
         responseType: "token",
         params: {
           scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",

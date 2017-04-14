@@ -2,25 +2,25 @@ import React from "react";
 import { Link } from "react-router";
 
 const LinkToThing = ({ thing, intl }) =>
-  thing && intl
+  (thing && intl
     ? <Link
         to={{
-          pathname: `/${intl.locale}/${thing.type}/${thing.id}`
+          pathname: `/${thing.type}/${thing.id}`
         }}
       >
         {thing.title}
       </Link>
-    : <div>{intl.formatMessage({ id: "not_specified" })}</div>;
+    : <div>{intl.formatMessage({ id: "not_specified" })}</div>);
 
 const RelatedThings = ({ title, relateds, intl }) =>
-  relateds
+  (relateds
     ? <div>
         <div className="sub-sub-heading">
           {intl.formatMessage({ id: title })} :{" "}
         </div>
         {relateds.map(related => <LinkToThing thing={related} intl={intl} />)}
       </div>
-    : <div />;
+    : <div />);
 
 const RelatedCases = ({ thing, intl }) => (
   <RelatedThings
@@ -47,7 +47,7 @@ const RelatedOrganizations = ({ thing, intl }) => (
 );
 
 const RelatedContent = props =>
-  props.thing.related_cases ||
+  (props.thing.related_cases ||
     props.thing.related_methods ||
     props.thing.related_organizations
     ? <div className="related-content">
@@ -58,6 +58,6 @@ const RelatedContent = props =>
         <RelatedMethods {...props} />
         <RelatedOrganizations {...props} />
       </div>
-    : <div />;
+    : <div />);
 
 export default RelatedContent;
