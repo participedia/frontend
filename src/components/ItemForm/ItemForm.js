@@ -91,7 +91,7 @@ class ItemForm extends Component {
           <FormGroup>
             <Label>{this.props.intl.formatMessage({ id: "summary" })}</Label>
             <Field
-              name="summary"
+              name="body"
               className="title"
               placeholder="Placeholder for summary"
               component={renderTextField}
