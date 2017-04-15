@@ -59,10 +59,15 @@ function requireAuth(nextState, replace) {
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      authService.isAuthenticated
-        ? <Component {...props} />
-        : authService.login(props.location.state) ? <div /> : <div />}
+    render={function(props) {
+      let isAuth = authService.loggedIn();
+      if (isAuth) {
+        return <Component {...props} />;
+      } else {
+        authService.login(props.location.state);
+        return <div>Must be logged in</div>;
+      }
+    }}
   />
 );
 

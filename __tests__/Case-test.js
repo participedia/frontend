@@ -1,5 +1,9 @@
 import React from "react";
+import renderer from "react-test-renderer";
+
 import { Case } from "../src/containers/Case";
+import CaseDetails from "../src/components/CaseDetails";
+import ItemDetails from "../src/components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../src/utils/l10n";
 
@@ -32,7 +36,8 @@ function setup() {
   const props = {
     intl: intlProps,
     location: { pathname: "/method/123" },
-    match: { params: { nodeID: 123 } }
+    match: { params: { nodeID: 123 } },
+    data: caseData
   };
 
   const enzymeWrapper = mountWithIntl(
@@ -60,20 +65,16 @@ describe("containers", () => {
   });
 });
 
-document.body.innerHTML = "<div>" +
-  '  <span id="username" />' +
-  '  <button id="button" />' +
-  "</div>";
-
-import renderer from "react-test-renderer";
 let props = setup().props;
-test("Case renders correctly", () => {
-  let locale = "en-US";
-  let messages = getBestMatchingMessages(locale);
+let locale = "en-US";
+props["details"] = CaseDetails;
+let messages = getBestMatchingMessages(locale);
+
+test("ItemDetails for Case renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>
-        <MemoryRouter><Case {...props} /></MemoryRouter>
+        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
       </IntlProvider>
     )
     .toJSON();
