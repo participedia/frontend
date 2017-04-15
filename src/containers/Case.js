@@ -1,4 +1,5 @@
 import React from "react";
+import { number, bool, object } from "prop-types";
 import { connect } from "react-redux";
 import { injectIntl, intlShape } from "react-intl";
 import api from "../utils/api";
@@ -206,7 +207,10 @@ export class Case extends React.Component {
   }
 }
 Case.propTypes = {
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
+  id: number,
+  isAuthenticated: bool,
+  location: object
 };
 
 export default connect(mapStateToProps)(injectIntl(Case));

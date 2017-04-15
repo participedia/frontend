@@ -1,0 +1,5 @@
+exports[`test Case renders correctly 1`] = `
+<div>
+  empty case because there\'s no data
+</div>
+`;

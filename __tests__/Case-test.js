@@ -1,5 +1,8 @@
 import React from "react";
 import { Case } from "../src/containers/Case";
+import { IntlProvider } from "react-intl";
+import { getBestMatchingMessages } from "../src/utils/l10n";
+
 import { MemoryRouter } from "react-router";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -21,6 +24,9 @@ fetchMock.get(
   process.env.REACT_APP_ASSETS_URL + "countries/fullname/Italy.svg",
   JSON.stringify({ data: caseData })
 );
+
+jest.mock("../src/components/Gallery");
+jest.mock("material-ui/FloatingActionButton");
 
 function setup() {
   const props = {
@@ -53,6 +59,23 @@ describe("containers", () => {
     });
   });
 });
-// expect(enzymeWrapper.find("h2.case-title").text()).toBe(
-//   "Agenda 21 Locale (Province of Forli-Cesena, Italy)"
-// );
+
+document.body.innerHTML = "<div>" +
+  '  <span id="username" />' +
+  '  <button id="button" />' +
+  "</div>";
+
+import renderer from "react-test-renderer";
+let props = setup().props;
+test("Case renders correctly", () => {
+  let locale = "en-US";
+  let messages = getBestMatchingMessages(locale);
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter><Case {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

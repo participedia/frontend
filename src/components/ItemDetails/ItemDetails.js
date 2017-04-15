@@ -151,7 +151,7 @@ export default class ItemDetails extends React.Component {
         </div>
       );
     } else {
-      return <div />;
+      return <div>empty case because there's no data</div>;
     }
   }
 }

@@ -6,10 +6,9 @@ import en from "react-intl/locale-data/en";
 import fr from "react-intl/locale-data/fr";
 import es from "react-intl/locale-data/es";
 import Layout from "./Layout";
+import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
 
 addLocaleData([...en, ...fr, ...es]);
-
-import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
 
 export default class App extends React.Component {
   render() {
