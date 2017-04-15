@@ -4,7 +4,7 @@ import { Container, Col, Row } from "reactstrap";
 import Map from "./containers/Map";
 import SearchResults from "./containers/SearchResults";
 import { injectIntl } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import iconInfo from "./img/icon-info.svg";
 import DismissButton from "material-ui/svg-icons/navigation/close";
 import "./Home.css";

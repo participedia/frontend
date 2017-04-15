@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
 import { injectIntl, intlShape } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SearchResults from "./containers/SearchResults";
 

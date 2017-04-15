@@ -5,7 +5,7 @@ import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
 import { loginRequest, logoutSuccess } from "./actions";

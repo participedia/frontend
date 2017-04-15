@@ -1,10 +1,18 @@
 import React from "react";
+import renderer from "react-test-renderer";
+
+import MethodDetails from "../src/components/MethodDetails";
+import ItemDetails from "../src/components/ItemDetails/ItemDetails";
+import { IntlProvider } from "react-intl";
+import { getBestMatchingMessages } from "../src/utils/l10n";
+
+import { MemoryRouter } from "react-router";
 import { Method } from "../src/containers/Method";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
 import { mountWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
-import methodData from "./method_data.json";
+import data from "./method_data.json";
 import intlProps from "../src/helpers/intl-props-test-helper.js";
 import afterPromises from "../src/helpers/afterPromises";
 import injectTapEventPlugin from "react-tap-event-plugin";
@@ -14,20 +22,25 @@ let fetchMock = require("fetch-mock");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/method/145",
-  JSON.stringify({ data: methodData })
+  JSON.stringify({ data: data })
 );
+
+jest.mock("material-ui/FloatingActionButton");
 
 function setup() {
   const props = {
     intl: intlProps,
-    location: {pathname: "/en-US/method/145"},
-    params: { nodeID: 145 }
+    location: { pathname: "/method/145" },
+    match: { params: { nodeID: 145 } },
+    data: data
   };
 
   const enzymeWrapper = mountWithIntl(
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Method {...props} />
-    </MuiThemeProvider>
+    <MemoryRouter>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Method {...props} />
+      </MuiThemeProvider>
+    </MemoryRouter>
   );
   return {
     props,
@@ -45,4 +58,20 @@ describe("containers", () => {
       });
     });
   });
+});
+
+let props = setup().props;
+let locale = "en-US";
+props["details"] = MethodDetails;
+let messages = getBestMatchingMessages(locale);
+
+test("ItemDetails for Method renders correctly", () => {
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

@@ -1,50 +1,43 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import {SearchHit} from '../src/components/SearchHit/SearchHit';
-import { mountWithIntl, shallowWithIntl } from '../src/helpers/intl-enzyme-test-helper.js';
-import resultData from './result_data.json';
-import intlProps from '../src/helpers/intl-props-test-helper.js';
+import React from "react";
+import { MemoryRouter } from "react-router";
+import { SearchHit } from "../src/components/SearchHit/SearchHit";
+import { shallowWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
+import resultData from "./result_data.json";
+import intlProps from "../src/helpers/intl-props-test-helper.js";
 
 function setup() {
   const props = {
     intl: intlProps,
-    selectedViewType: 'grid',
+    selectedViewType: "grid",
     record: resultData
-  }
+  };
 
-  const enzymeWrapper = shallowWithIntl(<SearchHit {...props} />)
+  const enzymeWrapper = shallowWithIntl(<SearchHit {...props} />);
   return {
     props,
     enzymeWrapper
-  }
+  };
 }
 
-describe('components', () => {
-  describe('SearchHit', () => {
-    it('should show grid when selectedViewType is grid', () => {
+describe("components", () => {
+  describe("SearchHit", () => {
+    it("should show grid when selectedViewType is grid", () => {
+      const { enzymeWrapper } = setup();
+      expect(enzymeWrapper.find(".grid-item").length).toBe(1);
+    });
 
-      const { enzymeWrapper } = setup()
-      expect(enzymeWrapper.find('.grid-item').length).toBe(1);
+    it("should show list when selectedViewType is list", () => {
+      const { enzymeWrapper } = setup();
+      enzymeWrapper.setProps({ selectedViewType: "list" });
+      expect(enzymeWrapper.find(".list-item").length).toBe(1);
+    });
 
-    })
-
-    it('should show list when selectedViewType is list', () => {
-
-      const { enzymeWrapper } = setup()
-      enzymeWrapper.setProps({ selectedViewType: 'list' });
-      expect(enzymeWrapper.find('.list-item').length).toBe(1);
-
-    })
-
-    it('should show grid when changing back to grid mode', () => {
-
-      const { enzymeWrapper } = setup()
-      enzymeWrapper.setProps({ selectedViewType: 'list' });
-      enzymeWrapper.setProps({ selectedViewType: 'grid' });
-      expect(enzymeWrapper.find('.grid-item').length).toBe(1);
-      expect(enzymeWrapper.find('.list-item').length).toBe(0);
-
-    })
-
-  })
-})
+    it("should show grid when changing back to grid mode", () => {
+      const { enzymeWrapper } = setup();
+      enzymeWrapper.setProps({ selectedViewType: "list" });
+      enzymeWrapper.setProps({ selectedViewType: "grid" });
+      expect(enzymeWrapper.find(".grid-item").length).toBe(1);
+      expect(enzymeWrapper.find(".list-item").length).toBe(0);
+    });
+  });
+});
