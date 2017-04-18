@@ -33,6 +33,7 @@ export default class ItemDetails extends React.Component {
       );
     }
     let bodyText = htmlToText.fromString(thing.body);
+    let currentUrl = "https://participedia.xyz" +  this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
@@ -105,7 +106,7 @@ export default class ItemDetails extends React.Component {
                   {bookmarkIcon}
                   <a href="#"><img src={caseIconSettings} alt="" /></a>
                   <FacebookShareButton
-                    url={this.props.location.pathname}
+                    url={currentUrl}
                     title={thing.title}
                     description={textFacebook}
                     picture={lead}
@@ -113,7 +114,7 @@ export default class ItemDetails extends React.Component {
                     <img src={caseIconFB} alt="" />
                   </FacebookShareButton>
                   <TwitterShareButton
-                    url={this.props.location.pathname}
+                    url={currentUrl}
                     title={thing.title}
                   >
                     <img src={caseIconTW} alt="" />
