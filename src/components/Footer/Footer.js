@@ -23,6 +23,9 @@ export class Footer extends React.Component {
             <Link to="/teaching">
               {this.props.intl.formatMessage({ id: "teaching" })}
             </Link>
+            <Link to="/experiments">
+              {this.props.intl.formatMessage({ id: "experiments" })}
+            </Link>
           </div>
           <div className="column">
             <a href="#">{this.props.intl.formatMessage({ id: "cases" })}</a>
