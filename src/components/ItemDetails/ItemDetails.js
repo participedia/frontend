@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
 import Gallery from "../Gallery";
+import ReactPlayer from 'react-player'
 import BookmarkToggle from "../BookmarkToggle";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
@@ -73,7 +74,14 @@ export default class ItemDetails extends React.Component {
                   <h2 className="case-title">
                     {thing.title}
                   </h2>
+                  { thing.vidURL ?
+                  <Row>
+                    <Col className="vid-container" md="6"><ReactPlayer width="100%"  controls={true} url={thing.vidURL} /></Col>
+                    <Col md="6"><Gallery thing={thing} /></Col>
+                  </Row>
+                  :
                   <Gallery thing={thing} />
+                  }
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
