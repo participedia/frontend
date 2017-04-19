@@ -71,6 +71,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+const ScrollToTop = () => {
+  window.scrollTo(0, 0);
+  return null;
+};
+
 export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
@@ -181,6 +186,7 @@ export class Layout extends React.Component {
         </Drawer>
         <div className="contentArea">
           <Route exact path="/" component={Home} />
+          <Route component={ScrollToTop} />
           <Route path="/redirect" />
           <Route path="/profile" component={Profile} />
           <PrivateRoute
