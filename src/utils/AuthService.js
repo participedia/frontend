@@ -2,6 +2,9 @@ import Auth0Lock from "auth0-lock";
 import jwtDecode from "jwt-decode";
 import ppLogo from "../img/pp-logo-dark.png";
 
+const SCOPE =
+  "openid email read:users update:users update:users_app_metadata user_metadata app_metadata picture created_at";
+
 class AuthService {
   constructor(clientId, domain) {
     // Configure Auth0 lock
@@ -10,7 +13,7 @@ class AuthService {
         redirectUrl: window.location.origin + "/redirect",
         responseType: "token",
         params: {
-          scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
+          scope: SCOPE,
           state: JSON.stringify({ pathname: window.location.pathname })
         }
       },
@@ -36,7 +39,7 @@ class AuthService {
     this.lock.show({
       auth: {
         params: {
-          scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
+          scope: SCOPE,
           state: stateString
         }
       }
