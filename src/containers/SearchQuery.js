@@ -24,12 +24,12 @@ const mapStateToProps = (state, { location }) => {
 
 const mapDispatchToProps = dispatch => ({
   onPerformQuery: (query, selectedCategory, sortingMethod) => {
-    try {
-      let action = search(query, selectedCategory, sortingMethod);
-      dispatch(action);
-    } catch (e) {
-      console.log("error in onPerformQuery", e);
-    }
+    // try {
+    //   let action = search(query, selectedCategory, sortingMethod);
+    //   dispatch(action);
+    // } catch (e) {
+    //   console.log("error in onPerformQuery", e);
+    // }
   }
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 
-import ChoroplethExp from "../experiments/ChoroplethExp";
+// import ChoroplethExp from "../experiments/ChoroplethExp";
 // import { Madrid } from "../../experiments/Madrid";
 
 const ExperimentIndex = () => (
@@ -25,7 +25,6 @@ export default class Experiments extends React.Component {
     return (
       <div>
         <Route exact path="/experiments" render={ExperimentIndex} />
-        <Route exact path="/experiments/choropleth" component={ChoroplethExp} />
       </div>
     );
   }

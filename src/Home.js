@@ -7,7 +7,34 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import iconInfo from "./img/icon-info.svg";
 import DismissButton from "material-ui/svg-icons/navigation/close";
+import myhistory from "./utils/history";
+import queryString from "query-string";
+import { search } from "./actions";
 import "./Home.css";
+
+const mapStateToProps = (state, { location }) => {
+  return {
+    data: state.cases.data || [],
+    search: state.cases,
+    query: state.cases.query || "",
+    searching: state.cases.searching || false,
+    selectedCategory: state.ui.category || "All",
+    sortingMethod: state.ui.sort || "chronological",
+    selectedViewType: state.ui.layout || "grid"
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  onPerformQuery: (query, selectedCategory, sortingMethod) => {
+    try {
+      console.log("in onPerformQuery", query, selectedCategory, sortingMethod);
+      let action = search(query, selectedCategory, sortingMethod);
+      dispatch(action);
+    } catch (e) {
+      console.log("error in onPerformQuery", e);
+    }
+  }
+});
 
 class Home extends React.Component {
   constructor() {
@@ -21,6 +48,20 @@ class Home extends React.Component {
 
     if (skipWelcome) {
       this.setState({ showWelcome: false });
+    }
+
+    let query = "";
+    if (myhistory.location.search) {
+      query = queryString.parse(myhistory.location.search)["q"];
+    }
+    try {
+      this.props.onPerformQuery(
+        query,
+        this.props.selectedCategory,
+        this.props.sortingMethod
+      );
+    } catch (e) {
+      console.log("error in URLSearcher componentDidMount", e);
     }
   }
 
@@ -57,17 +98,11 @@ class Home extends React.Component {
               </Row>
             </Container>
           : undefined}
-        <Map />
+        <Map data={this.props.search} />
         <SearchResults {...this.props} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    search: state.cases
-  };
-};
-
-export default injectIntl(connect(mapStateToProps)(Home));
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Home));

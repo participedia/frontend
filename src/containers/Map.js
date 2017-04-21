@@ -1,17 +1,10 @@
 import { connect } from "react-redux";
-import { search } from "../actions";
 import MapVisualization from "../components/MapVisualization/MapVisualization";
 
 const mapDispatchToProps = dispatch => ({
-  onCountryChange: country => {
-    dispatch(search("geo_country:" + country));
-  }
+  // XXX TODO: connect to a search
 });
 
-const Map = connect(
-  undefined,
-  // mapStateToProps,
-  mapDispatchToProps
-)(MapVisualization);
+const Map = connect(undefined, mapDispatchToProps)(MapVisualization);
 
 export default Map;
