@@ -18,6 +18,7 @@ import HelpArticle from "./HelpArticle";
 import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
+import Experiments from "./components/Experiments";
 import Upload from "./Upload";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
@@ -197,6 +198,7 @@ export class Layout extends React.Component {
           <Route path="/help/:id" component={HelpArticle} />
           <Route path="/about" component={About} />
           <Route path="/search" component={Home} />
+          <Route path="/experiments" component={Experiments} />
           <Route path="/_upload" component={Upload} />
           <Route path="/teaching" component={Teaching} />
           <PrivateRoute

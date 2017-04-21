@@ -1,103 +1,140 @@
 import React from "react";
 import { func } from "prop-types";
-import { Map, TileLayer } from "react-leaflet";
-import geojson from "../../world-countries.json";
-import Choropleth from "react-leaflet-choropleth";
-import "./MapVisualization.css";
-import api from "../../utils/api";
-import caseMarkerIcon from "../../img/case-marker-icon.png";
-import methodMarkerIcon from "../../img/method-marker-icon.png";
-import orgMarkerIcon from "../../img/organization-marker-icon.png";
-import mapArrowIcon from "../../img/pp-map-arrow-icon.png";
-// eslint-disable-next-line
-import sleep from "leaflet-sleep";
 import leaflet from "leaflet";
-
 import "leaflet/dist/leaflet.css";
 
-const style = {
-  fillColor: "rgba(0,0,0,0)",
-  color: "rgba(124,0,0,0)",
-  weight: 1,
-  opacity: 0,
-  fillOpacity: 0.6
-};
+import { Map, Marker, TileLayer, GeoJSON } from "react-leaflet";
 
-let mapURL = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}";
-let attribution = "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012";
-let maxZoom = 5;
+import "./MapVisualization.css";
+// eslint-disable-next-line
+import sleep from "leaflet-sleep";
 
-let scale = ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"];
+import coordinates from "parse-dms";
 
-//  http://colorbrewer2.org/ for scales
+// See https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-261904061 for this hack fix to a leaflet issue
+import L from "leaflet";
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+});
+
+let mapURL =
+  "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png";
+let attribution =
+  "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012";
+let maxZoom = 14;
+
+class GeoJSONUpdatable extends GeoJSON {
+  componentWillReceiveProps(prevProps) {
+    if (prevProps.data !== this.props.data) {
+      this.leafletElement.clearLayers();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) {
+      this.leafletElement.addData(this.props.data);
+    }
+  }
+}
+
 class MyMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { countryCounts: {} };
-    this.numCasesPerCountry = this.numCasesPerCountry.bind(this);
-    this.labelPerCountry = this.labelPerCountry.bind(this);
-    this.isCountryListed = this.isCountryListed.bind(this);
     this.onEachFeature = this.onEachFeature.bind(this);
   }
 
-  numCasesPerCountry(feature) {
-    let countryName = feature.properties.name;
-    let count = this.state.countryCounts[countryName.toLowerCase()];
-    if (count) {
-      return count;
-    } else {
-      return 0;
-    }
-  }
-
-  labelPerCountry(feature) {
-    let countryName = feature.properties.name;
-    let count = this.numCasesPerCountry(feature);
-    if (count > 1) {
-      return countryName + " " + count + " cases";
-    } else if (count === 1) {
-      return countryName + " " + count + " case";
-    } else {
-      return countryName + ", no cases yet";
-    }
-  }
-
-  isCountryListed(feature) {
-    return this.numCasesPerCountry(feature);
-  }
-
-  componentDidMount() {
-    api.countsByCountry().then(
-      function success(countryCounts) {
-        this.setState({ countryCounts: countryCounts });
-      }.bind(this)
-    );
-  }
-
   onEachFeature(feature, layer) {
-    let labelPerCountry = this.labelPerCountry;
-    let component = this;
     layer.on({
       click: function(event) {
         leaflet
           .popup()
           .setLatLng(event.latlng)
-          .setContent(labelPerCountry(feature))
+          .setContent(feature)
           .openOn(layer._map); // eslint-disable-line no-undef
-        /* do a per-country search */
-        if (component.props.onCountryChange) {
-          component.props.onCountryChange(feature.properties.name);
-        }
+        // if (component.props.onCountryChange) {
+        //   component.props.onCountryChange(feature.properties.name);
+        // }
       }
     });
   }
 
   render() {
     const position = [51.505, -0.09];
+    // let data = this.state.geojson;
+    let geojson = {
+      type: "FeatureCollection",
+      features: []
+    };
+    if (this.props.data && this.props.data.data) {
+      console.log("DATA", this.props.data);
+      console.log(this.props.data.data[0].hits);
+      let cases = this.props.data.data[0].hits;
+      cases = cases.filter(
+        c =>
+          c.location &&
+          c.location.latitude &&
+          c.location.longitude &&
+          c.location.latitude !== "undefined" &&
+          c.location.latitude !== undefined &&
+          c.location.longitude !== "undefined" &&
+          c.location.longitude !== undefined
+      );
+      let casesArray = cases.map(function(obj) {
+        console.log(obj.location);
+
+        let coords = coordinates(
+          obj.location.latitude + " " + obj.location.longitude
+        );
+        console.log("COORDS", coords);
+        coords = [coords["lon"], coords["lat"]];
+        return {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: coords
+          },
+          properties: {
+            type: "case",
+            label: obj.title
+          }
+        };
+      });
+      casesArray = casesArray.filter(c => c.geometry.coordinates[0] !== 0);
+      let orgs = this.props.data.data[2].hits;
+      orgs = orgs.filter(
+        c => c.location && c.location.latitude && c.location.longitude
+      );
+      let orgsArray = orgs.map(function(obj) {
+        let coords = coordinates(
+          obj.location.latitude + " " + obj.location.longitude
+        );
+        coords = [coords["lon"], coords["lat"]];
+        return {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: coords
+          },
+          properties: {
+            type: "organization",
+            label: obj.title
+          }
+        };
+      });
+      console.log(casesArray, orgsArray);
+      geojson["features"] = casesArray.concat(orgsArray);
+    }
+    console.log("geojson", geojson);
+
     return (
       <div className="map-component">
         <Map
           zoom={3}
+          maxZoom={maxZoom}
           center={position}
           sleep={true}
           hoverToWake={false}
@@ -105,47 +142,8 @@ class MyMap extends React.Component {
           sleepOpacity={0.9}
         >
           <TileLayer url={mapURL} attribution={attribution} maxZoom={maxZoom} />
-          <Choropleth
-            data={geojson}
-            valueProperty={this.numCasesPerCountry}
-            scale={scale}
-            visible={this.isCountryListed}
-            onEachFeature={this.onEachFeature}
-            steps={5}
-            mode="e"
-            style={style}
-          />
+          <GeoJSONUpdatable data={geojson} />
         </Map>
-        <div className="map-information">
-          <div className="info-container">
-            <div className="legend">
-              <div className="marker">
-                <img src={caseMarkerIcon} alt="" /><p>Case</p>
-              </div>
-              <div className="marker">
-                <img src={methodMarkerIcon} alt="" /><p>Method</p>
-              </div>
-              <div className="marker">
-                <img src={orgMarkerIcon} alt="" /><p>Organization</p>
-              </div>
-            </div>
-            <div className="details">
-              <div className="col">
-                <p>Case</p>
-                <p>Participatory Budgeting<br />(Tower Hamlets, London, UK)</p>
-              </div>
-              <div className="col">
-                <p>Last edit:<br />Scott Fletcher 05/14/2016 - 14:29</p>
-              </div>
-              <div className="col">
-                <p>19 Bedford Place,<br />London WC1B 5JA, U.K.</p>
-              </div>
-              <div className="arrow-col">
-                <img src={mapArrowIcon} alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
