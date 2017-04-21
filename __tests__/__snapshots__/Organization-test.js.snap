@@ -68,13 +68,37 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
               className="case-title">
               Urban Interactive Studio
             </h2>
+            <ul
+              className="icons-mobile clearfix hidden-sm-up">
+              <li />
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--facebook"
+                  onClick={[Function]}
+                  style={Object {}}>
+                  <img
+                    alt=""
+                    src="pp-case-icon-fb.svg" />
+                </div>
+              </li>
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--twitter"
+                  onClick={[Function]}
+                  style={Object {}}>
+                  <img
+                    alt=""
+                    src="pp-case-icon-tw.svg" />
+                </div>
+              </li>
+            </ul>
             <div
               className="single-image">
               <img
                 alt={undefined}
                 className="portrait"
                 sizes={undefined}
-                src="https://d3im063erkq9w4.cloudfront.net/uis_favicon_0.png"
+                src="http://assets.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
                 srcSet={undefined} />
             </div>
             <div

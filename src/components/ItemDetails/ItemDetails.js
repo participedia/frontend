@@ -109,6 +109,27 @@ export default class ItemDetails extends React.Component {
                   <h2 className="case-title">
                     {thing.title}
                   </h2>
+                  <ul className="icons-mobile clearfix hidden-sm-up">
+                    <li>{bookmarkIcon}</li>
+                    <li>
+                      <FacebookShareButton
+                        url={currentUrl}
+                        title={thing.title}
+                        description={textFacebook}
+                        picture={lead}
+                      >
+                        <img src={caseIconFB} alt="" />
+                      </FacebookShareButton>
+                    </li>        
+                    <li>
+                      <TwitterShareButton
+                        url={currentUrl}
+                        title={thing.title}
+                      >
+                        <img src={caseIconTW} alt="" />
+                      </TwitterShareButton>
+                    </li>        
+                  </ul>
                   {thing.vidURL
                     ? <Row>
                         <Col className="vid-container" md="6">
