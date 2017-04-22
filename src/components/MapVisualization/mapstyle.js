@@ -39,5 +39,8 @@ export default {
     borderRadius: 4,
     border: "1px solid #5867BC",
     outline: "none"
+  },
+  type: {
+    textTransform: "uppercase"
   }
 };
