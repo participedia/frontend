@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
@@ -14,6 +15,38 @@ import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
+
+class LinkToSearch extends React.Component {
+  render() {
+    let { label, query, intl } = this.props;
+    return (
+      <div>
+        <Link to={`/search?${queryString.stringify(query)}`}>
+          {intl.formatMessage({ id: label })}
+        </Link>
+      </div>
+    );
+  }
+}
+
+class FeaturedSearches extends React.Component {
+  render() {
+    return (
+      <div>
+        <LinkToSearch
+          label="mention_participatory_budgeting"
+          query={{ query: "participatory budgeting" }}
+          intl={this.props.intl}
+        />
+        <LinkToSearch
+          label="tag_infrastructure"
+          query={{ tag: "infrastructure" }}
+          intl={this.props.intl}
+        />
+      </div>
+    );
+  }
+}
 
 class FilterArray extends React.Component {
   constructor(props) {
@@ -133,7 +166,7 @@ export class SearchResultsView extends React.Component {
       let filters = [];
       let searchTerm = "";
       Object.keys(restrictions).forEach(function(key, index) {
-        if (key === "q") {
+        if (key === "query") {
           searchTerm = restrictions[key];
         } else {
           filters.push({
@@ -233,6 +266,14 @@ export class SearchResultsView extends React.Component {
                 }
               >
                 {this.props.intl.formatMessage({ id: "alphabetical" })}
+              </div>
+            </div>
+            <div className="featured-searches-area">
+              <div className="featured-searches-header">
+                {this.props.intl.formatMessage({ id: "featured_searches" })}
+              </div>
+              <div className="featured-searches">
+                <FeaturedSearches intl={this.props.intl} />
               </div>
             </div>
           </Col>

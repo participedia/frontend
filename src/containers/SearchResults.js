@@ -15,16 +15,16 @@ export default class SearchResults extends React.Component {
       searching: true,
       selectedCategory: DEFAULT_CATEGORY,
       sortingMethod: DEFAULT_SORTING_METHOD,
-      selectedViewType: "grid"
+      selectedViewType: "grid",
+      error: false
     };
   }
   componentDidMount() {
     let queryArgs = { query: "" };
     if (myhistory.location.search) {
       queryArgs = queryString.parse(myhistory.location.search);
-      this.setState(queryArgs);
     }
-    this._updateSearch({});
+    this._updateSearch(queryArgs);
   }
   _updateSearch(newState) {
     let queryArgs = {
@@ -41,8 +41,12 @@ export default class SearchResults extends React.Component {
       queryArgs["selectedCategory"] = futureState.selectedCategory;
     }
     let component = this;
-    api.performSearch(queryArgs).then(function(results) {
-      component.setState({ data: results.results, searching: false });
+    api.performSearch(futureState).then(function(results) {
+      if (results.error) {
+        component.setState({ error: results.error });
+      } else {
+        component.setState({ data: results.results, searching: false });
+      }
     });
     this.setState(newState);
   }
@@ -58,11 +62,19 @@ export default class SearchResults extends React.Component {
   startDownload() {}
 
   render() {
-    let onCategoryChange = this.onCategoryChange.bind(this);
-    let onLayoutChange = this.onLayoutChange.bind(this);
-    let onSortingChange = this.onSortingChange.bind(this);
-    let startDownload = this.startDownload.bind(this);
+    if (this.state.error) {
+      console.error(this.state.error);
+      return (
+        <div className="error-message">
+          Error doing search: {this.state.error.message}
+        </div>
+      );
+    }
     if (this.state.data) {
+      let onCategoryChange = this.onCategoryChange.bind(this);
+      let onLayoutChange = this.onLayoutChange.bind(this);
+      let onSortingChange = this.onSortingChange.bind(this);
+      let startDownload = this.startDownload.bind(this);
       return (
         <SearchResultsView
           selectedViewType={this.state.selectedViewType}

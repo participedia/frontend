@@ -197,7 +197,7 @@ export class Layout extends React.Component {
           />
           <Route path="/help/:id" component={HelpArticle} />
           <Route path="/about" component={About} />
-          <Route path="/search" component={Home} />
+          <Route path="/search" render={() => <Home />} />
           <Route path="/experiments" component={Experiments} />
           <Route path="/_upload" component={Upload} />
           <Route path="/teaching" component={Teaching} />

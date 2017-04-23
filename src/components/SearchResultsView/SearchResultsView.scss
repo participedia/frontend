@@ -264,3 +264,21 @@
   background: url('../../img/dropdown.png') no-repeat right;
   background-size:30px;
 }
+
+.featured-searches-header {
+  padding-top: 1em;
+  padding-left: 1ex;
+  text-transform: uppercase;
+}
+
+.featured-searches {
+  padding-left: 2em;
+  padding-top: 1ex;
+  a {
+    color: $primary-color;
+    &.selected, &:hover, &:focus {
+      color: $interactive-color;
+      background: lighten($light-grey,3%);
+    }
+  }
+}

@@ -181,7 +181,7 @@ export function search(query, selectedCategory, sortingMethod) {
   return dispatch => {
     dispatch(startSearch(query, selectedCategory, sortingMethod));
     return api
-      .performSearch(query, selectedCategory, sortingMethod)
+      .performSearch({ query, selectedCategory, sortingMethod })
       .then(response => dispatch(receiveData(query, response)), function(err) {
         console.log("got an error after performSearch", err);
       });
