@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Container, Col, Row } from "reactstrap";
 import Map from "./containers/Map";
 import SearchResults from "./containers/SearchResults";
@@ -7,29 +6,7 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import iconInfo from "./img/icon-info.svg";
 import DismissButton from "material-ui/svg-icons/navigation/close";
-import myhistory from "./utils/history";
-import queryString from "query-string";
-import { search } from "./actions";
 import "./Home.css";
-
-const mapStateToProps = (state, { location }) => {
-  return {
-    data: state.cases.data || [],
-    search: state.cases,
-    query: state.cases.query || "",
-    searching: state.cases.searching || false,
-    selectedCategory: state.ui.category || "All",
-    sortingMethod: state.ui.sort || "chronological",
-    selectedViewType: state.ui.layout || "grid"
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  onPerformQuery: (query, selectedCategory, sortingMethod) => {
-    let action = search(query, selectedCategory, sortingMethod);
-    dispatch(action);
-  }
-});
 
 class Home extends React.Component {
   constructor() {
@@ -37,37 +14,12 @@ class Home extends React.Component {
     this.state = { showWelcome: true };
     this.handleDismiss = this.handleDismiss.bind(this);
   }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.props.location.pathname === nextProps.location.pathname)
-  //     return false;
-  //   return true;
-  // }
 
   componentDidMount() {
     const skipWelcome = localStorage.getItem("skipWelcome");
 
     if (skipWelcome) {
       this.setState({ showWelcome: false });
-    }
-
-    let query = "";
-    if (myhistory.location.search) {
-      query = queryString.parse(myhistory.location.search)["q"];
-    }
-    try {
-      console.log(
-        "doing search",
-        query,
-        this.props.selectedCategory,
-        this.props.sortingMethod
-      );
-      this.props.onPerformQuery(
-        query,
-        this.props.selectedCategory,
-        this.props.sortingMethod
-      );
-    } catch (e) {
-      console.log("error in URLSearcher componentDidMount", e);
     }
   }
 
@@ -111,4 +63,4 @@ class Home extends React.Component {
   }
 }
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default injectIntl(Home);

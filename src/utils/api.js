@@ -1,13 +1,12 @@
 // This is the JS API to talk to api.participedia.xyz
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
+import queryString from "query-string";
 
 if (!APIURL) {
   console.error(
     "No API URL was found. REACT_APP_API_URL should be set in environment variables."
   );
 }
-
-import queryString from "query-string";
 
 const signedFetch = function(url, method, payload) {
   let opts = {
@@ -60,13 +59,9 @@ class API {
       });
   };
 
-  performSearch = function(query, selectedCategory, sortingMethod) {
-    let paramstring = queryString.stringify({
-      query: query,
-      selectedCategory: selectedCategory,
-      sortingMethod: sortingMethod
-    });
-    let url = `${APIURL}/search?${paramstring}`;
+  performSearch = function(queryArgs) {
+    let querystring = queryString.stringify(queryArgs);
+    let url = `${APIURL}/search?${querystring}`;
     return fetch(url).then(response => response.json()).catch(function(error) {
       console.log(
         `There has been a problem with your fetch operation: (${url}) ${error}`
