@@ -127,7 +127,6 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
           className="case-tools hidden-sm-down col col-md-1">
           <div
             className="top-icons">
-            <div />
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}

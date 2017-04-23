@@ -26,6 +26,7 @@ fetchMock.get(
 );
 
 jest.mock("material-ui/FloatingActionButton");
+jest.mock("../src/components/BookmarkToggle");
 
 function setup() {
   const props = {
