@@ -63,10 +63,14 @@ class MyMap extends React.Component {
   _popupChange(popupShowLabel) {
     this.setState({ popupShowLabel });
   }
+  _clearPopup() {
+    this.setState({ popupShowLabel: false });
+  }
 
   render() {
     const { cases, organizations, focus, popupShowLabel } = this.state;
     let popupChange = this._popupChange.bind(this);
+    let clearPopup = this._clearPopup.bind(this);
     const caseFeatures = cases.map((st, index) => (
       <Feature
         key={st.id}
@@ -90,6 +94,7 @@ class MyMap extends React.Component {
           zoom={this.state.zoom}
           minZoom={1}
           maxZoom={15}
+          onClick={clearPopup}
           containerStyle={styles.container}
           accessToken={accessToken}
         >
