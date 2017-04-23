@@ -35,6 +35,7 @@ function setup() {
     intl: intlProps,
     location: { pathname: "/organization/4219" },
     match: { params: { nodeID: 4219 } },
+    toggleFeatured: function() {},
     data: data
   };
 

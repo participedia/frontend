@@ -37,6 +37,7 @@ function setup() {
     intl: intlProps,
     location: { pathname: "/method/123" },
     match: { params: { nodeID: 123 } },
+    toggleFeatured: function() {},
     data: caseData
   };
 

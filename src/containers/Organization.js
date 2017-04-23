@@ -14,12 +14,17 @@ function mapStateToProps({ auth }) {
 }
 
 export class Organization extends React.Component {
+  toggleFeatured(thing, featured) {
+    console.log("setting featured for ", thing, " to ", featured);
+    // XXX needs API to exist.
+  }
   render() {
     return (
       <ItemFetcher
         api={api.fetchOrgById}
         id={Number(this.props.match.params.nodeID)}
         details={OrganizationDetails}
+        toggleFeatured={this.toggleFeatured.bind(this)}
         {...this.props}
       />
     );

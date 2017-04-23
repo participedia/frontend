@@ -32,6 +32,7 @@ function setup() {
     intl: intlProps,
     location: { pathname: "/method/145" },
     match: { params: { nodeID: 145 } },
+    toggleFeatured: function() {},
     data: data
   };
 
