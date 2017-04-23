@@ -8,6 +8,7 @@ exports[`test ItemDetails for Method renders correctly 1`] = `
         className="row">
         <div
           className="hidden-sm-down sidepanel hidden-sm-down col col-md-3">
+          <div />
           <div>
             <p
               className="sub-heading">
@@ -127,12 +128,6 @@ exports[`test ItemDetails for Method renders correctly 1`] = `
           <div
             className="top-icons">
             <div />
-            <a
-              href="#">
-              <img
-                alt=""
-                src="pp-case-icon-settings.svg" />
-            </a>
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
@@ -149,12 +144,6 @@ exports[`test ItemDetails for Method renders correctly 1`] = `
                 alt=""
                 src="pp-case-icon-tw.svg" />
             </div>
-            <a
-              href="#">
-              <img
-                alt=""
-                src="pp-case-icon-share.svg" />
-            </a>
           </div>
         </div>
       </div>

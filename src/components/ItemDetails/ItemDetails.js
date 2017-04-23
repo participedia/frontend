@@ -8,10 +8,8 @@ import ReactPlayer from "react-player";
 import BookmarkToggle from "../BookmarkToggle";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
-import caseIconSettings from "../../img/pp-case-icon-settings.svg";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
-import caseIconShare from "../../img/pp-case-icon-share.svg";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
@@ -21,6 +19,8 @@ import authService from "../../utils/AuthService";
 
 function isCurator() {
   const profile = authService.getProfile();
+  if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
+    return false;
   let groups = profile.app_metadata.authorization.groups;
   return groups.indexOf("Curators") !== -1;
 }
@@ -153,7 +153,6 @@ export default class ItemDetails extends React.Component {
               <Col md="1" className="case-tools hidden-sm-down">
                 <div className="top-icons">
                   {bookmarkIcon}
-                  <a href="#"><img src={caseIconSettings} alt="" /></a>
                   <FacebookShareButton
                     url={currentUrl}
                     title={thing.title}
@@ -165,7 +164,6 @@ export default class ItemDetails extends React.Component {
                   <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
-                  <a href="#"><img src={caseIconShare} alt="" /></a>
                 </div>
               </Col>
             </Row>
