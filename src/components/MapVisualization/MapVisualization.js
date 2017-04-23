@@ -15,18 +15,7 @@ const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2oxc3Nhd3l0MDBtajMybXY5azVla2x0MCJ9.ssn3RPzttpNQASihikNBmA";
 
 function extractData(data, type) {
-  console.log("in extractData", data);
-  data = data.filter(
-    c =>
-      c.location &&
-      c.location.latitude &&
-      c.location.longitude &&
-      c.location.latitude !== "undefined" &&
-      c.location.latitude !== undefined &&
-      c.location.longitude !== "undefined" &&
-      c.location.longitude !== undefined
-  );
-  data = data.map(function(obj) {
+  let newdata = data.map(function(obj) {
     let coords = coordinates(
       obj.location.latitude + " " + obj.location.longitude
     );
@@ -39,32 +28,23 @@ function extractData(data, type) {
       title: obj.title
     };
   });
-  data = data.filter(c => c.position[0] !== 0);
-  return data;
+  newdata = newdata.filter(c => c.position[0] !== 0);
+  return newdata;
 }
 
 class MyMap extends React.Component {
-  state = {
-    popupShowLabel: true,
-    cases: [],
-    orgs: [],
-    center: [-0.109970527, 51.52916347],
-    zoom: [2]
-  };
-
-  componentWillReceiveProps(newProps) {
-    let cases = [];
-    let orgs = [];
-    if (newProps.data && newProps.data.data) {
-      newProps.data.data.forEach(function(dataset) {
-        if (dataset.type === "case") {
-          cases = extractData(dataset.hits, "case");
-        } else if (dataset.type === "organization") {
-          orgs = extractData(dataset.hits, "organization");
-        }
-      });
-      this.setState({ cases: cases, orgs: orgs });
-    }
+  constructor(props) {
+    super(props);
+    let cases = extractData(props.cases, "case");
+    let organizations = extractData(props.organizations, "organization");
+    this.state = {
+      cases: cases,
+      organizations: organizations,
+      popupShowLabel: true,
+      center: [-0.109970527, 51.52916347],
+      zoom: [2],
+      focus: null
+    };
   }
 
   _onToggleHover(cursor, { map }) {
@@ -75,7 +55,8 @@ class MyMap extends React.Component {
     this.setState({
       center: focus.position,
       zoom: [5],
-      focus
+      focus: focus,
+      popupShowLabel: true
     });
   }
 
@@ -84,8 +65,22 @@ class MyMap extends React.Component {
   }
 
   render() {
-    const { cases, orgs, focus, popupShowLabel } = this.state;
-    let markerClick = this._markerClick.bind(this);
+    const { cases, organizations, focus, popupShowLabel } = this.state;
+    let popupChange = this._popupChange.bind(this);
+    const caseFeatures = cases.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
+    const orgFeatures = organizations.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
 
     return (
       <div className="map-component">
@@ -104,39 +99,19 @@ class MyMap extends React.Component {
             type="symbol"
             id="cases"
             layout={{
-              "icon-image": "marker-15",
-              "icon-allow-overlap": true
+              "icon-image": "marker-15"
             }}
           >
-            {cases &&
-              cases.map(function(st, index) {
-                return (
-                  <Feature
-                    key={st.id}
-                    onClick={() => markerClick(st)}
-                    coordinates={st.position}
-                  />
-                );
-              })}
+            {caseFeatures}
           </Layer>
           <Layer
             type="symbol"
             id="orgs"
             layout={{
-              "icon-image": "square-15",
-              "icon-allow-overlap": true
+              "icon-image": "square-15"
             }}
           >
-            {orgs &&
-              orgs.map(function(st, index) {
-                return (
-                  <Feature
-                    key={st.id}
-                    onClick={() => markerClick(st)}
-                    coordinates={st.position}
-                  />
-                );
-              })}
+            {orgFeatures}
           </Layer>
 
           {focus &&
@@ -144,13 +119,15 @@ class MyMap extends React.Component {
               key={focus.id}
               offset={[0, -50]}
               coordinates={focus.position}
-              style={styles.popup}
+              style={{
+                ...styles.popup,
+                display: popupShowLabel ? "block" : "none"
+              }}
             >
               <div>
                 <span
                   style={{
-                    ...styles.popup,
-                    display: popupShowLabel ? "block" : "none"
+                    ...styles.popup
                   }}
                 >
                   <span
@@ -161,7 +138,7 @@ class MyMap extends React.Component {
                     {focus.type}
                   </span><Link to={focus.url}> {focus.title}</Link>
                 </span>
-                <div onClick={this._popupChange.bind(this, !popupShowLabel)}>
+                <div onClick={() => popupChange(!popupShowLabel)}>
                   {popupShowLabel ? "Hide" : "Show"}
                 </div>
               </div>

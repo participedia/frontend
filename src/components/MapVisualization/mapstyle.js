@@ -15,11 +15,7 @@ export default {
     textAlign: "center",
     backgroundColor: "white"
   },
-  popup: {
-    background: "#fff",
-    padding: "5px",
-    borderRadius: "2px"
-  },
+  popup: {},
   btnWrapper: {
     position: "absolute",
     textAlign: "center",
