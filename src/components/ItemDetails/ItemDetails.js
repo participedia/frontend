@@ -56,16 +56,13 @@ export default class ItemDetails extends React.Component {
     const intl = this.props.intl;
     const thing = this.props.data;
     let bookmarked = isAuthenticated && thing.bookmarked;
-    let bookmarkIcon = <div />;
-    if (isAuthenticated) {
-      bookmarkIcon = (
-        <BookmarkToggle
-          thingType="case"
-          thingID={thing.id}
-          bookmarked={bookmarked}
-        />
-      );
-    }
+    let bookmarkIcon = (bookmarkIcon = (
+      <BookmarkToggle
+        thingType="case"
+        thingID={thing.id}
+        bookmarked={bookmarked}
+      />
+    ));
     let bodyText = htmlToText.fromString(thing.body);
     let currentUrl = "https://participedia.xyz" + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
