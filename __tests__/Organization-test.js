@@ -20,6 +20,7 @@ injectTapEventPlugin();
 
 let fetchMock = require("fetch-mock");
 jest.mock("material-ui/FloatingActionButton");
+jest.mock("../src/components/BookmarkToggle");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/organization/4219",
