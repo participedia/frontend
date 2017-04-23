@@ -6,6 +6,7 @@ export default class Map extends Component {
   componentWillMount() {
     api.searchMapTokens().then(results => this.setState(results));
   }
+
   render() {
     if (!this.state) return <div />;
     return (

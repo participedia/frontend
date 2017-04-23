@@ -718,13 +718,13 @@ babel-plugin-transform-async-to-generator@^6.24.1, babel-plugin-transform-async-
     babel-plugin-syntax-async-functions "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-class-constructor-call@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-class-constructor-call/-/babel-plugin-transform-class-constructor-call-6.22.0.tgz#11a4d2216abb5b0eef298b493748f4f2f4869120"
+babel-plugin-transform-class-constructor-call@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-class-constructor-call/-/babel-plugin-transform-class-constructor-call-6.24.1.tgz#80dc285505ac067dcb8d6c65e2f6f11ab7765ef9"
   dependencies:
     babel-plugin-syntax-class-constructor-call "^6.18.0"
     babel-runtime "^6.22.0"
-    babel-template "^6.22.0"
+    babel-template "^6.24.1"
 
 babel-plugin-transform-class-properties@6.22.0:
   version "6.22.0"
@@ -1153,23 +1153,23 @@ babel-preset-react@^6.24.1:
     babel-plugin-transform-react-jsx-source "^6.22.0"
     babel-preset-flow "^6.23.0"
 
-babel-preset-stage-0@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-stage-0/-/babel-preset-stage-0-6.22.0.tgz#707eeb5b415da769eff9c42f4547f644f9296ef9"
+babel-preset-stage-0@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-stage-0/-/babel-preset-stage-0-6.24.1.tgz#5642d15042f91384d7e5af8bc88b1db95b039e6a"
   dependencies:
     babel-plugin-transform-do-expressions "^6.22.0"
     babel-plugin-transform-function-bind "^6.22.0"
-    babel-preset-stage-1 "^6.22.0"
+    babel-preset-stage-1 "^6.24.1"
 
-babel-preset-stage-1@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-stage-1/-/babel-preset-stage-1-6.22.0.tgz#7da05bffea6ad5a10aef93e320cfc6dd465dbc1a"
+babel-preset-stage-1@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-stage-1/-/babel-preset-stage-1-6.24.1.tgz#7692cd7dcd6849907e6ae4a0a85589cfb9e2bfb0"
   dependencies:
-    babel-plugin-transform-class-constructor-call "^6.22.0"
+    babel-plugin-transform-class-constructor-call "^6.24.1"
     babel-plugin-transform-export-extensions "^6.22.0"
-    babel-preset-stage-2 "^6.22.0"
+    babel-preset-stage-2 "^6.24.1"
 
-babel-preset-stage-2@^6.22.0, babel-preset-stage-2@^6.24.1:
+babel-preset-stage-2@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-preset-stage-2/-/babel-preset-stage-2-6.24.1.tgz#d9e2960fb3d71187f0e64eec62bc07767219bdc1"
   dependencies:
@@ -2153,7 +2153,7 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@2, debug@^2.1.0, debug@^2.6.0:
+debug@2, debug@^2.1.0, debug@^2.1.3, debug@^2.6.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.2.tgz#dfa96a861ee9b8c2f29349b3bcc41aa599a71e0f"
   dependencies:
@@ -2418,9 +2418,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.8.1.tgz#53891a75c8fe4d56582c113b3da45713b8215738"
+enzyme@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.8.2.tgz#6c8bcb05012abc4aa4bc3213fb23780b9b5b1714"
   dependencies:
     cheerio "^0.22.0"
     function.prototype.name "^1.0.0"
@@ -2569,9 +2569,9 @@ eslint-config-google@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/eslint-config-google/-/eslint-config-google-0.7.1.tgz#5598f8498e9e078420f34b80495b8d959f651fb2"
 
-eslint-config-prettier@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-1.6.0.tgz#56e53a8eb461c06eced20cec40d765c185100fd5"
+eslint-config-prettier@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-1.7.0.tgz#cda3ce22df1e852daa9370f1f3446e8b8a02ce44"
   dependencies:
     get-stdin "^5.0.1"
 
@@ -2579,9 +2579,9 @@ eslint-config-react-app@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-0.6.2.tgz#ee535cbaaf9e3576ea16b99afe720353d8730ec0"
 
-eslint-config-standard@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-10.2.0.tgz#9e5a495c32aae8aa8aeb580b703ef645a1765e9b"
+eslint-config-standard@^10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-10.2.1.tgz#c061e4d066f379dc17cd562c64e819b4dd454591"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -2826,6 +2826,10 @@ eventemitter3@1.x.x:
 eventemitter3@~2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.2.tgz#20ce4891909ce9f35b088c94fab40e2c96f473ac"
+
+eventemitter3@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
 
 events@^1.0.0:
   version "1.1.1"
@@ -4085,9 +4089,9 @@ jest-environment-node@^18.1.0:
     jest-mock "^18.0.0"
     jest-util "^18.1.0"
 
-jest-fetch-mock@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.0.8.tgz#96140764478da9eaeb7a4d6bc96ab0e3aa7c9d61"
+jest-fetch-mock@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.1.1.tgz#7548b6d0c0c77071e9f8652fcb4f8d537e988d1f"
   dependencies:
     whatwg-fetch "1.0.0"
 
@@ -4331,7 +4335,13 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
-jsonp@0.2.0, jsonp@^0.2.0:
+jsonp@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.1.tgz#a65b4fa0f10bda719a05441ea7b94c55f3e15bae"
+  dependencies:
+    debug "^2.1.3"
+
+jsonp@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.0.tgz#95fcd751cf0a67adb9a5a9c4628ffeb97bec63e8"
   dependencies:
@@ -4791,19 +4801,22 @@ marked@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
-material-ui-chip-input@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-0.13.1.tgz#6998d29632799c30d90c8b5f250a242d0f223f43"
+material-ui-chip-input@^0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-0.13.4.tgz#b8edd118f7b043e33ed467f25f3fea72456c29c0"
+  dependencies:
+    prop-types "^15.5.7"
 
-material-ui@^0.17.3:
-  version "0.17.3"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.17.3.tgz#1c8d82da7909dab39d5e292b575516fe13b055c7"
+material-ui@^0.17.4:
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.17.4.tgz#193999ecb49c3ec15ae0abb4e90fdf9a7bd343e0"
   dependencies:
     babel-runtime "^6.23.0"
     inline-style-prefixer "^3.0.2"
     keycode "^2.1.8"
     lodash.merge "^4.6.0"
     lodash.throttle "^4.1.1"
+    prop-types "^15.5.7"
     react-addons-create-fragment "^15.4.0"
     react-addons-transition-group "^15.4.0"
     react-event-listener "^0.4.5"
@@ -5333,6 +5346,10 @@ parchment@1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/parchment/-/parchment-1.0.8.tgz#13ec6becce6c167481f1772bd51a5906de75a038"
 
+parchment@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/parchment/-/parchment-1.0.9.tgz#faa9f6ef654ebda3ba0199d6e460f24c73c677f2"
+
 parse-dms@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/parse-dms/-/parse-dms-0.0.3.tgz#c1c5271b10bfe20633e35a57a33ea42cb5594abc"
@@ -5466,9 +5483,9 @@ pkg-up@^1.0.0:
   dependencies:
     find-up "^1.0.0"
 
-platform@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.2.tgz#bf48615ff8edb5f5c8b48dfa4b4d312197e394f6"
+platform@1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.4.tgz#6f0fb17edaaa48f21442b3a975c063130f1c3ebd"
 
 pluralize@^1.2.1:
   version "1.2.1"
@@ -5762,9 +5779,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.1.0.tgz#9d6ad005703efefa66b6999b8916bfc6afeaf9f8"
+prettier@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.2.2.tgz#22d17c1132faaaea1f1d4faea31f19f7a1959f3e"
   dependencies:
     ast-types "0.9.8"
     babel-code-frame "6.22.0"
@@ -5818,7 +5835,7 @@ promise@7.1.1, promise@^7.0.3, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
@@ -5892,9 +5909,16 @@ query-parser@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/query-parser/-/query-parser-0.0.1.tgz#fb727f11153bde03223a332e495350986d35a705"
 
-query-string@^4.1.0, query-string@^4.2.3, query-string@^4.3.2:
+query-string@^4.1.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.2.tgz#ec0fd765f58a50031a3968c2431386f8947a5cdd"
+  dependencies:
+    object-assign "^4.1.0"
+    strict-uri-encode "^1.0.0"
+
+query-string@^4.2.3, query-string@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.4.tgz#bbb693b9ca915c232515b228b1a02b609043dbeb"
   dependencies:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
@@ -5923,7 +5947,7 @@ quill-delta@3.5.0:
     extend "^3.0.0"
     fast-diff "1.1.1"
 
-quill@^1.2.0, quill@^1.2.3:
+quill@^1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/quill/-/quill-1.2.3.tgz#8fc62ed66d8173edf9bc1d9fb777dd74eb0632ee"
   dependencies:
@@ -5932,6 +5956,17 @@ quill@^1.2.0, quill@^1.2.3:
     eventemitter3 "~2.0.2"
     extend "~3.0.0"
     parchment "1.0.8"
+    quill-delta "3.5.0"
+
+quill@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/quill/-/quill-1.2.4.tgz#2a822fb10f4346e63845b37637ee3d6bf0d20b65"
+  dependencies:
+    clone "~2.1.1"
+    deep-equal "~1.0.1"
+    eventemitter3 "~2.0.3"
+    extend "~3.0.0"
+    parchment "1.0.9"
     quill-delta "3.5.0"
 
 quote-stream@^1.0.1:
@@ -6028,11 +6063,12 @@ react-dev-utils@^0.5.2:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
-react-dropzone@^3.12.3:
-  version "3.12.3"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.12.3.tgz#a11096cac679bc95478ed7ed0050ef79868bd9f9"
+react-dropzone@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-3.13.0.tgz#a6a438df289971f909d498583d67ab0c4f214b17"
   dependencies:
     attr-accept "^1.0.3"
+    prop-types "^15.5.7"
 
 react-event-listener@^0.4.5:
   version "0.4.5"
@@ -6099,12 +6135,13 @@ react-onscroll@^1.0.4:
     prop-types "^15.5.8"
     react "^15.5.4"
 
-react-player@^0.14.3:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/react-player/-/react-player-0.14.3.tgz#4b836092bdb527ac2926460905f4e953c6a127ce"
+react-player@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-player/-/react-player-0.15.0.tgz#ce76415132ecd17c44e5495c5b558faba233107c"
   dependencies:
     fetch-jsonp "^1.0.2"
     load-script "^1.0.0"
+    prop-types "^15.5.6"
     query-string "^4.2.3"
 
 react-prevent-default@^1.0.0:
@@ -6212,14 +6249,15 @@ react-scripts@0.9.5:
   optionalDependencies:
     fsevents "1.0.17"
 
-react-share@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/react-share/-/react-share-1.13.0.tgz#399ce0ef4d4339c3f4676bd2e006e390d588f708"
+react-share@^1.13.2:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/react-share/-/react-share-1.13.2.tgz#21a5a6d419fd7ceb5a60dcd810cedb60e5a74185"
   dependencies:
     babel-runtime "6.6.1"
     classnames "2.2.5"
-    jsonp "0.2.0"
-    platform "1.3.2"
+    jsonp "0.2.1"
+    platform "1.3.4"
+    prop-types "^15.5.8"
 
 react-swipeable@^3.5.1:
   version "3.9.2"
@@ -6422,13 +6460,13 @@ redux-actions@^0.10.1:
   dependencies:
     reduce-reducers "^0.1.0"
 
-redux-form-material-ui@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/redux-form-material-ui/-/redux-form-material-ui-4.1.3.tgz#517e7a9162ef7e1e5db7b571db15c8478e00c372"
+redux-form-material-ui@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/redux-form-material-ui/-/redux-form-material-ui-4.2.0.tgz#1e670936eb08de8e51bd43a55fb9966b4a691a9d"
 
-redux-form@^6.6.2:
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.6.2.tgz#51102430a38b4d85529290a881bc1efb54f580ae"
+redux-form@^6.6.3:
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.6.3.tgz#62362654f2214c83a8f9fcb8313702bb46f92205"
   dependencies:
     deep-equal "^1.0.1"
     es6-error "^4.0.0"
@@ -6437,6 +6475,7 @@ redux-form@^6.6.2:
     is-promise "^2.1.0"
     lodash "^4.17.3"
     lodash-es "^4.17.3"
+    prop-types "^15.5.6"
 
 redux-logger@^3.0.1:
   version "3.0.1"
