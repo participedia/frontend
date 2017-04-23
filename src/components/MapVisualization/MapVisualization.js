@@ -13,6 +13,7 @@ import coordinates from "parse-dms";
 import styles from "./mapstyle.js";
 const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
+const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
 function extractData(data, type) {
   let newdata = data.map(function(obj) {
@@ -31,6 +32,29 @@ function extractData(data, type) {
   newdata = newdata.filter(c => c.position[0] !== 0);
   return newdata;
 }
+
+const caseMarkerLayout = {
+  "text-line-height": 1,
+  "text-padding": 0,
+  "text-anchor": "bottom",
+  "text-allow-overlap": false,
+  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
+  "icon-optional": true,
+  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
+  "text-size": 18
+};
+
+const orgMarkerLayout = caseMarkerLayout;
+
+const caseMarkerPaint = {
+  "text-translate-anchor": "viewport",
+  "text-color": "#ce8b88"
+};
+
+const orgMarkerPaint = {
+  "text-translate-anchor": "viewport",
+  "text-color": "#8897ce"
+};
 
 class MyMap extends React.Component {
   constructor(props) {
@@ -89,8 +113,10 @@ class MyMap extends React.Component {
     return (
       <div className="map-component">
         <ReactMapboxGl
-          style="mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8"
+          style={styleURL}
           center={this.state.center}
+          scrollZoom={false}
+          touchZoomRotate={true}
           zoom={this.state.zoom}
           minZoom={1}
           maxZoom={15}
@@ -103,18 +129,16 @@ class MyMap extends React.Component {
           <Layer
             type="symbol"
             id="cases"
-            layout={{
-              "icon-image": "suitcase-15"
-            }}
+            layout={caseMarkerLayout}
+            paint={caseMarkerPaint}
           >
             {caseFeatures}
           </Layer>
           <Layer
             type="symbol"
             id="orgs"
-            layout={{
-              "icon-image": "toilet-15"
-            }}
+            layout={orgMarkerLayout}
+            paint={orgMarkerPaint}
           >
             {orgFeatures}
           </Layer>
