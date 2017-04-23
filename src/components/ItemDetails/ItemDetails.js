@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
 import Gallery from "../Gallery";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 import BookmarkToggle from "../BookmarkToggle";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
@@ -15,13 +16,45 @@ import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import TimeAgo from "react-timeago";
+import Toggle from "material-ui/Toggle";
+import authService from "../../utils/AuthService";
+
+function isCurator() {
+  const profile = authService.getProfile();
+  let groups = profile.app_metadata.authorization.groups;
+  return groups.indexOf("Curators") !== -1;
+}
+
+class Featured extends React.Component {
+  static propTypes = {
+    toggleFeatured: PropTypes.func.isRequired,
+    thing: PropTypes.object.isRequired
+  };
+
+  onToggle(object, value) {
+    this.props.thing["featured"] = value;
+    this.props.toggleFeatured(this.props.thing, value);
+  }
+
+  render() {
+    return isCurator(this.props.auth)
+      ? <div className="featuretoggle">
+          <Toggle
+            onToggle={this.onToggle.bind(this)}
+            value={this.props.thing.featured}
+            label="Featured"
+          />
+        </div>
+      : <div />;
+  }
+}
 
 export default class ItemDetails extends React.Component {
   render() {
     const { FacebookShareButton, TwitterShareButton } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
-    let intl = this.props.intl;
-    let thing = this.props.data;
+    const intl = this.props.intl;
+    const thing = this.props.data;
     let bookmarked = isAuthenticated && thing.bookmarked;
     let bookmarkIcon = <div />;
     if (isAuthenticated) {
@@ -34,7 +67,7 @@ export default class ItemDetails extends React.Component {
       );
     }
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl = "https://participedia.xyz" +  this.props.location.pathname;
+    let currentUrl = "https://participedia.xyz" + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
@@ -64,6 +97,10 @@ export default class ItemDetails extends React.Component {
           <Container className="detailed-case-component" fluid={true}>
             <Row>
               <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
+                <Featured
+                  thing={thing}
+                  toggleFeatured={this.props.toggleFeatured}
+                />
                 {detailedBits}
                 <RelatedContent thing={thing} intl={intl} />
               </Col>
@@ -75,14 +112,18 @@ export default class ItemDetails extends React.Component {
                   <h2 className="case-title">
                     {thing.title}
                   </h2>
-                  { thing.vidURL ?
-                  <Row>
-                    <Col className="vid-container" md="6"><ReactPlayer width="100%"  controls={true} url={thing.vidURL} /></Col>
-                    <Col md="6"><Gallery thing={thing} /></Col>
-                  </Row>
-                  :
-                  <Gallery thing={thing} />
-                  }
+                  {thing.vidURL
+                    ? <Row>
+                        <Col className="vid-container" md="6">
+                          <ReactPlayer
+                            width="100%"
+                            controls={true}
+                            url={thing.vidURL}
+                          />
+                        </Col>
+                        <Col md="6"><Gallery thing={thing} /></Col>
+                      </Row>
+                    : <Gallery thing={thing} />}
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
@@ -121,10 +162,7 @@ export default class ItemDetails extends React.Component {
                   >
                     <img src={caseIconFB} alt="" />
                   </FacebookShareButton>
-                  <TwitterShareButton
-                    url={currentUrl}
-                    title={thing.title}
-                  >
+                  <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
                   <a href="#"><img src={caseIconShare} alt="" /></a>
