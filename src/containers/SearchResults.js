@@ -19,7 +19,7 @@ export default class SearchResults extends React.Component {
     };
   }
   componentDidMount() {
-    let queryArgs = { q: "" };
+    let queryArgs = { query: "" };
     if (myhistory.location.search) {
       queryArgs = queryString.parse(myhistory.location.search);
       this.setState(queryArgs);
@@ -28,7 +28,7 @@ export default class SearchResults extends React.Component {
   }
   _updateSearch(newState) {
     let queryArgs = {
-      q: this.state.query
+      query: this.state.query
     };
     // we need to act as if the state had been updated, but setState hasn't happened yet.
     let futureState = {};
@@ -40,7 +40,6 @@ export default class SearchResults extends React.Component {
     if (futureState.selectedCategory !== DEFAULT_CATEGORY) {
       queryArgs["selectedCategory"] = futureState.selectedCategory;
     }
-    console.log(newState, futureState, this.state, queryArgs);
     let component = this;
     api.performSearch(queryArgs).then(function(results) {
       component.setState({ data: results.results, searching: false });

@@ -6,7 +6,7 @@ import queryString from "query-string";
 const mapStateToProps = (state, { location }) => {
   let query = "";
   if (myhistory.location.search) {
-    query = queryString.parse(myhistory.location.search)["q"];
+    query = queryString.parse(myhistory.location.search)["query"];
   }
   // if (location && location.queryObj) {
   //   let queryObj = location.query;
