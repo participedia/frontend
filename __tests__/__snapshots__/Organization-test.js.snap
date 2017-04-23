@@ -33,22 +33,22 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
             <div
               className="tags">
               <a
-                href="/search"
+                href="/search?tag=civic%20engagement"
                 onClick={[Function]}>
                 civic engagement
               </a>
               <a
-                href="/search"
+                href="/search?tag=digital%20participation"
                 onClick={[Function]}>
                 digital participation
               </a>
               <a
-                href="/search"
+                href="/search?tag=planning"
                 onClick={[Function]}>
                 planning
               </a>
               <a
-                href="/search"
+                href="/search?tag=public"
                 onClick={[Function]}>
                 public
               </a>
