@@ -89,7 +89,7 @@ class MyMap extends React.Component {
     return (
       <div className="map-component">
         <ReactMapboxGl
-          style={"mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8"}
+          style="mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8"
           center={this.state.center}
           zoom={this.state.zoom}
           minZoom={1}

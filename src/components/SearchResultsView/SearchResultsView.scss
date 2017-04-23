@@ -225,14 +225,21 @@
   }
 }
 
-
-.result-count {
-  padding: 14px 0;
+.search-results {
   @include media-breakpoint-up(lg) {
     padding:0;
     position:relative;
-    top:-80px;
+    top:-80px; // XXX don't understand what this is doing.
   }
+  
+}
+
+.search-term {
+  font-size: 2.3rem;
+}
+
+.result-count {
+  padding: 14px 0;
   p {
     font-size: 1rem;
     font-weight: 400;

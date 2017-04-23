@@ -7,10 +7,60 @@ import { Container, Col } from "reactstrap";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
+import Chip from "material-ui/Chip";
+import myhistory from "../../utils/history";
+import queryString from "query-string";
 import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
+
+class FilterArray extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { chipData: props.data };
+    this.styles = {
+      chip: {
+        margin: 4
+      },
+      wrapper: {
+        display: "flex",
+        flexWrap: "wrap"
+      }
+    };
+  }
+
+  handleRequestDelete = key => {
+    // this.chipData = this.state.chipData;
+    // const chipToDelete = this.chipData.map(chip => chip.key).indexOf(key);
+    // this.chipData.splice(chipToDelete, 1);
+    // this.setState({ chipData: this.chipData });
+    let parameters = queryString.parse(myhistory.location.search);
+    delete parameters[key];
+    let newquerystring = queryString.stringify(parameters);
+    myhistory.push(`/search?${newquerystring}`);
+  };
+
+  renderChip(data) {
+    return (
+      <Chip
+        key={data.key}
+        onRequestDelete={() => this.handleRequestDelete(data.key)}
+        style={this.styles.chip}
+      >
+        {data.label}
+      </Chip>
+    );
+  }
+
+  render() {
+    return (
+      <div style={this.styles.wrapper}>
+        {this.state.chipData.map(this.renderChip, this)}
+      </div>
+    );
+  }
+}
 
 export class SearchResultsView extends React.Component {
   constructor() {
@@ -43,31 +93,34 @@ export class SearchResultsView extends React.Component {
       });
     });
 
-    let includeCases = this.props.selectedCategory === "All" ||
+    let includeCases =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Cases";
-    let includeMethods = this.props.selectedCategory === "All" ||
+    let includeMethods =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Methods";
-    let includeNews = this.props.selectedCategory === "All" ||
+    let includeNews =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "News";
-    let includeOrgs = this.props.selectedCategory === "All" ||
+    let includeOrgs =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Organizations";
 
     let cases = includeCases ? categories["case"] : [];
     let methods = includeMethods ? categories["method"] : [];
     let orgs = includeOrgs ? categories["organization"] : [];
     let news = includeNews ? categories["news"] : [];
+    let formatMessage = this.props.intl.formatMessage;
 
-    let resultsCount = cases.length +
-      methods.length +
-      orgs.length +
-      news.length;
+    let resultsCount =
+      cases.length + methods.length + orgs.length + news.length;
     let query = this.props.query;
     let results = "";
     if (this.props.searching) {
       results = (
         <div>
           <h3>
-            {this.props.intl.formatMessage({ id: "searching_for" })}
+            {formatMessage({ id: "searching_for" })}
             {" "}
             &nbsp;
             {query}
@@ -75,31 +128,55 @@ export class SearchResultsView extends React.Component {
         </div>
       );
     } else {
+      let description = `Searched for:`;
+      let restrictions = queryString.parse(myhistory.location.search);
+      let filters = [];
+      let searchTerm = "";
+      Object.keys(restrictions).forEach(function(key, index) {
+        if (key == "q") {
+          searchTerm = restrictions[key];
+        } else {
+          filters.push({
+            key: key,
+            label: formatMessage({ id: key }) + " : " + restrictions[key]
+          });
+        }
+      });
+
       results = (
-        <div className="result-count">
-          <p>
-            {resultsCount}&nbsp;
-            {this.props.intl.formatMessage({
-              id: "result" + (resultsCount === 1 ? "" : "s")
-            })}
-          </p>
-          <div className="results-box">
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "news" })}
-              results={news}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "cases" })}
-              results={cases}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "methods" })}
-              results={methods}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "organizations" })}
-              results={orgs}
-            />
+        <div className="search-results">
+          <div className="search-description">
+            {description}
+            {searchTerm
+              ? <div className="search-term">{searchTerm}</div>
+              : <div />}
+            <FilterArray data={filters} />
+          </div>
+          <div className="result-count">
+            <p>
+              {resultsCount}&nbsp;
+              {this.props.intl.formatMessage({
+                id: "result" + (resultsCount === 1 ? "" : "s")
+              })}
+            </p>
+            <div className="results-box">
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "news" })}
+                results={news}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "cases" })}
+                results={cases}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "methods" })}
+                results={methods}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "organizations" })}
+                results={orgs}
+              />
+            </div>
           </div>
         </div>
       );
@@ -321,8 +398,6 @@ export class SearchResultsView extends React.Component {
 }
 
 SearchResultsView.propTypes = {
-  data: PropTypes.array.isRequired,
-  query: PropTypes.string.isRequired,
   searching: PropTypes.bool.isRequired,
   onCategoryChange: PropTypes.func.isRequired,
   onSortingChange: PropTypes.func.isRequired,

@@ -37,6 +37,11 @@ class Home extends React.Component {
     this.state = { showWelcome: true };
     this.handleDismiss = this.handleDismiss.bind(this);
   }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.props.location.pathname === nextProps.location.pathname)
+  //     return false;
+  //   return true;
+  // }
 
   componentDidMount() {
     const skipWelcome = localStorage.getItem("skipWelcome");
@@ -50,6 +55,12 @@ class Home extends React.Component {
       query = queryString.parse(myhistory.location.search)["q"];
     }
     try {
+      console.log(
+        "doing search",
+        query,
+        this.props.selectedCategory,
+        this.props.sortingMethod
+      );
       this.props.onPerformQuery(
         query,
         this.props.selectedCategory,
@@ -93,7 +104,7 @@ class Home extends React.Component {
               </Row>
             </Container>
           : undefined}
-        <Map data={this.props.search} />
+        <Map />
         <SearchResults {...this.props} />
       </div>
     );

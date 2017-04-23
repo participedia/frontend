@@ -1,20 +1,24 @@
 import { connect } from "react-redux";
-import { search } from "../actions";
+import myhistory from "../utils/history";
 import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
+import queryString from "query-string";
 
 const mapStateToProps = (state, { location }) => {
   let query = "";
-  if (location && location.queryObj) {
-    let queryObj = location.query;
-    query = Object.keys(queryObj)
-      .map(function(a) {
-        return a + ":" + JSON.stringify(queryObj[a]);
-      })
-      .join(",");
+  if (myhistory.location.search) {
+    query = queryString.parse(myhistory.location.search)["q"];
   }
+  // if (location && location.queryObj) {
+  //   let queryObj = location.query;
+  //   query = Object.keys(queryObj)
+  //     .map(function(a) {
+  //       return a + ":" + JSON.stringify(queryObj[a]);
+  //     })
+  //     .join(",");
+  // }
 
   return {
-    query: state.cases.query || query,
+    query: query,
     searching: state.cases.searching || false,
     sortingMethod: state.ui.sort || "chronological",
     selectedCategory: state.ui.category || "All",
@@ -24,12 +28,8 @@ const mapStateToProps = (state, { location }) => {
 
 const mapDispatchToProps = dispatch => ({
   onPerformQuery: (query, selectedCategory, sortingMethod) => {
-    // try {
-    //   let action = search(query, selectedCategory, sortingMethod);
-    //   dispatch(action);
-    // } catch (e) {
-    //   console.log("error in onPerformQuery", e);
-    // }
+    console.log("in onPerformQuery", query);
+    myhistory.push(`/search?q=${query}`);
   }
 });
 
