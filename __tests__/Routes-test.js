@@ -9,6 +9,7 @@ import App from "../src/App";
 
 let fetchMock = require("fetch-mock");
 import store from "../src/store";
+jest.mock("../src/containers/Map", () => "Map");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL +
@@ -25,14 +26,12 @@ fetchMock.get(
 // changes, it will call back to you with stuff like
 // `match` and `location`, and `history` so you can control
 // the flow and make assertions.
-const renderTestSequence = (
-  {
-    initialEntries,
-    initialIndex,
-    subject: Subject,
-    steps
-  }
-) => {
+const renderTestSequence = ({
+  initialEntries,
+  initialIndex,
+  subject: Subject,
+  steps
+}) => {
   const div = document.createElement("div");
   class Assert extends React.Component {
     componentDidMount() {

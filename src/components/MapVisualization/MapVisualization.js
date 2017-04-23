@@ -1,159 +1,153 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { func } from "prop-types";
-import leaflet from "leaflet";
-import "leaflet/dist/leaflet.css";
-
-import { Map, Marker, TileLayer, GeoJSON } from "react-leaflet";
+import ReactMapboxGl, {
+  Layer,
+  Feature,
+  Popup,
+  ZoomControl
+} from "react-mapbox-gl";
 
 import "./MapVisualization.css";
-// eslint-disable-next-line
-import sleep from "leaflet-sleep";
-
 import coordinates from "parse-dms";
+import styles from "./mapstyle.js";
+const accessToken =
+  "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2oxc3Nhd3l0MDBtajMybXY5azVla2x0MCJ9.ssn3RPzttpNQASihikNBmA";
 
-// See https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-261904061 for this hack fix to a leaflet issue
-import L from "leaflet";
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
-});
-
-let mapURL =
-  "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png";
-mapURL =
-  "http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}";
-let attribution =
-  "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012";
-let maxZoom = 14;
-
-class GeoJSONUpdatable extends GeoJSON {
-  componentWillReceiveProps(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      this.leafletElement.clearLayers();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      this.leafletElement.addData(this.props.data);
-    }
-  }
+function extractData(data, type) {
+  let newdata = data.map(function(obj) {
+    let coords = coordinates(
+      obj.location.latitude + " " + obj.location.longitude
+    );
+    coords = [coords["lon"], coords["lat"]];
+    return {
+      id: obj.id,
+      type: type,
+      position: coords,
+      url: `/${type}/${obj.id}`,
+      title: obj.title
+    };
+  });
+  newdata = newdata.filter(c => c.position[0] !== 0);
+  return newdata;
 }
 
 class MyMap extends React.Component {
   constructor(props) {
     super(props);
-    this.onEachFeature = this.onEachFeature.bind(this);
+    let cases = extractData(props.cases, "case");
+    let organizations = extractData(props.organizations, "organization");
+    this.state = {
+      cases: cases,
+      organizations: organizations,
+      popupShowLabel: true,
+      center: [-0.109970527, 51.52916347],
+      zoom: [2],
+      focus: null
+    };
   }
 
-  onEachFeature(feature, layer) {
-    layer.on({
-      click: function(event) {
-        leaflet
-          .popup()
-          .setLatLng(event.latlng)
-          .setContent(feature)
-          .openOn(layer._map); // eslint-disable-line no-undef
-        // if (component.props.onCountryChange) {
-        //   component.props.onCountryChange(feature.properties.name);
-        // }
-      }
+  _onToggleHover(cursor, { map }) {
+    map.getCanvas().style.cursor = cursor;
+  }
+
+  _markerClick(focus) {
+    this.setState({
+      center: focus.position,
+      zoom: [5],
+      focus: focus,
+      popupShowLabel: true
     });
   }
 
-  render() {
-    const position = [51.505, -0.09];
-    // let data = this.state.geojson;
-    let geojson = {
-      type: "FeatureCollection",
-      features: []
-    };
-    if (this.props.data && this.props.data.data) {
-      console.log("DATA", this.props.data);
-      console.log(this.props.data.data[0].hits);
-      let cases = this.props.data.data[0].hits;
-      cases = cases.filter(
-        c =>
-          c.location &&
-          c.location.latitude &&
-          c.location.longitude &&
-          c.location.latitude !== "undefined" &&
-          c.location.latitude !== undefined &&
-          c.location.longitude !== "undefined" &&
-          c.location.longitude !== undefined
-      );
-      let casesArray = cases.map(function(obj) {
-        console.log(obj.location);
+  _popupChange(popupShowLabel) {
+    this.setState({ popupShowLabel });
+  }
 
-        let coords = coordinates(
-          obj.location.latitude + " " + obj.location.longitude
-        );
-        console.log("COORDS", coords);
-        coords = [coords["lon"], coords["lat"]];
-        return {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: coords
-          },
-          properties: {
-            type: "case",
-            label: obj.title
-          }
-        };
-      });
-      casesArray = casesArray.filter(c => c.geometry.coordinates[0] !== 0);
-      let orgs = this.props.data.data[2].hits;
-      orgs = orgs.filter(
-        c => c.location && c.location.latitude && c.location.longitude
-      );
-      let orgsArray = orgs.map(function(obj) {
-        let coords = coordinates(
-          obj.location.latitude + " " + obj.location.longitude
-        );
-        coords = [coords["lon"], coords["lat"]];
-        return {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: coords
-          },
-          properties: {
-            type: "organization",
-            label: obj.title
-          }
-        };
-      });
-      console.log(casesArray, orgsArray);
-      geojson["features"] = casesArray.concat(orgsArray);
-    }
-    console.log("geojson", geojson);
+  render() {
+    const { cases, organizations, focus, popupShowLabel } = this.state;
+    let popupChange = this._popupChange.bind(this);
+    const caseFeatures = cases.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
+    const orgFeatures = organizations.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
 
     return (
       <div className="map-component">
-        <Map
-          zoom={3}
-          maxZoom={maxZoom}
-          center={position}
-          sleep={true}
-          hoverToWake={false}
-          wakeMessage="Click to wake map"
-          sleepOpacity={0.9}
+        <ReactMapboxGl
+          style={"mapbox://styles/mapbox/light-v9"}
+          center={this.state.center}
+          zoom={this.state.zoom}
+          minZoom={1}
+          maxZoom={15}
+          containerStyle={styles.container}
+          accessToken={accessToken}
         >
-          <TileLayer url={mapURL} attribution={attribution} maxZoom={maxZoom} />
-          <GeoJSONUpdatable data={geojson} />
-        </Map>
+
+          <ZoomControl zoomDiff={1} />
+          <Layer
+            type="symbol"
+            id="cases"
+            layout={{
+              "icon-image": "marker-15"
+            }}
+          >
+            {caseFeatures}
+          </Layer>
+          <Layer
+            type="symbol"
+            id="orgs"
+            layout={{
+              "icon-image": "square-15"
+            }}
+          >
+            {orgFeatures}
+          </Layer>
+
+          {focus &&
+            <Popup
+              key={focus.id}
+              offset={[0, -50]}
+              coordinates={focus.position}
+              style={{
+                ...styles.popup,
+                display: popupShowLabel ? "block" : "none"
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    ...styles.popup
+                  }}
+                >
+                  <span
+                    style={{
+                      ...styles.type
+                    }}
+                  >
+                    {focus.type}
+                  </span><Link to={focus.url}> {focus.title}</Link>
+                </span>
+                <div onClick={() => popupChange(!popupShowLabel)}>
+                  {popupShowLabel ? "Hide" : "Show"}
+                </div>
+              </div>
+            </Popup>}
+        </ReactMapboxGl>
       </div>
     );
   }
 }
-
-// For offline development use, replace Map component with:
-// <div className='map' style={{backgroundImage: 'url(/img/pp-home-map.jpg)'}}></div>
-
 MyMap.propTypes = {
   onCountryChange: func
 };

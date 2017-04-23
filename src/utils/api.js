@@ -20,8 +20,8 @@ const signedFetch = function(url, method, payload) {
   if (localStorage.profile) {
     let profile = JSON.parse(localStorage.profile);
     if (localStorage.getItem("id_token")) {
-      opts["headers"]["Authorization"] = "Bearer " +
-        localStorage.getItem("id_token");
+      opts["headers"]["Authorization"] =
+        "Bearer " + localStorage.getItem("id_token");
     }
     opts["headers"]["X-Auth0-Name"] = profile.name;
     opts["headers"]["X-Auth0-UserId"] = profile.user_id;
@@ -73,6 +73,19 @@ class API {
       );
       return error;
     });
+  };
+
+  searchMapTokens = function() {
+    let url = APIURL + "/search/map";
+    return signedFetch(url, "get")
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
   };
 
   fetchCaseById = function(caseId) {
