@@ -12,7 +12,7 @@ import "./MapVisualization.css";
 import coordinates from "parse-dms";
 import styles from "./mapstyle.js";
 const accessToken =
-  "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2oxc3Nhd3l0MDBtajMybXY5azVla2x0MCJ9.ssn3RPzttpNQASihikNBmA";
+  "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 
 function extractData(data, type) {
   let newdata = data.map(function(obj) {
@@ -63,10 +63,14 @@ class MyMap extends React.Component {
   _popupChange(popupShowLabel) {
     this.setState({ popupShowLabel });
   }
+  _clearPopup() {
+    this.setState({ popupShowLabel: false });
+  }
 
   render() {
     const { cases, organizations, focus, popupShowLabel } = this.state;
     let popupChange = this._popupChange.bind(this);
+    let clearPopup = this._clearPopup.bind(this);
     const caseFeatures = cases.map((st, index) => (
       <Feature
         key={st.id}
@@ -85,11 +89,12 @@ class MyMap extends React.Component {
     return (
       <div className="map-component">
         <ReactMapboxGl
-          style={"mapbox://styles/mapbox/light-v9"}
+          style={"mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8"}
           center={this.state.center}
           zoom={this.state.zoom}
           minZoom={1}
           maxZoom={15}
+          onClick={clearPopup}
           containerStyle={styles.container}
           accessToken={accessToken}
         >
@@ -99,7 +104,7 @@ class MyMap extends React.Component {
             type="symbol"
             id="cases"
             layout={{
-              "icon-image": "marker-15"
+              "icon-image": "suitcase-15"
             }}
           >
             {caseFeatures}
@@ -108,7 +113,7 @@ class MyMap extends React.Component {
             type="symbol"
             id="orgs"
             layout={{
-              "icon-image": "square-15"
+              "icon-image": "toilet-15"
             }}
           >
             {orgFeatures}
