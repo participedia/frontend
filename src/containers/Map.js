@@ -8,7 +8,7 @@ export default class Map extends Component {
   }
 
   render() {
-    if (!this.state) return <div />;
+    if (!this.state) return <div>LOADING MAP DATA</div>;
     return (
       <MapVisualization
         cases={this.state.cases}
