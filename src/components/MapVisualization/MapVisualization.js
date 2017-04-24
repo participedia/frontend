@@ -61,11 +61,18 @@ class MyMap extends React.Component {
     super(props);
     let cases = extractData(props.cases, "case");
     let organizations = extractData(props.organizations, "organization");
+    let component = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      component.setState({
+        center: [position.coords.latitude, position.coords.longitude]
+      });
+    });
+
     this.state = {
       cases: cases,
       organizations: organizations,
       popupShowLabel: true,
-      center: [-0.109970527, 51.52916347],
+      center: [-9.9215833, -45.4099109],
       zoom: [2],
       focus: null
     };
