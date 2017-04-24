@@ -112,7 +112,7 @@ export class Layout extends React.Component {
         <div className="nav-bar-component">
           <div className="nav-bar-wrapper">
             <div className="logo-area">
-              <a href="#" onClick={this.handleToggle} className="menu-icon">
+              <a onClick={this.handleToggle} className="menu-icon">
                 <img src={menuIcon} alt="" />
               </a>
               <Link to="/" className="logo">
