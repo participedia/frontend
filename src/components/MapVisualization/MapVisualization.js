@@ -17,10 +17,15 @@ const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
 function extractData(data, type) {
   let newdata = data.map(function(obj) {
-    let coords = coordinates(
-      obj.location.latitude + " " + obj.location.longitude
-    );
-    coords = [coords["lon"], coords["lat"]];
+    let coords;
+    if (obj.location && obj.location.latitude && obj.location.longitude) {
+      coords = coordinates(
+        obj.location.latitude + " " + obj.location.longitude
+      );
+      coords = [coords["lon"], coords["lat"]];
+    } else {
+      coords = [0, 0];
+    }
     return {
       id: obj.id,
       type: type,
@@ -56,7 +61,7 @@ const orgMarkerPaint = {
   "text-color": "#8897ce"
 };
 
-class MyMap extends React.Component {
+class MapVisualization extends React.Component {
   constructor(props) {
     super(props);
     let cases = extractData(props.cases, "case");
@@ -184,7 +189,7 @@ class MyMap extends React.Component {
     );
   }
 }
-MyMap.propTypes = {
+MapVisualization.propTypes = {
   onCountryChange: func
 };
-export default MyMap;
+export default MapVisualization;
