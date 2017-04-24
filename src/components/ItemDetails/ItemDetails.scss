@@ -231,6 +231,22 @@ section.image-gallery {
     }
   }
 
+  .icons-mobile {
+    text-align: right;
+    .SocialMediaShareButton {
+      padding-right: 0.5rem;
+    }
+    svg {
+      transform: translate(0, 21px);
+    }
+    img  {
+      width: 40px;
+    }
+    li {
+      display: inline-block;
+    }
+  }
+
   .main-area {
     padding:0 15px;
 
@@ -251,6 +267,9 @@ section.image-gallery {
         font-weight: 500;
         margin-bottom: 48px;
         font-size:2.25rem;
+        @include media-breakpoint-down(sm) { 
+          margin-bottom: 0;
+        }
       }
 
       .case-images {

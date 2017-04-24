@@ -68,6 +68,30 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
               className="case-title">
               Urban Interactive Studio
             </h2>
+            <ul
+              className="icons-mobile clearfix hidden-sm-up">
+              <li />
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--facebook"
+                  onClick={[Function]}
+                  style={Object {}}>
+                  <img
+                    alt=""
+                    src="pp-case-icon-fb.svg" />
+                </div>
+              </li>
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--twitter"
+                  onClick={[Function]}
+                  style={Object {}}>
+                  <img
+                    alt=""
+                    src="pp-case-icon-tw.svg" />
+                </div>
+              </li>
+            </ul>
             <div
               className="single-image">
               <img
