@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { checkLogin } from "./actions";
 
 import authService from "./utils/AuthService";
-import Profile from "./Profile";
+import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
 import HelpArticle from "./HelpArticle";
 import About from "./About";
@@ -189,7 +189,8 @@ export class Layout extends React.Component {
           <Route exact path="/" component={Home} />
           <Route component={ScrollToTop} />
           <Route path="/redirect" />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/profile" component={ProfileLoader} />
+          <Route path="/profile/:id" component={ProfileLoader} />
           <PrivateRoute
             path="/profile/edit"
             component={ProfileEditor}
