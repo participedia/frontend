@@ -6,24 +6,25 @@ import fbIcon from "../../img/pp-social-fb.png";
 import rssIcon from "../../img/pp-social-rss.png";
 import twitterIcon from "../../img/pp-social-tw.png";
 import { injectIntl } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 export class Footer extends React.Component {
   render() {
-    let locale = this.props.intl.locale;
-
     return (
       <div className="footer-component">
         <div className="expanded-footer">
           <div className="column">
-            <Link to={"/" + locale + "/about"}>
+            <Link to="/about">
               {this.props.intl.formatMessage({ id: "about" })}
             </Link>
-            <Link to={"/" + locale + "/research"}>
+            <Link to="/research">
               {this.props.intl.formatMessage({ id: "research" })}
             </Link>
-            <Link to={"/" + locale + "/teaching"}>
+            <Link to="/teaching">
               {this.props.intl.formatMessage({ id: "teaching" })}
+            </Link>
+            <Link to="/experiments">
+              {this.props.intl.formatMessage({ id: "experiments" })}
             </Link>
           </div>
           <div className="column">

@@ -1,41 +1,95 @@
-import { connect } from "react-redux";
-import {
-  switchCategory,
-  setSortOrderAndSearch,
-  setLayoutOrder
-} from "../actions";
+import React from "react";
+import api from "../utils/api";
+import myhistory from "../utils/history";
+import queryString from "query-string";
+
 import SearchResultsView
   from "../components/SearchResultsView/SearchResultsView";
+const DEFAULT_SORTING_METHOD = "chronological";
+const DEFAULT_CATEGORY = "All";
+export default class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: "",
+      searching: true,
+      selectedCategory: DEFAULT_CATEGORY,
+      sortingMethod: DEFAULT_SORTING_METHOD,
+      selectedViewType: "grid",
+      error: false
+    };
+  }
+  componentDidMount() {
+    let queryArgs = { query: "" };
+    if (myhistory.location.search) {
+      queryArgs = queryString.parse(myhistory.location.search);
+    }
+    this._updateSearch(queryArgs);
+  }
+  _updateSearch(newState) {
+    let queryArgs = {
+      query: this.state.query
+    };
+    // we need to act as if the state had been updated, but setState hasn't happened yet.
+    let futureState = {};
+    Object.assign(futureState, this.state, newState);
 
-const mapStateToProps = state => {
-  let props = {
-    data: state.cases.data || [],
-    query: state.cases.query || "",
-    searching: state.cases.searching || false,
-    sortingMethod: state.ui.sort || "chronological",
-    selectedCategory: state.ui.category || "All",
-    selectedViewType: state.ui.layout || "grid"
-  };
-  return props;
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onCategoryChange(newCategory) {
-    dispatch(
-      switchCategory(newCategory, this.props.query, this.props.sortingMethod)
-    );
-  },
-  onSortingChange(query, sortingCategory, sort) {
-    dispatch(setSortOrderAndSearch(query, sortingCategory, sort));
-  },
-  onLayoutChange(sort) {
-    dispatch(setLayoutOrder(sort));
-  },
+    if (futureState.sortingMethod !== DEFAULT_SORTING_METHOD) {
+      queryArgs["sortingMethod"] = futureState.sortingMethod;
+    }
+    if (futureState.selectedCategory !== DEFAULT_CATEGORY) {
+      queryArgs["selectedCategory"] = futureState.selectedCategory;
+    }
+    let component = this;
+    api.performSearch(futureState).then(function(results) {
+      if (results.error) {
+        component.setState({ error: results.error });
+      } else {
+        component.setState({ data: results.results, searching: false });
+      }
+    });
+    this.setState(newState);
+  }
+  onSortingChange(method) {
+    this._updateSearch({ sortingMethod: method });
+  }
+  onLayoutChange(layout) {
+    this.setState({ selectedViewType: layout });
+  }
+  onCategoryChange(category) {
+    this._updateSearch({ selectedCategory: category });
+  }
   startDownload() {}
-});
 
-const SearchResults = connect(mapStateToProps, mapDispatchToProps)(
-  SearchResultsView
-);
-
-export default SearchResults;
+  render() {
+    if (this.state.error) {
+      console.error(this.state.error);
+      return (
+        <div className="error-message">
+          Error doing search: {this.state.error.message}
+        </div>
+      );
+    }
+    if (this.state.data) {
+      let onCategoryChange = this.onCategoryChange.bind(this);
+      let onLayoutChange = this.onLayoutChange.bind(this);
+      let onSortingChange = this.onSortingChange.bind(this);
+      let startDownload = this.startDownload.bind(this);
+      return (
+        <SearchResultsView
+          selectedViewType={this.state.selectedViewType}
+          selectedCategory={this.state.selectedCategory}
+          sortingMethod={this.state.sortingMethod}
+          data={this.state.data}
+          query={this.state.query}
+          onCategoryChange={onCategoryChange}
+          onLayoutChange={onLayoutChange}
+          startDownload={startDownload}
+          onSortingChange={onSortingChange}
+        />
+      );
+    } else {
+      return <div>Searching...</div>;
+    }
+  }
+}

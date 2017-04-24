@@ -1,10 +1,11 @@
-import React, { PropTypes as T } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
 import { loginRequest, logoutSuccess } from "./actions";
@@ -12,16 +13,15 @@ import { connect } from "react-redux";
 
 export class LoginAvatar extends React.Component {
   static propTypes = {
-    dispatch: T.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    profile: T.object.isRequired,
-    isAuthenticated: T.bool.isRequired
+    profile: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
   };
 
   render() {
     const { dispatch, profile, isAuthenticated } = this.props;
     let buttonStyle = { color: "black" };
-    let locale = this.props.intl.locale;
     if (isAuthenticated) {
       return (
         <div className="avatar">
@@ -43,7 +43,7 @@ export class LoginAvatar extends React.Component {
           >
             <MenuItem
               style={buttonStyle}
-              containerElement={<Link to={"/" + locale + "/profile"} />}
+              containerElement={<Link to={"/profile"} />}
               onClick={this.handleClose}
             >
               Profile

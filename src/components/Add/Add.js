@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import RaisedButton from "material-ui/RaisedButton";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./Add.css";
 import { injectIntl } from "react-intl";
 

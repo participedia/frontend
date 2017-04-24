@@ -36,7 +36,6 @@ export const METHOD = "METHOD";
 export const RECEIVED_NOUNS = "RECEIVED_NOUNS";
 
 export function loadNouns(noun) {
-  console.log("doing loadNouns", noun);
   return dispatch => {
     return api.fetchNouns(noun).then(
       function(response) {
@@ -103,7 +102,6 @@ export function receiveObjectSaved(state, id) {
 }
 
 export function makeObject(thingType, object) {
-  // console.log("in makeObject", object);
   return dispatch => {
     dispatch(startSaveObject(object));
     if (
@@ -183,7 +181,7 @@ export function search(query, selectedCategory, sortingMethod) {
   return dispatch => {
     dispatch(startSearch(query, selectedCategory, sortingMethod));
     return api
-      .performSearch(query, selectedCategory, sortingMethod)
+      .performSearch({ query, selectedCategory, sortingMethod })
       .then(response => dispatch(receiveData(query, response)), function(err) {
         console.log("got an error after performSearch", err);
       });

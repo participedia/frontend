@@ -1,4 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";
@@ -6,10 +8,92 @@ import { Container, Col } from "reactstrap";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
+import Chip from "material-ui/Chip";
+import myhistory from "../../utils/history";
+import queryString from "query-string";
 import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
+
+class LinkToSearch extends React.Component {
+  render() {
+    let { label, query, intl } = this.props;
+    return (
+      <div>
+        <Link to={`/search?${queryString.stringify(query)}`}>
+          {intl.formatMessage({ id: label })}
+        </Link>
+      </div>
+    );
+  }
+}
+
+class FeaturedSearches extends React.Component {
+  render() {
+    return (
+      <div>
+        <LinkToSearch
+          label="mention_participatory_budgeting"
+          query={{ query: "participatory budgeting" }}
+          intl={this.props.intl}
+        />
+        <LinkToSearch
+          label="tag_infrastructure"
+          query={{ tag: "infrastructure" }}
+          intl={this.props.intl}
+        />
+      </div>
+    );
+  }
+}
+
+class FilterArray extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { chipData: props.data };
+    this.styles = {
+      chip: {
+        margin: 4
+      },
+      wrapper: {
+        display: "flex",
+        flexWrap: "wrap"
+      }
+    };
+  }
+
+  handleRequestDelete = key => {
+    // this.chipData = this.state.chipData;
+    // const chipToDelete = this.chipData.map(chip => chip.key).indexOf(key);
+    // this.chipData.splice(chipToDelete, 1);
+    // this.setState({ chipData: this.chipData });
+    let parameters = queryString.parse(myhistory.location.search);
+    delete parameters[key];
+    let newquerystring = queryString.stringify(parameters);
+    myhistory.push(`/search?${newquerystring}`);
+  };
+
+  renderChip(data) {
+    return (
+      <Chip
+        key={data.key}
+        onRequestDelete={() => this.handleRequestDelete(data.key)}
+        style={this.styles.chip}
+      >
+        {data.label}
+      </Chip>
+    );
+  }
+
+  render() {
+    return (
+      <div style={this.styles.wrapper}>
+        {this.state.chipData.map(this.renderChip, this)}
+      </div>
+    );
+  }
+}
 
 export class SearchResultsView extends React.Component {
   constructor() {
@@ -42,31 +126,34 @@ export class SearchResultsView extends React.Component {
       });
     });
 
-    let includeCases = this.props.selectedCategory === "All" ||
+    let includeCases =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Cases";
-    let includeMethods = this.props.selectedCategory === "All" ||
+    let includeMethods =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Methods";
-    let includeNews = this.props.selectedCategory === "All" ||
+    let includeNews =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "News";
-    let includeOrgs = this.props.selectedCategory === "All" ||
+    let includeOrgs =
+      this.props.selectedCategory === "All" ||
       this.props.selectedCategory === "Organizations";
 
     let cases = includeCases ? categories["case"] : [];
     let methods = includeMethods ? categories["method"] : [];
     let orgs = includeOrgs ? categories["organization"] : [];
     let news = includeNews ? categories["news"] : [];
+    let formatMessage = this.props.intl.formatMessage;
 
-    let resultsCount = cases.length +
-      methods.length +
-      orgs.length +
-      news.length;
+    let resultsCount =
+      cases.length + methods.length + orgs.length + news.length;
     let query = this.props.query;
     let results = "";
     if (this.props.searching) {
       results = (
         <div>
           <h3>
-            {this.props.intl.formatMessage({ id: "searching_for" })}
+            {formatMessage({ id: "searching_for" })}
             {" "}
             &nbsp;
             {query}
@@ -74,31 +161,56 @@ export class SearchResultsView extends React.Component {
         </div>
       );
     } else {
+      let description = `Searched for:`;
+      let restrictions = queryString.parse(myhistory.location.search);
+      let filters = [];
+      let searchTerm = "";
+      Object.keys(restrictions).forEach(function(key, index) {
+        if (key === "query") {
+          searchTerm = restrictions[key];
+        } else {
+          filters.push({
+            key: key,
+            label: formatMessage({ id: key }) + " : " + restrictions[key]
+          });
+        }
+      });
+
       results = (
-        <div className="result-count">
-          <p>
-            {resultsCount}&nbsp;
-            {this.props.intl.formatMessage({
-              id: "result" + (resultsCount === 1 ? "" : "s")
-            })}
-          </p>
-          <div className="results-box">
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "news" })}
-              results={news}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "cases" })}
-              results={cases}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "methods" })}
-              results={methods}
-            />
-            <SearchHitCategory
-              title={this.props.intl.formatMessage({ id: "organizations" })}
-              results={orgs}
-            />
+        <div className="search-results">
+          <div className="search-description">
+            {searchTerm
+              ? <div>
+                  {description} <div className="search-term">{searchTerm}</div>
+                </div>
+              : <div />}
+            <FilterArray data={filters} />
+          </div>
+          <div className="result-count">
+            <p>
+              {resultsCount}&nbsp;
+              {this.props.intl.formatMessage({
+                id: "result" + (resultsCount === 1 ? "" : "s")
+              })}
+            </p>
+            <div className="results-box">
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "news" })}
+                results={news}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "cases" })}
+                results={cases}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "methods" })}
+                results={methods}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "organizations" })}
+                results={orgs}
+              />
+            </div>
           </div>
         </div>
       );
@@ -125,14 +237,8 @@ export class SearchResultsView extends React.Component {
                   id: this.props.sortingMethod
                 })}
               </p>
-              <a
-                href="#"
-                onClick={this.props.onSortingChange.bind(
-                  this,
-                  this.props.query,
-                  this.props.selectedCategory,
-                  "featured"
-                )}
+              <div
+                onClick={this.props.onSortingChange.bind(this, "featured")}
                 className={
                   this.props.sortingMethod === "featured"
                     ? "selected"
@@ -140,15 +246,9 @@ export class SearchResultsView extends React.Component {
                 }
               >
                 {this.props.intl.formatMessage({ id: "featured" })}
-              </a>
-              <a
-                href="#"
-                onClick={this.props.onSortingChange.bind(
-                  this,
-                  this.props.query,
-                  this.props.selectedCategory,
-                  "chronological"
-                )}
+              </div>
+              <div
+                onClick={this.props.onSortingChange.bind(this, "chronological")}
                 className={
                   this.props.sortingMethod === "chronological"
                     ? "selected"
@@ -156,15 +256,9 @@ export class SearchResultsView extends React.Component {
                 }
               >
                 {this.props.intl.formatMessage({ id: "chronological" })}
-              </a>
-              <a
-                href="#"
-                onClick={this.props.onSortingChange.bind(
-                  this,
-                  this.props.query,
-                  this.props.selectedCategory,
-                  "alphabetical"
-                )}
+              </div>
+              <div
+                onClick={this.props.onSortingChange.bind(this, "alphabetical")}
                 className={
                   this.props.sortingMethod === "alphabetical"
                     ? "selected"
@@ -172,17 +266,23 @@ export class SearchResultsView extends React.Component {
                 }
               >
                 {this.props.intl.formatMessage({ id: "alphabetical" })}
-              </a>
+              </div>
+            </div>
+            <div className="featured-searches-area">
+              <div className="featured-searches-header">
+                {this.props.intl.formatMessage({ id: "featured_searches" })}
+              </div>
+              <div className="featured-searches">
+                <FeaturedSearches intl={this.props.intl} />
+              </div>
             </div>
           </Col>
           <Col md="9">
             <div className="clearfix search-actions-area">
               <div className="filters hidden-xs-down">
-                <a
-                  href="#"
-                  onClick={preventDefault(
-                    this.props.onCategoryChange.bind(this, "All")
-                  )}
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("All"))}
                   className={
                     this.props.selectedCategory === "All"
                       ? "selected"
@@ -190,12 +290,10 @@ export class SearchResultsView extends React.Component {
                   }
                 >
                   {this.props.intl.formatMessage({ id: "all" })}
-                </a>
-                <a
-                  href="#"
-                  onClick={preventDefault(
-                    this.props.onCategoryChange.bind(this, "News")
-                  )}
+                </div>
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("News"))}
                   className={
                     this.props.selectedCategory === "News"
                       ? "selected"
@@ -203,12 +301,10 @@ export class SearchResultsView extends React.Component {
                   }
                 >
                   {this.props.intl.formatMessage({ id: "news" })}
-                </a>
-                <a
-                  href="#"
-                  onClick={preventDefault(
-                    this.props.onCategoryChange.bind(this, "Cases")
-                  )}
+                </div>
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("Cases"))}
                   className={
                     this.props.selectedCategory === "Cases"
                       ? "selected"
@@ -216,12 +312,11 @@ export class SearchResultsView extends React.Component {
                   }
                 >
                   {this.props.intl.formatMessage({ id: "cases" })}
-                </a>
-                <a
+                </div>
+                <div
                   href="#"
-                  onClick={preventDefault(
-                    this.props.onCategoryChange.bind(this, "Methods")
-                  )}
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("Methods"))}
                   className={
                     this.props.selectedCategory === "Methods"
                       ? "selected"
@@ -229,12 +324,13 @@ export class SearchResultsView extends React.Component {
                   }
                 >
                   {this.props.intl.formatMessage({ id: "methods" })}
-                </a>
-                <a
+                </div>
+                <div
                   href="#"
-                  onClick={preventDefault(
-                    this.props.onCategoryChange.bind(this, "Organizations")
-                  )}
+                  onClick={() =>
+                    preventDefault(
+                      this.props.onCategoryChange("Organizations")
+                    )}
                   className={
                     this.props.selectedCategory === "Organizations"
                       ? "selected"
@@ -242,7 +338,7 @@ export class SearchResultsView extends React.Component {
                   }
                 >
                   {this.props.intl.formatMessage({ id: "organizations" })}
-                </a>
+                </div>
               </div>
               <select
                 className="mobile-select hidden-sm-up"
@@ -266,11 +362,9 @@ export class SearchResultsView extends React.Component {
                 </option>
               </select>
               <div className="view-types hidden-sm-down">
-                <a
-                  href="#"
-                  onClick={preventDefault(
-                    this.props.onLayoutChange.bind(this, "grid")
-                  )}
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onLayoutChange("grid"))}
                   className={
                     this.props.selectedViewType === "grid"
                       ? "selected"
@@ -283,12 +377,10 @@ export class SearchResultsView extends React.Component {
                     className="grid-icon"
                     alt=""
                   />
-                </a>
-                <a
-                  href="#"
-                  onClick={preventDefault(
-                    this.props.onLayoutChange.bind(this, "list")
-                  )}
+                </div>
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onLayoutChange("list"))}
                   className={
                     this.props.selectedViewType === "list"
                       ? "selected"
@@ -301,14 +393,14 @@ export class SearchResultsView extends React.Component {
                     className="list-icon"
                     alt=""
                   />
-                </a>
-                <a href="#" onClick={this.props.startDownload.bind(this)}>
+                </div>
+                <div onClick={this.props.startDownload.bind(this)}>
                   <img
                     src="../img/pp-search-dl-icon.png"
                     className="dl-icon"
                     alt=""
                   />
-                </a>
+                </div>
               </div>
             </div>
             {results}
@@ -320,13 +412,9 @@ export class SearchResultsView extends React.Component {
 }
 
 SearchResultsView.propTypes = {
-  data: PropTypes.array.isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  sortingMethod: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,
-  searching: PropTypes.bool.isRequired,
-  onCategoryChange: PropTypes.func.isRequired,
-  onSortingChange: PropTypes.func.isRequired,
-  onLayoutChange: PropTypes.func.isRequired,
-  startDownload: PropTypes.func.isRequired,
   intl: intlShape.isRequired
 };
 

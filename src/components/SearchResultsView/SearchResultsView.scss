@@ -23,7 +23,7 @@
       border-top: 1px solid $dark-grey;
       margin-top: 70px;
 
-      a {
+      div {
         font-size: 1rem;
         font-weight: 500;
         color: #666;
@@ -77,7 +77,7 @@
     float: left;
   }
 
-  .filters a {
+  .filters div {
     font-size: 1.2rem;
     font-weight: 600;
     color: $primary-color;
@@ -129,14 +129,15 @@
     }
   }
 
-  .filters a.selected {
+  .filters div.selected {
     background: transparent;
     border-bottom: 4px solid $black;
+    color: $interactive-color;
     &:hover {
       border-bottom: 4px solid darken($interactive-color,10%);
     }
   }
-  .filters a:hover {
+  .filters div:hover {
     text-decoration: none;
     color: $interactive-color;
     background: $light-grey;
@@ -145,7 +146,7 @@
       display:none;
     }
   }
-  .filters a:focus {
+  .filters div:focus {
     text-decoration:none;
   }
 
@@ -159,7 +160,7 @@
       margin-top:20px;
     }
 
-    a {
+    div {
       display: block;
       float: left;
 
@@ -181,7 +182,7 @@
       }
     }
 
-    a.selected, a:hover, a:focus {
+    div.selected, div:hover, div:focus {
       img:first-child {
         display: none;
       }
@@ -225,14 +226,21 @@
   }
 }
 
-
-.result-count {
-  padding: 14px 0;
+.search-results {
   @include media-breakpoint-up(lg) {
     padding:0;
     position:relative;
-    top:-80px;
+    top:-80px; // XXX don't understand what this is doing.
   }
+  
+}
+
+.search-term {
+  font-size: 2.3rem;
+}
+
+.result-count {
+  padding: 14px 0;
   p {
     font-size: 1rem;
     font-weight: 400;
@@ -255,4 +263,22 @@
   appearance: none;
   background: url('../../img/dropdown.png') no-repeat right;
   background-size:30px;
+}
+
+.featured-searches-header {
+  padding-top: 1em;
+  padding-left: 1ex;
+  text-transform: uppercase;
+}
+
+.featured-searches {
+  padding-left: 2em;
+  padding-top: 1ex;
+  a {
+    color: $primary-color;
+    &.selected, &:hover, &:focus {
+      color: $interactive-color;
+      background: lighten($light-grey,3%);
+    }
+  }
 }

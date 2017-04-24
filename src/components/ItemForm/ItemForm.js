@@ -52,7 +52,6 @@ const renderChip = (
       input.onChange(values);
     }}
     onRequestDelete={deletedChip => {
-      console.log(input.value, deletedChip);
       let values = input.value || [];
       values = values.filter(v => v.value !== deletedChip);
       input.onChange(values);
@@ -92,7 +91,7 @@ class ItemForm extends Component {
           <FormGroup>
             <Label>{this.props.intl.formatMessage({ id: "summary" })}</Label>
             <Field
-              name="summary"
+              name="body"
               className="title"
               placeholder="Placeholder for summary"
               component={renderTextField}

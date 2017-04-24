@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ItemForm from "../ItemForm/ItemForm";
 import { reduxForm } from "redux-form";
@@ -54,6 +55,9 @@ const mapStateToProps = state => {
 };
 
 function extract_ids(list_of_dicts) {
+  if (!list_of_dicts) {
+    return [];
+  }
   return list_of_dicts.map(m => m["value"]);
 }
 
@@ -68,16 +72,15 @@ const mapDispatchToProps = dispatch => {
       ) {
         let payload = Object.assign({}, data);
         delete payload["type"];
-        console.log("payload", payload);
         payload["related_cases"] = extract_ids(payload["related_cases"]);
         payload["related_methods"] = extract_ids(payload["related_methods"]);
         payload["related_organizations"] = extract_ids(
           payload["related_organizations"]
         );
-        console.log("payload", payload);
         dispatch(makeObject(thingType, payload));
       }
     },
+
     loadOrganizationList: function() {
       // XXX should make sure this is lazy
       dispatch(loadNouns(ORGANIZATION));

@@ -1,279 +1,251 @@
-import React, { Component } from "react";
+import React from "react";
 import { injectIntl, intlShape } from "react-intl";
-import { Form, Text } from "react-form";
+import { Field } from "simple-react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor.css";
-import { Container, Row, Col } from "reactstrap";
-import ReactQuill from "react-quill";
-import Upload from "../../Upload";
-import AutoComplete from "material-ui/AutoComplete";
 import "../GeoSuggest/GeoSuggest.css";
-import "../../quill.core.css";
-import "../../quill.snow.css";
+import {
+  SimpleRelatedCases,
+  SimpleRelatedMethods,
+  SimpleRelatedOrganizations
+} from "../RelatedEditors";
+import ItemEditor from "../ItemEditor";
 
-let BodyEditor = React.createClass({
-  _quillModules: {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" }
-      ],
-      ["link", "image"],
-      ["clean"]
-    ]
-    /* ... other modules */
-  },
+import {
+  TextPropEditor,
+  BooleanPropEditor,
+  NumberPropEditor,
+  DatePropEditor,
+  ChoicePropEditor
+} from "../PropEditors";
 
-  _quillFormats: [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image"
-  ],
+function CaseSidebar({ thing, intl, cases, methods, organizations }) {
+  let related_cases = (
+    <Field
+      fieldName="related_cases"
+      name="related_cases"
+      thing={thing}
+      type={SimpleRelatedCases}
+      property="related_cases"
+      value={thing.related_cases || []}
+      dataSource={cases}
+      intl={intl}
+    />
+  );
+  let related_methods = (
+    <Field
+      fieldName="related_methods"
+      name="related_methods"
+      thing={thing}
+      type={SimpleRelatedMethods}
+      property="related_methods"
+      value={thing.related_methods || []}
+      dataSource={methods}
+      intl={intl}
+    />
+  );
+  let related_organizations = (
+    <Field
+      fieldName="related_organizations"
+      name="related_organizations"
+      thing={thing}
+      type={SimpleRelatedOrganizations}
+      property="related_organizations"
+      value={thing.related_organizations || []}
+      dataSource={organizations}
+      intl={intl}
+    />
+  );
 
-  render: function() {
-    return (
-      <div className="_quill">
-        <ReactQuill
-          theme="snow"
-          modules={this._quillModules}
-          formats={this._quillFormats}
-          bounds={"._quill"}
-        >
-          <div
-            key="editor"
-            ref="editor"
-            className="quill-contents border_solid_top"
-            dangerouslySetInnerHTML={{ __html: this.props.value }}
-          />
-        </ReactQuill>
+  return (
+    <div>
+      <div className="case-location">
+        <p className="sub-heading">
+          {intl.formatMessage({
+            id: "country_picker"
+          })}
+        </p>
+        <Geosuggest />
       </div>
-    );
-  }
-});
+      <p className="sub-heading">
+        Keywords
+      </p>
+      keyword picker
+      <p className="sub-heading">
+        Related Content
+      </p>
+      <div className="related-content">
+        <div className="pb-1">
+          <h5>
+            {intl.formatMessage({ id: "cases" })}
+          </h5>
+          {related_cases}
+        </div>
+        <div className="pb-1">
+          <h5>
+            {intl.formatMessage({ id: "methods" })}
+          </h5>
+          {related_methods}
+        </div>
+        <div className="pb-1">
+          <h5>
+            {intl.formatMessage({ id: "organizations" })}
+          </h5>
+          {related_organizations}
+        </div>
+        <ChoicePropEditor
+          intl={intl}
+          label="specific_topic"
+          property="specific_topic"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="issue"
+          property="issue"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="communication_mode"
+          property="communication_mode"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="communication_with_audience"
+          property="communication_with_audience"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="decision_method"
+          property="decision_method"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="facetoface_online_or_both"
+          property="facetoface_online_or_both"
+          thing={thing}
+        />
+        <BooleanPropEditor
+          intl={intl}
+          label="facilitated"
+          property="facilitated"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="voting"
+          property="voting"
+          thing={thing}
+        />
+        <NumberPropEditor
+          intl={intl}
+          label="number_of_meeting_days"
+          property="number_of_meeting_days"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="targeted_participant_demographic"
+          property="targeted_participant_demographic"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="kind_of_influence"
+          property="kind_of_influence"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="targeted_participants_public_role"
+          property="targeted_participants_public_role"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="targeted_audience"
+          property="targeted_audience"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="participant_selection"
+          property="participant_selection"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="type_of_funding_entity"
+          property="type_of_funding_entity"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="typical_implementing_entity"
+          property="typical_implementing_entity"
+          thing={thing}
+        />
+        <ChoicePropEditor
+          intl={intl}
+          label="typical_sponsoring_entity"
+          property="typical_sponsoring_entity"
+          thing={thing}
+        />
+        <BooleanPropEditor
+          intl={intl}
+          label="ongoing"
+          property="ongoing"
+          thing={thing}
+        />
+        <DatePropEditor
+          intl={intl}
+          label="start_date"
+          property="start_date"
+          thing={thing}
+        />
+        <DatePropEditor
+          intl={intl}
+          label="end_date"
+          property="end_date"
+          thing={thing}
+        />
+        <DatePropEditor
+          intl={intl}
+          label="updated_date"
+          property="updated_date"
+          thing={thing}
+        />
+        <NumberPropEditor
+          intl={intl}
+          label="total_number_of_participants"
+          property="total_number_of_participants"
+          thing={thing}
+        />
+        <TextPropEditor
+          intl={intl}
+          label="staff_type"
+          property="staff_type"
+          thing={thing}
+        />
+        <TextPropEditor
+          intl={intl}
+          label="who_else_supported_the_initiative"
+          property="who_else_supported_the_initiative"
+          thing={thing}
+        />
 
-class _CaseEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.makeLead = this.makeLead.bind(this);
-    this.handleNewImg = this.handleNewImg.bind(this);
-    this.deleteImg = this.deleteImg.bind(this);
-    this.deleteLead = this.deleteLead.bind(this);
-    this.state = {
-      lead: "",
-      newImg: false,
-      delImg: false
-    };
-  }
+      </div>
+    </div>
+  );
+}
 
-  makeLead(src) {
-    this.setState({ lead: src });
-  }
-
-  handleNewImg(img) {
-    this.setState({ newImg: true });
-    let currentImgs = this.props.case.other_images.length
-    this.props.case.other_images[currentImgs] = {url:img};
-  }
-
-  deleteImg(photo) {
-    this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let index = Object.keys(currentImgs).find(key => awsUrl + currentImgs[key]['url'] === photo || currentImgs[key]['url'] === photo);
-    if (index) {
-      this.props.case.other_images.splice(index, 1)
-    }
-  }
-
-  deleteLead(photo) {
-    this.setState({ delImg: true });
-    let currentImgs = this.props.case.other_images
-    this.props.case.lead_image = null;
-    if (currentImgs.length > 0) {
-      this.setState({ lead: currentImgs[0]['url'] });
-    }
-  }
-
-
-  render() {
-    const { onSubmit } = this.props;
-    const caseObject = this.props.case;
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let leadImg = "";
-    let otherImgs = [];
-    if (caseObject && caseObject.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(caseObject.lead_image.url);
-    }
-    if (caseObject && caseObject.other_images) {
-      Object.keys(caseObject.other_images).forEach(function(key) {
-        let obj = caseObject.other_images[key];
-        if ((obj.url).substring(0,4) === 'blob') {
-          otherImgs.push(obj.url);
-        } else {
-          otherImgs.push(awsUrl + encodeURIComponent(obj.url));
-        }
-      });
-    }
-
-    if (!caseObject) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <Form onSubmit={onSubmit} defaultValues={caseObject}>
-        {({ submitForm }) => {
-          return (
-            <form onSubmit={submitForm}>
-              <div className="main-contents">
-                <Container className="detailed-case-component" fluid={true}>
-                  <Col
-                    md="3"
-                    className="hidden-sm-down sidepanel hidden-sm-down"
-                  >
-                    <div className="case-location">
-                      <p className="sub-heading">
-                        {this.props.intl.formatMessage({
-                          id: "country_picker"
-                        })}
-                      </p>
-                      <Geosuggest />
-                    </div>
-                    <p className="sub-heading">
-                      Keywords
-                    </p>
-                    keyword picker
-                    <p className="sub-heading">
-                      Related Content
-                    </p>
-                    <div className="related-content">
-                      <div className="pb-1">
-                        <h5>
-                          {this.props.intl.formatMessage({ id: "cases" })}
-                        </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_cases"
-                          })}
-                          dataSource={this.props.cases}
-                        />
-                      </div>
-                      <div className="pb-1">
-                        <h5>
-                          {this.props.intl.formatMessage({ id: "methods" })}
-                        </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_methods"
-                          })}
-                          dataSource={this.props.methods}
-                        />
-                      </div>
-                      <div className="pb-1">
-                        <h5>
-                          {this.props.intl.formatMessage({
-                            id: "organizations"
-                          })}
-                        </h5>
-                        <AutoComplete
-                          hintText={this.props.intl.formatMessage({
-                            id: "search_related_orgs"
-                          })}
-                          dataSource={this.props.organizations}
-                        />
-                      </div>
-                    </div>
-                  </Col>
-                  <Col md="8" xs="12" className="main-area">
-                    <div className="case-box">
-                      <h2 className="category">
-                        Case
-                      </h2>
-                      <h2 className="case-title">
-                        {caseObject.title}
-                      </h2>
-                      <Row className="itemPics">
-                        {leadImg
-                          ? <Col sm="6" md="3">
-                              <div
-                                className={
-                                  this.state.lead === leadImg ||
-                                    this.state.lead === ""
-                                    ? "box lead"
-                                    : "box"
-                                }
-                              >
-                                <div className="checkbox" onClick={this.makeLead.bind(this, leadImg)} />
-                                <div className="trash" onClick={this.deleteLead.bind(this, leadImg)} />
-                                <img
-                                  className="img-fluid"
-                                  alt=""
-                                  src={leadImg}
-                                />
-                                {this.state.lead === leadImg ||
-                                  this.state.lead === ""
-                                  ? <small>Lead Image</small>
-                                  : undefined}
-                              </div>
-                            </Col>
-                          : undefined}
-                        {otherImgs
-                          ? otherImgs.map((photo, id) => (
-                              <Col key={id} sm="6" md="3">
-                                <div
-                                  className={
-                                    this.state.lead === photo
-                                      ? "box lead"
-                                      : "box"
-                                  }
-                                >
-                                  <div className="checkbox" onClick={this.makeLead.bind(this, photo)} />
-                                  <div className="trash" onClick={this.deleteImg.bind(this, photo)} />
-                                  <img
-                                    key={id}
-                                    alt=""
-                                    className="img-fluid"
-                                    src={photo}
-                                  />
-                                  {this.state.lead === photo
-                                    ? <small>Lead Image</small>
-                                    : undefined}
-                                </div>
-                              </Col>
-                            ))
-                          : undefined}
-                        <Col md="3"><Upload itemEdit={true} addToList={this.handleNewImg} /></Col>
-                      </Row>
-                      <div className="title-edit">
-                        <label htmlFor="title">Title</label>
-                      </div>
-                      <Text field="title" placeholder="case title" />
-                      <div>
-                        <label htmlFor="body_en">Body</label>
-                      </div>
-                      <BodyEditor value={caseObject.body} />
-                    </div>
-                    <button type="submit">Submit</button>
-                  </Col>
-                </Container>
-              </div>
-            </form>
-          );
-        }}
-      </Form>
-    );
-  }
+function _CaseEditor(props) {
+  let sidebar = <CaseSidebar {...props} />;
+  return <ItemEditor {...props} thing={props.thing} sidebar={sidebar} />;
 }
 
 _CaseEditor.propTypes = {

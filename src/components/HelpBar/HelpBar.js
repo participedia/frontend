@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import "./HelpBar.css";
 import { injectIntl } from "react-intl";
 
@@ -76,7 +76,7 @@ class HelpBar extends React.Component {
           <ul className="data-list">
             {this.state.filteredHelpItems.map((item, i) => (
               <li key={i}>
-                <Link to={"/" + this.props.locale + "/help/1"}>{item}</Link>
+                <Link to="/help/1">{item}</Link>
               </li>
             ))}
             {this.state.filteredHelpItems.length === 0

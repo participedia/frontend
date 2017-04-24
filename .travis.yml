@@ -30,4 +30,4 @@ deploy:
   skip_cleanup: true
   provider: surge
   project: ./build/
-  domain: participedia.xyz
+  domain: https://participedia.xyz

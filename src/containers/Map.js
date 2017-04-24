@@ -1,17 +1,19 @@
-import { connect } from "react-redux";
-import { search } from "../actions";
+import React, { Component } from "react";
+import api from "../utils/api";
 import MapVisualization from "../components/MapVisualization/MapVisualization";
 
-const mapDispatchToProps = dispatch => ({
-  onCountryChange: country => {
-    dispatch(search("geo_country:" + country));
+export default class Map extends Component {
+  componentWillMount() {
+    api.searchMapTokens().then(results => this.setState(results));
   }
-});
 
-const Map = connect(
-  undefined,
-  // mapStateToProps,
-  mapDispatchToProps
-)(MapVisualization);
-
-export default Map;
+  render() {
+    if (!this.state) return <div>LOADING MAP DATA</div>;
+    return (
+      <MapVisualization
+        cases={this.state.cases}
+        organizations={this.state.orgs}
+      />
+    );
+  }
+}

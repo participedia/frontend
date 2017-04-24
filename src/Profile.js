@@ -1,8 +1,9 @@
-import React, { Component, PropTypes as T } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
 import { injectIntl, intlShape } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SearchResults from "./containers/SearchResults";
 
@@ -11,7 +12,7 @@ import "./Profile.css";
 class Profile extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
-    profile: T.object.isRequired
+    profile: PropTypes.object.isRequired
   };
 
   render() {

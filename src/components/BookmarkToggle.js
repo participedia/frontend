@@ -3,6 +3,8 @@ import Bookmark from "material-ui/svg-icons/action/bookmark";
 import BookmarkBorder from "material-ui/svg-icons/action/bookmark-border";
 import IconButton from "material-ui/IconButton";
 import api from "../utils/api";
+import authService from "../utils/AuthService";
+import myhistory from "../utils/history";
 
 const styles = {
   smallIcon: {
@@ -38,8 +40,9 @@ class BookmarkIcon extends React.Component {
   render() {
     if (this.props.bookmarked) {
       return <Bookmark style={styles.mediumIcon} />;
-    } else
+    } else {
       return <BookmarkBorder style={styles.mediumIcon} />;
+    }
   }
 }
 
@@ -58,31 +61,35 @@ export default class BookmarkToggle extends React.Component {
   }
 
   toggleBookmark(thingType, thingID) {
-    let effectSwitch = this.effectSwitch.bind(this);
-    if (this.state.bookmarked) {
-      // We are unbookmarking
-      api
-        .removeBookmark(this.props.thingType, this.props.thingID)
-        .then(() => effectSwitch())
-        .catch(() => {
-          console.error(
-            "Error adding a bookmark",
-            this.props.thingType,
-            this.props.thingID
-          );
-        });
+    if (!authService.loggedIn()) {
+      authService.login(myhistory.location.pathname);
     } else {
-      // We are bookmarking
-      api
-        .addBookmark(this.props.thingType, this.props.thingID)
-        .then(() => effectSwitch())
-        .catch(() => {
-          console.error(
-            "Error removing a bookmark",
-            this.props.thingType,
-            this.props.thingID
-          );
-        });
+      let effectSwitch = this.effectSwitch.bind(this);
+      if (this.state.bookmarked) {
+        // We are unbookmarking
+        api
+          .removeBookmark(this.props.thingType, this.props.thingID)
+          .then(() => effectSwitch())
+          .catch(() => {
+            console.error(
+              "Error adding a bookmark",
+              this.props.thingType,
+              this.props.thingID
+            );
+          });
+      } else {
+        // We are bookmarking
+        api
+          .addBookmark(this.props.thingType, this.props.thingID)
+          .then(() => effectSwitch())
+          .catch(() => {
+            console.error(
+              "Error removing a bookmark",
+              this.props.thingType,
+              this.props.thingID
+            );
+          });
+      }
     }
   }
   render() {
