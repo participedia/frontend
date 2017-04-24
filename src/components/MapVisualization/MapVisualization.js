@@ -67,9 +67,13 @@ class MapVisualization extends React.Component {
     let cases = extractData(props.cases, "case");
     let organizations = extractData(props.organizations, "organization");
     let component = this;
+    // For fun, we offer to center the map on where the viewer is.
     navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
       component.setState({
-        center: [position.coords.latitude, position.coords.longitude]
+        center: [lng, lat],
+        zoom: [5]
       });
     });
 
@@ -77,7 +81,7 @@ class MapVisualization extends React.Component {
       cases: cases,
       organizations: organizations,
       popupShowLabel: true,
-      center: [-9.9215833, -45.4099109],
+      center: [-9.9215833, -15.4099109],
       zoom: [2],
       focus: null
     };
