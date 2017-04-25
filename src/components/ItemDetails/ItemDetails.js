@@ -41,6 +41,7 @@ class Featured extends React.Component {
       ? <div className="featuretoggle">
           <Toggle
             onToggle={this.onToggle.bind(this)}
+            labelPosition="right"
             value={this.props.thing.featured}
             label="Featured"
           />
@@ -120,15 +121,12 @@ export default class ItemDetails extends React.Component {
                       >
                         <img src={caseIconFB} alt="" />
                       </FacebookShareButton>
-                    </li>        
+                    </li>
                     <li>
-                      <TwitterShareButton
-                        url={currentUrl}
-                        title={thing.title}
-                      >
+                      <TwitterShareButton url={currentUrl} title={thing.title}>
                         <img src={caseIconTW} alt="" />
                       </TwitterShareButton>
-                    </li>        
+                    </li>
                   </ul>
                   {thing.vidURL
                     ? <Row>
