@@ -94,7 +94,6 @@ class MapVisualization extends React.Component {
   _markerClick(focus) {
     this.setState({
       center: focus.position,
-      zoom: [5],
       focus: focus,
       popupShowLabel: true
     });
