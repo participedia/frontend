@@ -1,23 +1,28 @@
-👋 Hello! Thanks for contributing. Please use the template that matches your intention  
+👋 Hello! Thanks for contributing. 
 
-_I am..._
-
-| -------------------------------------------------------------------------------------------------
-| Requesting a new feature
-| -------------------------------------------------------------------------------------------------
+_I am..._ (requesting a feature)
 
 **Proposal/Feature-request:**
 
-| -------------------------------------------------------------------------------------------------
-| Reporting a bug or issue
-| -------------------------------------------------------------------------------------------------
+or: (Reporting a bug or issue)
 
 **Expected behavior:**
 
+When I...
+
 **Observed behavior:**
+
+I see...
 
 **How to reproduce:**
 
+* step 1: ___
+* step 2: ___
+* etc.
+
 **What OS and browser are you using?**
+
+* Operating System
+* Browser and browser version
 
 **Please add a screenshot if relevant**
