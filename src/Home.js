@@ -28,6 +28,11 @@ class Home extends React.Component {
     localStorage.setItem("skipWelcome", "true");
   }
 
+  shouldComponentUpdate(newProps) {
+    console.log(this.props, newProps);
+    return false;
+  }
+
   render() {
     return (
       <div className="home">
