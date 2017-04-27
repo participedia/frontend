@@ -96,7 +96,7 @@ class Routes extends React.Component {
         <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" component={ProfileLoader} />
         <PrivateRoute
           path="/profile/edit"
           component={ProfileEditor}
