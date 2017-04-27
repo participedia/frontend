@@ -15,6 +15,7 @@ import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
+import { ChasingDots } from "better-react-spinkit";
 
 class LinkToSearch extends React.Component {
   render() {
@@ -150,9 +151,9 @@ export class SearchResultsView extends React.Component {
         <div>
           <h3>
             {formatMessage({ id: "searching_for" })}
-            {" "}
             &nbsp;
             {query}
+            {<div className="spinner"><ChasingDots size={50} /></div>}
           </h3>
         </div>
       );
@@ -185,36 +186,34 @@ export class SearchResultsView extends React.Component {
               : <div />}
             <FilterArray data={filters} />
           </div>
-          {searching
-            ? <div>Searching...</div>
-            : <div className="result-count">
-                <p>
-                  {resultsCount}&nbsp;
-                  {this.props.intl.formatMessage({
-                    id: "result" + (resultsCount === 1 ? "" : "s")
-                  })}
-                </p>
-                <div className="results-box">
-                  <SearchHitCategory
-                    title={this.props.intl.formatMessage({ id: "news" })}
-                    results={news}
-                  />
-                  <SearchHitCategory
-                    title={this.props.intl.formatMessage({ id: "cases" })}
-                    results={cases}
-                  />
-                  <SearchHitCategory
-                    title={this.props.intl.formatMessage({ id: "methods" })}
-                    results={methods}
-                  />
-                  <SearchHitCategory
-                    title={this.props.intl.formatMessage({
-                      id: "organizations"
-                    })}
-                    results={orgs}
-                  />
-                </div>
-              </div>}
+          <div className="result-count">
+            <p>
+              {resultsCount}&nbsp;
+              {this.props.intl.formatMessage({
+                id: "result" + (resultsCount === 1 ? "" : "s")
+              })}
+            </p>
+            <div className="results-box">
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "news" })}
+                results={news}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "cases" })}
+                results={cases}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({ id: "methods" })}
+                results={methods}
+              />
+              <SearchHitCategory
+                title={this.props.intl.formatMessage({
+                  id: "organizations"
+                })}
+                results={orgs}
+              />
+            </div>
+          </div>
         </div>
       );
     }

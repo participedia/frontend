@@ -46,6 +46,7 @@ import "./Layout.css";
 import { injectIntl, intlShape } from "react-intl";
 import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
+import myhistory from "./utils/history";
 
 import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
 
@@ -72,7 +73,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-const ScrollToTop = () => {
+function onSearch(pathname) {
+  return pathname === "/" || pathname === "/search";
+}
+
+const ScrollToTop = props => {
+  let wasSearch = onSearch(myhistory.location.pathname);
+  let isSearch = onSearch(props.location.pathname);
+  if (wasSearch && isSearch) {
+    // we don't scroll if we were and still are on a search page.
+    return null;
+  }
   window.scrollTo(0, 0);
   return null;
 };
@@ -82,6 +93,7 @@ class Routes extends React.Component {
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
+        <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
         <Route path="/profile" component={Profile} />
@@ -92,7 +104,6 @@ class Routes extends React.Component {
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
-        <Route path="/search" component={Home} />
         <Route path="/experiments" component={Experiments} />
         <Route path="/_upload" component={Upload} />
         <Route path="/teaching" component={Teaching} />
