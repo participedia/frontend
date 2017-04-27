@@ -65,7 +65,7 @@ export default class ItemDetails extends React.Component {
       />
     );
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl = "https://participedia.xyz" + this.props.location.pathname;
+    let currentUrl = process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;

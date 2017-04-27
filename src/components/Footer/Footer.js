@@ -11,7 +11,7 @@ import { ShareButtons } from "react-share";
 export class Footer extends React.Component {
   render() {
     const { FacebookShareButton, TwitterShareButton } = ShareButtons;
-    let currentUrl = "https://participedia.xyz";
+    let currentUrl = process.env.REACT_APP_ROOT_URL;
     let title = "Participedia";
 
     return (
