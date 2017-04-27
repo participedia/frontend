@@ -15,6 +15,7 @@ import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
+import { ChasingDots } from "better-react-spinkit";
 
 class LinkToSearch extends React.Component {
   render() {
@@ -64,10 +65,6 @@ class FilterArray extends React.Component {
   }
 
   handleRequestDelete = key => {
-    // this.chipData = this.state.chipData;
-    // const chipToDelete = this.chipData.map(chip => chip.key).indexOf(key);
-    // this.chipData.splice(chipToDelete, 1);
-    // this.setState({ chipData: this.chipData });
     let parameters = queryString.parse(myhistory.location.search);
     delete parameters[key];
     let newquerystring = queryString.stringify(parameters);
@@ -147,21 +144,24 @@ export class SearchResultsView extends React.Component {
 
     let resultsCount =
       cases.length + methods.length + orgs.length + news.length;
-    let query = this.props.query;
+    let { searching, query } = this.props;
     let results = "";
     if (this.props.searching) {
       results = (
         <div>
           <h3>
             {formatMessage({ id: "searching_for" })}
-            {" "}
             &nbsp;
             {query}
+            {<div className="spinner"><ChasingDots size={50} /></div>}
           </h3>
         </div>
       );
     } else {
       let description = `Searched for:`;
+      if (searching) {
+        description = "Searching for:";
+      }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];
       let searchTerm = "";
@@ -207,7 +207,9 @@ export class SearchResultsView extends React.Component {
                 results={methods}
               />
               <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "organizations" })}
+                title={this.props.intl.formatMessage({
+                  id: "organizations"
+                })}
                 results={orgs}
               />
             </div>
