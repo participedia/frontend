@@ -156,6 +156,10 @@ section.image-gallery {
     .top-icons {
       margin-top: 40px;
 
+      svg {
+        transform: translateX(-4px);
+      }
+
       .SocialMediaShareButton {
         img {
           width: 40px;

@@ -46,6 +46,7 @@ import "./Layout.css";
 import { injectIntl, intlShape } from "react-intl";
 import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
+import myhistory from "./utils/history";
 
 import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
 
@@ -72,10 +73,78 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-const ScrollToTop = () => {
+function onSearch(pathname) {
+  return pathname === "/" || pathname === "/search";
+}
+
+const ScrollToTop = props => {
+  let wasSearch = onSearch(myhistory.location.pathname);
+  let isSearch = onSearch(props.location.pathname);
+  if (wasSearch && isSearch) {
+    // we don't scroll if we were and still are on a search page.
+    return null;
+  }
   window.scrollTo(0, 0);
   return null;
 };
+
+class Routes extends React.Component {
+  render() {
+    return (
+      <div className="contentArea">
+        <Route exact path="/" component={Home} />
+        <Route path="/search" component={Home} />
+        <Route component={ScrollToTop} />
+        <Route path="/redirect" />
+        <Route path="/profile" component={Profile} />
+        <PrivateRoute
+          path="/profile/edit"
+          component={ProfileEditor}
+          onEnter={requireAuth}
+        />
+        <Route path="/help/:id" component={HelpArticle} />
+        <Route path="/about" component={About} />
+        <Route path="/experiments" component={Experiments} />
+        <Route path="/_upload" component={Upload} />
+        <Route path="/teaching" component={Teaching} />
+        <PrivateRoute
+          exact
+          path="/quick-submit"
+          component={QuickSubmitPicker}
+        />
+        <PrivateRoute path="/quick-submit/case" component={CaseForm} />
+        <PrivateRoute path="/quick-submit/method" component={MethodForm} />
+        <PrivateRoute
+          path="/quick-submit/organization"
+          component={OrganizationForm}
+        />
+        <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
+        <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
+        <Route path="/research" component={Research} />
+        <Route exact path="/case/:nodeID" component={Case} />
+        <PrivateRoute
+          path="/case/:nodeID/edit"
+          component={CaseEditorContainer}
+          onEnter={requireAuth}
+        />
+        <Route exact path="/method/:nodeID" component={Method} />
+        <PrivateRoute
+          path="/method/:nodeID/edit"
+          component={MethodEditorContainer}
+          onEnter={requireAuth}
+        />
+        <Route exact path="/organization/:nodeID" component={Organization} />
+        <PrivateRoute
+          path="/organization/:nodeID/edit"
+          component={OrganizationEditorContainer}
+          onEnter={requireAuth}
+        />
+        <Route exact path="/users/:id" component={ProfileLoader} />
+        <PrivateRoute exact path="/add" component={Add} onEnter={requireAuth} />
+      </div>
+    );
+  }
+}
 
 export class Layout extends React.Component {
   static propTypes = {
@@ -107,6 +176,7 @@ export class Layout extends React.Component {
 
   render() {
     const { auth, profile, isAuthenticated } = this.props;
+    let routes = <Routes />;
     return (
       <div>
         <div className="nav-bar-component">
@@ -176,73 +246,8 @@ export class Layout extends React.Component {
           >
             {this.props.intl.formatMessage({ id: "add_new" })}
           </MenuItem>
-          <MenuItem
-            containerElement={
-              <Link to={this.props.location.pathname + "?help"} />
-            }
-            onTouchTap={this.handleClose}
-          >
-            {this.props.intl.formatMessage({ id: "help" })}
-          </MenuItem>
         </Drawer>
-        <div className="contentArea">
-          <Route exact path="/" component={Home} />
-          <Route component={ScrollToTop} />
-          <Route path="/redirect" />
-          <Route exact path="/profile" component={ProfileLoader} />
-          <Route path="/profile/:id" component={ProfileLoader} />
-          <PrivateRoute
-            path="/profile/edit"
-            component={ProfileEditor}
-            onEnter={requireAuth}
-          />
-          <Route path="/help/:id" component={HelpArticle} />
-          <Route path="/about" component={About} />
-          <Route path="/search" render={() => <Home />} />
-          <Route path="/experiments" component={Experiments} />
-          <Route path="/_upload" component={Upload} />
-          <Route path="/teaching" component={Teaching} />
-          <PrivateRoute
-            exact
-            path="/quick-submit"
-            component={QuickSubmitPicker}
-          />
-          <PrivateRoute path="/quick-submit/case" component={CaseForm} />
-          <PrivateRoute path="/quick-submit/method" component={MethodForm} />
-          <PrivateRoute
-            path="/quick-submit/organization"
-            component={OrganizationForm}
-          />
-          <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
-          <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
-          <Route path="/research" component={Research} />
-          <Route exact path="/users/:id" component={ProfileLoader} />
-          <Route exact path="/case/:nodeID" component={Case} />
-          <PrivateRoute
-            path="/case/:nodeID/edit"
-            component={CaseEditorContainer}
-            onEnter={requireAuth}
-          />
-          <Route exact path="/method/:nodeID" component={Method} />
-          <PrivateRoute
-            path="/method/:nodeID/edit"
-            component={MethodEditorContainer}
-            onEnter={requireAuth}
-          />
-          <Route exact path="/organization/:nodeID" component={Organization} />
-          <PrivateRoute
-            path="/organization/:nodeID/edit"
-            component={OrganizationEditorContainer}
-            onEnter={requireAuth}
-          />
-          <PrivateRoute
-            exact
-            path="/add"
-            component={Add}
-            onEnter={requireAuth}
-          />
-
-        </div>
+        {routes}
         <Footer />
       </div>
     );

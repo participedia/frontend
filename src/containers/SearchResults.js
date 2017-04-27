@@ -11,6 +11,7 @@ export default class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: [],
       query: "",
       searching: true,
       selectedCategory: DEFAULT_CATEGORY,
@@ -26,6 +27,10 @@ export default class SearchResults extends React.Component {
     }
     this._updateSearch(queryArgs);
   }
+  componentWillReceiveProps(nextProps) {
+    this._updateSearch(queryString.parse(nextProps.location.search));
+  }
+
   _updateSearch(newState) {
     let queryArgs = {
       query: this.state.query
@@ -41,6 +46,7 @@ export default class SearchResults extends React.Component {
       queryArgs["selectedCategory"] = futureState.selectedCategory;
     }
     let component = this;
+    this.setState({ searching: true });
     api.performSearch(futureState).then(function(results) {
       if (results.error) {
         component.setState({ error: results.error });
@@ -70,26 +76,24 @@ export default class SearchResults extends React.Component {
         </div>
       );
     }
-    if (this.state.data) {
-      let onCategoryChange = this.onCategoryChange.bind(this);
-      let onLayoutChange = this.onLayoutChange.bind(this);
-      let onSortingChange = this.onSortingChange.bind(this);
-      let startDownload = this.startDownload.bind(this);
-      return (
-        <SearchResultsView
-          selectedViewType={this.state.selectedViewType}
-          selectedCategory={this.state.selectedCategory}
-          sortingMethod={this.state.sortingMethod}
-          data={this.state.data}
-          query={this.state.query}
-          onCategoryChange={onCategoryChange}
-          onLayoutChange={onLayoutChange}
-          startDownload={startDownload}
-          onSortingChange={onSortingChange}
-        />
-      );
-    } else {
-      return <div>Searching...</div>;
-    }
+    let onCategoryChange = this.onCategoryChange.bind(this);
+    let onLayoutChange = this.onLayoutChange.bind(this);
+    let onSortingChange = this.onSortingChange.bind(this);
+    let startDownload = this.startDownload.bind(this);
+    return (
+      <SearchResultsView
+        location={this.props.location}
+        selectedViewType={this.state.selectedViewType}
+        selectedCategory={this.state.selectedCategory}
+        sortingMethod={this.state.sortingMethod}
+        data={this.state.data}
+        searching={this.state.searching}
+        query={this.state.query}
+        onCategoryChange={onCategoryChange}
+        onLayoutChange={onLayoutChange}
+        startDownload={startDownload}
+        onSortingChange={onSortingChange}
+      />
+    );
   }
 }

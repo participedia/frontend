@@ -1,5 +1,4 @@
 import React from "react"; // eslint-disable-line
-import { withRouter } from "react-router";
 
 import { IntlProvider, addLocaleData } from "react-intl";
 import en from "react-intl/locale-data/en";
@@ -14,10 +13,9 @@ export default class App extends React.Component {
   render() {
     let locale = getFirstBrowserLanguage();
     let messages = getBestMatchingMessages(locale);
-    let RoutedLayout = withRouter(Layout);
     return (
       <IntlProvider locale={locale} messages={messages}>
-        <RoutedLayout />
+        <Layout />
       </IntlProvider>
     );
   }

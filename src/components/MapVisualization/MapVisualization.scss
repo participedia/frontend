@@ -4,6 +4,18 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
+  .mapboxgl-map {
+    // See http://stackoverflow.com/questions/30489594/prevent-100vw-from-creating-horizontal-scroll
+    width: 100%; 
+    width: -webkit-calc(100vw);
+    width: -moz-calc(100vw);
+    width: calc(100vw);
+    max-width: 100%;
+
+    .mapboxgl-popup {
+      width: 300px;
+    }
+  }
   position:relative;
   z-index:10;
   &:before {

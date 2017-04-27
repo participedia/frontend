@@ -41,6 +41,7 @@ class Featured extends React.Component {
       ? <div className="featuretoggle">
           <Toggle
             onToggle={this.onToggle.bind(this)}
+            labelPosition="right"
             value={this.props.thing.featured}
             label="Featured"
           />
@@ -64,7 +65,7 @@ export default class ItemDetails extends React.Component {
       />
     );
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl = "https://participedia.xyz" + this.props.location.pathname;
+    let currentUrl = process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
@@ -120,15 +121,12 @@ export default class ItemDetails extends React.Component {
                       >
                         <img src={caseIconFB} alt="" />
                       </FacebookShareButton>
-                    </li>        
+                    </li>
                     <li>
-                      <TwitterShareButton
-                        url={currentUrl}
-                        title={thing.title}
-                      >
+                      <TwitterShareButton url={currentUrl} title={thing.title}>
                         <img src={caseIconTW} alt="" />
                       </TwitterShareButton>
-                    </li>        
+                    </li>
                   </ul>
                   {thing.vidURL
                     ? <Row>

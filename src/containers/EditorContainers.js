@@ -24,7 +24,8 @@ class EditorContainer extends Component {
     Object.keys(nouns).map((k, i) =>
       api.fetchNouns(k).then(function(the_nouns) {
         component.setState({ [nouns[k]]: the_nouns });
-      }));
+      })
+    );
   }
 
   componentWillMount() {
@@ -51,7 +52,6 @@ class EditorContainer extends Component {
   }
 
   onSubmit(thing) {
-    // console.log("in onSubmit", thing);
     let router = this.props.router;
     let location = this.props.location;
     let saveFunc;
