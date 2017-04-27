@@ -68,7 +68,7 @@
     "react-leaflet-choropleth": "github:davidascher/react-leaflet-choropleth",
     "react-mapbox-gl": "^1.9.1",
     "react-onscroll": "^1.0.4",
-    "react-player": "^0.15.0",
+    "react-player": "^0.16.0",
     "react-prevent-default": "^1.0.0",
     "react-quill": "^1.0.0-beta-1",
     "react-redux": "^5.0.4",
