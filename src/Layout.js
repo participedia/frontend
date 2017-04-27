@@ -216,6 +216,7 @@ export class Layout extends React.Component {
           <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
           <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
           <Route path="/research" component={Research} />
+          <Route exact path="/users/:id" component={ProfileLoader} />
           <Route exact path="/case/:nodeID" component={Case} />
           <PrivateRoute
             path="/case/:nodeID/edit"

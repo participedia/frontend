@@ -34,17 +34,34 @@ class Profile extends Component {
     data.forEach(function(batch) {
       batch.hits.forEach(function(hit, index) {
         authored.push(
-          <SearchHit selectedViewType="grid" key={index} record={hit} />
+          <SearchHit
+            selectedViewType="grid"
+            key={"authored-" + batch.type + "-" + index}
+            record={hit}
+          />
         );
       });
     });
+    if (authored.length === 0) {
+      authored = <div className="nothing-yet">Nothing yet</div>;
+    }
+    let bookmarked = user.bookmarks.map((hit, index) => (
+      <SearchHit
+        selectedViewType="grid"
+        key={"bookmarked-" + index}
+        record={hit}
+      />
+    ));
+    if (bookmarked.length === 0) {
+      bookmarked = <div className="nothing-yet">Nothing yet</div>;
+    }
 
     return (
       <Container fluid={true} className="profile">
         <Row className="profile-info-section">
           <Col lg={3} md={4} className="sidebar">
             <div className="user-avatar">
-              <Avatar size={200} src={user.picture} />
+              <Avatar size={200} src={user.picture_url} />
             </div>
             {user.email === profile.email
               ? <Link to="/en-US/profile/edit" className="edit-profile-button">
@@ -57,14 +74,30 @@ class Profile extends Component {
             <div className="credentials">
               <p>{user.title}</p>
               <p>{user.affiliation}</p>
-              <p>Joined <TimeAgo date={user.join_date} /></p>
+              {user.join_date
+                ? <p>Joined <TimeAgo date={user.join_date} /></p>
+                : <div />}
             </div>
             <div className="main-contents">
-              <div className="search-results">
-                <div className="search-description" />
-                <div className="result-count">
-                  <div className="results-box">
-                    {authored}
+              <div className="authored-content">
+                <div className="heading">Authored Content</div>
+                <div className="search-results">
+                  <div className="search-description" />
+                  <div className="result-count">
+                    <div className="results-box">
+                      {authored}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bookmarked-content">
+                <div className="heading">Bookmarked Content</div>
+                <div className="search-results">
+                  <div className="search-description" />
+                  <div className="result-count">
+                    <div className="results-box">
+                      {bookmarked}
+                    </div>
                   </div>
                 </div>
               </div>
