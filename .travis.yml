@@ -17,6 +17,15 @@ before_deploy:
 - CI=true
 - cp build/index.html build/200.html
 - node scripts/properties2json
+after_success:
+- export BUILD_ID=$TRAVIS_BUILD_NUMBER
+- export GH_PULL_BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
+- export GH_PROJECT_OWNER=$TRAVIS_REPO_SLUG
+- echo "machine surge.surge.sh" >> ~/.netrc
+- echo "    login $SURGE_LOGIN" >> ~/.netrc
+- echo "    password $SURGE_TOKEN" >> ~/.netrc
+- npm install surge surge-review 
+- if [ "$TRAVIS_PULL_REQUEST_BRANCH" ]; then npm run deployreview; fi
 deploy:
   skip_cleanup: true
   provider: surge
