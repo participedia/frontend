@@ -4,6 +4,12 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
+  .mapboxgl-map {
+    width: 100%;
+    .mapboxgl-popup {
+      width: 300px;
+    }
+  }
   position:relative;
   z-index:10;
   &:before {
