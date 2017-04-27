@@ -64,10 +64,6 @@ class FilterArray extends React.Component {
   }
 
   handleRequestDelete = key => {
-    // this.chipData = this.state.chipData;
-    // const chipToDelete = this.chipData.map(chip => chip.key).indexOf(key);
-    // this.chipData.splice(chipToDelete, 1);
-    // this.setState({ chipData: this.chipData });
     let parameters = queryString.parse(myhistory.location.search);
     delete parameters[key];
     let newquerystring = queryString.stringify(parameters);

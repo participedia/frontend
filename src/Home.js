@@ -5,11 +5,6 @@ import { injectIntl } from "react-intl";
 import "./Home.css";
 
 class Home extends React.Component {
-  // shouldComponentUpdate(newProps) {
-  //   console.log(this.props, newProps);
-  //   return false;
-  // }
-
   render() {
     return (
       <div className="home">

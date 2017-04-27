@@ -1,6 +1,5 @@
 import React from "react";
 import { Route } from "react-router";
-import { withRouter } from "react-router";
 import { bool, object, func } from "prop-types";
 import { Link, browserHistory } from "react-router-dom";
 import Home from "./Home";
@@ -78,44 +77,9 @@ const ScrollToTop = () => {
   return null;
 };
 
-export class Layout extends React.Component {
-  static propTypes = {
-    isAuthenticated: bool.isRequired,
-    profile: object.isRequired,
-    checkLogin: func.isRequired
-  };
-  constructor(props) {
-    super(props);
-    this.props.checkLogin(); // check is Auth0 lock is authenticating after login callback
-    this.state = { open: false };
-    this.setState = this.setState.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.touchTitle = this.touchTitle.bind(this);
-  }
-
-  handleToggle() {
-    this.setState({ open: !this.state.open });
-  }
-
-  handleClose() {
-    this.setState({ open: false });
-  }
-
-  touchTitle() {
-    browserHistory.push("/");
-  }
-
-  componentWillUnmount() {
-    console.log("Layout will unmount");
-  }
-  componentWillMount() {
-    console.log("Layout will mount");
-  }
-
+class Routes extends React.Component {
   render() {
-    const { auth, profile, isAuthenticated } = this.props;
-    let routes = withRouter(
+    return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
         <Route component={ScrollToTop} />
@@ -128,7 +92,7 @@ export class Layout extends React.Component {
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
-        <Route path="/search" render={() => <Home />} />
+        <Route path="/search" component={Home} />
         <Route path="/experiments" component={Experiments} />
         <Route path="/_upload" component={Upload} />
         <Route path="/teaching" component={Teaching} />
@@ -167,6 +131,40 @@ export class Layout extends React.Component {
         <PrivateRoute exact path="/add" component={Add} onEnter={requireAuth} />
       </div>
     );
+  }
+}
+
+export class Layout extends React.Component {
+  static propTypes = {
+    isAuthenticated: bool.isRequired,
+    profile: object.isRequired,
+    checkLogin: func.isRequired
+  };
+  constructor(props) {
+    super(props);
+    this.props.checkLogin(); // check is Auth0 lock is authenticating after login callback
+    this.state = { open: false };
+    this.setState = this.setState.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.touchTitle = this.touchTitle.bind(this);
+  }
+
+  handleToggle() {
+    this.setState({ open: !this.state.open });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
+  }
+
+  touchTitle() {
+    browserHistory.push("/");
+  }
+
+  render() {
+    const { auth, profile, isAuthenticated } = this.props;
+    let routes = <Routes />;
     return (
       <div>
         <div className="nav-bar-component">

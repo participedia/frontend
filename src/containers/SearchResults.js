@@ -27,6 +27,10 @@ export default class SearchResults extends React.Component {
     }
     this._updateSearch(queryArgs);
   }
+  componentWillReceiveProps(nextProps) {
+    this._updateSearch(queryString.parse(nextProps.location.search));
+  }
+
   _updateSearch(newState) {
     let queryArgs = {
       query: this.state.query
@@ -42,6 +46,7 @@ export default class SearchResults extends React.Component {
       queryArgs["selectedCategory"] = futureState.selectedCategory;
     }
     let component = this;
+    this.setState({ searching: true });
     api.performSearch(futureState).then(function(results) {
       if (results.error) {
         component.setState({ error: results.error });
@@ -77,6 +82,7 @@ export default class SearchResults extends React.Component {
     let startDownload = this.startDownload.bind(this);
     return (
       <SearchResultsView
+        location={this.props.location}
         selectedViewType={this.state.selectedViewType}
         selectedCategory={this.state.selectedCategory}
         sortingMethod={this.state.sortingMethod}
