@@ -92,6 +92,49 @@ class FilterArray extends React.Component {
   }
 }
 
+const placeholderData = [
+  {
+    type: "case",
+    hits: [
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      },
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      },
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      },
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      },
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      },
+      {
+        authors: [],
+        body: "Sample case",
+        case_id: 100000,
+        title: "Case"
+      }
+    ]
+  }
+];
 export class SearchResultsView extends React.Component {
   constructor() {
     super();
@@ -105,10 +148,13 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let data = this.props.data;
-
     let categories = { case: [], organization: [], method: [], news: [] };
     let selectedViewType = this.props.selectedViewType;
+    let { searching } = this.props;
+    let data = placeholderData;
+    if (!searching) {
+      data = this.props.data;
+    }
 
     data.forEach(function(batch) {
       let category = categories[batch.type];
@@ -144,79 +190,65 @@ export class SearchResultsView extends React.Component {
 
     let resultsCount =
       cases.length + methods.length + orgs.length + news.length;
-    let { searching, query } = this.props;
     let results = "";
-    if (this.props.searching) {
-      results = (
-        <div>
-          <h3>
-            {formatMessage({ id: "searching_for" })}
-            &nbsp;
-            {query}
-            {<div className="spinner"><ChasingDots size={50} /></div>}
-          </h3>
-        </div>
-      );
-    } else {
-      let description = `Searched for:`;
-      if (searching) {
-        description = "Searching for:";
-      }
-      let restrictions = queryString.parse(myhistory.location.search);
-      let filters = [];
-      let searchTerm = "";
-      Object.keys(restrictions).forEach(function(key, index) {
-        if (key === "query") {
-          searchTerm = restrictions[key];
-        } else {
-          filters.push({
-            key: key,
-            label: formatMessage({ id: key }) + " : " + restrictions[key]
-          });
-        }
-      });
-
-      results = (
-        <div className="search-results">
-          <div className="search-description">
-            {searchTerm
-              ? <div>
-                  {description} <div className="search-term">{searchTerm}</div>
-                </div>
-              : <div />}
-            <FilterArray data={filters} />
-          </div>
-          <div className="result-count">
-            <p>
-              {resultsCount}&nbsp;
-              {this.props.intl.formatMessage({
-                id: "result" + (resultsCount === 1 ? "" : "s")
-              })}
-            </p>
-            <div className="results-box">
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "news" })}
-                results={news}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "cases" })}
-                results={cases}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "methods" })}
-                results={methods}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({
-                  id: "organizations"
-                })}
-                results={orgs}
-              />
-            </div>
-          </div>
-        </div>
-      );
+    let description = `Searched for:`;
+    if (searching) {
+      description = "Searching for:";
     }
+    let restrictions = queryString.parse(myhistory.location.search);
+    let filters = [];
+    let searchTerm = "";
+    Object.keys(restrictions).forEach(function(key, index) {
+      if (key === "query") {
+        searchTerm = restrictions[key];
+      } else {
+        filters.push({
+          key: key,
+          label: formatMessage({ id: key }) + " : " + restrictions[key]
+        });
+      }
+    });
+
+    results = (
+      <div className="search-results">
+        <div className="search-description">
+          {searchTerm
+            ? <div>
+                {description} <div className="search-term">{searchTerm}</div>
+              </div>
+            : <div />}
+          <FilterArray data={filters} />
+        </div>
+        <div className="result-count">
+          <p>
+            {resultsCount}&nbsp;
+            {this.props.intl.formatMessage({
+              id: "result" + (resultsCount === 1 ? "" : "s")
+            })}
+          </p>
+          <div className="results-box">
+            <SearchHitCategory
+              title={this.props.intl.formatMessage({ id: "news" })}
+              results={news}
+            />
+            <SearchHitCategory
+              title={this.props.intl.formatMessage({ id: "cases" })}
+              results={cases}
+            />
+            <SearchHitCategory
+              title={this.props.intl.formatMessage({ id: "methods" })}
+              results={methods}
+            />
+            <SearchHitCategory
+              title={this.props.intl.formatMessage({
+                id: "organizations"
+              })}
+              results={orgs}
+            />
+          </div>
+        </div>
+      </div>
+    );
     return (
       <div className="main-contents">
         <Container className="search-results-component" fluid={true}>
