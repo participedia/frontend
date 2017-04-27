@@ -54,7 +54,7 @@ export class Footer extends React.Component {
             >
               <img src={fbIcon} alt="" />
             </FacebookShareButton>
-            <TwitterShareButton className="social-icons" url={currentUrl} title={title}>
+            <TwitterShareButton className="social-icons" url={currentUrl} title={this.props.intl.formatMessage({ id: "welcome_message" })}>
               <img src={twitterIcon} alt="" />
             </TwitterShareButton>
           </div>

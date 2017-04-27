@@ -6,6 +6,9 @@
   }
   .mapboxgl-map {
     width: 100%;
+    .mapboxgl-popup {
+      width: 300px;
+    }
   }
   position:relative;
   z-index:10;

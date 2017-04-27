@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Col } from "reactstrap";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
@@ -220,195 +220,193 @@ export class SearchResultsView extends React.Component {
     return (
       <div className="main-contents">
         <Container className="search-results-component" fluid={true}>
-          <Row>
-            <Col md="3" className="sidepanel hidden-sm-down">
+          <Col md="3" className="sidepanel hidden-sm-down">
+            <div
+              className={
+                "sorting-options" +
+                  (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
+              }
+            >
+              <p
+                className="current-sorting-selection"
+                onClick={() => {
+                  this.setState({
+                    sortingSelectionOpen: !this.state.sortingSelectionOpen
+                  });
+                }}
+              >
+                {this.props.intl.formatMessage({
+                  id: this.props.sortingMethod
+                })}
+              </p>
               <div
+                onClick={this.props.onSortingChange.bind(this, "featured")}
                 className={
-                  "sorting-options" +
-                    (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
+                  this.props.sortingMethod === "featured"
+                    ? "selected"
+                    : "unselected"
                 }
               >
-                <p
-                  className="current-sorting-selection"
-                  onClick={() => {
-                    this.setState({
-                      sortingSelectionOpen: !this.state.sortingSelectionOpen
-                    });
-                  }}
-                >
-                  {this.props.intl.formatMessage({
-                    id: this.props.sortingMethod
-                  })}
-                </p>
+                {this.props.intl.formatMessage({ id: "featured" })}
+              </div>
+              <div
+                onClick={this.props.onSortingChange.bind(this, "chronological")}
+                className={
+                  this.props.sortingMethod === "chronological"
+                    ? "selected"
+                    : "unselected"
+                }
+              >
+                {this.props.intl.formatMessage({ id: "chronological" })}
+              </div>
+              <div
+                onClick={this.props.onSortingChange.bind(this, "alphabetical")}
+                className={
+                  this.props.sortingMethod === "alphabetical"
+                    ? "selected"
+                    : "unselected"
+                }
+              >
+                {this.props.intl.formatMessage({ id: "alphabetical" })}
+              </div>
+            </div>
+            <div className="featured-searches-area">
+              <div className="featured-searches-header">
+                {this.props.intl.formatMessage({ id: "featured_searches" })}
+              </div>
+              <div className="featured-searches">
+                <FeaturedSearches intl={this.props.intl} />
+              </div>
+            </div>
+          </Col>
+          <Col md="9">
+            <div className="clearfix search-actions-area">
+              <div className="filters hidden-xs-down">
                 <div
-                  onClick={this.props.onSortingChange.bind(this, "featured")}
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("All"))}
                   className={
-                    this.props.sortingMethod === "featured"
+                    this.props.selectedCategory === "All"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "featured" })}
+                  {this.props.intl.formatMessage({ id: "all" })}
                 </div>
                 <div
-                  onClick={this.props.onSortingChange.bind(this, "chronological")}
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("News"))}
                   className={
-                    this.props.sortingMethod === "chronological"
+                    this.props.selectedCategory === "News"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "chronological" })}
+                  {this.props.intl.formatMessage({ id: "news" })}
                 </div>
                 <div
-                  onClick={this.props.onSortingChange.bind(this, "alphabetical")}
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("Cases"))}
                   className={
-                    this.props.sortingMethod === "alphabetical"
+                    this.props.selectedCategory === "Cases"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "alphabetical" })}
+                  {this.props.intl.formatMessage({ id: "cases" })}
                 </div>
-              </div>
-              <div className="featured-searches-area">
-                <div className="featured-searches-header">
-                  {this.props.intl.formatMessage({ id: "featured_searches" })}
-                </div>
-                <div className="featured-searches">
-                  <FeaturedSearches intl={this.props.intl} />
-                </div>
-              </div>
-            </Col>
-            <Col md="9">
-              <div className="clearfix search-actions-area">
-                <div className="filters hidden-xs-down">
-                  <div
-                    onClick={() =>
-                      preventDefault(this.props.onCategoryChange("All"))}
-                    className={
-                      this.props.selectedCategory === "All"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    {this.props.intl.formatMessage({ id: "all" })}
-                  </div>
-                  <div
-                    onClick={() =>
-                      preventDefault(this.props.onCategoryChange("News"))}
-                    className={
-                      this.props.selectedCategory === "News"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    {this.props.intl.formatMessage({ id: "news" })}
-                  </div>
-                  <div
-                    onClick={() =>
-                      preventDefault(this.props.onCategoryChange("Cases"))}
-                    className={
-                      this.props.selectedCategory === "Cases"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    {this.props.intl.formatMessage({ id: "cases" })}
-                  </div>
-                  <div
-                    href="#"
-                    onClick={() =>
-                      preventDefault(this.props.onCategoryChange("Methods"))}
-                    className={
-                      this.props.selectedCategory === "Methods"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    {this.props.intl.formatMessage({ id: "methods" })}
-                  </div>
-                  <div
-                    href="#"
-                    onClick={() =>
-                      preventDefault(
-                        this.props.onCategoryChange("Organizations")
-                      )}
-                    className={
-                      this.props.selectedCategory === "Organizations"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    {this.props.intl.formatMessage({ id: "organizations" })}
-                  </div>
-                </div>
-                <select
-                  className="mobile-select hidden-sm-up"
-                  value={this.state.value}
-                  onChange={this.handleChange}
+                <div
+                  href="#"
+                  onClick={() =>
+                    preventDefault(this.props.onCategoryChange("Methods"))}
+                  className={
+                    this.props.selectedCategory === "Methods"
+                      ? "selected"
+                      : "unselected"
+                  }
                 >
-                  <option value="All">
-                    {this.props.intl.formatMessage({ id: "all" })}
-                  </option>
-                  <option value="News">
-                    {this.props.intl.formatMessage({ id: "news" })}
-                  </option>
-                  <option value="Cases">
-                    {this.props.intl.formatMessage({ id: "cases" })}
-                  </option>
-                  <option value="Methods">
-                    {this.props.intl.formatMessage({ id: "methods" })}
-                  </option>
-                  <option value="Organizations">
-                    {this.props.intl.formatMessage({ id: "organizations" })}
-                  </option>
-                </select>
-                <div className="view-types hidden-sm-down">
-                  <div
-                    onClick={() =>
-                      preventDefault(this.props.onLayoutChange("grid"))}
-                    className={
-                      this.props.selectedViewType === "grid"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    <img src={searchGridIcon} className="grid-icon" alt="" />
-                    <img
-                      src={searchGridIconActive}
-                      className="grid-icon"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    onClick={() =>
-                      preventDefault(this.props.onLayoutChange("list"))}
-                    className={
-                      this.props.selectedViewType === "list"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    <img src={searchListIcon} className="list-icon" alt="" />
-                    <img
-                      src={searchListIconActive}
-                      className="list-icon"
-                      alt=""
-                    />
-                  </div>
-                  <div onClick={this.props.startDownload.bind(this)}>
-                    <img
-                      src="../img/pp-search-dl-icon.png"
-                      className="dl-icon"
-                      alt=""
-                    />
-                  </div>
+                  {this.props.intl.formatMessage({ id: "methods" })}
+                </div>
+                <div
+                  href="#"
+                  onClick={() =>
+                    preventDefault(
+                      this.props.onCategoryChange("Organizations")
+                    )}
+                  className={
+                    this.props.selectedCategory === "Organizations"
+                      ? "selected"
+                      : "unselected"
+                  }
+                >
+                  {this.props.intl.formatMessage({ id: "organizations" })}
                 </div>
               </div>
-              {results}
-            </Col>
-          </Row>  
+              <select
+                className="mobile-select hidden-sm-up"
+                value={this.state.value}
+                onChange={this.handleChange}
+              >
+                <option value="All">
+                  {this.props.intl.formatMessage({ id: "all" })}
+                </option>
+                <option value="News">
+                  {this.props.intl.formatMessage({ id: "news" })}
+                </option>
+                <option value="Cases">
+                  {this.props.intl.formatMessage({ id: "cases" })}
+                </option>
+                <option value="Methods">
+                  {this.props.intl.formatMessage({ id: "methods" })}
+                </option>
+                <option value="Organizations">
+                  {this.props.intl.formatMessage({ id: "organizations" })}
+                </option>
+              </select>
+              <div className="view-types hidden-sm-down">
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onLayoutChange("grid"))}
+                  className={
+                    this.props.selectedViewType === "grid"
+                      ? "selected"
+                      : "unselected"
+                  }
+                >
+                  <img src={searchGridIcon} className="grid-icon" alt="" />
+                  <img
+                    src={searchGridIconActive}
+                    className="grid-icon"
+                    alt=""
+                  />
+                </div>
+                <div
+                  onClick={() =>
+                    preventDefault(this.props.onLayoutChange("list"))}
+                  className={
+                    this.props.selectedViewType === "list"
+                      ? "selected"
+                      : "unselected"
+                  }
+                >
+                  <img src={searchListIcon} className="list-icon" alt="" />
+                  <img
+                    src={searchListIconActive}
+                    className="list-icon"
+                    alt=""
+                  />
+                </div>
+                <div onClick={this.props.startDownload.bind(this)}>
+                  <img
+                    src="../img/pp-search-dl-icon.png"
+                    className="dl-icon"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            {results}
+          </Col>
         </Container>
       </div>
     );
