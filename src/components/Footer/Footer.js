@@ -3,13 +3,17 @@ import "./Footer.css";
 import ppLogo from "../../img/pp-logo.png";
 import ccIcon from "../../img/cc-icon.png";
 import fbIcon from "../../img/pp-social-fb.png";
-import rssIcon from "../../img/pp-social-rss.png";
 import twitterIcon from "../../img/pp-social-tw.png";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
+import { ShareButtons } from "react-share";
 
 export class Footer extends React.Component {
   render() {
+    const { FacebookShareButton, TwitterShareButton } = ShareButtons;
+    let currentUrl = "https://participedia.xyz";
+    let title = "Participedia";
+
     return (
       <div className="footer-component">
         <div className="expanded-footer">
@@ -43,13 +47,16 @@ export class Footer extends React.Component {
             <a href="#">Contact</a>
           </div>
           <div className="column">
-            <a className="social-icons" href="#"><img src={fbIcon} alt="" /></a>
-            <a className="social-icons" href="#">
+            <FacebookShareButton className="social-icons"
+              url={currentUrl}
+              title={title}welcome_message
+              description={this.props.intl.formatMessage({ id: "welcome_message" })}
+            >
+              <img src={fbIcon} alt="" />
+            </FacebookShareButton>
+            <TwitterShareButton className="social-icons" url={currentUrl} title={title}>
               <img src={twitterIcon} alt="" />
-            </a>
-            <a className="social-icons" href="#">
-              <img src={rssIcon} alt="" />
-            </a>
+            </TwitterShareButton>
           </div>
         </div>
         <div className="copyright-area">
