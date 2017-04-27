@@ -9,34 +9,10 @@ import ReactMapboxGl, {
 } from "react-mapbox-gl";
 
 import "./MapVisualization.css";
-import coordinates from "parse-dms";
 import styles from "./mapstyle.js";
 const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
-
-function extractData(data, type) {
-  let newdata = data.map(function(obj) {
-    let coords;
-    if (obj.location && obj.location.latitude && obj.location.longitude) {
-      coords = coordinates(
-        obj.location.latitude + " " + obj.location.longitude
-      );
-      coords = [coords["lon"], coords["lat"]];
-    } else {
-      coords = [0, 0];
-    }
-    return {
-      id: obj.id,
-      type: type,
-      position: coords,
-      url: `/${type}/${obj.id}`,
-      title: obj.title
-    };
-  });
-  newdata = newdata.filter(c => c.position[0] !== 0);
-  return newdata;
-}
 
 const caseMarkerLayout = {
   "text-line-height": 1,
@@ -64,22 +40,21 @@ const orgMarkerPaint = {
 class MapVisualization extends React.Component {
   constructor(props) {
     super(props);
-    let cases = extractData(props.cases, "case");
-    let organizations = extractData(props.organizations, "organization");
     let component = this;
-    // For fun, we offer to center the map on where the viewer is.
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let lat = position.coords.latitude;
-      let lng = position.coords.longitude;
-      component.setState({
-        center: [lng, lat],
-        zoom: [5]
+    if (localStorage.getItem("geolocated_once") == null) {
+      // For fun, we offer to center the map on where the viewer is.
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        component.setState({
+          center: [lng, lat],
+          zoom: [5]
+        });
+        localStorage.setItem("geolocated_once", "true");
       });
-    });
+    }
 
     this.state = {
-      cases: cases,
-      organizations: organizations,
       popupShowLabel: true,
       center: [-9.9215833, -15.4099109],
       zoom: [2],
@@ -107,7 +82,8 @@ class MapVisualization extends React.Component {
   }
 
   render() {
-    const { cases, organizations, focus, popupShowLabel } = this.state;
+    const { focus, popupShowLabel } = this.state;
+    const { cases, organizations } = this.props;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
     const caseFeatures = cases.map((st, index) => (
