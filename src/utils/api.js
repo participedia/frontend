@@ -199,6 +199,20 @@ class API {
         return error;
       });
   };
+  fetchUser = function(userId) {
+    let url = APIURL + `/user`;
+    if (userId) {
+      url = APIURL + `/user/${userId}`;
+    }
+    return signedFetch(url, "get")
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:fetchUser: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
 }
 
 export default new API();

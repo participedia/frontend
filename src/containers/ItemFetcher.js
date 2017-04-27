@@ -4,7 +4,7 @@ import { intlShape } from "react-intl";
 import { number, func } from "prop-types";
 
 export default class ItemFetcher extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     let component = this;
     let props = this.props;
     props.api(props.id).then(function(data) {

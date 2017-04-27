@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { checkLogin } from "./actions";
 
 import authService from "./utils/AuthService";
-import Profile from "./Profile";
+import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
 import HelpArticle from "./HelpArticle";
 import About from "./About";
@@ -139,6 +139,7 @@ class Routes extends React.Component {
           component={OrganizationEditorContainer}
           onEnter={requireAuth}
         />
+        <Route exact path="/users/:id" component={ProfileLoader} />
         <PrivateRoute exact path="/add" component={Add} onEnter={requireAuth} />
       </div>
     );

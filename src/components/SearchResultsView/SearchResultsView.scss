@@ -11,7 +11,6 @@
 }
 
 .search-results-component {
-  padding-top: 30px;
 
   .sidepanel {
     padding: 0 15px;
@@ -59,7 +58,6 @@
   padding: 0;
   position:relative;
   @include media-breakpoint-up(lg) {
-    top:-100px;
     background:#fff;
     height:70px;
   }
@@ -230,7 +228,7 @@
   @include media-breakpoint-up(lg) {
     padding:0;
     position:relative;
-    top:-80px; // XXX don't understand what this is doing.
+    // top:-80px; // XXX don't understand what this is doing.
   }
   
 }
