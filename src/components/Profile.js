@@ -18,12 +18,8 @@ class Profile extends Component {
 
   render() {
     const profile = authService.getProfile();
+    let isLoggedIn = authService.loggedIn();
     const { user } = this.props;
-    let onCategoryChange = function() {};
-    let onLayoutChange = function() {};
-    let onSortingChange = function() {};
-    let startDownload = function() {};
-    console.log("User", user);
     let data = [
       { type: "case", hits: user.cases },
       { type: "method", hits: user.methods }
@@ -63,7 +59,7 @@ class Profile extends Component {
             <div className="user-avatar">
               <Avatar size={200} src={user.picture_url} />
             </div>
-            {user.email === profile.email
+            {isLoggedIn && user.email === profile.email
               ? <Link to="/en-US/profile/edit" className="edit-profile-button">
                   Edit Profile
                 </Link>
