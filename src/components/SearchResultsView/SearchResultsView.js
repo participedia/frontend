@@ -147,7 +147,7 @@ export class SearchResultsView extends React.Component {
 
     let resultsCount =
       cases.length + methods.length + orgs.length + news.length;
-    let query = this.props.query;
+    let { searching, query } = this.props;
     let results = "";
     if (this.props.searching) {
       results = (
@@ -162,6 +162,9 @@ export class SearchResultsView extends React.Component {
       );
     } else {
       let description = `Searched for:`;
+      if (searching) {
+        description = "Searching for:";
+      }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];
       let searchTerm = "";
@@ -186,32 +189,36 @@ export class SearchResultsView extends React.Component {
               : <div />}
             <FilterArray data={filters} />
           </div>
-          <div className="result-count">
-            <p>
-              {resultsCount}&nbsp;
-              {this.props.intl.formatMessage({
-                id: "result" + (resultsCount === 1 ? "" : "s")
-              })}
-            </p>
-            <div className="results-box">
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "news" })}
-                results={news}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "cases" })}
-                results={cases}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "methods" })}
-                results={methods}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "organizations" })}
-                results={orgs}
-              />
-            </div>
-          </div>
+          {searching
+            ? <div>Searching...</div>
+            : <div className="result-count">
+                <p>
+                  {resultsCount}&nbsp;
+                  {this.props.intl.formatMessage({
+                    id: "result" + (resultsCount === 1 ? "" : "s")
+                  })}
+                </p>
+                <div className="results-box">
+                  <SearchHitCategory
+                    title={this.props.intl.formatMessage({ id: "news" })}
+                    results={news}
+                  />
+                  <SearchHitCategory
+                    title={this.props.intl.formatMessage({ id: "cases" })}
+                    results={cases}
+                  />
+                  <SearchHitCategory
+                    title={this.props.intl.formatMessage({ id: "methods" })}
+                    results={methods}
+                  />
+                  <SearchHitCategory
+                    title={this.props.intl.formatMessage({
+                      id: "organizations"
+                    })}
+                    results={orgs}
+                  />
+                </div>
+              </div>}
         </div>
       );
     }

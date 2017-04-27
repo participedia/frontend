@@ -106,6 +106,11 @@ class MapVisualization extends React.Component {
     this.setState({ popupShowLabel: false });
   }
 
+  // shouldComponentUpdate(newProps) {
+  //   console.log(this.props, newProps);
+  //   return false;
+  // }
+
   render() {
     const { cases, organizations, focus, popupShowLabel } = this.state;
     let popupChange = this._popupChange.bind(this);

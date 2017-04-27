@@ -11,6 +11,7 @@ export default class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: [],
       query: "",
       searching: true,
       selectedCategory: DEFAULT_CATEGORY,
@@ -70,26 +71,23 @@ export default class SearchResults extends React.Component {
         </div>
       );
     }
-    if (this.state.data) {
-      let onCategoryChange = this.onCategoryChange.bind(this);
-      let onLayoutChange = this.onLayoutChange.bind(this);
-      let onSortingChange = this.onSortingChange.bind(this);
-      let startDownload = this.startDownload.bind(this);
-      return (
-        <SearchResultsView
-          selectedViewType={this.state.selectedViewType}
-          selectedCategory={this.state.selectedCategory}
-          sortingMethod={this.state.sortingMethod}
-          data={this.state.data}
-          query={this.state.query}
-          onCategoryChange={onCategoryChange}
-          onLayoutChange={onLayoutChange}
-          startDownload={startDownload}
-          onSortingChange={onSortingChange}
-        />
-      );
-    } else {
-      return <div>Searching...</div>;
-    }
+    let onCategoryChange = this.onCategoryChange.bind(this);
+    let onLayoutChange = this.onLayoutChange.bind(this);
+    let onSortingChange = this.onSortingChange.bind(this);
+    let startDownload = this.startDownload.bind(this);
+    return (
+      <SearchResultsView
+        selectedViewType={this.state.selectedViewType}
+        selectedCategory={this.state.selectedCategory}
+        sortingMethod={this.state.sortingMethod}
+        data={this.state.data}
+        searching={this.state.searching}
+        query={this.state.query}
+        onCategoryChange={onCategoryChange}
+        onLayoutChange={onLayoutChange}
+        startDownload={startDownload}
+        onSortingChange={onSortingChange}
+      />
+    );
   }
 }
