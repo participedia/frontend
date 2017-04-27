@@ -29,12 +29,12 @@ const orgMarkerLayout = caseMarkerLayout;
 
 const caseMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#ce8b88"
+  "text-color": "#000"
 };
 
 const orgMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#8897ce"
+  "text-color": "#000"
 };
 
 class MapVisualization extends React.Component {
