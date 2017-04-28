@@ -27,17 +27,13 @@ import Add from "./components/Add/Add";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
-  OrganizationEditorContainer
+  OrganizationEditorContainer,
+  NewCaseContainer,
+  NewMethodContainer,
+  NewOrganizationContainer
 } from "./containers/EditorContainers";
 import QuickSubmitPicker
   from "./components/QuickSubmitPicker/QuickSubmitPicker";
-import {
-  CaseForm,
-  MethodForm,
-  OrganizationForm,
-  DatasetForm,
-  SurveyForm
-} from "./components/QuickSubmit/QuickSubmit";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -56,23 +52,6 @@ function requireAuth(nextState, replace) {
   }
 }
 
-// This is a bit hacky (calling login() in a render()), but seems
-// needed given how react-router-v4 works.
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={function(props) {
-      let isAuth = authService.loggedIn();
-      if (isAuth) {
-        return <Component {...props} />;
-      } else {
-        authService.login(props.location.state);
-        return <div>Must be logged in</div>;
-      }
-    }}
-  />
-);
-
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
 }
@@ -88,8 +67,14 @@ const ScrollToTop = props => {
   return null;
 };
 
+const EnsureAuth = props =>
+  (authService.loggedIn()
+    ? <div />
+    : <div>Must be logged in</div> && authService.login(props.location.state));
+
 class Routes extends React.Component {
   render() {
+    let intl = this.props.intl;
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
@@ -97,7 +82,8 @@ class Routes extends React.Component {
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
         <Route path="/profile" component={ProfileLoader} />
-        <PrivateRoute
+        <Route path="/profile/edit" component={EnsureAuth} />
+        <Route
           path="/profile/edit"
           component={ProfileEditor}
           onEnter={requireAuth}
@@ -107,40 +93,61 @@ class Routes extends React.Component {
         <Route path="/experiments" component={Experiments} />
         <Route path="/_upload" component={Upload} />
         <Route path="/teaching" component={Teaching} />
-        <PrivateRoute
+        <Route exact path="/quick-submit" component={QuickSubmitPicker} />
+        <Route path="/new" component={EnsureAuth} />
+        <Route
           exact
-          path="/quick-submit"
-          component={QuickSubmitPicker}
+          path="/new/case"
+          intl={intl}
+          component={props => <NewCaseContainer intl={intl} {...props} />}
         />
-        <PrivateRoute path="/quick-submit/case" component={CaseForm} />
-        <PrivateRoute path="/quick-submit/method" component={MethodForm} />
-        <PrivateRoute
-          path="/quick-submit/organization"
-          component={OrganizationForm}
+        <Route
+          exact
+          path="/new/method"
+          component={props => <NewMethodContainer intl={intl} {...props} />}
         />
-        <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
-        <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
+        <Route
+          exact
+          path="/new/organization"
+          component={props => (
+            <NewOrganizationContainer intl={intl} {...props} />
+          )}
+        />
         <Route path="/research" component={Research} />
-        <Route exact path="/case/:nodeID" component={Case} />
-        <PrivateRoute
-          path="/case/:nodeID/edit"
-          component={CaseEditorContainer}
-          onEnter={requireAuth}
+        <Route
+          path="/case/:nodeID"
+          exact
+          component={props => <Case intl={intl} {...props} />}
         />
-        <Route exact path="/method/:nodeID" component={Method} />
-        <PrivateRoute
+        <Route path="/case/:nodeID/edit" component={EnsureAuth} />
+        <Route
+          path="/case/:nodeID/edit"
+          component={props => <CaseEditorContainer intl={intl} {...props} />}
+        />
+        <Route path="/method/:nodeID" component={Method} />
+        <Route path="/method/:nodeID/edit" component={EnsureAuth} />
+        <Route
           path="/method/:nodeID/edit"
           component={MethodEditorContainer}
           onEnter={requireAuth}
         />
-        <Route exact path="/organization/:nodeID" component={Organization} />
-        <PrivateRoute
+        <Route
+          exact
+          path="/organization/:nodeID"
+          component={props => <Organization intl={intl} {...props} />}
+        />
+        <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
+        <Route
           path="/organization/:nodeID/edit"
-          component={OrganizationEditorContainer}
+          component={props => (
+            <OrganizationEditorContainer intl={intl} {...props} />
+          )}
           onEnter={requireAuth}
         />
-        <Route exact path="/users/:id" component={ProfileLoader} />
-        <PrivateRoute exact path="/add" component={Add} onEnter={requireAuth} />
+        <Route path="/users/:id" component={ProfileLoader} />
+
+        <Route exact path="/add" component={EnsureAuth} />
+        <Route exact path="/add" component={Add} onEnter={requireAuth} />
       </div>
     );
   }

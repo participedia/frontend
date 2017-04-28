@@ -14,20 +14,14 @@ const QuickSubmitPicker = props => (
           lg={{ size: 4, offset: 4 }}
           md={{ size: 6, offset: 3 }}
         >
-          <Link to={`${props.location.pathname}/case`}>
+          <Link to={"/new/case"}>
             <p>{props.intl.formatMessage({ id: "case" })}</p>
           </Link>
-          <Link to={`${props.location.pathname}/method`}>
+          <Link to={"/new/method"}>
             <p>{props.intl.formatMessage({ id: "method" })}</p>
           </Link>
-          <Link to={`${props.location.pathname}/organization`}>
+          <Link to={"/new/organization"}>
             <p>{props.intl.formatMessage({ id: "organization" })}</p>
-          </Link>
-          <Link to={`${props.location.pathname}/survey`}>
-            <p>{props.intl.formatMessage({ id: "survey" })}</p>
-          </Link>
-          <Link to={`${props.location.pathname}/dataset`}>
-            <p>{props.intl.formatMessage({ id: "dataset" })}</p>
           </Link>
         </Col>
       </Row>

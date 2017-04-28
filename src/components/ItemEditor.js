@@ -10,15 +10,21 @@ import Send from "material-ui/svg-icons/content/send";
 export default class ItemEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign(props.thing);
+    this.state = { thing: props.thing };
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ thing: nextProps.thing });
+  }
+
   onSubmit() {
     this.props.onSubmit(this.state);
   }
   render() {
-    let { thing, sidebar } = this.props;
+    let { sidebar, type } = this.props;
+    let thing = this.state.thing;
 
-    if (!thing) {
+    if (!this.state.thing) {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
@@ -26,8 +32,8 @@ export default class ItemEditor extends Component {
     return (
       <Form
         onSubmit={onSubmit}
-        state={this.state}
-        onChange={changes => this.setState(changes)}
+        state={thing}
+        onChange={changes => this.setState({ thing: changes })}
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
@@ -37,7 +43,7 @@ export default class ItemEditor extends Component {
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
                 <h2 className="category">
-                  Case
+                  {type}
                 </h2>
                 <h2 className="case-title">
                   {thing.title}
