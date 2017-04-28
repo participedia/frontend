@@ -16,11 +16,11 @@ export default class ItemFetcher extends React.Component {
   }
   render() {
     let props = this.props;
+    let data = null;
     if (this.state && this.state.data) {
-      return <ItemDetails {...props} data={this.state.data} />;
-    } else {
-      return <div>No data yet</div>;
+      data = this.state.data;
     }
+    return <ItemDetails {...props} data={data} />;
   }
 }
 

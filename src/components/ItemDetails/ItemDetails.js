@@ -50,12 +50,29 @@ class Featured extends React.Component {
   }
 }
 
+const defaultThing = {
+  title: "Loading",
+  type: "content",
+  body: "Description",
+  lead_image: null,
+  other_images: [],
+  location: {
+    city: "",
+    countrycode: ""
+  },
+  authors: [
+    {
+      name: "author name"
+    }
+  ]
+};
+
 export default class ItemDetails extends React.Component {
   render() {
     const { FacebookShareButton, TwitterShareButton } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
-    const thing = this.props.data;
+    const thing = this.props.data || defaultThing;
     let bookmarked = isAuthenticated && thing.bookmarked;
     let bookmarkIcon = (
       <BookmarkToggle
@@ -65,7 +82,8 @@ export default class ItemDetails extends React.Component {
       />
     );
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl = process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
+    let currentUrl =
+      process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
