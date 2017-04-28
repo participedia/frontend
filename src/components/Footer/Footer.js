@@ -1,4 +1,5 @@
 import React from "react"; // eslint-disable-line no-unused-vars
+import { Container, Row, Col } from "reactstrap";
 import "./Footer.css";
 import ppLogo from "../../img/pp-logo.png";
 import ccIcon from "../../img/cc-icon.png";
@@ -16,55 +17,63 @@ export class Footer extends React.Component {
 
     return (
       <div className="footer-component">
-        <div className="expanded-footer">
-          <div className="column">
-            <Link to="/about">
-              {this.props.intl.formatMessage({ id: "about" })}
-            </Link>
-            <Link to="/research">
-              {this.props.intl.formatMessage({ id: "research" })}
-            </Link>
-            <Link to="/teaching">
-              {this.props.intl.formatMessage({ id: "teaching" })}
-            </Link>
-            <Link to="/experiments">
-              {this.props.intl.formatMessage({ id: "experiments" })}
-            </Link>
-          </div>
-          <div className="column">
-            <a href="#">{this.props.intl.formatMessage({ id: "cases" })}</a>
-            <a href="#">{this.props.intl.formatMessage({ id: "methods" })}</a>
-            <a href="#">
-              {this.props.intl.formatMessage({ id: "organizations" })}
-            </a>
-            <a href="#">{this.props.intl.formatMessage({ id: "users" })}</a>
-          </div>
-          <div className="column">
-            <a href="#">{this.props.intl.formatMessage({ id: "news" })}</a>
-            <Link to={"?help"}>
-              {this.props.intl.formatMessage({ id: "help" })}
-            </Link>
-            <a href="#">Contact</a>
-          </div>
-          <div className="column">
-            <FacebookShareButton className="social-icons"
-              url={currentUrl}
-              title={title}welcome_message
-              description={this.props.intl.formatMessage({ id: "welcome_message" })}
-            >
-              <img src={fbIcon} alt="" />
-            </FacebookShareButton>
-            <TwitterShareButton className="social-icons" url={currentUrl} title={this.props.intl.formatMessage({ id: "welcome_message" })}>
-              <img src={twitterIcon} alt="" />
-            </TwitterShareButton>
-          </div>
-        </div>
-        <div className="copyright-area">
-          <a href="/" className="logo"><img src={ppLogo} alt="" /></a>
-          <p className="copyright-text">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"><img src={ccIcon} alt="" />Participedia 2017</a>
-          </p>
-        </div>
+        <Container className="expanded-footer" fluid={true}>
+          <Row>
+            <Col lg={{ size: 6 }}>
+              <div className="column list">
+                <Link to="/about">
+                  {this.props.intl.formatMessage({ id: "about" })}
+                </Link>
+                <Link to="/research">
+                  {this.props.intl.formatMessage({ id: "research" })}
+                </Link>
+                <Link to="/teaching">
+                  {this.props.intl.formatMessage({ id: "teaching" })}
+                </Link>
+                <Link to="/experiments">
+                  {this.props.intl.formatMessage({ id: "experiments" })}
+                </Link>
+              </div>
+              <div className="column list">
+                <a href="#">{this.props.intl.formatMessage({ id: "cases" })}</a>
+                <a href="#">{this.props.intl.formatMessage({ id: "methods" })}</a>
+                <a href="#">
+                  {this.props.intl.formatMessage({ id: "organizations" })}
+                </a>
+                <a href="#">{this.props.intl.formatMessage({ id: "users" })}</a>
+              </div>
+              <div className="column list">
+                <a href="#">{this.props.intl.formatMessage({ id: "news" })}</a>
+                <Link to={"?help"}>
+                  {this.props.intl.formatMessage({ id: "help" })}
+                </Link>
+                <a href="#">Contact</a>
+              </div>
+            </Col>
+            <Col lg={{ size: 6 }}>
+              <div className="column xl">
+                <h4>Participedia</h4>
+                <p>{this.props.intl.formatMessage({ id: "about_intro" })}</p>
+              </div>
+              <div className="column right">
+                <FacebookShareButton className="social-icons"
+                  url={currentUrl}
+                  title={title}welcome_message
+                  description={this.props.intl.formatMessage({ id: "welcome_message" })}
+                >
+                  <img src={fbIcon} alt="" />
+                </FacebookShareButton>
+                <TwitterShareButton className="social-icons" url={currentUrl} title={this.props.intl.formatMessage({ id: "welcome_message" })}>
+                  <img src={twitterIcon} alt="" />
+                </TwitterShareButton>
+                <div className="copyright-area">
+                  <img src={ccIcon} alt="" />
+                  <span>Participedia 2017</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>    
       </div>
     );
   }
