@@ -19,11 +19,6 @@ class Profile extends Component {
   render() {
     const profile = authService.getProfile();
     const { user } = this.props;
-    let onCategoryChange = function() {};
-    let onLayoutChange = function() {};
-    let onSortingChange = function() {};
-    let startDownload = function() {};
-    console.log("User", user);
     let data = [
       { type: "case", hits: user.cases },
       { type: "method", hits: user.methods }
@@ -77,6 +72,7 @@ class Profile extends Component {
               {user.join_date
                 ? <p>Joined <TimeAgo date={user.join_date} /></p>
                 : <div />}
+              <p>{user.bio}</p>
             </div>
             <div className="main-contents">
               <div className="authored-content">

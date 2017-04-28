@@ -5,14 +5,20 @@ class CountryMap extends React.Component {
     super(props);
     this.state = { SVG: "" };
   }
-  componentWillMount() {
+  componentDidMount() {
+    this._fetchMap(this.props.countrycode);
+  }
+  componentWillReceiveProps(nextProps) {
+    this._fetchMap(nextProps.countrycode);
+  }
+  _fetchMap(countrycode) {
     let component = this;
     // TODO move to country-specific bucket or at least folder
-    if (this.props.countrycode && this.props.countrycode !== null) {
+    if (countrycode && countrycode !== null) {
       fetch(
         process.env.REACT_APP_ASSETS_URL +
           "countries/fullname/" +
-          this.props.countrycode +
+          countrycode +
           ".svg"
       )
         .then(function(response) {
