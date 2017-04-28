@@ -77,6 +77,7 @@ class Profile extends Component {
               {user.join_date
                 ? <p>Joined <TimeAgo date={user.join_date} /></p>
                 : <div />}
+              <p>{user.bio}</p>
             </div>
             <div className="main-contents">
               <div className="authored-content">
