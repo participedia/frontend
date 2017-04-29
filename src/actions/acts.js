@@ -114,7 +114,7 @@ export function makeObject(thingType, object) {
         .then(response => dispatch(receiveObjectSaved(object, response)))
         .then(function(thing) {
           let id = thing.payload.ID[thingType + "_id"];
-          dispatch(push(`/en-US/${thingType}/${id}`));
+          dispatch(push(`/${thingType}/${id}`));
         })
         .catch(reason => {
           console.error("Error saving case", reason);
