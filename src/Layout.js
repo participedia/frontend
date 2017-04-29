@@ -23,7 +23,6 @@ import Upload from "./Upload";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
-import Add from "./components/Add/Add";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
@@ -141,9 +140,6 @@ class Routes extends React.Component {
           )}
         />
         <Route path="/users/:id" component={ProfileLoader} />
-
-        <Route exact path="/add" component={EnsureAuth} />
-        <Route exact path="/add" component={Add} />
       </div>
     );
   }
