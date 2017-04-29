@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
 import authService from "../utils/AuthService";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentPencil from "material-ui/svg-icons/image/edit";
 
 import "./Profile.css";
 
@@ -59,7 +61,7 @@ class Profile extends Component {
               <Avatar size={200} src={user.picture_url} />
             </div>
             {user.email === profile.email
-              ? <Link to="/en-US/profile/edit" className="edit-profile-button">
+              ? <Link to="/profile/edit" className="edit-profile-button">
                   Edit Profile
                 </Link>
               : <div />}
@@ -100,6 +102,11 @@ class Profile extends Component {
             </div>
           </Col>
         </Row>
+        <Link to="/profile/edit">
+          <FloatingActionButton className="editButton">
+            <ContentPencil />
+          </FloatingActionButton>
+        </Link>
       </Container>
     );
   }

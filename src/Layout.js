@@ -23,21 +23,16 @@ import Upload from "./Upload";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
-import Add from "./components/Add/Add";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
-  OrganizationEditorContainer
+  OrganizationEditorContainer,
+  NewCaseContainer,
+  NewMethodContainer,
+  NewOrganizationContainer
 } from "./containers/EditorContainers";
 import QuickSubmitPicker
   from "./components/QuickSubmitPicker/QuickSubmitPicker";
-import {
-  CaseForm,
-  MethodForm,
-  OrganizationForm,
-  DatasetForm,
-  SurveyForm
-} from "./components/QuickSubmit/QuickSubmit";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -49,29 +44,6 @@ import ppLogo from "./img/pp-logo.png";
 import myhistory from "./utils/history";
 
 import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
-
-function requireAuth(nextState, replace) {
-  if (!authService.loggedIn()) {
-    authService.login(nextState.location.pathname);
-  }
-}
-
-// This is a bit hacky (calling login() in a render()), but seems
-// needed given how react-router-v4 works.
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={function(props) {
-      let isAuth = authService.loggedIn();
-      if (isAuth) {
-        return <Component {...props} />;
-      } else {
-        authService.login(props.location.state);
-        return <div>Must be logged in</div>;
-      }
-    }}
-  />
-);
 
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
@@ -88,59 +60,86 @@ const ScrollToTop = props => {
   return null;
 };
 
+const EnsureAuth = props =>
+  (authService.loggedIn()
+    ? <div />
+    : <div>Must be logged in</div> && authService.login(props.location.state));
+
 class Routes extends React.Component {
   render() {
+    let intl = this.props.intl;
+    let isAuthenticated = authService.loggedIn();
+    let profile = authService.getProfile();
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
         <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
-        <Route path="/profile" component={ProfileLoader} />
-        <PrivateRoute
+        <Route exact path="/profile" component={ProfileLoader} />
+        <Route path="/profile/edit" component={EnsureAuth} />
+        <Route
           path="/profile/edit"
-          component={ProfileEditor}
-          onEnter={requireAuth}
+          component={props => (
+            <ProfileEditor
+              isAuthenticated={isAuthenticated}
+              intl={intl}
+              profile={profile}
+              {...props}
+            />
+          )}
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
         <Route path="/experiments" component={Experiments} />
         <Route path="/_upload" component={Upload} />
         <Route path="/teaching" component={Teaching} />
-        <PrivateRoute
+        <Route exact path="/quick-submit" component={QuickSubmitPicker} />
+        <Route path="/new" component={EnsureAuth} />
+        <Route
           exact
-          path="/quick-submit"
-          component={QuickSubmitPicker}
+          path="/new/case"
+          component={props => <NewCaseContainer intl={intl} {...props} />}
         />
-        <PrivateRoute path="/quick-submit/case" component={CaseForm} />
-        <PrivateRoute path="/quick-submit/method" component={MethodForm} />
-        <PrivateRoute
-          path="/quick-submit/organization"
-          component={OrganizationForm}
+        <Route
+          exact
+          path="/new/method"
+          component={props => <NewMethodContainer intl={intl} {...props} />}
         />
-        <PrivateRoute path="/quick-submit/dataset" component={DatasetForm} />
-        <PrivateRoute path="/quick-submit/survey" component={SurveyForm} />
+        <Route
+          exact
+          path="/new/organization"
+          component={props => (
+            <NewOrganizationContainer intl={intl} {...props} />
+          )}
+        />
         <Route path="/research" component={Research} />
-        <Route exact path="/case/:nodeID" component={Case} />
-        <PrivateRoute
+        <Route
+          path="/case/:nodeID"
+          exact
+          component={props => <Case intl={intl} {...props} />}
+        />
+        <Route path="/case/:nodeID/edit" component={EnsureAuth} />
+        <Route
           path="/case/:nodeID/edit"
-          component={CaseEditorContainer}
-          onEnter={requireAuth}
+          component={props => <CaseEditorContainer intl={intl} {...props} />}
         />
-        <Route exact path="/method/:nodeID" component={Method} />
-        <PrivateRoute
-          path="/method/:nodeID/edit"
-          component={MethodEditorContainer}
-          onEnter={requireAuth}
+        <Route path="/method/:nodeID" component={Method} />
+        <Route path="/method/:nodeID/edit" component={EnsureAuth} />
+        <Route path="/method/:nodeID/edit" component={MethodEditorContainer} />
+        <Route
+          exact
+          path="/organization/:nodeID"
+          component={props => <Organization intl={intl} {...props} />}
         />
-        <Route exact path="/organization/:nodeID" component={Organization} />
-        <PrivateRoute
+        <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
+        <Route
           path="/organization/:nodeID/edit"
-          component={OrganizationEditorContainer}
-          onEnter={requireAuth}
+          component={props => (
+            <OrganizationEditorContainer intl={intl} {...props} />
+          )}
         />
-        <Route exact path="/users/:id" component={ProfileLoader} />
-        <PrivateRoute exact path="/add" component={Add} onEnter={requireAuth} />
+        <Route path="/users/:id" component={ProfileLoader} />
       </div>
     );
   }
@@ -175,8 +174,8 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { auth, profile, isAuthenticated } = this.props;
-    let routes = <Routes />;
+    const { auth, profile, intl, isAuthenticated } = this.props;
+    let routes = <Routes intl={intl} />;
     return (
       <div>
         <div className="nav-bar-component">

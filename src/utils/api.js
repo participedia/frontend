@@ -116,7 +116,10 @@ class API {
         }
         return response.json();
       })
-      .then(json => json.data)
+      .then(function(json) {
+        caseObj.id = json.data.case_id;
+        return caseObj;
+      })
       .catch(function(error) {
         console.error(
           `There has been a problem with saving the case: (${url}) ${error}`
@@ -125,11 +128,11 @@ class API {
       });
   };
 
-  saveCase = function(caseObj) {
-    let url = APIURL + "/case/" + caseObj.id;
-    return signedFetch(url, "PUT", caseObj)
+  saveThing = function(thingType, obj) {
+    let url = APIURL + `/${thingType}/${obj.id}`;
+    return signedFetch(url, "PUT", obj)
       .then(response => response.json())
-      .then(json => json.data)
+      .then(json => obj)
       .catch(function(error) {
         console.error(
           `There has been a problem with saving the case: (${url}) ${error}`

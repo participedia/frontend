@@ -1,54 +1,48 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
+import React from "react";
 import EditProfile from "../components/EditProfile/EditProfile";
-import { loadNouns, ORGANIZATION } from "../actions";
+import api from "../utils/api";
 
-function mapStateToProps(state) {
-  const { auth } = state;
-  const { isAuthenticated } = auth;
+function dict2list(obj) {
+  return Object.getOwnPropertyNames(obj).map(function(e) {
+    return { text: e, value: obj[e] };
+  });
+}
 
-  let organizations = [];
-  if (state && state.nouns && state.nouns.organization) {
-    organizations = Object.keys(state.nouns.organization);
+export default class ProfileEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      organizations: [],
+      auth: null
+    };
   }
-
-  return {
-    isAuthenticated,
-    organizations
-  };
-}
-
-function loadOrganizationList(props) {
-  props.dispatch(loadNouns(ORGANIZATION));
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onSubmit: function(data) {},
-    loadOrganizationList: function() {
-      dispatch(loadNouns(ORGANIZATION));
-    },
-    dispatch: dispatch
-  };
-};
-
-class ProfileEditor extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    loadOrganizationList: PropTypes.func.isRequired
-  };
-
   componentDidMount() {
-    loadOrganizationList(this.props);
+    let component = this;
+    api.fetchNouns("ORGANIZATION").then(function(orgs) {
+      orgs = dict2list(orgs);
+      component.setState({ organizations: orgs });
+    });
+    api.fetchUser().then(function(user) {
+      component.setState({ user: user.data });
+    });
   }
 
-  componentWillReceiveProps(nextProps) {}
+  onChange(newState) {
+    console.log("got newState", newState);
+    this.setState(newState);
+  }
 
   render() {
-    return <EditProfile {...this.props} />;
+    return (
+      <EditProfile
+        profile={this.props.profile}
+        user={this.state.user}
+        organizations={this.state.organizations}
+        auth={this.state.auth}
+        onChange={this.onChange.bind(this)}
+        {...this.props}
+      />
+    );
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditor);
