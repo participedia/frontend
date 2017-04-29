@@ -1,25 +1,28 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
-import { func, object, bool } from "prop-types";
+import { Link } from "react-router-dom";
+import { object, array, bool } from "prop-types";
 import Avatar from "material-ui/Avatar";
-import { connect } from "react-redux";
 import { Container, Col } from "reactstrap";
 import Geosuggest from "react-geosuggest";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
 import AutoComplete from "material-ui/AutoComplete";
 import TextField from "material-ui/TextField";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import FileUpload from "material-ui/svg-icons/file/file-upload";
 import Upload from "../../Upload";
-import { injectIntl } from "react-intl";
 
-class EditProfile extends Component {
+export default class EditProfile extends Component {
   static propTypes = {
-    dispatch: func.isRequired,
-    profile: object.isRequired,
-    isAuthenticated: bool.isRequired
+    profile: object,
+    user: object,
+    intl: object.isRequired,
+    isAuthenticated: bool.isRequired,
+    organizations: array.isRequired
   };
 
   render() {
-    const { isAuthenticated, profile } = this.props;
+    const { isAuthenticated, profile, user } = this.props;
 
     const nameStyle = {
       color: "#3f51b2",
@@ -114,6 +117,11 @@ class EditProfile extends Component {
                   placeholder={this.props.intl.formatMessage({ id: "tell_us" })}
                 />
               </Col>
+              <Link to="/profile">
+                <FloatingActionButton className="editButton">
+                  <FileUpload />
+                </FloatingActionButton>
+              </Link>
             </div>
           : <Col md={{ size: 9, offset: 1 }} className="main-area">
               <p>{this.props.intl.formatMessage({ id: "sorry" })}</p>
@@ -122,20 +130,3 @@ class EditProfile extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    profile: state.auth.profile
-  };
-}
-
-const mapDispatchToProps = () => {
-  return {
-    onSubmit: () => {},
-    onLocationSuggest: () => {}
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  injectIntl(EditProfile)
-);

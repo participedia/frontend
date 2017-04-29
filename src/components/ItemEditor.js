@@ -5,7 +5,7 @@ import BodyEditor from "./BodyEditor";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
 import FloatingActionButton from "material-ui/FloatingActionButton";
-import Send from "material-ui/svg-icons/content/send";
+import FileUpload from "material-ui/svg-icons/file/file-upload";
 
 export default class ItemEditor extends Component {
   constructor(props) {
@@ -68,7 +68,7 @@ export default class ItemEditor extends Component {
                 onTouchTap={onSubmit}
                 className="editButton"
               >
-                <Send />
+                <FileUpload />
               </FloatingActionButton>
               <button type="submit">Submit</button>
             </Col>

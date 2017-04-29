@@ -46,12 +46,6 @@ import myhistory from "./utils/history";
 
 import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
 
-function requireAuth(nextState, replace) {
-  if (!authService.loggedIn()) {
-    authService.login(nextState.location.pathname);
-  }
-}
-
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
 }
@@ -75,18 +69,26 @@ const EnsureAuth = props =>
 class Routes extends React.Component {
   render() {
     let intl = this.props.intl;
+    let isAuthenticated = authService.loggedIn();
+    let profile = authService.getProfile();
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
         <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
-        <Route path="/profile" component={ProfileLoader} />
+        <Route exact path="/profile" component={ProfileLoader} />
         <Route path="/profile/edit" component={EnsureAuth} />
         <Route
           path="/profile/edit"
-          component={ProfileEditor}
-          onEnter={requireAuth}
+          component={props => (
+            <ProfileEditor
+              isAuthenticated={isAuthenticated}
+              intl={intl}
+              profile={profile}
+              {...props}
+            />
+          )}
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
@@ -98,7 +100,6 @@ class Routes extends React.Component {
         <Route
           exact
           path="/new/case"
-          intl={intl}
           component={props => <NewCaseContainer intl={intl} {...props} />}
         />
         <Route
@@ -126,11 +127,7 @@ class Routes extends React.Component {
         />
         <Route path="/method/:nodeID" component={Method} />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
-        <Route
-          path="/method/:nodeID/edit"
-          component={MethodEditorContainer}
-          onEnter={requireAuth}
-        />
+        <Route path="/method/:nodeID/edit" component={MethodEditorContainer} />
         <Route
           exact
           path="/organization/:nodeID"
@@ -142,12 +139,11 @@ class Routes extends React.Component {
           component={props => (
             <OrganizationEditorContainer intl={intl} {...props} />
           )}
-          onEnter={requireAuth}
         />
         <Route path="/users/:id" component={ProfileLoader} />
 
         <Route exact path="/add" component={EnsureAuth} />
-        <Route exact path="/add" component={Add} onEnter={requireAuth} />
+        <Route exact path="/add" component={Add} />
       </div>
     );
   }
@@ -182,8 +178,8 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { auth, profile, isAuthenticated } = this.props;
-    let routes = <Routes />;
+    const { auth, profile, intl, isAuthenticated } = this.props;
+    let routes = <Routes intl={intl} />;
     return (
       <div>
         <div className="nav-bar-component">
