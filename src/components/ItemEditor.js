@@ -18,7 +18,7 @@ export default class ItemEditor extends Component {
   }
 
   onSubmit() {
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.thing);
   }
   render() {
     let { sidebar, type } = this.props;
@@ -62,7 +62,7 @@ export default class ItemEditor extends Component {
                 <div>
                   <label htmlFor="body_en">Body</label>
                 </div>
-                <BodyEditor value={thing.body} />
+                <Field fieldName="body" type={BodyEditor} />
               </div>
               <FloatingActionButton
                 onTouchTap={onSubmit}

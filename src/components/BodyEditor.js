@@ -55,7 +55,7 @@ class BodyEditor extends React.Component {
     return (
       <div className="_quill">
         <div
-          ref={ref => this.toolBarContainer = ref}
+          ref={ref => (this.toolBarContainer = ref)}
           className={
             this.state.fixedBar ? "body-editor-box fixed" : "body-editor-box"
           }
@@ -63,6 +63,7 @@ class BodyEditor extends React.Component {
           <ScrollEvent handleScrollCallback={this.handleScroll} />
           <ReactQuill
             theme="snow"
+            onChange={this.props.onChange}
             modules={_quillModules}
             formats={_quillFormats}
             bounds={"._quill"}

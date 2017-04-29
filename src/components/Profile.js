@@ -61,7 +61,7 @@ class Profile extends Component {
               <Avatar size={200} src={user.picture_url} />
             </div>
             {user.email === profile.email
-              ? <Link to="/en-US/profile/edit" className="edit-profile-button">
+              ? <Link to="/profile/edit" className="edit-profile-button">
                   Edit Profile
                 </Link>
               : <div />}

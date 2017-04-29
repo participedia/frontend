@@ -62,22 +62,17 @@ class EditorContainer extends Component {
   }
 
   onSubmit(thing) {
-    let location = this.props.location;
     let saveFunc;
-    if (this.props.type === "case") {
-      saveFunc = api.saveCase;
-    } else if (this.props.type === "method") {
-      saveFunc = api.saveMethod;
-    } else if (this.props.type === "organization") {
-      saveFunc = api.saveOrg;
+    console.log("in onSubmit, thing = ", thing);
+    if (this.props.new) {
+      saveFunc = api.saveNewThing;
     } else {
-      console.error("got unknown type in onSubmit");
+      saveFunc = api.saveThing;
     }
 
-    saveFunc(thing).then(function(thing) {
-      let pathparts = location.pathname.split("/");
-      pathparts.pop();
-      myhistory.push(pathparts.join("/"));
+    saveFunc(thing.type, thing).then(function(thing) {
+      console.log("after saveFunc, thing is", thing);
+      myhistory.push(`../../${thing.type}/${thing.id}`);
     });
   }
 
@@ -104,7 +99,8 @@ class EditorContainer extends Component {
     if (isNew) {
       thing = {
         title: "",
-        body: ""
+        body: "",
+        type: this.props.type
       };
       if (this.props.type === "case") {
       }
