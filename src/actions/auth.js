@@ -31,8 +31,9 @@ export function checkLogin() {
     } else {
       if (authService.lock === null) {
         authService.setupLock(configLock.bind(dispatch));
+      } else {
+        configLock(dispatch);
       }
-      configLock(dispatch);
     }
   };
 }
