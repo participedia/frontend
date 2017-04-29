@@ -8,20 +8,32 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 // Listen to authenticated event from authService and get the profile of the user
 // Done on every page startup
+
+function configLock(dispatch) {
+  authService.lock.on("authenticated", authResult => {
+    authService.lock.getProfile(authResult.idToken, (error, profile) => {
+      if (error) {
+        return dispatch(loginError(error));
+      }
+      authService.setToken(authResult.idToken);
+      authService.setProfile(profile);
+      return dispatch(loginSuccess(profile, JSON.parse(authResult.state)));
+    });
+  });
+  authService.lock.on("authorization_error", error =>
+    dispatch(loginError(error))
+  );
+}
 export function checkLogin() {
   return dispatch => {
-    authService.lock.on("authenticated", authResult => {
-      authService.lock.getProfile(authResult.idToken, (error, profile) => {
-        if (error) {
-          return dispatch(loginError(error));
-        }
-        authService.setToken(authResult.idToken);
-        authService.setProfile(profile);
-        return dispatch(loginSuccess(profile, JSON.parse(authResult.state)));
-      });
-    });
-    authService.lock.on("authorization_error", error =>
-      dispatch(loginError(error)));
+    if (authService.loggedIn()) {
+      dispatch(loginSuccess(authService.getProfile(), {}));
+    } else {
+      if (authService.lock === null) {
+        authService.setupLock(configLock.bind(dispatch));
+      }
+      configLock(dispatch);
+    }
   };
 }
 

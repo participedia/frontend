@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import api from "../utils/api";
-import MapVisualization from "../components/MapVisualization/MapVisualization";
 import coordinates from "parse-dms";
-
 function extractData(data, type) {
   let newdata = data.map(function(obj) {
     let coords;
@@ -29,8 +27,23 @@ function extractData(data, type) {
 export default class Map extends Component {
   state = {
     cases: [],
-    organizations: []
+    organizations: [],
+    MapVisualization: null
   };
+  componentDidMount() {
+    // There is probably a cleaner way to do this, but it seems to work
+    let component = this;
+    require.ensure(
+      ["../components/MapVisualization/MapVisualization"],
+      function(require) {
+        let MapVisualization = require("../components/MapVisualization/MapVisualization")
+          .default;
+        component.setState({
+          MapVisualization
+        });
+      }
+    );
+  }
   componentWillMount() {
     let component = this;
     api.searchMapTokens().then(function(results) {
@@ -45,6 +58,15 @@ export default class Map extends Component {
 
   render() {
     let { cases, organizations } = this.state;
-    return <MapVisualization cases={cases} organizations={organizations} />;
+    if (this.state.MapVisualization) {
+      return (
+        <this.state.MapVisualization
+          cases={cases}
+          organizations={organizations}
+        />
+      );
+    } else {
+      return <div />;
+    }
   }
 }

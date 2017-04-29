@@ -166,7 +166,9 @@ export default class ItemDetails extends React.Component {
                       </Link>
                     </p>
                     <p className="date-line">
-                      <TimeAgo date={thing.post_date} />
+                      {thing.post_date
+                        ? <TimeAgo date={thing.post_date} />
+                        : <span />}
                     </p>
                     <p className="author-line">
                       Most recent changes by&nbsp;
@@ -175,7 +177,9 @@ export default class ItemDetails extends React.Component {
                       </Link>
                     </p>
                     <p className="date-line">
-                      <TimeAgo date={thing.updated_date} />
+                      {thing.updated_date
+                        ? <TimeAgo date={thing.updated_date} />
+                        : <span />}
                     </p>
                   </div>
                   <div

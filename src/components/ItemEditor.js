@@ -1,11 +1,35 @@
 import React, { Component } from "react";
 import { Form, Field } from "simple-react-form";
 import { Container, Col } from "reactstrap";
-import BodyEditor from "./BodyEditor";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
+
+class LazyBodyEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { BodyEditor: false };
+  }
+  componentDidMount() {
+    // There is probably a cleaner way to do this, but it seems to work
+    let component = this;
+    require.ensure(["./BodyEditor"], function(require) {
+      let BodyEditor = require("./BodyEditor").default;
+      component.setState({
+        BodyEditor
+      });
+    });
+  }
+  render() {
+    let BodyEditor = this.state.BodyEditor;
+    if (BodyEditor) {
+      return <BodyEditor {...this.props} />;
+    } else {
+      return <div />;
+    }
+  }
+}
 
 export default class ItemEditor extends Component {
   constructor(props) {
@@ -62,7 +86,7 @@ export default class ItemEditor extends Component {
                 <div>
                   <label htmlFor="body_en">Body</label>
                 </div>
-                <Field fieldName="body" type={BodyEditor} />
+                <Field fieldName="body" type={LazyBodyEditor} />
               </div>
               <FloatingActionButton
                 onTouchTap={onSubmit}

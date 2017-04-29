@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { func } from "prop-types";
-import ReactMapboxGl, {
-  Layer,
-  Feature,
-  Popup,
-  ZoomControl
-} from "react-mapbox-gl";
+import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 
 import "./MapVisualization.css";
 import styles from "./mapstyle.js";
@@ -43,15 +38,17 @@ class MapVisualization extends React.Component {
     let component = this;
     if (localStorage.getItem("geolocated_once") == null) {
       // For fun, we offer to center the map on where the viewer is.
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let lat = position.coords.latitude;
-        let lng = position.coords.longitude;
-        component.setState({
-          center: [lng, lat],
-          zoom: [5]
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          let lat = position.coords.latitude;
+          let lng = position.coords.longitude;
+          component.setState({
+            center: [lng, lat],
+            zoom: [5]
+          });
+          localStorage.setItem("geolocated_once", "true");
         });
-        localStorage.setItem("geolocated_once", "true");
-      });
+      }
     }
 
     this.state = {
@@ -103,7 +100,7 @@ class MapVisualization extends React.Component {
 
     return (
       <div className="map-component">
-        <ReactMapboxGl
+        <Map
           style={styleURL}
           center={this.state.center}
           scrollZoom={false}
@@ -117,23 +114,26 @@ class MapVisualization extends React.Component {
         >
 
           <ZoomControl zoomDiff={1} />
-          <Layer
-            type="symbol"
-            id="cases"
-            layout={caseMarkerLayout}
-            paint={caseMarkerPaint}
-          >
-            {caseFeatures}
-          </Layer>
-          <Layer
-            type="symbol"
-            id="orgs"
-            layout={orgMarkerLayout}
-            paint={orgMarkerPaint}
-          >
-            {orgFeatures}
-          </Layer>
-
+          {caseFeatures
+            ? <Layer
+                type="symbol"
+                id="cases"
+                layout={caseMarkerLayout}
+                paint={caseMarkerPaint}
+              >
+                {caseFeatures}
+              </Layer>
+            : <div />}
+          {orgFeatures
+            ? <Layer
+                type="symbol"
+                id="orgs"
+                layout={orgMarkerLayout}
+                paint={orgMarkerPaint}
+              >
+                {orgFeatures}
+              </Layer>
+            : <div />}
           {focus &&
             <Popup
               key={focus.id}
@@ -163,7 +163,7 @@ class MapVisualization extends React.Component {
                 </div>
               </div>
             </Popup>}
-        </ReactMapboxGl>
+        </Map>
       </div>
     );
   }
