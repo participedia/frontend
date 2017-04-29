@@ -8,7 +8,6 @@ function getPics(thing) {
   let awsUrl = process.env.REACT_APP_ASSETS_URL;
   let theLength = "";
   let pics = [];
-  console.log(thing, thing.lead_image);
   if (thing && thing.lead_image) {
     pics.push(awsUrl + encodeURIComponent(thing.lead_image.url));
   }
