@@ -120,13 +120,17 @@ jest.mock("react-mapbox-gl", () => ({
 }));
 
 fetchMock.get(
-  "http://localhost:3001/search?error=false&query=&searching=true&selectedCategory=All&selectedViewType=grid&sortingMethod=chronological",
+  process.env.REACT_APP_API_URL +
+    "/search?error=false&query=&searching=true&selectedCategory=All&selectedViewType=grid&sortingMethod=chronological",
   JSON.stringify(searchData)
 );
 
 import mapData from "./map_data.json";
 
-fetchMock.get("http://localhost:3001/search/map", JSON.stringify(mapData));
+fetchMock.get(
+  process.env.REACT_APP_API_URL + "/search/map",
+  JSON.stringify(mapData)
+);
 
 // chasing dots generates random animation names for some reason, not good for snapshotting.
 jest.mock("better-react-spinkit", () => ({
