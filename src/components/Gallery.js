@@ -4,28 +4,35 @@ import ImageGallery from "react-image-gallery";
 // This component knows how to process a "thing" (case, method, etc) and extract the images
 // and other data that the ImageGallery component needs.
 
+function getPics(thing) {
+  let awsUrl = process.env.REACT_APP_ASSETS_URL;
+  let theLength = "";
+  let pics = [];
+  console.log(thing, thing.lead_image);
+  if (thing && thing.lead_image) {
+    pics.push(awsUrl + encodeURIComponent(thing.lead_image.url));
+  }
+  if (thing && thing.other_images.length) {
+    theLength = thing.other_images;
+    Object.keys(theLength).forEach(function(key) {
+      let obj = theLength[key];
+      pics.push(awsUrl + encodeURIComponent(obj.url));
+    });
+  }
+  return pics;
+}
+
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
-    let thing = props.thing;
     this.defineImage = this.defineImage.bind(this);
     this.getWidth = this.getWidth.bind(this);
     this.renderItem = this.renderItem.bind(this);
+    this.state = { pics: getPics(props.thing) };
+  }
 
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let theLength = "";
-    let pics = [];
-    if (thing && thing.lead_image) {
-      pics.push(awsUrl + encodeURIComponent(thing.lead_image.url));
-    }
-    if (thing && thing.other_images.length) {
-      theLength = thing.other_images;
-      Object.keys(theLength).forEach(function(key) {
-        let obj = theLength[key];
-        pics.push(awsUrl + encodeURIComponent(obj.url));
-      });
-    }
-    this.state = { pics };
+  componentWillReceiveProps(nextProps) {
+    this.setState({ pics: getPics(nextProps.thing) });
   }
 
   defineImage(url) {
