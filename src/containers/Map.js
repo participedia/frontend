@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
+
+// Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
+if (process.env.NODE_ENV === "test") {
+  require.ensure = (deps, cb) => cb(require);
+}
+
 function extractData(data, type) {
   let newdata = data.map(function(obj) {
     let coords;

@@ -1,6 +1,11 @@
 import jwtDecode from "jwt-decode";
 import ppLogo from "../img/pp-logo-dark.png";
 
+// Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
+if (process.env.NODE_ENV === "test") {
+  require.ensure = (deps, cb) => cb(require);
+}
+
 const SCOPE =
   "openid email read:users update:users update:users_app_metadata user_metadata app_metadata picture created_at";
 

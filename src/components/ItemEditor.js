@@ -6,6 +6,11 @@ import Text from "simple-react-form-material-ui/lib/text";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
 
+// Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
+if (process.env.NODE_ENV === "test") {
+  require.ensure = (deps, cb) => cb(require);
+}
+
 class LazyBodyEditor extends Component {
   constructor(props) {
     super(props);
