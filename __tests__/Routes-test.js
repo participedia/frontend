@@ -1,14 +1,25 @@
 import { render, unmountComponentAtNode } from "react-dom";
 import React from "react";
+import renderer from "react-test-renderer";
 import { Route, MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import searchData from "./search_data.json";
+
+import { IntlProvider } from "react-intl";
+import { getBestMatchingMessages } from "../src/utils/l10n";
+
+import searchData from "./search.json";
 import countryData from "./country_data.json";
+
 import afterPromises from "../src/helpers/afterPromises";
+
 import App from "../src/App";
+import store from "../src/store";
+
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+const muiTheme = getMuiTheme({});
 
 let fetchMock = require("fetch-mock");
-import store from "../src/store";
 jest.mock("../src/containers/Map", () => "Map");
 
 fetchMock.get(
@@ -98,4 +109,68 @@ it.skip("navigates around", done => {
   } finally {
     console.log(fetchMock.calls("*"));
   }
+});
+
+jest.mock("react-mapbox-gl", () => ({
+  Layer: "foo",
+  Feature: "foo",
+  Popup: "foo",
+  ZoomControl: "foo",
+  Map: "foo"
+}));
+
+fetchMock.get(
+  process.env.REACT_APP_API_URL +
+    "/search?error=false&query=&searching=true&selectedCategory=All&selectedViewType=grid&sortingMethod=chronological",
+  JSON.stringify(searchData)
+);
+
+import mapData from "./map_data.json";
+
+fetchMock.get(
+  process.env.REACT_APP_API_URL + "/search/map",
+  JSON.stringify(mapData)
+);
+
+// chasing dots generates random animation names for some reason, not good for snapshotting.
+jest.mock("better-react-spinkit", () => ({
+  ChasingDots: "ChasingDots"
+}));
+
+jest.mock("material-ui/MenuItem/MenuItem");
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
+
+test("App", () => {
+  const tree = renderer
+    .create(
+      <Provider store={store}>
+        <IntlProvider locale={locale} messages={messages}>
+          <MemoryRouter>
+            <MuiThemeProvider muiTheme={muiTheme}>
+              <App />
+            </MuiThemeProvider>
+          </MemoryRouter>
+        </IntlProvider>
+      </Provider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("Searching for a word", () => {
+  const tree = renderer
+    .create(
+      <Provider store={store}>
+        <IntlProvider locale={locale} messages={messages}>
+          <MemoryRouter initialEntries={["/search?query=france"]}>
+            <MuiThemeProvider muiTheme={muiTheme}>
+              <App />
+            </MuiThemeProvider>
+          </MemoryRouter>
+        </IntlProvider>
+      </Provider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });

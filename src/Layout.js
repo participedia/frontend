@@ -149,7 +149,7 @@ export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     profile: object.isRequired,
-    checkLogin: func.isRequired
+    checkLogin: func
   };
   constructor(props) {
     super(props);
