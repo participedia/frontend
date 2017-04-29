@@ -24,8 +24,13 @@ export default class ProfileEditor extends React.Component {
       component.setState({ organizations: orgs });
     });
     api.fetchUser().then(function(user) {
-      component.setState({ user: user });
+      component.setState({ user: user.data });
     });
+  }
+
+  onChange(newState) {
+    console.log("got newState", newState);
+    this.setState(newState);
   }
 
   render() {
@@ -35,6 +40,7 @@ export default class ProfileEditor extends React.Component {
         user={this.state.user}
         organizations={this.state.organizations}
         auth={this.state.auth}
+        onChange={this.onChange.bind(this)}
         {...this.props}
       />
     );

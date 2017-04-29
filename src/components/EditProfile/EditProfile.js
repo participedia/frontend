@@ -1,4 +1,5 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import CountryMap from "../CountryMap";
 import { Link } from "react-router-dom";
 import { object, array, bool } from "prop-types";
 import Avatar from "material-ui/Avatar";
@@ -12,6 +13,28 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
 import Upload from "../../Upload";
 
+function encodeLocation(data) {
+  let components = data.gmaps.address_components;
+  let country = "";
+  let province = "";
+  let city = "";
+  let latitude = data.location.lat;
+  let longitude = data.location.lng;
+
+  components.forEach(function(c) {
+    c.types.forEach(function(t) {
+      if (t === "country") {
+        country = c.long_name;
+      } else if (t === "locality") {
+        city = c.long_name;
+      } else if (t === "administrative_area_1") {
+        province = c.long_name;
+      }
+    });
+  });
+  return { country, city, province, latitude, longitude };
+}
+
 export default class EditProfile extends Component {
   static propTypes = {
     profile: object,
@@ -22,7 +45,7 @@ export default class EditProfile extends Component {
   };
 
   render() {
-    const { isAuthenticated, profile, user } = this.props;
+    const { isAuthenticated, profile, user, onChange } = this.props;
 
     const nameStyle = {
       color: "#3f51b2",
@@ -43,6 +66,24 @@ export default class EditProfile extends Component {
       padding: "7px 0",
       boxSizing: "border-box"
     };
+    let name = profile.name;
+    let picture = profile.user_metadata && profile.user_metadata.customPic
+      ? profile.user_metadata.customPic
+      : profile.picture;
+    let bio = "";
+    let affiliation = "";
+    let title = "";
+    let location = null;
+    if (user) {
+      picture = user.picture_url;
+      name = user.name;
+      bio = user.bio;
+      title = user.title;
+      affiliation = user.affiliation;
+      location = user.location;
+    }
+
+    if (!user) return <div />;
 
     return (
       <Container fluid={true} className="edit-profile">
@@ -50,18 +91,21 @@ export default class EditProfile extends Component {
           ? <div>
               <Col md="3" className="sidebar">
                 <div className="user-avatar">
-                  {profile.user_metadata && profile.user_metadata.customPic
-                    ? <Avatar
-                        size={200}
-                        src={profile.user_metadata.customPic}
-                      />
-                    : <Avatar size={200} src={profile.picture} />}
+                  <Avatar size={200} src={picture} />
+
                   <Upload
                     customStyle={customStyle}
                     profile={profile}
                     updatePicture={true}
                   />
                 </div>
+                {location
+                  ? <CountryMap
+                      city={location.city}
+                      countrycode={location.country}
+                    />
+                  : <div />}
+
               </Col>
               <Col md="9" className="main-area">
                 <label className="form-label">
@@ -70,7 +114,7 @@ export default class EditProfile extends Component {
                 <TextField
                   inputStyle={nameStyle}
                   hintText={this.props.intl.formatMessage({ id: "name" })}
-                  defaultValue={profile.name}
+                  defaultValue={name}
                   className="name-input"
                 />
                 <br />
@@ -80,7 +124,10 @@ export default class EditProfile extends Component {
                 </label>
                 <Geosuggest
                   className="org-input"
-                  onSuggestSelect={this.props.onLocationSuggest}
+                  onSuggestSelect={function(data) {
+                    user.location = encodeLocation(data);
+                    onChange({ user });
+                  }}
                 />
                 <label className="form-label organization">
                   {this.props.intl.formatMessage({ id: "organization" })}
@@ -98,10 +145,12 @@ export default class EditProfile extends Component {
                 <br />
                 <TextField
                   hintText={this.props.intl.formatMessage({ id: "department" })}
+                  defaultValue={affiliation}
                 />
                 <br />
                 <TextField
                   hintText={this.props.intl.formatMessage({ id: "job_title" })}
+                  defaultValue={title}
                 />
                 <br />
                 <TextField
@@ -114,6 +163,7 @@ export default class EditProfile extends Component {
                 </label>
                 <textarea
                   className="biography-input"
+                  defaultValue={bio}
                   placeholder={this.props.intl.formatMessage({ id: "tell_us" })}
                 />
               </Col>
