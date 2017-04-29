@@ -191,7 +191,7 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link to="/quick-submit">
+            <Link className="hidden-sm-down" to="/quick-submit">
               <div className="createButton" />
             </Link>
             <LoginAvatar

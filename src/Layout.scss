@@ -16,25 +16,27 @@
   }
 }
 
-.drawer div {
-  z-index: 30000;
-  background-color: white;
-  color: black;
-  transition:background-color 0.25s;
-}
+.drawer {
+  div {
+    z-index: 30000;
+    background-color: white;
+    color: black;
+    transition:background-color 0.25s;
+  }
 
-.drawer > div:nth-child(2) {
-  padding: 64px 0 0 0;
-  a {
-    background:#fff;
-    div {
-      padding-left:20px;
-    }
-    &:hover, &:focus {
-      div {
-        background-color:$dark-grey;
-      }
-    }
+  > div:nth-child(2) {
+   padding: 140px 0 0 0;
+   a {
+     background:#fff;
+     div {
+       padding-left:20px;
+     }
+     &:hover, &:focus {
+       div {
+         background-color:$dark-grey;
+       }
+     }
+   }
   }
 }
 

@@ -34,12 +34,12 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
             <div
               className="tags">
               <a
-                href="/search?tag=civic%20engagement"
+                href="/search?tag=civic engagement"
                 onClick={[Function]}>
                 civic engagement
               </a>
               <a
-                href="/search?tag=digital%20participation"
+                href="/search?tag=digital participation"
                 onClick={[Function]}>
                 digital participation
               </a>
@@ -98,7 +98,7 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
                 alt={undefined}
                 className="portrait"
                 sizes={undefined}
-                src="https://d3im063erkq9w4.cloudfront.net/uis_favicon_0.png"
+                src="http://assets.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
                 srcSet={undefined} />
             </div>
             <div
