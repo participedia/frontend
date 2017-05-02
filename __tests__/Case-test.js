@@ -1,5 +1,13 @@
 import React from "react";
+import renderer from "react-test-renderer";
+
 import { Case } from "../src/containers/Case";
+import CaseDetails from "../src/components/CaseDetails";
+import ItemDetails from "../src/components/ItemDetails/ItemDetails";
+import { IntlProvider } from "react-intl";
+import { getBestMatchingMessages } from "../src/utils/l10n";
+
+import { MemoryRouter } from "react-router";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
@@ -21,16 +29,25 @@ fetchMock.get(
   JSON.stringify({ data: caseData })
 );
 
+jest.mock("../src/components/Gallery");
+jest.mock("material-ui/FloatingActionButton");
+jest.mock("../src/components/BookmarkToggle");
+
 function setup() {
   const props = {
     intl: intlProps,
-    params: { nodeID: 123 }
+    location: { pathname: "/method/123" },
+    match: { params: { nodeID: 123 } },
+    toggleFeatured: function() {},
+    data: caseData
   };
 
   const enzymeWrapper = mountWithIntl(
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Case {...props} />
-    </MuiThemeProvider>
+    <MemoryRouter>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Case {...props} />
+      </MuiThemeProvider>
+    </MemoryRouter>
   );
   return {
     props,
@@ -49,6 +66,19 @@ describe("containers", () => {
     });
   });
 });
-// expect(enzymeWrapper.find("h2.case-title").text()).toBe(
-//   "Agenda 21 Locale (Province of Forli-Cesena, Italy)"
-// );
+
+let props = setup().props;
+let locale = "en-US";
+props["details"] = CaseDetails;
+let messages = getBestMatchingMessages(locale);
+
+test("ItemDetails for Case renders correctly", () => {
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});

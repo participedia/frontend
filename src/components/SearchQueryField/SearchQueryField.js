@@ -11,14 +11,6 @@ class SearchQueryField extends React.Component {
     this.onKeyUp = this.onKeyUp.bind(this);
   }
 
-  componentDidMount() {
-    this.props.onPerformQuery(
-      this.props.query,
-      this.props.selectedCategory,
-      this.props.sortingMethod
-    );
-  }
-
   onChange(event) {
     this.setState({ query: event.target.value });
   }
@@ -50,7 +42,7 @@ class SearchQueryField extends React.Component {
 
 SearchQueryField.propTypes = {
   onPerformQuery: PropTypes.func.isRequired,
-  query: PropTypes.string.isRequired
+  query: PropTypes.string
 };
 
 export default injectIntl(SearchQueryField);

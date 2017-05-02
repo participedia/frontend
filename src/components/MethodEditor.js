@@ -1,5 +1,5 @@
 import React from "react";
-import { injectIntl, intlShape } from "react-intl";
+import { intlShape } from "react-intl";
 import { Field } from "simple-react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor/CaseEditor.css";
@@ -90,13 +90,13 @@ function MethodSidebar({ thing, intl, cases, methods, organizations }) {
   );
 }
 
-function _MethodEditor(props) {
+function MethodEditor(props) {
   let sidebar = <MethodSidebar {...props} />;
-  return <ItemEditor {...props} sidebar={sidebar} />;
+  return <ItemEditor {...props} type="method" sidebar={sidebar} />;
 }
 
-_MethodEditor.propTypes = {
+MethodEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(_MethodEditor);
+export default MethodEditor;

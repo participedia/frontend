@@ -1,160 +1,174 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { func } from "prop-types";
-import { Map, TileLayer } from "react-leaflet";
-import geojson from "../../world-countries.json";
-import Choropleth from "react-leaflet-choropleth";
+import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
+
 import "./MapVisualization.css";
-import api from "../../utils/api";
-import caseMarkerIcon from "../../img/case-marker-icon.png";
-import methodMarkerIcon from "../../img/method-marker-icon.png";
-import orgMarkerIcon from "../../img/organization-marker-icon.png";
-import mapArrowIcon from "../../img/pp-map-arrow-icon.png";
-// eslint-disable-next-line
-import sleep from "leaflet-sleep";
-import leaflet from "leaflet";
+import styles from "./mapstyle.js";
+const accessToken =
+  "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
+const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
-import "leaflet/dist/leaflet.css";
-
-const style = {
-  fillColor: "rgba(0,0,0,0)",
-  color: "rgba(124,0,0,0)",
-  weight: 1,
-  opacity: 0,
-  fillOpacity: 0.6
+const caseMarkerLayout = {
+  "text-line-height": 1,
+  "text-padding": 0,
+  "text-anchor": "bottom",
+  "text-allow-overlap": false,
+  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
+  "icon-optional": true,
+  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
+  "text-size": 18
 };
 
-let mapURL = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}";
-let attribution = "Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012";
-let maxZoom = 5;
+const orgMarkerLayout = caseMarkerLayout;
 
-let scale = ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"];
+const caseMarkerPaint = {
+  "text-translate-anchor": "viewport",
+  "text-color": "#000"
+};
 
-//  http://colorbrewer2.org/ for scales
-class MyMap extends React.Component {
+const orgMarkerPaint = {
+  "text-translate-anchor": "viewport",
+  "text-color": "#000"
+};
+
+class MapVisualization extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { countryCounts: {} };
-    this.numCasesPerCountry = this.numCasesPerCountry.bind(this);
-    this.labelPerCountry = this.labelPerCountry.bind(this);
-    this.isCountryListed = this.isCountryListed.bind(this);
-    this.onEachFeature = this.onEachFeature.bind(this);
-  }
-
-  numCasesPerCountry(feature) {
-    let countryName = feature.properties.name;
-    let count = this.state.countryCounts[countryName.toLowerCase()];
-    if (count) {
-      return count;
-    } else {
-      return 0;
-    }
-  }
-
-  labelPerCountry(feature) {
-    let countryName = feature.properties.name;
-    let count = this.numCasesPerCountry(feature);
-    if (count > 1) {
-      return countryName + " " + count + " cases";
-    } else if (count === 1) {
-      return countryName + " " + count + " case";
-    } else {
-      return countryName + ", no cases yet";
-    }
-  }
-
-  isCountryListed(feature) {
-    return this.numCasesPerCountry(feature);
-  }
-
-  componentDidMount() {
-    api.countsByCountry().then(
-      function success(countryCounts) {
-        this.setState({ countryCounts: countryCounts });
-      }.bind(this)
-    );
-  }
-
-  onEachFeature(feature, layer) {
-    let labelPerCountry = this.labelPerCountry;
     let component = this;
-    layer.on({
-      click: function(event) {
-        leaflet
-          .popup()
-          .setLatLng(event.latlng)
-          .setContent(labelPerCountry(feature))
-          .openOn(layer._map); // eslint-disable-line no-undef
-        /* do a per-country search */
-        if (component.props.onCountryChange) {
-          component.props.onCountryChange(feature.properties.name);
-        }
+    if (localStorage.getItem("geolocated_once") == null) {
+      // For fun, we offer to center the map on where the viewer is.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          let lat = position.coords.latitude;
+          let lng = position.coords.longitude;
+          component.setState({
+            center: [lng, lat],
+            zoom: [5]
+          });
+          localStorage.setItem("geolocated_once", "true");
+        });
       }
+    }
+
+    this.state = {
+      popupShowLabel: true,
+      center: [-9.9215833, -15.4099109],
+      zoom: [2],
+      focus: null
+    };
+  }
+
+  _onToggleHover(cursor, { map }) {
+    map.getCanvas().style.cursor = cursor;
+  }
+
+  _markerClick(focus) {
+    this.setState({
+      center: focus.position,
+      focus: focus,
+      popupShowLabel: true
     });
   }
 
+  _popupChange(popupShowLabel) {
+    this.setState({ popupShowLabel });
+  }
+  _clearPopup() {
+    this.setState({ popupShowLabel: false });
+  }
+
   render() {
-    const position = [51.505, -0.09];
+    const { focus, popupShowLabel } = this.state;
+    const { cases, organizations } = this.props;
+    let popupChange = this._popupChange.bind(this);
+    let clearPopup = this._clearPopup.bind(this);
+    const caseFeatures = cases.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
+    const orgFeatures = organizations.map((st, index) => (
+      <Feature
+        key={st.id}
+        onClick={this._markerClick.bind(this, st)}
+        coordinates={st.position}
+      />
+    ));
+
     return (
       <div className="map-component">
         <Map
-          zoom={3}
-          center={position}
-          sleep={true}
-          hoverToWake={false}
-          wakeMessage="Click to wake map"
-          sleepOpacity={0.9}
+          style={styleURL}
+          center={this.state.center}
+          scrollZoom={false}
+          touchZoomRotate={true}
+          zoom={this.state.zoom}
+          minZoom={1}
+          maxZoom={15}
+          onClick={clearPopup}
+          containerStyle={styles.container}
+          accessToken={accessToken}
         >
-          <TileLayer url={mapURL} attribution={attribution} maxZoom={maxZoom} />
-          <Choropleth
-            data={geojson}
-            valueProperty={this.numCasesPerCountry}
-            scale={scale}
-            visible={this.isCountryListed}
-            onEachFeature={this.onEachFeature}
-            steps={5}
-            mode="e"
-            style={style}
-          />
+
+          <ZoomControl zoomDiff={1} />
+          {caseFeatures
+            ? <Layer
+                type="symbol"
+                id="cases"
+                layout={caseMarkerLayout}
+                paint={caseMarkerPaint}
+              >
+                {caseFeatures}
+              </Layer>
+            : <div />}
+          {orgFeatures
+            ? <Layer
+                type="symbol"
+                id="orgs"
+                layout={orgMarkerLayout}
+                paint={orgMarkerPaint}
+              >
+                {orgFeatures}
+              </Layer>
+            : <div />}
+          {focus &&
+            <Popup
+              key={focus.id}
+              offset={[0, -50]}
+              coordinates={focus.position}
+              style={{
+                ...styles.popup,
+                display: popupShowLabel ? "block" : "none"
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    ...styles.popup
+                  }}
+                >
+                  <span
+                    style={{
+                      ...styles.type
+                    }}
+                  >
+                    {focus.type}
+                  </span><Link to={focus.url}> {focus.title}</Link>
+                </span>
+                <div onClick={() => popupChange(!popupShowLabel)}>
+                  {popupShowLabel ? "Hide" : "Show"}
+                </div>
+              </div>
+            </Popup>}
         </Map>
-        <div className="map-information">
-          <div className="info-container">
-            <div className="legend">
-              <div className="marker">
-                <img src={caseMarkerIcon} alt="" /><p>Case</p>
-              </div>
-              <div className="marker">
-                <img src={methodMarkerIcon} alt="" /><p>Method</p>
-              </div>
-              <div className="marker">
-                <img src={orgMarkerIcon} alt="" /><p>Organization</p>
-              </div>
-            </div>
-            <div className="details">
-              <div className="col">
-                <p>Case</p>
-                <p>Participatory Budgeting<br />(Tower Hamlets, London, UK)</p>
-              </div>
-              <div className="col">
-                <p>Last edit:<br />Scott Fletcher 05/14/2016 - 14:29</p>
-              </div>
-              <div className="col">
-                <p>19 Bedford Place,<br />London WC1B 5JA, U.K.</p>
-              </div>
-              <div className="arrow-col">
-                <img src={mapArrowIcon} alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
 }
-
-// For offline development use, replace Map component with:
-// <div className='map' style={{backgroundImage: 'url(/img/pp-home-map.jpg)'}}></div>
-
-MyMap.propTypes = {
+MapVisualization.propTypes = {
   onCountryChange: func
 };
-export default MyMap;
+export default MapVisualization;

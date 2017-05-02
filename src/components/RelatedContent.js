@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const LinkToThing = ({ thing, intl }) =>
   thing && intl
     ? <Link
         to={{
-          pathname: `/${intl.locale}/${thing.type}/${thing.id}`
+          pathname: `/${thing.type}/${thing.id}`
         }}
       >
         {thing.title}

@@ -1,5 +1,12 @@
 @import "./UniversalStyles";
 
+.auth0-lock-header-welcome {
+  >div {
+    display: none;
+    padding-top: 1rem;
+  }
+}
+
 .contentArea {
   padding-top: 64px;
   min-height: 20em;
@@ -197,4 +204,9 @@
   padding-left:0;
   padding-right:0;
   max-width:1440px;
+}
+
+.error-message {
+  padding: 2em;
+  font-size: 2rem;
 }

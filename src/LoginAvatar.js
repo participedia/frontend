@@ -5,7 +5,7 @@ import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
 import { loginRequest, logoutSuccess } from "./actions";
@@ -22,7 +22,6 @@ export class LoginAvatar extends React.Component {
   render() {
     const { dispatch, profile, isAuthenticated } = this.props;
     let buttonStyle = { color: "black" };
-    let locale = this.props.intl.locale;
     if (isAuthenticated) {
       return (
         <div className="avatar">
@@ -44,7 +43,7 @@ export class LoginAvatar extends React.Component {
           >
             <MenuItem
               style={buttonStyle}
-              containerElement={<Link to={"/" + locale + "/profile"} />}
+              containerElement={<Link to={"/profile"} />}
               onClick={this.handleClose}
             >
               Profile

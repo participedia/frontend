@@ -1,40 +1,25 @@
-import { connect } from "react-redux";
-import { search } from "../actions";
+import React from "react";
+import myhistory from "../utils/history";
 import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
+import queryString from "query-string";
 
-const mapStateToProps = (state, { location }) => {
-  let query = "";
-  if (location) {
-    let queryObj = location.query;
-    query = Object.keys(queryObj)
-      .map(function(a) {
-        return a + ":" + JSON.stringify(queryObj[a]);
-      })
-      .join(",");
-  }
-
-  return {
-    query: state.cases.query || query,
-    searching: state.cases.searching || false,
-    sortingMethod: state.ui.sort || "chronological",
-    selectedCategory: state.ui.category || "All",
-    selectedViewType: state.ui.layout || "grid"
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  onPerformQuery: (query, selectedCategory, sortingMethod) => {
-    try {
-      let action = search(query, selectedCategory, sortingMethod);
-      dispatch(action);
-    } catch (e) {
-      console.log("error in onPerformQuery", e);
+export default class SearchQuery extends React.Component {
+  render() {
+    let params = queryString.parse(myhistory.location.search);
+    let searchTerm;
+    if (params.query) {
+      searchTerm = params.query;
+    } else {
+      searchTerm = "";
     }
+    return (
+      <SearchQueryField
+        query={searchTerm}
+        onPerformQuery={this.onPerformQuery.bind(this)}
+      />
+    );
   }
-});
-
-const SearchQuery = connect(mapStateToProps, mapDispatchToProps)(
-  SearchQueryField
-);
-
-export default SearchQuery;
+  onPerformQuery(query, selectedCategory, sortingMethod) {
+    myhistory.push(`/search?query=${query}`);
+  }
+}

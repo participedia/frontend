@@ -3,23 +3,22 @@ import { Container, Row, Col } from "reactstrap";
 import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import { injectIntl, FormattedMessage } from "react-intl";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 class Research extends React.Component {
   render() {
-    let locale = this.props.intl.locale;
     const methodologyLink = (
-      <Link to={"/" + locale + "/somepage"}>
+      <Link to="/somepage">
         {this.props.intl.formatMessage({ id: "participedia_project" })}
       </Link>
     );
     const participantSurvey = (
-      <Link to={"/" + locale + "/somepage"}>
+      <Link to="/somepage">
         {this.props.intl.formatMessage({ id: "participant_survey" })}
       </Link>
     );
     const observerSurvey = (
-      <Link to={"/" + locale + "/somepage"}>
+      <Link to="/somepage">
         {this.props.intl.formatMessage({ id: "observer_survey" })}
       </Link>
     );

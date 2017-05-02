@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { FormattedDate } from "react-intl";
 
 function BooleanProp({ label, property, thing, intl }) {
@@ -26,7 +26,7 @@ BooleanProp.propTypes = {
 };
 
 const NumberProp = ({ label, property, thing, intl }) =>
-  thing[property] !== undefined
+  (thing[property] !== undefined
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}
@@ -35,7 +35,7 @@ const NumberProp = ({ label, property, thing, intl }) =>
           {String(thing[property])}
         </div>
       </div>
-    : <div />;
+    : <div />);
 NumberProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -44,7 +44,7 @@ NumberProp.propTypes = {
 };
 
 const TextProp = ({ label, property, thing, intl }) =>
-  thing[property] !== undefined
+  (thing[property] !== undefined
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}
@@ -53,7 +53,7 @@ const TextProp = ({ label, property, thing, intl }) =>
           {thing[property]}
         </div>
       </div>
-    : <div />;
+    : <div />);
 TextProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -83,7 +83,7 @@ DateProp.propTypes = {
 function ItemProp({ label, property, thing, intl, thingType }) {
   if (!(property in thing)) return <div />;
 
-  let url = `/${intl.locale}/${thingType}/${thing[property]}`;
+  let url = `/${thingType}/${thing[property]}`;
   return thing[property]
     ? <div>
         <p className="sub-sub-heading">

@@ -1,43 +1,67 @@
-import Auth0Lock from "auth0-lock";
 import jwtDecode from "jwt-decode";
 import ppLogo from "../img/pp-logo-dark.png";
 
+// Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
+if (process.env.NODE_ENV === "test") {
+  require.ensure = (deps, cb) => cb(require);
+}
+
+const SCOPE =
+  "openid email read:users update:users update:users_app_metadata user_metadata app_metadata picture created_at";
+
 class AuthService {
   constructor(clientId, domain) {
-    // Configure Auth0 lock
-    this.lock = new Auth0Lock(clientId, domain, {
-      auth: {
-        redirectUrl: window.location.origin + "/en-US/redirect", // XXX fix locale hardcoding
-        responseType: "token",
-        params: {
-          scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
-          state: JSON.stringify({ pathname: window.location.pathname })
-        }
-      },
-      theme: {
-        primaryColor: "#323232",
-        logo: ppLogo
-      },
-      languageDictionary: {
-        title: "Participedia"
-      }
-    });
+    this.clientId = clientId;
+    this.domain = domain;
+    this.lock = null;
     // binds login functions to keep this context
     this.login = this.login.bind(this);
   }
 
+  setupLock(next) {
+    // use code splitting to make it so auth0-lock is only loaded when we actually need to auth
+    let component = this;
+    require.ensure(["auth0-lock"], function(require) {
+      let Auth0Lock = require("auth0-lock").default;
+      component.lock = new Auth0Lock(component.clientId, component.domain, {
+        auth: {
+          redirectUrl: window.location.origin + "/redirect",
+          responseType: "token",
+          params: {
+            scope: SCOPE,
+            state: JSON.stringify({ pathname: window.location.pathname })
+          }
+        },
+        theme: {
+          primaryColor: "#323232",
+          logo: ppLogo
+        },
+        languageDictionary: {
+          title: "Participedia"
+        }
+      });
+      next();
+    });
+  }
+
   login(redirectUrl) {
     // Call the show method to display the widget.
+    if (!this.lock) {
+      this.setupLock(this.showLock.bind(this, redirectUrl));
+    } else {
+      this.showLock(redirectUrl);
+    }
+  }
+  showLock(redirectUrl) {
     let state = { pathname: window.location.pathname };
     if (redirectUrl) {
       state["return_url"] = redirectUrl;
     }
-    let stateString = JSON.stringify(state);
     this.lock.show({
       auth: {
         params: {
-          scope: "openid email read:users update:users update:users_app_metadata user_metadata app_metadata",
-          state: stateString
+          scope: SCOPE,
+          state: JSON.stringify(state)
         }
       }
     });

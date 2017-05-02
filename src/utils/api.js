@@ -1,13 +1,12 @@
 // This is the JS API to talk to api.participedia.xyz
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
+import queryString from "query-string";
 
 if (!APIURL) {
   console.error(
     "No API URL was found. REACT_APP_API_URL should be set in environment variables."
   );
 }
-
-import queryString from "query-string";
 
 const signedFetch = function(url, method, payload) {
   let opts = {
@@ -20,8 +19,8 @@ const signedFetch = function(url, method, payload) {
   if (localStorage.profile) {
     let profile = JSON.parse(localStorage.profile);
     if (localStorage.getItem("id_token")) {
-      opts["headers"]["Authorization"] = "Bearer " +
-        localStorage.getItem("id_token");
+      opts["headers"]["Authorization"] =
+        "Bearer " + localStorage.getItem("id_token");
     }
     opts["headers"]["X-Auth0-Name"] = profile.name;
     opts["headers"]["X-Auth0-UserId"] = profile.user_id;
@@ -60,19 +59,28 @@ class API {
       });
   };
 
-  performSearch = function(query, selectedCategory, sortingMethod) {
-    let paramstring = queryString.stringify({
-      query: query,
-      selectedCategory: selectedCategory,
-      sortingMethod: sortingMethod
-    });
-    let url = `${APIURL}/search?${paramstring}`;
+  performSearch = function(queryArgs) {
+    let querystring = queryString.stringify(queryArgs);
+    let url = `${APIURL}/search?${querystring}`;
     return fetch(url).then(response => response.json()).catch(function(error) {
       console.log(
         `There has been a problem with your fetch operation: (${url}) ${error}`
       );
       return error;
     });
+  };
+
+  searchMapTokens = function() {
+    let url = APIURL + "/search/map";
+    return signedFetch(url, "get")
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
   };
 
   fetchCaseById = function(caseId) {
@@ -108,7 +116,10 @@ class API {
         }
         return response.json();
       })
-      .then(json => json.data)
+      .then(function(json) {
+        caseObj.id = json.data.case_id;
+        return caseObj;
+      })
       .catch(function(error) {
         console.error(
           `There has been a problem with saving the case: (${url}) ${error}`
@@ -117,11 +128,11 @@ class API {
       });
   };
 
-  saveCase = function(caseObj) {
-    let url = APIURL + "/case/" + caseObj.id;
-    return signedFetch(url, "PUT", caseObj)
+  saveThing = function(thingType, obj) {
+    let url = APIURL + `/${thingType}/${obj.id}`;
+    return signedFetch(url, "PUT", obj)
       .then(response => response.json())
-      .then(json => json.data)
+      .then(json => obj)
       .catch(function(error) {
         console.error(
           `There has been a problem with saving the case: (${url}) ${error}`
@@ -187,6 +198,20 @@ class API {
       .catch(function(error) {
         console.log(
           `There has been a problem with API:removeBookmark: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
+  fetchUser = function(userId) {
+    let url = APIURL + `/user`;
+    if (userId) {
+      url = APIURL + `/user/${userId}`;
+    }
+    return signedFetch(url, "get")
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:fetchUser: (${url}) ${error}`
         );
         return error;
       });

@@ -114,7 +114,7 @@ export function makeObject(thingType, object) {
         .then(response => dispatch(receiveObjectSaved(object, response)))
         .then(function(thing) {
           let id = thing.payload.ID[thingType + "_id"];
-          dispatch(push(`/en-US/${thingType}/${id}`));
+          dispatch(push(`/${thingType}/${id}`));
         })
         .catch(reason => {
           console.error("Error saving case", reason);
@@ -181,7 +181,7 @@ export function search(query, selectedCategory, sortingMethod) {
   return dispatch => {
     dispatch(startSearch(query, selectedCategory, sortingMethod));
     return api
-      .performSearch(query, selectedCategory, sortingMethod)
+      .performSearch({ query, selectedCategory, sortingMethod })
       .then(response => dispatch(receiveData(query, response)), function(err) {
         console.log("got an error after performSearch", err);
       });

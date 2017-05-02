@@ -1,5 +1,5 @@
 import React from "react";
-import { injectIntl, intlShape } from "react-intl";
+import { intlShape } from "react-intl";
 import { Field } from "simple-react-form";
 import Geosuggest from "react-geosuggest";
 import "./CaseEditor/CaseEditor.css";
@@ -97,13 +97,13 @@ function OrganizationSidebar({ thing, intl, cases, methods, organizations }) {
   );
 }
 
-function _OrganizationEditor(props) {
+function OrganizationEditor(props) {
   let sidebar = <OrganizationSidebar {...props} />;
-  return <ItemEditor {...props} sidebar={sidebar} />;
+  return <ItemEditor {...props} type="organization" sidebar={sidebar} />;
 }
 
-_OrganizationEditor.propTypes = {
+OrganizationEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(_OrganizationEditor);
+export default OrganizationEditor;

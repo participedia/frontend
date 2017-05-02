@@ -1,4 +1,4 @@
-@import "./UniversalStyles";
+@import "../UniversalStyles";
 
 .profile {
   padding-top: 3%;
@@ -45,6 +45,7 @@
   .credentials {
     padding-left: 64px;
     margin: 32px 0;
+    padding-bottom: 32px;
     position: relative;
     &:before {
       content: '';
@@ -68,53 +69,12 @@
     font-weight: 100;
     line-height: 32px;
   }
+  .authored-content,.bookmarked-content {
+    margin-top: 1em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
