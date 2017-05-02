@@ -42,7 +42,7 @@
     "jwt-decode": "^2.1.0",
     "leaflet": "^1.0.3",
     "leaflet-sleep": "^0.5.1",
-    "mapbox-gl": "^0.36.0",
+    "mapbox-gl": "^0.37.0",
     "material-ui": "^0.17.4",
     "material-ui-chip-input": "^0.13.4",
     "object-omit": "^1.0.0",
