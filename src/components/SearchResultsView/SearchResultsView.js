@@ -107,43 +107,19 @@ export class SearchResultsView extends React.Component {
   render() {
     let data = this.props.data;
 
-    let categories = { case: [], organization: [], method: [], news: [] };
     let selectedViewType = this.props.selectedViewType;
-
-    data.forEach(function(batch) {
-      let category = categories[batch.type];
-      batch.hits.forEach(function(hit, index) {
-        category.push(
-          <SearchHit
-            selectedViewType={selectedViewType}
-            key={index}
-            record={hit}
-          />
-        );
-      });
+    let searchresults = data.map(function(result, index) {
+      return (
+        <SearchHit
+          selectedViewType={selectedViewType}
+          key={index}
+          record={result}
+        />
+      );
     });
-
-    let includeCases =
-      this.props.selectedCategory === "All" ||
-      this.props.selectedCategory === "Cases";
-    let includeMethods =
-      this.props.selectedCategory === "All" ||
-      this.props.selectedCategory === "Methods";
-    let includeNews =
-      this.props.selectedCategory === "All" ||
-      this.props.selectedCategory === "News";
-    let includeOrgs =
-      this.props.selectedCategory === "All" ||
-      this.props.selectedCategory === "Organizations";
-
-    let cases = includeCases ? categories["case"] : [];
-    let methods = includeMethods ? categories["method"] : [];
-    let orgs = includeOrgs ? categories["organization"] : [];
-    let news = includeNews ? categories["news"] : [];
     let formatMessage = this.props.intl.formatMessage;
 
-    let resultsCount =
-      cases.length + methods.length + orgs.length + news.length;
+    let resultsCount = data.length;
     let { searching, query } = this.props;
     let results = "";
     if (this.props.searching) {
@@ -194,24 +170,7 @@ export class SearchResultsView extends React.Component {
               })}
             </p>
             <div className="results-box">
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "news" })}
-                results={news}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "cases" })}
-                results={cases}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({ id: "methods" })}
-                results={methods}
-              />
-              <SearchHitCategory
-                title={this.props.intl.formatMessage({
-                  id: "organizations"
-                })}
-                results={orgs}
-              />
+              {searchresults}
             </div>
           </div>
         </div>
