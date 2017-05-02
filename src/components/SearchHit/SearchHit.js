@@ -38,10 +38,10 @@ export class SearchHit extends React.Component {
                       <img alt="" src={pic} />
                     </div>
                   : <div className={thumbnailClass} style={thumbnailStyle} />}
-                <small className="label">{result.type}</small>
               </Link>
-              <div className="result-title-text">{title}</div>
+              <small className="label">{result.type}</small>
               <Link to={link} className="result-title">
+                <div className="result-title-text">{title}</div>
                 <p className="result-date">
                   <TimeAgo date={result.updated_date} />
                 </p>
