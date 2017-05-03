@@ -24,14 +24,12 @@ export class SearchHit extends React.Component {
     let type = result.type;
     let title = result.title;
     let link = `/${type}/${id}`;
-    let firstSubmit = new Date(result.post_date).toLocaleString();
     let thumbnailClass = "thumbnail " + type;
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
-        <small className="label">{result.type}</small>
         {this.props.selectedViewType === "grid"
           ? <div className="grid-item">
               <Link to={link} className="result-title">
@@ -40,14 +38,14 @@ export class SearchHit extends React.Component {
                       <img alt="" src={pic} />
                     </div>
                   : <div className={thumbnailClass} style={thumbnailStyle} />}
-                <div className="result-title-text">{title}</div>
+                <small className="label">{result.type}</small>
               </Link>
-              <p className="result-author">
-                {firstSubmit}
-              </p>
-              <p className="result-date">
-                <TimeAgo date={result.updated_date} />
-              </p>
+              <div className="result-title-text">{title}</div>
+              <Link to={link} className="result-title">
+                <p className="result-date">
+                  <TimeAgo date={result.updated_date} />
+                </p>
+              </Link>
             </div>
           : <Row className="list-item">
               <Col md="3">
@@ -62,12 +60,10 @@ export class SearchHit extends React.Component {
                     </Link>}
               </Col>
               <Col md="6">
+                <small className="label">{result.type}</small>
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>
                 </Link>
-                <p className="result-author">
-                  {firstSubmit}
-                </p>
                 <p className="result-date">
                   <TimeAgo date={result.updated_date} />
 
