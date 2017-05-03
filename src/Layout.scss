@@ -51,7 +51,7 @@
 }
 
 .nav-bar-component {
-  background-color: $primary-color;
+  background-color: #222;
   height: 64px;
   position: fixed;
   width: 100%;
@@ -67,7 +67,7 @@
     width: 250px;
     @include media-breakpoint-up(lg){
       width:25%;
-    }
+    } 
 
     .menu-icon {
       float: left;

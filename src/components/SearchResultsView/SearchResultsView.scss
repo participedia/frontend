@@ -20,7 +20,7 @@
 
     .sorting-options {
       border-top: 1px solid $dark-grey;
-      margin-top: 70px;
+      margin-top: 60px;
 
       div {
         font-size: 1rem;
@@ -59,7 +59,7 @@
   position:relative;
   @include media-breakpoint-up(lg) {
     background:#fff;
-    height:70px;
+    height:60px;
   }
   &:before {
     content:"";
@@ -68,7 +68,7 @@
     right:0;
     bottom:0;
     background:rgba(0,0,0,.05);
-    height:4px;
+    height:1px;
   }
 
   .filters {
@@ -92,21 +92,12 @@
       float: left;
     }
     @include media-breakpoint-up(md) {
-      font-size: 1.15rem;
+      font-size: 1rem;
       padding: 12px;
     }
     @include media-breakpoint-up(lg) {
-      font-size: 1.5rem;
-      padding: 24px 20px 20px;
-    }
-    &:after {
-      content:"";
-      position:absolute;
-      top:12px;
-      bottom:10px;
-      right:-2px;
-      width:2px;
-      background:$light-grey;
+      font-size: 1rem;
+      padding: 24px 14px 10px;
     }
     &:first-child:before {
       content:"";
@@ -120,11 +111,6 @@
         display:none;
       }
     }
-    &:first-child {
-      @include media-breakpoint-up(lg) {
-        padding-left:24px;
-      }
-    }
   }
 
   .filters div.selected {
@@ -134,15 +120,21 @@
     &:hover {
       border-bottom: 4px solid darken($interactive-color,10%);
     }
+    &:after {
+      content:"";
+      position:absolute;
+      height:4px;
+      bottom:0;
+      right:0;
+      left:0;
+      background:$interactive-color;
+    }
   }
   .filters div:hover {
     text-decoration: none;
     color: $interactive-color;
-    background: $light-grey;
+    //background: $light-grey;
     border-bottom: 4px solid $interactive-color;
-    &:after {
-      display:none;
-    }
   }
   .filters div:focus {
     text-decoration:none;
@@ -202,8 +194,14 @@
   }
 }
 .results-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content:flex-start;
   .col-md-4 {
     width:100%;
+    margin-bottom:30px;
     @include media-breakpoint-up(sm) {
       width:50%;
     }
@@ -225,6 +223,7 @@
 }
 
 .search-results {
+  margin-top:20px;
   @include media-breakpoint-up(lg) {
     padding:0;
     position:relative;
@@ -264,19 +263,30 @@
 }
 
 .featured-searches-header {
-  padding-top: 1em;
+  padding-top: 2.5rem;
   padding-left: 1ex;
   text-transform: uppercase;
 }
 
 .featured-searches {
-  padding-left: 2em;
-  padding-top: 1ex;
+  margin-top:10px;
+  border-top:1px solid #e6e6e6;
   a {
     color: $primary-color;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    display: block;
+    line-height: 26px;
+    padding: 12px 10px;
+    border-bottom: 1px solid #e6e6e6;
+    transition: 100ms ease-in-out color;
+    text-transform: capitalize;
+    cursor: pointer;
     &.selected, &:hover, &:focus {
       color: $interactive-color;
       background: lighten($light-grey,3%);
+      text-decoration:none;
     }
   }
 }

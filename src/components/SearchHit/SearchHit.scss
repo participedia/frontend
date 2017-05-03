@@ -71,24 +71,32 @@ small.label {
     bottom:0;
   }
   &.case {
+    background:url('../../img/background-case.png') repeat center center;
+    background-size:auto;
     &:after {
       background:url('../../img/icon-thumbnail-case.svg') no-repeat center center;
       background-size:20%;
     }
   }
   &.method {
+    background:url('../../img/background-method.png') repeat center center;
+    background-size:auto;
     &:after {
       background:url('../../img/icon-thumbnail-method.svg') no-repeat center center;
       background-size:20%;
     }
   }
   &.organization {
+    background:url('../../img/background-organization.png') repeat center center;
+    background-size:auto;
     &:after {
       background:url('../../img/icon-thumbnail-organization.svg') no-repeat center center;
       background-size:20%;
     }
   }
   &.news {
+    background:url('../../img/background-news.png') repeat center center;
+    background-size:auto;
     &:after {
       background:url('../../img/icon-thumbnail-news.svg') no-repeat center center;
       background-size:20%;
@@ -108,6 +116,11 @@ small.label {
   font-size:.9rem;
   margin:20px 0 10px;
   letter-spacing:0.075rem;
+}
+.result-title {
+  .label {
+    color: $black;
+  }
 }
 .result-title-text {
   color: $primary-color;
