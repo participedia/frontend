@@ -7,7 +7,7 @@
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
-    "eslint-config-prettier": "^1.7.0",
+    "eslint-config-prettier": "^2.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-promise": "^3.5.0",
