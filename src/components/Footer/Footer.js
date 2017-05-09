@@ -62,7 +62,7 @@ export class Footer extends React.Component {
         <div className="copyright-area">
           <a href="/" className="logo"><img src={ppLogo} alt="" /></a>
           <p className="copyright-text">
-            <img src={ccIcon} alt="" />Participedia 2016
+            <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"><img src={ccIcon} alt="" />Participedia 2017</a>
           </p>
         </div>
       </div>
