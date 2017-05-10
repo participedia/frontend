@@ -116,7 +116,6 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
                 className="date-line">
                 <time
                   dateTime="2015-05-13T18:58:25.000Z"
-                  now={[Function]}
                   title="2015-05-13T18:58:25">
                   2 years ago
                 </time>
@@ -134,7 +133,6 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
                 className="date-line">
                 <time
                   dateTime="2015-05-13T18:58:25.000Z"
-                  now={[Function]}
                   title="2015-05-13T18:58:25">
                   2 years ago
                 </time>
