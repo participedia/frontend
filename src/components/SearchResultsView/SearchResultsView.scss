@@ -17,6 +17,9 @@
     @include media-breakpoint-up(lg){
       padding:0 30px 0 15px;
     }
+    @include media-breakpoint-up(xl){
+      padding:0 60px 0 15px;
+    }
 
     .sorting-options {
       border-top: 1px solid $dark-grey;
@@ -98,18 +101,6 @@
     @include media-breakpoint-up(lg) {
       font-size: 1rem;
       padding: 24px 14px 10px;
-    }
-    &:first-child:before {
-      content:"";
-      position:absolute;
-      top:12px;
-      bottom:10px;
-      left:0;
-      width:2px;
-      background:$light-grey;
-      @include media-breakpoint-up(lg) {
-        display:none;
-      }
     }
   }
 
@@ -202,12 +193,28 @@
   .col-md-4 {
     width:100%;
     margin-bottom:30px;
+    padding:0;
     @include media-breakpoint-up(sm) {
       width:50%;
+      padding:0 30px 0 0;
+      &:nth-child(2n+2) {
+        padding-right:0;
+      }
     }
     @include media-breakpoint-up(lg) {
       width:33.333333%;
+      padding:0 30px 0 0;
+      &:nth-child(2n+2) {
+        padding-right:30px;
+      }
+      &:nth-child(3n+3) {
+        padding-right:0;
+      }
     }
+  }
+  .col-md-12 {
+    padding:0;
+    
   }
   .category-title {
     font-size: 1.8rem;

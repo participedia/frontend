@@ -37,7 +37,7 @@ small.label {
   &:before {
     content : "";
     position: absolute;
-    left: 15px;
+    left: 0;
     bottom: 0;
     height: 1px;
     width: calc(100% - 30px);
