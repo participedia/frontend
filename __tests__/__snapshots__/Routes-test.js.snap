@@ -319,7 +319,7 @@ exports[`test App 1`] = `
             <div>
               <h3>
                 Searching for
-                 
+                 
                 
                 <div
                   className="spinner">
@@ -760,7 +760,7 @@ exports[`test Searching for a word 1`] = `
             <div>
               <h3>
                 Searching for
-                 
+                 
                 
                 <div
                   className="spinner">
