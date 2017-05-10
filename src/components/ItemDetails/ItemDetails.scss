@@ -48,10 +48,6 @@ section.image-gallery {
     margin-top: 48px;
     position:relative;
 
-    svg.country-map {
-      border:2px solid $dark-grey;
-      padding:15px;
-    }
     
     .case-map {
       min-height: 100px;
@@ -89,13 +85,12 @@ section.image-gallery {
       text-transform: uppercase;
       margin-bottom: 10px;
       margin-top: 20px;
-      border-bottom:2px solid $dark-grey;
     }
 
     .sub-sub-heading {
       font-size: 16px;
       font-weight: 500;
-      color: $grey-text;
+      color: $black;
       line-height: 18px;
       margin-bottom: 5px;
       margin-top: 14px;
@@ -269,7 +264,7 @@ section.image-gallery {
 
       .case-title {
         color: $primary-color;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 48px;
         font-size:2.25rem;
         @include media-breakpoint-down(sm) { 
@@ -289,14 +284,14 @@ section.image-gallery {
 
         .author-line {
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 600;
           color: $primary-color;
           line-height: 18px;
           margin-bottom:0;
 
           a {
             color: $primary-color;
-            font-weight: 600;
+            font-weight: 400;
             position:relative;
             cursor:pointer;
             &:after {
@@ -329,7 +324,7 @@ section.image-gallery {
 
       .case-html {
         h3 {
-          font-weight: 600;
+          font-weight: 500;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
@@ -362,7 +357,7 @@ section.image-gallery {
 
         a {
           color: $primary-color;
-          font-weight: 600;
+          font-weight: 400;
           position:relative;
           cursor:pointer;
           &:after {
