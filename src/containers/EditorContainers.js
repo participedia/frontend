@@ -63,7 +63,6 @@ class EditorContainer extends Component {
 
   onSubmit(thing) {
     let saveFunc;
-    console.log("in onSubmit, thing = ", thing);
     if (this.props.new) {
       saveFunc = api.saveNewThing;
     } else {
@@ -71,7 +70,6 @@ class EditorContainer extends Component {
     }
 
     saveFunc(thing.type, thing).then(function(thing) {
-      console.log("after saveFunc, thing is", thing);
       myhistory.push(`../../${thing.type}/${thing.id}`);
     });
   }
