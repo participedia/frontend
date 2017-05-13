@@ -62,7 +62,7 @@
     "react-dropzone": "^3.13.1",
     "react-form": "^1.2.7",
     "react-geosuggest": "^2.1.0",
-    "react-image-gallery": "^0.7.16",
+    "react-image-gallery": "^0.8.0",
     "react-intl": "^2.3.0",
     "react-leaflet": "^1.1.6",
     "react-leaflet-choropleth": "github:davidascher/react-leaflet-choropleth",
