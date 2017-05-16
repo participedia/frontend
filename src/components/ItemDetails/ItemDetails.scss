@@ -10,7 +10,7 @@
 }
 
 section.image-gallery {
-  margin: 0 auto;
+  max-width:720px;
   .image-gallery-image {
     max-height: 500px;
     background-color: #000;
@@ -31,7 +31,9 @@ section.image-gallery {
 .detailed-case-component {
   padding-bottom: 32px;
   padding-top: 32px;
-
+  .row {
+    margin:0;
+  }
   .main-area {
     .case-html {
       word-wrap: break-word;
@@ -44,14 +46,16 @@ section.image-gallery {
   }
 
   .sidepanel {
-    padding: 0 30px;
+    padding: 0 15px;
     margin-top: 48px;
     position:relative;
-
-    svg.country-map {
-      border:2px solid $dark-grey;
-      padding:15px;
+    @include media-breakpoint-up(lg){
+      padding:0 30px 0 15px;
     }
+    @include media-breakpoint-up(xl){
+      padding:0 60px 0 15px;
+    }
+
     
     .case-map {
       min-height: 100px;
@@ -89,13 +93,12 @@ section.image-gallery {
       text-transform: uppercase;
       margin-bottom: 10px;
       margin-top: 20px;
-      border-bottom:2px solid $dark-grey;
     }
 
     .sub-sub-heading {
       font-size: 16px;
       font-weight: 500;
-      color: $grey-text;
+      color: $black;
       line-height: 18px;
       margin-bottom: 5px;
       margin-top: 14px;
@@ -269,9 +272,10 @@ section.image-gallery {
 
       .case-title {
         color: $primary-color;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 48px;
         font-size:2.25rem;
+        max-width:720px;
         @include media-breakpoint-down(sm) { 
           margin-bottom: 0;
         }
@@ -289,14 +293,14 @@ section.image-gallery {
 
         .author-line {
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 600;
           color: $primary-color;
           line-height: 18px;
           margin-bottom:0;
 
           a {
             color: $primary-color;
-            font-weight: 600;
+            font-weight: 400;
             position:relative;
             cursor:pointer;
             &:after {
@@ -329,10 +333,11 @@ section.image-gallery {
 
       .case-html {
         h3 {
-          font-weight: 600;
+          font-weight: 500;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
+          max-width:720px;
         }
 
         p, li {
@@ -362,7 +367,7 @@ section.image-gallery {
 
         a {
           color: $primary-color;
-          font-weight: 600;
+          font-weight: 400;
           position:relative;
           cursor:pointer;
           &:after {
