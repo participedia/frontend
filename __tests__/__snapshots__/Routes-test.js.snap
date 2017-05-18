@@ -241,19 +241,19 @@ exports[`test App 1`] = `
                 <div
                   className="unselected"
                   onClick={[Function]}>
-                  Cases
+                  cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}>
-                  Methods
+                  methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}>
-                  Organizations
+                  organizations
                 </div>
               </div>
               <select
@@ -270,15 +270,15 @@ exports[`test App 1`] = `
                 </option>
                 <option
                   value="Cases">
-                  Cases
+                  cases
                 </option>
                 <option
                   value="Methods">
-                  Methods
+                  methods
                 </option>
                 <option
                   value="Organizations">
-                  Organizations
+                  organizations
                 </option>
               </select>
               <div
@@ -319,7 +319,7 @@ exports[`test App 1`] = `
             <div>
               <h3>
                 Searching for
-                 
+                 
                 
                 <div
                   className="spinner">
@@ -336,104 +336,111 @@ exports[`test App 1`] = `
   <div
     className="footer-component">
     <div
-      className="expanded-footer">
+      className="expanded-footer container-fluid">
       <div
-        className="column">
-        <a
-          href="/about"
-          onClick={[Function]}>
-          About
-        </a>
-        <a
-          href="/research"
-          onClick={[Function]}>
-          Research
-        </a>
-        <a
-          href="/teaching"
-          onClick={[Function]}>
-          Teaching
-        </a>
-        <a
-          href="/experiments"
-          onClick={[Function]}>
-          Experiments
-        </a>
-      </div>
-      <div
-        className="column">
-        <a
-          href="#">
-          Cases
-        </a>
-        <a
-          href="#">
-          Methods
-        </a>
-        <a
-          href="#">
-          Organizations
-        </a>
-        <a
-          href="#">
-          Users
-        </a>
-      </div>
-      <div
-        className="column">
-        <a
-          href="#">
-          News
-        </a>
-        <a
-          href="?help"
-          onClick={[Function]}>
-          Help
-        </a>
-        <a
-          href="#">
-          Contact
-        </a>
-      </div>
-      <div
-        className="column">
+        className="row">
         <div
-          className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
-          onClick={[Function]}
-          style={Object {}}>
-          <img
-            alt=""
-            src="pp-social-fb.png" />
+          className="col col-lg-6">
+          <div
+            className="column list">
+            <a
+              href="/about"
+              onClick={[Function]}>
+              About
+            </a>
+            <a
+              href="/research"
+              onClick={[Function]}>
+              Research
+            </a>
+            <a
+              href="/teaching"
+              onClick={[Function]}>
+              Teaching
+            </a>
+            <a
+              href="/experiments"
+              onClick={[Function]}>
+              Experiments
+            </a>
+          </div>
+          <div
+            className="column list">
+            <a
+              href="#">
+              cases
+            </a>
+            <a
+              href="#">
+              methods
+            </a>
+            <a
+              href="#">
+              organizations
+            </a>
+            <a
+              href="#">
+              Users
+            </a>
+          </div>
+          <div
+            className="column list">
+            <a
+              href="#">
+              News
+            </a>
+            <a
+              href="?help"
+              onClick={[Function]}>
+              Help
+            </a>
+            <a
+              href="#">
+              Contact
+            </a>
+          </div>
         </div>
         <div
-          className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
-          onClick={[Function]}
-          style={Object {}}>
-          <img
-            alt=""
-            src="pp-social-tw.png" />
+          className="col col-lg-6">
+          <div
+            className="column xl">
+            <h4>
+              Participedia
+            </h4>
+            <p>
+              A global community sharing knowledge and stories about public participation
+            </p>
+          </div>
+          <div
+            className="column right">
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
+              onClick={[Function]}
+              style={Object {}}>
+              <img
+                alt=""
+                src="pp-social-fb.png" />
+            </div>
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
+              onClick={[Function]}
+              style={Object {}}>
+              <img
+                alt=""
+                src="pp-social-tw.png" />
+            </div>
+            <div
+              className="copyright-area">
+              <img
+                alt=""
+                src="cc-icon.png" />
+              <span>
+                Participedia 2017
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="copyright-area">
-      <a
-        className="logo"
-        href="/">
-        <img
-          alt=""
-          src="pp-logo.png" />
-      </a>
-      <p
-        className="copyright-text">
-        <a
-          href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
-          <img
-            alt=""
-            src="cc-icon.png" />
-          Participedia 2017
-        </a>
-      </p>
     </div>
   </div>
 </div>
@@ -682,19 +689,19 @@ exports[`test Searching for a word 1`] = `
                 <div
                   className="unselected"
                   onClick={[Function]}>
-                  Cases
+                  cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}>
-                  Methods
+                  methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}>
-                  Organizations
+                  organizations
                 </div>
               </div>
               <select
@@ -711,15 +718,15 @@ exports[`test Searching for a word 1`] = `
                 </option>
                 <option
                   value="Cases">
-                  Cases
+                  cases
                 </option>
                 <option
                   value="Methods">
-                  Methods
+                  methods
                 </option>
                 <option
                   value="Organizations">
-                  Organizations
+                  organizations
                 </option>
               </select>
               <div
@@ -760,7 +767,7 @@ exports[`test Searching for a word 1`] = `
             <div>
               <h3>
                 Searching for
-                 
+                 
                 
                 <div
                   className="spinner">
@@ -777,104 +784,111 @@ exports[`test Searching for a word 1`] = `
   <div
     className="footer-component">
     <div
-      className="expanded-footer">
+      className="expanded-footer container-fluid">
       <div
-        className="column">
-        <a
-          href="/about"
-          onClick={[Function]}>
-          About
-        </a>
-        <a
-          href="/research"
-          onClick={[Function]}>
-          Research
-        </a>
-        <a
-          href="/teaching"
-          onClick={[Function]}>
-          Teaching
-        </a>
-        <a
-          href="/experiments"
-          onClick={[Function]}>
-          Experiments
-        </a>
-      </div>
-      <div
-        className="column">
-        <a
-          href="#">
-          Cases
-        </a>
-        <a
-          href="#">
-          Methods
-        </a>
-        <a
-          href="#">
-          Organizations
-        </a>
-        <a
-          href="#">
-          Users
-        </a>
-      </div>
-      <div
-        className="column">
-        <a
-          href="#">
-          News
-        </a>
-        <a
-          href="?help"
-          onClick={[Function]}>
-          Help
-        </a>
-        <a
-          href="#">
-          Contact
-        </a>
-      </div>
-      <div
-        className="column">
+        className="row">
         <div
-          className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
-          onClick={[Function]}
-          style={Object {}}>
-          <img
-            alt=""
-            src="pp-social-fb.png" />
+          className="col col-lg-6">
+          <div
+            className="column list">
+            <a
+              href="/about"
+              onClick={[Function]}>
+              About
+            </a>
+            <a
+              href="/research"
+              onClick={[Function]}>
+              Research
+            </a>
+            <a
+              href="/teaching"
+              onClick={[Function]}>
+              Teaching
+            </a>
+            <a
+              href="/experiments"
+              onClick={[Function]}>
+              Experiments
+            </a>
+          </div>
+          <div
+            className="column list">
+            <a
+              href="#">
+              cases
+            </a>
+            <a
+              href="#">
+              methods
+            </a>
+            <a
+              href="#">
+              organizations
+            </a>
+            <a
+              href="#">
+              Users
+            </a>
+          </div>
+          <div
+            className="column list">
+            <a
+              href="#">
+              News
+            </a>
+            <a
+              href="?help"
+              onClick={[Function]}>
+              Help
+            </a>
+            <a
+              href="#">
+              Contact
+            </a>
+          </div>
         </div>
         <div
-          className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
-          onClick={[Function]}
-          style={Object {}}>
-          <img
-            alt=""
-            src="pp-social-tw.png" />
+          className="col col-lg-6">
+          <div
+            className="column xl">
+            <h4>
+              Participedia
+            </h4>
+            <p>
+              A global community sharing knowledge and stories about public participation
+            </p>
+          </div>
+          <div
+            className="column right">
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
+              onClick={[Function]}
+              style={Object {}}>
+              <img
+                alt=""
+                src="pp-social-fb.png" />
+            </div>
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
+              onClick={[Function]}
+              style={Object {}}>
+              <img
+                alt=""
+                src="pp-social-tw.png" />
+            </div>
+            <div
+              className="copyright-area">
+              <img
+                alt=""
+                src="cc-icon.png" />
+              <span>
+                Participedia 2017
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="copyright-area">
-      <a
-        className="logo"
-        href="/">
-        <img
-          alt=""
-          src="pp-logo.png" />
-      </a>
-      <p
-        className="copyright-text">
-        <a
-          href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
-          <img
-            alt=""
-            src="cc-icon.png" />
-          Participedia 2017
-        </a>
-      </p>
     </div>
   </div>
 </div>
