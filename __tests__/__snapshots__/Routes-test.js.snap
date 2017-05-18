@@ -426,10 +426,13 @@ exports[`test App 1`] = `
       </a>
       <p
         className="copyright-text">
-        <img
-          alt=""
-          src="cc-icon.png" />
-        Participedia 2016
+        <a
+          href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
+          <img
+            alt=""
+            src="cc-icon.png" />
+          Participedia 2017
+        </a>
       </p>
     </div>
   </div>
@@ -864,10 +867,13 @@ exports[`test Searching for a word 1`] = `
       </a>
       <p
         className="copyright-text">
-        <img
-          alt=""
-          src="cc-icon.png" />
-        Participedia 2016
+        <a
+          href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
+          <img
+            alt=""
+            src="cc-icon.png" />
+          Participedia 2017
+        </a>
       </p>
     </div>
   </div>
