@@ -2,8 +2,8 @@
 
 @mixin tab {
   border-bottom: 1px solid #ece8e6;
-  padding: 24px;
-  padding-right: 96px;
+  padding: 14px 56px 14px 0;
+  // padding-right: 56px;
   position: relative;
 
   @media (max-width: 639px) {
@@ -17,8 +17,9 @@
     font-weight: 500;
     cursor: pointer;
     width: 100%;
-    padding: 24px;
-    margin: -24px;
+    // padding: 24px;
+    // margin: -24px;
+    text-transform: capitalize;
     &:hover, &:focus {
       color:$interactive-color;
     }
@@ -39,7 +40,7 @@
     background-size: contain;
     opacity: 0.5;
     position: absolute;
-    top: 28px;
+    top: 24px;
     right: 24px;
 
     @include media-breakpoint-down(sm) { 
@@ -51,22 +52,85 @@
   }
 }
 
-.tab {
-  @include tab;
-  
-  div:nth-child(2) {
-    display: none;
+.accordion {
+  >.tab {
+    @include tab;
+    
+    .content {
+      display: none;
+    }
+
+    >.sub-content {
+      display: none;
+    }
   }
 }
 
-.tab-open {
-  @include tab;
+.accordion {
+  >.tab-open {
+    @include tab;
 
-  &:after {
-    background-image: url("../../img/pp-map-arrow-icon-grey-up.png");
+    .title {
+      color: $interactive-color;
+    }
+
+    &:after {
+      background-image: url("../../img/pp-map-arrow-icon-grey-up.png");
+    }
+
+    .content {
+      display: block;
+      padding-top: 14px;
+    }
+
+    >.sub-content {
+      display: block;
+    }
   }
+}  
 
-  div:nth-child(2) {
-    display: block;
+.sub-accordion {
+  .tab-open {
+    position:relative;
+    &::before {
+      background-image: url("../../img/pp-map-arrow-icon-grey-up.png");
+      content: "";
+      position: absolute;
+      left:0;
+      top: 10px;
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 16px;
+      background-size: contain;
+      opacity: 0.5;
+    }
+    .title {
+      padding-left: 2.5rem;
+    }
+  }
+    .tab {
+      position:relative;
+      &::before {
+        background-image: url("../../img/pp-map-arrow-icon-grey-down.png");
+        content: "";
+        position: absolute;
+        left:0;
+        top: 10px;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 16px;
+        background-size: contain;
+        opacity: 0.5;
+      }
+      .title {
+        color: #000;
+        padding-left: 2.5rem;
+      }
+      .sub-content {
+      display: none;
+      } 
+  }
+  .title {
+    display: inline;
   }
 }

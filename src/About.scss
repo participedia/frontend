@@ -10,7 +10,7 @@
 
   h2 {
     color: $primary-color;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 44px;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -22,33 +22,21 @@
     }
   }
 
+  .person {
+    margin-top: 8px;
+    line-height: 24px;
+    p {
+      margin: 0;
+    }
+  }
+
   .text {
     color: #000;
-    font-size: 1.2rem;
-    line-height: 28px;
+    line-height: 25px;
     font-weight: 300;
     margin-top: 16px;
+    margin: 0;
 
-    & > .people {
-      color: $orange;
-      font-size: 1.1rem;
-      line-height: 24px;
-      font-weight: 400;
-      display: block;
-      margin-top: 8px;
-
-      &:nth-of-type(1) {
-        margin-top: 12px;
-      }
-      @include media-breakpoint-only(sm) { 
-        line-height: 24px * 0.75;
-        margin-top: 4px;
-
-        &:nth-of-type(1) {
-          margin-top: 8px;
-        }
-      }
-    }
     a {
       color: $primary-color;
       font-weight: 600;
@@ -72,44 +60,17 @@
       padding: 12px 0;
     }
 
+    .name {
+      color: $black;
+      line-height: 24px;
+      font-weight: 500;
+    }
+
     .sub-content {
-      padding: 16px 48px;
-      padding-bottom: 0;
+      padding-left: 40px;
 
       @include media-breakpoint-only(sm) {
         padding: 8px 16px;
-      }
-
-      .name {
-        color: $black;
-        font-size: 1.1rem;
-        line-height: 24px;
-        font-weight: 500;
-        display: block;
-        margin-top: 8px;
-        margin-bottom: 1px;
-
-        @media (max-width: 639px) {
-          line-height: 24px * 0.75;
-        }
-      }
-
-      .department {
-        color: #666;
-        font-size: 1rem;
-        line-height: 21px;
-        font-weight: 300;
-        display: block;
-        padding-bottom: 16px;
-
-        @include media-breakpoint-only(sm) {
-          line-height: 21px * 0.75;
-          padding-top: 8px;
-        }
-
-        &:last-child {
-          padding-bottom: 0;
-        }
       }
     }
   }

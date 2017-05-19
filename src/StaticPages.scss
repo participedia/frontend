@@ -1,0 +1,19 @@
+.static {
+  a {
+    text-decoration: underline;
+    color: #000;
+    &:hover {
+      color: #000;
+    }
+  }
+  .accordion {
+    .sub-accordion {
+      .tab {
+        padding-bottom: 0.8rem;
+      }
+    }
+  }
+  .sub-head {
+    font-weight: 500;
+  }
+}

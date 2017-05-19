@@ -2,218 +2,30 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
+import "./StaticPages.css";
 import { injectIntl } from "react-intl";
 
 class Teaching extends React.Component {
   render() {
     return (
-      <Container fluid={false} className="about">
+      <Container fluid={false} className="about static">
         <Row>
-          <Col lg={{ size: 10, offset: 1 }}>
+          <Col lg={{ size: 8, offset: 2 }}>
             <h1>{this.props.intl.formatMessage({ id: "teaching" })}</h1>
-            <h2>{this.props.intl.formatMessage({ id: "teaching_intro" })}</h2>
-            <h2>
-              {this.props.intl.formatMessage({ id: "teaching_resources" })}
-            </h2>
-            <div className="text">
-              {this.props.intl.formatMessage({
-                id: "teaching_resources_intro"
-              })}
-            </div>
+            <h2>{this.props.intl.formatMessage({ id: "teaching_subtitle" })}</h2>
+            <p>{this.props.intl.formatMessage({ id: "teaching_intro_1" })}</p>
+            <p className="pb-1">{this.props.intl.formatMessage({ id: "teaching_intro_2" })}</p>
+            <h2>{this.props.intl.formatMessage({ id: "resources" })}</h2>
+            <p className="pb-1">{this.props.intl.formatMessage({ id: "resources_intro" })}</p>
             <div className="accordion">
               <AccordionTab
                 title={this.props.intl.formatMessage({
-                  id: "assignments_grading_rubrics"
+                  id: "course_assignments"
                 })}
               >
                 <div className="content">
-                  <p className="text">
-                    {this.props.intl.formatMessage({
-                      id: "assignments_grading_rubrics_intro"
-                    })}
-                  </p>
-                </div>
-              </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "syllabi" })}
-              >
-                <div className="content">
-                  <p className="text">
-                    {this.props.intl.formatMessage({ id: "syllabi_intro" })}
-                  </p>
-                  <div className="sub-accordion">
-                    <AccordionTab
-                      title={this.props.intl.formatMessage({
-                        id: "syllabi_category1"
-                      })}
-                    >
-                      <div className="sub-content">
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_name1"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_desc1"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_name2"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_desc2"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_name3"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category1_desc3"
-                          })}
-                        </p>
-                      </div>
-                    </AccordionTab>
-                    <AccordionTab
-                      title={this.props.intl.formatMessage({
-                        id: "syllabi_category2"
-                      })}
-                    >
-                      <div className="sub-content">
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_name1"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_desc1"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_name2"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_desc2"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_name3"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category2_desc3"
-                          })}
-                        </p>
-                      </div>
-                    </AccordionTab>
-                    <AccordionTab
-                      title={this.props.intl.formatMessage({
-                        id: "syllabi_category3"
-                      })}
-                    >
-                      <div className="sub-content">
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_name1"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_desc1"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_name2"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_desc2"
-                          })}
-                        </p>
-                        <p className="name">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_name3"
-                          })}
-                        </p>
-                        <p className="department">
-                          {this.props.intl.formatMessage({
-                            id: "syllabi_category3_desc3"
-                          })}
-                        </p>
-                      </div>
-                    </AccordionTab>
-                  </div>
-                </div>
-              </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "class_slides" })}
-              >
-                <div className="content">
-                  <p className="text">
-                    {this.props.intl.formatMessage({
-                      id: "class_slides_intro"
-                    })}
-                  </p>
-                </div>
-              </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({
-                  id: "simulations_exercises"
-                })}
-              >
-                <div className="content">
-                  <p className="text">
-                    {this.props.intl.formatMessage({
-                      id: "simulations_exercises_intro"
-                    })}
-                  </p>
-                  <div className="sub-content">
-                    <p className="name">
-                      {this.props.intl.formatMessage({
-                        id: "simulations_category1_name1"
-                      })}
-                    </p>
-                    <p className="department">
-                      {this.props.intl.formatMessage({
-                        id: "simulations_category1_desc1"
-                      })}
-                    </p>
-                    <p className="name">
-                      {this.props.intl.formatMessage({
-                        id: "simulations_category1_name2"
-                      })}
-                    </p>
-                    <p className="department">
-                      {this.props.intl.formatMessage({
-                        id: "simulations_category1_desc2"
-                      })}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "lesson_plans" })}
-              >
-                <div className="content">
-                  <p className="text">
-                    {this.props.intl.formatMessage({
-                      id: "lesson_plans_intro"
-                    })}
-                  </p>
+                  <a className="d-block" href="http://participedia.net/content/participedia-sample-assignment-1-write-entry-case-method-or-organization">{this.props.intl.formatMessage({ id: "sample_assignment_1" })}</a>
+                  <a className="d-block" href="http://participedia.net/content/sample-grading-rubric">{this.props.intl.formatMessage({ id: "grading_rubric" })}</a>
                 </div>
               </AccordionTab>
             </div>
