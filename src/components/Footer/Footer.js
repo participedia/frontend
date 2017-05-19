@@ -1,7 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { Container, Row, Col } from "reactstrap";
 import "./Footer.css";
-import ppLogo from "../../img/pp-logo.png";
 import ccIcon from "../../img/cc-icon.png";
 import fbIcon from "../../img/pp-social-fb.png";
 import twitterIcon from "../../img/pp-social-tw.png";
@@ -35,19 +34,27 @@ export class Footer extends React.Component {
                 </Link>
               </div>
               <div className="column list">
-                <a href="#">{this.props.intl.formatMessage({ id: "cases" })}</a>
-                <a href="#">{this.props.intl.formatMessage({ id: "methods" })}</a>
-                <a href="#">
+                <Link to="/cases">
+                  {this.props.intl.formatMessage({ id: "cases" })}
+                </Link>
+                <Link to="/methods">
+                  {this.props.intl.formatMessage({ id: "methods" })}
+                </Link>
+                <Link to="/organizations">
                   {this.props.intl.formatMessage({ id: "organizations" })}
-                </a>
-                <a href="#">{this.props.intl.formatMessage({ id: "users" })}</a>
+                </Link>
+                <Link to="/users">
+                  {this.props.intl.formatMessage({ id: "users" })}
+                </Link>
               </div>
               <div className="column list">
-                <a href="#">{this.props.intl.formatMessage({ id: "news" })}</a>
-                <Link to={"?help"}>
+                <Link to="/news">
+                  {this.props.intl.formatMessage({ id: "news" })}
+                </Link>
+                <Link to="/help">
                   {this.props.intl.formatMessage({ id: "help" })}
                 </Link>
-                <a href="#">Contact</a>
+                Contact
               </div>
             </Col>
             <Col lg={{ size: 6 }}>
@@ -56,14 +63,24 @@ export class Footer extends React.Component {
                 <p>{this.props.intl.formatMessage({ id: "about_intro" })}</p>
               </div>
               <div className="column right">
-                <FacebookShareButton className="social-icons"
+                <FacebookShareButton
+                  className="social-icons"
                   url={currentUrl}
-                  title={title}welcome_message
-                  description={this.props.intl.formatMessage({ id: "welcome_message" })}
+                  title={title}
+                  welcome_message
+                  description={this.props.intl.formatMessage({
+                    id: "welcome_message"
+                  })}
                 >
                   <img src={fbIcon} alt="" />
                 </FacebookShareButton>
-                <TwitterShareButton className="social-icons" url={currentUrl} title={this.props.intl.formatMessage({ id: "welcome_message" })}>
+                <TwitterShareButton
+                  className="social-icons"
+                  url={currentUrl}
+                  title={this.props.intl.formatMessage({
+                    id: "welcome_message"
+                  })}
+                >
                   <img src={twitterIcon} alt="" />
                 </TwitterShareButton>
                 <div className="copyright-area">
@@ -73,7 +90,7 @@ export class Footer extends React.Component {
               </div>
             </Col>
           </Row>
-        </Container>    
+        </Container>
       </div>
     );
   }

@@ -101,7 +101,8 @@ class MapVisualization extends React.Component {
     return (
       <div className="map-component">
         <Map
-          style={styleURL}
+          // the following isn't a normal `style` prop, can be a URL.
+          style={styleURL} // eslint-disable-line react/style-prop-object
           center={this.state.center}
           scrollZoom={false}
           touchZoomRotate={true}

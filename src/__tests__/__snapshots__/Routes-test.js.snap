@@ -548,22 +548,26 @@ exports[`App 1`] = `
             className="column list"
           >
             <a
-              href="#"
+              href="/cases"
+              onClick={[Function]}
             >
               cases
             </a>
             <a
-              href="#"
+              href="/methods"
+              onClick={[Function]}
             >
               methods
             </a>
             <a
-              href="#"
+              href="/organizations"
+              onClick={[Function]}
             >
               organizations
             </a>
             <a
-              href="#"
+              href="/users"
+              onClick={[Function]}
             >
               Users
             </a>
@@ -572,21 +576,18 @@ exports[`App 1`] = `
             className="column list"
           >
             <a
-              href="#"
+              href="/news"
+              onClick={[Function]}
             >
               News
             </a>
             <a
-              href="?help"
+              href="/help"
               onClick={[Function]}
             >
               Help
             </a>
-            <a
-              href="#"
-            >
-              Contact
-            </a>
+            Contact
           </div>
         </div>
         <div
@@ -1192,22 +1193,26 @@ exports[`Searching for a word 1`] = `
             className="column list"
           >
             <a
-              href="#"
+              href="/cases"
+              onClick={[Function]}
             >
               cases
             </a>
             <a
-              href="#"
+              href="/methods"
+              onClick={[Function]}
             >
               methods
             </a>
             <a
-              href="#"
+              href="/organizations"
+              onClick={[Function]}
             >
               organizations
             </a>
             <a
-              href="#"
+              href="/users"
+              onClick={[Function]}
             >
               Users
             </a>
@@ -1216,21 +1221,18 @@ exports[`Searching for a word 1`] = `
             className="column list"
           >
             <a
-              href="#"
+              href="/news"
+              onClick={[Function]}
             >
               News
             </a>
             <a
-              href="?help"
+              href="/help"
               onClick={[Function]}
             >
               Help
             </a>
-            <a
-              href="#"
-            >
-              Contact
-            </a>
+            Contact
           </div>
         </div>
         <div
