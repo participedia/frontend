@@ -36,7 +36,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="specific_topic">
                 <a
-                  href="/search?specific_topic=Sustainable Development"
+                  href="/search?specific_topic=Sustainable%20Development"
                   onClick={[Function]}>
                   Sustainable Development
                 </a>
@@ -60,7 +60,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="communication_mode">
                 <a
-                  href="/search?communication_mode=Discussion, Dialogue, or Deliberation"
+                  href="/search?communication_mode=Discussion,%20Dialogue,%20or%20Deliberation"
                   onClick={[Function]}>
                   Discussion, Dialogue, or Deliberation
                 </a>
@@ -73,7 +73,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="decision_method">
                 <a
-                  href="/search?decision_method=Getting sense of room/group (i.e. no formal voting)"
+                  href="/search?decision_method=Getting%20sense%20of%20room/group%20(i.e.%20no%20formal%20voting)"
                   onClick={[Function]}>
                   Getting sense of room/group (i.e. no formal voting)
                 </a>
@@ -133,7 +133,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="targeted_participants_public_role">
                 <a
-                  href="/search?targeted_participants_public_role=Stakeholder Organizations"
+                  href="/search?targeted_participants_public_role=Stakeholder%20Organizations"
                   onClick={[Function]}>
                   Stakeholder Organizations
                 </a>
@@ -145,7 +145,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="targeted_audience">
                 <a
-                  href="/search?targeted_audience=General Public"
+                  href="/search?targeted_audience=General%20Public"
                   onClick={[Function]}>
                   General Public
                 </a>
@@ -157,7 +157,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="participant_selection">
                 <a
-                  href="/search?participant_selection=Open to all with targeted recruitment"
+                  href="/search?participant_selection=Open%20to%20all%20with%20targeted%20recruitment"
                   onClick={[Function]}>
                   Open to all with targeted recruitment
                 </a>
@@ -169,7 +169,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="type_of_funding_entity">
                 <a
-                  href="/search?type_of_funding_entity=Regional Government (e.g. State, Provincial, Territorial)"
+                  href="/search?type_of_funding_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
                   onClick={[Function]}>
                   Regional Government (e.g. State, Provincial, Territorial)
                 </a>
@@ -181,7 +181,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="typical_implementing_entity">
                 <a
-                  href="/search?typical_implementing_entity=Regional Government (e.g. State, Provincial, Territorial)"
+                  href="/search?typical_implementing_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
                   onClick={[Function]}>
                   Regional Government (e.g. State, Provincial, Territorial)
                 </a>
@@ -193,7 +193,7 @@ exports[`test ItemDetails for Case renders correctly 1`] = `
               <div
                 className="typical_sponsoring_entity">
                 <a
-                  href="/search?typical_sponsoring_entity=International Organization"
+                  href="/search?typical_sponsoring_entity=International%20Organization"
                   onClick={[Function]}>
                   International Organization
                 </a>
