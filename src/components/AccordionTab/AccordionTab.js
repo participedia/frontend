@@ -9,13 +9,13 @@ class AccordionTab extends React.Component {
 
   render() {
     return (
-      <div className={this.state.open ? "tab-open" : "tab"}>
-        <p
-          className="title"
-          onClick={() => {
-            this.setState({ open: !this.state.open });
-          }}
-        >
+      <div
+        className={this.state.open ? "tab-open" : "tab"}
+        onClick={() => {
+          this.setState({ open: !this.state.open });
+        }}
+      >
+        <p className="title">
           {this.props.title}
         </p>
         {this.props.children}
