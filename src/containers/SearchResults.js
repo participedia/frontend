@@ -48,7 +48,6 @@ export default class SearchResults extends React.Component {
     let component = this;
     this.setState({ searching: true });
     api.performSearch(futureState).then(function(results) {
-      console.log("RESULTS", results);
       if (results.results) {
         component.setState({ data: results.results, searching: false });
       } else {

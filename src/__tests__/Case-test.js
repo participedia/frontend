@@ -1,49 +1,51 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import OrganizationDetails from "../src/components/OrganizationDetails";
-import ItemDetails from "../src/components/ItemDetails/ItemDetails";
+import { Case } from "../containers/Case";
+import CaseDetails from "../components/CaseDetails";
+import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
-import { getBestMatchingMessages } from "../src/utils/l10n";
+import { getBestMatchingMessages } from "../utils/l10n";
 
 import { MemoryRouter } from "react-router";
-import { Organization } from "../src/containers/Organization";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
-import { mountWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
-import data from "./org_data.json";
-import intlProps from "../src/helpers/intl-props-test-helper.js";
-import afterPromises from "../src/helpers/afterPromises";
+import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
+import caseData from "./case_data.json";
+import intlProps from "../helpers/intl-props-test-helper.js";
+import afterPromises from "../helpers/afterPromises";
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
 let fetchMock = require("fetch-mock");
-jest.mock("material-ui/FloatingActionButton");
-jest.mock("../src/components/BookmarkToggle");
 
 fetchMock.get(
-  process.env.REACT_APP_API_URL + "/organization/4219",
-  JSON.stringify({ data: data })
+  process.env.REACT_APP_API_URL + "/case/123",
+  JSON.stringify({ data: caseData })
 );
 fetchMock.get(
   process.env.REACT_APP_ASSETS_URL + "countries/fullname/Italy.svg",
-  JSON.stringify({ data: data })
+  JSON.stringify({ data: caseData })
 );
+
+jest.mock("../components/Gallery");
+jest.mock("material-ui/FloatingActionButton");
+jest.mock("../components/BookmarkToggle");
 
 function setup() {
   const props = {
     intl: intlProps,
-    location: { pathname: "/organization/4219" },
-    match: { params: { nodeID: 4219 } },
+    location: { pathname: "/method/123" },
+    match: { params: { nodeID: 123 } },
     toggleFeatured: function() {},
-    data: data
+    data: caseData
   };
 
   const enzymeWrapper = mountWithIntl(
     <MemoryRouter>
       <MuiThemeProvider muiTheme={muiTheme}>
-        <Organization {...props} />
+        <Case {...props} />
       </MuiThemeProvider>
     </MemoryRouter>
   );
@@ -54,8 +56,8 @@ function setup() {
 }
 
 describe("containers", () => {
-  describe("Organization", () => {
-    it("should render proper data for org", done => {
+  describe("Case", () => {
+    it("should render proper data for case", done => {
       const { enzymeWrapper } = setup();
       afterPromises(done, () => {
         expect(enzymeWrapper.find(".sub-heading").length).toBe(1);
@@ -67,10 +69,10 @@ describe("containers", () => {
 
 let props = setup().props;
 let locale = "en-US";
-props["details"] = OrganizationDetails;
+props["details"] = CaseDetails;
 let messages = getBestMatchingMessages(locale);
 
-test("ItemDetails for Organization renders correctly", () => {
+test("ItemDetails for Case renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>

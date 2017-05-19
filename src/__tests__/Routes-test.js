@@ -5,22 +5,22 @@ import { Route, MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { IntlProvider } from "react-intl";
-import { getBestMatchingMessages } from "../src/utils/l10n";
+import { getBestMatchingMessages } from "../utils/l10n";
 
 import searchData from "./search.json";
 import countryData from "./country_data.json";
 
-import afterPromises from "../src/helpers/afterPromises";
+import afterPromises from "../helpers/afterPromises";
 
-import App from "../src/App";
-import store from "../src/store";
+import App from "../App";
+import store from "../store";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
 
 let fetchMock = require("fetch-mock");
-jest.mock("../src/containers/Map", () => "Map");
+jest.mock("../containers/Map", () => "Map");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL +

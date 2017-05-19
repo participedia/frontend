@@ -1,46 +1,60 @@
-exports[`test App 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App 1`] = `
 <div>
   <div
-    className="nav-bar-component">
+    className="nav-bar-component"
+  >
     <div
-      className="nav-bar-wrapper">
+      className="nav-bar-wrapper"
+    >
       <div
-        className="logo-area">
+        className="logo-area"
+      >
         <a
           className="menu-icon"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <img
             alt=""
-            src="menu-icon.png" />
+            src="menu-icon.png"
+          />
         </a>
         <a
           className="logo"
           href="/"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <img
             alt="Go Home"
-            src="pp-logo.png" />
+            src="pp-logo.png"
+          />
         </a>
       </div>
       <div
-        className="search-box-area">
+        className="search-box-area"
+      >
         <input
           className="search-bar"
           onChange={[Function]}
           onKeyUp={[Function]}
           placeholder="Search"
           type="text"
-          value="" />
+          value=""
+        />
       </div>
       <a
         className="hidden-sm-down"
         href="/quick-submit"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <div
-          className="createButton" />
+          className="createButton"
+        />
       </a>
       <div
-        className="loginButton">
+        className="loginButton"
+      >
         <button
           disabled={false}
           href={undefined}
@@ -84,13 +98,15 @@ exports[`test App 1`] = `
             }
           }
           tabIndex={0}
-          type="button">
+          type="button"
+        >
           <div
             onMouseDown={[Function]}
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
-            onTouchStart={[Function]}>
+            onTouchStart={[Function]}
+          >
             <span
               style={
                 Object {
@@ -104,7 +120,8 @@ exports[`test App 1`] = `
                   "textTransform": "uppercase",
                   "verticalAlign": "middle",
                 }
-              }>
+              }
+            >
               Login
             </span>
           </div>
@@ -114,7 +131,8 @@ exports[`test App 1`] = `
   </div>
   <div
     className="drawer"
-    style={undefined}>
+    style={undefined}
+  >
     <div
       className={undefined}
       onTouchTap={[Function]}
@@ -135,7 +153,8 @@ exports[`test App 1`] = `
           "willChange": "opacity",
           "zIndex": 1200,
         }
-      } />
+      }
+    />
     <div
       className={undefined}
       style={
@@ -160,62 +179,78 @@ exports[`test App 1`] = `
           "width": 300,
           "zIndex": 1300,
         }
-      } />
+      }
+    />
   </div>
   <div
-    className="contentArea">
+    className="contentArea"
+  >
     <div
-      className="home">
+      className="home"
+    >
       <Map />
       <div
-        className="main-contents">
+        className="main-contents"
+      >
         <div
-          className="search-results-component container-fluid">
+          className="search-results-component container-fluid"
+        >
           <div
-            className="sidepanel hidden-sm-down col col-md-3">
+            className="sidepanel hidden-sm-down col col-md-3"
+          >
             <div
-              className="sorting-options">
+              className="sorting-options"
+            >
               <p
                 className="current-sorting-selection"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Most Recent
               </p>
               <div
                 className="unselected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Featured
               </div>
               <div
                 className="selected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Most Recent
               </div>
               <div
                 className="unselected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Alphabetical
               </div>
             </div>
             <div
-              className="featured-searches-area">
+              className="featured-searches-area"
+            >
               <div
-                className="featured-searches-header">
+                className="featured-searches-header"
+              >
                 Featured Searches
               </div>
               <div
-                className="featured-searches">
+                className="featured-searches"
+              >
                 <div>
                   <div>
                     <a
                       href="/search?query=participatory%2520budgeting"
-                      onClick={[Function]}>
-                      Mention \"Participatory Budgeting\"
+                      onClick={[Function]}
+                    >
+                      Mention "Participatory Budgeting"
                     </a>
                   </div>
                   <div>
                     <a
                       href="/search?tag=infrastructure"
-                      onClick={[Function]}>
+                      onClick={[Function]}
+                    >
                       Tagged as: Infrastructure
                     </a>
                   </div>
@@ -224,96 +259,119 @@ exports[`test App 1`] = `
             </div>
           </div>
           <div
-            className="results-area col col-md-9">
+            className="results-area col col-md-9"
+          >
             <div
-              className="clearfix search-actions-area">
+              className="clearfix search-actions-area"
+            >
               <div
-                className="filters hidden-xs-down">
+                className="filters hidden-xs-down"
+              >
                 <div
                   className="selected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   All
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   News
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   organizations
                 </div>
               </div>
               <select
                 className="mobile-select hidden-sm-up"
                 onChange={[Function]}
-                value="All">
+                value="All"
+              >
                 <option
-                  value="All">
+                  value="All"
+                >
                   All
                 </option>
                 <option
-                  value="News">
+                  value="News"
+                >
                   News
                 </option>
                 <option
-                  value="Cases">
+                  value="Cases"
+                >
                   cases
                 </option>
                 <option
-                  value="Methods">
+                  value="Methods"
+                >
                   methods
                 </option>
                 <option
-                  value="Organizations">
+                  value="Organizations"
+                >
                   organizations
                 </option>
               </select>
               <div
-                className="view-types hidden-sm-down">
+                className="view-types hidden-sm-down"
+              >
                 <div
                   className="selected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="grid-icon"
-                    src="pp-search-grid-icon.png" />
+                    src="pp-search-grid-icon.png"
+                  />
                   <img
                     alt=""
                     className="grid-icon"
-                    src="pp-search-grid-icon-active.png" />
+                    src="pp-search-grid-icon-active.png"
+                  />
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="list-icon"
-                    src="pp-search-list-icon.png" />
+                    src="pp-search-list-icon.png"
+                  />
                   <img
                     alt=""
                     className="list-icon"
-                    src="pp-search-list-icon-active.png" />
+                    src="pp-search-list-icon-active.png"
+                  />
                 </div>
                 <div
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="dl-icon"
-                    src="../img/pp-search-dl-icon.png" />
+                    src="../img/pp-search-dl-icon.png"
+                  />
                 </div>
               </div>
             </div>
@@ -323,9 +381,11 @@ exports[`test App 1`] = `
                  
                 
                 <div
-                  className="spinner">
+                  className="spinner"
+                >
                   <ChasingDots
-                    size={50} />
+                    size={50}
+                  />
                 </div>
               </h3>
             </div>
@@ -333,7 +393,8 @@ exports[`test App 1`] = `
         </div>
         <a
           href="/quick-submit"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <div
             className="hidden-sm-up editButton"
             style={
@@ -350,7 +411,8 @@ exports[`test App 1`] = `
                 "muiPrepared": true,
                 "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
               }
-            }>
+            }
+          >
             <button
               disabled={false}
               href={undefined}
@@ -394,13 +456,15 @@ exports[`test App 1`] = `
                 }
               }
               tabIndex={0}
-              type="button">
+              type="button"
+            >
               <div
                 onMouseDown={[Function]}
                 onMouseLeave={[Function]}
                 onMouseUp={[Function]}
                 onTouchEnd={[Function]}
-                onTouchStart={[Function]}>
+                onTouchStart={[Function]}
+              >
                 <div
                   style={
                     Object {
@@ -408,7 +472,8 @@ exports[`test App 1`] = `
                       "top": 0,
                       "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
                     }
-                  }>
+                  }
+                >
                   <svg
                     onMouseEnter={[Function]}
                     onMouseLeave={[Function]}
@@ -425,9 +490,11 @@ exports[`test App 1`] = `
                         "width": 24,
                       }
                     }
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path
-                      d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                      d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                    />
                   </svg>
                 </div>
               </div>
@@ -438,76 +505,96 @@ exports[`test App 1`] = `
     </div>
   </div>
   <div
-    className="footer-component">
+    className="footer-component"
+  >
     <div
-      className="expanded-footer container-fluid">
+      className="expanded-footer container-fluid"
+    >
       <div
-        className="row">
+        className="row"
+      >
         <div
-          className="col col-lg-6">
+          className="col col-lg-6"
+        >
           <div
-            className="column list">
+            className="column list"
+          >
             <a
               href="/about"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               About
             </a>
             <a
               href="/research"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Research
             </a>
             <a
               href="/teaching"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Teaching
             </a>
             <a
               href="/experiments"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Experiments
             </a>
           </div>
           <div
-            className="column list">
+            className="column list"
+          >
             <a
-              href="#">
+              href="#"
+            >
               cases
             </a>
             <a
-              href="#">
+              href="#"
+            >
               methods
             </a>
             <a
-              href="#">
+              href="#"
+            >
               organizations
             </a>
             <a
-              href="#">
+              href="#"
+            >
               Users
             </a>
           </div>
           <div
-            className="column list">
+            className="column list"
+          >
             <a
-              href="#">
+              href="#"
+            >
               News
             </a>
             <a
               href="?help"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Help
             </a>
             <a
-              href="#">
+              href="#"
+            >
               Contact
             </a>
           </div>
         </div>
         <div
-          className="col col-lg-6">
+          className="col col-lg-6"
+        >
           <div
-            className="column xl">
+            className="column xl"
+          >
             <h4>
               Participedia
             </h4>
@@ -516,28 +603,35 @@ exports[`test App 1`] = `
             </p>
           </div>
           <div
-            className="column right">
+            className="column right"
+          >
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-social-fb.png" />
+                src="pp-social-fb.png"
+              />
             </div>
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-social-tw.png" />
+                src="pp-social-tw.png"
+              />
             </div>
             <div
-              className="copyright-area">
+              className="copyright-area"
+            >
               <img
                 alt=""
-                src="cc-icon.png" />
+                src="cc-icon.png"
+              />
               <span>
                 Participedia 2017
               </span>
@@ -550,49 +644,61 @@ exports[`test App 1`] = `
 </div>
 `;
 
-exports[`test Searching for a word 1`] = `
+exports[`Searching for a word 1`] = `
 <div>
   <div
-    className="nav-bar-component">
+    className="nav-bar-component"
+  >
     <div
-      className="nav-bar-wrapper">
+      className="nav-bar-wrapper"
+    >
       <div
-        className="logo-area">
+        className="logo-area"
+      >
         <a
           className="menu-icon"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <img
             alt=""
-            src="menu-icon.png" />
+            src="menu-icon.png"
+          />
         </a>
         <a
           className="logo"
           href="/"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <img
             alt="Go Home"
-            src="pp-logo.png" />
+            src="pp-logo.png"
+          />
         </a>
       </div>
       <div
-        className="search-box-area">
+        className="search-box-area"
+      >
         <input
           className="search-bar"
           onChange={[Function]}
           onKeyUp={[Function]}
           placeholder="Search"
           type="text"
-          value="" />
+          value=""
+        />
       </div>
       <a
         className="hidden-sm-down"
         href="/quick-submit"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <div
-          className="createButton" />
+          className="createButton"
+        />
       </a>
       <div
-        className="loginButton">
+        className="loginButton"
+      >
         <button
           disabled={false}
           href={undefined}
@@ -636,13 +742,15 @@ exports[`test Searching for a word 1`] = `
             }
           }
           tabIndex={0}
-          type="button">
+          type="button"
+        >
           <div
             onMouseDown={[Function]}
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
-            onTouchStart={[Function]}>
+            onTouchStart={[Function]}
+          >
             <span
               style={
                 Object {
@@ -656,7 +764,8 @@ exports[`test Searching for a word 1`] = `
                   "textTransform": "uppercase",
                   "verticalAlign": "middle",
                 }
-              }>
+              }
+            >
               Login
             </span>
           </div>
@@ -666,7 +775,8 @@ exports[`test Searching for a word 1`] = `
   </div>
   <div
     className="drawer"
-    style={undefined}>
+    style={undefined}
+  >
     <div
       className={undefined}
       onTouchTap={[Function]}
@@ -687,7 +797,8 @@ exports[`test Searching for a word 1`] = `
           "willChange": "opacity",
           "zIndex": 1200,
         }
-      } />
+      }
+    />
     <div
       className={undefined}
       style={
@@ -712,62 +823,78 @@ exports[`test Searching for a word 1`] = `
           "width": 300,
           "zIndex": 1300,
         }
-      } />
+      }
+    />
   </div>
   <div
-    className="contentArea">
+    className="contentArea"
+  >
     <div
-      className="home">
+      className="home"
+    >
       <Map />
       <div
-        className="main-contents">
+        className="main-contents"
+      >
         <div
-          className="search-results-component container-fluid">
+          className="search-results-component container-fluid"
+        >
           <div
-            className="sidepanel hidden-sm-down col col-md-3">
+            className="sidepanel hidden-sm-down col col-md-3"
+          >
             <div
-              className="sorting-options">
+              className="sorting-options"
+            >
               <p
                 className="current-sorting-selection"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Most Recent
               </p>
               <div
                 className="unselected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Featured
               </div>
               <div
                 className="selected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Most Recent
               </div>
               <div
                 className="unselected"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 Alphabetical
               </div>
             </div>
             <div
-              className="featured-searches-area">
+              className="featured-searches-area"
+            >
               <div
-                className="featured-searches-header">
+                className="featured-searches-header"
+              >
                 Featured Searches
               </div>
               <div
-                className="featured-searches">
+                className="featured-searches"
+              >
                 <div>
                   <div>
                     <a
                       href="/search?query=participatory%2520budgeting"
-                      onClick={[Function]}>
-                      Mention \"Participatory Budgeting\"
+                      onClick={[Function]}
+                    >
+                      Mention "Participatory Budgeting"
                     </a>
                   </div>
                   <div>
                     <a
                       href="/search?tag=infrastructure"
-                      onClick={[Function]}>
+                      onClick={[Function]}
+                    >
                       Tagged as: Infrastructure
                     </a>
                   </div>
@@ -776,96 +903,119 @@ exports[`test Searching for a word 1`] = `
             </div>
           </div>
           <div
-            className="results-area col col-md-9">
+            className="results-area col col-md-9"
+          >
             <div
-              className="clearfix search-actions-area">
+              className="clearfix search-actions-area"
+            >
               <div
-                className="filters hidden-xs-down">
+                className="filters hidden-xs-down"
+              >
                 <div
                   className="selected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   All
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   News
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   organizations
                 </div>
               </div>
               <select
                 className="mobile-select hidden-sm-up"
                 onChange={[Function]}
-                value="All">
+                value="All"
+              >
                 <option
-                  value="All">
+                  value="All"
+                >
                   All
                 </option>
                 <option
-                  value="News">
+                  value="News"
+                >
                   News
                 </option>
                 <option
-                  value="Cases">
+                  value="Cases"
+                >
                   cases
                 </option>
                 <option
-                  value="Methods">
+                  value="Methods"
+                >
                   methods
                 </option>
                 <option
-                  value="Organizations">
+                  value="Organizations"
+                >
                   organizations
                 </option>
               </select>
               <div
-                className="view-types hidden-sm-down">
+                className="view-types hidden-sm-down"
+              >
                 <div
                   className="selected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="grid-icon"
-                    src="pp-search-grid-icon.png" />
+                    src="pp-search-grid-icon.png"
+                  />
                   <img
                     alt=""
                     className="grid-icon"
-                    src="pp-search-grid-icon-active.png" />
+                    src="pp-search-grid-icon-active.png"
+                  />
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="list-icon"
-                    src="pp-search-list-icon.png" />
+                    src="pp-search-list-icon.png"
+                  />
                   <img
                     alt=""
                     className="list-icon"
-                    src="pp-search-list-icon-active.png" />
+                    src="pp-search-list-icon-active.png"
+                  />
                 </div>
                 <div
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   <img
                     alt=""
                     className="dl-icon"
-                    src="../img/pp-search-dl-icon.png" />
+                    src="../img/pp-search-dl-icon.png"
+                  />
                 </div>
               </div>
             </div>
@@ -875,9 +1025,11 @@ exports[`test Searching for a word 1`] = `
                  
                 
                 <div
-                  className="spinner">
+                  className="spinner"
+                >
                   <ChasingDots
-                    size={50} />
+                    size={50}
+                  />
                 </div>
               </h3>
             </div>
@@ -885,7 +1037,8 @@ exports[`test Searching for a word 1`] = `
         </div>
         <a
           href="/quick-submit"
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           <div
             className="hidden-sm-up editButton"
             style={
@@ -902,7 +1055,8 @@ exports[`test Searching for a word 1`] = `
                 "muiPrepared": true,
                 "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
               }
-            }>
+            }
+          >
             <button
               disabled={false}
               href={undefined}
@@ -946,13 +1100,15 @@ exports[`test Searching for a word 1`] = `
                 }
               }
               tabIndex={0}
-              type="button">
+              type="button"
+            >
               <div
                 onMouseDown={[Function]}
                 onMouseLeave={[Function]}
                 onMouseUp={[Function]}
                 onTouchEnd={[Function]}
-                onTouchStart={[Function]}>
+                onTouchStart={[Function]}
+              >
                 <div
                   style={
                     Object {
@@ -960,7 +1116,8 @@ exports[`test Searching for a word 1`] = `
                       "top": 0,
                       "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
                     }
-                  }>
+                  }
+                >
                   <svg
                     onMouseEnter={[Function]}
                     onMouseLeave={[Function]}
@@ -977,9 +1134,11 @@ exports[`test Searching for a word 1`] = `
                         "width": 24,
                       }
                     }
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     <path
-                      d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                      d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                    />
                   </svg>
                 </div>
               </div>
@@ -990,76 +1149,96 @@ exports[`test Searching for a word 1`] = `
     </div>
   </div>
   <div
-    className="footer-component">
+    className="footer-component"
+  >
     <div
-      className="expanded-footer container-fluid">
+      className="expanded-footer container-fluid"
+    >
       <div
-        className="row">
+        className="row"
+      >
         <div
-          className="col col-lg-6">
+          className="col col-lg-6"
+        >
           <div
-            className="column list">
+            className="column list"
+          >
             <a
               href="/about"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               About
             </a>
             <a
               href="/research"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Research
             </a>
             <a
               href="/teaching"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Teaching
             </a>
             <a
               href="/experiments"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Experiments
             </a>
           </div>
           <div
-            className="column list">
+            className="column list"
+          >
             <a
-              href="#">
+              href="#"
+            >
               cases
             </a>
             <a
-              href="#">
+              href="#"
+            >
               methods
             </a>
             <a
-              href="#">
+              href="#"
+            >
               organizations
             </a>
             <a
-              href="#">
+              href="#"
+            >
               Users
             </a>
           </div>
           <div
-            className="column list">
+            className="column list"
+          >
             <a
-              href="#">
+              href="#"
+            >
               News
             </a>
             <a
               href="?help"
-              onClick={[Function]}>
+              onClick={[Function]}
+            >
               Help
             </a>
             <a
-              href="#">
+              href="#"
+            >
               Contact
             </a>
           </div>
         </div>
         <div
-          className="col col-lg-6">
+          className="col col-lg-6"
+        >
           <div
-            className="column xl">
+            className="column xl"
+          >
             <h4>
               Participedia
             </h4>
@@ -1068,28 +1247,35 @@ exports[`test Searching for a word 1`] = `
             </p>
           </div>
           <div
-            className="column right">
+            className="column right"
+          >
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook social-icons"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-social-fb.png" />
+                src="pp-social-fb.png"
+              />
             </div>
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter social-icons"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-social-tw.png" />
+                src="pp-social-tw.png"
+              />
             </div>
             <div
-              className="copyright-area">
+              className="copyright-area"
+            >
               <img
                 alt=""
-                src="cc-icon.png" />
+                src="cc-icon.png"
+              />
               <span>
                 Participedia 2017
               </span>
