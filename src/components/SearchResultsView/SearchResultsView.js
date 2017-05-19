@@ -5,6 +5,8 @@ import SearchHit from "../../components/SearchHit/SearchHit";
 import SearchHitCategory
   from "../../components/SearchHitCategory/SearchHitCategory";
 import { Container, Col } from "reactstrap";
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Plus from 'material-ui/svg-icons/content/add'
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
 import preventDefault from "react-prevent-default";
@@ -118,7 +120,7 @@ export class SearchResultsView extends React.Component {
       );
     });
     let formatMessage = this.props.intl.formatMessage;
-
+    let addLink = "/quick-submit"
     let resultsCount = data.length;
     let { searching, query } = this.props;
     let results = "";
@@ -151,7 +153,7 @@ export class SearchResultsView extends React.Component {
           });
         }
       });
-
+      
       results = (
         <div className="search-results">
           <div className="search-description">
@@ -238,7 +240,7 @@ export class SearchResultsView extends React.Component {
               </div>
             </div>
           </Col>
-          <Col md="9">
+          <Col md="9" className="results-area">
             <div className="clearfix search-actions-area">
               <div className="filters hidden-xs-down">
                 <div
@@ -367,6 +369,11 @@ export class SearchResultsView extends React.Component {
             {results}
           </Col>
         </Container>
+        <Link to={addLink}>
+         <FloatingActionButton className='hidden-sm-up editButton'>
+          <Plus />
+         </FloatingActionButton>
+        </Link>
       </div>
     );
   }
