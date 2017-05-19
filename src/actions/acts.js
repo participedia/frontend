@@ -1,3 +1,6 @@
+import { push } from "react-router-redux";
+import api from "../utils/api";
+
 export const SEARCH_CASES = "SEARCH_CASES";
 export const SELECT_CASE = "SELECT_CASE";
 export const RECEIVED_DATA = "RECEIVED_DATA";
@@ -14,8 +17,6 @@ export const CASE_TYPE = "case";
 export const METHOD_TYPE = "method";
 export const ORGANIZATION_TYPE = "organization";
 export const PROFILE_UPDATED = "PROFILE_UPDATED";
-import { push } from "react-router-redux";
-import api from "../utils/api";
 
 export function updateUserMetaData(userId, data) {
   return function(dispatch) {

@@ -48,10 +48,14 @@ export default class SearchResults extends React.Component {
     let component = this;
     this.setState({ searching: true });
     api.performSearch(futureState).then(function(results) {
-      if (results.error) {
-        component.setState({ error: results.error });
-      } else {
+      console.log("RESULTS", results);
+      if (results.results) {
         component.setState({ data: results.results, searching: false });
+      } else {
+        if (results.error.code)
+          component.setState({
+            error: results.error.code
+          });
       }
     });
     this.setState(newState);
@@ -72,7 +76,7 @@ export default class SearchResults extends React.Component {
       console.error(this.state.error);
       return (
         <div className="error-message">
-          Error doing search: {this.state.error.message}
+          Error doing search: ${this.state.error}
         </div>
       );
     }

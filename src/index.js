@@ -8,6 +8,7 @@ import { ConnectedRouter } from "react-router-redux";
 
 import App from "./App";
 import store from "./store";
+import myhistory from "./utils/history";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -17,8 +18,6 @@ const muiTheme = getMuiTheme({
 });
 
 injectTapEventPlugin();
-
-import myhistory from "./utils/history";
 
 ReactDOM.render(
   <Provider store={store}>

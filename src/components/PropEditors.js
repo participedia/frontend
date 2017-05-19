@@ -169,7 +169,7 @@ ChoicePropEditor.propTypes = {
   thing: PropTypes.object.isRequired,
   intl: PropTypes.object.isRequired
 };
-module.exports = {
+export {
   BooleanPropEditor,
   DatePropEditor,
   NumberPropEditor,

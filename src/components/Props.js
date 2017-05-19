@@ -26,7 +26,7 @@ BooleanProp.propTypes = {
 };
 
 const NumberProp = ({ label, property, thing, intl }) =>
-  (thing[property] !== undefined
+  thing[property] !== undefined
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}
@@ -35,7 +35,7 @@ const NumberProp = ({ label, property, thing, intl }) =>
           {String(thing[property])}
         </div>
       </div>
-    : <div />);
+    : <div />;
 NumberProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -44,7 +44,7 @@ NumberProp.propTypes = {
 };
 
 const TextProp = ({ label, property, thing, intl }) =>
-  (thing[property] !== undefined
+  thing[property] !== undefined
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}
@@ -53,7 +53,7 @@ const TextProp = ({ label, property, thing, intl }) =>
           {thing[property]}
         </div>
       </div>
-    : <div />);
+    : <div />;
 TextProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -105,4 +105,5 @@ ItemProp.propTypes = {
   type: PropTypes.string.isRequired,
   intl: PropTypes.object.isRequired
 };
-module.exports = { BooleanProp, DateProp, ItemProp, NumberProp, TextProp };
+
+export { BooleanProp, DateProp, ItemProp, NumberProp, TextProp };
