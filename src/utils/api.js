@@ -1,6 +1,7 @@
 // This is the JS API to talk to api.participedia.xyz
-let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 import queryString from "query-string";
+
+let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
 if (!APIURL) {
   console.error(

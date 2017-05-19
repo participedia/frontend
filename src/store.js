@@ -1,12 +1,10 @@
 import * as storage from "redux-storage";
 import { compose, createStore, applyMiddleware } from "redux";
 import createEngine from "redux-storage-engine-localstorage";
-const engine = createEngine("participedia");
 import thunkMiddleware from "redux-thunk";
-import { routerMiddleware } from "react-router-redux";
-import { browserHistory } from "react-router";
-const routeMiddleware = routerMiddleware(browserHistory);
 import rootReducer from "./reducers";
+
+const engine = createEngine("participedia");
 
 function configureStore() {
   const storageMiddleware = storage.createMiddleware(engine);
@@ -15,7 +13,7 @@ function configureStore() {
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(thunkMiddleware, storageMiddleware, routeMiddleware),
+      applyMiddleware(thunkMiddleware, storageMiddleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );

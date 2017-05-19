@@ -3,16 +3,14 @@ import { Field } from "redux-form";
 import ChipInput from "material-ui-chip-input";
 import omit from "object-omit";
 
-function renderChip(
-  {
-    input,
-    hintText,
-    dataSource,
-    dataSourceConfig,
-    possibles,
-    floatingLabelText
-  }
-) {
+function renderChip({
+  input,
+  hintText,
+  dataSource,
+  dataSourceConfig,
+  possibles,
+  floatingLabelText
+}) {
   return (
     <ChipInput
       {...input}
@@ -132,7 +130,7 @@ export class SimpleRelatedCases extends React.Component {
         dataSource={this.props.passProps.dataSource}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={v => {
+        onChange={event => {
           this.props.onChange(event.target.value);
         }}
       />
@@ -149,7 +147,7 @@ export class SimpleRelatedMethods extends React.Component {
         dataSource={this.props.passProps.dataSource}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={v => {
+        onChange={event => {
           this.props.onChange(event.target.value);
         }}
       />
@@ -166,7 +164,7 @@ export class SimpleRelatedOrganizations extends React.Component {
         dataSource={this.props.passProps.dataSource}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={v => {
+        onChange={event => {
           this.props.onChange(event.target.value);
         }}
       />

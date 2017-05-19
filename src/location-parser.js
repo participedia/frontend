@@ -1,7 +1,7 @@
 import Parser from "accept-language-parser";
 import bestLang from "bestlang";
 import langmap from "langmap";
-import locales from "../public/locales.json";
+import locales from "./locales.json";
 
 function getLocale(acceptLang) {
   let langHeader = Parser.parse(acceptLang);

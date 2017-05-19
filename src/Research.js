@@ -13,16 +13,16 @@ class Research extends React.Component {
         {this.props.intl.formatMessage({ id: "participedia_project" })}
       </Link>
     );
-    const participantSurvey = (
-      <Link to="/somepage">
-        {this.props.intl.formatMessage({ id: "participant_survey" })}
-      </Link>
-    );
-    const observerSurvey = (
-      <Link to="/somepage">
-        {this.props.intl.formatMessage({ id: "observer_survey" })}
-      </Link>
-    );
+    // const participantSurvey = (
+    //   <Link to="/somepage">
+    //     {this.props.intl.formatMessage({ id: "participant_survey" })}
+    //   </Link>
+    // );
+    // const observerSurvey = (
+    //   <Link to="/somepage">
+    //     {this.props.intl.formatMessage({ id: "observer_survey" })}
+    //   </Link>
+    // );
 
     return (
       <Container fluid={false} className="about static">
@@ -57,9 +57,11 @@ class Research extends React.Component {
                       id: "data_repository_intro"
                     })}
                   </p>
-                  <a href="http://participedia.net/en/content/brazilian-participatory-budgeting-census">{this.props.intl.formatMessage({
+                  <a href="http://participedia.net/en/content/brazilian-participatory-budgeting-census">
+                    {this.props.intl.formatMessage({
                       id: "data_repository_link"
-                    })}</a>
+                    })}
+                  </a>
                 </div>
               </AccordionTab>
               <AccordionTab

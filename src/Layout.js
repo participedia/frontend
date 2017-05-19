@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 import { bool, object, func } from "prop-types";
-import { Link, browserHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
@@ -61,9 +61,9 @@ const ScrollToTop = props => {
 };
 
 const EnsureAuth = props =>
-  (authService.loggedIn()
+  authService.loggedIn()
     ? <div />
-    : <div>Must be logged in</div> && authService.login(props.location.state));
+    : <div>Must be logged in</div> && authService.login(props.location.state);
 
 class Routes extends React.Component {
   render() {
@@ -170,7 +170,7 @@ export class Layout extends React.Component {
   }
 
   touchTitle() {
-    browserHistory.push("/");
+    myhistory.push("/");
   }
 
   render() {

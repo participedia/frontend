@@ -6,6 +6,18 @@ import { routerReducer } from "react-router-redux";
 import * as ActionTypes from "./actions";
 import authService from "./utils/AuthService";
 
+import {
+  SEARCHING,
+  RECEIVED_DATA,
+  SWITCH_CATEGORY,
+  SET_LAYOUT,
+  SET_SORT_ORDER,
+  DO_RECENT_SEARCH,
+  FETCHING_OBJECT,
+  RECEIVED_OBJECT,
+  RECEIVED_OBJECT_SAVED
+} from "./actions";
+
 if (authService.isTokenExpired()) {
   authService.logout();
 }
@@ -54,18 +66,6 @@ function auth(
 }
 
 // separate actions for UI and actions for content
-
-import {
-  SEARCHING,
-  RECEIVED_DATA,
-  SWITCH_CATEGORY,
-  SET_LAYOUT,
-  SET_SORT_ORDER,
-  DO_RECENT_SEARCH,
-  FETCHING_OBJECT,
-  RECEIVED_OBJECT,
-  RECEIVED_OBJECT_SAVED
-} from "./actions";
 
 function dataStoreReducer(state = {}, action) {
   switch (action.type) {
