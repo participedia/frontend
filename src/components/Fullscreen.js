@@ -44,8 +44,25 @@ const fullscreenMapStyle = {
   }
 };
 
+const fullscreenMarkerLayout = {
+  "text-line-height": 1,
+  "text-padding": 0,
+  "text-anchor": "bottom",
+  "text-allow-overlap": true,
+  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
+  "icon-optional": true,
+  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
+  "text-size": 18
+};
+
 export default class Fullscreen extends React.Component {
   render() {
-    return <Map styles={fullscreenMapStyle} />;
+    return (
+      <Map
+        styles={fullscreenMapStyle}
+        markerLayout={fullscreenMarkerLayout}
+        center={[0, 0]}
+      />
+    );
   }
 }

@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
+const defaultMarkerLayout = {
+  "text-line-height": 1,
+  "text-padding": 0,
+  "text-anchor": "bottom",
+  "text-allow-overlap": false,
+  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
+  "icon-optional": true,
+  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
+  "text-size": 18
+};
 
 // Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
 if (process.env.NODE_ENV === "test") {
@@ -66,6 +76,8 @@ export default class Map extends Component {
   render() {
     let { cases, organizations } = this.state;
     let styles = this.props.styles || defaultMapStyles;
+    let markerLayout = this.props.markerLayout || defaultMarkerLayout;
+    let center = this.props.center;
 
     if (this.state.MapVisualization) {
       return (
@@ -73,6 +85,8 @@ export default class Map extends Component {
           cases={cases}
           organizations={organizations}
           styles={styles}
+          markerLayout={markerLayout}
+          center={center}
         />
       );
     } else {

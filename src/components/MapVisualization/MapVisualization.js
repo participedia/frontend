@@ -8,19 +8,6 @@ const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
-const caseMarkerLayout = {
-  "text-line-height": 1,
-  "text-padding": 0,
-  "text-anchor": "bottom",
-  "text-allow-overlap": false,
-  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
-  "icon-optional": true,
-  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
-  "text-size": 18
-};
-
-const orgMarkerLayout = caseMarkerLayout;
-
 const caseMarkerPaint = {
   "text-translate-anchor": "viewport",
   "text-color": "#000"
@@ -52,7 +39,7 @@ class MapVisualization extends React.Component {
 
     this.state = {
       popupShowLabel: true,
-      center: [-9.9215833, -15.4099109],
+      center: props.center || [-9.9215833, -15.4099109],
       zoom: [2],
       focus: null
     };
@@ -118,7 +105,7 @@ class MapVisualization extends React.Component {
             ? <Layer
                 type="symbol"
                 id="cases"
-                layout={caseMarkerLayout}
+                layout={this.props.markerLayout}
                 paint={caseMarkerPaint}
               >
                 {caseFeatures}
@@ -128,7 +115,7 @@ class MapVisualization extends React.Component {
             ? <Layer
                 type="symbol"
                 id="orgs"
-                layout={orgMarkerLayout}
+                layout={this.props.markerLayout}
                 paint={orgMarkerPaint}
               >
                 {orgFeatures}
