@@ -73,6 +73,9 @@ class Routes extends React.Component {
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
+        <Route exact path="/cases" component={Home} />
+        <Route exact path="/methods" component={Home} />
+        <Route exact path="/organizations" component={Home} />
         <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
