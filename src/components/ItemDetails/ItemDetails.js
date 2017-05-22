@@ -56,6 +56,8 @@ const defaultThing = {
   body: "Description",
   lead_image: null,
   other_images: [],
+  post_date: "2011-11-30T17:20:28",
+  updated_date: "2011-11-30T17:20:28",
   location: {
     city: "",
     countrycode: ""
