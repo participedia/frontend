@@ -5,6 +5,7 @@ import "./SearchHit.css";
 import { injectIntl, intlShape } from "react-intl";
 import { Row, Col } from "reactstrap";
 import backgroundImage from "../../img/pp-thumbnail-1.jpg";
+import BookmarkToggle from "../BookmarkToggle";
 import TimeAgo from "react-timeago";
 
 export class SearchHit extends React.Component {
@@ -23,11 +24,20 @@ export class SearchHit extends React.Component {
     let id = result.id;
     let type = result.type;
     let title = result.title;
+    let isAuthenticated = this.props.isAuthenticated;
     let link = `/${type}/${id}`;
     let thumbnailClass = "thumbnail " + type;
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
+    let bookmarked = isAuthenticated && result.bookmarked;
+    let bookmarkIcon = (
+      <BookmarkToggle
+        thingType="case"
+        thingID={id}
+        bookmarked={bookmarked}
+      />
+    );
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
         {this.props.selectedViewType === "grid"
@@ -40,15 +50,16 @@ export class SearchHit extends React.Component {
                   : <div className={thumbnailClass} style={thumbnailStyle} />}
               </Link>
               <small className="label">{result.type}</small>
+              {bookmarkIcon}
               <Link to={link} className="result-title">
                 <div className="result-title-text">{title}</div>
-                <p className="result-date">
-                  <TimeAgo date={result.updated_date} />
-                </p>
               </Link>
+              <p>
+                <TimeAgo date={result.updated_date} />
+              </p>
             </div>
           : <Row className="list-item">
-              <Col md="3">
+              <Col md="3" className="pt-1">
                 {pic
                   ? <Link to={link}>
                       <div className="case-images">
@@ -59,14 +70,13 @@ export class SearchHit extends React.Component {
                       <div className={thumbnailClass} style={thumbnailStyle} />
                     </Link>}
               </Col>
-              <Col md="6">
+              <Col md="6" className="pt-1">
                 <small className="label">{result.type}</small>
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>
                 </Link>
-                <p className="result-date">
+                <p>
                   <TimeAgo date={result.updated_date} />
-
                 </p>
               </Col>
               <div className="separator" />
