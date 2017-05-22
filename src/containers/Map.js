@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
+import defaultMapStyles from "./mapstyle.js";
 
 // Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
 if (process.env.NODE_ENV === "test") {
@@ -64,11 +65,14 @@ export default class Map extends Component {
 
   render() {
     let { cases, organizations } = this.state;
+    let styles = this.props.styles || defaultMapStyles;
+
     if (this.state.MapVisualization) {
       return (
         <this.state.MapVisualization
           cases={cases}
           organizations={organizations}
+          styles={styles}
         />
       );
     } else {

@@ -1,8 +1,9 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import { bool, object, func } from "prop-types";
 import { Link } from "react-router-dom";
 import Home from "./Home";
+import Fullscreen from "./components/Fullscreen";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import SearchQuery from "./containers/SearchQuery";
@@ -10,7 +11,6 @@ import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
 import { checkLogin } from "./actions";
-
 import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
@@ -176,7 +176,8 @@ export class Layout extends React.Component {
   render() {
     const { auth, profile, intl, isAuthenticated } = this.props;
     let routes = <Routes intl={intl} />;
-    return (
+
+    let theLayout = (
       <div>
         <div className="nav-bar-component">
           <div className="nav-bar-wrapper">
@@ -249,6 +250,14 @@ export class Layout extends React.Component {
         {routes}
         <Footer />
       </div>
+    );
+
+    // only do the basic layout if not doing fullscreen
+    return (
+      <Switch>
+        <Route path="/fullscreen" component={Fullscreen} />
+        <Route path="/" render={() => theLayout} />
+      </Switch>
     );
   }
 }

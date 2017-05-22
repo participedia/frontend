@@ -4,7 +4,6 @@ import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 
 import "./MapVisualization.css";
-import styles from "./mapstyle.js";
 const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
@@ -80,7 +79,7 @@ class MapVisualization extends React.Component {
 
   render() {
     const { focus, popupShowLabel } = this.state;
-    const { cases, organizations } = this.props;
+    const { cases, organizations, styles } = this.props;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
     const caseFeatures = cases.map((st, index) => (
