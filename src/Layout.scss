@@ -79,11 +79,15 @@
       padding: 16px 20px;
       background:#222;
       margin-right:10px;
+      cursor:pointer;
       @include media-breakpoint-up(sm){
         margin-right:16px;
       }
       &:hover{
-        background:#444;
+        cursor:pointer;
+        img {
+          opacity: 1;
+        }
       }
       img {
         width: 32px;
