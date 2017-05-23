@@ -7,13 +7,9 @@ import twitterIcon from "../../img/pp-social-tw.png";
 import linkedInIcon from "../../img/linkedin-logo.png";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
-import { ShareButtons } from "react-share";
 
 export class Footer extends React.Component {
   render() {
-    const { FacebookShareButton, TwitterShareButton, LinkedinShareButton } = ShareButtons;
-    let currentUrl = process.env.REACT_APP_ROOT_URL;
-    let title = "Participedia";
 
     return (
       <div className="footer-component">

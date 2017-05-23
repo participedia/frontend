@@ -70,8 +70,9 @@ export class SearchHit extends React.Component {
                       <div className={thumbnailClass} style={thumbnailStyle} />
                     </Link>}
               </Col>
-              <Col md="6" className="pt-1">
+              <Col md="8" className="pt-1">
                 <small className="label">{result.type}</small>
+                {bookmarkIcon}
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>
                 </Link>
