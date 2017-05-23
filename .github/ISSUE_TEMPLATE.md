@@ -1,12 +1,4 @@
-👋 Hello! Thanks for contributing. 
-
-_I am..._ (requesting a feature)
-
-**Proposal/Feature-request:**
-
-or: (Reporting a bug or issue)
-
-**Expected behavior:**
+**Expected/Desired behavior:**
 
 When I...
 

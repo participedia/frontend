@@ -1,8 +1,9 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import { bool, object, func } from "prop-types";
-import { Link, browserHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Home from "./Home";
+import Fullscreen from "./components/Fullscreen";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import SearchQuery from "./containers/SearchQuery";
@@ -10,7 +11,6 @@ import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
 import { checkLogin } from "./actions";
-
 import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
@@ -61,9 +61,9 @@ const ScrollToTop = props => {
 };
 
 const EnsureAuth = props =>
-  (authService.loggedIn()
+  authService.loggedIn()
     ? <div />
-    : <div>Must be logged in</div> && authService.login(props.location.state));
+    : <div>Must be logged in</div> && authService.login(props.location.state);
 
 class Routes extends React.Component {
   render() {
@@ -73,6 +73,9 @@ class Routes extends React.Component {
     return (
       <div className="contentArea">
         <Route exact path="/" component={Home} />
+        <Route exact path="/cases" component={Home} />
+        <Route exact path="/methods" component={Home} />
+        <Route exact path="/organizations" component={Home} />
         <Route path="/search" component={Home} />
         <Route component={ScrollToTop} />
         <Route path="/redirect" />
@@ -170,13 +173,14 @@ export class Layout extends React.Component {
   }
 
   touchTitle() {
-    browserHistory.push("/");
+    myhistory.push("/");
   }
 
   render() {
     const { auth, profile, intl, isAuthenticated } = this.props;
     let routes = <Routes intl={intl} />;
-    return (
+
+    let theLayout = (
       <div>
         <div className="nav-bar-component">
           <div className="nav-bar-wrapper">
@@ -191,7 +195,7 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link to="/quick-submit">
+            <Link className="hidden-sm-down" to="/quick-submit">
               <div className="createButton" />
             </Link>
             <LoginAvatar
@@ -249,6 +253,14 @@ export class Layout extends React.Component {
         {routes}
         <Footer />
       </div>
+    );
+
+    // only do the basic layout if not doing fullscreen
+    return (
+      <Switch>
+        <Route path="/fullscreen" component={Fullscreen} />
+        <Route path="/" render={() => theLayout} />
+      </Switch>
     );
   }
 }

@@ -6,6 +6,7 @@
   z-index: 1000;
   position: absolute;
   width: 100%;
+  color: white;
 
   .expanded-footer {
     padding-top: 32px;
@@ -13,10 +14,26 @@
     overflow: hidden;
     padding-left: 2em;
     padding-right: 2em;
+    padding-bottom: 2em;
 
     .column {
       width: 160px;
       float: left;
+
+      &.xl {
+        width: 320px;
+      }
+
+      &.right {
+        float: right;
+        @include media-breakpoint-down(sm) {
+          width: 100%; 
+        }  
+      }
+
+      &.list {
+        text-transform: capitalize;
+      }
 
       @media (max-width: 699px) {
         width: 50%;
@@ -44,50 +61,22 @@
       }
 
       .social-icons img {
-        width: 25px;
+        width: 28px;
       }
 
-      &:last-child {
-        float: right;
-        width: auto;
-
-        @include media-breakpoint-down(sm) {
-          float: left;
-        }
-      }
     }
   }
 
   .copyright-area {
-    margin: 0 auto;
-    overflow: hidden;
-    padding-top: 64px;
-    padding-bottom: 20px;
-    padding-left: 2em;
-    padding-right: 2em;
-
-    .logo {
-      float: left;
-      padding: 20px 0;
-
-      img {
-        height: 24px;
-      }
+    float: right;
+    color: white;
+    @include media-breakpoint-up(sm) {
+      padding-top: 9.5rem;
     }
-
-    .copyright-text {
-      font-size: 1rem;
-      line-height: 20px;
-      color: #fff;
-      padding-top: 24px;
-      float: right;
-      a {
-        color:#fff;   
-      }
-      img {
-        height: 16px;
-        margin: 0px 8px -2px 0px;
-      }
+    img {
+      display: inline-block;
+      height: 24px;
+      padding-right: 0.5rem;
     }
   }
 }

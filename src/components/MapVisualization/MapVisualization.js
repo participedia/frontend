@@ -4,23 +4,9 @@ import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 
 import "./MapVisualization.css";
-import styles from "./mapstyle.js";
 const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
-
-const caseMarkerLayout = {
-  "text-line-height": 1,
-  "text-padding": 0,
-  "text-anchor": "bottom",
-  "text-allow-overlap": false,
-  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
-  "icon-optional": true,
-  "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
-  "text-size": 18
-};
-
-const orgMarkerLayout = caseMarkerLayout;
 
 const caseMarkerPaint = {
   "text-translate-anchor": "viewport",
@@ -53,7 +39,7 @@ class MapVisualization extends React.Component {
 
     this.state = {
       popupShowLabel: true,
-      center: [-9.9215833, -15.4099109],
+      center: props.center || [-9.9215833, -15.4099109],
       zoom: [2],
       focus: null
     };
@@ -80,7 +66,7 @@ class MapVisualization extends React.Component {
 
   render() {
     const { focus, popupShowLabel } = this.state;
-    const { cases, organizations } = this.props;
+    const { cases, organizations, styles } = this.props;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
     const caseFeatures = cases.map((st, index) => (
@@ -101,7 +87,8 @@ class MapVisualization extends React.Component {
     return (
       <div className="map-component">
         <Map
-          style={styleURL}
+          // the following isn't a normal `style` prop, can be a URL.
+          style={styleURL} // eslint-disable-line react/style-prop-object
           center={this.state.center}
           scrollZoom={false}
           touchZoomRotate={true}
@@ -118,7 +105,7 @@ class MapVisualization extends React.Component {
             ? <Layer
                 type="symbol"
                 id="cases"
-                layout={caseMarkerLayout}
+                layout={this.props.markerLayout}
                 paint={caseMarkerPaint}
               >
                 {caseFeatures}
@@ -128,7 +115,7 @@ class MapVisualization extends React.Component {
             ? <Layer
                 type="symbol"
                 id="orgs"
-                layout={orgMarkerLayout}
+                layout={this.props.markerLayout}
                 paint={orgMarkerPaint}
               >
                 {orgFeatures}

@@ -1,9 +1,9 @@
 import React from "react";
 import { MemoryRouter } from "react-router";
-import { SearchHit } from "../src/components/SearchHit/SearchHit";
-import { shallowWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
+import { SearchHit } from "../components/SearchHit/SearchHit";
+import { shallowWithIntl } from "../helpers/intl-enzyme-test-helper.js";
 import resultData from "./result_data.json";
-import intlProps from "../src/helpers/intl-props-test-helper.js";
+import intlProps from "../helpers/intl-props-test-helper.js";
 
 function setup() {
   const props = {

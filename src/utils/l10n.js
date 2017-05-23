@@ -1,4 +1,4 @@
-import locales from "../../public/locales.json";
+import locales from "../locales.json";
 
 export function getBestMatchingMessages(locale) {
   if (locale in locales) {

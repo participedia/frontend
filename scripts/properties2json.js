@@ -35,24 +35,14 @@ function getListLocales() {
 }
 
 function writeFile(entries) {
-  let dictionary = entries.reduce(
-    function(prevEntry, entry) {
-      prevEntry[entry.locale] = entry.content;
-      return prevEntry;
-    },
-    {}
-  );
-  let publicPath = path.join(process.cwd(), config.dest);
-  let localesPath = path.join(publicPath, "locales.json");
-  FS.makeTree(publicPath)
+  let dictionary = entries.reduce(function(prevEntry, entry) {
+    prevEntry[entry.locale] = entry.content;
+    return prevEntry;
+  }, {});
+  let localesPath = path.join(process.cwd(), "src", "locales.json");
+  FS.write(localesPath, JSON.stringify(dictionary, null, 2))
     .then(function() {
-      FS.write(localesPath, JSON.stringify(dictionary, null, 2))
-        .then(function() {
-          console.log("Done writing: " + localesPath);
-        })
-        .catch(function(e) {
-          console.log(e);
-        });
+      console.log("Done writing: " + localesPath);
     })
     .catch(function(e) {
       console.log(e);

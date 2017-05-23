@@ -1,20 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import MethodDetails from "../src/components/MethodDetails";
-import ItemDetails from "../src/components/ItemDetails/ItemDetails";
+import MethodDetails from "../components/MethodDetails";
+import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
-import { getBestMatchingMessages } from "../src/utils/l10n";
+import { getBestMatchingMessages } from "../utils/l10n";
 
 import { MemoryRouter } from "react-router";
-import { Method } from "../src/containers/Method";
+import { Method } from "../containers/Method";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
-import { mountWithIntl } from "../src/helpers/intl-enzyme-test-helper.js";
+import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
 import data from "./method_data.json";
-import intlProps from "../src/helpers/intl-props-test-helper.js";
-import afterPromises from "../src/helpers/afterPromises";
+import intlProps from "../helpers/intl-props-test-helper.js";
+import afterPromises from "../helpers/afterPromises";
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
@@ -26,7 +26,7 @@ fetchMock.get(
 );
 
 jest.mock("material-ui/FloatingActionButton");
-jest.mock("../src/components/BookmarkToggle");
+jest.mock("../components/BookmarkToggle");
 
 function setup() {
   const props = {
