@@ -162,7 +162,7 @@
 
 // Create content button 
 .createButton {
-  background:#fff;
+  background: $interactive-color;
   position:absolute;
   display:inline-block;
   right:110px;
@@ -183,23 +183,23 @@
     @include media-breakpoint-up(sm) {
       content:"Quick Submit";
       position:relative;
-      color:$black;
+      color:white;
       font-weight:500;
     }
   }
   &:after {
     content:"+";
     position:relative;
-    color:$black;
+    color:white;
     font-weight:500;
     @include media-breakpoint-up(sm) {
-      border-left:1px solid $black;
+      border-left:1px solid white;
       margin-left:10px;
       padding-left:10px;
     }
   }
   &:hover {
-    background:$dark-grey;
+    background:darken($interactive-color, 10%);
   }
 }
 
