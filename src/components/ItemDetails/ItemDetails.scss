@@ -63,7 +63,7 @@ section.image-gallery {
 
     .case-location {
       font-weight: 500;
-      color: $grey-text;
+      color: $black;
       margin-top: 16px;
       margin-bottom: 16px;
     }
@@ -86,39 +86,41 @@ section.image-gallery {
     }
 
     .sub-heading {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: 600;
       line-height: 40px;
-      text-transform: uppercase;
       margin-bottom: 10px;
-      margin-top: 20px;
+      margin-top:40px;
+      padding-top: 20px;
+      border-top:1px solid #ccc;
     }
 
     .sub-sub-heading {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 600;
       color: $black;
       line-height: 18px;
       margin-bottom: 5px;
       margin-top: 14px;
       padding-top:14px;
-      border-top:1px solid $light-grey;
+      display:inline-block;
+    }
+    .sub-sub-heading + div {
+      display:inline;
+      margin-left:5px;
     }
     
     .sub-sub-heading + div a {
       color:$black;
-      font-size:14px;
+      font-size:16px;
       position:relative;
-      text-decoration:underline;
       &:hover {
         color:$interactive-color;
       }
     }
 
     .tags {
-      margin-top:18px;
       a {
-        display: block;
         font-size: 14px;
         color: #888;
         font-weight: 400;
