@@ -194,7 +194,7 @@
 
 // Create content button 
 .createButton {
-  background: $interactive-color;
+  background: #fff;
   position:absolute;
   display:inline-block;
   right:110px;
@@ -216,10 +216,10 @@
   &:after {
     content:"+";
     position:relative;
-    color:white;
+    color:#000;
     font-weight:500;
     @include media-breakpoint-up(sm) {
-      border-left:1px solid white;
+      border-left:1px solid #000;
       margin-left:10px;
       padding-left:10px;
     }

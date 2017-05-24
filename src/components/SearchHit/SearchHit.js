@@ -7,6 +7,7 @@ import { Row, Col } from "reactstrap";
 import backgroundImage from "../../img/pp-thumbnail-1.jpg";
 import BookmarkToggle from "../BookmarkToggle";
 import TimeAgo from "react-timeago";
+import htmlToText from "html-to-text";
 
 export class SearchHit extends React.Component {
   getInnerHTML() {
@@ -24,6 +25,7 @@ export class SearchHit extends React.Component {
     let id = result.id;
     let type = result.type;
     let title = result.title;
+    let body = (htmlToText.fromString("result.body")).substring(0, 740) + "...";
     let isAuthenticated = this.props.isAuthenticated;
     let link = `/${type}/${id}`;
     let thumbnailClass = "thumbnail " + type;
@@ -76,6 +78,7 @@ export class SearchHit extends React.Component {
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>
                 </Link>
+                <div>{body}</div>
                 <p>
                   <TimeAgo date={result.updated_date} />
                 </p>

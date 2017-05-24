@@ -1,43 +1,32 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ItemDetails for Method renders correctly 1`] = `
+exports[`test ItemDetails for Method renders correctly 1`] = `
 <div>
   <div
-    className="main-contents"
-  >
+    className="main-contents">
     <div
-      className="detailed-case-component container-fluid"
-    >
+      className="detailed-case-component container-fluid">
       <div
-        className="row"
-      >
+        className="row">
         <div
-          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
-        >
+          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3">
           <div />
           <div>
             <p
-              className="sub-heading"
-            >
+              className="sub-heading">
               Keywords
             </p>
             <p
-              className="sub-sub-heading"
-            >
+              className="sub-sub-heading">
               Tags:
             </p>
             <div
-              className="tags"
-            />
+              className="tags" />
             <div />
             <p
-              className="sub-sub-heading"
-            >
+              className="sub-sub-heading">
               Specific Topic:
             </p>
             <div
-              className="tags"
-            />
+              className="tags" />
             <div />
             <div />
             <div />
@@ -60,91 +49,73 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div />
         </div>
         <div
-          className="main-area col-12 col-md-8"
-        >
+          className="main-area col-12 col-md-8">
           <div
-            className="case-box"
-          >
+            className="case-box">
             <h2
-              className="category"
-            />
+              className="category" />
             <h2
-              className="case-title"
-            >
+              className="case-title">
               Petition
             </h2>
             <ul
-              className="icons-mobile clearfix hidden-sm-up"
-            >
+              className="icons-mobile clearfix hidden-sm-up">
               <li />
               <li>
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
-                  style={Object {}}
-                >
+                  style={Object {}}>
                   <img
                     alt=""
-                    src="pp-case-icon-fb.svg"
-                  />
+                    src="pp-case-icon-fb.svg" />
                 </div>
               </li>
               <li>
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
-                  style={Object {}}
-                >
+                  style={Object {}}>
                   <img
                     alt=""
-                    src="pp-case-icon-tw.svg"
-                  />
+                    src="pp-case-icon-tw.svg" />
                 </div>
               </li>
             </ul>
             <div />
             <div
-              className="authorship-details"
-            >
+              className="authorship-details">
               <p
-                className="author-line"
-              >
+                className="author-line">
                 First submitted by 
                 <a
                   href="/users/undefined"
-                  onClick={[Function]}
-                >
+                  onClick={[Function]}>
                   Gsmith
                 </a>
               </p>
               <p
-                className="date-line"
-              >
+                className="date-line">
                 <time
                   dateTime="2011-11-30T17:20:28.000Z"
-                  title="2011-11-30T17:20:28"
-                >
+                  title="2011-11-30T17:20:28">
                   5 years ago
                 </time>
               </p>
               <p
-                className="author-line"
-              >
+                className="author-line">
                 Most recent changes by 
                 <a
                   href="/users/undefined"
-                  onClick={[Function]}
-                >
+                  onClick={[Function]}>
                   Gsmith
                 </a>
               </p>
               <p
-                className="date-line"
-              >
+                className="date-line">
                 <time
                   dateTime="2011-12-01T19:31:01.000Z"
-                  title="2011-12-01T19:31:01"
-                >
+                  title="2011-12-01T19:31:01">
                   5 years ago
                 </time>
               </p>
@@ -173,35 +144,28 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 
                 **Notes**",
                 }
-              }
-            />
+              } />
           </div>
         </div>
         <div
-          className="case-tools hidden-sm-down col col-md-1"
-        >
+          className="case-tools hidden-sm-down col col-md-1">
           <div
-            className="top-icons"
-          >
+            className="top-icons">
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
-              style={Object {}}
-            >
+              style={Object {}}>
               <img
                 alt=""
-                src="pp-case-icon-fb.svg"
-              />
+                src="pp-case-icon-fb.svg" />
             </div>
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
-              style={Object {}}
-            >
+              style={Object {}}>
               <img
                 alt=""
-                src="pp-case-icon-tw.svg"
-              />
+                src="pp-case-icon-tw.svg" />
             </div>
           </div>
         </div>
@@ -209,8 +173,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
     </div>
     <a
       href="/method/undefined/edit"
-      onClick={[Function]}
-    />
+      onClick={[Function]} />
   </div>
 </div>
 `;
