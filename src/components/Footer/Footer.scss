@@ -1,7 +1,7 @@
 @import "./UniversalStyles";
 
 .footer-component {
-  background-color: $primary-color;
+  background-color: #222;
   overflow: hidden;
   z-index: 1000;
   position: absolute;
@@ -22,6 +22,9 @@
 
       &.xl {
         width: 320px;
+        @include media-breakpoint-down(sm) {
+          display:none;
+        }
       }
 
       &.right {

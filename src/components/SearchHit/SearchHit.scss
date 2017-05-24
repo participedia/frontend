@@ -144,7 +144,6 @@ small.label {
   font-weight:600;
   word-break:break-word;
   &:hover, &:focus {
-    text-decoration:underline;
     color:$interactive-color;
   }
 }

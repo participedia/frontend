@@ -376,7 +376,9 @@ exports[`App 1`] = `
               </div>
             </div>
             <div>
-              <h3>
+              <h3
+                className="searching-message"
+              >
                 Searching for
                  
                 
@@ -564,12 +566,6 @@ exports[`App 1`] = `
               onClick={[Function]}
             >
               organizations
-            </a>
-            <a
-              href="/users"
-              onClick={[Function]}
-            >
-              Users
             </a>
           </div>
           <div
@@ -1021,7 +1017,9 @@ exports[`Searching for a word 1`] = `
               </div>
             </div>
             <div>
-              <h3>
+              <h3
+                className="searching-message"
+              >
                 Searching for
                  
                 
@@ -1209,12 +1207,6 @@ exports[`Searching for a word 1`] = `
               onClick={[Function]}
             >
               organizations
-            </a>
-            <a
-              href="/users"
-              onClick={[Function]}
-            >
-              Users
             </a>
           </div>
           <div

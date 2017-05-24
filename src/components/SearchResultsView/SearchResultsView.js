@@ -125,7 +125,7 @@ export class SearchResultsView extends React.Component {
     if (this.props.searching) {
       results = (
         <div>
-          <h3>
+          <h3 className="searching-message">
             {formatMessage({ id: "searching_for" })}
             &nbsp;
             {query}
@@ -134,9 +134,9 @@ export class SearchResultsView extends React.Component {
         </div>
       );
     } else {
-      let description = `Searched for:`;
+      let description = `Results for`;
       if (searching) {
-        description = "Searching for:";
+        description = "Results for";
       }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];

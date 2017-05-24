@@ -261,8 +261,24 @@
   
 }
 
+.search-description {
+  font-weight:600;
+  font-size:20px;
+}
+div h3.searching-message {
+  font-size:20px;
+  font-weight:600;
+  margin-top:30px;
+}
 .search-term {
-  font-size: 2.3rem;
+  display:inline;
+  position:relative;
+  &:before {
+    content:"\201C";
+  }
+  &:after {
+    content:"\201D";
+  }
 }
 
 .result-count {
