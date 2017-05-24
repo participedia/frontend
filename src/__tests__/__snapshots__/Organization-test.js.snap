@@ -1,56 +1,72 @@
-exports[`test ItemDetails for Organization renders correctly 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemDetails for Organization renders correctly 1`] = `
 <div>
   <div
-    className="main-contents">
+    className="main-contents"
+  >
     <div
-      className="detailed-case-component container-fluid">
+      className="detailed-case-component container-fluid"
+    >
       <div
-        className="row">
+        className="row"
+      >
         <div
-          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3">
+          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+        >
           <div />
           <div>
             <div
-              className="case-map">
+              className="case-map"
+            >
               <div
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "",
                   }
-                } />
+                }
+              />
               <p
-                className="case-location">
+                className="case-location"
+              >
                 Italy
               </p>
             </div>
             <p
-              className="sub-heading">
+              className="sub-heading"
+            >
               Keywords
             </p>
             <p
-              className="sub-sub-heading">
+              className="sub-sub-heading"
+            >
               Tags:
             </p>
             <div
-              className="tags">
+              className="tags"
+            >
               <a
                 href="/search?tag=civic engagement"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 civic engagement
               </a>
               <a
                 href="/search?tag=digital participation"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 digital participation
               </a>
               <a
                 href="/search?tag=planning"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 planning
               </a>
               <a
                 href="/search?tag=public"
-                onClick={[Function]}>
+                onClick={[Function]}
+              >
                 public
               </a>
             </div>
@@ -59,81 +75,101 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
           <div />
         </div>
         <div
-          className="main-area col-12 col-md-8">
+          className="main-area col-12 col-md-8"
+        >
           <div
-            className="case-box">
+            className="case-box"
+          >
             <h2
-              className="category" />
+              className="category"
+            />
             <h2
-              className="case-title">
+              className="case-title"
+            >
               Urban Interactive Studio
             </h2>
             <ul
-              className="icons-mobile clearfix hidden-sm-up">
+              className="icons-mobile clearfix hidden-sm-up"
+            >
               <li />
               <li>
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
-                  style={Object {}}>
+                  style={Object {}}
+                >
                   <img
                     alt=""
-                    src="pp-case-icon-fb.svg" />
+                    src="pp-case-icon-fb.svg"
+                  />
                 </div>
               </li>
               <li>
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
-                  style={Object {}}>
+                  style={Object {}}
+                >
                   <img
                     alt=""
-                    src="pp-case-icon-tw.svg" />
+                    src="pp-case-icon-tw.svg"
+                  />
                 </div>
               </li>
             </ul>
             <div
-              className="single-image">
+              className="single-image"
+            >
               <img
                 alt={undefined}
                 className="portrait"
                 sizes={undefined}
                 src="http://assets.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
-                srcSet={undefined} />
+                srcSet={undefined}
+              />
             </div>
             <div
-              className="authorship-details">
+              className="authorship-details"
+            >
               <p
-                className="author-line">
+                className="author-line"
+              >
                 First submitted by 
                 <a
                   href="/users/undefined"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   ecrespin
                 </a>
               </p>
               <p
-                className="date-line">
+                className="date-line"
+              >
                 <time
                   dateTime="2015-05-13T18:58:25.000Z"
-                  title="2015-05-13T18:58:25">
+                  title="2015-05-13T18:58:25"
+                >
                   2 years ago
                 </time>
               </p>
               <p
-                className="author-line">
+                className="author-line"
+              >
                 Most recent changes by 
                 <a
                   href="/users/undefined"
-                  onClick={[Function]}>
+                  onClick={[Function]}
+                >
                   ecrespin
                 </a>
               </p>
               <p
-                className="date-line">
+                className="date-line"
+              >
                 <time
                   dateTime="2015-05-13T18:58:25.000Z"
-                  title="2015-05-13T18:58:25">
+                  title="2015-05-13T18:58:25"
+                >
                   2 years ago
                 </time>
               </p>
@@ -142,30 +178,37 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
               className="case-html"
               dangerouslySetInnerHTML={
                 Object {
-                  "__html": "<h3>Mission and Purpose</h3><p><a href=\"http://www.urbaninteractivestudio.com\">Urban Interactive Studio</a> believes that communities should be shaped by people with the assistance of experts, rather than handed down as a finished product. The UIS mission is to give people a voice in shaping the future of their communities.</p><h3>Founder and Philosophy</h3><p>Chris Haller, the CEO and Founder of Urban Interactive Studio, is a nationally-recognized User Experience designer and Online Engagement strategist with a broad background in local government, urban and regional planning and communication technologies. In April 2011 he was named one of Planetizen\'s Top 25 thinkers in Urban Planning Technology, and he brings a sense of creativity and curiosity to all of UIS\'s clients and projects.</p><p>UIS believes that people and their diverse perspectives are the key to livable communities. But growing use of Web and mobile technology means that traditional methods of public participation like in-person meetings need to be supplemented with digital activities. UIS makes these digital activites intuitive so that complex information is easily accessible to citizens and they are in the driver’s seat as they explore and provide feedback on options related the future of their community.</p><p>Urban Interactive Studio also publishes <a href=\"http://www.engagingcities.com\">EngagingCities</a>, the prominent online magazine that shares creative strategies and new technologies to foster public engagement for livable communities.</p><h3>Specializations, Tools and Projects</h3><p>Urban Interactive Studio is a cross-disciplinary team of planners, designers and web developers that specializes in providing <strong>intuitive solutions for digital public engagement</strong>. We’re a small but steadily growing firm at the cutting edge of public process, helping local governments, elected officials, planning and engineering firms, and nonprofits educate, inform and learn from citizens and stakeholders.</p><p>UIS\'s flagship product,<a href=\"http://www.urbaninteractivestudio.com/engagingplans\"> EngagingPlans</a>, is an interactive public engagement platform that enables project teams to facilitate broad-scale public outreach and participation. The EngagingPlans Core includes project updates, event calendars and timelines, a searchable document library, FAQs, a survey builder, polls and open questions.</p><p>The <a href=\"http://www.urbaninteractivestudio.com/appsuite\">EngagingPlans App Suite</a> extends Core functionality with a range of apps that offer unique, intuitive opportunities for public involvement and feedback. From community mapping to interactive plan documents, these apps can be tailored to meet the engagement objectives of each project phase.</p><p>UIS has worked with dozens of clients across the country and globe to help connect experts and civic leaders with the local insights necessary to build the best communities possible. Many <a href=\"http://www.urbaninteractivestudio.com/blog\">past project stories</a> are chronicled on the blog.</p><h3>External Links</h3><p><a href=\"http://www.urbaninteractivestudio.com\">http://www.urbaninteractivestudio.com</a></p><p><a href=\"http://twitter.com/urbaninteractiv\">@urbaninteractiv</a></p><p><a href=\"http://twitter.com/challer\">@challer</a></p><p><a href=\"http://www.engagingcities.com\">http://www.engagingcities.com</a></p><p><a href=\"http://twitter.com/engagingcities\">@engagingcities</a></p>",
+                  "__html": "<h3>Mission and Purpose</h3><p><a href=\\"http://www.urbaninteractivestudio.com\\">Urban Interactive Studio</a> believes that communities should be shaped by people with the assistance of experts, rather than handed down as a finished product. The UIS mission is to give people a voice in shaping the future of their communities.</p><h3>Founder and Philosophy</h3><p>Chris Haller, the CEO and Founder of Urban Interactive Studio, is a nationally-recognized User Experience designer and Online Engagement strategist with a broad background in local government, urban and regional planning and communication technologies. In April 2011 he was named one of Planetizen's Top 25 thinkers in Urban Planning Technology, and he brings a sense of creativity and curiosity to all of UIS's clients and projects.</p><p>UIS believes that people and their diverse perspectives are the key to livable communities. But growing use of Web and mobile technology means that traditional methods of public participation like in-person meetings need to be supplemented with digital activities. UIS makes these digital activites intuitive so that complex information is easily accessible to citizens and they are in the driver’s seat as they explore and provide feedback on options related the future of their community.</p><p>Urban Interactive Studio also publishes <a href=\\"http://www.engagingcities.com\\">EngagingCities</a>, the prominent online magazine that shares creative strategies and new technologies to foster public engagement for livable communities.</p><h3>Specializations, Tools and Projects</h3><p>Urban Interactive Studio is a cross-disciplinary team of planners, designers and web developers that specializes in providing <strong>intuitive solutions for digital public engagement</strong>. We’re a small but steadily growing firm at the cutting edge of public process, helping local governments, elected officials, planning and engineering firms, and nonprofits educate, inform and learn from citizens and stakeholders.</p><p>UIS's flagship product,<a href=\\"http://www.urbaninteractivestudio.com/engagingplans\\"> EngagingPlans</a>, is an interactive public engagement platform that enables project teams to facilitate broad-scale public outreach and participation. The EngagingPlans Core includes project updates, event calendars and timelines, a searchable document library, FAQs, a survey builder, polls and open questions.</p><p>The <a href=\\"http://www.urbaninteractivestudio.com/appsuite\\">EngagingPlans App Suite</a> extends Core functionality with a range of apps that offer unique, intuitive opportunities for public involvement and feedback. From community mapping to interactive plan documents, these apps can be tailored to meet the engagement objectives of each project phase.</p><p>UIS has worked with dozens of clients across the country and globe to help connect experts and civic leaders with the local insights necessary to build the best communities possible. Many <a href=\\"http://www.urbaninteractivestudio.com/blog\\">past project stories</a> are chronicled on the blog.</p><h3>External Links</h3><p><a href=\\"http://www.urbaninteractivestudio.com\\">http://www.urbaninteractivestudio.com</a></p><p><a href=\\"http://twitter.com/urbaninteractiv\\">@urbaninteractiv</a></p><p><a href=\\"http://twitter.com/challer\\">@challer</a></p><p><a href=\\"http://www.engagingcities.com\\">http://www.engagingcities.com</a></p><p><a href=\\"http://twitter.com/engagingcities\\">@engagingcities</a></p>",
                 }
-              } />
+              }
+            />
           </div>
         </div>
         <div
-          className="case-tools hidden-sm-down col col-md-1">
+          className="case-tools hidden-sm-down col col-md-1"
+        >
           <div
-            className="top-icons">
+            className="top-icons"
+          >
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-case-icon-fb.svg" />
+                src="pp-case-icon-fb.svg"
+              />
             </div>
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
-              style={Object {}}>
+              style={Object {}}
+            >
               <img
                 alt=""
-                src="pp-case-icon-tw.svg" />
+                src="pp-case-icon-tw.svg"
+              />
             </div>
           </div>
         </div>
@@ -173,7 +216,8 @@ exports[`test ItemDetails for Organization renders correctly 1`] = `
     </div>
     <a
       href="/organization/undefined/edit"
-      onClick={[Function]} />
+      onClick={[Function]}
+    />
   </div>
 </div>
 `;
