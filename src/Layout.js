@@ -10,7 +10,8 @@ import SearchQuery from "./containers/SearchQuery";
 import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
 import { connect } from "react-redux";
-import { checkLogin } from "./actions";
+import { checkLogin, loginRequest, logoutSuccess } from "./actions";
+import FlatButton from "material-ui/FlatButton";
 import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
@@ -68,6 +69,7 @@ const EnsureAuth = props =>
 class Routes extends React.Component {
   render() {
     let intl = this.props.intl;
+    
     let isAuthenticated = authService.loggedIn();
     let profile = authService.getProfile();
     return (
@@ -177,7 +179,7 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { auth, profile, intl, isAuthenticated } = this.props;
+    const { auth, profile, dispatch, intl, isAuthenticated } = this.props;
     let routes = <Routes intl={intl} />;
 
     let theLayout = (
@@ -196,7 +198,9 @@ export class Layout extends React.Component {
               <SearchQuery {...this.props} />
             </div>
             <Link className="hidden-sm-down" to="/quick-submit">
-              <div className="createButton" />
+              <div className="createButton"> 
+                {this.props.intl.formatMessage({ id: "quick_submit" })}
+              </div>
             </Link>
             <LoginAvatar
               auth={auth}
@@ -233,22 +237,45 @@ export class Layout extends React.Component {
           </MenuItem>
           <MenuItem
             containerElement={<Link to={"/research"} />}
-            onTouchTap={this.handleClose}
-          >
+            onTouchTap={this.handleClose}>
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
-          <MenuItem
-            containerElement={<Link to={"/profile"} />}
-            onTouchTap={this.handleClose}
-          >
-            {this.props.intl.formatMessage({ id: "profile" })}
+          <MenuItem className="hidden-sm-up">
+            {isAuthenticated ? 
+              <div className="profileButtonMenu">  
+               <FlatButton
+                 containerElement={<Link to={"/profile"} />}
+                 onClick={this.handleClose}
+                 label={this.props.intl.formatMessage({ id: "profile" })}
+               />
+              </div> 
+            : 
+              <div className="loginButtonMenu">
+                <FlatButton
+                  onClick={() => dispatch(loginRequest())}
+                  onTouchTap={this.signIn}
+                  label={this.props.intl.formatMessage({ id: "login" })}
+                />
+              </div>
+            }
           </MenuItem>
-          <MenuItem
+          <MenuItem className="hidden-sm-up"
             containerElement={<Link to={"/quick-submit"} />}
-            onTouchTap={this.handleClose}
-          >
-            {this.props.intl.formatMessage({ id: "add_new" })}
+            onTouchTap={this.handleClose}>
+            <div className="quick-submit"> 
+              <FlatButton 
+                label={this.props.intl.formatMessage({ id: "quick_submit" })}
+              />
+            </div>
           </MenuItem>
+          {isAuthenticated ? 
+            <MenuItem className="hidden-sm-up"
+              primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
+              onClick={() => dispatch(logoutSuccess())}
+            /> 
+          :
+            undefined
+          }
         </Drawer>
         {routes}
         <Footer />
@@ -267,7 +294,7 @@ export class Layout extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkLogin: () => dispatch(checkLogin())
+    checkLogin: () => dispatch(checkLogin()),
   };
 };
 

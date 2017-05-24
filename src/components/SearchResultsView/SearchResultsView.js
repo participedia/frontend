@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import { Container, Col } from "reactstrap";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import DownloadButton from "material-ui/svg-icons/action/get-app";
 import Plus from "material-ui/svg-icons/content/add";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
@@ -356,11 +357,7 @@ export class SearchResultsView extends React.Component {
                   />
                 </div>
                 <div onClick={this.props.startDownload.bind(this)}>
-                  <img
-                    src="../img/pp-search-dl-icon.png"
-                    className="dl-icon"
-                    alt=""
-                  />
+                  <DownloadButton />
                 </div>
               </div>
             </div>

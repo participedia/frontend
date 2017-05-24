@@ -24,7 +24,7 @@ export class LoginAvatar extends React.Component {
     let buttonStyle = { color: "black" };
     if (isAuthenticated) {
       return (
-        <div className="avatar">
+        <div className="avatar hidden-sm-down">
           <IconMenu
             iconButtonElement={
               <IconButton>
@@ -58,7 +58,7 @@ export class LoginAvatar extends React.Component {
       );
     } else {
       return (
-        <div className="loginButton">
+        <div className="loginButton hidden-sm-down">
           <FlatButton
             onClick={() => dispatch(loginRequest())}
             onTouchTap={this.signIn}
