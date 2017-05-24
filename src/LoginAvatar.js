@@ -10,6 +10,7 @@ import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
 import { loginRequest, logoutSuccess } from "./actions";
 import { connect } from "react-redux";
+import authService from "./utils/AuthService";
 
 export class LoginAvatar extends React.Component {
   static propTypes = {
@@ -51,7 +52,7 @@ export class LoginAvatar extends React.Component {
             <MenuItem
               style={buttonStyle}
               primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={() => dispatch(logoutSuccess())}
+              onClick={authService.logout}
             />
           </IconMenu>
         </div>
@@ -60,7 +61,7 @@ export class LoginAvatar extends React.Component {
       return (
         <div className="loginButton hidden-sm-down">
           <FlatButton
-            onClick={() => dispatch(loginRequest())}
+            onClick={() => authService.login()}
             onTouchTap={this.signIn}
             label={this.props.intl.formatMessage({ id: "login" })}
           />

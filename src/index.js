@@ -19,13 +19,17 @@ const muiTheme = getMuiTheme({
 
 injectTapEventPlugin();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <ConnectedRouter history={myhistory}>
-        <App />
-      </ConnectedRouter>
-    </MuiThemeProvider>
-  </Provider>,
-  document.getElementById("root")
-);
+function renderAll() {
+  ReactDOM.render(
+    <Provider store={store}>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <ConnectedRouter history={myhistory}>
+          <App />
+        </ConnectedRouter>
+      </MuiThemeProvider>
+    </Provider>,
+    document.getElementById("root")
+  );
+}
+
+renderAll();

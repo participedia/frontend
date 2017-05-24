@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import ppLogo from "../img/pp-logo-dark.png";
+import myhistory from "./history";
 
 // Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
 if (process.env.NODE_ENV === "test") {
@@ -40,11 +41,19 @@ class AuthService {
           title: "Participedia"
         }
       });
-      next();
     });
   }
 
+  loginSuccess(profile, state) {
+    console.log("in loginSuccess, doing history push");
+    myhistory.push(state.pathname);
+  }
+  loginError(error) {
+    console.error("Error during login", error);
+  }
+
   login(redirectUrl) {
+    console.log("in login, redirectUrl = ", redirectUrl);
     // Call the show method to display the widget.
     if (!this.lock) {
       this.setupLock(this.showLock.bind(this, redirectUrl));
@@ -57,6 +66,24 @@ class AuthService {
     if (redirectUrl) {
       state["return_url"] = redirectUrl;
     }
+    console.log("state", state);
+    let component = this;
+    this.lock.on("authenticated", authResult => {
+      console.log("WE ARE AUTHENTICATED");
+      component.lock.getProfile(authResult.idToken, (error, profile) => {
+        if (error) {
+          return component.loginError(error);
+        }
+        component.setToken(authResult.idToken);
+        component.setProfile(profile);
+        return component.loginSuccess(profile, JSON.parse(authResult.state));
+      });
+    });
+    component.lock.on("authorization_error", error => {
+      console.log("GOT ERROR", error);
+      component.loginError(error);
+    });
+    console.log("DOING THE SHOW");
     this.lock.show({
       auth: {
         params: {
@@ -71,6 +98,8 @@ class AuthService {
     // Clear user token and profile data from localStorage
     localStorage.removeItem("id_token");
     localStorage.removeItem("profile");
+    // need to rerender everything
+    myhistory.push("/");
   }
 
   getProfile() {

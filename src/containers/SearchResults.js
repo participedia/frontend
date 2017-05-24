@@ -51,10 +51,16 @@ export default class SearchResults extends React.Component {
       if (results.results) {
         component.setState({ data: results.results, searching: false });
       } else {
-        if (results.error.code)
+        if (results.error) {
+          if (results.error.code)
+            component.setState({
+              error: results.error.code
+            });
+        } else {
           component.setState({
-            error: results.error.code
+            error: results.error
           });
+        }
       }
     });
     this.setState(newState);
