@@ -13,6 +13,7 @@ export class Method extends React.Component {
     return (
       <ItemFetcher
         api={api.fetchMethodById}
+        auth={this.props.auth}
         id={Number(this.props.match.params.nodeID)}
         details={MethodDetails}
         toggleFeatured={this.toggleFeatured.bind(this)}

@@ -2,7 +2,6 @@ import { render, unmountComponentAtNode } from "react-dom";
 import React from "react";
 import renderer from "react-test-renderer";
 import { Route, MemoryRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
@@ -13,7 +12,6 @@ import countryData from "./country_data.json";
 import afterPromises from "../helpers/afterPromises";
 
 import App from "../App";
-import store from "../store";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -84,11 +82,7 @@ const renderTestSequence = ({
   render(<Test />, div);
 };
 
-const MyProvider = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
+const MyProvider = () => <App />;
 // the actual test!
 it.skip("navigates around", done => {
   try {
@@ -144,15 +138,13 @@ let messages = getBestMatchingMessages(locale);
 test("App", () => {
   const tree = renderer
     .create(
-      <Provider store={store}>
-        <IntlProvider locale={locale} messages={messages}>
-          <MemoryRouter>
-            <MuiThemeProvider muiTheme={muiTheme}>
-              <App />
-            </MuiThemeProvider>
-          </MemoryRouter>
-        </IntlProvider>
-      </Provider>
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter>
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <App />
+          </MuiThemeProvider>
+        </MemoryRouter>
+      </IntlProvider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
@@ -161,15 +153,13 @@ test("App", () => {
 test("Searching for a word", () => {
   const tree = renderer
     .create(
-      <Provider store={store}>
-        <IntlProvider locale={locale} messages={messages}>
-          <MemoryRouter initialEntries={["/search?query=france"]}>
-            <MuiThemeProvider muiTheme={muiTheme}>
-              <App />
-            </MuiThemeProvider>
-          </MemoryRouter>
-        </IntlProvider>
-      </Provider>
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter initialEntries={["/search?query=france"]}>
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <App />
+          </MuiThemeProvider>
+        </MemoryRouter>
+      </IntlProvider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
