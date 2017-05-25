@@ -217,6 +217,14 @@ class API {
         return error;
       });
   };
+
+  updateUserMetaData = function(userId, data) {
+    const payload = { user_metadata: data };
+    const url = `https://participedia.auth0.com/api/v2/users/${userId}`;
+    return signedFetch(url, "PATCH", payload).then(response => {
+      localStorage.setItem("profile", JSON.stringify(response));
+    });
+  };
 }
 
 export default new API();

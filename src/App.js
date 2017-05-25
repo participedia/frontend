@@ -7,6 +7,10 @@ import es from "react-intl/locale-data/es";
 import Layout from "./Layout";
 import authService from "./utils/AuthService";
 import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
+import createBrowserHistory from "history/createBrowserHistory";
+import { BrowserRouter } from "react-router-dom";
+
+const history = createBrowserHistory();
 
 addLocaleData([...en, ...fr, ...es]);
 
@@ -14,17 +18,11 @@ export default class App extends React.Component {
   render() {
     let locale = getFirstBrowserLanguage();
     let messages = getBestMatchingMessages(locale);
-    let profile = authService.getProfile();
-    console.log("GOT PROFILE", profile);
-    const isAuthenticated = authService.loggedIn();
-    let auth = { isAuthenticated, profile };
     return (
       <IntlProvider locale={locale} messages={messages}>
-        <Layout
-          auth={auth}
-          profile={profile}
-          isAuthenticated={isAuthenticated}
-        />
+        <BrowserRouter history={history}>
+          <Layout auth={authService} />
+        </BrowserRouter>
       </IntlProvider>
     );
   }

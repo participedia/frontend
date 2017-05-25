@@ -9,7 +9,7 @@ It currently uses `hjs-webpack` for the basic build/update configuration (althou
 
 ## Development Approach
 
-React, redux where appropriate; react-router for all routes; `react-intl` localization (all copy should be localized).
+React where appropriate; react-router for all routes; `react-intl` localization (all copy should be localized).
 `Auth0` for authentication.  Material-ui as baseline UI framework.
 
 ### Requirements

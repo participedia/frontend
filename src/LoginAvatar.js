@@ -8,22 +8,31 @@ import IconButton from "material-ui/IconButton";
 import { Link } from "react-router-dom";
 import { injectIntl, intlShape } from "react-intl";
 import "./LoginAvatar.css";
-import { loginRequest, logoutSuccess } from "./actions";
-import { connect } from "react-redux";
 import authService from "./utils/AuthService";
 
 export class LoginAvatar extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
     intl: intlShape.isRequired,
-    profile: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired
+    auth: PropTypes.object.isRequired
   };
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
 
   render() {
-    const { dispatch, profile, isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props.auth;
     let buttonStyle = { color: "black" };
-    if (isAuthenticated) {
+    const profile = this.state.profile;
+
+    if (isAuthenticated() && this.state.profile !== {}) {
       return (
         <div className="avatar hidden-sm-down">
           <IconMenu
@@ -52,7 +61,7 @@ export class LoginAvatar extends React.Component {
             <MenuItem
               style={buttonStyle}
               primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={authService.logout}
+              onClick={() => authService.logout()}
             />
           </IconMenu>
         </div>
@@ -71,8 +80,4 @@ export class LoginAvatar extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state;
-}
-
-export default injectIntl(connect(mapStateToProps)(LoginAvatar));
+export default injectIntl(LoginAvatar);

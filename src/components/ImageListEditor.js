@@ -114,7 +114,11 @@ class ImageListEditor extends Component {
             ))
           : undefined}
         <Col md="3">
-          <Upload itemEdit={true} addToList={this.handleNewImg} />
+          <Upload
+            auth={this.props.auth}
+            itemEdit={true}
+            addToList={this.handleNewImg}
+          />
         </Col>
       </Row>
     );
