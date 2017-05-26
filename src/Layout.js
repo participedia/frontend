@@ -44,7 +44,8 @@ import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
 import myhistory from "./utils/history";
 
-import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
+// import "bootstrap/dist/css/bootstrap.min.css"; // XXX this is maybe avoidable by using reactstrap?
+import "./UniversalStyles.css"
 
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
