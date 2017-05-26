@@ -1,7 +1,13 @@
 import history from "./history";
+
+// AUTH_V8
 import auth0 from "auth0-js";
+
+// AUTH_v7
 import Auth0Lock from "auth0-lock";
 import ppLogo from "../img/pp-logo-dark.png";
+
+const AUTH_VERSION = 7; // or 8
 
 const SCOPE =
   "openid email user_metadata app_metadata picture created_at read:users update:users update:users_app_metadata";
@@ -9,6 +15,7 @@ const SCOPE =
 const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 
 class AuthService {
+  // if (AUTH_VERSION === 8) {
   // auth0 = new auth0.WebAuth({
   //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
   //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -17,6 +24,8 @@ class AuthService {
   //   responseType: "token id_token",
   //   scope: SCOPE
   // });
+
+  // AUTH_VERSION === 7
   lock = new Auth0Lock(
     process.env.REACT_APP_AUTH0_CLIENT_ID,
     process.env.REACT_APP_AUTH0_DOMAIN,
@@ -40,14 +49,10 @@ class AuthService {
   );
 
   constructor(clientId, domain) {
-    console.log(
-      "AUDIENCE:",
-      `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`
-    );
     this.clientId = clientId;
     this.domain = domain;
+    // AUTH_VERSION=7
     this.lock.on("authenticated", authResult => {
-      console.log("GOT AUTHENTICATED", authResult);
       this.lock.getProfile(authResult.idToken, (error, profile) => {
         // let expiresAt = JSON.stringify(
         //   authResult.expiresIn * 1000 + new Date().getTime()
@@ -110,6 +115,7 @@ class AuthService {
     if (!redirectURL) {
       redirectURL = "/";
     }
+    // AUTH_VERSION === 8
 
     // this.auth0.authorize({
     //   lang: {
@@ -176,7 +182,9 @@ class AuthService {
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
+    // AUTH_VERSION === 7
     return localStorage.getItem("id_token") ? true : false;
+    // AUTH_VERSION === 8
     // let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     // return new Date().getTime() < expiresAt;
   }
