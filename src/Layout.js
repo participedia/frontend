@@ -20,6 +20,7 @@ import Experiments from "./components/Experiments";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
+import myhistory from "./utils/history";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
@@ -88,7 +89,8 @@ class Callback extends React.Component {
 const EnsureAuth = props =>
   authService.isAuthenticated()
     ? <div />
-    : <div>Must be logged in</div> && authService.login(props.location.state);
+    : <div>Must be logged in</div> &&
+        authService.login(myhistory.location.pathname);
 
 class Routes extends React.Component {
   render() {
@@ -99,7 +101,7 @@ class Routes extends React.Component {
         <Route
           path="/redirect"
           render={props => {
-            handleAuthentication(props);
+            // handleAuthentication(props);
             return <Callback {...props} />;
           }}
         />
@@ -220,7 +222,6 @@ export class Layout extends React.Component {
   };
   constructor(props) {
     super(props);
-    // checkLogin(); // check is Auth0 lock is authenticating after login callback
     this.state = { open: false };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -241,8 +242,8 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { auth, intl } = this.props;
-    let routes = <Routes intl={intl} auth={auth} />;
+    const { auth, intl, history } = this.props;
+    let routes = <Routes history={history} intl={intl} auth={auth} />;
     const isAuthenticated = auth.isAuthenticated;
 
     return (

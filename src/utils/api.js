@@ -1,5 +1,6 @@
 // This is the JS API to talk to api.participedia.xyz
 import queryString from "query-string";
+import authService from "./AuthService";
 
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
@@ -20,12 +21,13 @@ const signedFetch = function(url, method, payload) {
   if (localStorage.profile) {
     let profile = JSON.parse(localStorage.profile);
     if (localStorage.getItem("id_token")) {
-      opts["headers"]["Authorization"] =
-        "Bearer " + localStorage.getItem("id_token");
+      opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
     }
     opts["headers"]["X-Auth0-Name"] = profile.name;
     opts["headers"]["X-Auth0-UserId"] = profile.user_id;
+    // console.log("doing signed call to", url);
   } else {
+    // console.log("doing unsigned call to", url);
     delete opts["headers"]["authorization"];
   }
   if (payload) opts.body = JSON.stringify(payload);

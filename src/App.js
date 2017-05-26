@@ -21,7 +21,7 @@ export default class App extends React.Component {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <BrowserRouter history={history}>
-          <Layout auth={authService} />
+          <Layout history={history} auth={authService} />
         </BrowserRouter>
       </IntlProvider>
     );
