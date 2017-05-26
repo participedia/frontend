@@ -7,12 +7,13 @@ import {
 } from "../helpers/intl-enzyme-test-helper.js";
 import intlProps from "../helpers/intl-props-test-helper.js";
 
-function setup() {
+function setup(isAuthed) {
   const props = {
-    isAuthenticated: true,
-    dispatch: jest.fn(),
-    intl: intlProps,
-    profile: {}
+    auth: {
+      getProfile: cb => cb(null, { user_metadata: "foo" }),
+      isAuthenticated: () => isAuthed
+    },
+    intl: intlProps
   };
 
   const enzymeWrapper = shallowWithIntl(<LoginAvatar {...props} />);
@@ -26,13 +27,12 @@ function setup() {
 describe("components", () => {
   describe("LoginAvatar", () => {
     it("should render user menu if logged in", () => {
-      const { enzymeWrapper } = setup();
+      const { enzymeWrapper } = setup(true);
       expect(enzymeWrapper.find("div").hasClass("avatar")).toBe(true);
     });
 
     it("should show login button if logged out", () => {
-      const { enzymeWrapper } = setup();
-      enzymeWrapper.setProps({ isAuthenticated: false });
+      const { enzymeWrapper } = setup(false);
       expect(enzymeWrapper.find("div").hasClass("loginButton")).toBe(true);
     });
   });
