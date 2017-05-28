@@ -4,7 +4,7 @@ import "./Footer.css";
 import ccIcon from "../../img/cc-icon.png";
 import fbIcon from "../../img/pp-social-fb.png";
 import twitterIcon from "../../img/pp-social-tw.png";
-import linkedInIcon from "../../img/linkedin-logo.png";
+import linkedInIcon from "../../img/pp-social-linkedin.png";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
