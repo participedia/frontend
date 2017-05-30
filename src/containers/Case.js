@@ -1,18 +1,9 @@
 import React from "react";
 import { bool, object } from "prop-types";
-import { connect } from "react-redux";
 import { injectIntl, intlShape } from "react-intl";
 import api from "../utils/api";
 import CaseDetails from "../components/CaseDetails";
 import ItemFetcher from "./ItemFetcher";
-
-function mapStateToProps({ auth }) {
-  const { isAuthenticated } = auth;
-
-  return {
-    isAuthenticated
-  };
-}
 
 export class Case extends React.Component {
   toggleFeatured(thing, featured) {
@@ -23,6 +14,7 @@ export class Case extends React.Component {
     return (
       <ItemFetcher
         api={api.fetchCaseById}
+        auth={this.props.auth}
         id={Number(this.props.match.params.nodeID)}
         details={CaseDetails}
         toggleFeatured={this.toggleFeatured.bind(this)}
@@ -37,4 +29,4 @@ Case.propTypes = {
   location: object
 };
 
-export default connect(mapStateToProps)(injectIntl(Case));
+export default injectIntl(Case);

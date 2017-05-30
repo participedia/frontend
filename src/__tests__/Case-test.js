@@ -36,6 +36,7 @@ jest.mock("../components/BookmarkToggle");
 function setup() {
   const props = {
     intl: intlProps,
+    auth: { getProfile: cb => cb({}), isAuthenticated: () => false },
     location: { pathname: "/method/123" },
     match: { params: { nodeID: 123 } },
     toggleFeatured: function() {},

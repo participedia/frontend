@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 export class Footer extends React.Component {
   render() {
-
     return (
       <div className="footer-component">
         <Container className="expanded-footer" fluid={true}>
@@ -57,14 +56,29 @@ export class Footer extends React.Component {
                 <p>{this.props.intl.formatMessage({ id: "about_intro" })}</p>
               </div>
               <div className="column right">
-                <a className="social-icons" target="_blank" href="https://www.facebook.com/Participedia/">
-                  <img src={fbIcon} alt=""/>
+                <a
+                  className="social-icons"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.facebook.com/Participedia/"
+                >
+                  <img src={fbIcon} alt="" />
                 </a>
-                <a className="social-icons" target="_blank" href="https://twitter.com/participedia">
-                  <img src={twitterIcon} alt=""/>
+                <a
+                  className="social-icons"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://twitter.com/participedia"
+                >
+                  <img src={twitterIcon} alt="" />
                 </a>
-                <a className="social-icons" target="_blank" href="https://www.linkedin.com/company/participedia">
-                  <img src={linkedInIcon} alt=""/>
+                <a
+                  className="social-icons"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/company/participedia"
+                >
+                  <img src={linkedInIcon} alt="" />
                 </a>
                 <div className="copyright-area">
                   <img src={ccIcon} alt="" />
