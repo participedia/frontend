@@ -650,7 +650,7 @@ exports[`App 1`] = `
             >
               <img
                 alt=""
-                src="linkedin-logo.png"
+                src="pp-social-linkedin.png"
               />
             </a>
             <div
@@ -1322,7 +1322,7 @@ exports[`Searching for a word 1`] = `
             >
               <img
                 alt=""
-                src="linkedin-logo.png"
+                src="pp-social-linkedin.png"
               />
             </a>
             <div

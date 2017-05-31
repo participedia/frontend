@@ -203,6 +203,16 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 src="pp-case-icon-tw.svg"
               />
             </div>
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--linkedin"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              <img
+                alt=""
+                src="pp-case-icon-ln.png"
+              />
+            </div>
           </div>
         </div>
       </div>
