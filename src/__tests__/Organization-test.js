@@ -34,6 +34,7 @@ fetchMock.get(
 function setup() {
   const props = {
     intl: intlProps,
+    auth: { getProfile: cb => cb({}), isAuthenticated: () => false },
     location: { pathname: "/organization/4219" },
     match: { params: { nodeID: 4219 } },
     toggleFeatured: function() {},

@@ -16,10 +16,8 @@ import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import TimeAgo from "react-timeago";
 import Toggle from "material-ui/Toggle";
-import authService from "../../utils/AuthService";
 
-function isCurator() {
-  const profile = authService.getProfile();
+function isCurator(profile) {
   if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
     return false;
   let groups = profile.app_metadata.authorization.groups;
@@ -38,7 +36,8 @@ class Featured extends React.Component {
   }
 
   render() {
-    return isCurator(this.props.auth)
+    const profile = this.props.profile;
+    return isCurator(profile)
       ? <div className="featuretoggle">
           <Toggle
             onToggle={this.onToggle.bind(this)}
@@ -71,6 +70,18 @@ const defaultThing = {
 };
 
 export default class ItemDetails extends React.Component {
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
   render() {
     const { FacebookShareButton, TwitterShareButton, LinkedinShareButton } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
@@ -118,6 +129,7 @@ export default class ItemDetails extends React.Component {
               <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
                 <Featured
                   thing={thing}
+                  profile={this.state.profile}
                   toggleFeatured={this.props.toggleFeatured}
                 />
                 {detailedBits}

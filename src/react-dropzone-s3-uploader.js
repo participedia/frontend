@@ -1,6 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
-import S3Upload from "react-s3-uploader/s3upload";
+import S3Upload from "./utils/s3upload";
 import Dropzone from "react-dropzone";
 
 export default class DropzoneS3Uploader extends React.Component {
@@ -186,7 +186,8 @@ export default class DropzoneS3Uploader extends React.Component {
     if (children) {
       content = passChildrenProps
         ? React.Children.map(children, child =>
-            React.cloneElement(child, childProps))
+            React.cloneElement(child, childProps)
+          )
         : this.props.children;
     } else {
       content = (

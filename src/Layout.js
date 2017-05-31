@@ -1,16 +1,13 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Route } from "react-router";
 import { bool, object, func } from "prop-types";
 import { Link } from "react-router-dom";
 import Home from "./Home";
-import Fullscreen from "./components/Fullscreen";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import SearchQuery from "./containers/SearchQuery";
 import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
-import { connect } from "react-redux";
-import { checkLogin, loginRequest, logoutSuccess } from "./actions";
 import FlatButton from "material-ui/FlatButton";
 import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
@@ -20,10 +17,10 @@ import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
 import Experiments from "./components/Experiments";
-import Upload from "./Upload";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
+import myhistory from "./utils/history";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
@@ -42,7 +39,7 @@ import "./Layout.css";
 import { injectIntl, intlShape } from "react-intl";
 import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
-import myhistory from "./utils/history";
+// import myhistory from "./utils/history";
 
 import "./UniversalStyles.css"
 
@@ -51,7 +48,7 @@ function onSearch(pathname) {
 }
 
 const ScrollToTop = props => {
-  let wasSearch = onSearch(myhistory.location.pathname);
+  let wasSearch = onSearch(props.history.location.pathname);
   let isSearch = onSearch(props.location.pathname);
   if (wasSearch && isSearch) {
     // we don't scroll if we were and still are on a search page.
@@ -61,73 +58,134 @@ const ScrollToTop = props => {
   return null;
 };
 
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    authService.handleAuthentication(nextState.location.hash);
+  }
+};
+class Callback extends React.Component {
+  render() {
+    const style = {
+      position: "absolute",
+      display: "flex",
+      justifyContent: "center",
+      height: "100vh",
+      width: "100vw",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: "white"
+    };
+
+    return (
+      <div style={style}>
+        Loading.
+      </div>
+    );
+  }
+}
+
 const EnsureAuth = props =>
-  authService.loggedIn()
+  authService.isAuthenticated()
     ? <div />
-    : <div>Must be logged in</div> && authService.login(props.location.state);
+    : <div>Must be logged in</div> &&
+        authService.login(myhistory.location.pathname);
 
 class Routes extends React.Component {
   render() {
     let intl = this.props.intl;
-    
-    let isAuthenticated = authService.loggedIn();
-    let profile = authService.getProfile();
+
     return (
       <div className="contentArea">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/cases" component={Home} />
-        <Route exact path="/methods" component={Home} />
-        <Route exact path="/organizations" component={Home} />
-        <Route path="/search" component={Home} />
+        <Route
+          path="/redirect"
+          render={props => {
+            // handleAuthentication(props);
+            return <Callback {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/cases"
+          render={props => <Home auth={authService} />}
+        />
+        <Route
+          exact
+          path="/methods"
+          render={props => <Home auth={authService} />}
+        />
+        <Route
+          exact
+          path="/organizations"
+          render={props => <Home auth={authService} />}
+        />
+        <Route path="/search" render={props => <Home auth={authService} />} />
+        <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route component={ScrollToTop} />
-        <Route path="/redirect" />
         <Route exact path="/profile" component={ProfileLoader} />
-        <Route path="/profile/edit" component={EnsureAuth} />
+        <Route
+          path="/profile/edit"
+          render={props => <EnsureAuth auth={authService} />}
+        />
         <Route
           path="/profile/edit"
           component={props => (
-            <ProfileEditor
-              isAuthenticated={isAuthenticated}
-              intl={intl}
-              profile={profile}
-              {...props}
-            />
+            <ProfileEditor intl={intl} auth={authService} {...props} />
           )}
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
         <Route path="/experiments" component={Experiments} />
-        <Route path="/_upload" component={Upload} />
         <Route path="/teaching" component={Teaching} />
-        <Route exact path="/quick-submit" component={QuickSubmitPicker} />
-        <Route path="/new" component={EnsureAuth} />
+        <Route
+          exact
+          path="/quick-submit"
+          render={props => <QuickSubmitPicker auth={authService} />}
+        />
+        <Route
+          path="/new"
+          render={props => <EnsureAuth auth={authService} />}
+        />
         <Route
           exact
           path="/new/case"
-          component={props => <NewCaseContainer intl={intl} {...props} />}
+          component={props => (
+            <NewCaseContainer auth={authService} intl={intl} {...props} />
+          )}
         />
         <Route
           exact
           path="/new/method"
-          component={props => <NewMethodContainer intl={intl} {...props} />}
+          component={props => (
+            <NewMethodContainer auth={authService} intl={intl} {...props} />
+          )}
         />
         <Route
           exact
           path="/new/organization"
           component={props => (
-            <NewOrganizationContainer intl={intl} {...props} />
+            <NewOrganizationContainer
+              auth={authService}
+              intl={intl}
+              {...props}
+            />
           )}
         />
         <Route path="/research" component={Research} />
         <Route
           path="/case/:nodeID"
           exact
-          component={props => <Case intl={intl} {...props} />}
+          component={props => (
+            <Case auth={authService} intl={intl} {...props} />
+          )}
         />
         <Route path="/case/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/case/:nodeID/edit"
-          component={props => <CaseEditorContainer intl={intl} {...props} />}
+          component={props => (
+            <CaseEditorContainer auth={authService} intl={intl} {...props} />
+          )}
         />
         <Route path="/method/:nodeID" component={Method} />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
@@ -135,13 +193,19 @@ class Routes extends React.Component {
         <Route
           exact
           path="/organization/:nodeID"
-          component={props => <Organization intl={intl} {...props} />}
+          component={props => (
+            <Organization auth={authService} intl={intl} {...props} />
+          )}
         />
         <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/organization/:nodeID/edit"
           component={props => (
-            <OrganizationEditorContainer intl={intl} {...props} />
+            <OrganizationEditorContainer
+              auth={authService}
+              intl={intl}
+              {...props}
+            />
           )}
         />
         <Route path="/users/:id" component={ProfileLoader} />
@@ -158,7 +222,6 @@ export class Layout extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.props.checkLogin(); // check is Auth0 lock is authenticating after login callback
     this.state = { open: false };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -175,14 +238,15 @@ export class Layout extends React.Component {
   }
 
   touchTitle() {
-    myhistory.push("/");
+    this.props.history.push("/");
   }
 
   render() {
-    const { auth, profile, dispatch, intl, isAuthenticated } = this.props;
-    let routes = <Routes intl={intl} />;
+    const { auth, intl, history } = this.props;
+    let routes = <Routes history={history} intl={intl} auth={auth} />;
+    const isAuthenticated = auth.isAuthenticated;
 
-    let theLayout = (
+    return (
       <div>
         <div className="nav-bar-component">
           <div className="nav-bar-wrapper">
@@ -198,16 +262,11 @@ export class Layout extends React.Component {
               <SearchQuery {...this.props} />
             </div>
             <Link className="hidden-sm-down" to="/quick-submit">
-              <div className="createButton"> 
+              <div className="createButton">
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>
             </Link>
-            <LoginAvatar
-              auth={auth}
-              isAuthenticated={isAuthenticated}
-              profile={profile}
-              className="login-area"
-            />
+            <LoginAvatar auth={auth} className="login-area" />
           </div>
         </div>
         <Drawer
@@ -237,78 +296,55 @@ export class Layout extends React.Component {
           </MenuItem>
           <MenuItem
             containerElement={<Link to={"/research"} />}
-            onTouchTap={this.handleClose}>
+            onTouchTap={this.handleClose}
+          >
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
           <MenuItem className="hidden-sm-up">
-            {isAuthenticated ? 
-              <div className="profileButtonMenu">  
-               <FlatButton
-                 containerElement={<Link to={"/profile"} />}
-                 onClick={this.handleClose}
-                 label={this.props.intl.formatMessage({ id: "profile" })}
-               />
-              </div> 
-            : 
-              <div className="loginButtonMenu">
-                <FlatButton
-                  onClick={() => dispatch(loginRequest())}
-                  onTouchTap={this.signIn}
-                  label={this.props.intl.formatMessage({ id: "login" })}
-                />
-              </div>
-            }
+            {isAuthenticated
+              ? <div className="profileButtonMenu">
+                  <FlatButton
+                    containerElement={<Link to={"/profile"} />}
+                    onClick={this.handleClose}
+                    label={this.props.intl.formatMessage({ id: "profile" })}
+                  />
+                </div>
+              : <div className="loginButtonMenu">
+                  <FlatButton
+                    onClick={() => authService.login()}
+                    onTouchTap={this.signIn}
+                    label={this.props.intl.formatMessage({ id: "login" })}
+                  />
+                </div>}
           </MenuItem>
-          <MenuItem className="hidden-sm-up"
+          <MenuItem
+            className="hidden-sm-up"
             containerElement={<Link to={"/quick-submit"} />}
-            onTouchTap={this.handleClose}>
-            <div className="quick-submit"> 
-              <FlatButton 
+            onTouchTap={this.handleClose}
+          >
+            <div className="quick-submit">
+              <FlatButton
                 label={this.props.intl.formatMessage({ id: "quick_submit" })}
               />
             </div>
           </MenuItem>
-          {isAuthenticated ? 
-            <MenuItem className="hidden-sm-up"
-              primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={() => dispatch(logoutSuccess())}
-            /> 
-          :
-            undefined
-          }
+          {isAuthenticated
+            ? <MenuItem
+                className="hidden-sm-up"
+                primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
+                onClick={() => authService.logout()}
+              />
+            : undefined}
         </Drawer>
         {routes}
         <Footer />
       </div>
     );
-
-    // only do the basic layout if not doing fullscreen
-    return (
-      <Switch>
-        <Route path="/fullscreen" component={Fullscreen} />
-        <Route path="/" render={() => theLayout} />
-      </Switch>
-    );
   }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    checkLogin: () => dispatch(checkLogin()),
-  };
-};
-
-function mapStateToProps({ auth }) {
-  const { isAuthenticated, profile } = auth;
-  return {
-    auth,
-    isAuthenticated,
-    profile: profile || {}
-  };
 }
 
 Layout.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Layout));
+export default injectIntl(Layout);

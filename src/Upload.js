@@ -1,7 +1,6 @@
 import React from "react";
 import DropzoneS3Uploader from "./react-dropzone-s3-uploader";
-import { connect } from "react-redux";
-import { updateUserMetaData } from "./actions";
+import api from "./utils/api";
 import { injectIntl } from "react-intl";
 import CheckCircle from "material-ui/svg-icons/action/check-circle";
 import AddToPhotos from "material-ui/svg-icons/image/add-to-photos";
@@ -118,6 +117,17 @@ class Upload extends React.Component {
       preview: ""
     };
   }
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
 
   handleFinishedUpload(args) {
     // if addToList is specified, then we clear out the uploader. If not,
@@ -135,7 +145,7 @@ class Upload extends React.Component {
     }
     if (this.props.updatePicture) {
       dispatch(
-        updateUserMetaData(profile.user_id, {
+        api.updateUserMetaData(profile.user_id, {
           customPic: `${UPLOADS_CDN_URL}cropped-to-square/${args.filename}`
         })
       );
@@ -154,15 +164,15 @@ class Upload extends React.Component {
   }
 
   render() {
-    const { token, isAuthenticated } = this.props;
-    if (!isAuthenticated) {
+    const { isAuthenticated } = this.props.auth;
+    if (!isAuthenticated()) {
       return (
         <div>
           {this.props.intl.formatMessage({ id: "sorry_upload" })}
         </div>
       );
     }
-
+    const token = this.props.auth.getToken();
     const uploaderProps = {
       style: this.props.customStyle ? this.props.customStyle : box,
       server: process.env.REACT_APP_API_URL,
@@ -195,11 +205,4 @@ class Upload extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.auth.token,
-    isAuthenticated: state.auth.isAuthenticated
-  };
-}
-
-export default injectIntl(connect(mapStateToProps)(Upload));
+export default injectIntl(Upload);

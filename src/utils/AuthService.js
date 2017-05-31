@@ -1,62 +1,134 @@
-import jwtDecode from "jwt-decode";
+import history from "./history";
+
+// AUTH_V8
+import auth0 from "auth0-js";
+
+// AUTH_v7
+import Auth0Lock from "auth0-lock";
 import ppLogo from "../img/pp-logo-dark.png";
 
-// Quiet Jest down (Unnecessary as soon as we upgrade to react-apps 0.10)
-if (process.env.NODE_ENV === "test") {
-  require.ensure = (deps, cb) => cb(require);
-}
+const AUTH_VERSION = 7; // or 8
 
 const SCOPE =
-  "openid email read:users update:users update:users_app_metadata user_metadata app_metadata picture created_at";
+  "openid email user_metadata app_metadata picture created_at read:users update:users update:users_app_metadata";
+
+const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 
 class AuthService {
+  // if (AUTH_VERSION === 8) {
+  // auth0 = new auth0.WebAuth({
+  //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+  //   redirectUri: window.location.origin + "/redirect",
+  //   audience: AUDIENCE,
+  //   responseType: "token id_token",
+  //   scope: SCOPE
+  // });
+
+  // AUTH_VERSION === 7
+  lock = new Auth0Lock(
+    process.env.REACT_APP_AUTH0_CLIENT_ID,
+    process.env.REACT_APP_AUTH0_DOMAIN,
+    {
+      auth: {
+        redirectUrl: window.location.origin + "/redirect",
+        responseType: "token",
+        params: {
+          scope: SCOPE,
+          state: JSON.stringify({ pathname: window.location.pathname })
+        }
+      },
+      theme: {
+        primaryColor: "#323232",
+        logo: ppLogo
+      },
+      languageDictionary: {
+        title: "Participedia"
+      }
+    }
+  );
+
   constructor(clientId, domain) {
     this.clientId = clientId;
     this.domain = domain;
-    this.lock = null;
-    // binds login functions to keep this context
-    this.login = this.login.bind(this);
-  }
-
-  setupLock(next) {
-    // use code splitting to make it so auth0-lock is only loaded when we actually need to auth
-    let component = this;
-    require.ensure(["auth0-lock"], function(require) {
-      let Auth0Lock = require("auth0-lock").default;
-      component.lock = new Auth0Lock(component.clientId, component.domain, {
-        auth: {
-          redirectUrl: window.location.origin + "/redirect",
-          responseType: "token",
-          params: {
-            scope: SCOPE,
-            state: JSON.stringify({ pathname: window.location.pathname })
-          }
-        },
-        theme: {
-          primaryColor: "#323232",
-          logo: ppLogo
-        },
-        languageDictionary: {
-          title: "Participedia"
+    // AUTH_VERSION=7
+    this.lock.on("authenticated", authResult => {
+      this.lock.getProfile(authResult.idToken, (error, profile) => {
+        // let expiresAt = JSON.stringify(
+        //   authResult.expiresIn * 1000 + new Date().getTime()
+        // );
+        localStorage.setItem("access_token", authResult.accessToken);
+        localStorage.setItem("id_token", authResult.idToken);
+        // localStorage.setItem("expires_at", expiresAt);
+        this.setProfile(profile);
+        let state = JSON.parse(authResult.state);
+        console.log(state);
+        if (state && state.redirectURL) {
+          history.replace(state.redirectURL);
+        } else {
+          history.replace("/");
         }
       });
-      next();
     });
+    this.getProfile = this.getProfile.bind(this);
+    // binds login functions to keep this context
+    this.login = this.login.bind(this);
+    this.handleAuthentication = this.handleAuthentication.bind(this);
+    this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
-  login(redirectUrl) {
-    // Call the show method to display the widget.
-    if (!this.lock) {
-      this.setupLock(this.showLock.bind(this, redirectUrl));
+  setToken(token) {
+    localStorage.setItem("id_token", token);
+  }
+  setProfile(profile) {
+    localStorage.setItem("profile", JSON.stringify(profile));
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) {
+      throw new Error("No access token found");
+    }
+    return accessToken;
+  }
+
+  getProfile(cb) {
+    if (!localStorage.getItem("access_token")) {
+      return cb(null, {});
+    }
+    let profile = JSON.parse(localStorage.getItem("profile"));
+    if (profile) {
+      cb(null, profile);
     } else {
-      this.showLock(redirectUrl);
+      let accessToken = this.getAccessToken();
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
+        if (profile) {
+          localStorage.setItem("profile", JSON.stringify(profile));
+          this.userProfile = profile;
+        }
+        cb(err, profile);
+      });
     }
   }
-  showLock(redirectUrl) {
-    let state = { pathname: window.location.pathname };
-    if (redirectUrl) {
-      state["return_url"] = redirectUrl;
+
+  login(redirectURL) {
+    if (!redirectURL) {
+      redirectURL = "/";
     }
+    // AUTH_VERSION === 8
+
+    // this.auth0.authorize({
+    //   lang: {
+    //     signin: {
+    //       title: "Log in to Participedia"
+    //     }
+    //   },
+    //   audience: AUDIENCE,
+    //   scope: SCOPE,
+    //   state: JSON.stringify({ redirectURL })
+    // });
+    let state = { pathname: redirectURL };
+
     this.lock.show({
       auth: {
         params: {
@@ -66,64 +138,55 @@ class AuthService {
       }
     });
   }
+  handleAuthentication() {
+    //  authService.lock.on("authorization_error", error =>
+    //    dispatch(loginError(error))
+    //  );
 
-  logout() {
-    // Clear user token and profile data from localStorage
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("profile");
-  }
-
-  getProfile() {
-    // Retrieves the profile data from localStorage
-    const profile = localStorage.getItem("profile");
-    return profile ? JSON.parse(localStorage.profile) : {};
-  }
-
-  loggedIn() {
-    // Checks if there is a saved token and it's still valid
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
-  }
-
-  setProfile(profile) {
-    // Saves profile data to localStorage
-    localStorage.setItem("profile", JSON.stringify(profile));
-    // Triggers profile_updated event to update the UI
-  }
-
-  setToken(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem("id_token", idToken);
+    this.auth0.parseHash(window.location.hash, (err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log("AUTHRESULT", authResult);
+        // Set the time that the access token will expire at
+        let expiresAt = JSON.stringify(
+          authResult.expiresIn * 1000 + new Date().getTime()
+        );
+        localStorage.setItem("access_token", authResult.accessToken);
+        localStorage.setItem("id_token", authResult.idToken);
+        localStorage.setItem("expires_at", expiresAt);
+        let state = JSON.parse(authResult.state);
+        if (state && state.redirectURL) {
+          history.replace(state.redirectURL);
+        } else {
+          history.replace("/");
+        }
+      } else if (err) {
+        history.replace("/");
+      }
+    });
   }
 
   getToken() {
-    // Retrieves the user token from localStorage
     return localStorage.getItem("id_token");
   }
 
-  getTokenExpirationDate() {
-    const token = this.getToken();
-    const decoded = jwtDecode(token);
-    if (!decoded.exp) {
-      return null;
-    }
-
-    const date = new Date(0); // The 0 here is the key, which sets the date to the epoch
-    date.setUTCSeconds(decoded.exp);
-    return date;
+  logout() {
+    // Clear access token and ID token from local storage
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+    localStorage.removeItem("profile");
+    // navigate to the home route
+    history.replace("/");
   }
 
-  isTokenExpired() {
-    const token = this.getToken();
-    if (!token) return true;
-    const date = this.getTokenExpirationDate(token);
-    const offsetSeconds = 0;
-    if (date === null) {
-      return false;
-    }
-    let expired = !(date.valueOf() >
-      new Date().valueOf() + offsetSeconds * 1000);
-    return expired;
+  isAuthenticated() {
+    // Check whether the current time is past the
+    // access token's expiry time
+    // AUTH_VERSION === 7
+    return localStorage.getItem("id_token") ? true : false;
+    // AUTH_VERSION === 8
+    // let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    // return new Date().getTime() < expiresAt;
   }
 }
 

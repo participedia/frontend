@@ -386,7 +386,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   dateTime="2016-05-27T21:46:39.123Z"
                   title="2016-05-27T21:46:39.1234Z"
                 >
-                  12 months ago
+                  1 year ago
                 </time>
               </p>
             </div>

@@ -77,7 +77,7 @@ export default class ItemEditor extends Component {
                 <h2 className="case-title">
                   {thing.title}
                 </h2>
-                <ImageListEditor thing={thing} />
+                <ImageListEditor auth={this.props.auth} thing={thing} />
                 <div className="title-edit">
                   <label htmlFor="title">Title</label>
                 </div>

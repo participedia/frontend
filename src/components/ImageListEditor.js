@@ -22,8 +22,10 @@ class ImageListEditor extends Component {
 
   handleNewImg(img) {
     this.setState({ newImg: true });
-    let currentImgs = this.props.thing.other_images.length;
-    this.props.thing.other_images[currentImgs] = { url: img };
+    if (this.props.thing.other_images) {
+      let currentImgs = this.props.thing.other_images.length;
+      this.props.thing.other_images[currentImgs] = { url: img };
+    }
   }
 
   deleteImg(photo) {
@@ -114,7 +116,11 @@ class ImageListEditor extends Component {
             ))
           : undefined}
         <Col md="3">
-          <Upload itemEdit={true} addToList={this.handleNewImg} />
+          <Upload
+            auth={this.props.auth}
+            itemEdit={true}
+            addToList={this.handleNewImg}
+          />
         </Col>
       </Row>
     );

@@ -623,6 +623,7 @@ exports[`App 1`] = `
             <a
               className="social-icons"
               href="https://www.facebook.com/Participedia/"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
@@ -633,6 +634,7 @@ exports[`App 1`] = `
             <a
               className="social-icons"
               href="https://twitter.com/participedia"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
@@ -643,6 +645,7 @@ exports[`App 1`] = `
             <a
               className="social-icons"
               href="https://www.linkedin.com/company/participedia"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
@@ -1292,6 +1295,7 @@ exports[`Searching for a word 1`] = `
             <a
               className="social-icons"
               href="https://www.facebook.com/Participedia/"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
@@ -1302,6 +1306,7 @@ exports[`Searching for a word 1`] = `
             <a
               className="social-icons"
               href="https://twitter.com/participedia"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
@@ -1312,6 +1317,7 @@ exports[`Searching for a word 1`] = `
             <a
               className="social-icons"
               href="https://www.linkedin.com/company/participedia"
+              rel="noopener noreferrer"
               target="_blank"
             >
               <img
