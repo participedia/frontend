@@ -1,16 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SearchLink = ({ tag, value, intl }) =>
-  (tag && value && intl
-    ? <Link
-        to={{
-          pathname: "/search",
-          search: `?${tag}=${value}`
-        }}
-      >
-        {value}
-      </Link>
-    : <div>{intl.formatMessage({ id: "not_specified" })}</div>);
+export default class SearchLink extends React.Component {
+  render() {
+    let { tag, value, intl } = this.props;
+    // console.log("VALUE", value);
+    // console.log("href", encodeURI(value));
+    let href = `/search?${tag}=${value}`;
+    return tag && value && intl
+      ? <Link to={{ pathname: href }}>{value}</Link>
+      : <div>{intl.formatMessage({ id: "not_specified" })}</div>;
+  }
+}
 
-export default SearchLink;
+/* ? <Link
+          to={{
+            pathname: "/search",
+            search: `?${tag}=${value}`
+          }}
+        >
+          {value}
+        </Link>*/
