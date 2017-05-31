@@ -5,6 +5,7 @@ export default class SearchLink extends React.Component {
   render() {
     let { tag, value, intl } = this.props;
     console.log("VALUE", value);
+    console.log("href", encodeURI(value));
     return tag && value && intl
       ? <Link
           to={{
