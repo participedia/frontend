@@ -83,7 +83,11 @@ export default class ItemDetails extends React.Component {
   }
 
   render() {
-    const { FacebookShareButton, TwitterShareButton, LinkedinShareButton } = ShareButtons;
+    const {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton
+    } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
     const thing = this.props.data || defaultThing;
@@ -91,13 +95,13 @@ export default class ItemDetails extends React.Component {
     let bookmarkIcon = (
       <BookmarkToggle
         thingType="case"
-        thingID={thing.id}
+        thingid={thing.id}
         bookmarked={bookmarked}
       />
     );
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl =
-      process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
+    let currentUrl = process.env.REACT_APP_ROOT_URL +
+      this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
@@ -217,9 +221,9 @@ export default class ItemDetails extends React.Component {
                   <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
-                  <LinkedinShareButton 
+                  <LinkedinShareButton
                     url={currentUrl}
-                    description={textFacebook} 
+                    description={textFacebook}
                     title={thing.title}
                   >
                     <img src={caseIconLN} alt="" />
