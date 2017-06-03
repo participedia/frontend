@@ -1,5 +1,6 @@
 import React from "react"; // eslint-disable-line no-unused-vars
 import { Container, Row, Col } from "reactstrap";
+import ReactPlayer from "react-player";
 import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
@@ -66,6 +67,11 @@ class About extends React.Component {
               {this.props.intl.formatMessage({ id: "welcome_participedia" })}
             </h1>
             <h2>{this.props.intl.formatMessage({ id: "about_intro" })}</h2>
+            <ReactPlayer
+              width="100%"
+              controls={true}
+              url="https://vimeo.com/219546454"
+            />
             <h2>{this.props.intl.formatMessage({ id: "get_involved" })}</h2>
             <FormattedMessage
               id="about_involved_1"
