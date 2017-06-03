@@ -83,7 +83,11 @@ export default class ItemDetails extends React.Component {
   }
 
   render() {
-    const { FacebookShareButton, TwitterShareButton, LinkedinShareButton } = ShareButtons;
+    const {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton
+    } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
     const thing = this.props.data || defaultThing;
@@ -217,9 +221,9 @@ export default class ItemDetails extends React.Component {
                   <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
-                  <LinkedinShareButton 
+                  <LinkedinShareButton
                     url={currentUrl}
-                    description={textFacebook} 
+                    description={textFacebook}
                     title={thing.title}
                   >
                     <img src={caseIconLN} alt="" />
@@ -238,3 +242,7 @@ export default class ItemDetails extends React.Component {
     );
   }
 }
+
+ItemDetails.propTypes = {
+  auth: PropTypes.object.isRequired
+};

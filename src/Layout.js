@@ -20,7 +20,7 @@ import Experiments from "./components/Experiments";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
-import myhistory from "./utils/history";
+
 import {
   CaseEditorContainer,
   MethodEditorContainer,
@@ -58,11 +58,12 @@ const ScrollToTop = props => {
   return null;
 };
 
-const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    authService.handleAuthentication(nextState.location.hash);
-  }
-};
+// const handleAuthentication = (nextState, replace) => {
+//   if (/access_token|id_token|error/.test(nextState.location.hash)) {
+//     authService.handleAuthentication(nextState.location.hash);
+//   }
+// };
+
 class Callback extends React.Component {
   render() {
     const style = {
@@ -90,7 +91,7 @@ const EnsureAuth = props =>
   authService.isAuthenticated()
     ? <div />
     : <div>Must be logged in</div> &&
-        authService.login(myhistory.location.pathname);
+        authService.login(props.history.location.pathname);
 
 class Routes extends React.Component {
   render() {
@@ -120,8 +121,8 @@ class Routes extends React.Component {
           path="/organizations"
           render={props => <Home auth={authService} />}
         />
-        <Route path="/search" render={props => <Home auth={authService} />} />
         <Route exact path="/" render={props => <Home auth={authService} />} />
+        <Route path="/search" render={props => <Home auth={authService} />} />
         <Route component={ScrollToTop} />
         <Route exact path="/profile" component={ProfileLoader} />
         <Route
@@ -247,9 +248,9 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { auth, intl, history } = this.props;
-    let routes = <Routes history={history} intl={intl} auth={auth} />;
-    const isAuthenticated = auth.isAuthenticated;
+    const { intl } = this.props;
+    let routes = <Routes intl={intl} auth={authService} />;
+    const isAuthenticated = authService.isAuthenticated;
 
     return (
       <div>
@@ -271,7 +272,7 @@ export class Layout extends React.Component {
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>
             </Link>
-            <LoginAvatar auth={auth} className="login-area" />
+            <LoginAvatar auth={authService} className="login-area" />
           </div>
         </div>
         <Drawer
