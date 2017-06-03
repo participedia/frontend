@@ -41,7 +41,7 @@ import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
 // import myhistory from "./utils/history";
 
-import "./UniversalStyles.css"
+import "./UniversalStyles.css";
 
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
@@ -187,7 +187,12 @@ class Routes extends React.Component {
             <CaseEditorContainer auth={authService} intl={intl} {...props} />
           )}
         />
-        <Route path="/method/:nodeID" component={Method} />
+        <Route
+          path="/method/:nodeID"
+          component={props => (
+            <Method auth={authService} intl={intl} {...props} />
+          )}
+        />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
         <Route path="/method/:nodeID/edit" component={MethodEditorContainer} />
         <Route
