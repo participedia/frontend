@@ -10,6 +10,7 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
+import caseIconLN from "../../img/pp-case-icon-ln.png";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
@@ -82,7 +83,11 @@ export default class ItemDetails extends React.Component {
   }
 
   render() {
-    const { FacebookShareButton, TwitterShareButton } = ShareButtons;
+    const {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton
+    } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
     const thing = this.props.data || defaultThing;
@@ -216,6 +221,13 @@ export default class ItemDetails extends React.Component {
                   <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
+                  <LinkedinShareButton
+                    url={currentUrl}
+                    description={textFacebook}
+                    title={thing.title}
+                  >
+                    <img src={caseIconLN} alt="" />
+                  </LinkedinShareButton>
                 </div>
               </Col>
             </Row>
@@ -230,3 +242,7 @@ export default class ItemDetails extends React.Component {
     );
   }
 }
+
+ItemDetails.propTypes = {
+  auth: PropTypes.object.isRequired
+};

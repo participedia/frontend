@@ -17,6 +17,7 @@ class Home extends React.Component {
             component={() => <SearchResults {...this.props} />}
           />
           <Route
+            exact
             path="/search"
             component={() => <SearchResults {...this.props} />}
           />
