@@ -1,18 +1,18 @@
 import history from "./history";
 
 // AUTH_V8
-import auth0 from "auth0-js";
+// import auth0 from "auth0-js";
 
 // AUTH_v7
 import Auth0Lock from "auth0-lock";
 import ppLogo from "../img/pp-logo-dark.png";
 
-const AUTH_VERSION = 7; // or 8
+// const AUTH_VERSION = 7; // or 8
 
 const SCOPE =
   "openid email user_metadata app_metadata picture created_at read:users update:users update:users_app_metadata";
 
-const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
+// const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 
 class AuthService {
   // if (AUTH_VERSION === 8) {

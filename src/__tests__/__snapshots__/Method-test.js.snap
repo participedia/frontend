@@ -120,12 +120,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <time
-                  dateTime="2011-11-30T17:20:28.000Z"
-                  title="2011-11-30T17:20:28"
-                >
-                  6 years ago
-                </time>
+                <TimeAgo />
               </p>
               <p
                 className="author-line"

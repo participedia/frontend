@@ -242,3 +242,7 @@ export default class ItemDetails extends React.Component {
     );
   }
 }
+
+ItemDetails.propTypes = {
+  auth: PropTypes.object.isRequired
+};
