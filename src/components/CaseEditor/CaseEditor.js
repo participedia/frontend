@@ -229,12 +229,6 @@ function CaseSidebar({
                 property="end_date"
                 thing={thing}
               />
-              <DatePropEditor
-                intl={intl}
-                label="updated_date"
-                property="updated_date"
-                thing={thing}
-              />
               <NumberPropEditor
                 intl={intl}
                 label="total_number_of_participants"
