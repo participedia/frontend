@@ -61,7 +61,7 @@ export default class BookmarkToggle extends React.Component {
   }
 
   toggleBookmark(thingType, thingid) {
-    if (!authService.loggedIn()) {
+    if (!authService.isAuthenticated()) {
       authService.login(myhistory.location.pathname);
     } else {
       let effectSwitch = this.effectSwitch.bind(this);
