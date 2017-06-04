@@ -120,7 +120,7 @@ class API {
         return response.json();
       })
       .then(function(json) {
-        caseObj.id = json.data.case_id;
+        caseObj.id = json.data.thingid;
         return caseObj;
       })
       .catch(function(error) {
@@ -180,9 +180,9 @@ class API {
     });
   };
 
-  addBookmark = function(bookmarkType, thingID) {
+  addBookmark = function(bookmarkType, thingid) {
     let url = APIURL + "/bookmark/add";
-    return signedFetch(url, "POST", { bookmarkType, thingID })
+    return signedFetch(url, "POST", { bookmarkType, thingid })
       .then(response => response.json())
       .catch(function(error) {
         console.log(
@@ -191,11 +191,11 @@ class API {
         return error;
       });
   };
-  removeBookmark = function(bookmarkType, thingID) {
+  removeBookmark = function(bookmarkType, thingid) {
     let url = APIURL + "/bookmark/delete";
     return signedFetch(url, "delete", {
       bookmarkType,
-      thingID
+      thingid
     })
       .then(response => response.json())
       .catch(function(error) {

@@ -60,7 +60,7 @@ export default class BookmarkToggle extends React.Component {
     });
   }
 
-  toggleBookmark(thingType, thingID) {
+  toggleBookmark(thingType, thingid) {
     if (!authService.loggedIn()) {
       authService.login(myhistory.location.pathname);
     } else {
@@ -68,25 +68,25 @@ export default class BookmarkToggle extends React.Component {
       if (this.state.bookmarked) {
         // We are unbookmarking
         api
-          .removeBookmark(this.props.thingType, this.props.thingID)
+          .removeBookmark(this.props.thingType, this.props.thingid)
           .then(() => effectSwitch())
           .catch(() => {
             console.error(
               "Error adding a bookmark",
               this.props.thingType,
-              this.props.thingID
+              this.props.thingid
             );
           });
       } else {
         // We are bookmarking
         api
-          .addBookmark(this.props.thingType, this.props.thingID)
+          .addBookmark(this.props.thingType, this.props.thingid)
           .then(() => effectSwitch())
           .catch(() => {
             console.error(
               "Error removing a bookmark",
               this.props.thingType,
-              this.props.thingID
+              this.props.thingid
             );
           });
       }
