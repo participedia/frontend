@@ -109,7 +109,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="author-line"
               >
-                First submitted by 
+                First submitted by 
                 <a
                   href="/users/undefined"
                   onClick={[Function]}
@@ -125,7 +125,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="author-line"
               >
-                Most recent changes by 
+                Most recent changes by 
                 <a
                   href="/users/undefined"
                   onClick={[Function]}
