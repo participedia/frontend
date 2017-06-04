@@ -64,6 +64,9 @@ export class Related extends React.Component {
       chips: props.value
     };
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ chips: nextProps.value });
+  }
 
   handleChange(value) {
     this.thing[this.property] = value;
@@ -75,6 +78,7 @@ export class Related extends React.Component {
       chips: chips
     });
     this.thing[this.property] = chips;
+    this.props.onChange(chips);
   }
 
   handleRequestDelete(deletedChip) {
@@ -83,6 +87,7 @@ export class Related extends React.Component {
       chips: chips
     });
     this.thing[this.property] = chips;
+    this.props.onChange(chips);
   }
 
   render() {
@@ -104,12 +109,11 @@ export class Related extends React.Component {
     return (
       <ChipInput
         {...rest}
-        value={this.props.value}
+        value={this.props.value.map(x => x.title)}
         onRequestAdd={handleRequestAdd}
         onChange={handleChange}
         onRequestDelete={handleRequestDelete}
         dataSource={this.props.dataSource}
-        dataSourceConfig={{ text: "text", value: "value" }}
         onBlur={event => {
           if (this.props.addOnBlur && event.target.value) {
             this.handleRequestAdd(event.target.value);
@@ -153,6 +157,7 @@ export class SimpleRelated extends React.Component {
       chips: chips
     });
     this.props.thing[this.property] = chips;
+    this.props.onChange(chips);
   }
 
   render() {
@@ -194,12 +199,12 @@ export class SimpleRelatedCases extends React.Component {
     return (
       <Related
         property="related_cases"
-        value={this.props.passProps.related_cases || []}
-        dataSource={this.props.passProps.dataSource}
+        value={this.props.value || []}
+        dataSource={this.props.dataSource}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
         onChange={event => {
-          this.props.onChange(event.target.value);
+          this.props.onChange(event);
         }}
       />
     );
@@ -211,12 +216,13 @@ export class SimpleRelatedMethods extends React.Component {
     return (
       <Related
         property="related_methods"
-        value={this.props.passProps.related_methods || []}
-        dataSource={this.props.passProps.dataSource}
+        value={this.props.value || []}
+        dataSource={this.props.dataSource}
+        dataSourceConfig={this.props.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
         onChange={event => {
-          this.props.onChange(event.target.value);
+          this.props.onChange(event);
         }}
       />
     );
@@ -228,12 +234,13 @@ export class SimpleRelatedOrganizations extends React.Component {
     return (
       <Related
         property="related_organizations"
-        value={this.props.passProps.related_organizations || []}
+        value={this.props.value || []}
         dataSource={this.props.passProps.dataSource}
+        dataSourceConfig={this.props.passProps.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
         onChange={event => {
-          this.props.onChange(event.target.value);
+          this.props.onChange(event);
         }}
       />
     );

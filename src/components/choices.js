@@ -16,8 +16,6 @@ for (let key in orgChoiceData) {
   choiceData[key] = orgChoiceData[key];
 }
 
-console.log(choiceData);
-
 export default function getChoices(property) {
   if (choiceData[property]) {
     return choiceData[property];

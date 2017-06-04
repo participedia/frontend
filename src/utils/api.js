@@ -135,6 +135,13 @@ class API {
     let url = APIURL + `/${thingType}/${obj.id}`;
     return signedFetch(url, "PUT", obj)
       .then(response => response.json())
+      .then(function(response) {
+        if (!response.ok) {
+          console.log("Error doing saveThing's signedFetch: ", response);
+          throw response.error;
+        }
+        return response.json();
+      })
       .then(json => obj)
       .catch(function(error) {
         console.error(
