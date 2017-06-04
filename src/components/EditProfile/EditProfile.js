@@ -95,6 +95,7 @@ export default class EditProfile extends Component {
 
                   <Upload
                     customStyle={customStyle}
+                    auth={this.props.auth}
                     profile={profile}
                     updatePicture={true}
                   />

@@ -10,15 +10,14 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
+import caseIconLN from "../../img/pp-case-icon-ln.png";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import TimeAgo from "react-timeago";
 import Toggle from "material-ui/Toggle";
-import authService from "../../utils/AuthService";
 
-function isCurator() {
-  const profile = authService.getProfile();
+function isCurator(profile) {
   if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
     return false;
   let groups = profile.app_metadata.authorization.groups;
@@ -37,7 +36,8 @@ class Featured extends React.Component {
   }
 
   render() {
-    return isCurator(this.props.auth)
+    const profile = this.props.profile;
+    return isCurator(profile)
       ? <div className="featuretoggle">
           <Toggle
             onToggle={this.onToggle.bind(this)}
@@ -70,8 +70,24 @@ const defaultThing = {
 };
 
 export default class ItemDetails extends React.Component {
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
   render() {
-    const { FacebookShareButton, TwitterShareButton } = ShareButtons;
+    const {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton
+    } = ShareButtons;
     const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
     const thing = this.props.data || defaultThing;
@@ -79,13 +95,13 @@ export default class ItemDetails extends React.Component {
     let bookmarkIcon = (
       <BookmarkToggle
         thingType="case"
-        thingID={thing.id}
+        thingid={thing.id}
         bookmarked={bookmarked}
       />
     );
     let bodyText = htmlToText.fromString(thing.body);
-    let currentUrl =
-      process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
+    let currentUrl = process.env.REACT_APP_ROOT_URL +
+      this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
 
     let lead;
@@ -117,6 +133,7 @@ export default class ItemDetails extends React.Component {
               <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
                 <Featured
                   thing={thing}
+                  profile={this.state.profile}
                   toggleFeatured={this.props.toggleFeatured}
                 />
                 {detailedBits}
@@ -204,6 +221,13 @@ export default class ItemDetails extends React.Component {
                   <TwitterShareButton url={currentUrl} title={thing.title}>
                     <img src={caseIconTW} alt="" />
                   </TwitterShareButton>
+                  <LinkedinShareButton
+                    url={currentUrl}
+                    description={textFacebook}
+                    title={thing.title}
+                  >
+                    <img src={caseIconLN} alt="" />
+                  </LinkedinShareButton>
                 </div>
               </Col>
             </Row>
@@ -218,3 +242,7 @@ export default class ItemDetails extends React.Component {
     );
   }
 }
+
+ItemDetails.propTypes = {
+  auth: PropTypes.object.isRequired
+};

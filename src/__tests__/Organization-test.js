@@ -21,6 +21,11 @@ injectTapEventPlugin();
 let fetchMock = require("fetch-mock");
 jest.mock("material-ui/FloatingActionButton");
 jest.mock("../components/BookmarkToggle");
+jest.mock("react-timeago", () => {
+  const React = require("react");
+  const TimeAgo = props => React.createElement("TimeAgo");
+  return TimeAgo;
+}); // so we don't break tests as time goes by
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/organization/4219",
@@ -34,6 +39,7 @@ fetchMock.get(
 function setup() {
   const props = {
     intl: intlProps,
+    auth: { getProfile: cb => cb({}), isAuthenticated: () => false },
     location: { pathname: "/organization/4219" },
     match: { params: { nodeID: 4219 } },
     toggleFeatured: function() {},

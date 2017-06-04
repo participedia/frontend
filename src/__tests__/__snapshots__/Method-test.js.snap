@@ -120,12 +120,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <time
-                  dateTime="2011-11-30T17:20:28.000Z"
-                  title="2011-11-30T17:20:28"
-                >
-                  5 years ago
-                </time>
+                <TimeAgo />
               </p>
               <p
                 className="author-line"
@@ -141,12 +136,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <time
-                  dateTime="2011-12-01T19:31:01.000Z"
-                  title="2011-12-01T19:31:01"
-                >
-                  5 years ago
-                </time>
+                <TimeAgo />
               </p>
             </div>
             <div
@@ -201,6 +191,16 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <img
                 alt=""
                 src="pp-case-icon-tw.svg"
+              />
+            </div>
+            <div
+              className="SocialMediaShareButton SocialMediaShareButton--linkedin"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              <img
+                alt=""
+                src="pp-case-icon-ln.png"
               />
             </div>
           </div>

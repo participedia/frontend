@@ -14,7 +14,7 @@ export default class SearchResults extends React.Component {
       data: [],
       query: "",
       searching: true,
-      selectedCategory: DEFAULT_CATEGORY,
+      selectedCategory: this.props.selectedCategory || DEFAULT_CATEGORY,
       sortingMethod: DEFAULT_SORTING_METHOD,
       selectedViewType: "grid",
       error: false
@@ -51,10 +51,16 @@ export default class SearchResults extends React.Component {
       if (results.results) {
         component.setState({ data: results.results, searching: false });
       } else {
-        if (results.error.code)
+        if (results.error) {
+          if (results.error.code)
+            component.setState({
+              error: results.error.code
+            });
+        } else {
           component.setState({
-            error: results.error.code
+            error: results.error
           });
+        }
       }
     });
     this.setState(newState);

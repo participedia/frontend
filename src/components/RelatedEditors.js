@@ -1,5 +1,5 @@
 import React from "react";
-import { Field } from "redux-form";
+import { Field } from "simple-react-form";
 import ChipInput from "material-ui-chip-input";
 import omit from "object-omit";
 
@@ -41,8 +41,8 @@ function renderChip({
 export function RelatedCases({ intl, cases }) {
   return (
     <Field
-      name="related_cases"
-      component={renderChip}
+      fieldName="related_cases"
+      type={renderChip}
       hintText={intl.formatMessage({
         id: "search_related_cases"
       })}

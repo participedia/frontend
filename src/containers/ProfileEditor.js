@@ -13,8 +13,7 @@ export default class ProfileEditor extends React.Component {
     super(props);
     this.state = {
       user: null,
-      organizations: [],
-      auth: null
+      organizations: []
     };
   }
   componentDidMount() {
@@ -39,7 +38,7 @@ export default class ProfileEditor extends React.Component {
         profile={this.props.profile}
         user={this.state.user}
         organizations={this.state.organizations}
-        auth={this.state.auth}
+        auth={this.props.auth}
         onChange={this.onChange.bind(this)}
         {...this.props}
       />

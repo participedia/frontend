@@ -4,7 +4,6 @@ import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
 import authService from "../utils/AuthService";
@@ -112,8 +111,4 @@ class Profile extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { profile: state.auth.profile };
-}
-
-export default injectIntl(connect(mapStateToProps)(Profile));
+export default injectIntl(Profile);
