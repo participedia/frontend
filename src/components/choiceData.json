@@ -527,5 +527,13 @@
     "supermajority",
     "preferential",
     "consensus"
-  ]
+  ],
+  "issue_interdependency": [],
+  "issue_polarization": [],
+  "issue_technical_complexity": [],
+  "method_of_interaction": [],
+  "typical_funding_source": [],
+  "governance_contribution": [],
+  "public_interaction_method": [],
+  "best_for": []
 }

@@ -50,7 +50,7 @@ export default class ItemEditor extends Component {
     this.props.onSubmit(this.state.thing);
   }
   render() {
-    let { sidebar, type } = this.props;
+    let { sidebar, type, intl } = this.props;
     let thing = this.state.thing;
 
     if (!this.state.thing) {
@@ -79,17 +79,23 @@ export default class ItemEditor extends Component {
                 </h2>
                 <ImageListEditor auth={this.props.auth} thing={thing} />
                 <div className="title-edit">
-                  <label htmlFor="title">Title</label>
+                  <label htmlFor="title">
+                    {intl.formatMessage({ id: thing.type + "_title_label" })}
+                  </label>
                 </div>
                 <Field
                   fieldName="title"
                   name="title"
                   type={Text}
-                  placeholder="case title"
+                  placeholder={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}
                   fullWidth={true}
                 />
                 <div>
-                  <label htmlFor="body_en">Body</label>
+                  <label htmlFor="body_en">
+                    {intl.formatMessage({ id: thing.type + "_body_title" })}
+                  </label>
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
               </div>

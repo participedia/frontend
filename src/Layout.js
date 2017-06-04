@@ -189,13 +189,19 @@ class Routes extends React.Component {
           )}
         />
         <Route
+          exact
           path="/method/:nodeID"
           component={props => (
             <Method auth={authService} intl={intl} {...props} />
           )}
         />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
-        <Route path="/method/:nodeID/edit" component={MethodEditorContainer} />
+        <Route
+          path="/method/:nodeID/edit"
+          component={props => (
+            <MethodEditorContainer auth={authService} intl={intl} {...props} />
+          )}
+        />
         <Route
           exact
           path="/organization/:nodeID"

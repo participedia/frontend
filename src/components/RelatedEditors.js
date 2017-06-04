@@ -104,12 +104,80 @@ export class Related extends React.Component {
     return (
       <ChipInput
         {...rest}
-        value={this.state.chips}
+        value={this.props.value}
         onRequestAdd={handleRequestAdd}
         onChange={handleChange}
         onRequestDelete={handleRequestDelete}
         dataSource={this.props.dataSource}
         dataSourceConfig={{ text: "text", value: "value" }}
+        onBlur={event => {
+          if (this.props.addOnBlur && event.target.value) {
+            this.handleRequestAdd(event.target.value);
+          }
+        }}
+        fullWidth
+      />
+    );
+  }
+}
+
+export class SimpleRelated extends React.Component {
+  // like related but for things that don't have dataSource
+  constructor(props) {
+    super(props);
+    this.thing = props.thing;
+    this.property = props.property;
+    this.state = {
+      chips: props.value
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ chips: nextProps.value });
+  }
+  handleChange(value) {
+    this.props.thing[this.property] = value;
+  }
+
+  handleRequestAdd(chip) {
+    let chips = [...this.state.chips, chip];
+    this.setState({
+      chips: chips
+    });
+    this.props.thing[this.property] = chips;
+    this.props.onChange(chips);
+  }
+
+  handleRequestDelete(deletedChip) {
+    let chips = this.state.chips.filter(c => c !== deletedChip);
+    this.setState({
+      chips: chips
+    });
+    this.props.thing[this.property] = chips;
+  }
+
+  render() {
+    let rest = omit(this.props, [
+      "intl",
+      "thing",
+      "property",
+      "dataSource",
+      "useHint",
+      "errorMessage",
+      "fieldSchema",
+      "fieldName",
+      "schema",
+      "passProps"
+    ]);
+    let handleRequestAdd = this.handleRequestAdd.bind(this);
+    let handleRequestDelete = this.handleRequestDelete.bind(this);
+    let handleChange = this.handleChange.bind(this);
+    return (
+      <ChipInput
+        {...rest}
+        value={this.props.value}
+        onRequestAdd={handleRequestAdd}
+        onChange={handleChange}
+        onRequestDelete={handleRequestDelete}
         onBlur={event => {
           if (this.props.addOnBlur && event.target.value) {
             this.handleRequestAdd(event.target.value);
@@ -166,6 +234,26 @@ export class SimpleRelatedOrganizations extends React.Component {
         thing={this.props.passProps.thing}
         onChange={event => {
           this.props.onChange(event.target.value);
+        }}
+      />
+    );
+  }
+}
+
+export class Tags extends React.Component {
+  render() {
+    return (
+      <SimpleRelated
+        property="tags"
+        value={this.props.value || []}
+        intl={this.props.passProps.intl}
+        thing={this.props.passProps.thing}
+        onChange={event => {
+          try {
+            this.props.onChange(event);
+          } catch (e) {
+            console.error(e);
+          }
         }}
       />
     );

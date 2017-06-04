@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CaseEditor from "../components/CaseEditor/CaseEditor";
+import CaseEditor from "../components/CaseEditor";
 import MethodEditor from "../components/MethodEditor";
 import OrganizationEditor from "../components/OrganizationEditor";
 import api from "../utils/api";
@@ -17,7 +17,7 @@ class EditorContainer extends Component {
     let isQuick = props.new;
     this.state = {
       isQuick: isQuick,
-      thing: null
+      thing: { type: "unknown" }
     };
   }
   getNouns() {
