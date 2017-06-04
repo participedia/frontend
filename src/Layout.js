@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route, Redirect } from "react-router";
 import { bool, object, func } from "prop-types";
 import { Link } from "react-router-dom";
 import Home from "./Home";
@@ -120,6 +120,12 @@ class Routes extends React.Component {
           exact
           path="/organizations"
           render={props => <Home auth={authService} />}
+        />
+        <Route
+          path="/show/:term"
+          render={props => (
+            <Redirect to={`/search?query=${props.match.params.term}`} />
+          )}
         />
         <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route path="/search" render={props => <Home auth={authService} />} />
