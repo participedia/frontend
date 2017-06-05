@@ -30,8 +30,7 @@ const _quillFormats = [
   "list",
   "bullet",
   "indent",
-  "link",
-  "image"
+  "link"
 ];
 
 class BodyEditor extends React.Component {
