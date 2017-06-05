@@ -119,7 +119,7 @@ export class SearchResultsView extends React.Component {
       );
     });
     let formatMessage = this.props.intl.formatMessage;
-    let addLink = "/quick-submit";
+    let addLink = "/new";
     let resultsCount = data.length;
     let { searching, query } = this.props;
     let results = "";

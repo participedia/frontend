@@ -140,13 +140,13 @@ class Routes extends React.Component {
         <Route path="/experiments" component={Experiments} />
         <Route path="/teaching" component={Teaching} />
         <Route
-          exact
-          path="/quick-submit"
-          render={props => <QuickSubmitPicker auth={authService} />}
-        />
-        <Route
           path="/new"
           render={props => <EnsureAuth auth={authService} />}
+        />
+        <Route
+          exact
+          path="/new"
+          render={props => <QuickSubmitPicker auth={authService} />}
         />
         <Route
           exact
@@ -273,7 +273,7 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link className="hidden-sm-down" to="/quick-submit">
+            <Link className="hidden-sm-down" to="/new">
               <div className="createButton">
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>
@@ -331,10 +331,10 @@ export class Layout extends React.Component {
           </MenuItem>
           <MenuItem
             className="hidden-sm-up"
-            containerElement={<Link to={"/quick-submit"} />}
+            containerElement={<Link to={"/new"} />}
             onTouchTap={this.handleClose}
           >
-            <div className="quick-submit">
+            <div className="new">
               <FlatButton
                 label={this.props.intl.formatMessage({ id: "quick_submit" })}
               />

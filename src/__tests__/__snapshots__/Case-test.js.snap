@@ -48,6 +48,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="specific_topic"
               >
                 <a
+                  className="tag"
                   href="/search?specific_topic=Sustainable%20Development"
                   onClick={[Function]}
                 >
@@ -63,6 +64,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="issue"
               >
                 <a
+                  className="tag"
                   href="/search?issue=Budgeting"
                   onClick={[Function]}
                 >
@@ -78,6 +80,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="communication_mode"
               >
                 <a
+                  className="tag"
                   href="/search?communication_mode=Discussion,%20Dialogue,%20or%20Deliberation"
                   onClick={[Function]}
                 >
@@ -94,6 +97,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="decision_method"
               >
                 <a
+                  className="tag"
                   href="/search?decision_method=Getting%20sense%20of%20room/group%20(i.e.%20no%20formal%20voting)"
                   onClick={[Function]}
                 >
@@ -109,6 +113,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="facetoface_online_or_both"
               >
                 <a
+                  className="tag"
                   href="/search?facetoface_online_or_both=facetoface"
                   onClick={[Function]}
                 >
@@ -124,6 +129,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="facilitated"
               >
                 <a
+                  className="tag"
                   href="/search?facilitated=true"
                   onClick={[Function]}
                 />
@@ -137,6 +143,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="voting"
               >
                 <a
+                  className="tag"
                   href="/search?voting=true"
                   onClick={[Function]}
                 >
@@ -152,6 +159,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="number_of_meeting_days"
               >
                 <a
+                  className="tag"
                   href="/search?number_of_meeting_days=4"
                   onClick={[Function]}
                 >
@@ -169,6 +177,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="targeted_participants_public_role"
               >
                 <a
+                  className="tag"
                   href="/search?targeted_participants_public_role=Stakeholder%20Organizations"
                   onClick={[Function]}
                 >
@@ -184,6 +193,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="targeted_audience"
               >
                 <a
+                  className="tag"
                   href="/search?targeted_audience=General%20Public"
                   onClick={[Function]}
                 >
@@ -199,6 +209,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="participant_selection"
               >
                 <a
+                  className="tag"
                   href="/search?participant_selection=Open%20to%20all%20with%20targeted%20recruitment"
                   onClick={[Function]}
                 >
@@ -214,6 +225,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="type_of_funding_entity"
               >
                 <a
+                  className="tag"
                   href="/search?type_of_funding_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
                   onClick={[Function]}
                 >
@@ -229,6 +241,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="typical_implementing_entity"
               >
                 <a
+                  className="tag"
                   href="/search?typical_implementing_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
                   onClick={[Function]}
                 >
@@ -244,6 +257,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="typical_sponsoring_entity"
               >
                 <a
+                  className="tag"
                   href="/search?typical_sponsoring_entity=International%20Organization"
                   onClick={[Function]}
                 >
