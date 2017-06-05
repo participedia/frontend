@@ -175,12 +175,6 @@ class OrganizationEditor extends Component {
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
               </div>
-              <FloatingActionButton
-                onTouchTap={onSubmit}
-                className="editButton"
-              >
-                <FileUpload />
-              </FloatingActionButton>
               <button
                 className="incomplete-warning"
                 disabled={incomplete}
