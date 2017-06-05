@@ -112,48 +112,49 @@ class API {
 
     let url = APIURL + "/" + thingType + "/new";
     return signedFetch(url, "POST", caseObj)
+      .then(response => response.json())
       .then(function(response) {
-        if (!response.ok) {
+        if (!response.OK) {
           console.log("Error doing saveNewThing's signedFetch: ", response);
-          throw Error(response.message);
+          throw response.error;
         }
-        return response.json();
+        return response.data;
       })
       .then(function(json) {
-        caseObj.id = json.data.thingid;
+        // console.log("GOT JSON", json);
+        caseObj.id = json[thingType + "_id"]; // will this break when API changes?
         return caseObj;
       })
       .catch(function(error) {
-        console.error(
-          `There has been a problem with saving the ${thingType}: (${url}) ${error}`
-        );
-        throw error;
+        if (error) {
+          console.error(
+            `There has been a problem with saving the ${thingType}: (${url}) ${error}`
+          );
+          throw error;
+        }
       });
   };
 
   saveThing = function(thingType, obj) {
     let url = APIURL + `/${thingType}/${obj.id}`;
-    return (
-      signedFetch(url, "PUT", obj)
-        .then(response => response.json())
-        .then(function(response) {
-          if (!response.OK) {
-            console.log("Error doing saveThing's signedFetch: ", response);
-            throw response.error;
-          }
-          // console.log("RESPONSE", response);
-          return response.data;
-        })
-        // .then(json => obj)
-        .catch(function(error) {
-          if (error) {
-            console.error(
-              `There has been a problem with saving the ${thingType}: (${url}) ${error}`
-            );
-            throw error;
-          }
-        })
-    );
+    return signedFetch(url, "PUT", obj)
+      .then(response => response.json())
+      .then(function(response) {
+        if (!response.OK) {
+          console.log("Error doing saveThing's signedFetch: ", response);
+          throw response.error;
+        }
+        // console.log("RESPONSE", response);
+        return response.data;
+      })
+      .catch(function(error) {
+        if (error) {
+          console.error(
+            `There has been a problem with saving the ${thingType}: (${url}) ${error}`
+          );
+          throw error;
+        }
+      });
   };
 
   fetchMethodById = function(methodId) {
