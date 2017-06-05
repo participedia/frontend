@@ -18,7 +18,9 @@ const RelatedThings = ({ title, relateds, intl }) =>
         <div className="sub-sub-heading">
           {intl.formatMessage({ id: title })} :{" "}
         </div>
-        {relateds.map(related => <LinkToThing thing={related} intl={intl} />)}
+        {relateds.map(related => (
+          <LinkToThing key={related.id} thing={related} intl={intl} />
+        ))}
       </div>
     : <div />;
 

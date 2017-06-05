@@ -8,7 +8,7 @@ export default class SearchLink extends React.Component {
     // console.log("href", encodeURI(value));
     let href = `/search?${tag}=${value}`;
     return tag && value && intl
-      ? <Link to={{ pathname: href }}>{value}</Link>
+      ? <Link className="tag" to={{ pathname: href }}>{value}</Link>
       : <div>{intl.formatMessage({ id: "not_specified" })}</div>;
   }
 }

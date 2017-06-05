@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
+import Geosuggest from "react-geosuggest";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
@@ -18,9 +19,15 @@ import {
 } from "./RelatedEditors";
 import FlatButton from "material-ui/FlatButton";
 
-import { BooleanPropEditor, ChoicePropEditor } from "./PropEditors";
+import {
+  TextPropEditor,
+  BooleanPropEditor,
+  NumberPropEditor,
+  DatePropEditor,
+  ChoicePropEditor
+} from "./PropEditors";
 
-class MethodEditor extends Component {
+class CaseEditor extends Component {
   constructor(props) {
     super(props);
     this.state = { thing: props.thing };
@@ -78,6 +85,7 @@ class MethodEditor extends Component {
         intl={intl}
       />
     );
+
     let incomplete = thing.title === "" || thing.body === "";
     return (
       <Form
@@ -89,24 +97,34 @@ class MethodEditor extends Component {
           <Container className="detailed-case-component" fluid={true}>
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
               <div>
+                <div className="case-location">
+                  <p className="sub-heading">
+                    {intl.formatMessage({
+                      id: "country_picker"
+                    })}
+                  </p>
+                  <Geosuggest />
+                </div>
+                <div className="tags">
+                  <Field
+                    fieldName="tags"
+                    name="tags"
+                    thing={thing}
+                    type={Tags}
+                    property="tags"
+                    tags={thing.tags || []}
+                    intl={intl}
+                  />
+                </div>
                 {isQuick
                   ? <div>
                       <FlatButton onClick={onExpand} label="Do full version" />
                     </div>
                   : <div>
                       <p className="sub-heading">
-                        Tags
+                        Keywords
                       </p>
-                      <div className="tags">
-                        <Field
-                          fieldName="tags"
-                          name="tags"
-                          value={thing.tags}
-                          type={Tags}
-                          thing={thing}
-                          intl={intl}
-                        />
-                      </div>
+                      keyword picker
                       <p className="sub-heading">
                         Related Content
                       </p>
@@ -131,23 +149,16 @@ class MethodEditor extends Component {
                         </div>
                         <ChoicePropEditor
                           intl={intl}
-                          label="kind_of_influence"
-                          property="kind_of_influence"
-                          thing={thing}
-                        />
-                        <p className="sub-sub-heading">
-                          Specific Topic:
-                        </p>
-                        <div className="tags">
-                          {thing.issue}
-                        </div>
-                        <ChoicePropEditor
-                          intl={intl}
                           label="specific_topic"
                           property="specific_topic"
                           thing={thing}
                         />
-
+                        <ChoicePropEditor
+                          intl={intl}
+                          label="issue"
+                          property="issue"
+                          thing={thing}
+                        />
                         <ChoicePropEditor
                           intl={intl}
                           label="communication_mode"
@@ -180,38 +191,20 @@ class MethodEditor extends Component {
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="best_for"
-                          property="best_for"
+                          label="voting"
+                          property="voting"
+                          thing={thing}
+                        />
+                        <NumberPropEditor
+                          intl={intl}
+                          label="number_of_meeting_days"
+                          property="number_of_meeting_days"
                           thing={thing}
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="decision_method"
-                          property="decision_method"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="governance_contribution"
-                          property="governance_contribution"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_interdependency"
-                          property="issue_interdependency"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_polarization"
-                          property="issue_polarization"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_technical_complexity"
-                          property="issue_technical_complexity"
+                          label="targeted_participant_demographic"
+                          property="targeted_participant_demographic"
                           thing={thing}
                         />
                         <ChoicePropEditor
@@ -222,26 +215,26 @@ class MethodEditor extends Component {
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="method_of_interaction"
-                          property="method_of_interaction"
+                          label="targeted_participants_public_role"
+                          property="targeted_participants_public_role"
                           thing={thing}
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="public_interaction_method"
-                          property="public_interaction_method"
+                          label="targeted_audience"
+                          property="targeted_audience"
                           thing={thing}
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="method_of_interaction"
-                          property="method_of_interaction"
+                          label="participant_selection"
+                          property="participant_selection"
                           thing={thing}
                         />
                         <ChoicePropEditor
                           intl={intl}
-                          label="typical_funding_source"
-                          property="typical_funding_source"
+                          label="type_of_funding_entity"
+                          property="type_of_funding_entity"
                           thing={thing}
                         />
                         <ChoicePropEditor
@@ -254,6 +247,42 @@ class MethodEditor extends Component {
                           intl={intl}
                           label="typical_sponsoring_entity"
                           property="typical_sponsoring_entity"
+                          thing={thing}
+                        />
+                        <BooleanPropEditor
+                          intl={intl}
+                          label="ongoing"
+                          property="ongoing"
+                          thing={thing}
+                        />
+                        <DatePropEditor
+                          intl={intl}
+                          label="start_date"
+                          property="start_date"
+                          thing={thing}
+                        />
+                        <DatePropEditor
+                          intl={intl}
+                          label="end_date"
+                          property="end_date"
+                          thing={thing}
+                        />
+                        <NumberPropEditor
+                          intl={intl}
+                          label="total_number_of_participants"
+                          property="total_number_of_participants"
+                          thing={thing}
+                        />
+                        <TextPropEditor
+                          intl={intl}
+                          label="staff_type"
+                          property="staff_type"
+                          thing={thing}
+                        />
+                        <TextPropEditor
+                          intl={intl}
+                          label="who_else_supported_the_initiative"
+                          property="who_else_supported_the_initiative"
                           thing={thing}
                         />
                       </div>
@@ -310,8 +339,8 @@ class MethodEditor extends Component {
   }
 }
 
-MethodEditor.propTypes = {
+CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default MethodEditor;
+export default CaseEditor;

@@ -12,7 +12,7 @@ S3Upload.prototype.fileElement = null;
 S3Upload.prototype.files = null;
 
 S3Upload.prototype.onFinishS3Put = function(signResult, file) {
-  return console.log("base.onFinishS3Put()", signResult.publicUrl);
+  // return console.log("base.onFinishS3Put()", signResult.publicUrl);
 };
 
 S3Upload.prototype.preprocess = function(file, next) {
