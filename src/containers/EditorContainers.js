@@ -19,7 +19,7 @@ class EditorContainer extends Component {
     this.state = {
       isQuick: isQuick,
       errorMessage: null,
-      thing: { type: "unknown" }
+      thing: { type: this.props.type }
     };
   }
   getNouns() {
@@ -83,8 +83,8 @@ class EditorContainer extends Component {
       });
   }
 
-  onExpand() {
-    this.setState({ isQuick: false });
+  onExpand(thing) {
+    this.setState({ thing, isQuick: false });
   }
 
   clearError() {
@@ -115,15 +115,6 @@ class EditorContainer extends Component {
     let isNew = this.props.new || false;
     let isQuick = this.state.isQuick;
     let thing = this.state.thing;
-    if (isNew) {
-      thing = {
-        title: "",
-        body: "",
-        type: this.props.type
-      };
-      if (this.props.type === "case") {
-      }
-    }
     if (this.props.type === "case") {
       return (
         <CaseEditor

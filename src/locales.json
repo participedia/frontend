@@ -1043,7 +1043,8 @@
     "submit_organization": "Submit Organization",
     "incomplete_case": "Case needs title and body",
     "incomplete_method": "Method needs name and body",
-    "incomplete_organization": "Organization needs name and description"
+    "incomplete_organization": "Organization needs name and description",
+    "do_full_version": "Do full version"
   },
   "fr": {
     "chronological": "Plus Récentes"

@@ -112,7 +112,10 @@ class OrganizationEditor extends Component {
                 </div>
                 {isQuick
                   ? <div>
-                      <FlatButton onClick={onExpand} label="Do full version" />
+                      <FlatButton
+                        onClick={() => onExpand(this.state.thing)}
+                        label={intl.formatMessage({ id: "do_full_version" })}
+                      />
                     </div>
                   : <div>
                       <p className="sub-heading">
