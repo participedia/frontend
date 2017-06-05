@@ -1,4 +1,4 @@
-@import "../../UniversalStyles";
+@import "../UniversalStyles";
 .addCaseForm {
   padding: 3em;
 }
@@ -57,7 +57,7 @@
         height: 1.4rem;
         bottom: 8px;
         right:0;
-        background-image: url("../../img/trash.png");
+        background-image: url("../img/trash.png");
         background-repeat: no-repeat;
         background-size: 0.9rem;
         background-color: #fff;
@@ -71,7 +71,7 @@
         height: 1.4rem;
         bottom: 6px;
         right:0;
-        background-image: url("../../img/trash.png");
+        background-image: url("../img/trash.png");
         background-repeat: no-repeat;
         background-size: 0.9rem;
         background-color: #fff;
@@ -95,7 +95,7 @@
         }
         .checkbox {
           border: none;
-          background-image: url("../../img/star.png");
+          background-image: url("../img/star.png");
           background-repeat: no-repeat;
           background-size: 1.4rem;
         }

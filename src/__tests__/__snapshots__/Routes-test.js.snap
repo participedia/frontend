@@ -45,7 +45,7 @@ exports[`App 1`] = `
       </div>
       <a
         className="hidden-sm-down"
-        href="/quick-submit"
+        href="/new"
         onClick={[Function]}
       >
         <div
@@ -412,7 +412,7 @@ exports[`App 1`] = `
           </div>
         </div>
         <a
-          href="/quick-submit"
+          href="/new"
           onClick={[Function]}
         >
           <div
@@ -717,7 +717,7 @@ exports[`Searching for a word 1`] = `
       </div>
       <a
         className="hidden-sm-down"
-        href="/quick-submit"
+        href="/new"
         onClick={[Function]}
       >
         <div
@@ -1084,7 +1084,7 @@ exports[`Searching for a word 1`] = `
           </div>
         </div>
         <a
-          href="/quick-submit"
+          href="/new"
           onClick={[Function]}
         >
           <div

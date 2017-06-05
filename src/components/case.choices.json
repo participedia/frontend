@@ -430,7 +430,7 @@
     "trained_moderators",
     "social",
     "administrators",
-    "~15900_10000_per_meeting",
+    "15900_10000_per_meeting",
     "facilitators",
     "city_councillors",
     "experts_from_the_university_of_venice"
@@ -517,13 +517,5 @@
     "supermajority",
     "preferential",
     "consensus"
-  ],
-  "issue_interdependency": [],
-  "issue_polarization": [],
-  "issue_technical_complexity": [],
-  "method_of_interaction": [],
-  "typical_funding_source": [],
-  "governance_contribution": [],
-  "public_interaction_method": [],
-  "best_for": []
+  ]
 }

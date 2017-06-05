@@ -62,7 +62,6 @@ class AuthService {
         // localStorage.setItem("expires_at", expiresAt);
         this.setProfile(profile);
         let state = JSON.parse(authResult.state);
-        console.log(state);
         if (state && state.redirectURL) {
           history.replace(state.redirectURL);
         } else {
@@ -145,7 +144,6 @@ class AuthService {
 
     this.auth0.parseHash(window.location.hash, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log("AUTHRESULT", authResult);
         // Set the time that the access token will expire at
         let expiresAt = JSON.stringify(
           authResult.expiresIn * 1000 + new Date().getTime()

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import CaseEditor from "../components/CaseEditor/CaseEditor";
+import CaseEditor from "../components/CaseEditor";
 import MethodEditor from "../components/MethodEditor";
 import OrganizationEditor from "../components/OrganizationEditor";
 import api from "../utils/api";
 import myhistory from "../utils/history";
+import ErrorDialog from "../components/ErrorDialog";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {
@@ -17,7 +18,8 @@ class EditorContainer extends Component {
     let isQuick = props.new;
     this.state = {
       isQuick: isQuick,
-      thing: null
+      errorMessage: null,
+      thing: { type: this.props.type }
     };
   }
   getNouns() {
@@ -68,14 +70,25 @@ class EditorContainer extends Component {
     } else {
       saveFunc = api.saveThing;
     }
+    let comp = this;
 
-    saveFunc(thing.type, thing).then(function(thing) {
-      myhistory.push(`../../${thing.type}/${thing.id}`);
-    });
+    saveFunc(thing.type, thing)
+      .then(function(thing) {
+        // console.log("after saveFunc, thing:", thing);
+        myhistory.push(`../../${thing.type}/${thing.id}`);
+      })
+      .catch(function(exception) {
+        comp.setState({ errorMessage: JSON.stringify(exception) });
+        console.log("Got exception saving a thing", exception);
+      });
   }
 
-  onExpand() {
-    this.setState({ isQuick: false });
+  onExpand(thing) {
+    this.setState({ thing, isQuick: false });
+  }
+
+  clearError() {
+    this.setState({ errorMessage: null });
   }
 
   render() {
@@ -87,6 +100,14 @@ class EditorContainer extends Component {
     ) {
       return <div />;
     }
+    if (this.state.errorMessage) {
+      return (
+        <ErrorDialog
+          onDismissError={this.clearError.bind(this)}
+          errorMessage={this.state.errorMessage}
+        />
+      );
+    }
     let intl = this.props.intl;
     let cases = dict2list(this.state.cases);
     let methods = dict2list(this.state.methods);
@@ -94,15 +115,6 @@ class EditorContainer extends Component {
     let isNew = this.props.new || false;
     let isQuick = this.state.isQuick;
     let thing = this.state.thing;
-    if (isNew) {
-      thing = {
-        title: "",
-        body: "",
-        type: this.props.type
-      };
-      if (this.props.type === "case") {
-      }
-    }
     if (this.props.type === "case") {
       return (
         <CaseEditor

@@ -46,24 +46,28 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               className="tags"
             >
               <a
+                className="tag"
                 href="/search?tag=civic%20engagement"
                 onClick={[Function]}
               >
                 civic engagement
               </a>
               <a
+                className="tag"
                 href="/search?tag=digital%20participation"
                 onClick={[Function]}
               >
                 digital participation
               </a>
               <a
+                className="tag"
                 href="/search?tag=planning"
                 onClick={[Function]}
               >
                 planning
               </a>
               <a
+                className="tag"
                 href="/search?tag=public"
                 onClick={[Function]}
               >
@@ -96,7 +100,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
+                  role="button"
                   style={Object {}}
+                  tabIndex="0"
                 >
                   <img
                     alt=""
@@ -108,7 +114,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
+                  role="button"
                   style={Object {}}
+                  tabIndex="0"
                 >
                   <img
                     alt=""
@@ -183,7 +191,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
@@ -193,7 +203,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
@@ -203,7 +215,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--linkedin"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
