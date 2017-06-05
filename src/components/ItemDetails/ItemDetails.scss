@@ -110,6 +110,9 @@ section.image-gallery {
       display:inline;
       margin-left:5px;
     }
+    .sub-sub-heading + div.tags {
+      display: block;
+    }
     
     .sub-sub-heading + div a {
       color:$black;
@@ -121,12 +124,14 @@ section.image-gallery {
     }
 
     .tags {
-      a {
+      a.tag {
+        display: inline-block;
         font-size: 14px;
         color: #888;
         font-weight: 400;
         line-height: 18px;
         margin-bottom: 10px;
+        padding-right: 1ex;
       }
     }
 
