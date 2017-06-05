@@ -97,8 +97,14 @@ class OrganizationEditor extends Component {
                   </p>
                   <Geosuggest />
                   <p className="sub-heading">
-                    Tags
+                    {intl.formatMessage({ id: "tags_title" })}
                   </p>
+                  <div className="suggest_tag">
+                    {intl.formatMessage({ id: "suggest_tag" })}
+                  </div>
+                  <div className="suggest_tag">
+                    {intl.formatMessage({ id: "suggest_tag" })}
+                  </div>
                   <div className="tags">
                     <Field
                       fieldName="tags"

@@ -868,13 +868,13 @@
     "featured_searches": "Featured Searches",
     "mention_participatory_budgeting": "Mention \"Participatory Budgeting\"",
     "tag_infrastructure": "Tagged as: Infrastructure",
-    "case_title_label": "Title of case",
+    "case_title_label": "Title",
     "case_title_placeholder": "Title of case [limited word count]",
     "case_body_title": "Case Description",
-    "method_title_label": "Name of method",
+    "method_title_label": "Name",
     "method_title_placeholder": "Name of method [limited word count]",
     "method_body_title": "Method description",
-    "organization_title_label": "Name of organization",
+    "organization_title_label": "Name",
     "organization_title_placeholder": "Name of organization [limited word count]",
     "organization_body_title": "Description of the organization",
     "tags_title": "Tags",
@@ -1044,7 +1044,9 @@
     "incomplete_case": "Case needs title and body",
     "incomplete_method": "Method needs name and body",
     "incomplete_organization": "Organization needs name and description",
-    "do_full_version": "Do full version"
+    "do_full_version": "Do full version",
+    "suggest_tag": "Add tags to make your submission easy to find (e.g. OIDP2017)",
+    "location_placeholder": "Type to search for known location"
   },
   "fr": {
     "chronological": "Plus Récentes"
