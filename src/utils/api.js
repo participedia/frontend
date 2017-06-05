@@ -125,7 +125,7 @@ class API {
       })
       .catch(function(error) {
         console.error(
-          `There has been a problem with saving the case: (${url}) ${error}`
+          `There has been a problem with saving the ${thingType}: (${url}) ${error}`
         );
         throw error;
       });
@@ -133,22 +133,27 @@ class API {
 
   saveThing = function(thingType, obj) {
     let url = APIURL + `/${thingType}/${obj.id}`;
-    return signedFetch(url, "PUT", obj)
-      .then(response => response.json())
-      .then(function(response) {
-        if (!response.ok) {
-          console.log("Error doing saveThing's signedFetch: ", response);
-          throw response.error;
-        }
-        return response.json();
-      })
-      .then(json => obj)
-      .catch(function(error) {
-        console.error(
-          `There has been a problem with saving the case: (${url}) ${error}`
-        );
-        throw error;
-      });
+    return (
+      signedFetch(url, "PUT", obj)
+        .then(response => response.json())
+        .then(function(response) {
+          if (!response.OK) {
+            console.log("Error doing saveThing's signedFetch: ", response);
+            throw response.error;
+          }
+          // console.log("RESPONSE", response);
+          return response.data;
+        })
+        // .then(json => obj)
+        .catch(function(error) {
+          if (error) {
+            console.error(
+              `There has been a problem with saving the ${thingType}: (${url}) ${error}`
+            );
+            throw error;
+          }
+        })
+    );
   };
 
   fetchMethodById = function(methodId) {
