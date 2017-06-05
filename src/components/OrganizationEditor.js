@@ -78,6 +78,7 @@ class OrganizationEditor extends Component {
       />
     );
 
+    let incomplete = thing.title === "" || thing.body === "";
     return (
       <Form
         onSubmit={onSubmit}
@@ -180,7 +181,18 @@ class OrganizationEditor extends Component {
               >
                 <FileUpload />
               </FloatingActionButton>
-              <button type="submit">Submit</button>
+              <button
+                className="incomplete-warning"
+                disabled={incomplete}
+                type="submit"
+              >
+                {intl.formatMessage({ id: "submit_" + thing.type })}
+              </button>
+              {incomplete
+                ? <span className="incomplete">
+                    {intl.formatMessage({ id: "incomplete_" + thing.type })}
+                  </span>
+                : null}
             </Col>
           </Container>
         </div>

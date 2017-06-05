@@ -1037,7 +1037,13 @@
     "for_profit": "For Profit",
     "government": "Government",
     "nonprofit_or_non_governmental": "Non-Profit or Non Governmental",
-    "university_or_research": "University or Research"
+    "university_or_research": "University or Research",
+    "submit_case": "Submit Case",
+    "submit_method": "Submit Method",
+    "submit_organization": "Submit Organization",
+    "incomplete_case": "Case needs title and body",
+    "incomplete_method": "Method needs name and body",
+    "incomplete_organization": "Organization needs name and description"
   },
   "fr": {
     "chronological": "Plus Récentes"
