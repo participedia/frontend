@@ -130,14 +130,14 @@ export class SearchResultsView extends React.Component {
             {formatMessage({ id: "searching_for" })}
             &nbsp;
             {query}
-            {<div className="spinner"><ChasingDots size={50} /></div>}
+            {<div className="spinner"></div>}
           </h3>
         </div>
       );
     } else {
-      let description = `Results for`;
+      let description = `for`;
       if (searching) {
-        description = "Results for";
+        description = "for";
       }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];
@@ -157,19 +157,16 @@ export class SearchResultsView extends React.Component {
         <div className="search-results">
           <div className="search-description">
             {searchTerm
-              ? <div>
-                  {description} <div className="search-term">{searchTerm}</div>
+              ? <div className="search-description-text">
+                  {resultsCount}&nbsp;
+                  {this.props.intl.formatMessage({
+                    id: "result" + (resultsCount === 1 ? "" : "s")
+                  })} {description} <div className="search-term">{searchTerm}</div>
                 </div>
               : <div />}
             <FilterArray data={filters} />
           </div>
           <div className="result-count">
-            <p>
-              {resultsCount}&nbsp;
-              {this.props.intl.formatMessage({
-                id: "result" + (resultsCount === 1 ? "" : "s")
-              })}
-            </p>
             <div className="results-box">
               {searchresults}
             </div>
