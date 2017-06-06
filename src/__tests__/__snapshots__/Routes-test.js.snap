@@ -402,11 +402,7 @@ exports[`App 1`] = `
                 
                 <div
                   className="spinner"
-                >
-                  <ChasingDots
-                    size={50}
-                  />
-                </div>
+                />
               </h3>
             </div>
           </div>
@@ -1074,11 +1070,7 @@ exports[`Searching for a word 1`] = `
                 
                 <div
                   className="spinner"
-                >
-                  <ChasingDots
-                    size={50}
-                  />
-                </div>
+                />
               </h3>
             </div>
           </div>
