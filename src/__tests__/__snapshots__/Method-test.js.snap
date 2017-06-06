@@ -81,7 +81,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
+                  role="button"
                   style={Object {}}
+                  tabIndex="0"
                 >
                   <img
                     alt=""
@@ -93,7 +95,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
+                  role="button"
                   style={Object {}}
+                  tabIndex="0"
                 >
                   <img
                     alt=""
@@ -176,7 +180,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
@@ -186,7 +192,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
@@ -196,7 +204,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--linkedin"
               onClick={[Function]}
+              role="button"
               style={Object {}}
+              tabIndex="0"
             >
               <img
                 alt=""
