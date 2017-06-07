@@ -16,7 +16,6 @@ import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
-import { ChasingDots } from "better-react-spinkit";
 
 class LinkToSearch extends React.Component {
   render() {
@@ -130,7 +129,7 @@ export class SearchResultsView extends React.Component {
             {formatMessage({ id: "searching_for" })}
             &nbsp;
             {query}
-            {<div className="spinner"></div>}
+            {<div className="spinner" />}
           </h3>
         </div>
       );
@@ -161,7 +160,9 @@ export class SearchResultsView extends React.Component {
                   {resultsCount}&nbsp;
                   {this.props.intl.formatMessage({
                     id: "result" + (resultsCount === 1 ? "" : "s")
-                  })} {description} <div className="search-term">{searchTerm}</div>
+                  })}
+                  {" "}
+                  {description} <div className="search-term">{searchTerm}</div>
                 </div>
               : <div />}
             <FilterArray data={filters} />
@@ -181,7 +182,7 @@ export class SearchResultsView extends React.Component {
             <div
               className={
                 "sorting-options" +
-                  (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
+                (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
               }
             >
               <p
