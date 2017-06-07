@@ -126,7 +126,7 @@ class AuthService {
     //   scope: SCOPE,
     //   state: JSON.stringify({ redirectURL })
     // });
-    let state = { pathname: redirectURL };
+    let state = { redirectURL };
 
     this.lock.show({
       auth: {

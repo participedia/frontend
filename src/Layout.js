@@ -29,8 +29,7 @@ import {
   NewMethodContainer,
   NewOrganizationContainer
 } from "./containers/EditorContainers";
-import QuickSubmitPicker
-  from "./components/QuickSubmitPicker/QuickSubmitPicker";
+import QuickSubmitPicker from "./components/QuickSubmitPicker/QuickSubmitPicker";
 
 /* eslint-disable no-unused-vars */
 import globalStyles from "./global.css";
@@ -39,7 +38,6 @@ import "./Layout.css";
 import { injectIntl, intlShape } from "react-intl";
 import menuIcon from "./img/menu-icon.png";
 import ppLogo from "./img/pp-logo.png";
-// import myhistory from "./utils/history";
 
 import "./UniversalStyles.css";
 
@@ -91,7 +89,7 @@ const EnsureAuth = props =>
   authService.isAuthenticated()
     ? <div />
     : <div>Must be logged in</div> &&
-        authService.login(props.history.location.pathname);
+        authService.login(window.location.pathname);
 
 class Routes extends React.Component {
   render() {
@@ -131,9 +129,8 @@ class Routes extends React.Component {
         />
         <Route
           path="/profile/edit"
-          component={props => (
-            <ProfileEditor intl={intl} auth={authService} {...props} />
-          )}
+          component={props =>
+            <ProfileEditor intl={intl} auth={authService} {...props} />}
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
@@ -151,74 +148,65 @@ class Routes extends React.Component {
         <Route
           exact
           path="/new/case"
-          component={props => (
-            <NewCaseContainer auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <NewCaseContainer auth={authService} intl={intl} {...props} />}
         />
         <Route
           exact
           path="/new/method"
-          component={props => (
-            <NewMethodContainer auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <NewMethodContainer auth={authService} intl={intl} {...props} />}
         />
         <Route
           exact
           path="/new/organization"
-          component={props => (
+          component={props =>
             <NewOrganizationContainer
               auth={authService}
               intl={intl}
               {...props}
-            />
-          )}
+            />}
         />
         <Route path="/research" component={Research} />
         <Route
           path="/case/:nodeID"
           exact
-          component={props => (
-            <Case auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <Case auth={authService} intl={intl} {...props} />}
         />
         <Route path="/case/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/case/:nodeID/edit"
-          component={props => (
-            <CaseEditorContainer auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <CaseEditorContainer auth={authService} intl={intl} {...props} />}
         />
         <Route
           exact
           path="/method/:nodeID"
-          component={props => (
-            <Method auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <Method auth={authService} intl={intl} {...props} />}
         />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/method/:nodeID/edit"
-          component={props => (
-            <MethodEditorContainer auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <MethodEditorContainer auth={authService} intl={intl} {...props} />}
         />
         <Route
           exact
           path="/organization/:nodeID"
-          component={props => (
-            <Organization auth={authService} intl={intl} {...props} />
-          )}
+          component={props =>
+            <Organization auth={authService} intl={intl} {...props} />}
         />
         <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/organization/:nodeID/edit"
-          component={props => (
+          component={props =>
             <OrganizationEditorContainer
               auth={authService}
               intl={intl}
               {...props}
-            />
-          )}
+            />}
         />
         <Route path="/users/:id" component={ProfileLoader} />
       </div>
