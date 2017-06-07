@@ -16,6 +16,46 @@
   opacity: 1;
 }
 
+
+.sub-heading {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 40px;
+  margin-bottom: 10px;
+  margin-top:40px;
+  padding-top: 20px;
+  border-top:1px solid #ccc;
+}
+
+
+.sub-sub-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: $black;
+  line-height: 18px;
+  margin-bottom: 5px;
+  margin-top: 14px;
+  padding-top:14px;
+  display:inline-block;
+}
+.sub-sub-heading + div {
+  display:inline;
+  margin-left:5px;
+}
+.sub-sub-heading + div.tags {
+  display: block;
+}
+
+.sub-sub-heading + div a {
+  color:$black;
+  font-size:16px;
+  position:relative;
+  &:hover {
+    color:$interactive-color;
+  }
+}
+
+
 .case-location {
   .geosuggest__input-wrapper, .geosuggest__suggests {
     width: 100%;

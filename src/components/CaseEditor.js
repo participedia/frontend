@@ -17,7 +17,7 @@ import {
   SimpleRelatedOrganizations,
   Tags
 } from "./RelatedEditors";
-import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 
 import {
   TextPropEditor,
@@ -26,6 +26,10 @@ import {
   DatePropEditor,
   ChoicePropEditor
 } from "./PropEditors";
+
+const buttonStyle = {
+  margin: "1em"
+};
 
 class CaseEditor extends Component {
   constructor(props) {
@@ -95,45 +99,93 @@ class CaseEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
-            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
+            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
+            <Col md="8" xs="12" className="main-area">
+              <div className="case-box">
+                <h2 className="category">
+                  {type}
+                </h2>
+                <h2 className="case-title">
+                  {thing.title}
+                </h2>
+                <ImageListEditor auth={this.props.auth} thing={thing} />
+                <div className="title-edit">
+                  <label htmlFor="title">
+                    {intl.formatMessage({ id: thing.type + "_title_label" })}
+                  </label>
+                </div>
+                <Field
+                  fieldName="title"
+                  name="title"
+                  type={Text}
+                  placeholder={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}
+                  fullWidth={true}
+                />
+                <div>
+                  <label htmlFor="body_en">
+                    {intl.formatMessage({ id: thing.type + "_body_title" })}
+                  </label>
+                </div>
+                <Field fieldName="body" type={LazyBodyEditor} />
+              </div>
               <div>
-                <div className="case-location">
-                  <p className="sub-heading">
-                    {intl.formatMessage({
-                      id: "country_picker"
-                    })}
-                  </p>
-                  <Geosuggest
-                    placeholder={intl.formatMessage({
-                      id: "location_placeholder"
-                    })}
-                  />
-                </div>
-                <p className="sub-heading">
-                  {intl.formatMessage({ id: "tags_title" })}
-                </p>
-                <div className="suggest_tag">
-                  {intl.formatMessage({ id: "suggest_tag" })}
-                </div>
-                <div className="tags">
-                  <Field
-                    fieldName="tags"
-                    name="tags"
-                    thing={thing}
-                    type={Tags}
-                    property="tags"
-                    tags={thing.tags || []}
-                    intl={intl}
-                  />
-                </div>
                 {isQuick
                   ? <div>
-                      <FlatButton
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
+                      <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
+                        style={buttonStyle}
                         label={intl.formatMessage({ id: "do_full_version" })}
                       />
                     </div>
                   : <div>
+                      <div className="case-location">
+                        <p className="sub-heading">
+                          {intl.formatMessage({
+                            id: "country_picker"
+                          })}
+                        </p>
+                        <Geosuggest
+                          placeholder={intl.formatMessage({
+                            id: "location_placeholder"
+                          })}
+                        />
+                      </div>
+                      <p className="sub-heading">
+                        {intl.formatMessage({ id: "tags_title" })}
+                      </p>
+                      <div className="suggest_tag">
+                        {intl.formatMessage({ id: "suggest_tag" })}
+                      </div>
+                      <div className="tags">
+                        <Field
+                          fieldName="tags"
+                          name="tags"
+                          thing={thing}
+                          type={Tags}
+                          property="tags"
+                          tags={thing.tags || []}
+                          intl={intl}
+                        />
+                      </div>
                       <p className="sub-heading">
                         Keywords
                       </p>
@@ -144,19 +196,21 @@ class CaseEditor extends Component {
                       <div className="related-content">
                         <div className="pb-1">
                           <h5>
-                            {intl.formatMessage({ id: "cases" })}
+                            {intl.formatMessage({ id: "related_cases" })}
                           </h5>
                           {related_cases}
                         </div>
                         <div className="pb-1">
                           <h5>
-                            {intl.formatMessage({ id: "methods" })}
+                            {intl.formatMessage({ id: "related_methods" })}
                           </h5>
                           {related_methods}
                         </div>
                         <div className="pb-1">
                           <h5>
-                            {intl.formatMessage({ id: "organizations" })}
+                            {intl.formatMessage({
+                              id: "related_organizations"
+                            })}
                           </h5>
                           {related_organizations}
                         </div>
@@ -299,51 +353,26 @@ class CaseEditor extends Component {
                           thing={thing}
                         />
                       </div>
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
                     </div>}
               </div>
-            </Col>
-            <Col md="8" xs="12" className="main-area">
-              <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
-                <ImageListEditor auth={this.props.auth} thing={thing} />
-                <div className="title-edit">
-                  <label htmlFor="title">
-                    {intl.formatMessage({ id: thing.type + "_title_label" })}
-                  </label>
-                </div>
-                <Field
-                  fieldName="title"
-                  name="title"
-                  type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
-                  fullWidth={true}
-                />
-                <div>
-                  <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
-                  </label>
-                </div>
-                <Field fieldName="body" type={LazyBodyEditor} />
-              </div>
-              <button
-                className="incomplete-warning"
-                disabled={incomplete}
-                type="submit"
-              >
-                {intl.formatMessage({ id: "submit_" + thing.type })}
-              </button>
-              {incomplete
-                ? <span className="incomplete">
-                    {intl.formatMessage({ id: "incomplete_" + thing.type })}
-                  </span>
-                : null}
+
             </Col>
           </Container>
         </div>

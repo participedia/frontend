@@ -8,7 +8,6 @@ import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
-
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import {
@@ -17,7 +16,11 @@ import {
   SimpleRelatedOrganizations,
   Tags
 } from "./RelatedEditors";
-import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
+
+const buttonStyle = {
+  margin: "1em"
+};
 
 class OrganizationEditor extends Component {
   constructor(props) {
@@ -87,73 +90,7 @@ class OrganizationEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
-            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-              <div>
-                <div className="case-location">
-                  <p className="sub-heading">
-                    {intl.formatMessage({
-                      id: "country_picker"
-                    })}
-                  </p>
-                  <Geosuggest />
-                  <p className="sub-heading">
-                    {intl.formatMessage({ id: "tags_title" })}
-                  </p>
-                  <div className="suggest_tag">
-                    {intl.formatMessage({ id: "suggest_tag" })}
-                  </div>
-                  <div className="suggest_tag">
-                    {intl.formatMessage({ id: "suggest_tag" })}
-                  </div>
-                  <div className="tags">
-                    <Field
-                      fieldName="tags"
-                      name="tags"
-                      value={thing.tags}
-                      type={Tags}
-                      thing={thing}
-                      intl={intl}
-                    />
-                  </div>
-                </div>
-                {isQuick
-                  ? <div>
-                      <FlatButton
-                        onClick={() => onExpand(this.state.thing)}
-                        label={intl.formatMessage({ id: "do_full_version" })}
-                      />
-                    </div>
-                  : <div>
-                      <p className="sub-heading">
-                        Keywords
-                      </p>
-                      keyword picker
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
-                      <div className="related-content">
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "cases" })}
-                          </h5>
-                          {related_cases}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "methods" })}
-                          </h5>
-                          {related_methods}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "organizations" })}
-                          </h5>
-                          {related_organizations}
-                        </div>
-                      </div>
-                    </div>}
-              </div>
-            </Col>
+            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
                 <h2 className="category">
@@ -184,18 +121,96 @@ class OrganizationEditor extends Component {
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
               </div>
-              <button
-                className="incomplete-warning"
-                disabled={incomplete}
-                type="submit"
-              >
-                {intl.formatMessage({ id: "submit_" + thing.type })}
-              </button>
-              {incomplete
-                ? <span className="incomplete">
-                    {intl.formatMessage({ id: "incomplete_" + thing.type })}
-                  </span>
-                : null}
+              <div>
+                <div className="case-location">
+                  <p className="sub-heading">
+                    {intl.formatMessage({
+                      id: "country_picker"
+                    })}
+                  </p>
+                  <Geosuggest />
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "tags_title" })}
+                  </p>
+                  <div className="suggest_tag">
+                    {intl.formatMessage({ id: "suggest_tag" })}
+                  </div>
+                  <div className="tags">
+                    <Field
+                      fieldName="tags"
+                      name="tags"
+                      value={thing.tags}
+                      type={Tags}
+                      thing={thing}
+                      intl={intl}
+                    />
+                  </div>
+                </div>
+                {isQuick
+                  ? <div>
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
+                      <RaisedButton
+                        onClick={() => onExpand(this.state.thing)}
+                        label={intl.formatMessage({ id: "do_full_version" })}
+                      />
+                    </div>
+                  : <div>
+                      <p className="sub-heading">
+                        Keywords
+                      </p>
+                      keyword picker
+                      <p className="sub-heading">
+                        Related Content
+                      </p>
+                      <div className="related-content">
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_cases" })}
+                        </div>
+                        {related_cases}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_methods" })}
+                        </div>
+                        {related_methods}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_organizations" })}
+                        </div>
+                        {related_organizations}
+                      </div>
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
+                    </div>}
+              </div>
             </Col>
           </Container>
         </div>
