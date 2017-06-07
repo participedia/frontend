@@ -16,9 +16,23 @@ class Profile extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired
   };
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
 
   render() {
-    const profile = authService.getProfile();
+    const profile = this.state.profile;
+    if (profile === {}) {
+      return <div />;
+    }
     const { user } = this.props;
     let data = [
       { type: "case", hits: user.cases },
@@ -41,13 +55,13 @@ class Profile extends Component {
     if (authored.length === 0) {
       authored = <div className="nothing-yet">Nothing yet</div>;
     }
-    let bookmarked = user.bookmarks.map((hit, index) => (
+    let bookmarked = user.bookmarks.map((hit, index) =>
       <SearchHit
         selectedViewType="grid"
         key={"bookmarked-" + index}
         record={hit}
       />
-    ));
+    );
     if (bookmarked.length === 0) {
       bookmarked = <div className="nothing-yet">Nothing yet</div>;
     }
