@@ -129,6 +129,35 @@ class CaseEditor extends Component {
                   </label>
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
+                <div className="case-location">
+                  <p className="sub-heading">
+                    {intl.formatMessage({
+                      id: "country_picker"
+                    })}
+                  </p>
+                  <Geosuggest
+                    placeholder={intl.formatMessage({
+                      id: "location_placeholder"
+                    })}
+                  />
+                </div>
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "tags_title" })}
+                </p>
+                <div className="suggest_tag">
+                  {intl.formatMessage({ id: "suggest_tag" })}
+                </div>
+                <div className="tags">
+                  <Field
+                    fieldName="tags"
+                    name="tags"
+                    thing={thing}
+                    type={Tags}
+                    property="tags"
+                    tags={thing.tags || []}
+                    intl={intl}
+                  />
+                </div>
                 <ChoicePropEditor
                   intl={intl}
                   label="issue"
@@ -163,35 +192,6 @@ class CaseEditor extends Component {
                       />
                     </div>
                   : <div>
-                      <div className="case-location">
-                        <p className="sub-heading">
-                          {intl.formatMessage({
-                            id: "country_picker"
-                          })}
-                        </p>
-                        <Geosuggest
-                          placeholder={intl.formatMessage({
-                            id: "location_placeholder"
-                          })}
-                        />
-                      </div>
-                      <p className="sub-heading">
-                        {intl.formatMessage({ id: "tags_title" })}
-                      </p>
-                      <div className="suggest_tag">
-                        {intl.formatMessage({ id: "suggest_tag" })}
-                      </div>
-                      <div className="tags">
-                        <Field
-                          fieldName="tags"
-                          name="tags"
-                          thing={thing}
-                          type={Tags}
-                          property="tags"
-                          tags={thing.tags || []}
-                          intl={intl}
-                        />
-                      </div>
                       <p className="sub-heading">
                         Keywords
                       </p>
