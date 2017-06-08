@@ -129,6 +129,12 @@ class CaseEditor extends Component {
                   </label>
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
+                <ChoicePropEditor
+                  intl={intl}
+                  label="issue"
+                  property="issue"
+                  thing={thing}
+                />
               </div>
               <div>
                 {isQuick
@@ -218,12 +224,6 @@ class CaseEditor extends Component {
                           intl={intl}
                           label="specific_topic"
                           property="specific_topic"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue"
-                          property="issue"
                           thing={thing}
                         />
                         <ChoicePropEditor
