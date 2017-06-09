@@ -192,34 +192,7 @@ class CaseEditor extends Component {
                       />
                     </div>
                   : <div>
-                      <p className="sub-heading">
-                        Keywords
-                      </p>
-                      keyword picker
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
                       <div className="related-content">
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "related_cases" })}
-                          </h5>
-                          {related_cases}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "related_methods" })}
-                          </h5>
-                          {related_methods}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({
-                              id: "related_organizations"
-                            })}
-                          </h5>
-                          {related_organizations}
-                        </div>
                         <ChoicePropEditor
                           intl={intl}
                           label="specific_topic"
@@ -352,6 +325,29 @@ class CaseEditor extends Component {
                           property="who_else_supported_the_initiative"
                           thing={thing}
                         />
+                        <p className="sub-heading">
+                          Related Content
+                        </p>
+                        <div className="pb-1">
+                          <h5>
+                            {intl.formatMessage({ id: "related_cases" })}
+                          </h5>
+                          {related_cases}
+                        </div>
+                        <div className="pb-1">
+                          <h5>
+                            {intl.formatMessage({ id: "related_methods" })}
+                          </h5>
+                          {related_methods}
+                        </div>
+                        <div className="pb-1">
+                          <h5>
+                            {intl.formatMessage({
+                              id: "related_organizations"
+                            })}
+                          </h5>
+                          {related_organizations}
+                        </div>
                       </div>
                       <RaisedButton
                         className="incomplete-warning"
