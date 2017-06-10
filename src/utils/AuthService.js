@@ -5,7 +5,7 @@ import history from "./history";
 
 // AUTH_v7
 import Auth0Lock from "auth0-lock";
-import ppLogo from "../img/pp-logo-dark.png";
+import ppLogo from "../img/pp-logo.png";
 
 // const AUTH_VERSION = 7; // or 8
 
