@@ -285,21 +285,21 @@ exports[`App 1`] = `
                   className="unselected"
                   onClick={[Function]}
                 >
-                  cases
+                  Cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  methods
+                  Methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  organizations
+                  Organizations
                 </div>
               </div>
               <select
@@ -320,17 +320,17 @@ exports[`App 1`] = `
                 <option
                   value="Cases"
                 >
-                  cases
+                  Cases
                 </option>
                 <option
                   value="Methods"
                 >
-                  methods
+                  Methods
                 </option>
                 <option
                   value="Organizations"
                 >
-                  organizations
+                  Organizations
                 </option>
               </select>
               <div
@@ -402,11 +402,7 @@ exports[`App 1`] = `
                 
                 <div
                   className="spinner"
-                >
-                  <ChasingDots
-                    size={50}
-                  />
-                </div>
+                />
               </h3>
             </div>
           </div>
@@ -571,19 +567,19 @@ exports[`App 1`] = `
               href="/cases"
               onClick={[Function]}
             >
-              cases
+              Cases
             </a>
             <a
               href="/methods"
               onClick={[Function]}
             >
-              methods
+              Methods
             </a>
             <a
               href="/organizations"
               onClick={[Function]}
             >
-              organizations
+              Organizations
             </a>
           </div>
           <div
@@ -957,21 +953,21 @@ exports[`Searching for a word 1`] = `
                   className="unselected"
                   onClick={[Function]}
                 >
-                  cases
+                  Cases
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  methods
+                  Methods
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  organizations
+                  Organizations
                 </div>
               </div>
               <select
@@ -992,17 +988,17 @@ exports[`Searching for a word 1`] = `
                 <option
                   value="Cases"
                 >
-                  cases
+                  Cases
                 </option>
                 <option
                   value="Methods"
                 >
-                  methods
+                  Methods
                 </option>
                 <option
                   value="Organizations"
                 >
-                  organizations
+                  Organizations
                 </option>
               </select>
               <div
@@ -1074,11 +1070,7 @@ exports[`Searching for a word 1`] = `
                 
                 <div
                   className="spinner"
-                >
-                  <ChasingDots
-                    size={50}
-                  />
-                </div>
+                />
               </h3>
             </div>
           </div>
@@ -1243,19 +1235,19 @@ exports[`Searching for a word 1`] = `
               href="/cases"
               onClick={[Function]}
             >
-              cases
+              Cases
             </a>
             <a
               href="/methods"
               onClick={[Function]}
             >
-              methods
+              Methods
             </a>
             <a
               href="/organizations"
               onClick={[Function]}
             >
-              organizations
+              Organizations
             </a>
           </div>
           <div

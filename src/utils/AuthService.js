@@ -54,9 +54,8 @@ class AuthService {
     // AUTH_VERSION=7
     this.lock.on("authenticated", authResult => {
       this.lock.getProfile(authResult.idToken, (error, profile) => {
-        // let expiresAt = JSON.stringify(
-        //   authResult.expiresIn * 1000 + new Date().getTime()
-        // );
+        let expiresAt = JSON.stringify(authResult.idTokenPayload.exp * 1000);
+        localStorage.setItem("expires_at", expiresAt);
         localStorage.setItem("access_token", authResult.accessToken);
         localStorage.setItem("id_token", authResult.idToken);
         // localStorage.setItem("expires_at", expiresAt);
@@ -126,7 +125,7 @@ class AuthService {
     //   scope: SCOPE,
     //   state: JSON.stringify({ redirectURL })
     // });
-    let state = { pathname: redirectURL };
+    let state = { redirectURL };
 
     this.lock.show({
       auth: {
@@ -148,6 +147,7 @@ class AuthService {
         let expiresAt = JSON.stringify(
           authResult.expiresIn * 1000 + new Date().getTime()
         );
+        console.log("epxiresAt", expiresAt);
         localStorage.setItem("access_token", authResult.accessToken);
         localStorage.setItem("id_token", authResult.idToken);
         localStorage.setItem("expires_at", expiresAt);
@@ -178,13 +178,12 @@ class AuthService {
   }
 
   isAuthenticated() {
-    // Check whether the current time is past the
-    // access token's expiry time
-    // AUTH_VERSION === 7
-    return localStorage.getItem("id_token") ? true : false;
-    // AUTH_VERSION === 8
-    // let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
-    // return new Date().getTime() < expiresAt;
+    if (!localStorage.getItem("id_token")) {
+      return false;
+    }
+    // we may have a token but it could be expired
+    let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    return new Date().getTime() < expiresAt;
   }
 }
 

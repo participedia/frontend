@@ -67,6 +67,7 @@ class NumberPropEditor extends React.Component {
         <TextField
           onChange={onChange}
           value={this.state.value}
+          fullWidth={true}
           name={property}
         />
       </div>
@@ -107,6 +108,7 @@ class TextPropEditor extends React.Component {
         <TextField
           onChange={onChange}
           value={this.state.value}
+          fullWidth={true}
           name={property}
         />
       </div>
@@ -124,7 +126,7 @@ TextPropEditor.propTypes = {
 // XXX do L10N work, see http://www.material-ui.com/#/components/date-picker
 
 // XXX check this one by hand.
-function DatePropEditor({ label, property, thing, intl }) {
+function DatePropEditor({ label, property, thing, intl, onChange }) {
   return (
     <div>
       <p className="sub-sub-heading">
@@ -132,6 +134,8 @@ function DatePropEditor({ label, property, thing, intl }) {
       </p>
       <DatePicker
         value={thing[property] ? thing[property] : null}
+        onChange={onChange}
+        fullWidth={true}
         name={property}
       />
     </div>
@@ -173,9 +177,9 @@ class ChoicePropEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let { label, property, intl } = this.props;
-    let choices = getChoices(property).map(v => (
+    let choices = getChoices(property).map(v =>
       <MenuItem value={v} key={v} primaryText={intl.formatMessage({ id: v })} />
-    ));
+    );
     return (
       <div>
         <p className="sub-sub-heading">
@@ -183,6 +187,7 @@ class ChoicePropEditor extends React.Component {
         </p>
         <SelectField
           name={property}
+          fullWidth={true}
           onChange={onChange}
           value={this.state.value}
         >

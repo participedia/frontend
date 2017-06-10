@@ -1,6 +1,7 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import Profile from "../components/Profile";
 import api from "../utils/api";
+import authService from "../utils/AuthService";
 
 export default class ProfileLoader extends Component {
   constructor(props) {
@@ -14,7 +15,9 @@ export default class ProfileLoader extends Component {
     let component = this;
     let userId = null;
     if (
-      this.props.match && this.props.match.params && this.props.match.params.id
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
     ) {
       userId = this.props.match.params.id;
     }
@@ -30,7 +33,7 @@ export default class ProfileLoader extends Component {
     if (this.state.error) {
       return <div>{this.state.error.message}</div>;
     } else if (this.state.user) {
-      return <Profile user={this.state.user} />;
+      return <Profile auth={authService} user={this.state.user} />;
     } else {
       return <div>Loading user data.</div>;
     }

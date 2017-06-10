@@ -16,9 +16,13 @@ import {
   SimpleRelatedOrganizations,
   Tags
 } from "./RelatedEditors";
-import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 
 import { BooleanPropEditor, ChoicePropEditor } from "./PropEditors";
+
+const buttonStyle = {
+  margin: "1em"
+};
 
 class MethodEditor extends Component {
   constructor(props) {
@@ -87,185 +91,7 @@ class MethodEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
-            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
-              <div>
-                {isQuick
-                  ? <div>
-                      <FlatButton
-                        onClick={() => onExpand(this.state.thing)}
-                        label={intl.formatMessage({ id: "do_full_version" })}
-                      />
-                    </div>
-                  : <div>
-                      <p className="sub-heading">
-                        {intl.formatMessage({ id: "tags_title" })}
-                      </p>
-                      <div className="suggest_tag">
-                        {intl.formatMessage({ id: "suggest_tag" })}
-                      </div>
-                      <div className="tags">
-                        <Field
-                          fieldName="tags"
-                          name="tags"
-                          value={thing.tags}
-                          type={Tags}
-                          thing={thing}
-                          intl={intl}
-                        />
-                      </div>
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
-                      <div className="related-content">
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "cases" })}
-                          </h5>
-                          {related_cases}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "methods" })}
-                          </h5>
-                          {related_methods}
-                        </div>
-                        <div className="pb-1">
-                          <h5>
-                            {intl.formatMessage({ id: "organizations" })}
-                          </h5>
-                          {related_organizations}
-                        </div>
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="kind_of_influence"
-                          property="kind_of_influence"
-                          thing={thing}
-                        />
-                        <p className="sub-sub-heading">
-                          Specific Topic:
-                        </p>
-                        <div className="tags">
-                          {thing.issue}
-                        </div>
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="specific_topic"
-                          property="specific_topic"
-                          thing={thing}
-                        />
-
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="communication_mode"
-                          property="communication_mode"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="communication_with_audience"
-                          property="communication_with_audience"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="decision_method"
-                          property="decision_method"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="facetoface_online_or_both"
-                          property="facetoface_online_or_both"
-                          thing={thing}
-                        />
-                        <BooleanPropEditor
-                          intl={intl}
-                          label="facilitated"
-                          property="facilitated"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="best_for"
-                          property="best_for"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="decision_method"
-                          property="decision_method"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="governance_contribution"
-                          property="governance_contribution"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_interdependency"
-                          property="issue_interdependency"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_polarization"
-                          property="issue_polarization"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="issue_technical_complexity"
-                          property="issue_technical_complexity"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="kind_of_influence"
-                          property="kind_of_influence"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="method_of_interaction"
-                          property="method_of_interaction"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="public_interaction_method"
-                          property="public_interaction_method"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="method_of_interaction"
-                          property="method_of_interaction"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="typical_funding_source"
-                          property="typical_funding_source"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="typical_implementing_entity"
-                          property="typical_implementing_entity"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="typical_sponsoring_entity"
-                          property="typical_sponsoring_entity"
-                          thing={thing}
-                        />
-                      </div>
-                    </div>}
-              </div>
-            </Col>
+            <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
                 <h2 className="category">
@@ -296,18 +122,204 @@ class MethodEditor extends Component {
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
               </div>
-              <button
-                className="incomplete-warning"
-                disabled={incomplete}
-                type="submit"
-              >
-                {intl.formatMessage({ id: "submit_" + thing.type })}
-              </button>
-              {incomplete
-                ? <span className="incomplete">
-                    {intl.formatMessage({ id: "incomplete_" + thing.type })}
-                  </span>
-                : null}
+              <div>
+                {isQuick
+                  ? <div>
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
+                      <RaisedButton
+                        onClick={() => onExpand(this.state.thing)}
+                        label={intl.formatMessage({ id: "do_full_version" })}
+                      />
+                    </div>
+                  : <div>
+                      <p className="sub-heading">
+                        {intl.formatMessage({ id: "tags_title" })}
+                      </p>
+                      <div className="suggest_tag">
+                        {intl.formatMessage({ id: "suggest_tag" })}
+                      </div>
+                      <div className="tags">
+                        <Field
+                          fieldName="tags"
+                          name="tags"
+                          value={thing.tags}
+                          type={Tags}
+                          thing={thing}
+                          intl={intl}
+                        />
+                      </div>
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="kind_of_influence"
+                        property="kind_of_influence"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="specific_topic"
+                        property="specific_topic"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="communication_mode"
+                        property="communication_mode"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="communication_with_audience"
+                        property="communication_with_audience"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="decision_method"
+                        property="decision_method"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="facetoface_online_or_both"
+                        property="facetoface_online_or_both"
+                        thing={thing}
+                      />
+                      <BooleanPropEditor
+                        intl={intl}
+                        label="facilitated"
+                        property="facilitated"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="best_for"
+                        property="best_for"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="decision_method"
+                        property="decision_method"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="governance_contribution"
+                        property="governance_contribution"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="issue_interdependency"
+                        property="issue_interdependency"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="issue_polarization"
+                        property="issue_polarization"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="issue_technical_complexity"
+                        property="issue_technical_complexity"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="kind_of_influence"
+                        property="kind_of_influence"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="method_of_interaction"
+                        property="method_of_interaction"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="public_interaction_method"
+                        property="public_interaction_method"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="method_of_interaction"
+                        property="method_of_interaction"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="typical_funding_source"
+                        property="typical_funding_source"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="typical_implementing_entity"
+                        property="typical_implementing_entity"
+                        thing={thing}
+                      />
+                      <ChoicePropEditor
+                        intl={intl}
+                        label="typical_sponsoring_entity"
+                        property="typical_sponsoring_entity"
+                        thing={thing}
+                      />
+                      <p className="sub-heading">
+                        Related Content
+                      </p>
+                      <div className="related-content">
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_cases" })}
+                        </div>
+                        {related_cases}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_methods" })}
+                        </div>
+                        {related_methods}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_organizations" })}
+                        </div>
+                        {related_organizations}
+                      </div>
+                      <RaisedButton
+                        className="incomplete-warning"
+                        disabled={incomplete}
+                        primary={true}
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: "submit_" + thing.type
+                        })}
+                      />
+                      {incomplete
+                        ? <span className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </span>
+                        : null}
+                    </div>}
+              </div>
             </Col>
           </Container>
         </div>

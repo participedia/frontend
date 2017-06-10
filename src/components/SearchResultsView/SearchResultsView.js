@@ -16,7 +16,6 @@ import searchGridIcon from "../../img/pp-search-grid-icon.png";
 import searchGridIconActive from "../../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../../img/pp-search-list-icon.png";
 import searchListIconActive from "../../img/pp-search-list-icon-active.png";
-import { ChasingDots } from "better-react-spinkit";
 
 class LinkToSearch extends React.Component {
   render() {
@@ -130,14 +129,14 @@ export class SearchResultsView extends React.Component {
             {formatMessage({ id: "searching_for" })}
             &nbsp;
             {query}
-            {<div className="spinner"><ChasingDots size={50} /></div>}
+            {<div className="spinner" />}
           </h3>
         </div>
       );
     } else {
-      let description = `Results for`;
+      let description = `for`;
       if (searching) {
-        description = "Results for";
+        description = "for";
       }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];
@@ -157,19 +156,18 @@ export class SearchResultsView extends React.Component {
         <div className="search-results">
           <div className="search-description">
             {searchTerm
-              ? <div>
+              ? <div className="search-description-text">
+                  {resultsCount}&nbsp;
+                  {this.props.intl.formatMessage({
+                    id: "result" + (resultsCount === 1 ? "" : "s")
+                  })}
+                  {" "}
                   {description} <div className="search-term">{searchTerm}</div>
                 </div>
               : <div />}
             <FilterArray data={filters} />
           </div>
           <div className="result-count">
-            <p>
-              {resultsCount}&nbsp;
-              {this.props.intl.formatMessage({
-                id: "result" + (resultsCount === 1 ? "" : "s")
-              })}
-            </p>
             <div className="results-box">
               {searchresults}
             </div>
@@ -184,7 +182,7 @@ export class SearchResultsView extends React.Component {
             <div
               className={
                 "sorting-options" +
-                  (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
+                (this.state.sortingSelectionOpen ? " open-mobile-menu" : "")
               }
             >
               <p
