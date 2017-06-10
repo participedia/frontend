@@ -1,8 +1,7 @@
 import React from "react";
 
 import CountryMap from "../components/CountryMap";
-import LinkedPropertyGroupWithHeading
-  from "../components/LinkedPropertyGroupWithHeading";
+import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
 import Tags from "../components/Tags";
 import {
   DateProp,

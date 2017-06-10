@@ -6,7 +6,6 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
-import authService from "../utils/AuthService";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 

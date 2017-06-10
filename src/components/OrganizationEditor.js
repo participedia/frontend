@@ -6,8 +6,6 @@ import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import FileUpload from "material-ui/svg-icons/file/file-upload";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import {
@@ -17,10 +15,13 @@ import {
   Tags
 } from "./RelatedEditors";
 import RaisedButton from "material-ui/RaisedButton";
+import tags_json from "../autocomplete_data/tags.json";
 
 const buttonStyle = {
   margin: "1em"
 };
+
+const tags = tags_json["tags"];
 
 class OrganizationEditor extends Component {
   constructor(props) {
@@ -44,6 +45,18 @@ class OrganizationEditor extends Component {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
+    let tagseditor = (
+      <Field
+        fieldName="tags"
+        name="tags"
+        thing={thing}
+        type={Tags}
+        property="tags"
+        value={thing.tags || []}
+        dataSource={tags}
+        intl={intl}
+      />
+    );
     let related_cases = (
       <Field
         fieldName="related_cases"
@@ -81,7 +94,8 @@ class OrganizationEditor extends Component {
       />
     );
 
-    let incomplete = thing.title === "" || thing.body === "";
+    let incomplete =
+      (thing.title ? false : true) || (thing.body ? false : true);
     return (
       <Form
         onSubmit={onSubmit}
@@ -135,16 +149,7 @@ class OrganizationEditor extends Component {
                   <div className="suggest_tag">
                     {intl.formatMessage({ id: "suggest_tag" })}
                   </div>
-                  <div className="tags">
-                    <Field
-                      fieldName="tags"
-                      name="tags"
-                      value={thing.tags}
-                      type={Tags}
-                      thing={thing}
-                      intl={intl}
-                    />
-                  </div>
+                  {tagseditor}
                 </div>
                 {isQuick
                   ? <div>

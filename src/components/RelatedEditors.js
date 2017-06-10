@@ -109,80 +109,12 @@ export class Related extends React.Component {
     return (
       <ChipInput
         {...rest}
-        value={this.props.value.map(x => x.title)}
+        defaultValue={this.props.value}
         onRequestAdd={handleRequestAdd}
         onChange={handleChange}
         onRequestDelete={handleRequestDelete}
         dataSource={this.props.dataSource}
-        onBlur={event => {
-          if (this.props.addOnBlur && event.target.value) {
-            this.handleRequestAdd(event.target.value);
-          }
-        }}
-        fullWidth
-      />
-    );
-  }
-}
-
-export class SimpleRelated extends React.Component {
-  // like related but for things that don't have dataSource
-  constructor(props) {
-    super(props);
-    this.thing = props.thing;
-    this.property = props.property;
-    this.state = {
-      chips: props.value
-    };
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ chips: nextProps.value });
-  }
-  handleChange(value) {
-    this.props.thing[this.property] = value;
-  }
-
-  handleRequestAdd(chip) {
-    let chips = [...this.state.chips, chip];
-    this.setState({
-      chips: chips
-    });
-    this.props.thing[this.property] = chips;
-    this.props.onChange(chips);
-  }
-
-  handleRequestDelete(deletedChip) {
-    let chips = this.state.chips.filter(c => c !== deletedChip);
-    this.setState({
-      chips: chips
-    });
-    this.props.thing[this.property] = chips;
-    this.props.onChange(chips);
-  }
-
-  render() {
-    let rest = omit(this.props, [
-      "intl",
-      "thing",
-      "property",
-      "dataSource",
-      "useHint",
-      "errorMessage",
-      "fieldSchema",
-      "fieldName",
-      "schema",
-      "passProps"
-    ]);
-    let handleRequestAdd = this.handleRequestAdd.bind(this);
-    let handleRequestDelete = this.handleRequestDelete.bind(this);
-    let handleChange = this.handleChange.bind(this);
-    return (
-      <ChipInput
-        {...rest}
-        value={this.props.value}
-        onRequestAdd={handleRequestAdd}
-        onChange={handleChange}
-        onRequestDelete={handleRequestDelete}
+        dataSourceConfig={{ text: "text", value: "value" }}
         onBlur={event => {
           if (this.props.addOnBlur && event.target.value) {
             this.handleRequestAdd(event.target.value);
@@ -200,12 +132,11 @@ export class SimpleRelatedCases extends React.Component {
       <Related
         property="related_cases"
         value={this.props.value || []}
-        dataSource={this.props.dataSource}
+        dataSource={this.props.passProps.dataSource}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={event => {
-          this.props.onChange(event);
-        }}
+        onChange={this.props.onChange}
       />
     );
   }
@@ -217,13 +148,11 @@ export class SimpleRelatedMethods extends React.Component {
       <Related
         property="related_methods"
         value={this.props.value || []}
-        dataSource={this.props.dataSource}
+        dataSource={this.props.passProps.dataSource}
         dataSourceConfig={this.props.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={event => {
-          this.props.onChange(event);
-        }}
+        onChange={this.props.onChange}
       />
     );
   }
@@ -239,9 +168,7 @@ export class SimpleRelatedOrganizations extends React.Component {
         dataSourceConfig={this.props.passProps.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={event => {
-          this.props.onChange(event);
-        }}
+        onChange={this.props.onChange}
       />
     );
   }
@@ -250,18 +177,14 @@ export class SimpleRelatedOrganizations extends React.Component {
 export class Tags extends React.Component {
   render() {
     return (
-      <SimpleRelated
+      <Related
         property="tags"
         value={this.props.value || []}
+        dataSource={this.props.passProps.dataSource}
+        dataSourceConfig={this.props.passProps.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={event => {
-          try {
-            this.props.onChange(event);
-          } catch (e) {
-            console.error(e);
-          }
-        }}
+        onChange={this.props.onChange}
       />
     );
   }

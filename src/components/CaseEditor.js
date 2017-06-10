@@ -6,9 +6,7 @@ import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import FileUpload from "material-ui/svg-icons/file/file-upload";
-
+import tags_json from "../autocomplete_data/tags.json";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import {
@@ -26,6 +24,8 @@ import {
   DatePropEditor,
   ChoicePropEditor
 } from "./PropEditors";
+
+const tags = tags_json["tags"];
 
 const buttonStyle = {
   margin: "1em"
@@ -53,6 +53,18 @@ class CaseEditor extends Component {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
+    let tagseditor = (
+      <Field
+        fieldName="tags"
+        name="tags"
+        thing={thing}
+        type={Tags}
+        property="tags"
+        value={thing.tags || []}
+        dataSource={tags}
+        intl={intl}
+      />
+    );
     let related_cases = (
       <Field
         fieldName="related_cases"
@@ -90,7 +102,8 @@ class CaseEditor extends Component {
       />
     );
 
-    let incomplete = thing.title === "" || thing.body === "";
+    let incomplete =
+      (thing.title ? false : true) || (thing.body ? false : true);
     return (
       <Form
         onSubmit={onSubmit}
@@ -147,17 +160,7 @@ class CaseEditor extends Component {
                 <div className="suggest_tag">
                   {intl.formatMessage({ id: "suggest_tag" })}
                 </div>
-                <div className="tags">
-                  <Field
-                    fieldName="tags"
-                    name="tags"
-                    thing={thing}
-                    type={Tags}
-                    property="tags"
-                    tags={thing.tags || []}
-                    intl={intl}
-                  />
-                </div>
+                {tagseditor}
                 <ChoicePropEditor
                   intl={intl}
                   label="issue"
