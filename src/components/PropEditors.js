@@ -7,20 +7,33 @@ import SelectField from "material-ui/SelectField";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import getChoices from "./choices";
 
-function BooleanPropEditor({ label, property, thing, intl }) {
-  return (
-    <div>
-      <p className="sub-sub-heading">
-        {intl.formatMessage({ id: label ? label : "not_specified" })}
-      </p>
-      <div className={property}>
-        <RadioButtonGroup name={property} defaultSelected={thing[property]}>
-          <RadioButton value={true} label={intl.formatMessage({ id: "yes" })} />
-          <RadioButton value={false} label={intl.formatMessage({ id: "no" })} />
-        </RadioButtonGroup>
+class BooleanPropEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: props.thing[props.property] || 0 };
+  }
+  render() {
+    let { label, property, thing, intl } = this.props;
+    return (
+      <div>
+        <p className="sub-sub-heading">
+          {intl.formatMessage({ id: label ? label : "not_specified" })}
+        </p>
+        <div className={property}>
+          <RadioButtonGroup name={property} defaultSelected={thing[property]}>
+            <RadioButton
+              value={true}
+              label={intl.formatMessage({ id: "yes" })}
+            />
+            <RadioButton
+              value={false}
+              label={intl.formatMessage({ id: "no" })}
+            />
+          </RadioButtonGroup>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 BooleanPropEditor.propTypes = {
@@ -35,8 +48,13 @@ class NumberPropEditor extends React.Component {
     super(props);
     this.state = { value: props.thing[props.property] || 0 };
   }
-  onChange(event, value) {
+  componentWillReceiveProps(props) {
+    let value = props.thing[props.property] || 0;
+    this.setState({ value });
+  }
+  onChange(event, index, value) {
     this.setState({ value: value });
+    this.props.thing[this.props.property] = value;
   }
   render() {
     let onChange = this.onChange.bind(this);
@@ -71,8 +89,13 @@ class TextPropEditor extends React.Component {
     super(props);
     this.state = { value: props.thing[props.property] || "" };
   }
+  componentWillReceiveProps(props) {
+    let value = nickify(props.thing[props.property] || "");
+    this.setState({ value });
+  }
   onChange(event, value) {
     this.setState({ value: value });
+    this.props.thing[this.props.property] = value;
   }
   render() {
     let onChange = this.onChange.bind(this);
@@ -101,6 +124,8 @@ TextPropEditor.propTypes = {
 };
 
 // XXX do L10N work, see http://www.material-ui.com/#/components/date-picker
+
+// XXX check this one by hand.
 function DatePropEditor({ label, property, thing, intl, onChange }) {
   return (
     <div>
@@ -142,8 +167,13 @@ class ChoicePropEditor extends React.Component {
       value: value
     };
   }
+  componentWillReceiveProps(props) {
+    let value = nickify(props.thing[props.property] || "");
+    this.setState({ value });
+  }
   onChange(event, index, value) {
     this.setState({ value: value });
+    this.props.thing[this.props.property] = value;
   }
   render() {
     let onChange = this.onChange.bind(this);
