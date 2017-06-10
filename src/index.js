@@ -10,6 +10,9 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: "#3f51b2"
   },
+  datePicker: {
+    selectColor: "#ec1414",
+  },
   appBar: {}
 });
 

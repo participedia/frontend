@@ -108,6 +108,7 @@ function DatePropEditor({ label, property, thing, intl, onChange }) {
         {intl.formatMessage({ id: label ? label : "not_specified" })}
       </p>
       <DatePicker
+        className="datepicker"
         value={thing[property] ? thing[property] : null}
         onChange={onChange}
         fullWidth={true}
