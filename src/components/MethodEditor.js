@@ -9,12 +9,7 @@ import tags_json from "../autocomplete_data/tags.json";
 
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import {
-  SimpleRelatedCases,
-  SimpleRelatedMethods,
-  SimpleRelatedOrganizations,
-  Tags
-} from "./RelatedEditors";
+import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 
 import { BooleanPropEditor, ChoicePropEditor } from "./PropEditors";
@@ -50,11 +45,8 @@ class MethodEditor extends Component {
     let tagseditor = (
       <Field
         fieldName="tags"
-        name="tags"
-        thing={thing}
-        type={Tags}
-        property="tags"
-        value={thing.tags || []}
+        type={RelatedEditor}
+        maxSearchResults={30}
         dataSource={tags}
         intl={intl}
       />
@@ -62,39 +54,31 @@ class MethodEditor extends Component {
     let related_cases = (
       <Field
         fieldName="related_cases"
-        name="related_cases"
-        thing={thing}
-        type={SimpleRelatedCases}
-        property="related_cases"
-        value={thing.related_cases || []}
+        type={RelatedEditor}
         dataSource={cases}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_methods = (
       <Field
         fieldName="related_methods"
-        name="related_methods"
-        thing={thing}
-        type={SimpleRelatedMethods}
-        property="related_methods"
-        value={thing.related_methods || []}
+        type={RelatedEditor}
         dataSource={methods}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_organizations = (
       <Field
         fieldName="related_organizations"
-        name="related_organizations"
-        thing={thing}
-        type={SimpleRelatedOrganizations}
-        property="related_organizations"
-        value={thing.related_organizations || []}
+        type={RelatedEditor}
         dataSource={organizations}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
+
     let incomplete =
       (thing.title ? false : true) || (thing.body ? false : true);
     return (

@@ -8,12 +8,7 @@ import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import {
-  SimpleRelatedCases,
-  SimpleRelatedMethods,
-  SimpleRelatedOrganizations,
-  Tags
-} from "./RelatedEditors";
+import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import tags_json from "../autocomplete_data/tags.json";
 
@@ -48,11 +43,8 @@ class OrganizationEditor extends Component {
     let tagseditor = (
       <Field
         fieldName="tags"
-        name="tags"
-        thing={thing}
-        type={Tags}
-        property="tags"
-        value={thing.tags || []}
+        type={RelatedEditor}
+        maxSearchResults={30}
         dataSource={tags}
         intl={intl}
       />
@@ -60,36 +52,27 @@ class OrganizationEditor extends Component {
     let related_cases = (
       <Field
         fieldName="related_cases"
-        name="related_cases"
-        thing={thing}
-        type={SimpleRelatedCases}
-        property="related_cases"
-        value={thing.related_cases || []}
+        type={RelatedEditor}
         dataSource={cases}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_methods = (
       <Field
         fieldName="related_methods"
-        name="related_methods"
-        thing={thing}
-        type={SimpleRelatedMethods}
-        property="related_methods"
-        value={thing.related_methods || []}
+        type={RelatedEditor}
         dataSource={methods}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_organizations = (
       <Field
         fieldName="related_organizations"
-        name="related_organizations"
-        thing={thing}
-        type={SimpleRelatedOrganizations}
-        property="related_organizations"
-        value={thing.related_organizations || []}
+        type={RelatedEditor}
         dataSource={organizations}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );

@@ -4,9 +4,8 @@ import React from "react";
 
 import { storiesOf, addDecorator } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { linkTo } from "@storybook/addon-links";
 
-import { Tags } from "../components/RelatedEditors";
+import { Related } from "../components/RelatedEditors";
 import { Form, Field } from "simple-react-form";
 import "../components/CaseEditor.css";
 import "./story.css";
@@ -17,61 +16,105 @@ const muiTheme = getMuiTheme({});
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-import tags_json from "../autocomplete_data/tags.json";
-const tags = tags_json["tags"];
-
-let thing = {};
 let intl = {};
 
-const ThemeDecorator = storyFn =>
+const ThemeDecorator = storyFn => (
   <MuiThemeProvider muiTheme={muiTheme}>
     {storyFn()}
-  </MuiThemeProvider>;
+  </MuiThemeProvider>
+);
 addDecorator(ThemeDecorator);
 
-const FormDecorator = storyFn =>
-  <Form
-    className="story-form"
-    onSubmit={() => console.log("submitting")}
-    state={thing}
-    onChange={changes =>
-      function() {
-        thing = changes;
-      }}
-  >
-    {storyFn()}
-  </Form>;
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = props.state;
+  }
+  componentWillReceiveProps(props) {
+    this.setState(props.state);
+  }
+  dumpState() {
+    action("submitting")(this.state);
+  }
+  render() {
+    let dumpState = this.dumpState.bind(this);
+    let setState = this.setState.bind(this);
+    return (
+      <div>
+        <Form
+          className="story-form"
+          onChange={function(value) {
+            setState(value);
+          }}
+          state={this.state}
+        >
+          {this.props.children}
+        </Form>
+        <button onClick={dumpState}>submit</button>
+      </div>
+    );
+  }
+}
 
-storiesOf("Tags", module).addDecorator(FormDecorator).add("no default", () =>
-  <div>
+storiesOf("Tags", module).add("no default", () => (
+  <MyForm state={{ tags: [] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
       fieldName="tags"
-      name="tags"
-      thing={thing}
-      type={Tags}
-      property="tags"
-      value={thing.tags || []}
-      dataSource={tags}
+      type={Related}
+      maxSearchResults={30}
+      dataSource={["one", "two", "three"]}
       intl={intl}
     />
-  </div>
-);
+  </MyForm>
+));
 
-thing = { tags: ["a", "b"] };
-
-storiesOf("Tags", module).addDecorator(FormDecorator).add("default tags", () =>
-  <div>
+storiesOf("Tags", module).add("default tags", () => (
+  <MyForm state={{ tags: ["a", "b"] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
       fieldName="tags"
-      name="tags"
-      thing={thing}
-      type={Tags}
-      property="tags"
-      value={thing.tags || []}
-      dataSource={tags}
+      type={Related}
+      dataSource={["one", "two", "three"]}
       intl={intl}
     />
-  </div>
-);
+  </MyForm>
+));
+
+storiesOf("RelatedEditors", module).add("no defaults", () => (
+  <MyForm state={{ related_things: [] }}>
+    <div className="sub-heading">Related things</div>
+    <Field
+      fieldName="related_things"
+      type={Related}
+      dataSource={[
+        { text: "one", value: 1 },
+        { text: "two", value: 2 },
+        { text: "three", value: 3 },
+        { text: "four", value: 4 },
+        { text: "five", value: 5 }
+      ]}
+      dataSourceConfig={{ text: "text", value: "value" }}
+      intl={intl}
+    />
+  </MyForm>
+));
+
+storiesOf("RelatedEditors", module).add("some values", () => (
+  <MyForm state={{ related_things: [{ text: "one", value: 1 }] }}>
+    <div className="sub-heading">Related things</div>
+    <Field
+      fieldName="related_things"
+      type={Related}
+      dataSource={[
+        { text: "one", value: 1 },
+        { text: "two", value: 2 },
+        { text: "three", value: 3 },
+        { text: "four", value: 4 },
+        { text: "five", value: 5 }
+      ]}
+      dataSourceConfig={{ text: "text", value: "value" }}
+      intl={intl}
+    />
+  </MyForm>
+));
