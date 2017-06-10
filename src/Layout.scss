@@ -7,6 +7,26 @@
   }
 }
 
+.auth0-lock-header {
+  background: $black;
+  .auth0-lock-header-welcome {
+    padding-top: 1rem;
+    img {
+      height: 50px !important;
+    }
+  }
+  .auth0-lock-header-bg {
+    background: $black !important;
+    .auth0-lock-header-bg-blur {
+      display: none !important;
+    }
+  }
+}
+
+.auth0-lock-social-button-text {
+  background-color: #444;
+}
+
 .contentArea {
   padding-top: 64px;
   min-height: 20em;
