@@ -69,7 +69,9 @@ export class Related extends React.Component {
   }
 
   handleChange(value) {
-    this.thing[this.property] = value;
+    console.log("doing handleChange, value = ", value);
+    this.props.onChange(value);
+    // this.thing[this.property] = value;
   }
 
   handleRequestAdd(chip) {
@@ -77,8 +79,11 @@ export class Related extends React.Component {
     this.setState({
       chips: chips
     });
-    this.thing[this.property] = chips;
-    this.props.onChange(chips);
+    let newValue = chips;
+    console.log("doing handleRequestAdd, value = ", newValue);
+    // this.thing[this.property] = chips;
+    // let newValue = chips.map(x => x[this.props.dataSourceConfig["value"]]);
+    this.props.onChange(newValue);
   }
 
   handleRequestDelete(deletedChip) {
@@ -106,15 +111,21 @@ export class Related extends React.Component {
     let handleRequestAdd = this.handleRequestAdd.bind(this);
     let handleRequestDelete = this.handleRequestDelete.bind(this);
     let handleChange = this.handleChange.bind(this);
+    let value = this.props.value.map(id =>
+      this.props.dataSource.filter(
+        item => (item.value == id ? item.text : false)
+      )
+    );
+    console.log(value);
     return (
       <ChipInput
         {...rest}
-        defaultValue={this.props.value}
+        defaultValue={value}
         onRequestAdd={handleRequestAdd}
         onChange={handleChange}
         onRequestDelete={handleRequestDelete}
         dataSource={this.props.dataSource}
-        dataSourceConfig={{ text: "text", value: "value" }}
+        dataSourceConfig={this.props.dataSourceConfig}
         onBlur={event => {
           if (this.props.addOnBlur && event.target.value) {
             this.handleRequestAdd(event.target.value);
@@ -128,6 +139,7 @@ export class Related extends React.Component {
 
 export class SimpleRelatedCases extends React.Component {
   render() {
+    let component = this;
     return (
       <Related
         property="related_cases"
@@ -136,7 +148,10 @@ export class SimpleRelatedCases extends React.Component {
         dataSourceConfig={{ text: "text", value: "value" }}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
-        onChange={this.props.onChange}
+        onChange={function(value) {
+          console.log("in cases, new value", value);
+          component.props.onChange(value);
+        }}
       />
     );
   }
@@ -181,7 +196,6 @@ export class Tags extends React.Component {
         property="tags"
         value={this.props.value || []}
         dataSource={this.props.passProps.dataSource}
-        dataSourceConfig={this.props.passProps.dataSourceConfig}
         intl={this.props.passProps.intl}
         thing={this.props.passProps.thing}
         onChange={this.props.onChange}

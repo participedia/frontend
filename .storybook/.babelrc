@@ -1,0 +1,8 @@
+{
+  "presets": ["es2015", "stage-0", "react", "stage-2", "react-hmre" ],
+  "plugins": [
+    "transform-react-jsx",
+    "transform-object-rest-spread",
+    "transform-es2015-destructuring"
+  ],
+}
