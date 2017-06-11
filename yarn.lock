@@ -59,15 +59,15 @@
     fuse.js "^3.0.1"
     prop-types "^15.5.9"
 
-"@storybook/react@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-3.1.2.tgz#44222ceffa9b56e9042a13f6a41d7623004054cc"
+"@storybook/react@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-3.1.3.tgz#e2d7d2ecf4d7ff3dfab1d7b324e2c19e04be5934"
   dependencies:
     "@storybook/addon-actions" "^3.1.2"
     "@storybook/addon-links" "^3.1.2"
     "@storybook/addons" "^3.1.2"
     "@storybook/channel-postmessage" "^3.1.2"
-    "@storybook/ui" "^3.1.2"
+    "@storybook/ui" "^3.1.3"
     airbnb-js-shims "^1.1.1"
     autoprefixer "^7.1.1"
     babel-core "^6.24.1"
@@ -110,9 +110,9 @@
     webpack-dev-middleware "^1.10.2"
     webpack-hot-middleware "^2.18.0"
 
-"@storybook/ui@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-3.1.2.tgz#2b9c79c526e07e6915f9ba6c0396c1caea3b0409"
+"@storybook/ui@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-3.1.3.tgz#806c6bc4474b1437edf305c50b88662869ad5c31"
   dependencies:
     "@storybook/react-fuzzy" "^0.4.0"
     babel-runtime "^6.23.0"
@@ -3129,9 +3129,9 @@ exec-sh@^0.2.0:
   dependencies:
     merge "^1.1.3"
 
-execa@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.6.0.tgz#934fc9f04a9febb4d4b449d976e92cfd95ef4f6e"
+execa@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -4396,7 +4396,7 @@ isobject@^2.0.0:
   dependencies:
     isarray "1.0.0"
 
-isomorphic-fetch@^2.1.1:
+isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -4879,13 +4879,13 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-3.6.0.tgz#cda8f0bef16e7928cc14b735186ae12cd662599c"
+lint-staged@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-3.6.1.tgz#24423c8b7bd99d96e15acd1ac8cb392a78e58582"
   dependencies:
     app-root-path "^2.0.0"
     cosmiconfig "^1.1.0"
-    execa "^0.6.0"
+    execa "^0.7.0"
     listr "^0.12.0"
     lodash.chunk "^4.2.0"
     minimatch "^3.0.0"
@@ -5219,9 +5219,9 @@ mapbox-gl-supported@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mapbox-gl-supported/-/mapbox-gl-supported-1.2.0.tgz#cbd34df894206cadda9a33c8d9a4609f26bb1989"
 
-mapbox-gl@^0.37.0:
-  version "0.37.0"
-  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-0.37.0.tgz#20103b0ae73a0e77fe9405439749318b87c04f10"
+mapbox-gl@^0.38.0:
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-0.38.0.tgz#64731bb55eabdaa520270815175fcf31e5a3cd80"
   dependencies:
     "@mapbox/gl-matrix" "^0.0.1"
     "@mapbox/shelf-pack" "^3.0.0"
@@ -5253,9 +5253,9 @@ material-ui-chip-input@^0.15.0:
   dependencies:
     prop-types "^15.5.7"
 
-material-ui@^0.18.1:
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.1.tgz#1c8a47d7e930ff0b07064dd8633035984a5a3569"
+material-ui@^0.18.3:
+  version "0.18.3"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.3.tgz#db1cf7190b322b304867e7ffb96b17ef79443bc9"
   dependencies:
     babel-runtime "^6.23.0"
     inline-style-prefixer "^3.0.2"
@@ -6350,9 +6350,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.4.2.tgz#bcdd95ed1eca434ac7f98ca26ea4d25a2af6a2ac"
+prettier@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.4.4.tgz#a8d1447b14c9bf67e6d420dcadd10fb9a4fad65a"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -6669,12 +6669,13 @@ react-form@^1.2.8:
     classnames "^2.2.5"
     prop-types "^15.5.8"
 
-react-geosuggest@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-geosuggest/-/react-geosuggest-2.1.0.tgz#c27701359469a6afd2e7298a9bbe6c5615bbee32"
+react-geosuggest@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-geosuggest/-/react-geosuggest-2.2.0.tgz#e295b306f0baea0ef0819ae331251d918161c00f"
   dependencies:
     classnames "^2.2.3"
     lodash.debounce "^4.0.6"
+    react-addons-shallow-compare "^15.5.2"
 
 react-image-gallery@^0.8.2:
   version "0.8.2"
@@ -7565,9 +7566,9 @@ simple-react-form-material-ui@^1.7.13:
   dependencies:
     underscore "^1.8.3"
 
-simple-react-form@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/simple-react-form/-/simple-react-form-1.9.1.tgz#4e6cd04ebcc37ad0d721e1c6847b9d52a1de17ef"
+simple-react-form@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/simple-react-form/-/simple-react-form-1.9.0.tgz#3e34fabb3cdaff391e00dd67ca9fb04c93a2491b"
   dependencies:
     dot-object "^1.5.1"
     lodash "^4.17.2"

@@ -23,12 +23,12 @@ export default class Related extends React.Component {
     let choices = this.props.passProps.dataSource;
     let config = this.props.passProps.dataSourceConfig;
     if (config) {
-      isValid = choices.filter(c => c[config.value] == chip[config.value]);
+      isValid = choices.filter(c => c[config.value] === chip[config.value]);
     } else {
-      isValid = this.props.passProps.dataSource.filter(c => c == chip);
+      isValid = this.props.passProps.dataSource.filter(c => c === chip);
     }
 
-    if (isValid.length == 0) {
+    if (isValid.length === 0) {
       return;
     }
 

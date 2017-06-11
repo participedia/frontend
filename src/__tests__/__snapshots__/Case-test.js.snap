@@ -1,5 +1,354 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Case editor renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="main-contents"
+  >
+    <div
+      className="detailed-case-component container-fluid"
+    >
+      <div
+        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+      />
+      <div
+        className="main-area col-12 col-md-8"
+      >
+        <div
+          className="case-box"
+        >
+          <h2
+            className="category"
+          >
+            case
+          </h2>
+          <h2
+            className="case-title"
+          >
+            Agenda 21 Locale (Province of Forli-Cesena, Italy)
+          </h2>
+          <div
+            className="itemPics row"
+          >
+            <div
+              className="col col-sm-6 col-md-3"
+            >
+              <div
+                className="box lead"
+              >
+                <div
+                  className="checkbox"
+                  onClick={[Function]}
+                />
+                <div
+                  className="trash"
+                  onClick={[Function]}
+                />
+                <img
+                  alt=""
+                  className="img-fluid"
+                  src="https://d3im063erkq9w4.cloudfront.net/undefined"
+                />
+                <small>
+                  Lead Image
+                </small>
+              </div>
+            </div>
+            <div
+              className="col col-md-3"
+            >
+              <div
+                className={undefined}
+              >
+                <div
+                  className="react-dropzone-s3-uploader"
+                  onClick={[Function]}
+                  onDragEnter={[Function]}
+                  onDragLeave={[Function]}
+                  onDragOver={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onProgress={[Function]}
+                  style={
+                    Object {
+                      "border": "dashed 2px #999",
+                      "borderRadius": 5,
+                      "cursor": "pointer",
+                      "height": 200,
+                      "overflow": "hidden",
+                      "position": "relative",
+                      "width": 200,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "height": "100%",
+                        "marginLeft": "33%",
+                        "marginTop": "33%",
+                        "width": "100%",
+                      }
+                    }
+                  />
+                  <input
+                    accept={undefined}
+                    multiple={true}
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <Textfield
+            disabled={false}
+            errorText={undefined}
+            floatingLabelText=""
+            fullWidth={true}
+            hintText={null}
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder={undefined}
+            type="text"
+            value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
+          />
+          <div>
+            <label
+              htmlFor="body_en"
+            />
+          </div>
+          <div
+            className="case-location"
+          >
+            <p
+              className="sub-heading"
+            />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="location"
+              />
+            </div>
+          </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="suggest_tag"
+          />
+          <div>
+            <p
+              className="sub-sub-heading"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <div
+              className="related-content"
+            >
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="facilitated"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="number_of_meeting_days"
+                >
+                  <Textfield
+                    fullWidth={true}
+                    name="number_of_meeting_days"
+                    onChange={[Function]}
+                    value="4"
+                  />
+                </div>
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="ongoing"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="start_date"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="end_date"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="staff_type"
+                >
+                  <Textfield
+                    fullWidth={true}
+                    name="staff_type"
+                    onChange={[Function]}
+                    value=""
+                  />
+                </div>
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="who_else_supported_the_initiative"
+                >
+                  <Textfield
+                    fullWidth={true}
+                    name="who_else_supported_the_initiative"
+                    onChange={[Function]}
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
 exports[`ItemDetails for Case renders correctly 1`] = `
 <div>
   <div

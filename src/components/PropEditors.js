@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
@@ -8,149 +7,6 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
-
-class BooleanPropEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.thing[props.property] || 0 };
-  }
-  render() {
-    let { label, property, thing, intl } = this.props;
-    return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <div className={property}>
-          <RadioButtonGroup name={property} defaultSelected={thing[property]}>
-            <RadioButton
-              value={true}
-              label={intl.formatMessage({ id: "yes" })}
-            />
-            <RadioButton
-              value={false}
-              label={intl.formatMessage({ id: "no" })}
-            />
-          </RadioButtonGroup>
-        </div>
-      </div>
-    );
-  }
-}
-
-BooleanPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-class NumberPropEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.thing[props.property] || 0 };
-  }
-  componentWillReceiveProps(props) {
-    let value = props.thing[props.property] || 0;
-    this.setState({ value });
-  }
-  onChange(event, index, value) {
-    this.setState({ value: value });
-    this.props.thing[this.props.property] = value;
-  }
-  render() {
-    let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
-    return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <TextField
-          onChange={onChange}
-          value={this.state.value}
-          fullWidth={true}
-          name={property}
-        />
-      </div>
-    );
-  }
-}
-
-// <TextField defaultValue={thing[property]} id={property} />
-
-NumberPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-class TextPropEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.thing[props.property] || "" };
-  }
-  componentWillReceiveProps(props) {
-    let value = nickify(props.thing[props.property] || "");
-    this.setState({ value });
-  }
-  onChange(event, value) {
-    this.setState({ value: value });
-    this.props.thing[this.props.property] = value;
-  }
-  render() {
-    let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
-    return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <TextField
-          onChange={onChange}
-          value={this.state.value}
-          fullWidth={true}
-          name={property}
-        />
-      </div>
-    );
-  }
-}
-
-TextPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-// XXX do L10N work, see http://www.material-ui.com/#/components/date-picker
-
-// XXX check this one by hand.
-function DatePropEditor({ label, property, thing, intl, onChange }) {
-  return (
-    <div>
-      <p className="sub-sub-heading">
-        {intl.formatMessage({ id: label ? label : "not_specified" })}
-      </p>
-      <DatePicker
-        className="datepicker"
-        value={thing[property] ? thing[property] : null}
-        onChange={onChange}
-        fullWidth={true}
-        name={property}
-      />
-    </div>
-  );
-}
-
-DatePropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 function nickify(before) {
   if (!before) return "";
@@ -165,68 +21,6 @@ function nickify(before) {
     console.log("exception in nickify, before = ", before);
   }
 }
-
-class ChoicePropEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    // let value = nickify(props.thing[props.property] || "");
-    this.state = {
-      value: props.value
-    };
-    // if (this.props.passProps.choices) {
-    //   this.setChoices();
-    // }
-  }
-
-  setChoices() {
-    this.choices = this.props.passProps.choices.map(v => (
-      <MenuItem
-        value={v}
-        key={v}
-        primaryText={this.props.passProps.intl.formatMessage({ id: v })}
-      />
-    ));
-  }
-
-  componentWillReceiveProps(props) {
-    this.setState({ value: props.value });
-    if (props.passProps.choices) {
-      this.setChoices();
-    }
-  }
-
-  onChange(event, index, value) {
-    this.setState({ value: value });
-    this.props.thing[this.props.property] = value;
-  }
-
-  render() {
-    let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
-    return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <SelectField
-          name={property}
-          fullWidth={true}
-          onChange={onChange}
-          value={this.state.value}
-        >
-          {this.choices}
-        </SelectField>
-      </div>
-    );
-  }
-}
-
-ChoicePropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export class ChoiceEditor extends React.Component {
   constructor(props) {
@@ -383,13 +177,13 @@ class NumberEditor extends React.Component {
 
   render() {
     let onChange = this.onChange.bind(this);
-    let property = this.props.passProps.property;
+    let name = this.props.passProps.name;
     return (
       <TextField
         onChange={onChange}
-        value={this.state.value}
+        value={typeof this.state.value !== "undefined" ? this.state.value : ""}
         fullWidth={true}
-        name={property}
+        name={name}
       />
     );
   }
@@ -406,7 +200,8 @@ export function makeLocalizedNumberField(intl, property) {
 
         <Field
           fieldName={property}
-          property={property}
+          id={property}
+          name={property}
           label={intl.formatMessage({ id: property })}
           type={NumberEditor}
         />
@@ -434,13 +229,17 @@ class TextEditor extends React.Component {
 
   render() {
     let onChange = this.onChange.bind(this);
-    let property = this.props.passProps.property;
+    let name = this.props.passProps.name;
     return (
       <TextField
         onChange={onChange}
-        value={this.state.value}
+        value={
+          typeof this.state.value !== "undefined" && this.state.value !== null
+            ? this.state.value
+            : ""
+        }
         fullWidth={true}
-        name={property}
+        name={name}
       />
     );
   }
@@ -457,7 +256,8 @@ export function makeLocalizedTextField(intl, property) {
 
         <Field
           fieldName={property}
-          nane={property}
+          name={property}
+          id={property}
           label={intl.formatMessage({ id: property })}
           type={TextEditor}
         />
@@ -485,7 +285,7 @@ class DateEditor extends React.Component {
 
   render() {
     let onChange = this.onChange.bind(this);
-    let property = this.props.passProps.property;
+    let property = this.props.passProps.name;
     return (
       <DatePicker
         onChange={onChange}
@@ -553,9 +353,7 @@ class LocationEditor extends React.Component {
   }
 
   onChange(value) {
-    console.log("onChange", value);
     this.setState({ value: value });
-    console.log("chanigng the location", value);
     this.props.onChange(value);
   }
 

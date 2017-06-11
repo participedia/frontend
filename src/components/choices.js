@@ -35,8 +35,17 @@ export function makeLocalizedChoices(intl, property) {
     };
   });
   return choices.sort(function(a, b) {
-    if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
-    if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
+    if (typeof a == String) {
+      if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+      if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
+    } else {
+      if (a < b) {
+        return -1;
+      }
+      if (a == b) {
+        return 0;
+      }
+    }
     return 1;
   });
 }
