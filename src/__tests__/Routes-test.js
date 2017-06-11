@@ -69,11 +69,10 @@ const renderTestSequence = ({
           initialEntries={initialEntries}
         >
           <Route
-            render={props => (
+            render={props =>
               <Assert {...props}>
                 <Subject />
-              </Assert>
-            )}
+              </Assert>}
           />
         </MemoryRouter>
       );
@@ -112,10 +111,9 @@ jest.mock("react-mapbox-gl", () => ({
   ZoomControl: "foo",
   Map: "foo"
 }));
-
 fetchMock.get(
   process.env.REACT_APP_API_URL +
-    "/search?error=false&query=&searching=true&selectedCategory=All&selectedViewType=grid&sortingMethod=chronological",
+    "/search?query=&selectedCategory=All&selectedViewType=grid",
   JSON.stringify(searchData)
 );
 

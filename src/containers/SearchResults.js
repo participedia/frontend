@@ -3,8 +3,7 @@ import api from "../utils/api";
 import myhistory from "../utils/history";
 import queryString from "query-string";
 
-import SearchResultsView
-  from "../components/SearchResultsView/SearchResultsView";
+import SearchResultsView from "../components/SearchResultsView/SearchResultsView";
 const DEFAULT_SORTING_METHOD = "chronological";
 const DEFAULT_CATEGORY = "All";
 export default class SearchResults extends React.Component {
@@ -37,7 +36,11 @@ export default class SearchResults extends React.Component {
     };
     // we need to act as if the state had been updated, but setState hasn't happened yet.
     let futureState = {};
-    Object.assign(futureState, this.state, newState);
+    futureState.selectedCategory =
+      newState.selectedCategory || this.state.selectedCategory;
+    futureState.selectedViewType =
+      newState.selectedViewType || this.state.selectedViewType;
+    futureState.query = newState.query || this.state.query;
 
     if (futureState.sortingMethod !== DEFAULT_SORTING_METHOD) {
       queryArgs["sortingMethod"] = futureState.sortingMethod;
