@@ -151,6 +151,13 @@ class CaseEditor extends Component {
                       {makeLocalizedChoiceField(intl, "specific_topic", issue)}
                     </div>
                   : undefined}
+                {issue == "other" && this.state.thing.specific_topic === "other"
+                  ? <b>
+                      {intl.formatMessage({
+                        id: "send_email_with_catgeory_additions"
+                      })}
+                    </b>
+                  : undefined}
               </div>
               <div>
                 {isQuick

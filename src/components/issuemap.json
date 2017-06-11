@@ -230,6 +230,9 @@
         "selfdriving_vehicles",
         "walking/pedestrian_mobility"
     ],
+    "other": [
+        "other"
+    ],
     "issue": [
         "agriculture_forestry_fishing_mining_industries",
         "arts_culture_recreation",
@@ -252,6 +255,7 @@
         "planning_development",
         "science_technology",
         "social_welfare",
-        "transportation"
+        "transportation",
+        "other"
     ]
 }
