@@ -156,23 +156,7 @@ class MethodEditor extends Component {
                         {intl.formatMessage({ id: "suggest_tag" })}
                       </div>
                       {tagseditor}
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
-                      <div className="related-content">
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_cases" })}
-                        </div>
-                        {related_cases}
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_methods" })}
-                        </div>
-                        {related_methods}
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_organizations" })}
-                        </div>
-                        {related_organizations}
-                      </div>
+
                       {makeLocalizedChoiceField(intl, "kind_of_influence")}
                       {makeLocalizedChoiceField(intl, "specific_topic")}
                       {makeLocalizedChoiceField(intl, "communication_mode")}
@@ -214,6 +198,23 @@ class MethodEditor extends Component {
                         intl,
                         "typical_sponsoring_entity"
                       )}
+                      <p className="sub-heading">
+                        Related Content
+                      </p>
+                      <div className="related-content">
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_cases" })}
+                        </div>
+                        {related_cases}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_methods" })}
+                        </div>
+                        {related_methods}
+                        <div className="sub-sub-heading">
+                          {intl.formatMessage({ id: "related_organizations" })}
+                        </div>
+                        {related_organizations}
+                      </div>
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}

@@ -168,34 +168,7 @@ class CaseEditor extends Component {
                       />
                     </div>
                   : <div>
-                      <p className="sub-heading">
-                        Keywords
-                      </p>
-                      keyword picker
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
                       <div className="related-content">
-                        <div className="pb-1">
-                          <p className="sub-sub-heading">
-                            {intl.formatMessage({ id: "related_cases" })}
-                          </p>
-                          {related_cases}
-                        </div>
-                        <div className="pb-1">
-                          <p className="sub-sub-heading">
-                            {intl.formatMessage({ id: "related_methods" })}
-                          </p>
-                          {related_methods}
-                        </div>
-                        <div className="pb-1">
-                          <p className="sub-sub-heading">
-                            {intl.formatMessage({
-                              id: "related_organizations"
-                            })}
-                          </p>
-                          {related_organizations}
-                        </div>
                         {makeLocalizedChoiceField(intl, "specific_topic")}
                         {makeLocalizedChoiceField(intl, "communication_mode")}
                         {makeLocalizedChoiceField(
@@ -256,6 +229,26 @@ class CaseEditor extends Component {
                           intl,
                           "who_else_supported_the_initiative"
                         )}
+                        <div className="pb-1">
+                          <p className="sub-sub-heading">
+                            {intl.formatMessage({ id: "related_cases" })}
+                          </p>
+                          {related_cases}
+                        </div>
+                        <div className="pb-1">
+                          <p className="sub-sub-heading">
+                            {intl.formatMessage({ id: "related_methods" })}
+                          </p>
+                          {related_methods}
+                        </div>
+                        <div className="pb-1">
+                          <p className="sub-sub-heading">
+                            {intl.formatMessage({
+                              id: "related_organizations"
+                            })}
+                          </p>
+                          {related_organizations}
+                        </div>{" "}
                       </div>
                       <RaisedButton
                         className="incomplete-warning"

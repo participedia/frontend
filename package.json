@@ -43,7 +43,7 @@
     "habitat": "^3.1.2",
     "html-to-text": "^3.3.0",
     "jwt-decode": "^2.1.0",
-    "mapbox-gl": "^0.37.0",
+    "mapbox-gl": "^0.38.0",
     "material-ui": "^0.18.1",
     "material-ui-chip-input": "^0.15.0",
     "object-omit": "^1.0.0",
