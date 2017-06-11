@@ -553,9 +553,7 @@ class LocationEditor extends React.Component {
   }
 
   onChange(value) {
-    console.log("onChange", value);
     this.setState({ value: value });
-    console.log("chanigng the location", value);
     this.props.onChange(value);
   }
 

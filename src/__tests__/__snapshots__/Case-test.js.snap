@@ -1,5 +1,669 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Case editor renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="main-contents"
+  >
+    <div
+      className="detailed-case-component container-fluid"
+    >
+      <div
+        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+      />
+      <div
+        className="main-area col-12 col-md-8"
+      >
+        <div
+          className="case-box"
+        >
+          <h2
+            className="category"
+          >
+            case
+          </h2>
+          <h2
+            className="case-title"
+          >
+            Agenda 21 Locale (Province of Forli-Cesena, Italy)
+          </h2>
+          <div
+            className="itemPics row"
+          >
+            <div
+              className="col col-sm-6 col-md-3"
+            >
+              <div
+                className="box lead"
+              >
+                <div
+                  className="checkbox"
+                  onClick={[Function]}
+                />
+                <div
+                  className="trash"
+                  onClick={[Function]}
+                />
+                <img
+                  alt=""
+                  className="img-fluid"
+                  src="https://d3im063erkq9w4.cloudfront.net/undefined"
+                />
+                <small>
+                  Lead Image
+                </small>
+              </div>
+            </div>
+            <div
+              className="col col-md-3"
+            >
+              <div
+                className={undefined}
+              >
+                <div
+                  className="react-dropzone-s3-uploader"
+                  onClick={[Function]}
+                  onDragEnter={[Function]}
+                  onDragLeave={[Function]}
+                  onDragOver={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onProgress={[Function]}
+                  style={
+                    Object {
+                      "border": "dashed 2px #999",
+                      "borderRadius": 5,
+                      "cursor": "pointer",
+                      "height": 200,
+                      "overflow": "hidden",
+                      "position": "relative",
+                      "width": 200,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "height": "100%",
+                        "marginLeft": "33%",
+                        "marginTop": "33%",
+                        "width": "100%",
+                      }
+                    }
+                  />
+                  <input
+                    accept={undefined}
+                    multiple={true}
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "display": "none",
+                      }
+                    }
+                    type="file"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <div
+            className={undefined}
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "cursor": "auto",
+                "display": "inline-block",
+                "fontFamily": "Roboto, sans-serif",
+                "fontSize": 16,
+                "height": 48,
+                "lineHeight": "24px",
+                "muiPrepared": true,
+                "position": "relative",
+                "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "width": "100%",
+              }
+            }
+          >
+            
+            <input
+              disabled={false}
+              id="title-null--49055"
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              placeholder={undefined}
+              style={
+                Object {
+                  "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                  "appearance": "textfield",
+                  "backgroundColor": "rgba(0,0,0,0)",
+                  "border": "none",
+                  "color": "rgba(0, 0, 0, 0.87)",
+                  "cursor": "inherit",
+                  "font": "inherit",
+                  "height": "100%",
+                  "muiPrepared": true,
+                  "outline": "none",
+                  "padding": 0,
+                  "position": "relative",
+                  "width": "100%",
+                }
+              }
+              type="text"
+              value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
+            />
+            <div>
+              <hr
+                aria-hidden="true"
+                style={
+                  Object {
+                    "borderBottom": "solid 1px",
+                    "borderColor": "#e0e0e0",
+                    "borderLeft": "none",
+                    "borderRight": "none",
+                    "borderTop": "none",
+                    "bottom": 8,
+                    "boxSizing": "content-box",
+                    "margin": 0,
+                    "muiPrepared": true,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
+                }
+              />
+              <hr
+                aria-hidden="true"
+                style={
+                  Object {
+                    "borderBottom": "solid 2px",
+                    "borderColor": "#00bcd4",
+                    "borderLeft": "none",
+                    "borderRight": "none",
+                    "borderTop": "none",
+                    "bottom": 8,
+                    "boxSizing": "content-box",
+                    "margin": 0,
+                    "muiPrepared": true,
+                    "position": "absolute",
+                    "transform": "scaleX(0)",
+                    "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                    "width": "100%",
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="body_en"
+            />
+          </div>
+          <div
+            className="case-location"
+          >
+            <p
+              className="sub-heading"
+            />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="location"
+              />
+            </div>
+          </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="suggest_tag"
+          />
+          <div>
+            <p
+              className="sub-sub-heading"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <div
+              className="related-content"
+            >
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="facilitated"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="number_of_meeting_days"
+                >
+                  <div
+                    className={undefined}
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "cursor": "auto",
+                        "display": "inline-block",
+                        "fontFamily": "Roboto, sans-serif",
+                        "fontSize": 16,
+                        "height": 48,
+                        "lineHeight": "24px",
+                        "muiPrepared": true,
+                        "position": "relative",
+                        "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <input
+                      disabled={false}
+                      id="numberofmeetingdays-undefined-undefined-54237"
+                      name="number_of_meeting_days"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      style={
+                        Object {
+                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                          "appearance": "textfield",
+                          "backgroundColor": "rgba(0,0,0,0)",
+                          "border": "none",
+                          "color": "rgba(0, 0, 0, 0.87)",
+                          "cursor": "inherit",
+                          "font": "inherit",
+                          "height": "100%",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "padding": 0,
+                          "position": "relative",
+                          "width": "100%",
+                        }
+                      }
+                      type="text"
+                      value="4"
+                    />
+                    <div>
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 1px",
+                            "borderColor": "#e0e0e0",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 2px",
+                            "borderColor": "#00bcd4",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "transform": "scaleX(0)",
+                            "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="ongoing"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="start_date"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="end_date"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="staff_type"
+                >
+                  <div
+                    className={undefined}
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "cursor": "auto",
+                        "display": "inline-block",
+                        "fontFamily": "Roboto, sans-serif",
+                        "fontSize": 16,
+                        "height": 48,
+                        "lineHeight": "24px",
+                        "muiPrepared": true,
+                        "position": "relative",
+                        "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <input
+                      disabled={false}
+                      id="undefined-undefined-undefined-26057"
+                      name={undefined}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      style={
+                        Object {
+                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                          "appearance": "textfield",
+                          "backgroundColor": "rgba(0,0,0,0)",
+                          "border": "none",
+                          "color": "rgba(0, 0, 0, 0.87)",
+                          "cursor": "inherit",
+                          "font": "inherit",
+                          "height": "100%",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "padding": 0,
+                          "position": "relative",
+                          "width": "100%",
+                        }
+                      }
+                      type="text"
+                      value={undefined}
+                    />
+                    <div>
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 1px",
+                            "borderColor": "#e0e0e0",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 2px",
+                            "borderColor": "#00bcd4",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "transform": "scaleX(0)",
+                            "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p
+                  className="sub-sub-heading"
+                />
+                <div
+                  className="who_else_supported_the_initiative"
+                >
+                  <div
+                    className={undefined}
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "cursor": "auto",
+                        "display": "inline-block",
+                        "fontFamily": "Roboto, sans-serif",
+                        "fontSize": 16,
+                        "height": 48,
+                        "lineHeight": "24px",
+                        "muiPrepared": true,
+                        "position": "relative",
+                        "transition": "height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <input
+                      disabled={false}
+                      id="undefined-undefined-undefined-28616"
+                      name={undefined}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      style={
+                        Object {
+                          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+                          "appearance": "textfield",
+                          "backgroundColor": "rgba(0,0,0,0)",
+                          "border": "none",
+                          "color": "rgba(0, 0, 0, 0.87)",
+                          "cursor": "inherit",
+                          "font": "inherit",
+                          "height": "100%",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "padding": 0,
+                          "position": "relative",
+                          "width": "100%",
+                        }
+                      }
+                      type="text"
+                      value={undefined}
+                    />
+                    <div>
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 1px",
+                            "borderColor": "#e0e0e0",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                      <hr
+                        aria-hidden="true"
+                        style={
+                          Object {
+                            "borderBottom": "solid 2px",
+                            "borderColor": "#00bcd4",
+                            "borderLeft": "none",
+                            "borderRight": "none",
+                            "borderTop": "none",
+                            "bottom": 8,
+                            "boxSizing": "content-box",
+                            "margin": 0,
+                            "muiPrepared": true,
+                            "position": "absolute",
+                            "transform": "scaleX(0)",
+                            "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                            "width": "100%",
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                />
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+`;
+
 exports[`ItemDetails for Case renders correctly 1`] = `
 <div>
   <div
