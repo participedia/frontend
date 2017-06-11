@@ -314,7 +314,7 @@ export class BooleanEditor extends React.Component {
     this.setState({ value: value });
   }
 
-  onChange(event, index, value) {
+  onChange(event, value) {
     this.setState({ value: value });
     this.props.onChange(value);
   }
