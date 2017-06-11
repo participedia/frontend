@@ -1,6 +1,7 @@
 const caseChoiceData = require("./case.choices.json");
 const methodChoiceData = require("./method.choices.json");
 const orgChoiceData = require("./organization.choices.json");
+const issueChoiceData = require("./issuemap.json");
 
 let choiceData = {};
 for (let key in caseChoiceData) {
@@ -14,6 +15,10 @@ for (let key in methodChoiceData) {
 for (let key in orgChoiceData) {
   if (!orgChoiceData.hasOwnProperty(key)) continue;
   choiceData[key] = orgChoiceData[key];
+}
+for (let key in issueChoiceData) {
+  if (!issueChoiceData.hasOwnProperty(key)) continue;
+  choiceData[key] = issueChoiceData[key];
 }
 
 export function getChoices(property) {

@@ -12,6 +12,7 @@ function nickify(before) {
   if (!before) return "";
   try {
     return before
+      .trim()
       .replace("&amp", "")
       .replace("#039;", "")
       .replace(/[.,\-()&$£;~]/g, "")
@@ -26,24 +27,21 @@ export class ChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: nickify(props.value)
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
     };
-    if (this.props.passProps.choices) {
-      this.setChoices();
-    }
-  }
-
-  setChoices() {
-    this.choices = this.props.passProps.choices.map(function(v) {
-      return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
-    });
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ value: nickify(props.value) });
-    if (props.passProps.choices) {
-      this.setChoices();
-    }
+    this.setState({
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
+    });
+  }
+  makeChoices(choices) {
+    return choices.map(function(v) {
+      return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
+    });
   }
 
   onChange(event, index, value) {
@@ -61,15 +59,18 @@ export class ChoiceEditor extends React.Component {
         onChange={onChange}
         value={this.state.value}
       >
-        {this.choices}
+        {this.state.choices}
       </SelectField>
     );
   }
 }
 
-export function makeLocalizedChoiceField(intl, property) {
-  let choices = makeLocalizedChoices(intl, property);
-  let label = intl.formatMessage({ id: property });
+export function makeLocalizedChoiceField(intl, property, tag_for_choices) {
+  if (typeof tag_for_choices === "undefined") {
+    tag_for_choices = property;
+  }
+  let choices = makeLocalizedChoices(intl, tag_for_choices);
+  let label = intl.formatMessage({ id: tag_for_choices });
   return (
     <div>
       <p className="sub-sub-heading">
