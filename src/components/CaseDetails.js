@@ -1,8 +1,9 @@
 import React from "react";
 
-import CountryMap from "../components/CountryMap";
-import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
-import Tags from "../components/Tags";
+import CountryMap from "./CountryMap";
+import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
+import ListWithHeading from "./ListWithHeading";
+import Tags from "./Tags";
 import {
   DateProp,
   BooleanProp,
@@ -26,16 +27,23 @@ export default class CaseDetails extends React.Component {
         <Tags thing={thing} intl={intl} />
         <LinkedPropertyGroupWithHeading
           intl={intl}
-          heading="specific_topic"
-          property="specific_topic"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="issue"
           property="issue"
           thing={thing}
         />
+        <LinkedPropertyGroupWithHeading
+          intl={intl}
+          heading="specific_topic"
+          property="specific_topic"
+          thing={thing}
+        />
+        <ListWithHeading
+          intl={intl}
+          heading="links"
+          property="links"
+          thing={thing}
+        />
+
         <LinkedPropertyGroupWithHeading
           intl={intl}
           heading="communication_mode"

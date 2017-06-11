@@ -5,6 +5,7 @@
         "title": ""
     },
     "published": true,
+    "links": ["link 1", "link 2", "link 3"],
     "methods": "559",
     "end_date": "2011-02-11T17:00:00.1234Z",
     "location": {

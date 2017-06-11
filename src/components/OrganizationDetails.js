@@ -2,8 +2,8 @@ import React from "react";
 
 import SearchLink from "../components/SearchLink";
 import CountryMap from "../components/CountryMap";
-import LinkedPropertyGroupWithHeading
-  from "../components/LinkedPropertyGroupWithHeading";
+import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
+import ListWithHeading from "../components/ListWithHeading";
 
 export default class OrganizationDetails extends React.Component {
   render() {
@@ -11,9 +11,9 @@ export default class OrganizationDetails extends React.Component {
     let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {
-      tags = thing.tags.map(tag => (
+      tags = thing.tags.map(tag =>
         <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
-      ));
+      );
     }
     let ed = null;
     if (thing.executive_director) {
@@ -43,6 +43,12 @@ export default class OrganizationDetails extends React.Component {
         <div className="tags">
           {tags}
         </div>
+        <ListWithHeading
+          intl={intl}
+          heading="links"
+          property="links"
+          thing={thing}
+        />
         {ed}
 
         <LinkedPropertyGroupWithHeading

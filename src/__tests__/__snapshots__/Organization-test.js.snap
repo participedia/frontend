@@ -74,6 +74,30 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 public
               </a>
             </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="links"
+              >
+                <div
+                  className="link"
+                >
+                  link 1
+                </div>
+                <div
+                  className="link"
+                >
+                  link 2
+                </div>
+                <div
+                  className="link"
+                >
+                  link 3
+                </div>
+              </div>
+            </div>
             <div />
           </div>
           <div />

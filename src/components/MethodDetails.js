@@ -1,7 +1,7 @@
 import React from "react";
 import SearchLink from "../components/SearchLink";
-import LinkedPropertyGroupWithHeading
-  from "../components/LinkedPropertyGroupWithHeading";
+import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
+import ListWithHeading from "./ListWithHeading";
 
 /* Properties that are specific to methods:
 // best_for
@@ -37,9 +37,9 @@ export default class MethodDetails extends React.Component {
     let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {
-      tags = thing.tags.map(tag => (
+      tags = thing.tags.map(tag =>
         <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
-      ));
+      );
     }
     return (
       <div>
@@ -53,18 +53,24 @@ export default class MethodDetails extends React.Component {
           {tags}
         </div>
 
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
-          heading="kind_of_influence"
-          property="kind_of_influence"
-          thing={thing}
-        />
         <p className="sub-sub-heading">
           Specific Topic:
         </p>
         <div className="tags">
           {thing.issue}
         </div>
+        <ListWithHeading
+          intl={intl}
+          heading="links"
+          property="links"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          intl={intl}
+          heading="kind_of_influence"
+          property="kind_of_influence"
+          thing={thing}
+        />
         <LinkedPropertyGroupWithHeading
           intl={intl}
           heading="communication_mode"
