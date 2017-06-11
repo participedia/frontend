@@ -187,7 +187,6 @@ class CaseEditor extends Component {
                     </div>
                   : <div>
                       <div className="related-content">
-                        {makeLocalizedChoiceField(intl, "specific_topic")}
                         {makeLocalizedChoiceField(intl, "communication_mode")}
                         {makeLocalizedChoiceField(
                           intl,

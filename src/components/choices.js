@@ -40,6 +40,10 @@ export function makeLocalizedChoices(intl, property) {
     };
   });
   return choices.sort(function(a, b) {
+    if (typeof a == undefined) return -1;
+    if (typeof b == undefined) return 1;
+    if (!a.text) return -1;
+    if (!b.text) return 1;
     if (typeof a == typeof {}) {
       if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
       if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
