@@ -13,7 +13,8 @@ import RaisedButton from "material-ui/RaisedButton";
 import tags_json from "../autocomplete_data/tags.json";
 import {
   makeLocalizedChoiceField,
-  makeLocalizedTextField
+  makeLocalizedTextField,
+  makeLocalizedListField
 } from "./PropEditors";
 
 const buttonStyle = {
@@ -140,6 +141,7 @@ class OrganizationEditor extends Component {
                   {makeLocalizedChoiceField(intl, "specific_topic")}
                   {makeLocalizedTextField(intl, "executive_director")}
                   {makeLocalizedChoiceField(intl, "sector")}
+                  {makeLocalizedListField(intl, "links")}
                 </div>
                 {isQuick
                   ? <div>

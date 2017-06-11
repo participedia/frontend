@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import MethodDetails from "../components/MethodDetails";
+import MethodEditor from "../components/MethodEditor";
 import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
@@ -33,6 +34,16 @@ fetchMock.get(
 
 jest.mock("material-ui/FloatingActionButton");
 jest.mock("../components/BookmarkToggle");
+jest.mock("material-ui/TextField", () => "Textfield");
+jest.mock("material-ui/RaisedButton");
+jest.mock("material-ui/RadioButton");
+jest.mock("material-ui/DatePicker");
+jest.mock("material-ui/SelectField");
+jest.mock("material-ui/SvgIcon");
+jest.mock("react-geosuggest");
+jest.mock("material-ui-chip-input");
+jest.mock("react-items-list");
+jest.mock("../components/LazyBodyEditor");
 
 function setup() {
   const props = {
@@ -79,6 +90,21 @@ test("ItemDetails for Method renders correctly", () => {
     .create(
       <IntlProvider locale={locale} messages={messages}>
         <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("Method editor renders correctly", () => {
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter>
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <MethodEditor {...props} type="method" thing={data} />
+          </MuiThemeProvider>
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();

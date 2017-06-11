@@ -7,6 +7,7 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
+import List from "react-items-list";
 
 function nickify(before) {
   if (!before) return "";
@@ -387,6 +388,76 @@ export function makeLocalizedLocationField(intl, property) {
             id: "location_placeholder"
           })}
           type={LocationEditor}
+        />
+      </div>
+    </div>
+  );
+}
+
+export class ListEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value || []
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: props.value || []
+    });
+  }
+
+  update(value) {
+    this.setState({ value });
+    this.props.onChange(value);
+  }
+  onAdd(text) {
+    let value = this.state.value;
+    value.push(text);
+    this.update(value);
+  }
+  onRemove(index) {
+    let value = this.state.value;
+    value.splice(index, 1);
+    this.update(value);
+  }
+  onUpdate(index, newtext) {
+    let value = this.state.value;
+    value[index] = newtext;
+    this.update(value);
+  }
+
+  render() {
+    let onAdd = this.onAdd.bind(this);
+    let onRemove = this.onRemove.bind(this);
+    let onUpdate = this.onUpdate.bind(this);
+    return (
+      <List
+        className={this.props.passProps.name + "_list"}
+        items={this.state.value}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+      />
+    );
+  }
+}
+
+export function makeLocalizedListField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+        <Field
+          fieldName={property}
+          id={property}
+          name={property}
+          label={intl.formatMessage({ id: property })}
+          type={ListEditor}
         />
       </div>
     </div>

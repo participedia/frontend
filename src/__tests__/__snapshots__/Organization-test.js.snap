@@ -74,6 +74,30 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 public
               </a>
             </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="links"
+              >
+                <div
+                  className="link"
+                >
+                  link 1
+                </div>
+                <div
+                  className="link"
+                >
+                  link 2
+                </div>
+                <div
+                  className="link"
+                >
+                  link 3
+                </div>
+              </div>
+            </div>
             <div />
           </div>
           <div />
@@ -234,4 +258,169 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
     />
   </div>
 </div>
+`;
+
+exports[`Organization editor renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="main-contents"
+  >
+    <div
+      className="detailed-case-component container-fluid"
+    >
+      <div
+        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+      />
+      <div
+        className="main-area col-12 col-md-8"
+      >
+        <div
+          className="case-box"
+        >
+          <h2
+            className="category"
+          >
+            organization
+          </h2>
+          <h2
+            className="case-title"
+          >
+            Urban Interactive Studio
+          </h2>
+          <div
+            className="itemPics row"
+          >
+            <div
+              className="col col-sm-6 col-md-3"
+            >
+              <div
+                className="box lead"
+              >
+                <div
+                  className="checkbox"
+                  onClick={[Function]}
+                />
+                <div
+                  className="trash"
+                  onClick={[Function]}
+                />
+                <img
+                  alt=""
+                  className="img-fluid"
+                  src="https://d3im063erkq9w4.cloudfront.net/uis_favicon_0.png"
+                />
+                <small>
+                  Lead Image
+                </small>
+              </div>
+            </div>
+            <div
+              className="col col-md-3"
+            >
+              <div>
+                Sorry, upload only works if you're logged in.
+              </div>
+            </div>
+          </div>
+          <div
+            className="title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <Textfield
+            disabled={false}
+            errorText={undefined}
+            floatingLabelText=""
+            fullWidth={true}
+            hintText={null}
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder={undefined}
+            type="text"
+            value="Urban Interactive Studio"
+          />
+          <div>
+            <label
+              htmlFor="body_en"
+            />
+          </div>
+        </div>
+        <div>
+          <div
+            className="case-location"
+          >
+            <p
+              className="sub-heading"
+            />
+            <p
+              className="sub-heading"
+            />
+            <div
+              className="suggest_tag"
+            />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="executive_director"
+              >
+                <Textfield
+                  fullWidth={true}
+                  name="executive_director"
+                  onChange={[Function]}
+                  value=""
+                />
+              </div>
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="links"
+              />
+            </div>
+          </div>
+          <div>
+            <p
+              className="sub-heading"
+            >
+              Related Content
+            </p>
+            <div
+              className="related-content"
+            >
+              <div
+                className="sub-sub-heading"
+              />
+              <div
+                className="sub-sub-heading"
+              />
+              <div
+                className="sub-sub-heading"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 `;

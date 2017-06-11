@@ -43,6 +43,7 @@ jest.mock("material-ui/SelectField");
 jest.mock("material-ui/SvgIcon");
 jest.mock("react-geosuggest");
 jest.mock("material-ui-chip-input");
+jest.mock("react-items-list");
 
 function setup() {
   const props = {

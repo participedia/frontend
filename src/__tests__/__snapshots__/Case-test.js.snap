@@ -172,6 +172,14 @@ exports[`Case editor renders correctly 1`] = `
               />
             </div>
           </div>
+          <div>
+            <p
+              className="sub-sub-heading"
+            />
+            <div
+              className="links"
+            />
+          </div>
         </div>
         <div>
           <div>
@@ -401,6 +409,22 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               />
               <div
+                className="issue"
+              >
+                <a
+                  className="tag"
+                  href="/search?issue=Budgeting"
+                  onClick={[Function]}
+                >
+                  Budgeting
+                </a>
+              </div>
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
                 className="specific_topic"
               >
                 <a
@@ -417,15 +441,23 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               />
               <div
-                className="issue"
+                className="links"
               >
-                <a
-                  className="tag"
-                  href="/search?issue=Budgeting"
-                  onClick={[Function]}
+                <div
+                  className="link"
                 >
-                  Budgeting
-                </a>
+                  link 1
+                </div>
+                <div
+                  className="link"
+                >
+                  link 2
+                </div>
+                <div
+                  className="link"
+                >
+                  link 3
+                </div>
               </div>
             </div>
             <div>

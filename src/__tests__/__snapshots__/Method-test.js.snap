@@ -29,7 +29,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="tags"
             />
-            <div />
             <p
               className="sub-sub-heading"
             >
@@ -38,6 +37,31 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="tags"
             />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="links"
+              >
+                <div
+                  className="link"
+                >
+                  link 1
+                </div>
+                <div
+                  className="link"
+                >
+                  link 2
+                </div>
+                <div
+                  className="link"
+                >
+                  link 3
+                </div>
+              </div>
+            </div>
+            <div />
             <div />
             <div />
             <div />
@@ -223,4 +247,211 @@ exports[`ItemDetails for Method renders correctly 1`] = `
     />
   </div>
 </div>
+`;
+
+exports[`Method editor renders correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="main-contents"
+  >
+    <div
+      className="detailed-case-component container-fluid"
+    >
+      <div
+        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+      />
+      <div
+        className="main-area col-12 col-md-8"
+      >
+        <div
+          className="case-box"
+        >
+          <h2
+            className="category"
+          >
+            method
+          </h2>
+          <h2
+            className="case-title"
+          >
+            Petition
+          </h2>
+          <div
+            className="itemPics row"
+          >
+            <div
+              className="col col-md-3"
+            >
+              <div>
+                Sorry, upload only works if you're logged in.
+              </div>
+            </div>
+          </div>
+          <div
+            className="title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <Textfield
+            disabled={false}
+            errorText={undefined}
+            floatingLabelText=""
+            fullWidth={true}
+            hintText={null}
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder={undefined}
+            type="text"
+            value="Petition"
+          />
+          <div>
+            <label
+              htmlFor="body_en"
+            />
+          </div>
+          <div>
+            <p
+              className="sub-sub-heading"
+            />
+            <div
+              className="links"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <p
+              className="sub-heading"
+            />
+            <div
+              className="suggest_tag"
+            />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="facilitated"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+            </div>
+            <p
+              className="sub-heading"
+            >
+              Related Content
+            </p>
+            <div
+              className="related-content"
+            >
+              <div
+                className="sub-sub-heading"
+              />
+              <div
+                className="sub-sub-heading"
+              />
+              <div
+                className="sub-sub-heading"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 `;

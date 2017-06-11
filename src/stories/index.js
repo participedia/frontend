@@ -12,6 +12,7 @@ import { Form, Field } from "simple-react-form";
 import "../components/CaseEditor.css";
 import "./story.css";
 import { getBestMatchingMessages } from "../utils/l10n";
+import List from "react-items-list";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -22,11 +23,10 @@ injectTapEventPlugin();
 let locale = "en-US";
 let messages = getBestMatchingMessages(locale);
 
-const ThemeDecorator = storyFn => (
+const ThemeDecorator = storyFn =>
   <MuiThemeProvider muiTheme={muiTheme}>
     {storyFn()}
-  </MuiThemeProvider>
-);
+  </MuiThemeProvider>;
 addDecorator(ThemeDecorator);
 
 class MyForm extends React.Component {
@@ -60,7 +60,7 @@ class MyForm extends React.Component {
   }
 }
 
-storiesOf("Tags", module).add("no default", () => (
+storiesOf("Tags", module).add("no default", () =>
   <MyForm state={{ tags: [] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
@@ -70,9 +70,9 @@ storiesOf("Tags", module).add("no default", () => (
       dataSource={["one", "two", "three"]}
     />
   </MyForm>
-));
+);
 
-storiesOf("Tags", module).add("default tags", () => (
+storiesOf("Tags", module).add("default tags", () =>
   <MyForm state={{ tags: ["a", "b"] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
@@ -81,9 +81,9 @@ storiesOf("Tags", module).add("default tags", () => (
       dataSource={["one", "two", "three"]}
     />
   </MyForm>
-));
+);
 
-storiesOf("RelatedEditors", module).add("no defaults", () => (
+storiesOf("RelatedEditors", module).add("no defaults", () =>
   <MyForm state={{ related_things: [] }}>
     <div className="sub-heading">Related things</div>
     <Field
@@ -99,9 +99,9 @@ storiesOf("RelatedEditors", module).add("no defaults", () => (
       dataSourceConfig={{ text: "text", value: "value" }}
     />
   </MyForm>
-));
+);
 
-storiesOf("RelatedEditors", module).add("some values", () => (
+storiesOf("RelatedEditors", module).add("some values", () =>
   <MyForm state={{ related_things: [{ text: "one", value: 1 }] }}>
     <div className="sub-heading">Related things</div>
     <Field
@@ -117,7 +117,7 @@ storiesOf("RelatedEditors", module).add("some values", () => (
       dataSourceConfig={{ text: "text", value: "value" }}
     />
   </MyForm>
-));
+);
 
 let choices = [
   {
@@ -133,7 +133,7 @@ let choices = [
     value: "issue_3"
   }
 ];
-action("choices")(choices);
+
 storiesOf("ChoicePropEditor", module).add("no defaults", function() {
   return (
     <MyForm state={{ issue: {} }}>
@@ -145,6 +145,19 @@ storiesOf("ChoicePropEditor", module).add("no defaults", function() {
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
+      />
+    </MyForm>
+  );
+});
+storiesOf("ListEditor", module).add("no defaults", function() {
+  return (
+    <MyForm state={{ links: {} }}>
+      <div className="sub-heading">List</div>
+      <Field
+        fieldName="links"
+        label="links"
+        type={List}
+        items={["link 1", "link 2"]}
       />
     </MyForm>
   );
