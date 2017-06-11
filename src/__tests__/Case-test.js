@@ -35,7 +35,7 @@ jest.mock("../components/LazyBodyEditor");
 jest.mock("../utils/s3upload");
 jest.mock("material-ui/FloatingActionButton");
 jest.mock("../components/BookmarkToggle");
-// jest.mock("material-ui/TextField");
+jest.mock("material-ui/TextField", () => "Textfield");
 jest.mock("material-ui/RaisedButton");
 jest.mock("material-ui/RadioButton");
 jest.mock("material-ui/DatePicker");

@@ -178,7 +178,6 @@ class NumberEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let name = this.props.passProps.name;
-    console.log("name, numbereditor", name);
     return (
       <TextField
         onChange={onChange}
@@ -201,6 +200,7 @@ export function makeLocalizedNumberField(intl, property) {
 
         <Field
           fieldName={property}
+          id={property}
           name={property}
           label={intl.formatMessage({ id: property })}
           type={NumberEditor}
@@ -230,7 +230,6 @@ class TextEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let name = this.props.passProps.name;
-    console.log("name, text, ", name);
     return (
       <TextField
         onChange={onChange}
@@ -258,6 +257,7 @@ export function makeLocalizedTextField(intl, property) {
         <Field
           fieldName={property}
           name={property}
+          id={property}
           label={intl.formatMessage({ id: property })}
           type={TextEditor}
         />
