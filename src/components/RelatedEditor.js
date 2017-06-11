@@ -20,10 +20,10 @@ export default class Related extends React.Component {
   handleRequestAdd(chip) {
     // require that the chip be one of the autocompleted ones
     let isValid = false;
-    if (this.props.passProps.dataSourceConfig) {
-      isValid = this.props.passProps.dataSource.value.filter(
-        c => c[this.props.passProps.dataSourceConfig.value] == chip
-      );
+    let choices = this.props.passProps.dataSource;
+    let config = this.props.passProps.dataSourceConfig;
+    if (config) {
+      isValid = choices.filter(c => c[config.value] == chip[config.value]);
     } else {
       isValid = this.props.passProps.dataSource.filter(c => c == chip);
     }

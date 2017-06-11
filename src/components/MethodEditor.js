@@ -183,7 +183,6 @@ class MethodEditor extends Component {
                         "issue_technical_complexity"
                       )}
                       {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                      {makeLocalizedChoiceField(intl, "method_of_interaction")}
                       {makeLocalizedChoiceField(
                         intl,
                         "public_interaction_method"
