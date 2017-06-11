@@ -172,6 +172,14 @@ exports[`Case editor renders correctly 1`] = `
               />
             </div>
           </div>
+          <div>
+            <p
+              className="sub-sub-heading"
+            />
+            <div
+              className="links"
+            />
+          </div>
         </div>
         <div>
           <div>

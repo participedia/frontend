@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import OrganizationDetails from "../components/OrganizationDetails";
+import OrganizationEditor from "../components/OrganizationEditor";
 import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
@@ -26,6 +27,16 @@ jest.mock("react-timeago", () => {
   const TimeAgo = props => React.createElement("TimeAgo");
   return TimeAgo;
 }); // so we don't break tests as time goes by
+jest.mock("material-ui/TextField", () => "Textfield");
+jest.mock("material-ui/RaisedButton");
+jest.mock("material-ui/RadioButton");
+jest.mock("material-ui/DatePicker");
+jest.mock("material-ui/SelectField");
+jest.mock("material-ui/SvgIcon");
+jest.mock("react-geosuggest");
+jest.mock("material-ui-chip-input");
+jest.mock("react-items-list");
+jest.mock("../components/LazyBodyEditor");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/organization/4219",
@@ -81,6 +92,20 @@ test("ItemDetails for Organization renders correctly", () => {
     .create(
       <IntlProvider locale={locale} messages={messages}>
         <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+test("Organization editor renders correctly", () => {
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter>
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <OrganizationEditor {...props} type="organization" thing={data} />
+          </MuiThemeProvider>
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();

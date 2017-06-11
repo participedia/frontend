@@ -14,7 +14,8 @@ import RaisedButton from "material-ui/RaisedButton";
 
 import {
   makeLocalizedChoiceField,
-  makeLocalizedBooleanField
+  makeLocalizedBooleanField,
+  makeLocalizedListField
 } from "./PropEditors";
 
 const tags = tags_json["tags"];
@@ -122,6 +123,7 @@ class MethodEditor extends Component {
                   </label>
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
+                {makeLocalizedListField(intl, "links")}
               </div>
               <div>
                 {isQuick
