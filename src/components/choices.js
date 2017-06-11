@@ -28,10 +28,15 @@ export function getChoices(property) {
 }
 
 export function makeLocalizedChoices(intl, property) {
-  return getChoices(property).map(function(v) {
+  let choices = getChoices(property).map(function(v) {
     return {
       text: intl.formatMessage({ id: v }),
       value: v
     };
+  });
+  return choices.sort(function(a, b) {
+    if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+    if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
+    return 1;
   });
 }

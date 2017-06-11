@@ -202,10 +202,6 @@ class CaseEditor extends Component {
                         )}
                         {makeLocalizedChoiceField(
                           intl,
-                          "participant_selection"
-                        )}
-                        {makeLocalizedChoiceField(
-                          intl,
                           "type_of_funding_entity"
                         )}
                         {makeLocalizedChoiceField(
