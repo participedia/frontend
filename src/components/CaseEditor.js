@@ -86,6 +86,7 @@ class CaseEditor extends Component {
     );
     let incomplete =
       (thing.title ? false : true) || (thing.body ? false : true);
+    let issue = this.state.thing.issue;
     return (
       <Form
         onSubmit={onSubmit}
@@ -140,6 +141,23 @@ class CaseEditor extends Component {
                 </div>
                 {tagseditor}
                 {makeLocalizedChoiceField(intl, "issue")}
+                {issue
+                  ? <div>
+                      <p className="sub-sub-heading">
+                        {intl.formatMessage({
+                          id: "specific_topic"
+                        })}:
+                      </p>
+                      {makeLocalizedChoiceField(intl, "specific_topic", issue)}
+                    </div>
+                  : undefined}
+                {issue == "other" && this.state.thing.specific_topic === "other"
+                  ? <b>
+                      {intl.formatMessage({
+                        id: "send_email_with_catgeory_additions"
+                      })}
+                    </b>
+                  : undefined}
               </div>
               <div>
                 {isQuick
@@ -169,7 +187,6 @@ class CaseEditor extends Component {
                     </div>
                   : <div>
                       <div className="related-content">
-                        {makeLocalizedChoiceField(intl, "specific_topic")}
                         {makeLocalizedChoiceField(intl, "communication_mode")}
                         {makeLocalizedChoiceField(
                           intl,
