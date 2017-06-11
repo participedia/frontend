@@ -244,7 +244,7 @@ export class Layout extends React.Component {
   render() {
     const { intl } = this.props;
     let routes = <Routes intl={intl} auth={authService} />;
-    const isAuthenticated = authService.isAuthenticated;
+    let isAuthenticated = authService.isAuthenticated();
 
     return (
       <div>
@@ -300,7 +300,7 @@ export class Layout extends React.Component {
           >
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
-          <MenuItem className="hidden-sm-up">
+          <MenuItem className="hidden-md-up">
             {isAuthenticated
               ? <div className="profileButtonMenu">
                   <FlatButton
@@ -318,7 +318,7 @@ export class Layout extends React.Component {
                 </div>}
           </MenuItem>
           <MenuItem
-            className="hidden-sm-up"
+            className="hidden-md-up"
             containerElement={<Link to={"/new"} />}
             onTouchTap={this.handleClose}
           >
@@ -330,7 +330,7 @@ export class Layout extends React.Component {
           </MenuItem>
           {isAuthenticated
             ? <MenuItem
-                className="hidden-sm-up"
+                className="hidden-md-up"
                 primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
                 onClick={() => authService.logout()}
               />

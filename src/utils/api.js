@@ -65,6 +65,8 @@ class API {
   performSearch = function(queryArgs) {
     let querystring = queryString.stringify(queryArgs);
     let url = `${APIURL}/search?${querystring}`;
+    // console.log("queryArgs", queryArgs);
+    // console.log("DOING SEARCH", url);
     return fetch(url).then(response => response.json()).catch(function(error) {
       console.log(
         `There has been a problem with your fetch operation: (${url}) ${error}`
