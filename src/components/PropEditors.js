@@ -337,7 +337,6 @@ export class BooleanEditor extends React.Component {
 
 export function makeLocalizedBooleanField(intl, property) {
   let label = intl.formatMessage({ id: property });
-  console.log("getting label ", label, " for property", property);
   return (
     <div>
       <p className="sub-sub-heading">
@@ -481,7 +480,6 @@ class DateEditor extends React.Component {
 
   onChange(event, value) {
     this.setState({ value: value });
-    console.log("chanigng the date", value);
     this.props.onChange(value);
   }
 
