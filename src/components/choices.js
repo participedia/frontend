@@ -16,7 +16,7 @@ for (let key in orgChoiceData) {
   choiceData[key] = orgChoiceData[key];
 }
 
-export default function getChoices(property) {
+export function getChoices(property) {
   if (choiceData[property]) {
     return choiceData[property];
   } else {
@@ -25,4 +25,13 @@ export default function getChoices(property) {
     );
     return ["vanilla", "chocolate", "strawberry"];
   }
+}
+
+export function makeLocalizedChoices(intl, property) {
+  return getChoices(property).map(function(v) {
+    return {
+      text: intl.formatMessage({ id: v }),
+      value: v
+    };
+  });
 }

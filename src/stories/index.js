@@ -5,10 +5,13 @@ import React from "react";
 import { storiesOf, addDecorator } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import { Related } from "../components/RelatedEditors";
+import RelatedEditor from "../components/RelatedEditor";
+import { ChoiceEditor } from "../components/PropEditors";
+import getChoices from "../components/choices";
 import { Form, Field } from "simple-react-form";
 import "../components/CaseEditor.css";
 import "./story.css";
+import { getBestMatchingMessages } from "../utils/l10n";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
@@ -16,7 +19,8 @@ const muiTheme = getMuiTheme({});
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-let intl = {};
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
 
 const ThemeDecorator = storyFn => (
   <MuiThemeProvider muiTheme={muiTheme}>
@@ -61,10 +65,9 @@ storiesOf("Tags", module).add("no default", () => (
     <div className="sub-heading">Tag picker</div>
     <Field
       fieldName="tags"
-      type={Related}
+      type={RelatedEditor}
       maxSearchResults={30}
       dataSource={["one", "two", "three"]}
-      intl={intl}
     />
   </MyForm>
 ));
@@ -74,9 +77,8 @@ storiesOf("Tags", module).add("default tags", () => (
     <div className="sub-heading">Tag picker</div>
     <Field
       fieldName="tags"
-      type={Related}
+      type={RelatedEditor}
       dataSource={["one", "two", "three"]}
-      intl={intl}
     />
   </MyForm>
 ));
@@ -86,7 +88,7 @@ storiesOf("RelatedEditors", module).add("no defaults", () => (
     <div className="sub-heading">Related things</div>
     <Field
       fieldName="related_things"
-      type={Related}
+      type={RelatedEditor}
       dataSource={[
         { text: "one", value: 1 },
         { text: "two", value: 2 },
@@ -95,7 +97,6 @@ storiesOf("RelatedEditors", module).add("no defaults", () => (
         { text: "five", value: 5 }
       ]}
       dataSourceConfig={{ text: "text", value: "value" }}
-      intl={intl}
     />
   </MyForm>
 ));
@@ -105,7 +106,7 @@ storiesOf("RelatedEditors", module).add("some values", () => (
     <div className="sub-heading">Related things</div>
     <Field
       fieldName="related_things"
-      type={Related}
+      type={RelatedEditor}
       dataSource={[
         { text: "one", value: 1 },
         { text: "two", value: 2 },
@@ -114,7 +115,37 @@ storiesOf("RelatedEditors", module).add("some values", () => (
         { text: "five", value: 5 }
       ]}
       dataSourceConfig={{ text: "text", value: "value" }}
-      intl={intl}
     />
   </MyForm>
 ));
+
+let choices = [
+  {
+    text: "Issue 1",
+    value: "issue_1"
+  },
+  {
+    text: "Issue 2",
+    value: "issue_2"
+  },
+  {
+    text: "Issue 3",
+    value: "issue_3"
+  }
+];
+action("choices")(choices);
+storiesOf("ChoicePropEditor", module).add("no defaults", function() {
+  return (
+    <MyForm state={{ issue: {} }}>
+      <div className="sub-heading">Choice</div>
+      <Field
+        fieldName="issue"
+        label="issue"
+        type={ChoiceEditor}
+        choices={choices}
+        dataSource={choices}
+        dataSourceConfig={{ text: "text", value: "value" }}
+      />
+    </MyForm>
+  );
+});

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import Geosuggest from "react-geosuggest";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
@@ -13,11 +12,12 @@ import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 
 import {
-  TextPropEditor,
-  BooleanPropEditor,
-  NumberPropEditor,
-  DatePropEditor,
-  ChoicePropEditor
+  makeLocalizedChoiceField,
+  makeLocalizedBooleanField,
+  makeLocalizedDateField,
+  makeLocalizedNumberField,
+  makeLocalizedTextField,
+  makeLocalizedLocationField
 } from "./PropEditors";
 
 const tags = tags_json["tags"];
@@ -84,7 +84,6 @@ class CaseEditor extends Component {
         intl={intl}
       />
     );
-
     let incomplete =
       (thing.title ? false : true) || (thing.body ? false : true);
     return (
@@ -131,11 +130,7 @@ class CaseEditor extends Component {
                       id: "country_picker"
                     })}
                   </p>
-                  <Geosuggest
-                    placeholder={intl.formatMessage({
-                      id: "location_placeholder"
-                    })}
-                  />
+                  {makeLocalizedLocationField(intl, "location")}
                 </div>
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
@@ -144,12 +139,7 @@ class CaseEditor extends Component {
                   {intl.formatMessage({ id: "suggest_tag" })}
                 </div>
                 {tagseditor}
-                <ChoicePropEditor
-                  intl={intl}
-                  label="issue"
-                  property="issue"
-                  thing={thing}
-                />
+                {makeLocalizedChoiceField(intl, "issue")}
               </div>
               <div>
                 {isQuick
@@ -187,157 +177,85 @@ class CaseEditor extends Component {
                       </p>
                       <div className="related-content">
                         <div className="pb-1">
-                          <h5>
+                          <p className="sub-sub-heading">
                             {intl.formatMessage({ id: "related_cases" })}
-                          </h5>
+                          </p>
                           {related_cases}
                         </div>
                         <div className="pb-1">
-                          <h5>
+                          <p className="sub-sub-heading">
                             {intl.formatMessage({ id: "related_methods" })}
-                          </h5>
+                          </p>
                           {related_methods}
                         </div>
                         <div className="pb-1">
-                          <h5>
+                          <p className="sub-sub-heading">
                             {intl.formatMessage({
                               id: "related_organizations"
                             })}
-                          </h5>
+                          </p>
                           {related_organizations}
                         </div>
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="specific_topic"
-                          property="specific_topic"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="communication_mode"
-                          property="communication_mode"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="communication_with_audience"
-                          property="communication_with_audience"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="decision_method"
-                          property="decision_method"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="facetoface_online_or_both"
-                          property="facetoface_online_or_both"
-                          thing={thing}
-                        />
-                        <BooleanPropEditor
-                          intl={intl}
-                          label="facilitated"
-                          property="facilitated"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="voting"
-                          property="voting"
-                          thing={thing}
-                        />
-                        <NumberPropEditor
-                          intl={intl}
-                          label="number_of_meeting_days"
-                          property="number_of_meeting_days"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="targeted_participant_demographic"
-                          property="targeted_participant_demographic"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="kind_of_influence"
-                          property="kind_of_influence"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="targeted_participants_public_role"
-                          property="targeted_participants_public_role"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="targeted_audience"
-                          property="targeted_audience"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="participant_selection"
-                          property="participant_selection"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="type_of_funding_entity"
-                          property="type_of_funding_entity"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="typical_implementing_entity"
-                          property="typical_implementing_entity"
-                          thing={thing}
-                        />
-                        <ChoicePropEditor
-                          intl={intl}
-                          label="typical_sponsoring_entity"
-                          property="typical_sponsoring_entity"
-                          thing={thing}
-                        />
-                        <BooleanPropEditor
-                          intl={intl}
-                          label="ongoing"
-                          property="ongoing"
-                          thing={thing}
-                        />
-                        <DatePropEditor
-                          intl={intl}
-                          label="start_date"
-                          property="start_date"
-                          thing={thing}
-                        />
-                        <DatePropEditor
-                          intl={intl}
-                          label="end_date"
-                          property="end_date"
-                          thing={thing}
-                        />
-                        <NumberPropEditor
-                          intl={intl}
-                          label="total_number_of_participants"
-                          property="total_number_of_participants"
-                          thing={thing}
-                        />
-                        <TextPropEditor
-                          intl={intl}
-                          label="staff_type"
-                          property="staff_type"
-                          thing={thing}
-                        />
-                        <TextPropEditor
-                          intl={intl}
-                          label="who_else_supported_the_initiative"
-                          property="who_else_supported_the_initiative"
-                          thing={thing}
-                        />
+                        {makeLocalizedChoiceField(intl, "specific_topic")}
+                        {makeLocalizedChoiceField(intl, "communication_mode")}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "communication_with_audience"
+                        )}
+                        {makeLocalizedChoiceField(intl, "decision_method")}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "facetoface_online_or_both"
+                        )}
+                        {makeLocalizedBooleanField(intl, "facilitated")}
+                        {makeLocalizedChoiceField(intl, "voting")}
+                        {makeLocalizedNumberField(
+                          intl,
+                          "number_of_meeting_days"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "targeted_participant_demographic"
+                        )}
+                        {makeLocalizedChoiceField(intl, "kind_of_influence")}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "targeted_participants_public_role"
+                        )}
+                        {makeLocalizedChoiceField(intl, "targeted_audience")}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "participant_selection"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "participant_selection"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "type_of_funding_entity"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "typical_implementing_entity"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "typical_sponsoring_entity"
+                        )}
+                        {makeLocalizedChoiceField(
+                          intl,
+                          "participant_selection"
+                        )}
+                        {}
+                        {makeLocalizedBooleanField(intl, "ongoing")}
+                        {makeLocalizedDateField(intl, "start_date")}
+                        {makeLocalizedDateField(intl, "end_date")}
+                        {makeLocalizedTextField(intl, "staff_type")}
+                        {makeLocalizedTextField(
+                          intl,
+                          "who_else_supported_the_initiative"
+                        )}
                       </div>
                       <RaisedButton
                         className="incomplete-warning"

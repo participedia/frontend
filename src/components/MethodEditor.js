@@ -12,7 +12,10 @@ import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 
-import { BooleanPropEditor, ChoicePropEditor } from "./PropEditors";
+import {
+  makeLocalizedChoiceField,
+  makeLocalizedBooleanField
+} from "./PropEditors";
 
 const tags = tags_json["tags"];
 
@@ -170,127 +173,47 @@ class MethodEditor extends Component {
                         </div>
                         {related_organizations}
                       </div>
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="kind_of_influence"
-                        property="kind_of_influence"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="specific_topic"
-                        property="specific_topic"
-                        thing={thing}
-                      />
-
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="communication_mode"
-                        property="communication_mode"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="communication_with_audience"
-                        property="communication_with_audience"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="decision_method"
-                        property="decision_method"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="facetoface_online_or_both"
-                        property="facetoface_online_or_both"
-                        thing={thing}
-                      />
-                      <BooleanPropEditor
-                        intl={intl}
-                        label="facilitated"
-                        property="facilitated"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="best_for"
-                        property="best_for"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="decision_method"
-                        property="decision_method"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="governance_contribution"
-                        property="governance_contribution"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="issue_interdependency"
-                        property="issue_interdependency"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="issue_polarization"
-                        property="issue_polarization"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="issue_technical_complexity"
-                        property="issue_technical_complexity"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="kind_of_influence"
-                        property="kind_of_influence"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="method_of_interaction"
-                        property="method_of_interaction"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="public_interaction_method"
-                        property="public_interaction_method"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="method_of_interaction"
-                        property="method_of_interaction"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="typical_funding_source"
-                        property="typical_funding_source"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="typical_implementing_entity"
-                        property="typical_implementing_entity"
-                        thing={thing}
-                      />
-                      <ChoicePropEditor
-                        intl={intl}
-                        label="typical_sponsoring_entity"
-                        property="typical_sponsoring_entity"
-                        thing={thing}
-                      />
+                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
+                      {makeLocalizedChoiceField(intl, "specific_topic")}
+                      {makeLocalizedChoiceField(intl, "communication_mode")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "communication_with_audience"
+                      )}
+                      {makeLocalizedChoiceField(intl, "decision_method")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "facetoface_online_or_both"
+                      )}
+                      {makeLocalizedBooleanField(intl, "facilitated")}
+                      {makeLocalizedChoiceField(intl, "best_for")}
+                      {makeLocalizedChoiceField(intl, "decision_method")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "governance_contribution"
+                      )}
+                      {makeLocalizedChoiceField(intl, "issue_interdependency")}
+                      {makeLocalizedChoiceField(intl, "issue_polarization")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "issue_technical_complexity"
+                      )}
+                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
+                      {makeLocalizedChoiceField(intl, "method_of_interaction")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "public_interaction_method"
+                      )}
+                      {makeLocalizedChoiceField(intl, "method_of_interaction")}
+                      {makeLocalizedChoiceField(intl, "typical_funding_source")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "typical_implementing_entity"
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "typical_sponsoring_entity"
+                      )}
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
