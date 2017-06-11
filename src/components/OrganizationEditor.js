@@ -6,21 +6,17 @@ import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import FileUpload from "material-ui/svg-icons/file/file-upload";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import {
-  SimpleRelatedCases,
-  SimpleRelatedMethods,
-  SimpleRelatedOrganizations,
-  Tags
-} from "./RelatedEditors";
+import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
+import tags_json from "../autocomplete_data/tags.json";
 
 const buttonStyle = {
   margin: "1em"
 };
+
+const tags = tags_json["tags"];
 
 class OrganizationEditor extends Component {
   constructor(props) {
@@ -44,44 +40,45 @@ class OrganizationEditor extends Component {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
+    let tagseditor = (
+      <Field
+        fieldName="tags"
+        type={RelatedEditor}
+        maxSearchResults={30}
+        dataSource={tags}
+        intl={intl}
+      />
+    );
     let related_cases = (
       <Field
         fieldName="related_cases"
-        name="related_cases"
-        thing={thing}
-        type={SimpleRelatedCases}
-        property="related_cases"
-        value={thing.related_cases || []}
+        type={RelatedEditor}
         dataSource={cases}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_methods = (
       <Field
         fieldName="related_methods"
-        name="related_methods"
-        thing={thing}
-        type={SimpleRelatedMethods}
-        property="related_methods"
-        value={thing.related_methods || []}
+        type={RelatedEditor}
         dataSource={methods}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
     let related_organizations = (
       <Field
         fieldName="related_organizations"
-        name="related_organizations"
-        thing={thing}
-        type={SimpleRelatedOrganizations}
-        property="related_organizations"
-        value={thing.related_organizations || []}
+        type={RelatedEditor}
         dataSource={organizations}
+        dataSourceConfig={{ text: "text", value: "value" }}
         intl={intl}
       />
     );
 
-    let incomplete = thing.title === "" || thing.body === "";
+    let incomplete =
+      (thing.title ? false : true) || (thing.body ? false : true);
     return (
       <Form
         onSubmit={onSubmit}
@@ -135,16 +132,7 @@ class OrganizationEditor extends Component {
                   <div className="suggest_tag">
                     {intl.formatMessage({ id: "suggest_tag" })}
                   </div>
-                  <div className="tags">
-                    <Field
-                      fieldName="tags"
-                      name="tags"
-                      value={thing.tags}
-                      type={Tags}
-                      thing={thing}
-                      intl={intl}
-                    />
-                  </div>
+                  {tagseditor}
                 </div>
                 {isQuick
                   ? <div>
