@@ -11,7 +11,10 @@ import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import tags_json from "../autocomplete_data/tags.json";
-import { makeLocalizedChoiceField } from "./PropEditors";
+import {
+  makeLocalizedChoiceField,
+  makeLocalizedTextField
+} from "./PropEditors";
 
 const buttonStyle = {
   margin: "1em"
@@ -135,6 +138,8 @@ class OrganizationEditor extends Component {
                   </div>
                   {tagseditor}
                   {makeLocalizedChoiceField(intl, "specific_topic")}
+                  {makeLocalizedTextField(intl, "executive_director")}
+                  {makeLocalizedChoiceField(intl, "sector")}
                 </div>
                 {isQuick
                   ? <div>
