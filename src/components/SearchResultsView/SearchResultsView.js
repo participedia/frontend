@@ -108,23 +108,19 @@ export class SearchResultsView extends React.Component {
   }
 
   goNextPage() {
-    console.log("in goNextPage", myhistory.location);
     let restrictions = queryString.parse(myhistory.location.search);
     let currentPage = restrictions["page"] || 1;
     currentPage++;
     restrictions["page"] = String(currentPage);
     let newSearch = queryString.stringify(restrictions);
-    console.log("RESTRICTIONS", restrictions, newSearch);
     myhistory.push(myhistory.location.pathname + "?" + newSearch);
   }
   goPrevPage() {
-    console.log("in goPrevPage");
     let restrictions = queryString.parse(myhistory.location.search);
     let currentPage = restrictions.page || 1;
     currentPage = Math.min(1, currentPage - 1);
     restrictions["page"] = String(currentPage);
     let newSearch = queryString.stringify(restrictions);
-    console.log("RESTRICTIONS", restrictions, newSearch);
     myhistory.push(myhistory.location.pathname + "?" + newSearch);
   }
 
