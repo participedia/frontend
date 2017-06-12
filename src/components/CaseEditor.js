@@ -165,6 +165,13 @@ class CaseEditor extends Component {
               <div>
                 {isQuick
                   ? <div>
+                      {incomplete
+                        ? <div className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </div>
+                        : null}
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
@@ -175,13 +182,6 @@ class CaseEditor extends Component {
                           id: "submit_" + thing.type
                         })}
                       />
-                      {incomplete
-                        ? <span className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </span>
-                        : null}
                       <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
                         style={buttonStyle}
