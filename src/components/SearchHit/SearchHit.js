@@ -25,7 +25,7 @@ export class SearchHit extends React.Component {
     let id = result.id;
     let type = result.type;
     let title = result.title;
-    let body = htmlToText.fromString(result.body).substring(0, 740) + "...";
+    let body = htmlToText.fromString(result.body).substring(0, 200) + "...";
     let isAuthenticated = this.props.isAuthenticated;
     let link = `/${type}/${id}`;
     let thumbnailClass = "thumbnail " + type;

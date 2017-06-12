@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
 import { Container, Col } from "reactstrap";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import IconButton from "material-ui/IconButton";
 import DownloadButton from "material-ui/svg-icons/action/get-app";
+import NavigateNextIcon from "material-ui/svg-icons/image/navigate-next";
+import NavigatePreviousIcon from "material-ui/svg-icons/image/navigate-before";
 import Plus from "material-ui/svg-icons/content/add";
 import "./SearchResultsView.css";
 import { injectIntl, intlShape } from "react-intl";
@@ -104,6 +107,27 @@ export class SearchResultsView extends React.Component {
     this.props.onCategoryChange.bind(this, event.target.value)();
   }
 
+  goNextPage() {
+    console.log("in goNextPage", myhistory.location);
+    let restrictions = queryString.parse(myhistory.location.search);
+    let currentPage = restrictions["page"] || 1;
+    currentPage++;
+    restrictions["page"] = String(currentPage);
+    let newSearch = queryString.stringify(restrictions);
+    console.log("RESTRICTIONS", restrictions, newSearch);
+    myhistory.push(myhistory.location.pathname + "?" + newSearch);
+  }
+  goPrevPage() {
+    console.log("in goPrevPage");
+    let restrictions = queryString.parse(myhistory.location.search);
+    let currentPage = restrictions.page || 1;
+    currentPage = Math.min(1, currentPage - 1);
+    restrictions["page"] = String(currentPage);
+    let newSearch = queryString.stringify(restrictions);
+    console.log("RESTRICTIONS", restrictions, newSearch);
+    myhistory.push(myhistory.location.pathname + "?" + newSearch);
+  }
+
   render() {
     let data = this.props.data;
 
@@ -122,6 +146,8 @@ export class SearchResultsView extends React.Component {
     let resultsCount = data.length;
     let { searching, query } = this.props;
     let results = "";
+    let goNextPage = this.goNextPage.bind(this);
+    let goPrevPage = this.goPrevPage.bind(this);
     if (this.props.searching) {
       results = (
         <div>
@@ -140,10 +166,13 @@ export class SearchResultsView extends React.Component {
       }
       let restrictions = queryString.parse(myhistory.location.search);
       let filters = [];
+      let pageNo = 1;
       let searchTerm = "";
       Object.keys(restrictions).forEach(function(key, index) {
         if (key === "query") {
           searchTerm = restrictions[key];
+        } else if (key === "page") {
+          pageNo = Number(restrictions[key]);
         } else {
           filters.push({
             key: key,
@@ -151,6 +180,8 @@ export class SearchResultsView extends React.Component {
           });
         }
       });
+      const on_first_page = pageNo === 1;
+      const on_last_page = false;
 
       results = (
         <div className="search-results">
@@ -170,6 +201,22 @@ export class SearchResultsView extends React.Component {
           <div className="result-count">
             <div className="results-box">
               {searchresults}
+            </div>
+            <div className="pagination">
+              <IconButton
+                tooltip="Previous page"
+                disabled={on_first_page}
+                onTouchTap={goPrevPage}
+              >
+                <NavigatePreviousIcon />
+              </IconButton>
+              <IconButton
+                tooltip="Next page"
+                disabled={on_last_page}
+                onTouchTap={goNextPage}
+              >
+                <NavigateNextIcon />
+              </IconButton>
             </div>
           </div>
         </div>

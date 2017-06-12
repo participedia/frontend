@@ -41,6 +41,7 @@ export default class SearchResults extends React.Component {
     futureState.selectedViewType =
       newState.selectedViewType || this.state.selectedViewType;
     futureState.query = newState.query || this.state.query;
+    futureState.query = newState.page || this.state.page;
 
     if (futureState.sortingMethod !== DEFAULT_SORTING_METHOD) {
       queryArgs["sortingMethod"] = futureState.sortingMethod;
