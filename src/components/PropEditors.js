@@ -1,183 +1,465 @@
 import React from "react";
-import PropTypes from "prop-types";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
 import SelectField from "material-ui/SelectField";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
-import getChoices from "./choices";
+import { Field } from "simple-react-form";
+import { makeLocalizedChoices } from "./choices";
+import Geosuggest from "react-geosuggest";
+import List from "react-items-list";
 
-function BooleanPropEditor({ label, property, thing, intl }) {
-  return (
-    <div>
-      <p className="sub-sub-heading">
-        {intl.formatMessage({ id: label ? label : "not_specified" })}
-      </p>
-      <div className={property}>
-        <RadioButtonGroup name={property} defaultSelected={thing[property]}>
-          <RadioButton value={true} label={intl.formatMessage({ id: "yes" })} />
-          <RadioButton value={false} label={intl.formatMessage({ id: "no" })} />
-        </RadioButtonGroup>
-      </div>
-    </div>
-  );
+function nickify(before) {
+  if (!before) return "";
+  try {
+    return before
+      .trim()
+      .replace("&amp", "")
+      .replace("#039;", "")
+      .replace(/[.,\-()&$£;~]/g, "")
+      .replace(/\s+/g, "_")
+      .toLowerCase();
+  } catch (e) {
+    console.log("exception in nickify, before = ", before);
+  }
 }
 
-BooleanPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-class NumberPropEditor extends React.Component {
+export class ChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: props.thing[props.property] || 0 };
+    this.state = {
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
+    };
   }
-  onChange(event, value) {
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
+    });
+  }
+  makeChoices(choices) {
+    return choices.map(function(v) {
+      return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
+    });
+  }
+
+  onChange(event, index, value) {
     this.setState({ value: value });
+    this.props.onChange(value);
   }
+
   render() {
     let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
+    let { property } = this.props;
     return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <TextField
-          onChange={onChange}
-          value={this.state.value}
-          fullWidth={true}
-          name={property}
-        />
-      </div>
-    );
-  }
-}
-
-// <TextField defaultValue={thing[property]} id={property} />
-
-NumberPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-class TextPropEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.thing[props.property] || "" };
-  }
-  onChange(event, value) {
-    this.setState({ value: value });
-  }
-  render() {
-    let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
-    return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <TextField
-          onChange={onChange}
-          value={this.state.value}
-          fullWidth={true}
-          name={property}
-        />
-      </div>
-    );
-  }
-}
-
-TextPropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-// XXX do L10N work, see http://www.material-ui.com/#/components/date-picker
-function DatePropEditor({ label, property, thing, intl, onChange }) {
-  return (
-    <div>
-      <p className="sub-sub-heading">
-        {intl.formatMessage({ id: label ? label : "not_specified" })}
-      </p>
-      <DatePicker
-        value={thing[property] ? thing[property] : null}
-        onChange={onChange}
-        fullWidth={true}
+      <SelectField
         name={property}
+        fullWidth={true}
+        onChange={onChange}
+        value={this.state.value}
+      >
+        {this.state.choices}
+      </SelectField>
+    );
+  }
+}
+
+export function makeLocalizedChoiceField(intl, property, tag_for_choices) {
+  if (typeof tag_for_choices === "undefined") {
+    tag_for_choices = property;
+  }
+  let choices = makeLocalizedChoices(intl, tag_for_choices);
+  let label = intl.formatMessage({ id: tag_for_choices });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+
+      <Field
+        fieldName={property}
+        label={label}
+        type={ChoiceEditor}
+        choices={choices}
+        dataSource={choices}
+        dataSourceConfig={{ text: "text", value: "value" }}
       />
     </div>
   );
 }
 
-DatePropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-
-function nickify(before) {
-  return before
-    .replace("&amp", "")
-    .replace("#039;", "")
-    .replace(/[.,\-()&$£;~]/g, "")
-    .replace(/\s+/g, "_")
-    .toLowerCase();
-}
-
-class ChoicePropEditor extends React.Component {
+export class BooleanEditor extends React.Component {
   constructor(props) {
     super(props);
-    let value = nickify(props.thing[props.property] || "");
+    let value = props.value;
+    if (value === "Yes") {
+      value = true;
+    }
     this.state = {
       value: value
     };
   }
-  onChange(event, index, value) {
+
+  componentWillReceiveProps(props) {
+    let value = props.value;
+    if (value === "Yes") {
+      value = true;
+    }
     this.setState({ value: value });
   }
+
+  onChange(event, value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
   render() {
     let onChange = this.onChange.bind(this);
-    let { label, property, intl } = this.props;
-    let choices = getChoices(property).map(v =>
-      <MenuItem value={v} key={v} primaryText={intl.formatMessage({ id: v })} />
-    );
+    let { label } = this.props;
     return (
-      <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <SelectField
-          name={property}
-          fullWidth={true}
-          onChange={onChange}
-          value={this.state.value}
-        >
-          {choices}
-        </SelectField>
-      </div>
+      <RadioButtonGroup
+        onChange={onChange}
+        name={label}
+        valueSelected={this.state.value}
+      >
+        <RadioButton value={true} label={this.props.passProps.yesLabel} />
+        <RadioButton value={false} label={this.props.passProps.noLabel} />
+      </RadioButtonGroup>
     );
   }
 }
 
-ChoicePropEditor.propTypes = {
-  label: PropTypes.string.isRequired,
-  property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
-};
-export {
-  BooleanPropEditor,
-  DatePropEditor,
-  NumberPropEditor,
-  TextPropEditor,
-  ChoicePropEditor
-};
+export function makeLocalizedBooleanField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+
+        <Field
+          fieldName={property}
+          label={intl.formatMessage({ id: property })}
+          type={BooleanEditor}
+          yesLabel={intl.formatMessage({ id: "yes" })}
+          noLabel={intl.formatMessage({ id: "no" })}
+        />
+      </div>
+    </div>
+  );
+}
+
+class NumberEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    let value;
+    if (typeof props.value === typeof undefined) {
+      value = "";
+    } else {
+      value = String(props.value);
+    }
+    this.state = {
+      value
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ value: String(props.value) });
+  }
+
+  onChange(event, value) {
+    this.setState({ value: value });
+    this.props.onChange(Number(value));
+  }
+
+  // XXX add validation to ensure only numbers are input
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    let name = this.props.passProps.name;
+    return (
+      <TextField
+        onChange={onChange}
+        value={typeof this.state.value !== "undefined" ? this.state.value : ""}
+        fullWidth={true}
+        name={name}
+      />
+    );
+  }
+}
+
+export function makeLocalizedNumberField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+
+        <Field
+          fieldName={property}
+          id={property}
+          name={property}
+          label={intl.formatMessage({ id: property })}
+          type={NumberEditor}
+        />
+      </div>
+    </div>
+  );
+}
+
+class TextEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ value: props.value });
+  }
+
+  onChange(event, value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    let name = this.props.passProps.name;
+    return (
+      <TextField
+        onChange={onChange}
+        value={
+          typeof this.state.value !== "undefined" && this.state.value !== null
+            ? this.state.value
+            : ""
+        }
+        fullWidth={true}
+        name={name}
+      />
+    );
+  }
+}
+
+export function makeLocalizedTextField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+
+        <Field
+          fieldName={property}
+          name={property}
+          id={property}
+          label={intl.formatMessage({ id: property })}
+          type={TextEditor}
+        />
+      </div>
+    </div>
+  );
+}
+
+class DateEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ value: props.value });
+  }
+
+  onChange(event, value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    let property = this.props.passProps.name;
+    return (
+      <DatePicker
+        onChange={onChange}
+        value={this.state.value}
+        name={property}
+      />
+    );
+  }
+}
+
+export function makeLocalizedDateField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+
+        <Field
+          fieldName={property}
+          id={property}
+          name={property}
+          label={intl.formatMessage({ id: property })}
+          type={DateEditor}
+        />
+      </div>
+    </div>
+  );
+}
+
+class LocationEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value
+    };
+    if (props.value) {
+      this.setLocationString(props.value);
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    this.setLocationString(props.value);
+  }
+
+  setLocationString(value) {
+    if (value) {
+      if (value.label) {
+        value = value.label;
+      } else if (value.city) {
+        if (value.country) {
+          value = value.city + ", " + value.country;
+        } else {
+          value = value.city;
+        }
+      } else if (value.country) {
+        value = value.country;
+      }
+    } else {
+      value = "";
+    }
+
+    this.setState({ value: value });
+  }
+
+  onChange(value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    return (
+      <Geosuggest
+        placeholder={this.props.passProps.placeholder}
+        initialValue={this.state.value}
+        onSuggestSelect={onChange}
+      />
+    );
+  }
+}
+
+export function makeLocalizedLocationField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+        <Field
+          fieldName={property}
+          id={property}
+          name={property}
+          label={intl.formatMessage({ id: property })}
+          placeholder={intl.formatMessage({
+            id: "location_placeholder"
+          })}
+          type={LocationEditor}
+        />
+      </div>
+    </div>
+  );
+}
+
+export class ListEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value || []
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: props.value || []
+    });
+  }
+
+  update(value) {
+    this.setState({ value });
+    this.props.onChange(value);
+  }
+  onAdd(text) {
+    let value = this.state.value;
+    value.push(text);
+    this.update(value);
+  }
+  onRemove(index) {
+    let value = this.state.value;
+    value.splice(index, 1);
+    this.update(value);
+  }
+  onUpdate(index, newtext) {
+    let value = this.state.value;
+    value[index] = newtext;
+    this.update(value);
+  }
+
+  render() {
+    let onAdd = this.onAdd.bind(this);
+    let onRemove = this.onRemove.bind(this);
+    let onUpdate = this.onUpdate.bind(this);
+    return (
+      <List
+        className={this.props.passProps.name + "_list"}
+        items={this.state.value}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+      />
+    );
+  }
+}
+
+export function makeLocalizedListField(intl, property) {
+  let label = intl.formatMessage({ id: property });
+  return (
+    <div>
+      <p className="sub-sub-heading">
+        {label}
+      </p>
+      <div className={property}>
+        <Field
+          fieldName={property}
+          id={property}
+          name={property}
+          label={intl.formatMessage({ id: property })}
+          type={ListEditor}
+        />
+      </div>
+    </div>
+  );
+}

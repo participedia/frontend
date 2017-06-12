@@ -13,7 +13,7 @@ const LinkToThing = ({ thing, intl }) =>
     : <div>{intl.formatMessage({ id: "not_specified" })}</div>;
 
 const RelatedThings = ({ title, relateds, intl }) =>
-  relateds
+  relateds && relateds.length
     ? <div>
         <div className="sub-sub-heading">
           {intl.formatMessage({ id: title })} :{" "}
@@ -48,10 +48,11 @@ const RelatedOrganizations = ({ thing, intl }) => (
   />
 );
 
-const RelatedContent = props =>
-  props.thing.related_cases ||
-    props.thing.related_methods ||
-    props.thing.related_organizations
+const RelatedContent = props => {
+  return (props.thing.related_cases && props.thing.related_cases.length) ||
+    (props.thing.related_methods && props.thing.related_methods.length) ||
+    (props.thing.related_organizations &&
+      props.thing.related_organizations.length)
     ? <div className="related-content">
         <p className="sub-heading">
           Related Content
@@ -61,5 +62,6 @@ const RelatedContent = props =>
         <RelatedOrganizations {...props} />
       </div>
     : <div />;
+};
 
 export default RelatedContent;

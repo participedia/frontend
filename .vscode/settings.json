@@ -6,5 +6,6 @@
     "src/**/*.css": true,
     "src/**/*.css.map": true
   },
-  "eslint.enable": true
+  "eslint.enable": true,
+  "editor.tabSize": 2
 }

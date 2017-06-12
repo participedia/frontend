@@ -22,25 +22,22 @@ class Home extends React.Component {
             component={() => <SearchResults {...this.props} />}
           />
           <Route
-            exact
             path="/cases"
-            component={() => (
-              <SearchResults selectedCategory="Cases" {...this.props} />
-            )}
+            component={() =>
+              <SearchResults selectedCategory="Cases" {...this.props} />}
           />
           <Route
-            exact
             path="/methods"
-            component={() => (
-              <SearchResults selectedCategory="Methods" {...this.props} />
-            )}
+            component={() =>
+              <SearchResults selectedCategory="Methods" {...this.props} />}
           />
           <Route
-            exact
             path="/organizations"
-            component={() => (
-              <SearchResults selectedCategory="Organizations" {...this.props} />
-            )}
+            component={() =>
+              <SearchResults
+                selectedCategory="Organizations"
+                {...this.props}
+              />}
           />
         </Switch>
 

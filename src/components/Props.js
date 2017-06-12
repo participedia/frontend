@@ -44,7 +44,7 @@ NumberProp.propTypes = {
 };
 
 const TextProp = ({ label, property, thing, intl }) =>
-  thing[property] !== undefined
+  thing[property]
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route, Redirect } from "react-router";
 import { bool, object, func } from "prop-types";
 import { Link } from "react-router-dom";
 import Home from "./Home";
@@ -118,6 +118,12 @@ class Routes extends React.Component {
           exact
           path="/organizations"
           render={props => <Home auth={authService} />}
+        />
+        <Route
+          path="/show/:term"
+          render={props => (
+            <Redirect to={`/search?query=${props.match.params.term}`} />
+          )}
         />
         <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route path="/search" render={props => <Home auth={authService} />} />
@@ -244,7 +250,7 @@ export class Layout extends React.Component {
   render() {
     const { intl } = this.props;
     let routes = <Routes intl={intl} auth={authService} />;
-    const isAuthenticated = authService.isAuthenticated;
+    let isAuthenticated = authService.isAuthenticated();
 
     return (
       <div>
@@ -300,7 +306,7 @@ export class Layout extends React.Component {
           >
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
-          <MenuItem className="hidden-sm-up">
+          <MenuItem className="hidden-md-up">
             {isAuthenticated
               ? <div className="profileButtonMenu">
                   <FlatButton
@@ -318,7 +324,7 @@ export class Layout extends React.Component {
                 </div>}
           </MenuItem>
           <MenuItem
-            className="hidden-sm-up"
+            className="hidden-md-up"
             containerElement={<Link to={"/new"} />}
             onTouchTap={this.handleClose}
           >
@@ -330,7 +336,7 @@ export class Layout extends React.Component {
           </MenuItem>
           {isAuthenticated
             ? <MenuItem
-                className="hidden-sm-up"
+                className="hidden-md-up"
                 primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
                 onClick={() => authService.logout()}
               />

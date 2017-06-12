@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 
 import { Case } from "../containers/Case";
 import CaseDetails from "../components/CaseDetails";
+import CaseEditor from "../components/CaseEditor";
 import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
@@ -30,13 +31,28 @@ fetchMock.get(
 );
 
 jest.mock("../components/Gallery");
+jest.mock("../components/LazyBodyEditor");
+jest.mock("../utils/s3upload");
 jest.mock("material-ui/FloatingActionButton");
 jest.mock("../components/BookmarkToggle");
+jest.mock("material-ui/TextField", () => "Textfield");
+jest.mock("material-ui/RaisedButton");
+jest.mock("material-ui/RadioButton");
+jest.mock("material-ui/DatePicker");
+jest.mock("material-ui/SelectField");
+jest.mock("material-ui/SvgIcon");
+jest.mock("react-geosuggest");
+jest.mock("material-ui-chip-input");
+jest.mock("react-items-list");
 
 function setup() {
   const props = {
     intl: intlProps,
-    auth: { getProfile: cb => cb({}), isAuthenticated: () => false },
+    auth: {
+      getProfile: cb => cb({}),
+      getToken: () => "foo",
+      isAuthenticated: () => true
+    },
     location: { pathname: "/method/123" },
     match: { params: { nodeID: 123 } },
     toggleFeatured: function() {},
@@ -78,6 +94,21 @@ test("ItemDetails for Case renders correctly", () => {
     .create(
       <IntlProvider locale={locale} messages={messages}>
         <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+      </IntlProvider>
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("Case editor renders correctly", () => {
+  const tree = renderer
+    .create(
+      <IntlProvider locale={locale} messages={messages}>
+        <MemoryRouter>
+          <MuiThemeProvider muiTheme={muiTheme}>
+            <CaseEditor {...props} type="case" thing={caseData} />
+          </MuiThemeProvider>
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();

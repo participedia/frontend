@@ -1,0 +1,261 @@
+{
+    "agriculture_forestry_fishing_mining_industries": [
+        "animal_welfare",
+        "community_resettlement",
+        "fisheries_fishing",
+        "food_inspection_safety",
+        "government_subsidies",
+        "research_development"
+    ],
+    "arts_culture_recreation": [
+        "censorship",
+        "funding",
+        "libraries",
+        "museums",
+        "public_art",
+        "sports",
+        "tourism"
+    ],
+    "business": [
+        "bankruptcy",
+        "consumer_protection",
+        "copyrights_and_patents",
+        "corporate_subsidies",
+        "intellectual_property_rights",
+        "regulation"
+    ],
+    "economics": [
+        "budget_local",
+        "budget_provincial_regional_state",
+        "budget_national",
+        "economic_development",
+        "economic_inequality",
+        "government_spending",
+        "industrial_policy",
+        "monetary_policy",
+        "poverty",
+        "regulatory_policy",
+        "taxation",
+        "trade_and_tariffs",
+        "unemployment"
+    ],
+    "education": [
+        "curriculum_and_standards",
+        "early_childhood_education",
+        "elementary_and_secondary_education",
+        "government_funding_of_education",
+        "higher_education",
+        "special_education",
+        "teacher_training_accountability",
+        "vocational_education_training"
+    ],
+    "energy": [
+        "alternative_renewable_energy",
+        "coal",
+        "energy_conservation",
+        "electricity",
+        "natural_gas_oil",
+        "nuclear_energy",
+        "research_development",
+        "energy_siting_transmission"
+    ],
+    "environment": [
+        "air_qualtiy",
+        "climate_change",
+        "environmental_conservation",
+        "hazardous_waste",
+        "industrial_siting_guidelines",
+        "recycling",
+        "species_protection",
+        "water_quality",
+        "waste_disposal",
+        "wilderness_protection"
+    ],
+    "governance_political_institutions_eg_constitutions_legal_systems_electoral_systems": [
+        "administration_of_campaigns_and_elections",
+        "bureaucracy",
+        "citizenship_role_of_citizens",
+        "constitutional_reform",
+        "financing_of_political_campaigns",
+        "intergovernmental_relations",
+        "judicial_reform",
+        "political_parties",
+        "government_transparency"
+    ],
+    "health": [
+        "abortion",
+        "aging",
+        "birth_control",
+        "disease_prevention",
+        "drug_alcohol_abuse",
+        "drug_coverage_cost",
+        "drug_testing_regulation",
+        "food_nutrition",
+        "health_care_reform",
+        "health_insurance",
+        "longterm_care",
+        "medical_liability",
+        "mental_health",
+        "quality_of_health_care",
+        "research_development",
+        "social_determinants_of_health"
+    ],
+    "housing": [
+        "affordable_housing",
+        "cohousing",
+        "elderly_housing",
+        "ecohousing",
+        "homelessness",
+        "lowincome_assistance",
+        "right_to_adequate_housing",
+        "rural_housing"
+    ],
+    "human_rights_civil_rights": [
+        "age_discrimination",
+        "disability_rights",
+        "ethnic/racial_equality_equity",
+        "freedom_of_speech",
+        "gender_equality_equity",
+        "human_rights",
+        "human_trafficking",
+        "political_rights",
+        "religious_rights",
+        "torture"
+    ],
+    "identity_diversity": [
+        "ability/disability_issues",
+        "aging_issues",
+        "ethnic_racial_relations",
+        "gender_issues",
+        "identity_politics",
+        "indigenous_issues",
+        "lgbtq_issues",
+        "youth_issues"
+    ],
+    "immigration_migration": [
+        "cultural_assimilation",
+        "immigration",
+        "refugee_resettlement",
+        "refugee_rights"
+    ],
+    "international_affairs": [
+        "arms_control",
+        "diplomacy",
+        "foreign_aid",
+        "international_law",
+        "regional_global_governance",
+        "treaties",
+        "unofficial_track_ii_diplomacy"
+    ],
+    "labor_work": [
+        "employee_benefits",
+        "fair_labor_standards",
+        "labor_unions",
+        "migrant_and_seasonal_labor",
+        "pensions_retirement",
+        "wage_standards",
+        "workforce_education",
+        "worker_health_safety",
+        "youth_employment"
+    ],
+    "law_enforcement_criminal_justice_corrections": [
+        "civil_law",
+        "community_police_relations",
+        "court_systems",
+        "criminal_law",
+        "jails_and_prisons",
+        "police",
+        "public_safety",
+        "right_to_representation",
+        "sentencing_guidelines"
+    ],
+    "media_telecommunications_information": [
+        "access_to_radio_television_frequencies",
+        "internet_access",
+        "censorship",
+        "concentration_of_media_ownership",
+        "freedom_of_information",
+        "internet_governance",
+        "open_data",
+        "telephone_access",
+        "transparency"
+    ],
+    "national_security": [
+        "cyber_security",
+        "disaster_preparedness",
+        "intelligence_gathering",
+        "military_and_defense",
+        "terrorism"
+    ],
+    "planning_development": [
+        "housing_planning",
+        "indigenous_planning",
+        "infrastructure",
+        "land_use",
+        "natural_resource_management",
+        "public_amenities",
+        "regionalism",
+        "resilience_planning_design",
+        "transportation_planning"
+    ],
+    "science_technology": [
+        "agricultural_biotechnology",
+        "articificial_intellegence",
+        "biomedical_research_development",
+        "carbon_capture_sequestration",
+        "information_communications_technology",
+        "energy_efficiency_storage",
+        "geotechnology",
+        "weather_forecasting",
+        "nanotechnology",
+        "regulation",
+        "space_exploration"
+    ],
+    "social_welfare": [
+        "child_care",
+        "disabled_assistance",
+        "elderly_assistance",
+        "food_nutrition_assistance",
+        "lowincome_assistance",
+        "poverty"
+    ],
+    "transportation": [
+        "air_travel",
+        "cycling",
+        "highway_safety",
+        "maritime",
+        "mass/public_transport",
+        "railroads",
+        "roads_and_highways",
+        "selfdriving_vehicles",
+        "walking/pedestrian_mobility"
+    ],
+    "other": [
+        "other"
+    ],
+    "issue": [
+        "agriculture_forestry_fishing_mining_industries",
+        "arts_culture_recreation",
+        "business",
+        "economics",
+        "education",
+        "energy",
+        "environment",
+        "governance_political_institutions_eg_constitutions_legal_systems_electoral_systems",
+        "health",
+        "housing",
+        "human_rights_civil_rights",
+        "identity_diversity",
+        "immigration_migration",
+        "international_affairs",
+        "labor_work",
+        "law_enforcement_criminal_justice_corrections",
+        "media_telecommunications_information",
+        "national_security",
+        "planning_development",
+        "science_technology",
+        "social_welfare",
+        "transportation",
+        "other"
+    ]
+}

@@ -65,6 +65,8 @@ class API {
   performSearch = function(queryArgs) {
     let querystring = queryString.stringify(queryArgs);
     let url = `${APIURL}/search?${querystring}`;
+    // console.log("queryArgs", queryArgs);
+    // console.log("DOING SEARCH", url);
     return fetch(url).then(response => response.json()).catch(function(error) {
       console.log(
         `There has been a problem with your fetch operation: (${url}) ${error}`
@@ -99,7 +101,7 @@ class API {
       });
   };
 
-  saveNewThing = function(thingType, caseObj) {
+  saveNewThing = function(thingType, obj) {
     if (
       thingType !== "case" &&
       thingType !== "method" &&
@@ -109,9 +111,8 @@ class API {
       console.error(error);
       throw error;
     }
-
     let url = APIURL + "/" + thingType + "/new";
-    return signedFetch(url, "POST", caseObj)
+    return signedFetch(url, "POST", obj)
       .then(response => response.json())
       .then(function(response) {
         if (!response.OK) {
@@ -122,8 +123,8 @@ class API {
       })
       .then(function(json) {
         // console.log("GOT JSON", json);
-        caseObj.id = json[thingType + "_id"]; // will this break when API changes?
-        return caseObj;
+        obj.id = json[thingType + "_id"]; // will this break when API changes?
+        return obj;
       })
       .catch(function(error) {
         if (error) {
@@ -137,6 +138,10 @@ class API {
 
   saveThing = function(thingType, obj) {
     let url = APIURL + `/${thingType}/${obj.id}`;
+
+    // console.log("saving", obj);
+    delete obj.updated_date; // feels silly to have to do that.
+
     return signedFetch(url, "PUT", obj)
       .then(response => response.json())
       .then(function(response) {
