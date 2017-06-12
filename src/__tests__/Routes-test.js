@@ -113,7 +113,7 @@ jest.mock("react-mapbox-gl", () => ({
 }));
 fetchMock.get(
   process.env.REACT_APP_API_URL +
-    "/search?query=&selectedCategory=All&selectedViewType=grid",
+    "/search?selectedCategory=All&selectedViewType=grid",
   JSON.stringify(searchData)
 );
 

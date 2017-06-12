@@ -203,18 +203,10 @@ export class SearchResultsView extends React.Component {
               {searchresults}
             </div>
             <div className="pagination">
-              <IconButton
-                tooltip="Previous page"
-                disabled={on_first_page}
-                onTouchTap={goPrevPage}
-              >
+              <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
                 <NavigatePreviousIcon />
               </IconButton>
-              <IconButton
-                tooltip="Next page"
-                disabled={on_last_page}
-                onTouchTap={goNextPage}
-              >
+              <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
                 <NavigateNextIcon />
               </IconButton>
             </div>
