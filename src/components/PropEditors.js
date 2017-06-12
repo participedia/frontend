@@ -7,7 +7,7 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
-import List from "react-items-list";
+import List from "../vendor/react-items-list";
 
 function nickify(before) {
   if (!before) return "";
@@ -56,7 +56,7 @@ export class ChoiceEditor extends React.Component {
     return (
       <SelectField
         name={property}
-        fullWidth={true}
+        fullWidth
         onChange={onChange}
         value={this.state.value}
       >
@@ -124,7 +124,7 @@ export class BooleanEditor extends React.Component {
         name={label}
         valueSelected={this.state.value}
       >
-        <RadioButton value={true} label={this.props.passProps.yesLabel} />
+        <RadioButton value label={this.props.passProps.yesLabel} />
         <RadioButton value={false} label={this.props.passProps.noLabel} />
       </RadioButtonGroup>
     );
@@ -184,7 +184,7 @@ class NumberEditor extends React.Component {
       <TextField
         onChange={onChange}
         value={typeof this.state.value !== "undefined" ? this.state.value : ""}
-        fullWidth={true}
+        fullWidth
         name={name}
       />
     );
@@ -240,7 +240,7 @@ class TextEditor extends React.Component {
             ? this.state.value
             : ""
         }
-        fullWidth={true}
+        fullWidth
         name={name}
       />
     );

@@ -12,7 +12,7 @@ import { Form, Field } from "simple-react-form";
 import "../components/CaseEditor.css";
 import "./story.css";
 import { getBestMatchingMessages } from "../utils/l10n";
-import List from "react-items-list";
+import List from "../vendor/react-items-list";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
