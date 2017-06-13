@@ -42,6 +42,9 @@ export default class SearchResults extends React.Component {
       delete futureState.selectedCategory;
     }
     futureState.query = newState.query || this.state.query;
+    if (!futureState.query) {
+      delete futureState.query; // query= is not the same thing as not specifying query (which is "Featured")
+    }
     futureState.page = newState.page || this.state.page || 1;
 
     if (futureState.sortingMethod !== DEFAULT_SORTING_METHOD) {
