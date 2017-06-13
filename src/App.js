@@ -7,10 +7,8 @@ import es from "react-intl/locale-data/es";
 import Layout from "./Layout";
 import authService from "./utils/AuthService";
 import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
-import createBrowserHistory from "history/createBrowserHistory";
 import { BrowserRouter } from "react-router-dom";
-
-const history = createBrowserHistory();
+import history from "./utils/history";
 
 addLocaleData([...en, ...fr, ...es]);
 

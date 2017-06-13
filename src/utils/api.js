@@ -75,11 +75,16 @@ class API {
     });
   };
 
-  searchMapTokens = function() {
-    let url = APIURL + "/search/map";
+  searchMapTokens = function(search) {
+    let url;
+    if (search) {
+      url = APIURL + `/search${search}&resultType=map`;
+    } else {
+      url = APIURL + `/search?resultType=map`;
+    }
     return signedFetch(url, "get")
       .then(response => response.json())
-      .then(json => json.data)
+      .then(json => json.results)
       .catch(function(error) {
         console.error(
           `There has been a problem with your fetch operation: (${url}) ${error}`

@@ -121,9 +121,8 @@ class Routes extends React.Component {
         />
         <Route
           path="/show/:term"
-          render={props => (
-            <Redirect to={`/search?query=${props.match.params.term}`} />
-          )}
+          render={props =>
+            <Redirect to={`/search?query=${props.match.params.term}`} />}
         />
         <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route path="/search" render={props => <Home auth={authService} />} />
@@ -260,7 +259,7 @@ export class Layout extends React.Component {
               <a onClick={this.handleToggle} className="menu-icon">
                 <img src={menuIcon} alt="" />
               </a>
-              <Link to="/" className="logo">
+              <Link to="/search" className="logo">
                 <img src={ppLogo} alt="Go Home" />
               </Link>
             </div>

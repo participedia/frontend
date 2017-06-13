@@ -7,8 +7,7 @@ import ItemFetcher from "./ItemFetcher";
 
 export class Case extends React.Component {
   toggleFeatured(thing, featured) {
-    console.log("setting featured for ", thing, " to ", featured);
-    // XXX needs API to exist.
+    api.saveThing(thing.type, thing);
   }
   render() {
     return (

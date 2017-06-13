@@ -212,7 +212,7 @@ export class SearchResultsView extends React.Component {
     }
     return (
       <div className="main-contents">
-        <Container className="search-results-component" fluid={true}>
+        <Container className="search-results-component" fluid>
           <Col md="3" className="sidepanel hidden-sm-down">
             <div
               className={

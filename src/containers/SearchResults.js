@@ -38,10 +38,11 @@ export default class SearchResults extends React.Component {
     let futureState = {};
     futureState.selectedCategory =
       newState.selectedCategory || this.state.selectedCategory;
-    futureState.selectedViewType =
-      newState.selectedViewType || this.state.selectedViewType;
+    if (futureState.selectedCategory === "All") {
+      delete futureState.selectedCategory;
+    }
     futureState.query = newState.query || this.state.query;
-    futureState.query = newState.page || this.state.page;
+    futureState.page = newState.page || this.state.page || 1;
 
     if (futureState.sortingMethod !== DEFAULT_SORTING_METHOD) {
       queryArgs["sortingMethod"] = futureState.sortingMethod;
