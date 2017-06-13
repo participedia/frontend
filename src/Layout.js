@@ -127,7 +127,11 @@ class Routes extends React.Component {
         <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route path="/search" render={props => <Home auth={authService} />} />
         <Route component={ScrollToTop} />
-        <Route exact path="/profile" component={ProfileLoader} />
+        <Route
+          exact
+          path="/profile"
+          component={props => <ProfileLoader intl={intl} />}
+        />
         <Route
           path="/profile/edit"
           render={props => <EnsureAuth auth={authService} />}

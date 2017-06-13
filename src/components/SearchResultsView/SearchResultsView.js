@@ -125,7 +125,7 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let data = this.props.data;
+    let { data, intl } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
@@ -134,6 +134,7 @@ export class SearchResultsView extends React.Component {
           selectedViewType={selectedViewType}
           key={index}
           record={result}
+          intl={intl}
         />
       );
     });
