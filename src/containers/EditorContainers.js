@@ -42,9 +42,15 @@ class EditorContainer extends Component {
       if (this.props.type === "case") {
         api.fetchCaseById(this.props.match.params.nodeID).then(function(thing) {
           if (thing) {
-            thing.start_date = new Date(thing.start_date);
-            thing.end_date = new Date(thing.end_date);
-            thing.updated_date = new Date(thing.updated_date);
+            if (thing.start_date !== null) {
+              thing.start_date = new Date(thing.start_date);
+            }
+            if (thing.end_date !== null) {
+              thing.end_date = new Date(thing.end_date);
+            }
+            if (thing.updated_date !== null) {
+              thing.updated_date = new Date(thing.updated_date);
+            }
           }
           component.setState({ thing });
         });
