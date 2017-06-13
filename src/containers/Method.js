@@ -6,7 +6,7 @@ import ItemFetcher from "./ItemFetcher";
 
 export class Method extends React.Component {
   toggleFeatured(thing, featured) {
-    thing.featured = !thing.featured;
+    thing.featured = featured;
     api.saveThing(thing.type, thing);
   }
   render() {
