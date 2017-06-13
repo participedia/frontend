@@ -7,6 +7,7 @@ import ItemFetcher from "./ItemFetcher";
 
 export class Case extends React.Component {
   toggleFeatured(thing, featured) {
+    thing.featured = !thing.featured;
     api.saveThing(thing.type, thing);
   }
   render() {
