@@ -15,9 +15,11 @@ export class SearchHit extends React.Component {
   }
   render() {
     let result = this.props.record;
+    let intl = this.props.intl;
+
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
     let pic = "";
-    if (result.lead_image) {
+    if (result.lead_image.url) {
       pic = awsUrl + encodeURIComponent(result.lead_image.url);
     } else if (result.other_images && result.other_images.length > 0) {
       pic = awsUrl + encodeURIComponent(result.other_images[0].url);
@@ -47,7 +49,11 @@ export class SearchHit extends React.Component {
                     </div>
                   : <div className={thumbnailClass} style={thumbnailStyle} />}
               </Link>
-              <small className="label">{result.type}</small>
+              <small className="label">
+                {(result.featured
+                  ? intl.formatMessage({ id: "featured" }) + " "
+                  : "") + result.type}
+              </small>
               {bookmarkIcon}
               <Link to={link} className="result-title">
                 <div className="result-title-text">{title}</div>
@@ -69,7 +75,11 @@ export class SearchHit extends React.Component {
                     </Link>}
               </Col>
               <Col md="8" className="pt-1">
-                <small className="label">{result.type}</small>
+                <small className="label">
+                  {(result.featured
+                    ? intl.formatMessage({ id: "featured" }) + " "
+                    : "") + result.type}
+                </small>
                 {bookmarkIcon}
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>

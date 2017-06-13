@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
+import myhistory from "../utils/history";
+
 const defaultMarkerLayout = {
   "text-line-height": 1,
   "text-padding": 0,
   "text-anchor": "bottom",
-  "text-allow-overlap": false,
+  "text-allow-overlap": true,
   "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
   "icon-optional": true,
   "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
@@ -18,7 +20,7 @@ if (process.env.NODE_ENV === "test") {
   require.ensure = (deps, cb) => cb(require);
 }
 
-function extractData(data, type) {
+function extractData(data) {
   let newdata = data.map(function(obj) {
     let coords;
     if (obj.location && obj.location.latitude && obj.location.longitude) {
@@ -31,9 +33,9 @@ function extractData(data, type) {
     }
     return {
       id: obj.id,
-      type: type,
+      type: obj.type,
       position: coords,
-      url: `/${type}/${obj.id}`,
+      url: `/${obj.type}/${obj.id}`,
       title: obj.title
     };
   });
@@ -63,18 +65,17 @@ export default class Map extends Component {
   }
   componentWillMount() {
     let component = this;
-    api.searchMapTokens().then(function(results) {
-      let cases = extractData(results.cases, "case");
-      let organizations = extractData(results.orgs, "organization");
+
+    api.searchMapTokens(myhistory.location.search).then(function(results) {
+      let items = extractData(results);
       component.setState({
-        cases: cases,
-        organizations: organizations
+        items: items
       });
     });
   }
 
   render() {
-    let { cases, organizations } = this.state;
+    let { items } = this.state;
     let styles = this.props.styles || defaultMapStyles;
     let markerLayout = this.props.markerLayout || defaultMarkerLayout;
     let center = this.props.center;
@@ -82,8 +83,7 @@ export default class Map extends Component {
     if (this.state.MapVisualization) {
       return (
         <this.state.MapVisualization
-          cases={cases}
-          organizations={organizations}
+          items={items}
           styles={styles}
           markerLayout={markerLayout}
           center={center}

@@ -36,7 +36,8 @@ class Featured extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile;
+    const { isAuthenticated, profile } = this.props;
+    if (!isAuthenticated) return <div />;
     return isCurator(profile)
       ? <div className="featuretoggle">
           <Toggle
@@ -72,13 +73,16 @@ const defaultThing = {
 export default class ItemDetails extends React.Component {
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { isAuthenticated, userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
       getProfile((err, profile) => {
-        this.setState({ profile });
+        this.setState({ profile, isAuthenticated: isAuthenticated() });
       });
     } else {
-      this.setState({ profile: userProfile });
+      this.setState({
+        profile: userProfile,
+        isAuthenticated: isAuthenticated()
+      });
     }
   }
 
@@ -128,12 +132,13 @@ export default class ItemDetails extends React.Component {
     return (
       <div>
         <div className="main-contents">
-          <Container className="detailed-case-component" fluid={true}>
+          <Container className="detailed-case-component" fluid>
             <Row>
               <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
                 <Featured
                   thing={thing}
                   profile={this.state.profile}
+                  isAuthenticated={this.state.isAuthenticated}
                   toggleFeatured={this.props.toggleFeatured}
                 />
                 {detailedBits}
@@ -170,7 +175,7 @@ export default class ItemDetails extends React.Component {
                         <Col className="vid-container" md="6">
                           <ReactPlayer
                             width="100%"
-                            controls={true}
+                            controls
                             url={thing.vidURL}
                           />
                         </Col>

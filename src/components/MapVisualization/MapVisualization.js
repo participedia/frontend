@@ -8,12 +8,7 @@ const accessToken =
   "pk.eyJ1IjoiZGF2aWRhc2NoZXIiLCJhIjoiY2l2dTBlc2swMDAzcjJ0bW4xdTJ1ZGZhZSJ9.uxbzY-xlJ1FJ7lu95S_9cw";
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
-const caseMarkerPaint = {
-  "text-translate-anchor": "viewport",
-  "text-color": "#000"
-};
-
-const orgMarkerPaint = {
+const itemMarkerPaint = {
   "text-translate-anchor": "viewport",
   "text-color": "#000"
 };
@@ -39,7 +34,7 @@ class MapVisualization extends React.Component {
 
     this.state = {
       popupShowLabel: true,
-      center: props.center || [-9.9215833, -15.4099109],
+      center: props.center || [9.9215833, 35.4099109],
       zoom: [2],
       focus: null
     };
@@ -66,23 +61,17 @@ class MapVisualization extends React.Component {
 
   render() {
     const { focus, popupShowLabel } = this.state;
-    const { cases, organizations, styles } = this.props;
+    const { items, styles } = this.props;
+    if (!items) return <div />;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
-    const caseFeatures = cases.map((st, index) => (
+    const itemFeatures = items.map((st, index) =>
       <Feature
         key={st.id}
         onClick={this._markerClick.bind(this, st)}
         coordinates={st.position}
       />
-    ));
-    const orgFeatures = organizations.map((st, index) => (
-      <Feature
-        key={st.id}
-        onClick={this._markerClick.bind(this, st)}
-        coordinates={st.position}
-      />
-    ));
+    );
 
     return (
       <div className="map-component">
@@ -91,7 +80,7 @@ class MapVisualization extends React.Component {
           style={styleURL} // eslint-disable-line react/style-prop-object
           center={this.state.center}
           scrollZoom={false}
-          touchZoomRotate={true}
+          touchZoomRotate
           zoom={this.state.zoom}
           minZoom={1}
           maxZoom={15}
@@ -101,24 +90,14 @@ class MapVisualization extends React.Component {
         >
 
           <ZoomControl zoomDiff={1} />
-          {caseFeatures
+          {itemFeatures
             ? <Layer
                 type="symbol"
-                id="cases"
+                id="items"
                 layout={this.props.markerLayout}
-                paint={caseMarkerPaint}
+                paint={itemMarkerPaint}
               >
-                {caseFeatures}
-              </Layer>
-            : <div />}
-          {orgFeatures
-            ? <Layer
-                type="symbol"
-                id="orgs"
-                layout={this.props.markerLayout}
-                paint={orgMarkerPaint}
-              >
-                {orgFeatures}
+                {itemFeatures}
               </Layer>
             : <div />}
           {focus &&
@@ -143,7 +122,8 @@ class MapVisualization extends React.Component {
                     }}
                   >
                     {focus.type}
-                  </span><Link to={focus.url}> {focus.title}</Link>
+                  </span>
+                  <Link to={focus.url}> {focus.title}</Link>
                 </span>
                 <div onClick={() => popupChange(!popupShowLabel)}>
                   {popupShowLabel ? "Hide" : "Show"}

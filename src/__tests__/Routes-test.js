@@ -21,8 +21,7 @@ let fetchMock = require("fetch-mock");
 jest.mock("../containers/Map", () => "Map");
 
 fetchMock.get(
-  process.env.REACT_APP_API_URL +
-    "/search?query=&selectedCategory=All&sortingMethod=chronological",
+  process.env.REACT_APP_API_URL + "/search?page=1",
   JSON.stringify({ data: searchData })
 );
 fetchMock.get(
@@ -112,8 +111,7 @@ jest.mock("react-mapbox-gl", () => ({
   Map: "foo"
 }));
 fetchMock.get(
-  process.env.REACT_APP_API_URL +
-    "/search?selectedCategory=All&selectedViewType=grid",
+  process.env.REACT_APP_API_URL + "/search?selectedCategory=All",
   JSON.stringify(searchData)
 );
 

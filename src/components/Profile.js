@@ -39,6 +39,7 @@ class Profile extends Component {
     ];
 
     let authored = [];
+    let intl = this.props.intl;
 
     data.forEach(function(batch) {
       batch.hits.forEach(function(hit, index) {
@@ -47,6 +48,7 @@ class Profile extends Component {
             selectedViewType="grid"
             key={"authored-" + batch.type + "-" + index}
             record={hit}
+            intl={intl}
           />
         );
       });
@@ -59,6 +61,7 @@ class Profile extends Component {
         selectedViewType="grid"
         key={"bookmarked-" + index}
         record={hit}
+        intl={intl}
       />
     );
     if (bookmarked.length === 0) {
@@ -66,7 +69,7 @@ class Profile extends Component {
     }
 
     return (
-      <Container fluid={true} className="profile">
+      <Container fluid className="profile">
         <Row className="profile-info-section">
           <Col lg={3} md={4} className="sidebar">
             <div className="user-avatar">
