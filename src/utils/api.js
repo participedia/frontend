@@ -20,7 +20,7 @@ const signedFetch = function(url, method, payload) {
   };
   if (localStorage.profile) {
     let profile = JSON.parse(localStorage.profile);
-    if (localStorage.getItem("id_token")) {
+    if (authService.isAuthenticated()) {
       opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
     }
     opts["headers"]["X-Auth0-Name"] = profile.name;
