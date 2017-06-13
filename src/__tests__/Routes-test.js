@@ -21,8 +21,7 @@ let fetchMock = require("fetch-mock");
 jest.mock("../containers/Map", () => "Map");
 
 fetchMock.get(
-  process.env.REACT_APP_API_URL +
-    "/search?query=&selectedCategory=All&sortingMethod=chronological",
+  process.env.REACT_APP_API_URL + "/search?page=1&query=",
   JSON.stringify({ data: searchData })
 );
 fetchMock.get(

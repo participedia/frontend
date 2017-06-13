@@ -259,7 +259,7 @@ export class Layout extends React.Component {
               <a onClick={this.handleToggle} className="menu-icon">
                 <img src={menuIcon} alt="" />
               </a>
-              <Link to="/search" className="logo">
+              <Link to="/" className="logo">
                 <img src={ppLogo} alt="Go Home" />
               </Link>
             </div>
