@@ -32,10 +32,12 @@ class CaseEditor extends Component {
     super(props);
     let thing = props.thing;
     let images = thing.other_images || [];
+    console.log("in constructor, thing", thing);
     if (thing.lead_image) {
       images.unshift(thing.lead_image);
     }
     thing.images = images;
+    console.log("images", images);
 
     this.state = { thing };
   }
@@ -43,10 +45,13 @@ class CaseEditor extends Component {
   componentWillReceiveProps(nextProps) {
     // We need to merge lead_image and other_images into one property
     let thing = nextProps.thing;
+    console.log("in componentWillReceiveProps, thing", thing);
     let images = thing.other_images || [];
     if (thing.lead_image) {
       images.unshift(thing.lead_image);
     }
+    console.log("images", images);
+
     thing.images = images;
     delete thing.lead_image;
     delete thing.other_images;
