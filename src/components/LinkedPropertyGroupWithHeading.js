@@ -2,7 +2,7 @@ import React from "react";
 import SearchLink from "./SearchLink";
 
 const LinkedPropertyGroupWithHeading = ({ heading, property, thing, intl }) =>
-  (thing[property]
+  thing[property] && thing[property] !== "null"
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: heading ? heading : "not_specified" })}
@@ -11,6 +11,6 @@ const LinkedPropertyGroupWithHeading = ({ heading, property, thing, intl }) =>
           <SearchLink intl={intl} tag={property} value={thing[property]} />
         </div>
       </div>
-    : <div />);
+    : <div />;
 
 export default LinkedPropertyGroupWithHeading;

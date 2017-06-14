@@ -17,10 +17,13 @@ export default class CaseDetails extends React.Component {
     let intl = this.props.intl;
     return (
       <div>
-        <CountryMap
-          city={thing.location.city}
-          countrycode={thing.location.country}
-        />
+        {thing.location
+          ? <CountryMap
+              city={thing.location.city}
+              countrycode={thing.location.country}
+            />
+          : <div />}
+
         <p className="sub-heading">
           Keywords
         </p>
