@@ -156,7 +156,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 alt={undefined}
                 className="portrait"
                 sizes={undefined}
-                src="https://d3im063erkq9w4.cloudfront.net/uis_favicon_0.png"
+                src="https://s3.amazonaws.com/uploads.participedia.xyz/uis_favicon_0.png"
                 srcSet={undefined}
               />
             </div>
@@ -309,11 +309,15 @@ exports[`Organization editor renders correctly 1`] = `
                 <img
                   alt=""
                   className="img-fluid"
-                  src="https://d3im063erkq9w4.cloudfront.net/uis_favicon_0.png"
+                  src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
+                  style={
+                    Object {
+                      "height": "100%",
+                      "objectFit": "contain",
+                      "width": "100%",
+                    }
+                  }
                 />
-                <small>
-                  Lead Image
-                </small>
               </div>
             </div>
             <div

@@ -11,12 +11,18 @@ class ImageListEditorField extends Component {
     this.handleNewImg = this.handleNewImg.bind(this);
     this.deleteImg = this.deleteImg.bind(this);
     this.deleteLead = this.deleteLead.bind(this);
+    // console.log("in ImageListEditorField, props", props);
     this.state = {
       lead: "",
       newImg: false,
       delImg: false,
       images: props.value
     };
+  }
+  componentWillReceiveProps(props) {
+    this.setState({
+      images: props.value
+    });
   }
 
   makeLead(src) {
@@ -25,7 +31,7 @@ class ImageListEditorField extends Component {
 
   handleNewImg(img) {
     let images = this.state.images;
-    images.push(img); // or do we just want URLs?
+    images.push({ url: img }); // or do we just want URLs?
     this.setState({ images });
 
     // console.log("img", img, "this.props", this.props);
@@ -71,15 +77,22 @@ class ImageListEditorField extends Component {
     const awsUrl = process.env.REACT_APP_UPLOADS_S3_BUCKET;
     let images = this.state.images;
     // let thing = this.props.thing;
-    console.log("this", this);
+    // console.log("this", this);
     let urls = images.map(function(img) {
-      if (img.substring(0, 4) === "blob") {
-        return img;
+      console.log("IMG", img);
+      let url;
+      if (img.url) {
+        url = img.url;
       } else {
-        return awsUrl + encodeURIComponent(img);
+        url = img.src;
+      }
+      if (url.substring(0, 4) === "blob") {
+        return url;
+      } else {
+        return awsUrl + encodeURIComponent(url);
       }
     });
-    console.log("URLs", urls);
+    // console.log("URLs", urls);
     let bits = urls.map((photo, id) =>
       <Col key={id} sm="6" md="3">
         <div className={id === 0 ? "box lead" : "box"}>
@@ -109,13 +122,12 @@ class ImageListEditorField extends Component {
 
 export default class ImageListEditor extends Component {
   render() {
-    let { property, intl } = this.props;
+    let { property } = this.props;
     return (
       <Field
         fieldName={property}
         id={property}
         name={property}
-        label={intl.formatMessage({ id: property })}
         type={ImageListEditorField}
       />
     );
