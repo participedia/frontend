@@ -6,7 +6,7 @@ import { FormattedDate } from "react-intl";
 function BooleanProp({ label, property, thing, intl }) {
   let truth = thing[property];
   let truthString = String(truth);
-  if (truth === undefined) return <div />;
+  if (truth === null || truth === undefined) return <div />;
   return (
     <div>
       <p className="sub-sub-heading">
@@ -26,7 +26,7 @@ BooleanProp.propTypes = {
 };
 
 const NumberProp = ({ label, property, thing, intl }) =>
-  thing[property] !== undefined
+  thing[property] !== undefined && thing[property] !== null
     ? <div>
         <p className="sub-sub-heading">
           {intl.formatMessage({ id: label ? label : "not_specified" })}

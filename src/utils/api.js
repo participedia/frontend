@@ -107,6 +107,7 @@ class API {
   };
 
   saveNewThing = function(thingType, obj) {
+    // console.log("saveNewThing", thingType, obj);
     if (
       thingType !== "case" &&
       thingType !== "method" &&
@@ -124,11 +125,12 @@ class API {
           console.log("Error doing saveNewThing's signedFetch: ", response);
           throw response.error;
         }
+        // console.log("got response", response);
         return response.data;
       })
       .then(function(json) {
         // console.log("GOT JSON", json);
-        obj.id = json[thingType + "_id"]; // will this break when API changes?
+        obj.id = json.thingid;
         return obj;
       })
       .catch(function(error) {

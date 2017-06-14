@@ -3,7 +3,7 @@ import React from "react";
 export default class ListGroupWithHeading extends React.Component {
   render() {
     let { heading, property, thing, intl } = this.props;
-    if (!thing[property]) {
+    if (!thing[property] || thing[property].length === 0) {
       return <div />;
     }
     let items = thing[property].map(item =>

@@ -74,7 +74,7 @@ class EditorContainer extends Component {
 
     saveFunc(thing.type, thing)
       .then(function(thing) {
-        console.log("after saveFunc, thing:", thing);
+        // console.log("after saveFunc, thing:", thing);
         myhistory.push(`../../${thing.type}/${thing.id}`);
       })
       .catch(function(exception) {
@@ -93,10 +93,12 @@ class EditorContainer extends Component {
 
   render() {
     if (
-      !(this.state &&
+      !(
+        this.state &&
         this.state.cases &&
         this.state.methods &&
-        this.state.organizations)
+        this.state.organizations
+      )
     ) {
       return <div />;
     }
@@ -166,22 +168,16 @@ class EditorContainer extends Component {
   }
 }
 
-export const CaseEditorContainer = props => (
-  <EditorContainer type="case" new={false} {...props} />
-);
-export const MethodEditorContainer = props => (
-  <EditorContainer type="method" new={false} {...props} />
-);
-export const OrganizationEditorContainer = props => (
-  <EditorContainer type="organization" new={false} {...props} />
-);
+export const CaseEditorContainer = props =>
+  <EditorContainer type="case" new={false} {...props} />;
+export const MethodEditorContainer = props =>
+  <EditorContainer type="method" new={false} {...props} />;
+export const OrganizationEditorContainer = props =>
+  <EditorContainer type="organization" new={false} {...props} />;
 
-export const NewCaseContainer = props => (
-  <EditorContainer type="case" new={true} {...props} />
-);
-export const NewMethodContainer = props => (
-  <EditorContainer type="method" new={true} {...props} />
-);
-export const NewOrganizationContainer = props => (
-  <EditorContainer type="organization" new={true} {...props} />
-);
+export const NewCaseContainer = props =>
+  <EditorContainer type="case" new {...props} />;
+export const NewMethodContainer = props =>
+  <EditorContainer type="method" new {...props} />;
+export const NewOrganizationContainer = props =>
+  <EditorContainer type="organization" new {...props} />;
