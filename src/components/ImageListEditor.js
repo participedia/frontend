@@ -79,7 +79,7 @@ class ImageListEditorField extends Component {
     // let thing = this.props.thing;
     // console.log("this", this);
     let urls = images.map(function(img) {
-      console.log("IMG", img);
+      // console.log("IMG", img);
       let url;
       if (img.url) {
         url = img.url;

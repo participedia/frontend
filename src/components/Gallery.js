@@ -5,7 +5,7 @@ import ImageGallery from "react-image-gallery";
 // and other data that the ImageGallery component needs.
 
 function getPics(thing) {
-  let awsUrl = process.env.REACT_APP_ASSETS_URL;
+  let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
   let theLength = "";
   let pics = [];
   if (thing && thing.lead_image) {
