@@ -22,9 +22,9 @@ const signedFetch = function(url, method, payload) {
     let profile = JSON.parse(localStorage.profile);
     if (authService.isAuthenticated()) {
       opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
+      opts["headers"]["X-Auth0-Name"] = profile.name;
+      opts["headers"]["X-Auth0-UserId"] = profile.user_id;
     }
-    opts["headers"]["X-Auth0-Name"] = profile.name;
-    opts["headers"]["X-Auth0-UserId"] = profile.user_id;
     // console.log("doing signed call to", url);
   } else {
     // console.log("doing unsigned call to", url);

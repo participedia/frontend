@@ -183,7 +183,14 @@ class AuthService {
     }
     // we may have a token but it could be expired
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
-    return new Date().getTime() < expiresAt;
+    let authenticated = new Date().getTime() < expiresAt;
+    if (!authenticated) {
+      // we should figure out how to do reauth XXX
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("id_token");
+      localStorage.removeItem("expires_at");
+      localStorage.removeItem("profile");
+    }
   }
 }
 
