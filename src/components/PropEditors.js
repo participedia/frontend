@@ -167,7 +167,7 @@ class NumberEditor extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ value: String(props.value) });
+    this.setState({ value: this.state.value !== '' ? String(props.value) : props.value });
   }
 
   onChange(event, value) {
@@ -183,7 +183,7 @@ class NumberEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
-        value={typeof this.state.value !== "undefined" ? this.state.value : ""}
+        value={typeof this.state.value !== "undefined" && this.state.value !== null ? this.state.value : ""}
         fullWidth
         name={name}
       />
