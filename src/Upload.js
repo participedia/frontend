@@ -132,13 +132,14 @@ class Upload extends React.Component {
   handleFinishedUpload(args) {
     // if addToList is specified, then we clear out the uploader. If not,
     // we display the happy checkmark.
+    // console.log(args);
     const { dispatch, profile } = this.props;
     this.setState({
       hidePic: false,
       done: true,
       started: this.props.addToList ? false : true,
-      progress: 0,
-      preview: args.file.preview
+      progress: 0
+      // preview: args.file.preview
     });
     if (this.props.onChange) {
       this.props.onChange(args.filename);
@@ -151,7 +152,7 @@ class Upload extends React.Component {
       );
     }
     if (this.props.addToList) {
-      this.props.addToList(args.file.preview);
+      this.props.addToList(args.filename);
     }
   }
 

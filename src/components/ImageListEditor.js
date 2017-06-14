@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Field } from "simple-react-form";
 import { Row, Col } from "reactstrap";
 import Upload from "../Upload";
+import authService from "../utils/AuthService";
 
-class ImageListEditor extends Component {
+class ImageListEditorField extends Component {
   constructor(props) {
     super(props);
     this.makeLead = this.makeLead.bind(this);
@@ -12,20 +14,33 @@ class ImageListEditor extends Component {
     this.state = {
       lead: "",
       newImg: false,
-      delImg: false
+      delImg: false,
+      images: props.value
     };
   }
 
   makeLead(src) {
-    this.setState({ lead: src });
+    // this.setState({ lead: src });
   }
 
   handleNewImg(img) {
-    this.setState({ newImg: true });
-    if (this.props.thing.other_images) {
-      let currentImgs = this.props.thing.other_images.length;
-      this.props.thing.other_images[currentImgs] = { url: img };
-    }
+    let images = this.state.images;
+    images.push(img); // or do we just want URLs?
+    this.setState({ images });
+
+    // console.log("img", img, "this.props", this.props);
+
+    // if (this.props.thing.lead_image) {
+    //   if (this.props.thing.other_images) {
+    //     let currentImgs = this.props.thing.other_images.length;
+    //     this.props.thing.other_images[currentImgs] = { url: img };
+    //   }
+    // } else {
+    //   this.props.thing.lead_image = { url: img };
+    // }
+    // this.setState({ newImg: true });
+    this.props.onChange(images);
+    // this.setState({ lead_image: { src: img } });
   }
 
   deleteImg(photo) {
@@ -52,79 +67,57 @@ class ImageListEditor extends Component {
   }
 
   render() {
-    const awsUrl = process.env.REACT_APP_ASSETS_URL;
-    let leadImg = "";
-    let otherImgs = [];
-    let thing = this.props.thing;
-    if (thing && thing.lead_image) {
-      leadImg = awsUrl + encodeURIComponent(thing.lead_image.url);
-    }
-    if (thing && thing.other_images) {
-      Object.keys(thing.other_images).forEach(function(key) {
-        let obj = thing.other_images[key];
-        if (obj.url.substring(0, 4) === "blob") {
-          otherImgs.push(obj.url);
-        } else {
-          otherImgs.push(awsUrl + encodeURIComponent(obj.url));
-        }
-      });
-    }
+    // don't use the CDN as it won't be there yet.
+    const awsUrl = process.env.REACT_APP_UPLOADS_S3_BUCKET;
+    let images = this.state.images;
+    // let thing = this.props.thing;
+    console.log("this", this);
+    let urls = images.map(function(img) {
+      if (img.substring(0, 4) === "blob") {
+        return img;
+      } else {
+        return awsUrl + encodeURIComponent(img);
+      }
+    });
+    console.log("URLs", urls);
+    let bits = urls.map((photo, id) =>
+      <Col key={id} sm="6" md="3">
+        <div className={id === 0 ? "box lead" : "box"}>
+          <div className="checkbox" onClick={this.makeLead.bind(this, photo)} />
+          <div className="trash" onClick={this.deleteImg.bind(this, photo)} />
+          <img
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            key={id}
+            alt=""
+            className="img-fluid"
+            src={photo}
+          />
+          {this.state.lead === photo ? <small>Lead Image</small> : undefined}
+        </div>
+      </Col>
+    );
     return (
       <Row className="itemPics">
-        {leadImg
-          ? <Col sm="6" md="3">
-              <div
-                className={
-                  this.state.lead === leadImg || this.state.lead === ""
-                    ? "box lead"
-                    : "box"
-                }
-              >
-                <div
-                  className="checkbox"
-                  onClick={this.makeLead.bind(this, leadImg)}
-                />
-                <div
-                  className="trash"
-                  onClick={this.deleteLead.bind(this, leadImg)}
-                />
-                <img className="img-fluid" alt="" src={leadImg} />
-                {this.state.lead === leadImg || this.state.lead === ""
-                  ? <small>Lead Image</small>
-                  : undefined}
-              </div>
-            </Col>
-          : undefined}
-        {otherImgs
-          ? otherImgs.map((photo, id) => (
-              <Col key={id} sm="6" md="3">
-                <div className={this.state.lead === photo ? "box lead" : "box"}>
-                  <div
-                    className="checkbox"
-                    onClick={this.makeLead.bind(this, photo)}
-                  />
-                  <div
-                    className="trash"
-                    onClick={this.deleteImg.bind(this, photo)}
-                  />
-                  <img key={id} alt="" className="img-fluid" src={photo} />
-                  {this.state.lead === photo
-                    ? <small>Lead Image</small>
-                    : undefined}
-                </div>
-              </Col>
-            ))
-          : undefined}
+        {bits}
         <Col md="3">
-          <Upload
-            auth={this.props.auth}
-            itemEdit={true}
-            addToList={this.handleNewImg}
-          />
+          <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
         </Col>
       </Row>
     );
   }
 }
 
-export default ImageListEditor;
+export default class ImageListEditor extends Component {
+  render() {
+    let { property, intl } = this.props;
+    return (
+      <Field
+        fieldName={property}
+        id={property}
+        name={property}
+        label={intl.formatMessage({ id: property })}
+        type={ImageListEditorField}
+      />
+    );
+  }
+}
