@@ -57,7 +57,7 @@
     "query-parser": "^0.0.1",
     "query-string": "^4.3.4",
     "quill": "^1.2.5",
-    "react": "^15.5.4",
+    "react": "^15.6.0",
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-shallow-compare": "^15.5.2",
     "react-addons-transition-group": "^15.5.2",
