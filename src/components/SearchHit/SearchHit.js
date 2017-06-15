@@ -17,7 +17,7 @@ export class SearchHit extends React.Component {
     let result = this.props.record;
     let intl = this.props.intl;
 
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
+    let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
     let pic = "";
     if (result.lead_image && result.lead_image.url) {
       pic = awsUrl + encodeURIComponent(result.lead_image.url);

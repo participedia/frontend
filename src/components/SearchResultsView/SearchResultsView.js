@@ -125,7 +125,7 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let { data, intl } = this.props;
+    let { data, intl, pages, total } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
@@ -190,7 +190,30 @@ export class SearchResultsView extends React.Component {
                     id: "result" + (resultsCount === 1 ? "" : "s")
                   })}
                   {" "}
+                  {this.props.intl.formatMessage({ id: "of" })}
+                  {" "}
+                  {total}
+                  {" "}
                   {description} <div className="search-term">{searchTerm}</div>
+                  {" ("}
+                  {this.props.intl.formatMessage({ id: "page" })}
+                  {" "}
+                  {pageNo}
+                  {" "}
+                  {this.props.intl.formatMessage({ id: "of" })}
+                  {" "}
+                  {pages})
+                  <div className="pagination">
+                    <IconButton
+                      disabled={on_first_page}
+                      onTouchTap={goPrevPage}
+                    >
+                      <NavigatePreviousIcon />
+                    </IconButton>
+                    <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
+                      <NavigateNextIcon />
+                    </IconButton>
+                  </div>
                 </div>
               : <div />}
             <FilterArray data={filters} />

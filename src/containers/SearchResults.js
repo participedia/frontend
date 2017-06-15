@@ -12,6 +12,8 @@ export default class SearchResults extends React.Component {
     this.state = {
       data: [],
       query: "",
+      total: 0,
+      pages: 0,
       searching: true,
       selectedCategory: this.props.selectedCategory || DEFAULT_CATEGORY,
       sortingMethod: DEFAULT_SORTING_METHOD,
@@ -57,7 +59,12 @@ export default class SearchResults extends React.Component {
     this.setState({ searching: true });
     api.performSearch(futureState).then(function(results) {
       if (results.results) {
-        component.setState({ data: results.results, searching: false });
+        component.setState({
+          data: results.results,
+          total: results.total,
+          pages: results.pages,
+          searching: false
+        });
       } else {
         if (results.error) {
           if (results.error.code)
@@ -104,6 +111,8 @@ export default class SearchResults extends React.Component {
         selectedCategory={this.state.selectedCategory}
         sortingMethod={this.state.sortingMethod}
         data={this.state.data}
+        total={this.state.total}
+        pages={this.state.pages}
         searching={this.state.searching}
         query={this.state.query}
         onCategoryChange={onCategoryChange}
