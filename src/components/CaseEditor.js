@@ -30,15 +30,39 @@ const buttonStyle = {
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
-    this.state = { thing: props.thing };
+    let thing = props.thing;
+    let images = thing.other_images || [];
+    if (thing.lead_image) {
+      images.unshift(thing.lead_image);
+    }
+    thing.images = images;
+
+    this.state = { thing };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ thing: nextProps.thing });
+    // We need to merge lead_image and other_images into one property
+    let thing = nextProps.thing;
+    let images = thing.other_images || [];
+    if (thing.lead_image) {
+      images.unshift(thing.lead_image);
+    }
+
+    thing.images = images;
+    delete thing.lead_image;
+    delete thing.other_images;
+
+    this.setState({ thing });
   }
 
   onSubmit() {
-    this.props.onSubmit(this.state.thing);
+    // We need to tweak the `images` property and split it into lead_image and other_images
+    let thing = this.state.thing;
+    thing.lead_image = thing.images.shift();
+    thing.other_images = thing.images;
+    delete thing.images;
+
+    this.props.onSubmit(thing);
   }
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
@@ -95,7 +119,7 @@ class CaseEditor extends Component {
         onChange={changes => this.setState({ thing: changes })}
       >
         <div className="main-contents">
-          <Container className="detailed-case-component" fluid={true}>
+          <Container className="detailed-case-component" fluid>
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
@@ -105,7 +129,12 @@ class CaseEditor extends Component {
                 <h2 className="case-title">
                   {thing.title}
                 </h2>
-                <ImageListEditor auth={this.props.auth} thing={thing} />
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
                 <div className="title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
@@ -118,7 +147,7 @@ class CaseEditor extends Component {
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
-                  fullWidth={true}
+                  fullWidth
                 />
                 <div>
                   <label htmlFor="body_en">
@@ -175,7 +204,7 @@ class CaseEditor extends Component {
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
-                        primary={true}
+                        primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
@@ -269,7 +298,7 @@ class CaseEditor extends Component {
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
-                        primary={true}
+                        primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({

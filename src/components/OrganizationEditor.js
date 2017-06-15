@@ -26,11 +26,26 @@ const tags = tags_json["tags"];
 class OrganizationEditor extends Component {
   constructor(props) {
     super(props);
+    let thing = props.thing;
+    let images = thing.other_images || [];
+    if (thing.lead_image) {
+      images.unshift(thing.lead_image);
+    }
+    thing.images = images;
     this.state = { thing: props.thing };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ thing: nextProps.thing });
+    let thing = nextProps.thing;
+    let images = thing.other_images || [];
+    if (thing.lead_image) {
+      images.unshift(thing.lead_image);
+    }
+
+    thing.images = images;
+    delete thing.lead_image;
+    delete thing.other_images;
+    this.setState({ thing });
   }
 
   onSubmit() {
@@ -91,7 +106,7 @@ class OrganizationEditor extends Component {
         onChange={changes => this.setState({ thing: changes })}
       >
         <div className="main-contents">
-          <Container className="detailed-case-component" fluid={true}>
+          <Container className="detailed-case-component" fluid>
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
@@ -101,7 +116,12 @@ class OrganizationEditor extends Component {
                 <h2 className="case-title">
                   {thing.title}
                 </h2>
-                <ImageListEditor auth={this.props.auth} thing={thing} />
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
                 <div className="title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
@@ -114,7 +134,7 @@ class OrganizationEditor extends Component {
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
-                  fullWidth={true}
+                  fullWidth
                 />
                 <div>
                   <label htmlFor="body_en">
@@ -155,7 +175,7 @@ class OrganizationEditor extends Component {
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
-                        primary={true}
+                        primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
@@ -188,7 +208,7 @@ class OrganizationEditor extends Component {
                       <RaisedButton
                         className="incomplete-warning"
                         disabled={incomplete}
-                        primary={true}
+                        primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
