@@ -22,25 +22,42 @@ class CountryMap extends React.Component {
           ".svg"
       )
         .then(function(response) {
-          return response.text();
+          if (response.status >= 400) {
+            throw new Error(response.statusText);
+          }
         })
-        .then(function(SVGtext) {
-          component.setState({ SVG: SVGtext });
+        .then(response => response.text())
+        .then(function(response) {
+          component.setState({ SVG: response.text(), error: null });
+        })
+        .catch(function(error) {
+          component.setState({
+            error,
+            SVG: null
+          });
         });
     }
   }
 
   render() {
-    return this.props.countrycode
-      ? <div className="case-map">
-          <div dangerouslySetInnerHTML={{ __html: this.state.SVG }} />
-          {this.props.city
-            ? <p className="case-location">
-                {this.props.city}, {this.props.countrycode}
-              </p>
-            : <p className="case-location">{this.props.countrycode}</p>}
+    if (this.state.error) {
+      return (
+        <div className="case-map">
+          Error loading map for {this.props.countrycode}
         </div>
-      : <div />;
+      );
+    } else {
+      return this.props.countrycode
+        ? <div className="case-map">
+            <div dangerouslySetInnerHTML={{ __html: this.state.SVG }} />
+            {this.props.city
+              ? <p className="case-location">
+                  {this.props.city}, {this.props.countrycode}
+                </p>
+              : <p className="case-location">{this.props.countrycode}</p>}
+          </div>
+        : <div />;
+    }
   }
 }
 
