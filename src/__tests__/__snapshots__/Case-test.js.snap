@@ -33,7 +33,7 @@ exports[`Case editor renders correctly 1`] = `
             className="itemPics row"
           >
             <div
-              className="col col-sm-6 col-md-3"
+              className="pb-1 col col-sm-6 col-md-3"
             >
               <div
                 className="box lead"
