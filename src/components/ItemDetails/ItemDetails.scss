@@ -280,11 +280,10 @@ section.image-gallery {
       .case-title {
         color: $primary-color;
         font-weight: 600;
-        margin-bottom: 48px;
-        font-size:2.25rem;
+        margin-bottom: 49px;
         max-width:720px;
         @include media-breakpoint-down(sm) { 
-          margin-bottom: 0;
+          margin-bottom: 21px;
         }
       }
 

@@ -1,0 +1,16 @@
+@import "./UniversalStyles";
+
+.react-dropzone-s3-uploader {
+  width: 160px;
+  height: 160px;
+  border: dashed 2px #999;
+  border-radius: 5;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  @include media-breakpoint-down(sm){
+    width: 56px;
+    height: 56px;
+    float: right;
+  }
+}

@@ -71,24 +71,20 @@
 
 .itemPics {
   .col {
-    height: 11.3rem;
-    @include media-breakpoint-down(sm) {
-      height: 15.2rem;
-    }
-    @include media-breakpoint-only(xs) {
-      height: 17.2rem;
-    }
     .box {
       position: relative;
       overflow: hidden;
       height: 160px;
+      border: 4px solid $dark-grey;
       .checkbox {
         position: absolute;
         width: 1.4rem;
         height: 1.4rem;
         right: 0;
         background: #fff;
-        border: 2px solid $interactive-color;
+        background-repeat: no-repeat;
+        background-size: 1.4rem;
+        background-image: url("../img/star-outline.png");
         cursor: pointer;
       }
       .trash {
@@ -96,28 +92,13 @@
         cursor: pointer;
         width: 1.4rem;
         height: 1.4rem;
-        bottom: 8px;
+        bottom: 1px;
         right:0;
         background-image: url("../img/trash.png");
         background-repeat: no-repeat;
         background-size: 0.9rem;
         background-color: #fff;
         background-position: center;
-        border: 1px solid black;
-        z-index: 1;
-      }
-      .trash {
-        position: absolute;
-        width: 1.4rem;
-        height: 1.4rem;
-        bottom: 6px;
-        right:0;
-        background-image: url("../img/trash.png");
-        background-repeat: no-repeat;
-        background-size: 0.9rem;
-        background-color: #fff;
-        background-position: center;
-        border: 1px solid black;
         z-index: 1;
       }
       small {
@@ -135,10 +116,7 @@
           border: none;
         }
         .checkbox {
-          border: none;
           background-image: url("../img/star.png");
-          background-repeat: no-repeat;
-          background-size: 1.4rem;
         }
       }
     }
