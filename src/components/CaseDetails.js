@@ -25,7 +25,7 @@ export default class CaseDetails extends React.Component {
           : <div />}
 
         <p className="sub-heading">
-          Keywords
+          {intl.formatMessage({ id: "data" })}
         </p>
         <Tags thing={thing} intl={intl} />
         <LinkedPropertyGroupWithHeading

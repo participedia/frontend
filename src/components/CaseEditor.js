@@ -36,6 +36,11 @@ class CaseEditor extends Component {
       images.unshift(thing.lead_image);
     }
     thing.images = images;
+    if (!thing.body) {
+      thing.body = props.intl.formatMessage({
+        id: "case_description_placeholder"
+      });
+    }
 
     this.state = { thing };
   }
@@ -43,6 +48,11 @@ class CaseEditor extends Component {
   componentWillReceiveProps(nextProps) {
     // We need to merge lead_image and other_images into one property
     let thing = nextProps.thing;
+    if (!thing.body) {
+      thing.body = nextProps.intl.formatMessage({
+        id: "case_description_placeholder"
+      });
+    }
     let images = thing.other_images || [];
     if (thing.lead_image) {
       images.unshift(thing.lead_image);

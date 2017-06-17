@@ -360,9 +360,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             </div>
             <p
               className="sub-heading"
-            >
-              Keywords
-            </p>
+            />
             <div />
             <div>
               <p

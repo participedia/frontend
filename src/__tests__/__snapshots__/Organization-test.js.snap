@@ -34,14 +34,10 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             </div>
             <p
               className="sub-heading"
-            >
-              Keywords
-            </p>
+            />
             <p
               className="sub-sub-heading"
-            >
-              Tags:
-            </p>
+            />
             <div
               className="tags"
             >
