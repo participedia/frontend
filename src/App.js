@@ -10,6 +10,12 @@ import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
 import { BrowserRouter } from "react-router-dom";
 import history from "./utils/history";
 
+import Raven from "raven-js";
+
+Raven.config(
+  "https://0189b4df0dd54b6fa22f6202b7fb6c11@sentry.io/180779"
+).install();
+
 addLocaleData([...en, ...fr, ...es]);
 
 export default class App extends React.Component {
