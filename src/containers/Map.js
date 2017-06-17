@@ -21,6 +21,9 @@ if (process.env.NODE_ENV === "test") {
 }
 
 function extractData(data) {
+  if (!data) {
+    return [];
+  }
   let newdata = data.map(function(obj) {
     let coords;
     if (obj.location && obj.location.latitude && obj.location.longitude) {
