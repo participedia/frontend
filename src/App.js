@@ -9,9 +9,13 @@ import authService from "./utils/AuthService";
 import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
 import { BrowserRouter } from "react-router-dom";
 import history from "./utils/history";
-Raven.config(
-  "https://0189b4df0dd54b6fa22f6202b7fb6c11@sentry.io/180779"
-).install();
+try {
+  Raven.config(
+    "https://0189b4df0dd54b6fa22f6202b7fb6c11@sentry.io/180779"
+  ).install();
+} catch (e) {
+  console.log("Got exception starting Raven", e);
+}
 
 addLocaleData([...en, ...fr, ...es]);
 
