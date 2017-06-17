@@ -41,7 +41,6 @@ class CaseEditor extends Component {
         id: "case_description_placeholder"
       });
     }
-
     this.state = { thing };
   }
 
@@ -59,8 +58,6 @@ class CaseEditor extends Component {
     }
 
     thing.images = images;
-    delete thing.lead_image;
-    delete thing.other_images;
 
     this.setState({ thing });
   }
@@ -68,7 +65,7 @@ class CaseEditor extends Component {
   onSubmit() {
     // We need to tweak the `images` property and split it into lead_image and other_images
     let thing = this.state.thing;
-    if (thing.images) {
+    if (thing.images && thing.images.length > 0) {
       thing.lead_image = thing.images.shift();
       if (thing.lead_image && thing.lead_image.url) {
         thing.lead_image = thing.lead_image.url;
