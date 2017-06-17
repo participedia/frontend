@@ -184,12 +184,12 @@ class CaseEditor extends Component {
                 {makeLocalizedChoiceField(intl, "issue")}
                 {issue
                   ? <div>
-                      <p className="sub-sub-heading">
-                        {intl.formatMessage({
-                          id: "specific_topic"
-                        })}:
-                      </p>
-                      {makeLocalizedChoiceField(intl, "specific_topic", issue)}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "specific_topic",
+                        issue,
+                        "specific_topic"
+                      )}
                     </div>
                   : undefined}
                 {issue === "other" &&

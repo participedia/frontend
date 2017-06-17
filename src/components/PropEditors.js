@@ -66,12 +66,22 @@ export class ChoiceEditor extends React.Component {
   }
 }
 
-export function makeLocalizedChoiceField(intl, property, tag_for_choices) {
+export function makeLocalizedChoiceField(
+  intl,
+  property,
+  tag_for_choices,
+  heading
+) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
   }
+  let label;
+  if (heading === undefined) {
+    label = intl.formatMessage({ id: tag_for_choices });
+  } else {
+    label = intl.formatMessage({ id: heading });
+  }
   let choices = makeLocalizedChoices(intl, tag_for_choices);
-  let label = intl.formatMessage({ id: tag_for_choices });
   return (
     <div>
       <p className="sub-sub-heading">
@@ -167,7 +177,9 @@ class NumberEditor extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ value: this.state.value !== '' ? String(props.value) : props.value });
+    this.setState({
+      value: this.state.value !== "" ? String(props.value) : props.value
+    });
   }
 
   onChange(event, value) {
@@ -183,7 +195,11 @@ class NumberEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
-        value={typeof this.state.value !== "undefined" && this.state.value !== null ? this.state.value : ""}
+        value={
+          typeof this.state.value !== "undefined" && this.state.value !== null
+            ? this.state.value
+            : ""
+        }
         fullWidth
         name={name}
       />
