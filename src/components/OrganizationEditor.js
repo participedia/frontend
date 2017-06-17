@@ -49,7 +49,15 @@ class OrganizationEditor extends Component {
   }
 
   onSubmit() {
-    this.props.onSubmit(this.state.thing);
+    let thing = this.state.thing;
+    thing.lead_image = thing.images.shift();
+    if (thing.lead_image && thing.lead_image.url) {
+      thing.lead_image = thing.lead_image.url;
+    }
+    thing.other_images = thing.images.map(img => img.url);
+    delete thing.images;
+
+    this.props.onSubmit(thing);
   }
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
