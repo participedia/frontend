@@ -190,7 +190,6 @@ exports[`App 1`] = `
     <div
       className="home"
     >
-      <Map />
       <div
         className="main-contents"
       >
@@ -858,7 +857,6 @@ exports[`Searching for a word 1`] = `
     <div
       className="home"
     >
-      <Map />
       <div
         className="main-contents"
       >
