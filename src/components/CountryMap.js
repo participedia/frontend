@@ -25,10 +25,11 @@ class CountryMap extends React.Component {
           if (response.status >= 400) {
             throw new Error(response.statusText);
           }
+          return response;
         })
         .then(response => response.text())
         .then(function(response) {
-          component.setState({ SVG: response.text(), error: null });
+          component.setState({ SVG: response, error: null });
         })
         .catch(function(error) {
           component.setState({

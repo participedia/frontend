@@ -1,6 +1,7 @@
 // This is the JS API to talk to api.participedia.xyz
 import queryString from "query-string";
 import authService from "./AuthService";
+import store from "store";
 
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
@@ -18,8 +19,9 @@ const signedFetch = function(url, method, payload) {
       "Content-Type": "application/json"
     }
   };
-  if (localStorage.profile) {
-    let profile = JSON.parse(localStorage.profile);
+  let profile = store.get("profile");
+  if (profile) {
+    profile = JSON.parse(profile);
     if (authService.isAuthenticated()) {
       opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
       opts["headers"]["X-Auth0-Name"] = profile.name;
@@ -118,6 +120,7 @@ class API {
       throw error;
     }
     let url = APIURL + "/" + thingType + "/new";
+    // console.log("sending object", obj);
     return signedFetch(url, "POST", obj)
       .then(response => response.json())
       .then(function(response) {
@@ -249,7 +252,7 @@ class API {
     const payload = { user_metadata: data };
     const url = `https://participedia.auth0.com/api/v2/users/${userId}`;
     return signedFetch(url, "PATCH", payload).then(response => {
-      localStorage.setItem("profile", JSON.stringify(response));
+      store.set("profile", JSON.stringify(response));
     });
   };
 }

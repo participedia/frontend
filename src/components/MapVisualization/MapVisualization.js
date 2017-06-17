@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
+import store from "store";
 
 import "./MapVisualization.css";
 const accessToken =
@@ -17,7 +18,7 @@ class MapVisualization extends React.Component {
   constructor(props) {
     super(props);
     let component = this;
-    if (localStorage.getItem("geolocated_once") == null) {
+    if (store.get("geolocated_once") == null) {
       // For fun, we offer to center the map on where the viewer is.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -27,7 +28,7 @@ class MapVisualization extends React.Component {
             center: [lng, lat],
             zoom: [5]
           });
-          localStorage.setItem("geolocated_once", "true");
+          store.set("geolocated_once", "true");
         });
       }
     }
