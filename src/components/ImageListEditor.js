@@ -62,7 +62,7 @@ class ImageListEditorField extends Component {
       }
     });
     let bits = urls.map((photo, id) =>
-      <Col key={id} sm="6" md="3">
+      <Col key={id} sm="6" md="3" className="pb-1">
         <div className={id === 0 ? "box lead" : "box"}>
           <div
             className="checkbox"

@@ -110,6 +110,10 @@
   width: 100%;
   z-index: 1999;
 
+  @include media-breakpoint-down(sm){
+    position:relative;
+  } 
+
   .nav-bar-wrapper {
     width: 100%;
     margin: 0 auto;

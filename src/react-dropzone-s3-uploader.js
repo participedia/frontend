@@ -2,6 +2,7 @@ import React from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
 import S3Upload from "./utils/s3upload";
 import Dropzone from "react-dropzone";
+import "./react-dropzone-s3-uploader.css";
 
 export default class DropzoneS3Uploader extends React.Component {
   static propTypes = {
@@ -48,16 +49,6 @@ export default class DropzoneS3Uploader extends React.Component {
       "isImage",
       "notDropzoneProps"
     ],
-
-    style: {
-      width: 200,
-      height: 200,
-      border: "dashed 2px #999",
-      borderRadius: 5,
-      position: "relative",
-      cursor: "pointer",
-      overflow: "hidden"
-    },
     activeStyle: {
       borderStyle: "solid",
       backgroundColor: "#eee"

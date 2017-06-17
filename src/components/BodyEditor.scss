@@ -62,15 +62,24 @@
 
 
 ._quill {
-  .body-editor-box.fixed {
-    margin-top: 40px;  
-    .quill {
-      .ql-toolbar {
-        position: fixed;
-        top: 75px;
-        background-color: #fff;
-        z-index: 10;
+  .body-editor-box
+    &.fixed {
+      margin-top: 40px;  
+      .quill {
+        .ql-toolbar {
+          position: fixed;
+          top: 75px;
+          background-color: #fff;
+          z-index: 10;
+        }
       }
     }
+  .quill {
+    @include media-breakpoint-down(sm){
+      border-top: 1px solid $dark-grey;  
+      .ql-toolbar {
+        display: none;
+      }
+    }  
   }
 }
