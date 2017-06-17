@@ -95,14 +95,14 @@ class AuthService {
     if (!store.get("access_token")) {
       return cb(null, {});
     }
-    let profile = JSON.parse(store.get("profile"));
+    let profile = store.get("profile");
     if (profile) {
       cb(null, profile);
     } else {
       let accessToken = this.getAccessToken();
       this.auth0.client.userInfo(accessToken, (err, profile) => {
         if (profile) {
-          store.set("profile", JSON.stringify(profile));
+          store.set("profile", profile);
           this.userProfile = profile;
         }
         cb(err, profile);
