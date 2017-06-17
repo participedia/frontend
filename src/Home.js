@@ -4,12 +4,15 @@ import Map from "./containers/Map";
 import SearchResults from "./containers/SearchResults";
 import { injectIntl } from "react-intl";
 import "./Home.css";
+import MediaQuery from "react-responsive";
 
 class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <Map />
+        <MediaQuery query="(min-device-width: 992px)">
+          <Map />
+        </MediaQuery>
         <Switch>
           <Route
             exact

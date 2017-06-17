@@ -52,7 +52,7 @@ class ImageListEditorField extends Component {
     if (images) {
       urls = images.map(function(img) {
         let url;
-        if (typeof img.url == "string") {
+        if (typeof img.url === "string") {
           url = img.url;
         } else {
           url = img.src;
