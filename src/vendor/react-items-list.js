@@ -42,7 +42,7 @@ const react = require("react"),
     },
 
     componentDidMount() {
-      this.newItemRef.focus();
+      // this.newItemRef.focus();
     },
 
     addItem() {
