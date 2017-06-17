@@ -183,7 +183,9 @@ class CaseEditor extends Component {
                 <div className="suggest_tag">
                   {intl.formatMessage({ id: "suggest_tag" })}
                 </div>
+                <div id="ios">
                 {tagseditor}
+                </div>
                 {makeLocalizedChoiceField(intl, "issue")}
                 {issue
                   ? <div>

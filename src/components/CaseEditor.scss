@@ -1,4 +1,8 @@
 @import "../UniversalStyles";
+#ios {
+  overflow-y: scroll;
+  height:400px;
+}
 .addCaseForm {
   padding: 3em;
 }
