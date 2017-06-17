@@ -31,7 +31,7 @@ class ImageListEditorField extends Component {
   }
 
   handleNewImg(img) {
-    let images = this.state.images;
+    let images = this.state.images || [];
     images.push({ url: img });
     this.setState({ images });
     this.props.onChange(images);
@@ -48,19 +48,22 @@ class ImageListEditorField extends Component {
     // don't use the CDN as it won't be there yet.
     const awsUrl = process.env.REACT_APP_UPLOADS_S3_BUCKET;
     let images = this.state.images;
-    let urls = images.map(function(img) {
-      let url;
-      if (img.url) {
-        url = img.url;
-      } else {
-        url = img.src;
-      }
-      if (url.substring(0, 4) === "blob") {
-        return url;
-      } else {
-        return awsUrl + encodeURIComponent(url);
-      }
-    });
+    let urls = [];
+    if (images) {
+      urls = images.map(function(img) {
+        let url;
+        if (img.url) {
+          url = img.url;
+        } else {
+          url = img.src;
+        }
+        if (url.substring(0, 4) === "blob") {
+          return url;
+        } else {
+          return awsUrl + encodeURIComponent(url);
+        }
+      });
+    }
     let bits = urls.map((photo, id) =>
       <Col key={id} sm="6" md="3" className="pb-1">
         <div className={id === 0 ? "box lead" : "box"}>
