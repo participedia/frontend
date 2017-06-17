@@ -16,6 +16,18 @@ export default class ProfileEditor extends React.Component {
       organizations: []
     };
   }
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+  }
+
   componentDidMount() {
     let component = this;
     api.fetchNouns("ORGANIZATION").then(function(orgs) {
@@ -33,15 +45,20 @@ export default class ProfileEditor extends React.Component {
   }
 
   render() {
-    return (
-      <EditProfile
-        profile={this.props.profile}
-        user={this.state.user}
-        organizations={this.state.organizations}
-        auth={this.props.auth}
-        onChange={this.onChange.bind(this)}
-        {...this.props}
-      />
-    );
+    if (this.state.profile) {
+      console.log("PROFILE", this.state.profile);
+      return (
+        <EditProfile
+          profile={this.state.profile}
+          user={this.state.user}
+          organizations={this.state.organizations}
+          auth={this.props.auth}
+          onChange={this.onChange.bind(this)}
+          {...this.props}
+        />
+      );
+    } else {
+      return <div />;
+    }
   }
 }

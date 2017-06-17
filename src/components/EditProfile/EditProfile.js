@@ -40,12 +40,13 @@ export default class EditProfile extends Component {
     profile: object,
     user: object,
     intl: object.isRequired,
-    isAuthenticated: bool.isRequired,
+    auth: object.isRequired,
     organizations: array.isRequired
   };
 
   render() {
-    const { isAuthenticated, profile, user, onChange } = this.props;
+    const { auth, profile, user, onChange } = this.props;
+    const isAuthenticated = auth.isAuthenticated();
 
     const nameStyle = {
       color: "#3f51b2",
@@ -86,7 +87,7 @@ export default class EditProfile extends Component {
     if (!user) return <div />;
 
     return (
-      <Container fluid={true} className="edit-profile">
+      <Container fluid className="edit-profile">
         {isAuthenticated
           ? <div>
               <Col md="3" className="sidebar">
@@ -97,7 +98,7 @@ export default class EditProfile extends Component {
                     customStyle={customStyle}
                     auth={this.props.auth}
                     profile={profile}
-                    updatePicture={true}
+                    updatePicture
                   />
                 </div>
                 {location
