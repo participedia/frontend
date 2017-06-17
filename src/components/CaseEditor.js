@@ -68,9 +68,10 @@ class CaseEditor extends Component {
   onSubmit() {
     // We need to tweak the `images` property and split it into lead_image and other_images
     let thing = this.state.thing;
-    thing.lead_image = thing.images.shift();
-    thing.other_images = thing.images;
+    thing.lead_image = thing.images.shift().url;
+    thing.other_images = thing.images.map(img => img.url);
     delete thing.images;
+    // console.log("onSubmit", thing);
 
     this.props.onSubmit(thing);
   }
