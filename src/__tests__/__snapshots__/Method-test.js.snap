@@ -25,14 +25,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div
               className="tags"
             />
-            <p
-              className="sub-sub-heading"
-            >
-              :
-            </p>
-            <div
-              className="tags"
-            />
+            <div />
             <div>
               <p
                 className="sub-sub-heading"
@@ -62,8 +55,14 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div />
             <div />
             <div />
-            <div />
-            <div />
+            <div>
+              <p
+                className="sub-sub-heading"
+              />
+              <div
+                className="facilitated"
+              />
+            </div>
             <div />
             <div />
             <div />
