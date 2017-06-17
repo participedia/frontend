@@ -1,4 +1,5 @@
 import history from "./history";
+import store from "store";
 
 // AUTH_V8
 // import auth0 from "auth0-js";
@@ -55,10 +56,10 @@ class AuthService {
     this.lock.on("authenticated", authResult => {
       this.lock.getProfile(authResult.idToken, (error, profile) => {
         let expiresAt = JSON.stringify(authResult.idTokenPayload.exp * 1000);
-        localStorage.setItem("expires_at", expiresAt);
-        localStorage.setItem("access_token", authResult.accessToken);
-        localStorage.setItem("id_token", authResult.idToken);
-        // localStorage.setItem("expires_at", expiresAt);
+        store.set("expires_at", expiresAt);
+        store.set("access_token", authResult.accessToken);
+        store.set("id_token", authResult.idToken);
+        // store.set("expires_at", expiresAt);
         this.setProfile(profile);
         let state = JSON.parse(authResult.state);
         if (state && state.redirectURL) {
@@ -76,14 +77,14 @@ class AuthService {
   }
 
   setToken(token) {
-    localStorage.setItem("id_token", token);
+    store.set("id_token", token);
   }
   setProfile(profile) {
-    localStorage.setItem("profile", JSON.stringify(profile));
+    store.set("profile", JSON.stringify(profile));
   }
 
   getAccessToken() {
-    const accessToken = localStorage.getItem("access_token");
+    const accessToken = store.get("access_token");
     if (!accessToken) {
       throw new Error("No access token found");
     }
@@ -91,17 +92,17 @@ class AuthService {
   }
 
   getProfile(cb) {
-    if (!localStorage.getItem("access_token")) {
+    if (!store.get("access_token")) {
       return cb(null, {});
     }
-    let profile = JSON.parse(localStorage.getItem("profile"));
+    let profile = JSON.parse(store.get("profile"));
     if (profile) {
       cb(null, profile);
     } else {
       let accessToken = this.getAccessToken();
       this.auth0.client.userInfo(accessToken, (err, profile) => {
         if (profile) {
-          localStorage.setItem("profile", JSON.stringify(profile));
+          store.set("profile", JSON.stringify(profile));
           this.userProfile = profile;
         }
         cb(err, profile);
@@ -148,9 +149,9 @@ class AuthService {
           authResult.expiresIn * 1000 + new Date().getTime()
         );
         console.log("epxiresAt", expiresAt);
-        localStorage.setItem("access_token", authResult.accessToken);
-        localStorage.setItem("id_token", authResult.idToken);
-        localStorage.setItem("expires_at", expiresAt);
+        store.set("access_token", authResult.accessToken);
+        store.set("id_token", authResult.idToken);
+        store.set("expires_at", expiresAt);
         let state = JSON.parse(authResult.state);
         if (state && state.redirectURL) {
           history.replace(state.redirectURL);
@@ -164,7 +165,7 @@ class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem("id_token");
+    return store.get("id_token");
   }
 
   logout() {
@@ -178,11 +179,11 @@ class AuthService {
   }
 
   isAuthenticated() {
-    if (!localStorage.getItem("id_token")) {
+    if (!store.get("id_token")) {
       return false;
     }
     // we may have a token but it could be expired
-    let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    let expiresAt = JSON.parse(store.get("expires_at"));
     let authenticated = new Date().getTime() < expiresAt;
     if (!authenticated) {
       // we should figure out how to do reauth XXX
