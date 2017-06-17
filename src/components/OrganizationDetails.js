@@ -35,10 +35,10 @@ export default class OrganizationDetails extends React.Component {
           countrycode={thing.location.country}
         />
         <p className="sub-heading">
-          Keywords
+          {intl.formatMessage({ id: "data" })}
         </p>
         <p className="sub-sub-heading">
-          Tags:
+          {intl.formatMessage({ id: "tags_title" })}
         </p>
         <div className="tags">
           {tags}

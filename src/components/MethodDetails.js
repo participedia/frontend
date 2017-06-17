@@ -2,6 +2,7 @@ import React from "react";
 import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
+import { BooleanProp } from "../components/Props";
 
 /* Properties that are specific to methods:
 // best_for
@@ -44,21 +45,25 @@ export default class MethodDetails extends React.Component {
     return (
       <div>
         <p className="sub-heading">
-          Keywords
+          {intl.formatMessage({ id: "data" })}
         </p>
         <p className="sub-sub-heading">
-          Tags:
+          {intl.formatMessage({ id: "tags_title" })}
         </p>
         <div className="tags">
           {tags}
         </div>
+        {thing.issue
+          ? <div>
+              <p className="sub-sub-heading">
+                {intl.formatMessage({ id: "specific_topic" })}
+              </p>
+              <div className="tags">
+                {thing.issue}
+              </div>
+            </div>
+          : <div />}
 
-        <p className="sub-sub-heading">
-          Specific Topic:
-        </p>
-        <div className="tags">
-          {thing.issue}
-        </div>
         <ListWithHeading
           intl={intl}
           heading="links"
@@ -95,9 +100,10 @@ export default class MethodDetails extends React.Component {
           property="facetoface_online_or_both"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
+        <BooleanProp
           intl={intl}
           heading="facilitated"
+          label="facilitated"
           property="facilitated"
           thing={thing}
         />
@@ -153,12 +159,6 @@ export default class MethodDetails extends React.Component {
           intl={intl}
           heading="public_interaction_method"
           property="public_interaction_method"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          intl={intl}
-          heading="method_of_interaction"
-          property="method_of_interaction"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading

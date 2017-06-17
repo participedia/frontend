@@ -18,21 +18,17 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div>
             <p
               className="sub-heading"
-            >
-              Keywords
-            </p>
+            />
             <p
               className="sub-sub-heading"
-            >
-              Tags:
-            </p>
+            />
             <div
               className="tags"
             />
             <p
               className="sub-sub-heading"
             >
-              Specific Topic:
+              :
             </p>
             <div
               className="tags"
