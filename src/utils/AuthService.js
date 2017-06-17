@@ -170,10 +170,10 @@ class AuthService {
 
   logout() {
     // Clear access token and ID token from local storage
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
-    localStorage.removeItem("profile");
+    store.remove("access_token");
+    store.remove("id_token");
+    store.remove("expires_at");
+    store.remove("profile");
     // navigate to the home route
     history.replace("/");
   }
@@ -187,10 +187,10 @@ class AuthService {
     let authenticated = new Date().getTime() < expiresAt;
     if (!authenticated) {
       // we should figure out how to do reauth XXX
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("id_token");
-      localStorage.removeItem("expires_at");
-      localStorage.removeItem("profile");
+      store.remove("access_token");
+      store.remove("id_token");
+      store.remove("expires_at");
+      store.remove("profile");
     }
     return authenticated;
   }

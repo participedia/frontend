@@ -51,13 +51,14 @@ class MethodEditor extends Component {
 
   onSubmit() {
     let thing = this.state.thing;
-    thing.lead_image = thing.images.shift();
-    if (thing.lead_image && thing.lead_image.url) {
-      thing.lead_image = thing.lead_image.url;
+    if (thing.images) {
+      thing.lead_image = thing.images.shift();
+      if (thing.lead_image && thing.lead_image.url) {
+        thing.lead_image = thing.lead_image.url;
+      }
+      thing.other_images = thing.images.map(img => img.url);
+      delete thing.images;
     }
-    thing.other_images = thing.images.map(img => img.url);
-    delete thing.images;
-
     this.props.onSubmit(thing);
   }
   render() {
