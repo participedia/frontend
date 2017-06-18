@@ -127,6 +127,7 @@ jest.mock("better-react-spinkit", () => ({
   ChasingDots: "ChasingDots"
 }));
 
+jest.mock("raven-js");
 jest.mock("material-ui/MenuItem/MenuItem");
 let locale = "en-US";
 let messages = getBestMatchingMessages(locale);
