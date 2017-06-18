@@ -5,6 +5,7 @@ import OrganizationEditor from "../components/OrganizationEditor";
 import api from "../utils/api";
 import myhistory from "../utils/history";
 import ErrorDialog from "../components/ErrorDialog";
+import Raven from "raven-js";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {
@@ -80,7 +81,7 @@ class EditorContainer extends Component {
 
     saveFunc(thing.type, thing)
       .then(function(thing) {
-        console.log("after saveFunc, thing:", thing);
+        // console.log("after saveFunc, thing:", thing);
         myhistory.push(`../../${thing.type}/${thing.id}`);
       })
       .catch(function(exception) {
@@ -109,6 +110,9 @@ class EditorContainer extends Component {
       return <div />;
     }
     if (this.state.errorMessage) {
+      Raven.captureMessage(this.state.errorMessage, {
+        level: "error"
+      });
       return (
         <ErrorDialog
           onDismissError={this.clearError.bind(this)}

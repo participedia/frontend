@@ -8,7 +8,7 @@ import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
-
+import { stringifyLocation } from "./geoutils";
 import "./Profile.css";
 
 class Profile extends Component {
@@ -67,6 +67,7 @@ class Profile extends Component {
     if (bookmarked.length === 0) {
       bookmarked = <div className="nothing-yet">Nothing yet</div>;
     }
+    let location = stringifyLocation(user.location);
 
     return (
       <Container fluid className="profile">
@@ -86,6 +87,7 @@ class Profile extends Component {
             <div className="credentials">
               <p>{user.title}</p>
               <p>{user.affiliation}</p>
+              <p>{location}</p>
               {user.join_date
                 ? <p>Joined <TimeAgo date={user.join_date} /></p>
                 : <div />}

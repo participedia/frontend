@@ -1,38 +1,48 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import CountryMap from "../CountryMap";
-import { Link } from "react-router-dom";
-import { object, array, bool } from "prop-types";
-import Avatar from "material-ui/Avatar";
+import { object, array } from "prop-types";
 import { Container, Col } from "reactstrap";
-import Geosuggest from "react-geosuggest";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
-import AutoComplete from "material-ui/AutoComplete";
-import TextField from "material-ui/TextField";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
-import Upload from "../../Upload";
+import { Form, Field } from "simple-react-form";
+import Text from "simple-react-form-material-ui/lib/text";
+import Textarea from "simple-react-form-material-ui/lib/textarea";
+import Select from "simple-react-form-material-ui/lib/select";
+import {
+  makeLocalizedLocationField,
+  makeLocalizedAvatarEditor
+} from "../PropEditors";
 
 function encodeLocation(data) {
-  let components = data.gmaps.address_components;
+  // two paths
+  // one is gmaps data
   let country = "";
   let province = "";
   let city = "";
-  let latitude = data.location.lat;
-  let longitude = data.location.lng;
+  let latitude = null;
+  let longitude = null;
+  if (data.gmaps) {
+    let components = data.gmaps.address_components;
+    latitude = data.location.lat;
+    longitude = data.location.lng;
 
-  components.forEach(function(c) {
-    c.types.forEach(function(t) {
-      if (t === "country") {
-        country = c.long_name;
-      } else if (t === "locality") {
-        city = c.long_name;
-      } else if (t === "administrative_area_1") {
-        province = c.long_name;
-      }
+    components.forEach(function(c) {
+      c.types.forEach(function(t) {
+        if (t === "country") {
+          country = c.long_name;
+        } else if (t === "locality") {
+          city = c.long_name;
+        } else if (t === "administrative_area_1") {
+          province = c.long_name;
+        }
+      });
     });
-  });
-  return { country, city, province, latitude, longitude };
+    return { country, city, province, latitude, longitude };
+  } else {
+    return data;
+  }
 }
 
 export default class EditProfile extends Component {
@@ -40,12 +50,43 @@ export default class EditProfile extends Component {
     profile: object,
     user: object,
     intl: object.isRequired,
-    isAuthenticated: bool.isRequired,
+    auth: object.isRequired,
     organizations: array.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = this.propsToDefaultState(props);
+  }
+
+  propsToDefaultState(props) {
+    let { user, profile } = props;
+    if (user) {
+      user.picture = profile.user_metadata && profile.user_metadata.customPic
+        ? profile.user_metadata.customPic
+        : profile.picture;
+      if (!user.location) {
+        user.location = "";
+      }
+      if (typeof user.location !== typeof "") {
+        // console.log("Have location of", user.location);
+        user.location = encodeLocation(user.location);
+      }
+    }
+    return { user };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.propsToDefaultState(nextProps));
+  }
+  onSubmit(event) {
+    console.log("Submitting user", this.state.user);
+    this.props.onChange(this.state.user);
+  }
+
   render() {
-    const { isAuthenticated, profile, user, onChange } = this.props;
+    const { auth, profile, user, intl } = this.props;
+    const isAuthenticated = auth.isAuthenticated();
 
     const nameStyle = {
       color: "#3f51b2",
@@ -53,126 +94,119 @@ export default class EditProfile extends Component {
       paddingBottom: 7 + "px"
     };
 
-    const customStyle = {
-      borderRadius: 5,
-      position: "absolute",
-      cursor: "pointer",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      bottom: "28px",
-      left: 0,
-      width: "100%",
-      textAlign: "center",
-      color: "#fff",
-      padding: "7px 0",
-      boxSizing: "border-box"
-    };
-    let name = profile.name;
-    let picture = profile.user_metadata && profile.user_metadata.customPic
-      ? profile.user_metadata.customPic
-      : profile.picture;
-    let bio = "";
-    let affiliation = "";
-    let title = "";
     let location = null;
-    if (user) {
-      picture = user.picture_url;
-      name = user.name;
-      bio = user.bio;
-      title = user.title;
-      affiliation = user.affiliation;
-      location = user.location;
-    }
-
     if (!user) return <div />;
 
+    let avatarEditor = makeLocalizedAvatarEditor(
+      intl,
+      "picture_url",
+      profile,
+      auth
+    );
+    let locationEditor = makeLocalizedLocationField(intl, "location");
+
     return (
-      <Container fluid={true} className="edit-profile">
+      <Container fluid className="edit-profile">
         {isAuthenticated
           ? <div>
-              <Col md="3" className="sidebar">
-                <div className="user-avatar">
-                  <Avatar size={200} src={picture} />
+              <Form
+                onSubmit={this.onSubmit.bind(this)}
+                state={user}
+                onChange={changes => this.setState({ user: changes })}
+              >
 
-                  <Upload
-                    customStyle={customStyle}
-                    auth={this.props.auth}
-                    profile={profile}
-                    updatePicture={true}
+                <Col md="3" className="sidebar">
+                  {avatarEditor}
+
+                  {location
+                    ? <CountryMap
+                        city={location.city}
+                        countrycode={location.country}
+                      />
+                    : <div />}
+
+                </Col>
+                <Col md="9" className="main-area">
+                  <label className="form-label">
+                    {this.props.intl.formatMessage({ id: "name" })}
+                  </label>
+                  <Field
+                    type={Text}
+                    fieldName="name"
+                    name="name"
+                    inputStyle={nameStyle}
+                    hintText={this.props.intl.formatMessage({ id: "name" })}
+                    className="name-input"
                   />
-                </div>
-                {location
-                  ? <CountryMap
-                      city={location.city}
-                      countrycode={location.country}
-                    />
-                  : <div />}
-
-              </Col>
-              <Col md="9" className="main-area">
-                <label className="form-label">
-                  {this.props.intl.formatMessage({ id: "name" })}
-                </label>
-                <TextField
-                  inputStyle={nameStyle}
-                  hintText={this.props.intl.formatMessage({ id: "name" })}
-                  defaultValue={name}
-                  className="name-input"
-                />
-                <br />
-                <div className="divider" />
-                <label className="form-label">
-                  {this.props.intl.formatMessage({ id: "location" })}
-                </label>
-                <Geosuggest
-                  className="org-input"
-                  onSuggestSelect={function(data) {
-                    user.location = encodeLocation(data);
-                    onChange({ user });
-                  }}
-                />
-                <label className="form-label organization">
-                  {this.props.intl.formatMessage({ id: "organization" })}
-                </label>
-                <div className="label-description">
-                  {this.props.intl.formatMessage({ id: "organization_text" })}
-                </div>
-                <AutoComplete
-                  className="auto-org"
-                  floatingLabelText={this.props.intl.formatMessage({
-                    id: "type_org"
-                  })}
-                  dataSource={this.props.organizations}
-                />
-                <br />
-                <TextField
-                  hintText={this.props.intl.formatMessage({ id: "department" })}
-                  defaultValue={affiliation}
-                />
-                <br />
-                <TextField
-                  hintText={this.props.intl.formatMessage({ id: "job_title" })}
-                  defaultValue={title}
-                />
-                <br />
-                <TextField
-                  hintText={this.props.intl.formatMessage({ id: "website" })}
-                />
-                <br />
-                <div className="divider" />
-                <label className="form-label">
-                  {this.props.intl.formatMessage({ id: "biography" })}
-                </label>
-                <textarea
-                  className="biography-input"
-                  defaultValue={bio}
-                  placeholder={this.props.intl.formatMessage({ id: "tell_us" })}
-                />
-              </Col>
-              <Link to="/profile">
-                <FloatingActionButton className="editButton">
+                  <br />
+                  <div className="divider" />
+                  <label className="form-label">
+                    {this.props.intl.formatMessage({ id: "location" })}
+                  </label>
+                  {locationEditor}
+                  {/* <Geosuggest
+                    className="org-input"
+                    onSuggestSelect={function(data) {
+                      user.location = encodeLocation(data);
+                      onChange({ user });
+                    }}
+                  />*/}
+                  <label className="form-label organization">
+                    {this.props.intl.formatMessage({ id: "organization" })}
+                  </label>
+                  <div className="label-description">
+                    {this.props.intl.formatMessage({ id: "organization_text" })}
+                  </div>
+                  <Field
+                    fieldName="organization"
+                    name="organization"
+                    type={Select}
+                    options={this.props.organizations}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="affiliation"
+                    hintText={this.props.intl.formatMessage({
+                      id: "department"
+                    })}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="title"
+                    hintText={this.props.intl.formatMessage({
+                      id: "job_title"
+                    })}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="website"
+                    hintText={this.props.intl.formatMessage({ id: "website" })}
+                  />
+                  <br />
+                  <div className="divider" />
+                  <label className="form-label">
+                    {this.props.intl.formatMessage({ id: "biography" })}
+                  </label>
+                  <Field
+                    type={Textarea}
+                    fieldName="bio"
+                    name="bio"
+                    className="biography-input"
+                    placeholder={this.props.intl.formatMessage({
+                      id: "tell_us"
+                    })}
+                  />
+                </Col>
+                <FloatingActionButton
+                  onTouchTap={this.onSubmit.bind(this)}
+                  className="editButton"
+                >
                   <FileUpload />
                 </FloatingActionButton>
-              </Link>
+              </Form>
             </div>
           : <Col md={{ size: 9, offset: 1 }} className="main-area">
               <p>{this.props.intl.formatMessage({ id: "sorry" })}</p>
