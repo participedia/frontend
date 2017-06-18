@@ -97,14 +97,14 @@ class AuthService {
     }
     let profile = store.get("profile");
     if (profile) {
-      if (typeof profile == typeof "") {
+      if (typeof profile === typeof "") {
         profile = JSON.parse(profile);
       }
       cb(null, profile);
     } else {
       let accessToken = this.getAccessToken();
       this.auth0.client.userInfo(accessToken, (err, profile) => {
-        if (typeof profile == typeof "") {
+        if (typeof profile === typeof "") {
           profile = JSON.parse(profile);
         }
         if (profile) {
