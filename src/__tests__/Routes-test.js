@@ -16,9 +16,6 @@ import App from "../App";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
-jest.mock("raven-js", () => ({
-  install: function() {}
-}));
 
 let fetchMock = require("fetch-mock");
 jest.mock("../containers/Map", () => "Map");
