@@ -17,6 +17,7 @@ import {
   makeLocalizedBooleanField,
   makeLocalizedListField
 } from "./PropEditors";
+import fix_related from "./fix-related.js";
 
 const tags = tags_json["tags"];
 
@@ -51,12 +52,14 @@ class MethodEditor extends Component {
 
   onSubmit() {
     let thing = this.state.thing;
-    if (thing.images) {
+    if (thing.images && thing.images.length > 0) {
       thing.lead_image = thing.images.shift();
       if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = thing.lead_image.url;
+        thing.lead_image = { url: thing.lead_image.url };
       }
-      thing.other_images = thing.images.map(img => img.url);
+      thing.other_images = thing.images.map(img => ({
+        url: img.url
+      }));
       delete thing.images;
     }
     this.props.onSubmit(thing);
@@ -65,6 +68,9 @@ class MethodEditor extends Component {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
     let type = thing.type;
+    thing.related_cases = fix_related(thing.related_cases);
+    thing.related_methods = fix_related(thing.related_methods);
+    thing.related_organizations = fix_related(thing.related_organizations);
 
     if (!this.state.thing) {
       return <div />;

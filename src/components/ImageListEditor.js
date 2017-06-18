@@ -10,13 +10,27 @@ class ImageListEditorField extends Component {
     this.makeLead = this.makeLead.bind(this);
     this.handleNewImg = this.handleNewImg.bind(this);
     this.deleteImg = this.deleteImg.bind(this);
+    let images = props.value;
+    images = images.filter(function(img) {
+      if (!img) return false;
+      if (img.url == "") return false;
+      if (img.src == "") return false;
+      return true;
+    });
     this.state = {
-      images: props.value
+      images
     };
   }
   componentWillReceiveProps(props) {
+    let images = props.value;
+    images = images.filter(function(img) {
+      if (!img) return false;
+      if (img.url == "") return false;
+      if (img.src == "") return false;
+      return true;
+    });
     this.setState({
-      images: props.value
+      images
     });
   }
 
@@ -39,7 +53,7 @@ class ImageListEditorField extends Component {
 
   deleteImg(img) {
     let images = this.state.images;
-    images = images.filter(x => x.url !== img.url);
+    images = images.filter(x => x !== img.url);
     this.setState({ images });
     this.props.onChange(images);
   }
@@ -57,6 +71,7 @@ class ImageListEditorField extends Component {
         } else {
           url = img.src;
         }
+        if (!url) return "";
         if (url.substring(0, 4) === "blob") {
           return url;
         } else {

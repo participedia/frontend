@@ -10,7 +10,8 @@ import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
-
+import fix_related from "./fix-related.js";
+import { encodeLocation } from "./geoutils";
 import {
   makeLocalizedChoiceField,
   makeLocalizedBooleanField,
@@ -68,18 +69,28 @@ class CaseEditor extends Component {
     if (thing.images && thing.images.length > 0) {
       thing.lead_image = thing.images.shift();
       if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = thing.lead_image.url;
+        thing.lead_image = { url: thing.lead_image.url };
       }
-      thing.other_images = thing.images.map(img => img.url);
+      thing.other_images = thing.images.map(img => ({
+        url: img.url
+      }));
       delete thing.images;
     }
-
     this.props.onSubmit(thing);
   }
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
     let type = thing.type;
+    thing.related_cases = fix_related(thing.related_cases);
+    thing.related_methods = fix_related(thing.related_methods);
+    thing.related_organizations = fix_related(thing.related_organizations);
+    if (!thing.location) {
+      thing.location = "";
+    }
+    if (typeof thing.location !== typeof "") {
+      thing.location = encodeLocation(thing.location);
+    }
 
     if (!this.state.thing) {
       return <div />;
