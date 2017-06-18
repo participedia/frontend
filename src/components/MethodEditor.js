@@ -17,6 +17,7 @@ import {
   makeLocalizedBooleanField,
   makeLocalizedListField
 } from "./PropEditors";
+import fix_related from "./fix-related.js";
 
 const tags = tags_json["tags"];
 
@@ -65,6 +66,9 @@ class MethodEditor extends Component {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
     let type = thing.type;
+    thing.related_cases = fix_related(thing.related_cases);
+    thing.related_methods = fix_related(thing.related_methods);
+    thing.related_organizations = fix_related(thing.related_organizations);
 
     if (!this.state.thing) {
       return <div />;

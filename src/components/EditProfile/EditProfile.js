@@ -14,36 +14,7 @@ import {
   makeLocalizedLocationField,
   makeLocalizedAvatarEditor
 } from "../PropEditors";
-
-function encodeLocation(data) {
-  // two paths
-  // one is gmaps data
-  let country = "";
-  let province = "";
-  let city = "";
-  let latitude = null;
-  let longitude = null;
-  if (data.gmaps) {
-    let components = data.gmaps.address_components;
-    latitude = data.location.lat;
-    longitude = data.location.lng;
-
-    components.forEach(function(c) {
-      c.types.forEach(function(t) {
-        if (t === "country") {
-          country = c.long_name;
-        } else if (t === "locality") {
-          city = c.long_name;
-        } else if (t === "administrative_area_1") {
-          province = c.long_name;
-        }
-      });
-    });
-    return { country, city, province, latitude, longitude };
-  } else {
-    return data;
-  }
-}
+import { encodeLocation } from "../geoutils";
 
 export default class EditProfile extends Component {
   static propTypes = {

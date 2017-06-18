@@ -388,7 +388,7 @@ class LocationEditor extends React.Component {
     return (
       <Geosuggest
         placeholder={this.props.passProps.placeholder}
-        initialValue={stringifyLocation(this.state.value)}
+        initialValue={this.state.value}
         onSuggestSelect={onChange}
       />
     );
