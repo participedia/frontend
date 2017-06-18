@@ -41,21 +41,8 @@
     font-weight: 600;
     position:relative;
     cursor:pointer;
-    &:after {
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-2px;
-      height:2px;
-      background:$black;
-    }
     &:hover, &:focus {
       color:$interactive-color;
-      text-decoration:none;
-      &:after {
-        background:$interactive-color;
-      }
     }
   }
 }
