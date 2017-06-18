@@ -143,11 +143,17 @@ class API {
             error
           )}`;
 
-          Raven.captureMessage(errorMsg, {
-            level: "error"
-          });
+          Raven.captureMessage(
+            "error doing signedfetch " +
+              JSON.stringify(obj) +
+              " -> " +
+              errorMsg,
+            {
+              level: "error"
+            }
+          );
           console.error(errorMsg);
-          throw error;
+          // throw error; XXX OIDP
         }
       });
   };
@@ -170,9 +176,12 @@ class API {
       })
       .catch(function(error) {
         if (error) {
-          Raven.captureMessage(error, {
-            level: "error"
-          });
+          Raven.captureMessage(
+            "error in signed fetch sending: " + JSON.stringify(obj),
+            {
+              level: "error"
+            }
+          );
 
           console.error(
             `There has been a problem with saving the ${thingType}: (${url}) ${error}`
