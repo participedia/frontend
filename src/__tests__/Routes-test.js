@@ -16,6 +16,7 @@ import App from "../App";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
+jest.mock("raven-js");
 
 let fetchMock = require("fetch-mock");
 jest.mock("../containers/Map", () => "Map");
@@ -127,7 +128,6 @@ jest.mock("better-react-spinkit", () => ({
   ChasingDots: "ChasingDots"
 }));
 
-jest.mock("raven-js");
 jest.mock("material-ui/MenuItem/MenuItem");
 let locale = "en-US";
 let messages = getBestMatchingMessages(locale);
