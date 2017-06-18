@@ -69,12 +69,13 @@ class CaseEditor extends Component {
     if (thing.images && thing.images.length > 0) {
       thing.lead_image = thing.images.shift();
       if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = thing.lead_image.url;
+        thing.lead_image = { url: thing.lead_image.url };
       }
-      thing.other_images = thing.images.map(img => img.url);
+      thing.other_images = thing.images.map(img => ({
+        url: img.url
+      }));
       delete thing.images;
     }
-
     this.props.onSubmit(thing);
   }
   render() {
