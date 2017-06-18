@@ -107,6 +107,7 @@ class MethodEditor extends Component {
       />
     );
 
+    let issue = this.state.thing.issue;
     let incomplete =
       (thing.title ? false : true) || (thing.body ? false : true);
     return (
@@ -153,6 +154,13 @@ class MethodEditor extends Component {
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />
                 {makeLocalizedListField(intl, "links")}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "tags_title" })}
+                </p>
+                <div className="suggest_tag">
+                  {intl.formatMessage({ id: "suggest_tag" })}
+                </div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick
@@ -180,22 +188,31 @@ class MethodEditor extends Component {
                       />
                     </div>
                   : <div>
-                      <p className="sub-heading">
-                        {intl.formatMessage({ id: "tags_title" })}
-                      </p>
-                      <div className="suggest_tag">
-                        {intl.formatMessage({ id: "suggest_tag" })}
-                      </div>
-                      {tagseditor}
-
+                      {makeLocalizedChoiceField(intl, "issue")}
+                      {issue
+                        ? <div>
+                            {makeLocalizedChoiceField(
+                              intl,
+                              "specific_topic",
+                              issue,
+                              "specific_topic"
+                            )}
+                          </div>
+                        : undefined}
+                      {issue === "other" &&
+                        this.state.thing.specific_topic === "other"
+                        ? <b>
+                            {intl.formatMessage({
+                              id: "send_email_with_catgeory_additions"
+                            })}
+                          </b>
+                        : undefined}
                       {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                      {makeLocalizedChoiceField(intl, "specific_topic")}
                       {makeLocalizedChoiceField(intl, "communication_mode")}
                       {makeLocalizedChoiceField(
                         intl,
                         "communication_with_audience"
                       )}
-                      {makeLocalizedChoiceField(intl, "decision_method")}
                       {makeLocalizedChoiceField(
                         intl,
                         "facetoface_online_or_both"
@@ -213,7 +230,6 @@ class MethodEditor extends Component {
                         intl,
                         "issue_technical_complexity"
                       )}
-                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
                       {makeLocalizedChoiceField(
                         intl,
                         "public_interaction_method"

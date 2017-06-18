@@ -2,6 +2,7 @@
 import queryString from "query-string";
 import authService from "./AuthService";
 import store from "store";
+import Raven from "raven-js";
 
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
@@ -138,9 +139,14 @@ class API {
       })
       .catch(function(error) {
         if (error) {
-          console.error(
-            `There has been a problem with saving the ${thingType}: (${url}) ${error}`
-          );
+          let errorMsg = `There has been a problem with saving the ${thingType}: (${url}) ${JSON.stringify(
+            error
+          )}`;
+
+          Raven.captureMessage(errorMsg, {
+            level: "error"
+          });
+          console.error(errorMsg);
           throw error;
         }
       });
@@ -164,6 +170,10 @@ class API {
       })
       .catch(function(error) {
         if (error) {
+          Raven.captureMessage(error, {
+            level: "error"
+          });
+
           console.error(
             `There has been a problem with saving the ${thingType}: (${url}) ${error}`
           );
@@ -244,6 +254,7 @@ class API {
         console.log(
           `There has been a problem with API:fetchUser: (${url}) ${error}`
         );
+
         return error;
       });
   };
