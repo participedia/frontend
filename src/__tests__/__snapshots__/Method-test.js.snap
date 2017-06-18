@@ -318,20 +318,15 @@ exports[`Method editor renders correctly 1`] = `
               className="links"
             />
           </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="suggest_tag"
+          />
         </div>
         <div>
           <div>
-            <p
-              className="sub-heading"
-            />
-            <div
-              className="suggest_tag"
-            />
-            <div>
-              <p
-                className="sub-sub-heading"
-              />
-            </div>
             <div>
               <p
                 className="sub-sub-heading"
@@ -363,11 +358,6 @@ exports[`Method editor renders correctly 1`] = `
               />
               <div
                 className="facilitated"
-              />
-            </div>
-            <div>
-              <p
-                className="sub-sub-heading"
               />
             </div>
             <div>
