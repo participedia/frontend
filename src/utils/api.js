@@ -147,7 +147,7 @@ class API {
             level: "error"
           });
           console.error(errorMsg);
-          throw error;
+          // throw error; XXX OIDP
         }
       });
   };
