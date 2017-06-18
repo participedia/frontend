@@ -17,6 +17,7 @@ import {
   makeLocalizedListField
 } from "./PropEditors";
 import fix_related from "./fix-related.js";
+import { encodeLocation } from "./geoutils";
 
 const buttonStyle = {
   margin: "1em"
