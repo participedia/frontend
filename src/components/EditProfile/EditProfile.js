@@ -45,13 +45,6 @@ function encodeLocation(data) {
   }
 }
 
-function stringifyLocation(location) {
-  let { city, country, province } = location;
-  return (
-    (city ? city + ", " : "") + (province ? province + ", " : "") + country
-  );
-}
-
 export default class EditProfile extends Component {
   static propTypes = {
     profile: object,
@@ -74,11 +67,9 @@ export default class EditProfile extends Component {
         : profile.picture;
       if (!user.location) {
         user.location = "";
-      } else {
-        user.location = stringifyLocation(user.location);
       }
       if (typeof user.location !== typeof "") {
-        console.log("Have location of", user.location);
+        // console.log("Have location of", user.location);
         user.location = encodeLocation(user.location);
       }
     }
