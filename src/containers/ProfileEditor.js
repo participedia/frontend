@@ -1,7 +1,6 @@
 import React from "react";
 import EditProfile from "../components/EditProfile/EditProfile";
 import api from "../utils/api";
-import myhistory from "../utils/history";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {
