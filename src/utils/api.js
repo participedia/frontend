@@ -143,9 +143,15 @@ class API {
             error
           )}`;
 
-          Raven.captureMessage(errorMsg, {
-            level: "error"
-          });
+          Raven.captureMessage(
+            "error doing signedfetch " +
+              JSON.stringify(obj) +
+              " -> " +
+              errorMsg,
+            {
+              level: "error"
+            }
+          );
           console.error(errorMsg);
           // throw error; XXX OIDP
         }
