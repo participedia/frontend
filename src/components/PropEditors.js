@@ -8,6 +8,9 @@ import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
 import List from "../vendor/react-items-list";
+import Avatar from "material-ui/Avatar";
+import Upload from "../Upload";
+import "./PropEditors.css";
 
 function nickify(before) {
   if (!before) return "";
@@ -479,3 +482,107 @@ export function makeLocalizedListField(intl, property) {
     </div>
   );
 }
+
+const customStyle = {
+  borderRadius: 5,
+  position: "absolute",
+  cursor: "pointer",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  bottom: "28px",
+  left: 0,
+  width: "100%",
+  textAlign: "center",
+  color: "#fff",
+  padding: "7px 0",
+  boxSizing: "border-box"
+};
+
+export class AvatarEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: props.value
+    });
+  }
+
+  onUpdate(index, newtext) {
+    let value = this.state.value;
+    value[index] = newtext;
+    this.update(value);
+  }
+
+  render() {
+    return (
+      <div className="user-avatar">
+        <Avatar size={200} src={this.state.value} />
+
+        <Upload
+          customStyle={customStyle}
+          className="change-avatar-button"
+          auth={this.props.passProps.auth}
+          profile={this.props.passProps.profile}
+          updatePicture
+        />
+      </div>
+    );
+  }
+}
+
+export function makeLocalizedAvatarEditor(intl, property, profile, auth) {
+  return (
+    <Field
+      fieldName={property}
+      id={property}
+      name={property}
+      profile={profile}
+      auth={auth}
+      type={AvatarEditor}
+    />
+  );
+}
+
+// export class OrganizationPicker extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       value: props.value
+//     };
+//   }
+
+//   componentWillReceiveProps(props) {
+//     this.setState({
+//       value: props.value
+//     });
+//   }
+
+//   onUpdate(index, newtext) {
+//     let value = this.state.value;
+//     value[index] = newtext;
+//     this.update(value);
+//   }
+
+//   render() {
+//     return (
+
+//     );
+// }
+
+// export function OrganizationPicker(intl, property) {
+//   return (
+//     <Field
+//       fieldName={property}
+//       id={property}
+//       name={property}
+//       profile={profile}
+//       auth={auth}
+//       type={AvatarEditor}
+//     />
+//   );
+
+// }

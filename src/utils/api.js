@@ -255,6 +255,24 @@ class API {
       store.set("profile", JSON.stringify(response));
     });
   };
+
+  saveUser = function(user) {
+    let url = APIURL + `/user`;
+    return signedFetch(url, "post", user)
+      .then(response => response.json())
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      })
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:fetchUser: (${url}) ${error}`
+        );
+        return error;
+      });
+  };
 }
 
 export default new API();

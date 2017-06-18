@@ -132,7 +132,6 @@ class Upload extends React.Component {
   handleFinishedUpload(args) {
     // if addToList is specified, then we clear out the uploader. If not,
     // we display the happy checkmark.
-    // console.log(args);
     const { dispatch, profile } = this.props;
     this.setState({
       hidePic: false,
