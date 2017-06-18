@@ -1,6 +1,7 @@
 import React from "react";
 import EditProfile from "../components/EditProfile/EditProfile";
 import api from "../utils/api";
+import myhistory from "../utils/history";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {
@@ -47,8 +48,8 @@ export default class ProfileEditor extends React.Component {
   onChange(user) {
     // this.setState(newState);
     api.saveUser(user).then(function(user) {
-      console.log("after saving user, user:", user);
-      // myhistory.push("/profile");
+      // console.log("after saving user, user:", user);
+      myhistory.push("/profile");
     });
   }
 
