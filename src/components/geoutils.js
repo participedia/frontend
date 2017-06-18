@@ -9,11 +9,8 @@ export function normalizeLocation(data) {
 }
 
 export function stringifyLocation(location) {
-  if (typeof location === typeof undefined) {
+  if (!location) {
     return "";
-  }
-  if (typeof location === typeof "") {
-    return location;
   }
   if (location.gmaps) {
     location = normalizeLocation(location);
