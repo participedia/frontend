@@ -47,8 +47,8 @@ export default class ProfileEditor extends React.Component {
   onChange(user) {
     // this.setState(newState);
     api.saveUser(user).then(function(user) {
-      console.log("after saving user, user:", user);
-      // myhistory.push("/profile");
+      // console.log("after saving user, user:", user);
+      myhistory.push("/profile");
     });
   }
 
