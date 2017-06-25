@@ -19,7 +19,7 @@
   }
   .edit-profile-button {
     display: block;
-    background-color: #ff6f00;
+    background-color: $interactive-color;
     color: #fff;
     font-size: 1.3rem;
     font-weight: 100;
@@ -49,7 +49,7 @@
     position: relative;
     &:before {
       content: '';
-      background-image: url(/img/pp-envelope-icon.png);
+      background-image: url("../img/pp-envelope-icon-red.png");
       width: 40px;
       height: 40px;
       background-size: contain;
