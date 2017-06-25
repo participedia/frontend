@@ -43,8 +43,35 @@ class Featured extends React.Component {
           <Toggle
             onToggle={this.onToggle.bind(this)}
             labelPosition="right"
-            value={this.props.thing.featured}
+            defaultToggled={this.props.thing.featured}
             label="Featured"
+          />
+        </div>
+      : <div />;
+  }
+}
+
+class Hidden extends React.Component {
+  static propTypes = {
+    toggleHidden: PropTypes.func.isRequired,
+    thing: PropTypes.object.isRequired
+  };
+
+  onToggle(object, value) {
+    this.props.thing["hidden"] = value;
+    this.props.toggleHidden(this.props.thing, value);
+  }
+
+  render() {
+    const { isAuthenticated, profile } = this.props;
+    if (!isAuthenticated) return <div />;
+    return isCurator(profile)
+      ? <div className="featuretoggle">
+          <Toggle
+            onToggle={this.onToggle.bind(this)}
+            labelPosition="right"
+            defaultToggled={this.props.thing.hidden}
+            label="Hidden"
           />
         </div>
       : <div />;
@@ -140,6 +167,12 @@ export default class ItemDetails extends React.Component {
                   profile={this.state.profile}
                   isAuthenticated={this.state.isAuthenticated}
                   toggleFeatured={this.props.toggleFeatured}
+                />
+                <Hidden
+                  thing={thing}
+                  profile={this.state.profile}
+                  isAuthenticated={this.state.isAuthenticated}
+                  toggleHidden={this.props.toggleHidden}
                 />
                 {detailedBits}
                 <RelatedContent thing={thing} intl={intl} />
