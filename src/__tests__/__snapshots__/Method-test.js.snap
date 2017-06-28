@@ -15,6 +15,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
         >
           <div />
+          <div />
           <div>
             <p
               className="sub-heading"

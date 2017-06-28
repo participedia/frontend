@@ -334,6 +334,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
         >
           <div />
+          <div />
           <div>
             <div
               className="case-map"
