@@ -9,12 +9,28 @@ import TimeAgo from "react-timeago";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import { stringifyLocation } from "./geoutils";
+import preventDefault from "react-prevent-default";
+import searchGridIcon from "../img/pp-search-grid-icon.png";
+import searchGridIconActive from "../img/pp-search-grid-icon-active.png";
+import searchListIcon from "../img/pp-search-list-icon.png";
+import searchListIconActive from "../img/pp-search-list-icon-active.png";
 import "./Profile.css";
 
 class Profile extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired
   };
+
+  constructor() {
+    super();
+    this.state = {selectedViewType: "grid"};
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+  }
+
+  onLayoutChange(layout) {
+    this.setState({ selectedViewType: layout });
+  }
+
   componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
@@ -29,6 +45,7 @@ class Profile extends Component {
 
   render() {
     const profile = this.state.profile;
+    const selectedViewType = this.state.selectedViewType;
     if (profile === {}) {
       return <div />;
     }
@@ -45,7 +62,7 @@ class Profile extends Component {
       batch.hits.forEach(function(hit, index) {
         authored.push(
           <SearchHit
-            selectedViewType="grid"
+            selectedViewType={selectedViewType}
             key={"authored-" + batch.type + "-" + index}
             record={hit}
             intl={intl}
@@ -58,7 +75,7 @@ class Profile extends Component {
     }
     let bookmarked = user.bookmarks.map((hit, index) =>
       <SearchHit
-        selectedViewType="grid"
+        selectedViewType={selectedViewType}
         key={"bookmarked-" + index}
         record={hit}
         intl={intl}
@@ -70,7 +87,7 @@ class Profile extends Component {
     let location = stringifyLocation(user.location);
 
     return (
-      <Container fluid className="profile">
+      <Container fluid className="profile pb-3">
         <Row className="profile-info-section">
           <Col lg={3} md={4} className="sidebar">
             <div className="user-avatar">
@@ -96,26 +113,52 @@ class Profile extends Component {
             <div className="main-contents">
               <div className="authored-content">
                 <div className="heading">Authored Content</div>
-                <div className="search-results">
-                  <div className="search-description" />
-                  <div className="result-count">
-                    <div className="results-box">
-                      {authored}
+                  <div className="view-types-cont">
+                    <div className="view-types hidden-sm-down">
+                      <div
+                        onClick={() =>
+                          preventDefault(this.onLayoutChange("grid"))}
+                        className={
+                          this.state.selectedViewType === "grid"
+                            ? "selected"
+                            : "unselected"
+                        }
+                      >
+                        <img src={searchGridIcon} className="grid-icon" alt="" />
+                        <img
+                          src={searchGridIconActive}
+                          className="grid-icon"
+                          alt=""
+                        />
+                      </div>
+                      <div
+                        onClick={() =>
+                          preventDefault(this.onLayoutChange("list"))}
+                        className={
+                          this.state.selectedViewType === "list"
+                            ? "selected"
+                            : "unselected"
+                        }
+                      >
+                        <img src={searchListIcon} className="list-icon" alt="" />
+                        <img
+                          src={searchListIconActive}
+                          className="list-icon"
+                          alt=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                  {authored}
               </div>
-              <div className="bookmarked-content">
-                <div className="heading">Bookmarked Content</div>
-                <div className="search-results">
-                  <div className="search-description" />
-                  <div className="result-count">
-                    <div className="results-box">
-                      {bookmarked}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row className="profile-info-section">
+          <Col lg={{size: 9, offset: 3}} md={{size: 8, offset: 4}} className="main-area">
+            <div className="bookmarked-content">
+              <div className="heading pb-1">Bookmarked Content</div>
+              {bookmarked}
             </div>
           </Col>
         </Row>

@@ -4,6 +4,53 @@
   padding-top: 3%;
 }
 
+.view-types-cont {
+  height: 70px
+}
+
+.view-types {
+  float: right;
+  margin-right:10px;
+  @include media-breakpoint-up(md) {
+    margin-top:10px;
+  }
+  @include media-breakpoint-up(lg) {
+    margin-top:20px;
+  }
+
+  div {
+    display: block;
+    float: left;
+    cursor: pointer;
+    img {
+      height: 34px;
+      opacity: 0.2;
+      margin-top: -3px;
+
+      &.dl-icon {
+        height: 22px;
+        margin-top: 4px;
+        margin-left: 8px;
+      }
+
+      &:last-child {
+        display: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  div.selected, div:hover, div:focus {
+    img:first-child {
+      display: none;
+    }
+
+    img:last-child {
+      display: block;
+    }
+  }
+}
+
 .main-contents {
   min-height: 200px;
 }
