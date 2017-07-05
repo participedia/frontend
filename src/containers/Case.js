@@ -10,6 +10,10 @@ export class Case extends React.Component {
     thing.featured = featured;
     api.saveThing(thing.type, thing);
   }
+  toggleHidden(thing, hidden) {
+    thing.hidden = hidden;
+    api.saveThing(thing.type, thing);
+  }
   render() {
     return (
       <ItemFetcher
@@ -18,6 +22,7 @@ export class Case extends React.Component {
         id={Number(this.props.match.params.nodeID)}
         details={CaseDetails}
         toggleFeatured={this.toggleFeatured.bind(this)}
+        toggleHidden={this.toggleHidden.bind(this)}
         {...this.props}
       />
     );
