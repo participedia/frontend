@@ -61,10 +61,9 @@ export default class EditProfile extends Component {
 
     const nameStyle = {
       color: "#3f51b2",
-      fontSize: 2.2 + "rem",
+      fontSize: 1.2 + "rem",
       paddingBottom: 7 + "px"
     };
-
     let location = null;
     if (!user) return <div />;
 
