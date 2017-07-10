@@ -16,7 +16,7 @@
     "fetch-mock": "^5.11.0",
     "jest": "^20.0.4",
     "jest-fetch-mock": "^1.1.1",
-    "lint-staged": "^3.6.1",
+    "lint-staged": "^4.0.0",
     "mock-local-storage": "^1.0.2",
     "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.5.1",
