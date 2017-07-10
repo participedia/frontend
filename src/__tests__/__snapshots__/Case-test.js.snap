@@ -725,7 +725,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   dateTime="2012-01-07T12:27:34.123Z"
                   title="2012-01-07T12:27:34.1234Z"
                 >
-                  5 years ago
+                  6 years ago
                 </time>
               </p>
               <p
