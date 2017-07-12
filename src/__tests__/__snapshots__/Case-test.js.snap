@@ -49,7 +49,7 @@ exports[`Case editor renders correctly 1`] = `
                 <img
                   alt=""
                   className="img-fluid"
-                  src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/agenda21%2520.jpg"
+                  src=""
                   style={
                     Object {
                       "height": "100%",

@@ -306,7 +306,7 @@ exports[`Organization editor renders correctly 1`] = `
                 <img
                   alt=""
                   className="img-fluid"
-                  src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
+                  src=""
                   style={
                     Object {
                       "height": "100%",
