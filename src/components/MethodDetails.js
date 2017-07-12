@@ -24,8 +24,7 @@ import { BooleanProp } from "../components/Props";
 // post_date,
 // published
 // updated_date,
-// lead_image
-// other_images,
+// images
 // files
 // videos
 // tags

@@ -28,40 +28,17 @@ const buttonStyle = {
 class MethodEditor extends Component {
   constructor(props) {
     super(props);
-    let thing = props.thing;
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
-    }
-    thing.images = images;
     this.state = { thing: props.thing };
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
-    }
-
-    thing.images = images;
-    delete thing.lead_image;
-    delete thing.other_images;
     this.setState({ thing });
   }
 
   onSubmit() {
+    // is this now a do-nothing method?
     let thing = this.state.thing;
-    if (thing.images && thing.images.length > 0) {
-      thing.lead_image = thing.images.shift();
-      if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = { url: thing.lead_image.url };
-      }
-      thing.other_images = thing.images.map(img => ({
-        url: img.url
-      }));
-      delete thing.images;
-    }
     this.props.onSubmit(thing);
   }
   render() {

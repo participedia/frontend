@@ -6,19 +6,9 @@ import ImageGallery from "react-image-gallery";
 
 function getPics(thing) {
   let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
-  let theLength = "";
-  let pics = [];
-  if (thing && thing.lead_image && thing.lead_image.url) {
-    pics.push(awsUrl + encodeURIComponent(thing.lead_image.url));
-  }
-  if (thing && thing.other_images.length) {
-    theLength = thing.other_images;
-    Object.keys(theLength).forEach(function(key) {
-      let obj = theLength[key];
-      pics.push(awsUrl + encodeURIComponent(obj.url));
-    });
-  }
-  return pics;
+  return thing && thing.images
+    ? thing.images.map(img => awsUrl + encodeURIComponent(img))
+    : [];
 }
 
 class Gallery extends React.Component {

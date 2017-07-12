@@ -82,8 +82,7 @@ const defaultThing = {
   title: "Loading",
   type: "content",
   body: "Description",
-  lead_image: null,
-  other_images: [],
+  images: [],
   post_date: "2011-11-30T17:20:28",
   updated_date: "2011-11-30T17:20:28",
   location: {
@@ -137,8 +136,8 @@ export default class ItemDetails extends React.Component {
 
     let lead;
     let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    if (thing && thing.lead_image) {
-      lead = awsUrl + encodeURIComponent(thing.lead_image.url);
+    if (thing && thing.images && thing.images.length) {
+      lead = awsUrl + encodeURIComponent(thing.images[0]);
     }
 
     let first_author = thing.authors[0];
