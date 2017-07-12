@@ -29,6 +29,9 @@ class OrganizationEditor extends Component {
   constructor(props) {
     super(props);
     let thing = props.thing;
+    if (!thing.images) {
+      thing.images = [];
+    }
     this.state = { thing };
   }
 

@@ -32,6 +32,9 @@ class CaseEditor extends Component {
   constructor(props) {
     super(props);
     let thing = props.thing;
+    if (!thing.images) {
+      thing.images = [];
+    }
     if (!thing.body) {
       thing.body = props.intl.formatMessage({
         id: "case_description_placeholder"

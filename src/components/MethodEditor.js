@@ -28,6 +28,9 @@ const buttonStyle = {
 class MethodEditor extends Component {
   constructor(props) {
     super(props);
+    if (!props.thing.images) {
+      props.thing.images = [];
+    }
     this.state = { thing: props.thing };
   }
 

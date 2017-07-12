@@ -11,12 +11,6 @@ class ImageListEditorField extends Component {
     this.handleNewImg = this.handleNewImg.bind(this);
     this.deleteImg = this.deleteImg.bind(this);
     let images = props.value;
-    images = images.filter(function(img) {
-      if (!img) return false;
-      if (img.url == "") return false;
-      if (img.src == "") return false;
-      return true;
-    });
     this.state = {
       images
     };
@@ -25,8 +19,7 @@ class ImageListEditorField extends Component {
     let images = props.value;
     images = images.filter(function(img) {
       if (!img) return false;
-      if (img.url == "") return false;
-      if (img.src == "") return false;
+      if (!img.length && img.src == "") return false;
       return true;
     });
     this.setState({
@@ -35,10 +28,9 @@ class ImageListEditorField extends Component {
   }
 
   makeLead(img) {
-    let src = img.url;
+    let src = img;
     // our convention is that the first image is the lead image
     let images = this.state.images;
-    images = images.filter(x => x.url !== src);
     images.unshift(img);
     this.setState({ images });
     this.props.onChange(images);
@@ -46,14 +38,14 @@ class ImageListEditorField extends Component {
 
   handleNewImg(img) {
     let images = this.state.images || [];
-    images.push({ url: img });
+    images.push(img);
     this.setState({ images });
     this.props.onChange(images);
   }
 
   deleteImg(img) {
     let images = this.state.images;
-    images = images.filter(x => x !== img.url);
+    images.splice(images.indexOf(img), 1);
     this.setState({ images });
     this.props.onChange(images);
   }
@@ -66,8 +58,8 @@ class ImageListEditorField extends Component {
     if (images) {
       urls = images.map(function(img) {
         let url;
-        if (typeof img.url === "string") {
-          url = img.url;
+        if (typeof img === "string") {
+          url = img;
         } else {
           url = img.src;
         }
