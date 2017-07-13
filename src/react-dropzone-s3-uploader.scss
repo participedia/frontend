@@ -1,13 +1,16 @@
 @import "./UniversalStyles";
 
 .react-dropzone-s3-uploader {
-  width: 160px;
-  height: 160px;
-  border: dashed 2px #999;
+  width: 460px;
+  height: 40px;
+  border: solid 2px $black;
   border-radius: 5;
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  svg {
+    visibility: hidden;
+  }
   @include media-breakpoint-down(sm){
     width: 56px;
     height: 56px;

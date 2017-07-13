@@ -125,12 +125,6 @@ class CaseEditor extends Component {
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
                 <div className="sub-heading title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
@@ -182,6 +176,7 @@ class CaseEditor extends Component {
                   intl={intl}
                   thing={thing}
                 />
+                  {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
                 </p>
