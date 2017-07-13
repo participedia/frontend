@@ -131,13 +131,7 @@ class CaseEditor extends Component {
                 <h2 className="case-title">
                   {thing.title}
                 </h2>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  intl={intl}
-                  thing={thing}
-                />
-                <div className="title-edit">
+                <div className="sub-heading title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
@@ -151,28 +145,7 @@ class CaseEditor extends Component {
                   })}
                   fullWidth
                 />
-                <div>
-                  <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
-                  </label>
-                </div>
-                <Field fieldName="body" type={LazyBodyEditor} />
-                <div className="case-location">
-                  <p className="sub-heading">
-                    {intl.formatMessage({
-                      id: "country_picker"
-                    })}
-                  </p>
-                  {makeLocalizedLocationField(intl, "location")}
-                </div>
-                <p className="sub-heading">
-                  {intl.formatMessage({ id: "tags_title" })}
-                </p>
-                <div className="suggest_tag">
-                  {intl.formatMessage({ id: "suggest_tag" })}
-                </div>
-                {tagseditor}
-                {makeLocalizedChoiceField(intl, "issue")}
+                {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
                 {issue
                   ? <div>
                       {makeLocalizedChoiceField(
@@ -191,7 +164,31 @@ class CaseEditor extends Component {
                       })}
                     </b>
                   : undefined}
-                {makeLocalizedListField(intl, "links")}
+                <div className="case-location">
+                  {makeLocalizedLocationField(intl, "location")}
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "date" })}
+                  </p>  
+                  {makeLocalizedDateField(intl, "start_date")}
+                  {makeLocalizedDateField(intl, "end_date")}
+                  {makeLocalizedListField(intl, "links")}
+                </div>
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "media" })}
+                </p>
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "tags_title" })}
+                </p>
+                <div className="suggest_tag">
+                  {intl.formatMessage({ id: "suggest_tag" })}
+                </div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick
@@ -269,8 +266,6 @@ class CaseEditor extends Component {
                         )}
                         {}
                         {makeLocalizedBooleanField(intl, "ongoing")}
-                        {makeLocalizedDateField(intl, "start_date")}
-                        {makeLocalizedDateField(intl, "end_date")}
                         {makeLocalizedTextField(intl, "staff_type")}
                         {makeLocalizedTextField(
                           intl,

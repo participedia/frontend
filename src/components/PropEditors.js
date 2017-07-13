@@ -88,7 +88,7 @@ export function makeLocalizedChoiceField(
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
 
@@ -312,6 +312,7 @@ class DateEditor extends React.Component {
       <DatePicker
         onChange={onChange}
         value={this.state.value}
+        placeholder={this.props.label}
         name={property}
       />
     );
@@ -322,16 +323,12 @@ export function makeLocalizedDateField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
-        {label}
-      </p>
-      <div className={property}>
-
+      <div className={"date-field " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property })}
+          label={intl.formatMessage({ id: property + "_placeholder" })}
           type={DateEditor}
         />
       </div>
@@ -399,7 +396,7 @@ export function makeLocalizedLocationField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
       <div className={property}>
@@ -472,7 +469,7 @@ export function makeLocalizedListField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
       <div className={property}>
