@@ -32,11 +32,9 @@ class CaseEditor extends Component {
   constructor(props) {
     super(props);
     let thing = props.thing;
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
+    if (!thing.images) {
+      thing.images = [];
     }
-    thing.images = images;
     if (!thing.body) {
       thing.body = props.intl.formatMessage({
         id: "case_description_placeholder"
@@ -46,36 +44,17 @@ class CaseEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // We need to merge lead_image and other_images into one property
     let thing = nextProps.thing;
     if (!thing.body) {
       thing.body = nextProps.intl.formatMessage({
         id: "case_description_placeholder"
       });
     }
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
-    }
-
-    thing.images = images;
-
     this.setState({ thing });
   }
 
   onSubmit() {
-    // We need to tweak the `images` property and split it into lead_image and other_images
     let thing = this.state.thing;
-    if (thing.images && thing.images.length > 0) {
-      thing.lead_image = thing.images.shift();
-      if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = { url: thing.lead_image.url };
-      }
-      thing.other_images = thing.images.map(img => ({
-        url: img.url
-      }));
-      delete thing.images;
-    }
     this.props.onSubmit(thing);
   }
   render() {

@@ -1,9 +1,5 @@
 {
     "purpose": "Consultation (i.e. to advise decision makers)||Raise public awareness",
-    "lead_image": {
-        "src": "agenda21%20.jpg",
-        "title": ""
-    },
     "published": true,
     "links": ["link 1", "link 2", "link 3"],
     "methods": "559",
@@ -19,6 +15,7 @@
         "latitude": "44° 13' 12.666\" N"
     },
     "specific_topic": "Sustainable Development",
+    "images": ["agenda21%20.jpg"],
     "issue": "Budgeting",
     "lastmodified": 1484364785457,
     "targeted_participants_public_role": "Stakeholder Organizations",
@@ -32,7 +29,6 @@
     "facilitator_type": "Professional Facilitators",
     "targeted_participants_demographics_": "General Public",
     "typical_sponsoring_entity": "International Organization",
-    "other_images": [],
     "id": "468",
     "voting": "true",
     "decision_method": "Getting sense of room/group (i.e. no formal voting)",

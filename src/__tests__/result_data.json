@@ -6,8 +6,7 @@
         "country": ""
     },
     "language": "English",
-    "other_images": [],
-    "lead_image": {"src": "Procedere-logo-kurz.jpg", "title": "Procedere Verbund"},
+    "images": ["Procedere-logo-kurz.jpg"],
     "published": true,
     "content_language": "English||Deutsch - German",
     "tags": ["procedural competencies", "meta-theory", "theory on procedures", "toolbox"],
