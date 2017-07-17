@@ -19,18 +19,78 @@ exports[`Case editor renders correctly 1`] = `
         <div
           className="case-box"
         >
-          <h2
-            className="category"
-          >
-            case
-          </h2>
-          <h2
-            className="case-title"
-          >
-            Agenda 21 Locale (Province of Forli-Cesena, Italy)
-          </h2>
           <div
-            className="itemPics row"
+            className="sub-heading title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <Textfield
+            className="custom-field"
+            disabled={false}
+            errorText={undefined}
+            floatingLabelText=""
+            fullWidth={true}
+            hintText={null}
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder={undefined}
+            type="text"
+            value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
+          />
+          <div>
+            <p
+              className="sub-heading"
+            />
+          </div>
+          <div>
+            <div>
+              <p
+                className="sub-heading"
+              />
+            </div>
+          </div>
+          <div
+            className="case-location"
+          >
+            <div>
+              <p
+                className="sub-heading"
+              />
+              <div
+                className="location"
+              />
+            </div>
+            <p
+              className="sub-heading"
+            />
+            <div>
+              <div
+                className="date-field start_date"
+              />
+            </div>
+            <div>
+              <div
+                className="date-field end_date"
+              />
+            </div>
+            <p
+              className="sub-heading"
+            />
+            <div>
+              <div
+                className="list links"
+              />
+            </div>
+          </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="itemPics pb-1 row"
           >
             <div
               className="pb-1 col col-sm-6 col-md-3"
@@ -61,53 +121,17 @@ exports[`Case editor renders correctly 1`] = `
               </div>
             </div>
             <div
-              className="col col-md-3"
+              className="p-0 col col-md-12"
             >
               <div>
                 Sorry, upload only works if you're logged in.
               </div>
             </div>
           </div>
-          <div
-            className="title-edit"
-          >
-            <label
-              htmlFor="title"
-            />
-          </div>
-          <Textfield
-            disabled={false}
-            errorText={undefined}
-            floatingLabelText=""
-            fullWidth={true}
-            hintText={null}
-            name="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder={undefined}
-            type="text"
-            value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
-          />
           <div>
-            <label
-              htmlFor="body_en"
+            <div
+              className="list videos"
             />
-          </div>
-          <div
-            className="case-location"
-          >
-            <p
-              className="sub-heading"
-            />
-            <div>
-              <p
-                className="sub-sub-heading"
-              />
-              <div
-                className="location"
-              />
-            </div>
           </div>
           <p
             className="sub-heading"
@@ -115,55 +139,41 @@ exports[`Case editor renders correctly 1`] = `
           <div
             className="suggest_tag"
           />
-          <div>
-            <p
-              className="sub-sub-heading"
-            />
-          </div>
-          <div>
-            <div>
-              <p
-                className="sub-sub-heading"
-              />
-            </div>
-          </div>
-          <div>
-            <p
-              className="sub-sub-heading"
-            />
-            <div
-              className="links"
-            />
-          </div>
         </div>
         <div>
           <div>
+            <div>
+              <label
+                className="sub-heading"
+                htmlFor="body_en"
+              />
+            </div>
             <div
               className="related-content"
             >
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
                 <div
                   className="facilitated"
@@ -171,12 +181,12 @@ exports[`Case editor renders correctly 1`] = `
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
                 <div
                   className="number_of_meeting_days"
@@ -191,52 +201,52 @@ exports[`Case editor renders correctly 1`] = `
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
                 <div
                   className="ongoing"
@@ -244,23 +254,7 @@ exports[`Case editor renders correctly 1`] = `
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
-                />
-                <div
-                  className="start_date"
-                />
-              </div>
-              <div>
-                <p
-                  className="sub-sub-heading"
-                />
-                <div
-                  className="end_date"
-                />
-              </div>
-              <div>
-                <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
                 <div
                   className="staff_type"
@@ -275,7 +269,7 @@ exports[`Case editor renders correctly 1`] = `
               </div>
               <div>
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
                 <div
                   className="who_else_supported_the_initiative"
@@ -292,21 +286,21 @@ exports[`Case editor renders correctly 1`] = `
                 className="pb-1"
               >
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div
                 className="pb-1"
               >
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
               <div
                 className="pb-1"
               >
                 <p
-                  className="sub-sub-heading"
+                  className="sub-heading"
                 />
               </div>
                

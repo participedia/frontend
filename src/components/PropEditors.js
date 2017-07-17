@@ -154,7 +154,7 @@ export function makeLocalizedBooleanField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
       <div className={property}>
@@ -220,7 +220,7 @@ export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
       <div className={property}>
@@ -276,7 +276,7 @@ export function makeLocalizedTextField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-sub-heading">
+      <p className="sub-heading">
         {label}
       </p>
       <div className={property}>
@@ -313,14 +313,10 @@ class DateEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let property = this.props.passProps.name;
-    // let myStyle  = {
-    //   border: '2px solid #323232'
-    // }
     return (
       <DatePicker
         onChange={onChange}
         value={this.state.value}
-        // style={myStyle}
         placeholder={this.props.label}
         name={property}
       />

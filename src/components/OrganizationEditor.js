@@ -14,6 +14,7 @@ import tags_json from "../autocomplete_data/tags.json";
 import {
   makeLocalizedChoiceField,
   makeLocalizedTextField,
+  makeLocalizedLocationField,
   makeLocalizedListField
 } from "./PropEditors";
 import fix_related from "./fix-related.js";
@@ -100,7 +101,7 @@ class OrganizationEditor extends Component {
     );
 
     let incomplete =
-      (thing.title ? false : true) || (thing.body ? false : true);
+      (thing.title ? false : true);
     return (
       <Form
         onSubmit={onSubmit}
@@ -112,19 +113,7 @@ class OrganizationEditor extends Component {
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  intl={intl}
-                  thing={thing}
-                />
-                <div className="title-edit">
+                <div className="sub-heading title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
@@ -132,27 +121,30 @@ class OrganizationEditor extends Component {
                 <Field
                   fieldName="title"
                   name="title"
+                  className="custom-field"
                   type={Text}
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
                   fullWidth
                 />
-                <div>
-                  <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
-                  </label>
-                </div>
-                <Field fieldName="body" type={LazyBodyEditor} />
+                {makeLocalizedChoiceField(intl, "specific_topic")}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "media" })}
+                </p>
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
               </div>
               <div>
                 <div className="case-location">
+                  {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
-                    {intl.formatMessage({
-                      id: "country_picker"
-                    })}
-                  </p>
-                  <Geosuggest />
+                    {intl.formatMessage({ id: "date" })}
+                  </p> 
                   <p className="sub-heading">
                     {intl.formatMessage({ id: "tags_title" })}
                   </p>
@@ -160,7 +152,6 @@ class OrganizationEditor extends Component {
                     {intl.formatMessage({ id: "suggest_tag" })}
                   </div>
                   {tagseditor}
-                  {makeLocalizedChoiceField(intl, "specific_topic")}
                   {makeLocalizedTextField(intl, "executive_director")}
                   {makeLocalizedChoiceField(intl, "sector")}
                   {makeLocalizedListField(intl, "links")}
@@ -190,6 +181,12 @@ class OrganizationEditor extends Component {
                       />
                     </div>
                   : <div>
+                      <div>
+                        <label className="sub-heading" htmlFor="body_en">
+                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                        </label>
+                      </div>
+                      <Field fieldName="body" type={LazyBodyEditor} />
                       <p className="sub-heading">
                         Related Content
                       </p>

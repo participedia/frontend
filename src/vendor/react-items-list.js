@@ -30,7 +30,6 @@ const react = require("react"),
     },
 
     stateItemsFromProps(props) {
-      console.log(props,'props')
       return props.items.map(item => {
         return {
           value: item,

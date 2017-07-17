@@ -276,18 +276,38 @@ exports[`Organization editor renders correctly 1`] = `
         <div
           className="case-box"
         >
-          <h2
-            className="category"
-          >
-            organization
-          </h2>
-          <h2
-            className="case-title"
-          >
-            Urban Interactive Studio
-          </h2>
           <div
-            className="itemPics row"
+            className="sub-heading title-edit"
+          >
+            <label
+              htmlFor="title"
+            />
+          </div>
+          <Textfield
+            className="custom-field"
+            disabled={false}
+            errorText={undefined}
+            floatingLabelText=""
+            fullWidth={true}
+            hintText={null}
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder={undefined}
+            type="text"
+            value="Urban Interactive Studio"
+          />
+          <div>
+            <p
+              className="sub-heading"
+            />
+          </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="itemPics pb-1 row"
           >
             <div
               className="pb-1 col col-sm-6 col-md-3"
@@ -318,44 +338,26 @@ exports[`Organization editor renders correctly 1`] = `
               </div>
             </div>
             <div
-              className="col col-md-3"
+              className="p-0 col col-md-12"
             >
               <div>
                 Sorry, upload only works if you're logged in.
               </div>
             </div>
           </div>
-          <div
-            className="title-edit"
-          >
-            <label
-              htmlFor="title"
-            />
-          </div>
-          <Textfield
-            disabled={false}
-            errorText={undefined}
-            floatingLabelText=""
-            fullWidth={true}
-            hintText={null}
-            name="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder={undefined}
-            type="text"
-            value="Urban Interactive Studio"
-          />
-          <div>
-            <label
-              htmlFor="body_en"
-            />
-          </div>
         </div>
         <div>
           <div
             className="case-location"
           >
+            <div>
+              <p
+                className="sub-heading"
+              />
+              <div
+                className="location"
+              />
+            </div>
             <p
               className="sub-heading"
             />
@@ -367,12 +369,7 @@ exports[`Organization editor renders correctly 1`] = `
             />
             <div>
               <p
-                className="sub-sub-heading"
-              />
-            </div>
-            <div>
-              <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
               <div
                 className="executive_director"
@@ -387,19 +384,22 @@ exports[`Organization editor renders correctly 1`] = `
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
-              <p
-                className="sub-sub-heading"
-              />
               <div
-                className="links"
+                className="list links"
               />
             </div>
           </div>
           <div>
+            <div>
+              <label
+                className="sub-heading"
+                htmlFor="body_en"
+              />
+            </div>
             <p
               className="sub-heading"
             >

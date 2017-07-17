@@ -112,7 +112,7 @@ class CaseEditor extends Component {
       />
     );
     let incomplete =
-      (thing.title ? false : true) || (thing.body ? false : true);
+      (thing.title ? false : true);
     let issue = this.state.thing.issue;
     return (
       <Form
@@ -216,6 +216,12 @@ class CaseEditor extends Component {
                       />
                     </div>
                   : <div>
+                      <div>
+                        <label className="sub-heading" htmlFor="body_en">
+                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                        </label>
+                      </div>
+                      <Field fieldName="body" type={LazyBodyEditor} />
                       <div className="related-content">
                         {makeLocalizedChoiceField(intl, "communication_mode")}
                         {makeLocalizedChoiceField(
@@ -271,19 +277,19 @@ class CaseEditor extends Component {
                           "who_else_supported_the_initiative"
                         )}
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({ id: "related_cases" })}
                           </p>
                           {related_cases}
                         </div>
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({ id: "related_methods" })}
                           </p>
                           {related_methods}
                         </div>
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({
                               id: "related_organizations"
                             })}
