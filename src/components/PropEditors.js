@@ -61,7 +61,9 @@ export class ChoiceEditor extends React.Component {
       <SelectField
         name={property}
         fullWidth
+        className="custom-select"
         onChange={onChange}
+        hintText={this.props.passProps.placeholder}
         value={this.state.value}
       >
         {this.state.choices}
@@ -96,6 +98,9 @@ export function makeLocalizedChoiceField(
         fieldName={property}
         label={label}
         type={ChoiceEditor}
+        placeholder={intl.formatMessage({
+            id: property + "_placeholder"
+          })}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -308,10 +313,14 @@ class DateEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let property = this.props.passProps.name;
+    // let myStyle  = {
+    //   border: '2px solid #323232'
+    // }
     return (
       <DatePicker
         onChange={onChange}
         value={this.state.value}
+        // style={myStyle}
         placeholder={this.props.label}
         name={property}
       />
@@ -384,7 +393,7 @@ class LocationEditor extends React.Component {
     let onChange = this.onChange.bind(this);
     return (
       <Geosuggest
-        placeholder={this.props.passProps.placeholder}
+        placeholder={this.props.label}
         initialValue={this.state.value}
         onSuggestSelect={onChange}
       />
@@ -404,8 +413,7 @@ export function makeLocalizedLocationField(intl, property) {
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property })}
-          placeholder={intl.formatMessage({
+          label={intl.formatMessage({
             id: "location_placeholder"
           })}
           type={LocationEditor}
@@ -458,6 +466,8 @@ export class ListEditor extends React.Component {
         className={this.props.passProps.name + "_list"}
         items={this.state.value}
         onAdd={onAdd}
+        placeholder={this.props.passProps.placeholder}
+        prompt={this.props.passProps.prompt}
         onRemove={onRemove}
         onUpdate={onUpdate}
       />
@@ -469,14 +479,17 @@ export function makeLocalizedListField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
-      <div className={property}>
+      <div className={"list " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
+          placeholder={intl.formatMessage({
+            id: property + "_placeholder"
+          })}
+          prompt={intl.formatMessage({
+            id: property + "_prompt"
+          })}
           label={intl.formatMessage({ id: property })}
           type={ListEditor}
         />

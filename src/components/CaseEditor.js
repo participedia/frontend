@@ -133,6 +133,7 @@ class CaseEditor extends Component {
                 <Field
                   fieldName="title"
                   name="title"
+                  className="custom-field"
                   type={Text}
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
@@ -165,6 +166,9 @@ class CaseEditor extends Component {
                   </p>  
                   {makeLocalizedDateField(intl, "start_date")}
                   {makeLocalizedDateField(intl, "end_date")}
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "links" })}
+                  </p>  
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">

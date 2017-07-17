@@ -24,11 +24,13 @@ const react = require("react"),
     getInitialState() {
       return {
         items: this.stateItemsFromProps(this.props),
+        // placeholder: props.placeholder,
         lastItemValue: ""
       };
     },
 
     stateItemsFromProps(props) {
+      console.log(props,'props')
       return props.items.map(item => {
         return {
           value: item,
@@ -109,6 +111,7 @@ const react = require("react"),
                 }
               : "",
             value: newItem ? this.state.lastItemValue : item.value,
+            placeholder: this.props.placeholder,
             inputStyle: newItem
               ? { color: colors.darkBlack }
               : this.setEditColor(idx),
@@ -127,8 +130,13 @@ const react = require("react"),
             {
               onClick: newItem ? this.addItem : this.removeItem.bind(this, idx)
             },
-            react.createElement(newItem ? icons.add : icons.remove)
-          )
+            react.createElement(newItem ? icons.add : icons.remove),
+          ),
+          newItem ?
+          // xx
+          react.createElement("span", { onClick: this.addItem, className: "prompt" }, this.props.prompt)
+          :
+          undefined
         );
       });
 
