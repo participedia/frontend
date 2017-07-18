@@ -1,6 +1,7 @@
 language: node_js
 sudo: false
-dist: precise
+dist: trusty
+
 node_js:
 - '7'
 cache: yarn
