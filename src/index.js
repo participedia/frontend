@@ -8,7 +8,7 @@ import App from "./App";
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: "#3f51b2"
+    primary1Color: "#323232"
   },
   datePicker: {
     selectColor: "#ec1414",

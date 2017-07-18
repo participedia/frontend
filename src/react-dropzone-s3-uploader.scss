@@ -1,16 +1,25 @@
 @import "./UniversalStyles";
 
 .react-dropzone-s3-uploader {
-  width: 160px;
-  height: 160px;
-  border: dashed 2px #999;
-  border-radius: 5;
+  width: 385px;
+  height: 49px;
+  border: solid 2px $black;
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  svg {
+    visibility: hidden;
+  }
+  &:after {
+    content: 'Select a photo from your device';
+    color: rgba(0, 0, 0, 0.47);
+    position: absolute;
+    left: 0;
+    top: 0; 
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+  }
   @include media-breakpoint-down(sm){
-    width: 56px;
-    height: 56px;
-    float: right;
+    width: 255px;
   }
 }

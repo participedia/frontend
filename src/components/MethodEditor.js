@@ -28,40 +28,20 @@ const buttonStyle = {
 class MethodEditor extends Component {
   constructor(props) {
     super(props);
-    let thing = props.thing;
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
+    if (!props.thing.images) {
+      props.thing.images = [];
     }
-    thing.images = images;
     this.state = { thing: props.thing };
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
-    let images = thing.other_images || [];
-    if (thing.lead_image) {
-      images.unshift(thing.lead_image);
-    }
-
-    thing.images = images;
-    delete thing.lead_image;
-    delete thing.other_images;
     this.setState({ thing });
   }
 
   onSubmit() {
+    // is this now a do-nothing method?
     let thing = this.state.thing;
-    if (thing.images && thing.images.length > 0) {
-      thing.lead_image = thing.images.shift();
-      if (thing.lead_image && thing.lead_image.url) {
-        thing.lead_image = { url: thing.lead_image.url };
-      }
-      thing.other_images = thing.images.map(img => ({
-        url: img.url
-      }));
-      delete thing.images;
-    }
     this.props.onSubmit(thing);
   }
   render() {
@@ -127,19 +107,7 @@ class MethodEditor extends Component {
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  intl={intl}
-                  thing={thing}
-                />
-                <div className="title-edit">
+                <div className="sub-heading title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
@@ -147,18 +115,41 @@ class MethodEditor extends Component {
                 <Field
                   fieldName="title"
                   name="title"
+                  className="custom-field"
                   type={Text}
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
                   fullWidth
                 />
-                <div>
-                  <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
-                  </label>
-                </div>
-                <Field fieldName="body" type={LazyBodyEditor} />
+                {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
+                {issue
+                  ? <div>
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "specific_topic",
+                        issue,
+                        "specific_topic"
+                      )}
+                    </div>
+                  : undefined}
+                {issue === "other" &&
+                  this.state.thing.specific_topic === "other"
+                  ? <b>
+                      {intl.formatMessage({
+                        id: "send_email_with_catgeory_additions"
+                      })}
+                    </b>
+                  : undefined}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "media" })}
+                </p>  
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
                 {makeLocalizedListField(intl, "links")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
@@ -194,25 +185,12 @@ class MethodEditor extends Component {
                       />
                     </div>
                   : <div>
-                      {makeLocalizedChoiceField(intl, "issue")}
-                      {issue
-                        ? <div>
-                            {makeLocalizedChoiceField(
-                              intl,
-                              "specific_topic",
-                              issue,
-                              "specific_topic"
-                            )}
-                          </div>
-                        : undefined}
-                      {issue === "other" &&
-                        this.state.thing.specific_topic === "other"
-                        ? <b>
-                            {intl.formatMessage({
-                              id: "send_email_with_catgeory_additions"
-                            })}
-                          </b>
-                        : undefined}
+                      <div>
+                        <label className="sub-heading" htmlFor="body_en">
+                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                        </label>
+                      </div>
+                      <Field fieldName="body" type={LazyBodyEditor} />
                       {makeLocalizedChoiceField(intl, "kind_of_influence")}
                       {makeLocalizedChoiceField(intl, "communication_mode")}
                       {makeLocalizedChoiceField(

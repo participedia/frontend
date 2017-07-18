@@ -161,7 +161,7 @@ class API {
   saveThing = function(thingType, obj) {
     let url = APIURL + `/${thingType}/${obj.id}`;
 
-    // console.log("saving", obj);
+    // console.log("saving", JSON.stringify(obj));
     delete obj.updated_date; // feels silly to have to do that.
 
     return signedFetch(url, "PUT", obj)

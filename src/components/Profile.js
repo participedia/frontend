@@ -93,11 +93,6 @@ class Profile extends Component {
             <div className="user-avatar">
               <Avatar size={200} src={user.picture_url} />
             </div>
-            {user.email === profile.email
-              ? <Link to="/profile/edit" className="edit-profile-button">
-                  Edit Profile
-                </Link>
-              : <div />}
           </Col>
           <Col lg={9} md={8} className="main-area">
             <h2 className="name">{user.name}</h2>
@@ -162,11 +157,14 @@ class Profile extends Component {
             </div>
           </Col>
         </Row>
-        <Link to="/profile/edit">
-          <FloatingActionButton className="editButton">
-            <ContentPencil />
-          </FloatingActionButton>
-        </Link>
+        {user.email === profile.email ?
+          <Link to="/profile/edit">
+            <FloatingActionButton className="editButton">
+              <ContentPencil />
+            </FloatingActionButton>
+          </Link>
+          : <div />
+        }
       </Container>
     );
   }

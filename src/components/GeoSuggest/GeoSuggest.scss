@@ -1,7 +1,14 @@
 @import "./UniversalStyles";
 
+.geosuggest {
+  padding: 0.6rem 1rem;
+  border: 2px solid $black;
+  @include media-breakpoint-up(sm) {
+    width: 50% !important;
+  }
+}
+
 .geosuggest__input-wrapper {
-  border-bottom: 2px solid $dark-grey;
   width: 28%;
   @include media-breakpoint-between(xs, sm) {
     width: 100%;
@@ -21,7 +28,7 @@
   padding: 0;
   margin-top: -1px;
   background: #fff;
-  border: 2px solid #267dc0;
+  // border: 2px solid #267dc0;
   border-top-width: 0;
   overflow-x: hidden;
   overflow-y: auto;
