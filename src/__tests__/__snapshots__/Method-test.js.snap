@@ -264,35 +264,15 @@ exports[`Method editor renders correctly 1`] = `
         <div
           className="case-box"
         >
-          <h2
-            className="category"
-          >
-            method
-          </h2>
-          <h2
-            className="case-title"
-          >
-            Petition
-          </h2>
           <div
-            className="itemPics row"
-          >
-            <div
-              className="col col-md-3"
-            >
-              <div>
-                Sorry, upload only works if you're logged in.
-              </div>
-            </div>
-          </div>
-          <div
-            className="title-edit"
+            className="sub-heading title-edit"
           >
             <label
               htmlFor="title"
             />
           </div>
           <Textfield
+            className="custom-field"
             disabled={false}
             errorText={undefined}
             floatingLabelText=""
@@ -307,16 +287,27 @@ exports[`Method editor renders correctly 1`] = `
             value="Petition"
           />
           <div>
-            <label
-              htmlFor="body_en"
+            <p
+              className="sub-heading"
             />
           </div>
-          <div>
-            <p
-              className="sub-sub-heading"
-            />
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="itemPics pb-1 row"
+          >
             <div
-              className="links"
+              className="p-0 col col-md-12"
+            >
+              <div>
+                Sorry, upload only works if you're logged in.
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              className="list links"
             />
           </div>
           <p
@@ -329,33 +320,34 @@ exports[`Method editor renders correctly 1`] = `
         <div>
           <div>
             <div>
-              <p
-                className="sub-sub-heading"
+              <label
+                className="sub-heading"
+                htmlFor="body_en"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
               <div
                 className="facilitated"
@@ -363,57 +355,57 @@ exports[`Method editor renders correctly 1`] = `
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <div>
               <p
-                className="sub-sub-heading"
+                className="sub-heading"
               />
             </div>
             <p

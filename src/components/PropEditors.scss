@@ -1,3 +1,5 @@
+@import "./UniversalStyles";
+
 .user-avatar {
   margin: 0 auto;
   width: 200px;
@@ -22,6 +24,44 @@
     cursor: pointer;
     &:hover, &:focus {
       background-color: rgba(0, 0, 0, 0.75);
+    }
+  }
+}
+
+.date-field {
+  border: 2px solid $black;
+  @include media-breakpoint-up(sm) {
+    width: 50% !important;
+  };
+  margin-bottom: 1rem;
+  div>div {
+    width: 100% !important;
+    padding-left: 1rem;
+    hr {
+      display: none;
+    }
+  }
+}
+
+.list {
+  >div>div>div {
+    border: 2px solid $black;
+    padding-left: 1rem;
+    @include media-breakpoint-up(sm) {
+      width: 50% !important;
+    };
+    hr {
+      display: none;
+    }
+  }
+  button {
+    svg {
+      transform: translateY(8px);
+    }
+  }
+  .prompt {
+    @include media-breakpoint-down(sm) {
+      display: none;
     }
   }
 }

@@ -22,6 +22,27 @@
   }
 }
 
+.custom-field {
+  border: 2px solid $black;
+  padding-left: 1rem;
+  @include media-breakpoint-up(sm) {
+    width: 50% !important;
+  }
+  >div {
+    display: none;
+  }
+}
+
+.custom-select {
+  @include media-breakpoint-up(sm) {
+    width: 50% !important;
+  }
+  border: 2px solid $black;
+  padding-left: 1rem;
+  hr {
+    display: none;
+  }
+}
 
 .sub-heading {
   font-size: 30px;
@@ -71,7 +92,10 @@
 
 .main-area {
   .title-edit {
-    padding-top: 2rem;
+    @include media-breakpoint-up(sm) {
+      padding-top: 2rem;
+    }
+    border: none;
   }
 }
 
@@ -127,7 +151,4 @@
       }
     }
   }
-}
-.links div div div {
-  width: 85% !important; // XXX need real fix
 }

@@ -112,7 +112,7 @@ class CaseEditor extends Component {
       />
     );
     let incomplete =
-      (thing.title ? false : true) || (thing.body ? false : true);
+      (thing.title ? false : true);
     let issue = this.state.thing.issue;
     return (
       <Form
@@ -125,19 +125,7 @@ class CaseEditor extends Component {
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  intl={intl}
-                  thing={thing}
-                />
-                <div className="title-edit">
+                <div className="sub-heading title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
@@ -145,34 +133,14 @@ class CaseEditor extends Component {
                 <Field
                   fieldName="title"
                   name="title"
+                  className="custom-field"
                   type={Text}
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
                   fullWidth
                 />
-                <div>
-                  <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
-                  </label>
-                </div>
-                <Field fieldName="body" type={LazyBodyEditor} />
-                <div className="case-location">
-                  <p className="sub-heading">
-                    {intl.formatMessage({
-                      id: "country_picker"
-                    })}
-                  </p>
-                  {makeLocalizedLocationField(intl, "location")}
-                </div>
-                <p className="sub-heading">
-                  {intl.formatMessage({ id: "tags_title" })}
-                </p>
-                <div className="suggest_tag">
-                  {intl.formatMessage({ id: "suggest_tag" })}
-                </div>
-                {tagseditor}
-                {makeLocalizedChoiceField(intl, "issue")}
+                {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
                 {issue
                   ? <div>
                       {makeLocalizedChoiceField(
@@ -191,7 +159,35 @@ class CaseEditor extends Component {
                       })}
                     </b>
                   : undefined}
-                {makeLocalizedListField(intl, "links")}
+                <div className="case-location">
+                  {makeLocalizedLocationField(intl, "location")}
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "date" })}
+                  </p>  
+                  {makeLocalizedDateField(intl, "start_date")}
+                  {makeLocalizedDateField(intl, "end_date")}
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "links" })}
+                  </p>  
+                  {makeLocalizedListField(intl, "links")}
+                </div>
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "media" })}
+                </p>
+                <ImageListEditor
+                  property="images"
+                  auth={this.props.auth}
+                  intl={intl}
+                  thing={thing}
+                />
+                  {makeLocalizedListField(intl, "videos")}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "tags_title" })}
+                </p>
+                <div className="suggest_tag">
+                  {intl.formatMessage({ id: "suggest_tag" })}
+                </div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick
@@ -220,6 +216,12 @@ class CaseEditor extends Component {
                       />
                     </div>
                   : <div>
+                      <div>
+                        <label className="sub-heading" htmlFor="body_en">
+                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                        </label>
+                      </div>
+                      <Field fieldName="body" type={LazyBodyEditor} />
                       <div className="related-content">
                         {makeLocalizedChoiceField(intl, "communication_mode")}
                         {makeLocalizedChoiceField(
@@ -269,27 +271,25 @@ class CaseEditor extends Component {
                         )}
                         {}
                         {makeLocalizedBooleanField(intl, "ongoing")}
-                        {makeLocalizedDateField(intl, "start_date")}
-                        {makeLocalizedDateField(intl, "end_date")}
                         {makeLocalizedTextField(intl, "staff_type")}
                         {makeLocalizedTextField(
                           intl,
                           "who_else_supported_the_initiative"
                         )}
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({ id: "related_cases" })}
                           </p>
                           {related_cases}
                         </div>
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({ id: "related_methods" })}
                           </p>
                           {related_methods}
                         </div>
                         <div className="pb-1">
-                          <p className="sub-sub-heading">
+                          <p className="sub-heading">
                             {intl.formatMessage({
                               id: "related_organizations"
                             })}

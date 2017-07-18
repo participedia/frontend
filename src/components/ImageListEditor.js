@@ -94,9 +94,9 @@ class ImageListEditorField extends Component {
       </Col>
     );
     return (
-      <Row className="itemPics">
+      <Row className="itemPics pb-1">
         {bits}
-        <Col md="3">
+        <Col md="12" className="p-0">
           <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
         </Col>
       </Row>
