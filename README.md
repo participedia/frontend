@@ -51,5 +51,5 @@ webpack config for example.
 
 ### Contributing
 
-We use Javascript `Standard` as the linting style.
+We use Prettier with default settings to enforce coding style.
 
