@@ -118,13 +118,12 @@ export default class ItemDetails extends React.Component {
       TwitterShareButton,
       LinkedinShareButton
     } = ShareButtons;
-    const isAuthenticated = this.props.isAuthenticated;
     const intl = this.props.intl;
     const thing = this.props.data || defaultThing;
-    let bookmarked = isAuthenticated && thing.bookmarked;
+    let bookmarked = thing.bookmarked;
     let bookmarkIcon = (
       <BookmarkToggle
-        thingType="case"
+        thingType={thing.type}
         thingid={thing.id}
         bookmarked={bookmarked}
       />
