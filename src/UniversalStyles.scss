@@ -9,3 +9,43 @@ $grey-text: #323232;
 
 $primary-color: $black;
 $interactive-color: $red;
+
+.new {
+  transition:background .2s;
+  color:$black;
+  font-weight:500;
+  &:after {
+    border-left:1px solid #fff;
+    color: #fff;
+  }
+  button {
+    height: 40px !important;
+    background: none !important;
+    div {
+      border-radius: 2px;
+      background:$interactive-color;
+      span {
+        color: white !important;
+        text-transform: none !important;
+        &:after {
+          content: '|  +';
+          padding-left: 9px;
+          white-space: pre;
+        }
+      }
+    }
+  }
+}
+
+.full-submit {
+  button {
+    div {
+      border-radius: 2px;
+      background: $black;
+      span {
+        color: white !important;
+        text-transform: capitalize !important;
+      }
+    }
+  }
+}

@@ -284,7 +284,7 @@ exports[`Organization editor renders correctly 1`] = `
             />
           </div>
           <Textfield
-            className="custom-field"
+            className="custom-field org-title"
             disabled={false}
             errorText={undefined}
             floatingLabelText=""
@@ -298,10 +298,25 @@ exports[`Organization editor renders correctly 1`] = `
             type="text"
             value="Urban Interactive Studio"
           />
-          <div>
+          <div
+            className="case-location"
+          >
+            <div>
+              <p
+                className="sub-heading"
+              />
+              <div
+                className="location"
+              />
+            </div>
             <p
               className="sub-heading"
             />
+            <div>
+              <div
+                className="list links"
+              />
+            </div>
           </div>
           <p
             className="sub-heading"
@@ -345,56 +360,46 @@ exports[`Organization editor renders correctly 1`] = `
               </div>
             </div>
           </div>
+          <div>
+            <div
+              className="list videos"
+            />
+          </div>
+          <p
+            className="sub-heading"
+          />
+          <div
+            className="tags-field"
+          />
         </div>
         <div>
-          <div
-            className="case-location"
-          >
-            <div>
-              <p
-                className="sub-heading"
-              />
-              <div
-                className="location"
-              />
-            </div>
-            <p
-              className="sub-heading"
-            />
-            <p
-              className="sub-heading"
-            />
-            <div
-              className="suggest_tag"
-            />
-            <div>
-              <p
-                className="sub-heading"
-              />
-              <div
-                className="executive_director"
-              >
-                <Textfield
-                  fullWidth={true}
-                  name="executive_director"
-                  onChange={[Function]}
-                  value=""
-                />
-              </div>
-            </div>
-            <div>
-              <p
-                className="sub-heading"
-              />
-            </div>
-            <div>
-              <div
-                className="list links"
-              />
-            </div>
-          </div>
           <div>
             <div>
+              <div>
+                <p
+                  className="sub-heading"
+                />
+                <div
+                  className="executive_director"
+                >
+                  <Textfield
+                    fullWidth={true}
+                    name="executive_director"
+                    onChange={[Function]}
+                    value=""
+                  />
+                </div>
+              </div>
+              <div>
+                <p
+                  className="sub-heading"
+                />
+              </div>
+              <div>
+                <p
+                  className="sub-heading"
+                />
+              </div>
               <label
                 className="sub-heading"
                 htmlFor="body_en"

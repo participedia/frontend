@@ -39,7 +39,6 @@
 .drawer {
   div {
     z-index: 30000;
-    // background-color: white;
     color: black;
     transition:background-color 0.25s;
   }
@@ -253,33 +252,6 @@
   }
 }
 
-.new {
-  transition:background .2s;
-  color:$black;
-  font-weight:500;
-  &:after {
-    border-left:1px solid #fff;
-    color: #fff;
-  }
-  button {
-    height: 40px !important;
-    font-family:'Fakt' !important;
-    div {
-      border-radius:2px;
-      background:$interactive-color;
-      span {
-        color:white;
-        text-transform:none !important;
-        font-size:100% !important;
-        &:after {
-          content: '|  +';
-          padding-left: 9px;
-          white-space: pre;
-        }
-      }
-    }
-  }
-}
 
 // reset the extra padding in this div for consistency 
 // set max width for this element

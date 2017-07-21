@@ -69,6 +69,9 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         maxSearchResults={30}
         dataSource={tags}
+        placeholder={intl.formatMessage({
+          id: "tags_placeholder"
+        })}
         intl={intl}
       />
     );
@@ -121,14 +124,20 @@ class OrganizationEditor extends Component {
                 <Field
                   fieldName="title"
                   name="title"
-                  className="custom-field"
+                  className="custom-field org-title"
                   type={Text}
                   placeholder={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
                   })}
                   fullWidth
                 />
-                {makeLocalizedChoiceField(intl, "specific_topic")}
+                <div className="case-location">
+                  {makeLocalizedLocationField(intl, "location")}
+                  <p className="sub-heading">
+                    {intl.formatMessage({ id: "links" })}
+                  </p>
+                  {makeLocalizedListField(intl, "links")}
+                </div>
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "media" })}
                 </p>
@@ -138,24 +147,15 @@ class OrganizationEditor extends Component {
                   intl={intl}
                   thing={thing}
                 />
+                {makeLocalizedListField(intl, "videos")}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "tags_title" })}
+                </p>
+                <div className="tags-field">
+                  {tagseditor}
+                </div>
               </div>
               <div>
-                <div className="case-location">
-                  {makeLocalizedLocationField(intl, "location")}
-                  <p className="sub-heading">
-                    {intl.formatMessage({ id: "date" })}
-                  </p> 
-                  <p className="sub-heading">
-                    {intl.formatMessage({ id: "tags_title" })}
-                  </p>
-                  <div className="suggest_tag">
-                    {intl.formatMessage({ id: "suggest_tag" })}
-                  </div>
-                  {tagseditor}
-                  {makeLocalizedTextField(intl, "executive_director")}
-                  {makeLocalizedChoiceField(intl, "sector")}
-                  {makeLocalizedListField(intl, "links")}
-                </div>
                 {isQuick
                   ? <div>
                       {incomplete
@@ -166,22 +166,27 @@ class OrganizationEditor extends Component {
                           </div>
                         : null}
                       <RaisedButton
-                        className="incomplete-warning"
+                        className="new quick incomplete-warning"
                         disabled={incomplete}
                         primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
-                          id: "submit_" + thing.type
+                          id: "quick_submit_" + thing.type
                         })}
                       />
                       <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
+                        style={buttonStyle}
+                        className="full-submit"
                         label={intl.formatMessage({ id: "do_full_version" })}
                       />
                     </div>
                   : <div>
                       <div>
+                        {makeLocalizedTextField(intl, "executive_director")}
+                        {makeLocalizedChoiceField(intl, "sector")}
+                        {makeLocalizedChoiceField(intl, "specific_topic")}
                         <label className="sub-heading" htmlFor="body_en">
                           {intl.formatMessage({ id: thing.type + "_body_title" })}
                         </label>

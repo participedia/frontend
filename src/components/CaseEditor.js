@@ -81,6 +81,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         maxSearchResults={30}
         dataSource={tags}
+        placeholder={intl.formatMessage({
+          id: "tags_placeholder"
+        })}
         intl={intl}
       />
     );
@@ -180,14 +183,13 @@ class CaseEditor extends Component {
                   intl={intl}
                   thing={thing}
                 />
-                  {makeLocalizedListField(intl, "videos")}
+                {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
                 </p>
-                <div className="suggest_tag">
-                  {intl.formatMessage({ id: "suggest_tag" })}
+                <div className="tags-field">
+                  {tagseditor}
                 </div>
-                {tagseditor}
               </div>
               <div>
                 {isQuick
@@ -200,17 +202,18 @@ class CaseEditor extends Component {
                           </div>
                         : null}
                       <RaisedButton
-                        className="incomplete-warning"
+                        className="new quick incomplete-warning"
                         disabled={incomplete}
                         primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
-                          id: "submit_" + thing.type
+                          id: "quick_submit_" + thing.type
                         })}
                       />
                       <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
+                        className="full-submit"
                         style={buttonStyle}
                         label={intl.formatMessage({ id: "do_full_version" })}
                       />
