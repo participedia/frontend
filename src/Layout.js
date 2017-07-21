@@ -227,7 +227,8 @@ export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
     profile: object.isRequired,
-    checkLogin: func
+    checkLogin: func,
+    intl: intlShape.isRequired
   };
   constructor(props) {
     super(props);
@@ -351,9 +352,5 @@ export class Layout extends React.Component {
     );
   }
 }
-
-Layout.propTypes = {
-  intl: intlShape.isRequired
-};
 
 export default injectIntl(Layout);
