@@ -137,7 +137,7 @@ exports[`Case editor renders correctly 1`] = `
             className="sub-heading"
           />
           <div
-            className="suggest_tag"
+            className="tags-field"
           />
         </div>
         <div>

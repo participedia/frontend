@@ -79,6 +79,7 @@ export default class Related extends React.Component {
         maxSearchResults={this.props.passProps.maxSearchResults}
         filter={this.props.passProps.filter}
         onRequestDelete={handleRequestDelete}
+        placeholder={this.props.passProps.placeholder}
         fullWidth
         fullWidthInput
         dataSource={this.props.passProps.dataSource}

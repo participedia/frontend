@@ -22,13 +22,26 @@
   }
 }
 
-.custom-field {
+.custom-field, .tags-field {
   border: 2px solid $black;
   padding-left: 1rem;
   @include media-breakpoint-up(sm) {
     width: 50% !important;
   }
   >div {
+    display: none;
+  }
+  &.org-title {
+    font-size: 0.95rem !important;
+  }
+}
+
+.tags-field {
+  padding-bottom: 0.5rem;
+  div {
+    margin-bottom: 0 !important;
+  }
+  hr {
     display: none;
   }
 }
@@ -52,6 +65,9 @@
   margin-top:40px;
   padding-top: 20px;
   border-top:1px solid #ccc;
+  &.org {
+    font-size: 0.6rem;
+  }
 }
 
 
@@ -81,6 +97,10 @@
   &:hover {
     color:$interactive-color;
   }
+}
+
+.incomplete-warning {
+  margin: 0 !important;
 }
 
 

@@ -62,6 +62,9 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         maxSearchResults={30}
         dataSource={tags}
+        placeholder={intl.formatMessage({
+          id: "tags_placeholder"
+        })}
         intl={intl}
       />
     );
@@ -122,25 +125,10 @@ class MethodEditor extends Component {
                   })}
                   fullWidth
                 />
-                {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
-                {issue
-                  ? <div>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "specific_topic",
-                        issue,
-                        "specific_topic"
-                      )}
-                    </div>
-                  : undefined}
-                {issue === "other" &&
-                  this.state.thing.specific_topic === "other"
-                  ? <b>
-                      {intl.formatMessage({
-                        id: "send_email_with_catgeory_additions"
-                      })}
-                    </b>
-                  : undefined}
+                <p className="sub-heading">
+                  {intl.formatMessage({ id: "links" })}
+                </p>  
+                {makeLocalizedListField(intl, "links")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "media" })}
                 </p>  
@@ -150,14 +138,13 @@ class MethodEditor extends Component {
                   intl={intl}
                   thing={thing}
                 />
-                {makeLocalizedListField(intl, "links")}
+                {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
                 </p>
-                <div className="suggest_tag">
-                  {intl.formatMessage({ id: "suggest_tag" })}
+                <div className="tags-field">
+                  {tagseditor}
                 </div>
-                {tagseditor}
               </div>
               <div>
                 {isQuick
@@ -170,21 +157,42 @@ class MethodEditor extends Component {
                           </div>
                         : null}
                       <RaisedButton
-                        className="incomplete-warning"
+                        className="new quick incomplete-warning"
                         disabled={incomplete}
                         primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
-                          id: "submit_" + thing.type
+                          id: "quick_submit_" + thing.type
                         })}
                       />
                       <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
+                        className="full-submit"
+                        style={buttonStyle}
                         label={intl.formatMessage({ id: "do_full_version" })}
                       />
                     </div>
                   : <div>
+                    {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
+                    {issue
+                      ? <div>
+                          {makeLocalizedChoiceField(
+                            intl,
+                            "specific_topic",
+                            issue,
+                            "specific_topic"
+                          )}
+                        </div>
+                      : undefined}
+                    {issue === "other" &&
+                      this.state.thing.specific_topic === "other"
+                      ? <b>
+                          {intl.formatMessage({
+                            id: "send_email_with_catgeory_additions"
+                          })}
+                        </b>
+                      : undefined}
                       <div>
                         <label className="sub-heading" htmlFor="body_en">
                           {intl.formatMessage({ id: thing.type + "_body_title" })}

@@ -286,9 +286,12 @@ exports[`Method editor renders correctly 1`] = `
             type="text"
             value="Petition"
           />
+          <p
+            className="sub-heading"
+          />
           <div>
-            <p
-              className="sub-heading"
+            <div
+              className="list links"
             />
           </div>
           <p
@@ -307,18 +310,23 @@ exports[`Method editor renders correctly 1`] = `
           </div>
           <div>
             <div
-              className="list links"
+              className="list videos"
             />
           </div>
           <p
             className="sub-heading"
           />
           <div
-            className="suggest_tag"
+            className="tags-field"
           />
         </div>
         <div>
           <div>
+            <div>
+              <p
+                className="sub-heading"
+              />
+            </div>
             <div>
               <label
                 className="sub-heading"
