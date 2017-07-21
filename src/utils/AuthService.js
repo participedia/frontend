@@ -26,30 +26,30 @@ class AuthService {
   //   scope: SCOPE
   // });
 
-  // AUTH_VERSION === 7
-  lock = new Auth0Lock(
-    process.env.REACT_APP_AUTH0_CLIENT_ID,
-    process.env.REACT_APP_AUTH0_DOMAIN,
-    {
-      auth: {
-        redirectUrl: window.location.origin + "/redirect",
-        responseType: "token",
-        params: {
-          scope: SCOPE,
-          state: JSON.stringify({ pathname: window.location.pathname })
-        }
-      },
-      theme: {
-        primaryColor: "#323232",
-        logo: ppLogo
-      },
-      languageDictionary: {
-        title: "Participedia"
-      }
-    }
-  );
-
   constructor(clientId, domain) {
+    // AUTH_VERSION === 7
+    this.lock = new Auth0Lock(
+      process.env.REACT_APP_AUTH0_CLIENT_ID,
+      process.env.REACT_APP_AUTH0_DOMAIN,
+      {
+        auth: {
+          redirectUrl: window.location.origin + "/redirect",
+          responseType: "token",
+          params: {
+            scope: SCOPE,
+            state: JSON.stringify({ pathname: window.location.pathname })
+          }
+        },
+        theme: {
+          primaryColor: "#323232",
+          logo: ppLogo
+        },
+        languageDictionary: {
+          title: "Participedia"
+        }
+      }
+    );
+
     this.clientId = clientId;
     this.domain = domain;
     // AUTH_VERSION=7
