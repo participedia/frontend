@@ -55,7 +55,7 @@
     "properties-parser": "^0.3.1",
     "q-io": "^1.13.4",
     "query-parser": "^0.0.1",
-    "query-string": "^4.3.4",
+    "query-string": "^5.0.0",
     "quill": "^1.2.5",
     "raven-js": "^3.16.0",
     "react": "^15.5.4",
