@@ -42,17 +42,19 @@ class API {
 
   fetchGeoJSON = function(countryCode) {
     let url = APIURL + "/countries/" + countryCode + ".geo.json";
-    return fetch(url).then(response => response.json()).catch(function(error) {
-      console.error(
-        `There has been a problem with your fetch operation: (${url}) ${error}`
-      );
-      return error;
-    });
+    return signedFetch(url)
+      .then(response => response.json())
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
   };
 
   countsByCountry = function() {
     let url = APIURL + "/case/countsByCountry";
-    return fetch(url)
+    return signedFetch(url)
       .then(response => response.json())
       .then(function(json) {
         return json.data.countryCounts;
@@ -70,12 +72,14 @@ class API {
     let url = `${APIURL}/search?${querystring}`;
     // console.log("queryArgs", queryArgs);
     // console.log("DOING SEARCH", url);
-    return fetch(url).then(response => response.json()).catch(function(error) {
-      console.log(
-        `There has been a problem with your fetch operation: (${url}) ${error}`
-      );
-      return error;
-    });
+    return signedFetch(url)
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
   };
 
   searchMapTokens = function(search) {
@@ -193,7 +197,7 @@ class API {
 
   fetchMethodById = function(methodId) {
     let url = APIURL + "/method/" + methodId;
-    return fetch(url)
+    return signedFetch(url)
       .then(response => response.json())
       .then(json => json.data)
       .catch(function(error) {
@@ -206,7 +210,7 @@ class API {
 
   fetchOrgById = function(caseId) {
     let url = APIURL + "/organization/" + caseId;
-    return fetch(url)
+    return signedFetch(url)
       .then(response => response.json())
       .then(json => json.data)
       .catch(function(error) {
@@ -219,12 +223,14 @@ class API {
 
   fetchNouns = function(noun) {
     let url = APIURL + "/search/getAllForType?objType=" + noun;
-    return fetch(url).then(response => response.json()).catch(function(error) {
-      console.log(
-        `There has been a problem with your fetch operation: (${url}) ${error}`
-      );
-      return error;
-    });
+    return signedFetch(url)
+      .then(response => response.json())
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
   };
 
   addBookmark = function(bookmarkType, thingid) {
