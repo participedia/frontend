@@ -89,6 +89,7 @@ const defaultThing = {
     city: "",
     countrycode: ""
   },
+  videos: [],
   authors: [
     {
       name: "author name"
@@ -201,18 +202,7 @@ export default class ItemDetails extends React.Component {
                       </TwitterShareButton>
                     </li>
                   </ul>
-                  {thing.vidURL
-                    ? <Row>
-                        <Col className="vid-container" md="6">
-                          <ReactPlayer
-                            width="100%"
-                            controls
-                            url={thing.vidURL}
-                          />
-                        </Col>
-                        <Col md="6"><Gallery thing={thing} /></Col>
-                      </Row>
-                    : <Gallery thing={thing} />}
+                  <Gallery thing={thing} />
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
