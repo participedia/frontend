@@ -1,5 +1,7 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
+import ReactPlayer from "react-player";
+import caseIconFB from "../img/play.png";
 
 // This component knows how to process a "thing" (case, method, etc) and extract the images
 // and other data that the ImageGallery component needs.
@@ -11,17 +13,23 @@ function getPics(thing) {
     : [];
 }
 
+function getVids(thing) {
+  return thing && thing.videos
+    ? thing.videos
+    : [];
+}
+
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.defineImage = this.defineImage.bind(this);
     this.getWidth = this.getWidth.bind(this);
     this.renderItem = this.renderItem.bind(this);
-    this.state = { pics: getPics(props.thing) };
+    this.state = { pics: getPics(props.thing), videos: getVids(props.thing) };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ pics: getPics(nextProps.thing) });
+    this.setState({ pics: getPics(nextProps.thing), videos: getVids(nextProps.thing)});
   }
 
   defineImage(url) {
@@ -45,17 +53,29 @@ class Gallery extends React.Component {
 
   renderItem(item) {
     const imageClass = this.defineImage(item.original);
-    return (
-      <div className="single-image">
-        <img
-          className={imageClass}
-          src={item.original}
-          alt={item.originalAlt}
-          srcSet={item.srcSet}
-          sizes={item.sizes}
+    if (item.embedUrl) {
+      return (
+      <div className="single-image">  
+        <ReactPlayer
+          width="100%"
+          controls
+          url={item.original}
         />
-      </div>
-    );
+      </div>  
+      );
+    } else {
+      return (
+        <div className="single-image">
+          <img
+            className={imageClass}
+            src={item.original}
+            alt={item.originalAlt}
+            srcSet={item.srcSet}
+            sizes={item.sizes}
+          />
+        </div>
+      );
+    }
   }
 
   render() {
@@ -67,12 +87,25 @@ class Gallery extends React.Component {
       };
     });
 
+    const videos = this.state.videos.map(video => {
+      const src = video;
+      return {
+        original: src,
+        thumbnail: caseIconFB,
+        embedUrl: src,
+      };
+    });
+
+    Array.prototype.push.apply(images, videos);
+
     if (images.length === 0) {
       return <div />;
     } else if (images.length > 1) {
       return (
         <ImageGallery
           items={images}
+          showPlayButton={false}
+          showVideo={true}
           showFullscreenButton={false}
           renderItem={this.renderItem}
           slideInterval={2000}
