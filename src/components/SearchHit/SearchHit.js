@@ -25,15 +25,17 @@ export class SearchHit extends React.Component {
     let type = result.type;
     let title = result.title;
     let body = htmlToText.fromString(result.body).substring(0, 200) + "...";
-    let isAuthenticated = this.props.isAuthenticated;
     let link = `/${type}/${id}`;
     let thumbnailClass = "thumbnail " + type;
     let thumbnailStyle = {
       backgroundImageSrc: backgroundImage
     };
-    let bookmarked = isAuthenticated && result.bookmarked;
     let bookmarkIcon = (
-      <BookmarkToggle thingType="case" thingid={id} bookmarked={bookmarked} />
+      <BookmarkToggle
+        thingType={result.type}
+        thingid={result.id}
+        bookmarked={result.bookmarked}
+      />
     );
     let blob = (
       <Col md={this.props.selectedViewType === "grid" ? "4" : "12"}>
