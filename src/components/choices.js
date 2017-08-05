@@ -32,10 +32,16 @@ export function getChoices(property) {
   }
 }
 
+function toTitleCase(str) {
+  if (str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+}
+
 export function makeLocalizedChoices(intl, property) {
   let choices = getChoices(property).map(function(v) {
     return {
-      text: intl.formatMessage({ id: v }),
+      text: toTitleCase(intl.formatMessage({ id: v })),
       value: v
     };
   });

@@ -12,6 +12,7 @@ const muiTheme = getMuiTheme({
   },
   datePicker: {
     selectColor: "#ec1414",
+    headerColor: "#ec1414"
   },
   appBar: {}
 });

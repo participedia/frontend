@@ -30,9 +30,10 @@
 .contentArea {
   padding-top: 64px;
   min-height: 20em;
-
-  @include media-breakpoint-down(md) {
-    padding-top: 150px;
+  .home {
+    @include media-breakpoint-down(md) {
+      padding-top: 28px;
+    }
   }
 }
 

@@ -10,6 +10,9 @@
   svg {
     visibility: hidden;
   }
+  @include media-breakpoint-only(md) {
+    width: 462px;
+  }
   &:after {
     content: 'Select a photo from your device';
     color: rgba(0, 0, 0, 0.47);
