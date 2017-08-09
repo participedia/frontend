@@ -47,7 +47,7 @@
     "line-by-line": "^0.1.5",
     "mapbox-gl": "^0.38.0",
     "material-ui": "^0.18.3",
-    "material-ui-chip-input": "^0.15.0",
+    "material-ui-chip-input": "^0.16.0",
     "object-omit": "^1.0.0",
     "parse-dms": "^0.0.3",
     "prettier": "^1.4.4",

@@ -5556,9 +5556,9 @@ matchmedia@^0.1.2:
   dependencies:
     css-mediaquery "^0.1.2"
 
-material-ui-chip-input@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-0.15.0.tgz#d44b46f28885b27e8ffeafc3e321c05832825ecf"
+material-ui-chip-input@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-0.16.0.tgz#de9e81f776dca65705c802fee557700bb062f911"
   dependencies:
     prop-types "^15.5.7"
 
