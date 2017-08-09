@@ -3,7 +3,7 @@
 .geosuggest {
   padding: 0.6rem 1rem;
   border: 2px solid $black;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(lg) {
     width: 50% !important;
   }
 }
@@ -28,7 +28,6 @@
   padding: 0;
   margin-top: -1px;
   background: #fff;
-  // border: 2px solid #267dc0;
   border-top-width: 0;
   overflow-x: hidden;
   overflow-y: auto;

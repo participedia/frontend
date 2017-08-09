@@ -30,7 +30,7 @@
 
 .date-field {
   border: 2px solid $black;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(lg) {
     width: 50% !important;
   };
   margin-bottom: 1rem;
@@ -58,6 +58,11 @@
     svg {
       transform: translateY(8px);
     }
+  }
+  input {
+    @include media-breakpoint-only(md) {
+      font-size: 0.9rem;
+    };
   }
   .prompt {
     @include media-breakpoint-down(sm) {

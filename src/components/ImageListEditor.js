@@ -31,6 +31,8 @@ class ImageListEditorField extends Component {
     let src = img;
     // our convention is that the first image is the lead image
     let images = this.state.images;
+    var index = images.indexOf(img);
+    images.splice(index, 1);
     images.unshift(img);
     this.setState({ images });
     this.props.onChange(images);
