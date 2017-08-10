@@ -45,7 +45,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jwt-decode": "^2.1.0",
     "line-by-line": "^0.1.5",
-    "mapbox-gl": "^0.38.0",
+    "mapbox-gl": "^0.39.1",
     "material-ui": "^0.18.3",
     "material-ui-chip-input": "^0.16.0",
     "object-omit": "^1.0.0",
