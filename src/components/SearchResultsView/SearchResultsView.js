@@ -312,17 +312,6 @@ export class SearchResultsView extends React.Component {
                 </div>
                 <div
                   onClick={() =>
-                    preventDefault(this.props.onCategoryChange("News"))}
-                  className={
-                    this.props.selectedCategory === "News"
-                      ? "selected"
-                      : "unselected"
-                  }
-                >
-                  {this.props.intl.formatMessage({ id: "news" })}
-                </div>
-                <div
-                  onClick={() =>
                     preventDefault(this.props.onCategoryChange("Cases"))}
                   className={
                     this.props.selectedCategory === "Cases"
@@ -366,9 +355,6 @@ export class SearchResultsView extends React.Component {
               >
                 <option value="All">
                   {this.props.intl.formatMessage({ id: "all" })}
-                </option>
-                <option value="News">
-                  {this.props.intl.formatMessage({ id: "news" })}
                 </option>
                 <option value="Cases">
                   {this.props.intl.formatMessage({ id: "cases" })}
