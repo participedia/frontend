@@ -377,7 +377,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?specific_topic=Sustainable%20Development"
+                  href="/search?specific_topic=Sustainable Development"
                   onClick={[Function]}
                 >
                   Sustainable Development
@@ -417,7 +417,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?communication_mode=Discussion,%20Dialogue,%20or%20Deliberation"
+                  href="/search?communication_mode=Discussion, Dialogue, or Deliberation"
                   onClick={[Function]}
                 >
                   Discussion, Dialogue, or Deliberation
@@ -434,7 +434,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?decision_method=Getting%20sense%20of%20room/group%20(i.e.%20no%20formal%20voting)"
+                  href="/search?decision_method=Getting sense of room/group (i.e. no formal voting)"
                   onClick={[Function]}
                 >
                   Getting sense of room/group (i.e. no formal voting)
@@ -514,7 +514,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?targeted_participants_public_role=Stakeholder%20Organizations"
+                  href="/search?targeted_participants_public_role=Stakeholder Organizations"
                   onClick={[Function]}
                 >
                   Stakeholder Organizations
@@ -530,7 +530,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?targeted_audience=General%20Public"
+                  href="/search?targeted_audience=General Public"
                   onClick={[Function]}
                 >
                   General Public
@@ -546,7 +546,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?participant_selection=Open%20to%20all%20with%20targeted%20recruitment"
+                  href="/search?participant_selection=Open to all with targeted recruitment"
                   onClick={[Function]}
                 >
                   Open to all with targeted recruitment
@@ -562,7 +562,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?type_of_funding_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
+                  href="/search?type_of_funding_entity=Regional Government (e.g. State, Provincial, Territorial)"
                   onClick={[Function]}
                 >
                   Regional Government (e.g. State, Provincial, Territorial)
@@ -578,7 +578,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?typical_implementing_entity=Regional%20Government%20(e.g.%20State,%20Provincial,%20Territorial)"
+                  href="/search?typical_implementing_entity=Regional Government (e.g. State, Provincial, Territorial)"
                   onClick={[Function]}
                 >
                   Regional Government (e.g. State, Provincial, Territorial)
@@ -594,7 +594,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <a
                   className="tag"
-                  href="/search?typical_sponsoring_entity=International%20Organization"
+                  href="/search?typical_sponsoring_entity=International Organization"
                   onClick={[Function]}
                 >
                   International Organization
@@ -673,6 +673,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -687,6 +688,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -763,6 +765,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -775,6 +778,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -787,6 +791,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--linkedin"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"

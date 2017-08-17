@@ -44,14 +44,14 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             >
               <a
                 className="tag"
-                href="/search?tag=civic%20engagement"
+                href="/search?tag=civic engagement"
                 onClick={[Function]}
               >
                 civic engagement
               </a>
               <a
                 className="tag"
-                href="/search?tag=digital%20participation"
+                href="/search?tag=digital participation"
                 onClick={[Function]}
               >
                 digital participation
@@ -121,6 +121,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -135,6 +136,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -212,6 +214,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -224,6 +227,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -236,6 +240,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--linkedin"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
