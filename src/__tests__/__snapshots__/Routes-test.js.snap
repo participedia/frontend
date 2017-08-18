@@ -278,12 +278,6 @@ exports[`App 1`] = `
                   className="unselected"
                   onClick={[Function]}
                 >
-                  News
-                </div>
-                <div
-                  className="unselected"
-                  onClick={[Function]}
-                >
                   Cases
                 </div>
                 <div
@@ -310,11 +304,6 @@ exports[`App 1`] = `
                   value="All"
                 >
                   All
-                </option>
-                <option
-                  value="News"
-                >
-                  News
                 </option>
                 <option
                   value="Cases"
@@ -945,12 +934,6 @@ exports[`Searching for a word 1`] = `
                   className="unselected"
                   onClick={[Function]}
                 >
-                  News
-                </div>
-                <div
-                  className="unselected"
-                  onClick={[Function]}
-                >
                   Cases
                 </div>
                 <div
@@ -977,11 +960,6 @@ exports[`Searching for a word 1`] = `
                   value="All"
                 >
                   All
-                </option>
-                <option
-                  value="News"
-                >
-                  News
                 </option>
                 <option
                   value="Cases"

@@ -10,52 +10,52 @@ import { injectIntl, FormattedMessage } from "react-intl";
 class About extends React.Component {
   render() {
     const communityLink = (
-      <Link to="http://participedia.net/en/user/register">
+      <Link target="_blank" to="http://participedia.net/en/user/register">
         {this.props.intl.formatMessage({ id: "join_community" })}
       </Link>
     );
     const ccLink = (
-      <Link to="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+      <Link target="_blank" to="http://creativecommons.org/licenses/by-nc-sa/3.0/">
         {this.props.intl.formatMessage({ id: "creative_commons" })}
       </Link>
     );
     const caseLink = (
-      <Link to="http://participedia.net/en/browse/cases">
+      <Link target="_blank" to="http://participedia.net/en/browse/cases">
         {this.props.intl.formatMessage({ id: "cases" })}
       </Link>
     );
     const methodLink = (
-      <Link to="http://participedia.net/en/browse/methods">
+      <Link target="_blank" to="http://participedia.net/en/browse/methods">
         {this.props.intl.formatMessage({ id: "methods" })}
       </Link>
     );
     const orgLink = (
-      <Link to="http://participedia.net/en/browse/organizations">
+      <Link target="_blank" to="http://participedia.net/en/browse/organizations">
         {this.props.intl.formatMessage({ id: "organizations" })}
       </Link>
     );
     const publishLink = (
-      <Link to="http://participedia.net/en/create-content">
+      <Link target="_blank" to="http://participedia.net/en/create-content">
         {this.props.intl.formatMessage({ id: "publishing" })}
       </Link>
     );
     const teachLink = (
-      <Link to="http://participedia.net/content/assign-participedia-classroom">
+      <Link target="_blank" to="http://participedia.net/content/assign-participedia-classroom">
         {this.props.intl.formatMessage({ id: "teach_link" })}
       </Link>
     );
     const sshrcLink = (
-      <Link to="http://www.bfna.org/">
+      <Link target="_blank" to="http://www.bfna.org/">
         {this.props.intl.formatMessage({ id: "sshrc_grant" })}
       </Link>
     );
     const sshrcLink2 = (
-      <Link to="http://www.sshrc-crsh.gc.ca/home-accueil-eng.aspx">
+      <Link target="_blank" to="http://www.sshrc-crsh.gc.ca/home-accueil-eng.aspx">
         {this.props.intl.formatMessage({ id: "sshrc" })}
       </Link>
     );
     const bertelsmannLink = (
-      <Link to="http://www.sshrc-crsh.gc.ca/home-accueil-eng.aspx">
+      <Link target="_blank" to="http://www.sshrc-crsh.gc.ca/home-accueil-eng.aspx">
         {this.props.intl.formatMessage({ id: "bertelsmann_foundation" })}
       </Link>
     );
@@ -105,7 +105,7 @@ class About extends React.Component {
                   <p className="text pb-1">
                     {this.props.intl.formatMessage({ id: "members_intro" })}
                   </p>
-                  <Link to="http://participedia.net/en/user/register">
+                  <Link target="_blank" to="http://participedia.net/en/user/register">
                     {this.props.intl.formatMessage({ id: "join_now" })}
                   </Link>
                 </div>
