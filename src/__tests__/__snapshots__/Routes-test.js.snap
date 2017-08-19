@@ -241,7 +241,7 @@ exports[`App 1`] = `
                 <div>
                   <div>
                     <a
-                      href="/search?query=participatory%20budgeting"
+                      href="/search?query=participatory%2520budgeting"
                       onClick={[Function]}
                     >
                       Mention "Participatory Budgeting"
@@ -897,7 +897,7 @@ exports[`Searching for a word 1`] = `
                 <div>
                   <div>
                     <a
-                      href="/search?query=participatory%20budgeting"
+                      href="/search?query=participatory%2520budgeting"
                       onClick={[Function]}
                     >
                       Mention "Participatory Budgeting"

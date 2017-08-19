@@ -10,7 +10,7 @@ const Tags = ({ thing, intl }) =>
         </p>
         <div className="tags">
           {thing.tags.map(tag => (
-            <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
+            <span>{tag}</span>
           ))}
         </div>
       </div>
