@@ -97,8 +97,7 @@ class MethodEditor extends Component {
     );
 
     let issue = this.state.thing.issue;
-    let incomplete =
-      (thing.title ? false : true) || (thing.body ? false : true);
+    let incomplete = thing.title ? false : true;
     return (
       <Form
         onSubmit={onSubmit}
@@ -127,11 +126,11 @@ class MethodEditor extends Component {
                 />
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "links" })}
-                </p>  
+                </p>
                 {makeLocalizedListField(intl, "links")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "media" })}
-                </p>  
+                </p>
                 <ImageListEditor
                   property="images"
                   auth={this.props.auth}
@@ -174,28 +173,35 @@ class MethodEditor extends Component {
                       />
                     </div>
                   : <div>
-                    {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
-                    {issue
-                      ? <div>
-                          {makeLocalizedChoiceField(
-                            intl,
-                            "specific_topic",
-                            issue,
-                            "specific_topic"
-                          )}
-                        </div>
-                      : undefined}
-                    {issue === "other" &&
-                      this.state.thing.specific_topic === "other"
-                      ? <b>
-                          {intl.formatMessage({
-                            id: "send_email_with_catgeory_additions"
-                          })}
-                        </b>
-                      : undefined}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "general_issues",
+                        "issue",
+                        "general_issues"
+                      )}
+                      {issue
+                        ? <div>
+                            {makeLocalizedChoiceField(
+                              intl,
+                              "specific_topic",
+                              issue,
+                              "specific_topic"
+                            )}
+                          </div>
+                        : undefined}
+                      {issue === "other" &&
+                        this.state.thing.specific_topic === "other"
+                        ? <b>
+                            {intl.formatMessage({
+                              id: "send_email_with_catgeory_additions"
+                            })}
+                          </b>
+                        : undefined}
                       <div>
                         <label className="sub-heading" htmlFor="body_en">
-                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                          {intl.formatMessage({
+                            id: thing.type + "_body_title"
+                          })}
                         </label>
                       </div>
                       <Field fieldName="body" type={LazyBodyEditor} />
