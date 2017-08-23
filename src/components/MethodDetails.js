@@ -33,7 +33,7 @@ import { BooleanProp } from "../components/Props";
 
 export default class MethodDetails extends React.Component {
   render() {
-    let thing = this.props.case;
+    let thing = this.props.case; // should thing be `this.props.method`?
     let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {

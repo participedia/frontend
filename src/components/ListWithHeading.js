@@ -1,4 +1,5 @@
 import React from "react";
+import "./ListWithHeading.css";
 
 export default class ListGroupWithHeading extends React.Component {
   render() {
@@ -7,7 +8,17 @@ export default class ListGroupWithHeading extends React.Component {
       return <div />;
     }
     let items = thing[property].map(item =>
-      <div key={item} className="link">{item}</div>
+      <div>
+        { (!/^https?:\/\//i.test(item)) ?
+        <a target="_blank" key={item} href={'http://' + item}>
+          {item}
+        </a>
+        :
+        <a target="_blank" key={item} href={item}>
+          {item}
+        </a>
+        }
+      </div>
     );
     return (
       <div>

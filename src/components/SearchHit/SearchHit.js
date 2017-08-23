@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./SearchHit.css";
-import { injectIntl, intlShape } from "react-intl";
+import { injectIntl, intlShape, FormattedDate } from "react-intl";
 import { Row, Col } from "reactstrap";
 import backgroundImage from "../../img/pp-thumbnail-1.jpg";
 import BookmarkToggle from "../BookmarkToggle";
-import TimeAgo from "react-timeago";
+import ReactPlayer from "react-player";
 import htmlToText from "html-to-text";
 
 export class SearchHit extends React.Component {
@@ -21,6 +21,7 @@ export class SearchHit extends React.Component {
     let pic = result.images && result.images.length
       ? awsUrl + encodeURIComponent(result.images[0])
       : "";
+    let video = result.videos ? result.videos[0] : "";
     let id = result.id;
     let type = result.type;
     let title = result.title;
@@ -46,6 +47,14 @@ export class SearchHit extends React.Component {
                   ? <div className="case-images">
                       <img alt="" src={pic} />
                     </div>
+                 :   
+                  video ? 
+                    <ReactPlayer
+                      width="100%"
+                      height="200"
+                      controls
+                      url={video}
+                    />
                   : <div className={thumbnailClass} style={thumbnailStyle} />}
               </Link>
               <small className="label">
@@ -57,8 +66,13 @@ export class SearchHit extends React.Component {
               <Link to={link} className="result-title">
                 <div className="result-title-text">{title}</div>
               </Link>
-              <p>
-                <TimeAgo date={result.updated_date} />
+              <p>{intl.formatMessage({ id: "submitted" })}&nbsp;
+                <FormattedDate 
+                  value={result.updated_date}
+                  year='numeric'
+                  month='long'
+                  day='2-digit'
+                />
               </p>
             </div>
           : <Row className="list-item">
@@ -84,8 +98,13 @@ export class SearchHit extends React.Component {
                   <div className="result-title-text">{title}</div>
                 </Link>
                 <div>{body}</div>
-                <p>
-                  <TimeAgo date={result.updated_date} />
+                <p>{intl.formatMessage({ id: "submitted" })}&nbsp;
+                  <FormattedDate 
+                    value={result.updated_date}
+                    year='numeric'
+                    month='long'
+                    day='2-digit'
+                  />
                 </p>
               </Col>
               <div className="separator" />

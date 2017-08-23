@@ -303,7 +303,7 @@ exports[`Case editor renders correctly 1`] = `
                   className="sub-heading"
                 />
               </div>
-               
+
             </div>
           </div>
         </div>
@@ -344,7 +344,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="case-location"
               >
                 Forlì
-                , 
+                ,
                 Italy
               </p>
             </div>
@@ -379,20 +379,29 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="links"
               >
-                <div
-                  className="link"
-                >
-                  link 1
+                <div>
+                  <a
+                    href="http://link 1"
+                    target="_blank"
+                  >
+                    link 1
+                  </a>
                 </div>
-                <div
-                  className="link"
-                >
-                  link 2
+                <div>
+                  <a
+                    href="http://link 2"
+                    target="_blank"
+                  >
+                    link 2
+                  </a>
                 </div>
-                <div
-                  className="link"
-                >
-                  link 3
+                <div>
+                  <a
+                    href="http://link 3"
+                    target="_blank"
+                  >
+                    link 3
+                  </a>
                 </div>
               </div>
             </div>
