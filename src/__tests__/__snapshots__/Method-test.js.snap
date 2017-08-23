@@ -36,8 +36,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               >
                 <div>
                   <a
-                    href="link%201"
-                    onClick={[Function]}
+                    href="http://link 1"
                     target="_blank"
                   >
                     link 1
@@ -45,8 +44,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 </div>
                 <div>
                   <a
-                    href="link%202"
-                    onClick={[Function]}
+                    href="http://link 2"
                     target="_blank"
                   >
                     link 2
@@ -54,8 +52,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 </div>
                 <div>
                   <a
-                    href="link%203"
-                    onClick={[Function]}
+                    href="http://link 3"
                     target="_blank"
                   >
                     link 3
