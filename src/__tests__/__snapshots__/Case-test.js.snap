@@ -303,7 +303,7 @@ exports[`Case editor renders correctly 1`] = `
                   className="sub-heading"
                 />
               </div>
-
+               
             </div>
           </div>
         </div>
@@ -344,7 +344,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="case-location"
               >
                 Forlì
-                ,
+                , 
                 Italy
               </p>
             </div>
