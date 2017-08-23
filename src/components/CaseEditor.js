@@ -114,8 +114,7 @@ class CaseEditor extends Component {
         intl={intl}
       />
     );
-    let incomplete =
-      (thing.title ? false : true);
+    let incomplete = thing.title ? false : true;
     let issue = this.state.thing.issue;
     return (
       <Form
@@ -143,7 +142,12 @@ class CaseEditor extends Component {
                   })}
                   fullWidth
                 />
-                {makeLocalizedChoiceField(intl, "general_issues", "issue", "general_issues")}
+                {makeLocalizedChoiceField(
+                  intl,
+                  "issue",
+                  "issue",
+                  "general_issues"
+                )}
                 {issue
                   ? <div>
                       {makeLocalizedChoiceField(
@@ -166,12 +170,12 @@ class CaseEditor extends Component {
                   {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
                     {intl.formatMessage({ id: "date" })}
-                  </p>  
+                  </p>
                   {makeLocalizedDateField(intl, "start_date")}
                   {makeLocalizedDateField(intl, "end_date")}
                   <p className="sub-heading">
                     {intl.formatMessage({ id: "links" })}
-                  </p>  
+                  </p>
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">
@@ -221,7 +225,9 @@ class CaseEditor extends Component {
                   : <div>
                       <div>
                         <label className="sub-heading" htmlFor="body_en">
-                          {intl.formatMessage({ id: thing.type + "_body_title" })}
+                          {intl.formatMessage({
+                            id: thing.type + "_body_title"
+                          })}
                         </label>
                       </div>
                       <Field fieldName="body" type={LazyBodyEditor} />
