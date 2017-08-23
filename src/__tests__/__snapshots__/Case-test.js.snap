@@ -391,20 +391,32 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="links"
               >
-                <div
-                  className="link"
-                >
-                  link 1
+                <div>
+                  <a
+                    href="link%201"
+                    onClick={[Function]}
+                    target="_blank"
+                  >
+                    link 1
+                  </a>
                 </div>
-                <div
-                  className="link"
-                >
-                  link 2
+                <div>
+                  <a
+                    href="link%202"
+                    onClick={[Function]}
+                    target="_blank"
+                  >
+                    link 2
+                  </a>
                 </div>
-                <div
-                  className="link"
-                >
-                  link 3
+                <div>
+                  <a
+                    href="link%203"
+                    onClick={[Function]}
+                    target="_blank"
+                  >
+                    link 3
+                  </a>
                 </div>
               </div>
             </div>
