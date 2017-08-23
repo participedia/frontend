@@ -8,7 +8,7 @@ const LinkedPropertyGroupWithHeading = ({ heading, property, thing, intl }) =>
           {intl.formatMessage({ id: heading ? heading : "not_specified" })}
         </p>
         <div className={property}>
-          <SearchLink intl={intl} tag={property} value={thing[property]} />
+          {thing[property]}
         </div>
       </div>
     : <div />;
