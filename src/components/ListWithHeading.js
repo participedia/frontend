@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./ListWithHeading.css";
 
 export default class ListGroupWithHeading extends React.Component {
   render() {
@@ -7,7 +9,11 @@ export default class ListGroupWithHeading extends React.Component {
       return <div />;
     }
     let items = thing[property].map(item =>
-      <div key={item} className="link">{item}</div>
+      <div>
+        <Link target="_blank" key={item} to={item}>
+          {item}
+        </Link>
+      </div>
     );
     return (
       <div>

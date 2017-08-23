@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
 import Gallery from "../Gallery";
-import ReactPlayer from "react-player";
 import BookmarkToggle from "../BookmarkToggle";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
