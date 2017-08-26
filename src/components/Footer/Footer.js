@@ -12,7 +12,7 @@ export class Footer extends React.Component {
   render() {
     return (
       <div className="footer-component">
-        <Container className="mobile-footer hidden-sm-up">
+        <Container className="mobile-footer pb-4 d-md-none d-lg-none d-xl-none">
           <Row className="pt-4">
             <Col xs={{ size: 5, offset: 1 }}>
               <Link to="/about">
@@ -79,8 +79,8 @@ export class Footer extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container className="expanded-footer" fluid={true}>
-          <Row className="hidden-sm-down"> 
+        <Container className="expanded-footer d-lg-block d-md-block d-sm-none d-none" fluid={true}>
+          <Row> 
             <Col lg={{ size: 6 }}>
               <div className="column list">
                 <Link to="/about">

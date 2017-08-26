@@ -27,7 +27,7 @@ class Research extends React.Component {
     return (
       <Container fluid={false} className="about static">
         <Row>
-          <Col lg={{ size: 10, offset: 1 }}>
+          <Col lg={{ size: 8}} className="ml-auto mr-auto">
             <h1>{this.props.intl.formatMessage({ id: "research" })}</h1>
             <h2>{this.props.intl.formatMessage({ id: "research_intro" })}</h2>
             <div className="accordion">

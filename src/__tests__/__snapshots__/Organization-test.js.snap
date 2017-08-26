@@ -12,13 +12,13 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
         className="row"
       >
         <div
-          className="hidden-sm-down sidepanel col col-md-3"
+          className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
         >
           <div />
           <div />
           <div>
             <div
-              className="hidden-sm-down case-map"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
             >
               <div
                 dangerouslySetInnerHTML={
@@ -34,7 +34,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               </p>
             </div>
             <p
-              className="hidden-sm-down sub-heading"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             />
             <p
               className="sub-sub-heading"
@@ -123,7 +123,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               Urban Interactive Studio
             </h2>
             <ul
-              className="icons-mobile clearfix hidden-sm-up"
+              className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
               <li />
               <li>
@@ -181,7 +181,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               />
             </div>
             <div
-              className="mobile-metadata accordion hidden-sm-up"
+              className="mobile-metadata accordion d-md-none d-lg-none d-xl-none"
             >
               <div
                 className="tab"
@@ -208,7 +208,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 >
                   <div>
                     <div
-                      className="hidden-sm-down case-map"
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
                     >
                       <div
                         dangerouslySetInnerHTML={
@@ -224,7 +224,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                       </p>
                     </div>
                     <p
-                      className="hidden-sm-down sub-heading"
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
                     />
                     <p
                       className="sub-sub-heading"
@@ -346,7 +346,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools hidden-sm-down col col-md-1"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
         >
           <div
             className="top-icons"
@@ -410,7 +410,7 @@ exports[`Organization editor renders correctly 1`] = `
       className="detailed-case-component container-fluid"
     >
       <div
-        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+        className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
       />
       <div
         className="main-area col-12 col-md-8"

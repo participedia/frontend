@@ -161,7 +161,8 @@ export default class ItemDetails extends React.Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
             <Row>
-              <Col md="3" className="hidden-sm-down sidepanel">
+              <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block
+ sidepanel">
                 <Featured
                   thing={thing}
                   profile={this.state.profile}
@@ -185,7 +186,7 @@ export default class ItemDetails extends React.Component {
                   <h2 className="case-title">
                     {thing.title}
                   </h2>
-                  <ul className="icons-mobile clearfix hidden-sm-up">
+                  <ul className="icons-mobile clearfix d-md-none d-lg-none d-xl-none">
                     <li>{bookmarkIcon}</li>
                     <li>
                       <FacebookShareButton
@@ -213,7 +214,7 @@ export default class ItemDetails extends React.Component {
                     </li>
                   </ul>
                   <Gallery thing={thing} />
-                  <div className="mobile-metadata accordion hidden-sm-up">
+                  <div className="mobile-metadata accordion d-md-none d-lg-none d-xl-none">
                     <AccordionTab
                       title={this.props.intl.formatMessage({ id: "related_content" })}
                     >
@@ -259,7 +260,7 @@ export default class ItemDetails extends React.Component {
                   />
                 </div>
               </Col>
-              <Col md="1" className="case-tools hidden-sm-down">
+              <Col md="1" className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block">
                 <div className="top-icons">
                   {bookmarkIcon}
                   <FacebookShareButton

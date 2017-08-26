@@ -109,7 +109,7 @@ class Profile extends Component {
               <div className="authored-content">
                 <div className="heading">Authored Content</div>
                   <div className="view-types-cont">
-                    <div className="view-types hidden-sm-down">
+                    <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
                       <div
                         onClick={() =>
                           preventDefault(this.onLayoutChange("grid"))}

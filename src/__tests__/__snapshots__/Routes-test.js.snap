@@ -44,7 +44,7 @@ exports[`App 1`] = `
         />
       </div>
       <a
-        className="hidden-sm-down"
+        className="d-none"
         href="/new"
         onClick={[Function]}
       >
@@ -55,7 +55,7 @@ exports[`App 1`] = `
         </div>
       </a>
       <div
-        className="loginButton hidden-sm-down"
+        className="loginButton d-none d-sm-block d-md-block d-lg-block d-xl-block"
       >
         <button
           disabled={false}
@@ -197,7 +197,8 @@ exports[`App 1`] = `
           className="search-results-component container-fluid"
         >
           <div
-            className="sidepanel hidden-sm-down col col-md-3"
+            className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none
+           col col-md-3"
           >
             <div
               className="sorting-options"
@@ -260,13 +261,13 @@ exports[`App 1`] = `
             </div>
           </div>
           <div
-            className="results-area col col-md-9"
+            className="results-area col col-md-12"
           >
             <div
               className="clearfix search-actions-area"
             >
               <div
-                className="filters hidden-xs-down"
+                className="filters d-none d-md-block d-lg-block d-xl-block"
               >
                 <div
                   className="selected"
@@ -296,7 +297,7 @@ exports[`App 1`] = `
                 </div>
               </div>
               <select
-                className="mobile-select hidden-sm-up"
+                className="mobile-select d-md-none"
                 onChange={[Function]}
                 value="All"
               >
@@ -322,7 +323,7 @@ exports[`App 1`] = `
                 </option>
               </select>
               <div
-                className="view-types hidden-sm-down"
+                className="view-types d-none d-md-block d-lg-block d-xl-block"
               >
                 <div
                   className="selected"
@@ -400,7 +401,7 @@ exports[`App 1`] = `
           onClick={[Function]}
         >
           <div
-            className="hidden-sm-up editButton"
+            className="editButton"
             style={
               Object {
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
@@ -512,7 +513,128 @@ exports[`App 1`] = `
     className="footer-component"
   >
     <div
-      className="expanded-footer container-fluid"
+      className="mobile-footer pb-4 d-md-none d-lg-none d-xl-none container"
+    >
+      <div
+        className="pt-4 row"
+      >
+        <div
+          className="col-5 offset-1"
+        >
+          <a
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+          <a
+            href="/research"
+            onClick={[Function]}
+          >
+            Research
+          </a>
+          <a
+            href="/teaching"
+            onClick={[Function]}
+          >
+            Teaching
+          </a>
+        </div>
+        <div
+          className="col-6"
+        >
+          <a
+            href="/news"
+            onClick={[Function]}
+          >
+            News
+          </a>
+          <a
+            href="/help"
+            onClick={[Function]}
+          >
+            Help
+          </a>
+          Contact
+        </div>
+      </div>
+      <div
+        className="pt-4 row"
+      >
+        <div
+          className="col-5 offset-1"
+        >
+          <a
+            href="/cases"
+            onClick={[Function]}
+          >
+            Cases
+          </a>
+          <a
+            href="/methods"
+            onClick={[Function]}
+          >
+            Methods
+          </a>
+          <a
+            href="/organizations"
+            onClick={[Function]}
+          >
+            Organizations
+          </a>
+        </div>
+        <div
+          className="col-6"
+        >
+          <a
+            className="social-icons"
+            href="https://www.facebook.com/Participedia/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-fb.png"
+            />
+          </a>
+          <a
+            className="social-icons"
+            href="https://twitter.com/participedia"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-tw.png"
+            />
+          </a>
+          <a
+            className="social-icons"
+            href="https://www.linkedin.com/company/participedia"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-linkedin.png"
+            />
+          </a>
+          <div
+            className="pt-4 copyright-area"
+          >
+            <img
+              alt=""
+              src="cc-icon.png"
+            />
+            <span>
+              Participedia 2017
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="expanded-footer d-lg-block d-md-block d-sm-none d-none container-fluid"
     >
       <div
         className="row"
@@ -700,7 +822,7 @@ exports[`Searching for a word 1`] = `
         />
       </div>
       <a
-        className="hidden-sm-down"
+        className="d-none"
         href="/new"
         onClick={[Function]}
       >
@@ -711,7 +833,7 @@ exports[`Searching for a word 1`] = `
         </div>
       </a>
       <div
-        className="loginButton hidden-sm-down"
+        className="loginButton d-none d-sm-block d-md-block d-lg-block d-xl-block"
       >
         <button
           disabled={false}
@@ -853,7 +975,8 @@ exports[`Searching for a word 1`] = `
           className="search-results-component container-fluid"
         >
           <div
-            className="sidepanel hidden-sm-down col col-md-3"
+            className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none
+           col col-md-3"
           >
             <div
               className="sorting-options"
@@ -916,13 +1039,13 @@ exports[`Searching for a word 1`] = `
             </div>
           </div>
           <div
-            className="results-area col col-md-9"
+            className="results-area col col-md-12"
           >
             <div
               className="clearfix search-actions-area"
             >
               <div
-                className="filters hidden-xs-down"
+                className="filters d-none d-md-block d-lg-block d-xl-block"
               >
                 <div
                   className="selected"
@@ -952,7 +1075,7 @@ exports[`Searching for a word 1`] = `
                 </div>
               </div>
               <select
-                className="mobile-select hidden-sm-up"
+                className="mobile-select d-md-none"
                 onChange={[Function]}
                 value="All"
               >
@@ -978,7 +1101,7 @@ exports[`Searching for a word 1`] = `
                 </option>
               </select>
               <div
-                className="view-types hidden-sm-down"
+                className="view-types d-none d-md-block d-lg-block d-xl-block"
               >
                 <div
                   className="selected"
@@ -1056,7 +1179,7 @@ exports[`Searching for a word 1`] = `
           onClick={[Function]}
         >
           <div
-            className="hidden-sm-up editButton"
+            className="editButton"
             style={
               Object {
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
@@ -1168,7 +1291,128 @@ exports[`Searching for a word 1`] = `
     className="footer-component"
   >
     <div
-      className="expanded-footer container-fluid"
+      className="mobile-footer pb-4 d-md-none d-lg-none d-xl-none container"
+    >
+      <div
+        className="pt-4 row"
+      >
+        <div
+          className="col-5 offset-1"
+        >
+          <a
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+          <a
+            href="/research"
+            onClick={[Function]}
+          >
+            Research
+          </a>
+          <a
+            href="/teaching"
+            onClick={[Function]}
+          >
+            Teaching
+          </a>
+        </div>
+        <div
+          className="col-6"
+        >
+          <a
+            href="/news"
+            onClick={[Function]}
+          >
+            News
+          </a>
+          <a
+            href="/help"
+            onClick={[Function]}
+          >
+            Help
+          </a>
+          Contact
+        </div>
+      </div>
+      <div
+        className="pt-4 row"
+      >
+        <div
+          className="col-5 offset-1"
+        >
+          <a
+            href="/cases"
+            onClick={[Function]}
+          >
+            Cases
+          </a>
+          <a
+            href="/methods"
+            onClick={[Function]}
+          >
+            Methods
+          </a>
+          <a
+            href="/organizations"
+            onClick={[Function]}
+          >
+            Organizations
+          </a>
+        </div>
+        <div
+          className="col-6"
+        >
+          <a
+            className="social-icons"
+            href="https://www.facebook.com/Participedia/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-fb.png"
+            />
+          </a>
+          <a
+            className="social-icons"
+            href="https://twitter.com/participedia"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-tw.png"
+            />
+          </a>
+          <a
+            className="social-icons"
+            href="https://www.linkedin.com/company/participedia"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt=""
+              src="pp-social-linkedin.png"
+            />
+          </a>
+          <div
+            className="pt-4 copyright-area"
+          >
+            <img
+              alt=""
+              src="cc-icon.png"
+            />
+            <span>
+              Participedia 2017
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="expanded-footer d-lg-block d-md-block d-sm-none d-none container-fluid"
     >
       <div
         className="row"

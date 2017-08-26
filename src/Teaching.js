@@ -10,7 +10,7 @@ class Teaching extends React.Component {
     return (
       <Container fluid={false} className="about static">
         <Row>
-          <Col lg={{ size: 8, offset: 2 }}>
+          <Col lg={{ size: 8}} className="ml-auto mr-auto">
             <h1>{this.props.intl.formatMessage({ id: "teaching" })}</h1>
             <h2>{this.props.intl.formatMessage({ id: "teaching_subtitle" })}</h2>
             <p>{this.props.intl.formatMessage({ id: "teaching_intro_1" })}</p>
