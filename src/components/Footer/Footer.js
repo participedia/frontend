@@ -12,8 +12,75 @@ export class Footer extends React.Component {
   render() {
     return (
       <div className="footer-component">
+        <Container className="mobile-footer hidden-sm-up">
+          <Row className="pt-4">
+            <Col xs={{ size: 5, offset: 1 }}>
+              <Link to="/about">
+                {this.props.intl.formatMessage({ id: "about" })}
+              </Link>
+              <Link to="/research">
+                {this.props.intl.formatMessage({ id: "research" })}
+              </Link>
+              <Link to="/teaching">
+                {this.props.intl.formatMessage({ id: "teaching" })}
+              </Link>
+            </Col>
+            <Col xs={{ size: 6 }}>
+              <Link to="/news">
+                {this.props.intl.formatMessage({ id: "news" })}
+              </Link>
+              <Link to="/help">
+                {this.props.intl.formatMessage({ id: "help" })}
+              </Link>
+              Contact
+            </Col>
+          </Row>
+          <Row className="pt-4">
+            <Col xs={{ size: 5, offset: 1 }}>
+              <Link to="/cases">
+                {this.props.intl.formatMessage({ id: "cases" })}
+              </Link>
+              <Link to="/methods">
+                {this.props.intl.formatMessage({ id: "methods" })}
+              </Link>
+              <Link to="/organizations">
+                {this.props.intl.formatMessage({ id: "organizations" })}
+              </Link>
+            </Col>
+            <Col xs={{ size: 6 }}>
+              <a
+                className="social-icons"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.facebook.com/Participedia/"
+              >
+                <img src={fbIcon} alt="" />
+              </a>
+              <a
+                className="social-icons"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://twitter.com/participedia"
+              >
+                <img src={twitterIcon} alt="" />
+              </a>
+              <a
+                className="social-icons"
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://www.linkedin.com/company/participedia"
+              >
+                <img src={linkedInIcon} alt="" />
+              </a>
+              <div className="pt-4 copyright-area">
+                <img src={ccIcon} alt="" />
+                <span>Participedia 2017</span>
+              </div>
+            </Col>
+          </Row>
+        </Container>
         <Container className="expanded-footer" fluid={true}>
-          <Row>
+          <Row className="hidden-sm-down"> 
             <Col lg={{ size: 6 }}>
               <div className="column list">
                 <Link to="/about">

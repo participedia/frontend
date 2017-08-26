@@ -43,7 +43,7 @@ export default class MethodDetails extends React.Component {
     }
     return (
       <div>
-        <p className="sub-heading">
+        <p className="hidden-sm-down sub-heading">
           {intl.formatMessage({ id: "data" })}
         </p>
         <p className="sub-sub-heading">

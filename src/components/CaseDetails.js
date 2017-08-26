@@ -24,7 +24,7 @@ export default class CaseDetails extends React.Component {
             />
           : <div />}
 
-        <p className="sub-heading">
+        <p className="hidden-sm-down sub-heading">
           {intl.formatMessage({ id: "data" })}
         </p>
         <Tags thing={thing} intl={intl} />

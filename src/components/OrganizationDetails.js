@@ -34,7 +34,7 @@ export default class OrganizationDetails extends React.Component {
           city={thing.location.city}
           countrycode={thing.location.country}
         />
-        <p className="sub-heading">
+        <p className="hidden-sm-down sub-heading">
           {intl.formatMessage({ id: "data" })}
         </p>
         <p className="sub-sub-heading">

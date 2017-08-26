@@ -125,7 +125,7 @@ class CaseEditor extends Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
             <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down" />
-            <Col md="8" xs="12" className="main-area">
+            <Col md={{ size: 6, offset: 3 }} xs="12" className="main-area">
               <div className="case-box">
                 <div className="sub-heading title-edit">
                   <label htmlFor="title">

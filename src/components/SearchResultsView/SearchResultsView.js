@@ -296,7 +296,7 @@ export class SearchResultsView extends React.Component {
               </div>
             </div>
           </Col>
-          <Col md="9" className="results-area">
+          <Col md="12" className="results-area">
             <div className="clearfix search-actions-area">
               <div className="filters hidden-xs-down">
                 <div

@@ -5,6 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
 import Gallery from "../Gallery";
 import BookmarkToggle from "../BookmarkToggle";
+import AccordionTab from "../AccordionTab/AccordionTab";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
@@ -15,6 +16,7 @@ import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import TimeAgo from "react-timeago";
 import Toggle from "material-ui/Toggle";
+// import "../../StaticPages.css";
 
 function isCurator(profile) {
   if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
@@ -159,7 +161,7 @@ export default class ItemDetails extends React.Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
             <Row>
-              <Col md="3" className="hidden-sm-down sidepanel hidden-sm-down">
+              <Col md="3" className="hidden-sm-down sidepanel">
                 <Featured
                   thing={thing}
                   profile={this.state.profile}
@@ -200,8 +202,33 @@ export default class ItemDetails extends React.Component {
                         <img src={caseIconTW} alt="" />
                       </TwitterShareButton>
                     </li>
+                    <li>
+                      <LinkedinShareButton
+                        url={currentUrl}
+                        description={textFacebook}
+                        title={thing.title}
+                      >
+                        <img src={caseIconLN} alt="" />
+                      </LinkedinShareButton>
+                    </li>
                   </ul>
                   <Gallery thing={thing} />
+                  <div className="mobile-metadata accordion hidden-sm-up">
+                    <AccordionTab
+                      title={this.props.intl.formatMessage({ id: "related_content" })}
+                    >
+                      <div className="content">
+                        <RelatedContent thing={thing} intl={intl} />
+                      </div>
+                    </AccordionTab>  
+                    <AccordionTab
+                      title={intl.formatMessage({ id: thing.type + "_data"})}
+                    >
+                      <div className="content">
+                        {detailedBits}
+                      </div>
+                    </AccordionTab> 
+                  </div>  
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
