@@ -43,13 +43,13 @@ class CountryMap extends React.Component {
   render() {
     if (this.state.error) {
       return (
-        <div className="case-map">
+        <div className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map">
           Error loading map for {this.props.countrycode}
         </div>
       );
     } else {
       return this.props.countrycode
-        ? <div className="case-map">
+        ? <div className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map">
             <div dangerouslySetInnerHTML={{ __html: this.state.SVG }} />
             {this.props.city
               ? <p className="case-location">

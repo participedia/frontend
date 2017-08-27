@@ -12,13 +12,13 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
         className="row"
       >
         <div
-          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+          className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
         >
           <div />
           <div />
           <div>
             <div
-              className="case-map"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
             >
               <div
                 dangerouslySetInnerHTML={
@@ -34,7 +34,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               </p>
             </div>
             <p
-              className="sub-heading"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             />
             <p
               className="sub-sub-heading"
@@ -123,7 +123,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               Urban Interactive Studio
             </h2>
             <ul
-              className="icons-mobile clearfix hidden-sm-up"
+              className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
               <li />
               <li>
@@ -154,6 +154,20 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                   />
                 </div>
               </li>
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--linkedin"
+                  onClick={[Function]}
+                  role="button"
+                  style={Object {}}
+                  tabIndex="0"
+                >
+                  <img
+                    alt=""
+                    src="pp-case-icon-ln.png"
+                  />
+                </div>
+              </li>
             </ul>
             <div
               className="single-image"
@@ -165,6 +179,125 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 src="https://s3.amazonaws.com/uploads.participedia.xyz/uis_favicon_0.png"
                 srcSet={undefined}
               />
+            </div>
+            <div
+              className="mobile-metadata accordion d-md-none d-lg-none d-xl-none"
+            >
+              <div
+                className="tab"
+                onClick={[Function]}
+              >
+                <p
+                  className="title"
+                />
+                <div
+                  className="content"
+                >
+                  <div />
+                </div>
+              </div>
+              <div
+                className="tab"
+                onClick={[Function]}
+              >
+                <p
+                  className="title"
+                />
+                <div
+                  className="content"
+                >
+                  <div>
+                    <div
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
+                    >
+                      <div
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "",
+                          }
+                        }
+                      />
+                      <p
+                        className="case-location"
+                      >
+                        Italy
+                      </p>
+                    </div>
+                    <p
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
+                    />
+                    <p
+                      className="sub-sub-heading"
+                    />
+                    <div
+                      className="tags"
+                    >
+                      <a
+                        className="tag"
+                        href="/search?tag=civic%20engagement"
+                        onClick={[Function]}
+                      >
+                        civic engagement
+                      </a>
+                      <a
+                        className="tag"
+                        href="/search?tag=digital%20participation"
+                        onClick={[Function]}
+                      >
+                        digital participation
+                      </a>
+                      <a
+                        className="tag"
+                        href="/search?tag=planning"
+                        onClick={[Function]}
+                      >
+                        planning
+                      </a>
+                      <a
+                        className="tag"
+                        href="/search?tag=public"
+                        onClick={[Function]}
+                      >
+                        public
+                      </a>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="links"
+                      >
+                        <div>
+                          <a
+                            href="http://link 1"
+                            target="_blank"
+                          >
+                            link 1
+                          </a>
+                        </div>
+                        <div>
+                          <a
+                            href="http://link 2"
+                            target="_blank"
+                          >
+                            link 2
+                          </a>
+                        </div>
+                        <div>
+                          <a
+                            href="http://link 3"
+                            target="_blank"
+                          >
+                            link 3
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div />
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               className="authorship-details"
@@ -213,7 +346,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools hidden-sm-down col col-md-1"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
         >
           <div
             className="top-icons"
@@ -277,7 +410,7 @@ exports[`Organization editor renders correctly 1`] = `
       className="detailed-case-component container-fluid"
     >
       <div
-        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+        className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
       />
       <div
         className="main-area col-12 col-md-8"

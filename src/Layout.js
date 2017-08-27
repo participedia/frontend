@@ -271,7 +271,7 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link className="hidden-sm-down" to="/new">
+            <Link className="d-none" to="/new">
               <div className="createButton">
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>
@@ -310,7 +310,7 @@ export class Layout extends React.Component {
           >
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
-          <MenuItem className="hidden-md-up">
+          <MenuItem className="d-md-none d-lg-none d-xl-none">
             {isAuthenticated
               ? <div className="profileButtonMenu">
                   <FlatButton
@@ -328,7 +328,7 @@ export class Layout extends React.Component {
                 </div>}
           </MenuItem>
           <MenuItem
-            className="hidden-md-up"
+            className="d-md-none d-lg-none d-xl-none"
             containerElement={<Link to={"/new"} />}
             onTouchTap={this.handleClose}
           >
@@ -340,7 +340,7 @@ export class Layout extends React.Component {
           </MenuItem>
           {isAuthenticated
             ? <MenuItem
-                className="hidden-md-up"
+                className="d-md-none d-lg-none d-xl-none"
                 primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
                 onClick={() => authService.logout()}
               />

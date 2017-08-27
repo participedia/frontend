@@ -11,10 +11,10 @@ exports[`Case editor renders correctly 1`] = `
       className="detailed-case-component container-fluid"
     >
       <div
-        className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+        className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
       />
       <div
-        className="main-area col-12 col-md-8"
+        className="main-area col-12 col-md-6 offset-md-3"
       >
         <div
           className="case-box"
@@ -325,13 +325,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
         className="row"
       >
         <div
-          className="hidden-sm-down sidepanel hidden-sm-down col col-md-3"
+          className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
         >
           <div />
           <div />
           <div>
             <div
-              className="case-map"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
             >
               <div
                 dangerouslySetInnerHTML={
@@ -349,7 +349,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               </p>
             </div>
             <p
-              className="sub-heading"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             />
             <div />
             <div>
@@ -591,7 +591,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               Agenda 21 Locale (Province of Forli-Cesena, Italy)
             </h2>
             <ul
-              className="icons-mobile clearfix hidden-sm-up"
+              className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
               <li />
               <li>
@@ -622,7 +622,295 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   />
                 </div>
               </li>
+              <li>
+                <div
+                  className="SocialMediaShareButton SocialMediaShareButton--linkedin"
+                  onClick={[Function]}
+                  role="button"
+                  style={Object {}}
+                  tabIndex="0"
+                >
+                  <img
+                    alt=""
+                    src="pp-case-icon-ln.png"
+                  />
+                </div>
+              </li>
             </ul>
+            <div
+              className="mobile-metadata accordion d-md-none d-lg-none d-xl-none"
+            >
+              <div
+                className="tab"
+                onClick={[Function]}
+              >
+                <p
+                  className="title"
+                />
+                <div
+                  className="content"
+                >
+                  <div />
+                </div>
+              </div>
+              <div
+                className="tab"
+                onClick={[Function]}
+              >
+                <p
+                  className="title"
+                />
+                <div
+                  className="content"
+                >
+                  <div>
+                    <div
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
+                    >
+                      <div
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "",
+                          }
+                        }
+                      />
+                      <p
+                        className="case-location"
+                      >
+                        Forlì
+                        , 
+                        Italy
+                      </p>
+                    </div>
+                    <p
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
+                    />
+                    <div />
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="issue"
+                      >
+                        Budgeting
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="specific_topic"
+                      >
+                        Sustainable Development
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="links"
+                      >
+                        <div>
+                          <a
+                            href="http://link 1"
+                            target="_blank"
+                          >
+                            link 1
+                          </a>
+                        </div>
+                        <div>
+                          <a
+                            href="http://link 2"
+                            target="_blank"
+                          >
+                            link 2
+                          </a>
+                        </div>
+                        <div>
+                          <a
+                            href="http://link 3"
+                            target="_blank"
+                          >
+                            link 3
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="communication_mode"
+                      >
+                        Discussion, Dialogue, or Deliberation
+                      </div>
+                    </div>
+                    <div />
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="decision_method"
+                      >
+                        Getting sense of room/group (i.e. no formal voting)
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="facetoface_online_or_both"
+                      >
+                        facetoface
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="facilitated"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="voting"
+                      >
+                        true
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="number_of_meeting_days"
+                      >
+                        4
+                      </div>
+                    </div>
+                    <div />
+                    <div />
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="targeted_participants_public_role"
+                      >
+                        Stakeholder Organizations
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="targeted_audience"
+                      >
+                        General Public
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="participant_selection"
+                      >
+                        Open to all with targeted recruitment
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="type_of_funding_entity"
+                      >
+                        Regional Government (e.g. State, Provincial, Territorial)
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="typical_implementing_entity"
+                      >
+                        Regional Government (e.g. State, Provincial, Territorial)
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="typical_sponsoring_entity"
+                      >
+                        International Organization
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="ongoing"
+                      />
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="start_date"
+                      >
+                        <span>
+                          5/14/2003
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="end_date"
+                      >
+                        <span>
+                          2/11/2011
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      />
+                      <div
+                        className="updated_date"
+                      >
+                        <span>
+                          5/27/2016
+                        </span>
+                      </div>
+                    </div>
+                    <div />
+                    <div />
+                    <div />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
               className="authorship-details"
             >
@@ -680,7 +968,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools hidden-sm-down col col-md-1"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
         >
           <div
             className="top-icons"

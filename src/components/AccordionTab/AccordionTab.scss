@@ -3,7 +3,6 @@
 @mixin tab {
   border-bottom: 1px solid #ece8e6;
   padding: 14px 56px 14px 0;
-  // padding-right: 56px;
   position: relative;
 
   @media (max-width: 639px) {
@@ -17,11 +16,11 @@
     font-weight: 500;
     cursor: pointer;
     width: 100%;
-    // padding: 24px;
-    // margin: -24px;
     text-transform: capitalize;
-    &:hover, &:focus {
-      color:$interactive-color;
+    @include media-breakpoint-up(sm) {
+      &:hover, &:focus {
+        color:$interactive-color;
+      }
     }
 
     @include media-breakpoint-down(sm) { 

@@ -8,13 +8,13 @@ export default class ListGroupWithHeading extends React.Component {
       return <div />;
     }
     let items = thing[property].map(item =>
-      <div>
+      <div key={item}>
         { (!/^https?:\/\//i.test(item)) ?
-        <a target="_blank" key={item} href={'http://' + item}>
+        <a target="_blank" href={'http://' + item}>
           {item}
         </a>
         :
-        <a target="_blank" key={item} href={item}>
+        <a target="_blank" href={item}>
           {item}
         </a>
         }

@@ -54,23 +54,37 @@
         .language-link {
           font-weight: 100;
         }
+        
+        &.social-icons {
+          cursor: pointer;
+          margin-right: 10px;
+          display: inline-block;
+          img {
+            width: 28px;
+          }
+        }
       }
+    }
+  }
 
-      .social-icons {
-        float: left;
+
+  .mobile-footer {
+    .row a {
+      display: block;
+      font-weight: bold;
+      color: #fff;
+      &.social-icons {
         cursor: pointer;
-        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+        img {
+          width: 28px;
+        }
       }
-
-      .social-icons img {
-        width: 28px;
-      }
-
     }
   }
 
   .copyright-area {
-    float: right;
     color: white;
     @include media-breakpoint-up(sm) {
       padding-top: 9.5rem;
@@ -78,6 +92,9 @@
     img {
       display: inline-block;
       height: 24px;
+      @include media-breakpoint-down(sm) {
+        height: 16px;
+      }
       padding-right: 0.5rem;
     }
   }

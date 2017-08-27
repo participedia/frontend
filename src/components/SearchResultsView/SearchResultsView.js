@@ -237,7 +237,8 @@ export class SearchResultsView extends React.Component {
     return (
       <div className="main-contents">
         <Container className="search-results-component" fluid>
-          <Col md="3" className="sidepanel hidden-sm-down">
+          <Col md="3" className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none
+">
             <div
               className={
                 "sorting-options" +
@@ -296,9 +297,9 @@ export class SearchResultsView extends React.Component {
               </div>
             </div>
           </Col>
-          <Col md="9" className="results-area">
+          <Col md="12" className="results-area">
             <div className="clearfix search-actions-area">
-              <div className="filters hidden-xs-down">
+              <div className="filters d-none d-md-block d-lg-block d-xl-block">
                 <div
                   onClick={() =>
                     preventDefault(this.props.onCategoryChange("All"))}
@@ -349,7 +350,7 @@ export class SearchResultsView extends React.Component {
                 </div>
               </div>
               <select
-                className="mobile-select hidden-sm-up"
+                className="mobile-select d-md-none"
                 value={this.state.value}
                 onChange={this.handleChange}
               >
@@ -366,7 +367,7 @@ export class SearchResultsView extends React.Component {
                   {this.props.intl.formatMessage({ id: "organizations" })}
                 </option>
               </select>
-              <div className="view-types hidden-sm-down">
+              <div className="view-types d-none d-md-block d-lg-block d-xl-block">
                 <div
                   onClick={() =>
                     preventDefault(this.props.onLayoutChange("grid"))}
@@ -408,7 +409,7 @@ export class SearchResultsView extends React.Component {
           </Col>
         </Container>
         <Link to={addLink}>
-          <FloatingActionButton className="hidden-sm-up editButton">
+          <FloatingActionButton className="editButton">
             <Plus />
           </FloatingActionButton>
         </Link>
