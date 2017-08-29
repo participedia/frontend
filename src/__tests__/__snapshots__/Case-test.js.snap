@@ -598,6 +598,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--facebook"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -612,6 +613,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--twitter"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -626,6 +628,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 <div
                   className="SocialMediaShareButton SocialMediaShareButton--linkedin"
                   onClick={[Function]}
+                  onKeyPress={[Function]}
                   role="button"
                   style={Object {}}
                   tabIndex="0"
@@ -976,6 +979,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--facebook"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -988,6 +992,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--twitter"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
@@ -1000,6 +1005,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div
               className="SocialMediaShareButton SocialMediaShareButton--linkedin"
               onClick={[Function]}
+              onKeyPress={[Function]}
               role="button"
               style={Object {}}
               tabIndex="0"
