@@ -6,14 +6,10 @@ import "./QuickSubmitPicker.css";
 
 const QuickSubmitPicker = props => (
   <div>
-    <Container>
-      <Row className="select-type">
-        <h2>Select type</h2>
-        <Col
-          xs={{ size: 10, offset: 1 }}
-          lg={{ size: 4, offset: 4 }}
-          md={{ size: 6, offset: 3 }}
-        >
+    <Container className="select-type">
+      <h2>Select type</h2>
+      <Row>
+        <Col md="4" className="ml-auto mr-auto">
           <Link to={"/new/case"}>
             <p>{props.intl.formatMessage({ id: "case" })}</p>
           </Link>

@@ -425,7 +425,7 @@ exports[`Organization editor renders correctly 1`] = `
           className="case-box"
         >
           <div
-            className="sub-heading title-edit"
+            className="sub-heading top title-edit"
           >
             <label
               htmlFor="title"
