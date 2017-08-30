@@ -107,7 +107,7 @@ class MethodEditor extends Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
             <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel" />
-            <Col md="8" xs="12" className="main-area">
+            <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading title-edit">
                   <label htmlFor="title">

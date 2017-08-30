@@ -387,7 +387,7 @@ exports[`Method editor renders correctly 1`] = `
         className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel col col-md-3"
       />
       <div
-        className="main-area col-12 col-md-8"
+        className="ml-auto mr-auto col col-md-6"
       >
         <div
           className="case-box"
