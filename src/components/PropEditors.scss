@@ -31,7 +31,7 @@
 .date-field {
   border: 2px solid $black;
   @include media-breakpoint-up(lg) {
-    width: 50% !important;
+    width: 60% !important;
   };
   margin-bottom: 1rem;
   div>div {
@@ -48,7 +48,7 @@
     border: 2px solid $black;
     padding-left: 1rem;
     @include media-breakpoint-up(sm) {
-      width: 50% !important;
+      width: 60% !important;
     };
     hr {
       display: none;

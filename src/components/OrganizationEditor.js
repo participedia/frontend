@@ -117,7 +117,7 @@ class OrganizationEditor extends Component {
  sidepanel" />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="sub-heading title-edit">
+                <div className="sub-heading top title-edit">
                   <label htmlFor="title">
                     {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
