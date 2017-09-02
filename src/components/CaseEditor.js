@@ -275,10 +275,6 @@ class CaseEditor extends Component {
                           intl,
                           "typical_sponsoring_entity"
                         )}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "participant_selection"
-                        )}
                         {}
                         {makeLocalizedBooleanField(intl, "ongoing")}
                         {makeLocalizedTextField(intl, "staff_type")}

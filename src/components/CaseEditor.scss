@@ -124,54 +124,58 @@
 }
 
 .itemPics {
-  .col {
-    .box {
-      position: relative;
-      overflow: hidden;
-      height: 160px;
-      border: 4px solid $dark-grey;
-      .checkbox {
-        position: absolute;
-        width: 1.4rem;
-        height: 1.4rem;
-        right: 0;
-        background: #fff;
-        background-repeat: no-repeat;
-        background-size: 1.4rem;
-        background-image: url("../img/star-outline.png");
-        cursor: pointer;
-      }
+  .box-container {
+    padding-bottom: 1rem;
+    @include media-breakpoint-only(sm) {
+      margin-bottom: 2rem;
+    }
+  }
+  .box {
+    position: relative;
+    overflow: hidden;
+    height: 160px;
+    border: 4px solid $dark-grey;
+    .checkbox {
+      position: absolute;
+      width: 1.4rem;
+      height: 1.4rem;
+      right: 0;
+      background: #fff;
+      background-repeat: no-repeat;
+      background-size: 1.4rem;
+      background-image: url("../img/star-outline.png");
+      cursor: pointer;
+    }
+    .trash {
+      position: absolute;
+      cursor: pointer;
+      width: 1.4rem;
+      height: 1.4rem;
+      bottom: 1px;
+      right:0;
+      background-image: url("../img/trash.png");
+      background-repeat: no-repeat;
+      background-size: 0.9rem;
+      background-color: #fff;
+      background-position: center;
+      z-index: 1;
+    }
+    small {
+      background: #fff;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+    }
+    text-align: center;
+    &.lead {
+      border: 4px solid $interactive-color;
       .trash {
-        position: absolute;
-        cursor: pointer;
-        width: 1.4rem;
-        height: 1.4rem;
         bottom: 1px;
-        right:0;
-        background-image: url("../img/trash.png");
-        background-repeat: no-repeat;
-        background-size: 0.9rem;
-        background-color: #fff;
-        background-position: center;
-        z-index: 1;
+        border: none;
       }
-      small {
-        background: #fff;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        bottom: 0;
-      }
-      text-align: center;
-      &.lead {
-        border: 4px solid $interactive-color;
-        .trash {
-          bottom: 1px;
-          border: none;
-        }
-        .checkbox {
-          background-image: url("../img/star.png");
-        }
+      .checkbox {
+        background-image: url("../img/star.png");
       }
     }
   }

@@ -469,43 +469,41 @@ exports[`Organization editor renders correctly 1`] = `
           <p
             className="sub-heading"
           />
-          <div
-            className="itemPics pb-1 row"
-          >
+          <div>
             <div
-              className="pb-1 col col-sm-6 col-md-3"
+              className="itemPics pb-3 row"
             >
               <div
-                className="box lead"
+                className="pl-0 box-container col-12 col-md-6 col-lg-4"
               >
                 <div
-                  className="checkbox"
-                  onClick={[Function]}
-                />
-                <div
-                  className="trash"
-                  onClick={[Function]}
-                />
-                <img
-                  alt=""
-                  className="img-fluid"
-                  src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
-                  style={
-                    Object {
-                      "height": "100%",
-                      "objectFit": "contain",
-                      "width": "100%",
+                  className="box lead"
+                >
+                  <div
+                    className="checkbox"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="trash"
+                    onClick={[Function]}
+                  />
+                  <img
+                    alt=""
+                    className="img-fluid"
+                    src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
+                    style={
+                      Object {
+                        "height": "100%",
+                        "objectFit": "contain",
+                        "width": "100%",
+                      }
                     }
-                  }
-                />
+                  />
+                </div>
               </div>
             </div>
-            <div
-              className="p-0 col col-md-12"
-            >
-              <div>
-                Sorry, upload only works if you're logged in.
-              </div>
+            <div>
+              Sorry, upload only works if you're logged in.
             </div>
           </div>
           <div>

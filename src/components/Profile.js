@@ -105,56 +105,56 @@ class Profile extends Component {
                 : <div />}
               <p>{user.bio}</p>
             </div>
+            <div className="heading">Authored Content</div>
             <div className="main-contents">
-              <div className="authored-content">
-                <div className="heading">Authored Content</div>
-                  <div className="view-types-cont">
-                    <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                      <div
-                        onClick={() =>
-                          preventDefault(this.onLayoutChange("grid"))}
-                        className={
-                          this.state.selectedViewType === "grid"
-                            ? "selected"
-                            : "unselected"
-                        }
-                      >
-                        <img src={searchGridIcon} className="grid-icon" alt="" />
-                        <img
-                          src={searchGridIconActive}
-                          className="grid-icon"
-                          alt=""
-                        />
-                      </div>
-                      <div
-                        onClick={() =>
-                          preventDefault(this.onLayoutChange("list"))}
-                        className={
-                          this.state.selectedViewType === "list"
-                            ? "selected"
-                            : "unselected"
-                        }
-                      >
-                        <img src={searchListIcon} className="list-icon" alt="" />
-                        <img
-                          src={searchListIconActive}
-                          className="list-icon"
-                          alt=""
-                        />
-                      </div>
-                    </div>
+              <div className="view-types-cont">
+                <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                  <div
+                    onClick={() =>
+                      preventDefault(this.onLayoutChange("grid"))}
+                    className={
+                      this.state.selectedViewType === "grid"
+                        ? "selected"
+                        : "unselected"
+                    }
+                  >
+                    <img src={searchGridIcon} className="grid-icon" alt="" />
+                    <img
+                      src={searchGridIconActive}
+                      className="grid-icon"
+                      alt=""
+                    />
                   </div>
-                  {authored}
+                  <div
+                    onClick={() =>
+                      preventDefault(this.onLayoutChange("list"))}
+                    className={
+                      this.state.selectedViewType === "list"
+                        ? "selected"
+                        : "unselected"
+                    }
+                  >
+                    <img src={searchListIcon} className="list-icon" alt="" />
+                    <img
+                      src={searchListIconActive}
+                      className="list-icon"
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
+              <Row className="authored-content">
+                  {authored}
+              </Row>
             </div>
           </Col>
         </Row>
         <Row className="profile-info-section">
-          <Col lg={{size: 9, offset: 3}} md={{size: 8, offset: 4}} className="main-area">
-            <div className="bookmarked-content">
-              <div className="heading pb-1">Bookmarked Content</div>
+          <Col lg={{size: 9}} md={{size: 8}} className="ml-auto main-area">
+            <div className="heading pb-1">Bookmarked Content</div>
+            <Row className="bookmarked-content">
               {bookmarked}
-            </div>
+            </Row>
           </Col>
         </Row>
         {user.email === profile.email ?

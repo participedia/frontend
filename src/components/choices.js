@@ -39,13 +39,14 @@ function toTitleCase(str) {
 }
 
 export function makeLocalizedChoices(intl, property) {
+  let hasOther;
   let choices = getChoices(property).map(function(v) {
     return {
       text: toTitleCase(intl.formatMessage({ id: v })),
       value: v
     };
   });
-  return choices.sort(function(a, b) {
+  choices.sort(function(a, b) {
     if (typeof a === undefined) return -1;
     if (typeof b === undefined) return 1;
     if (!a.text) return -1;
@@ -63,4 +64,19 @@ export function makeLocalizedChoices(intl, property) {
     }
     return 1;
   });
+
+  Object.keys(choices).forEach(function(key) {
+    if (choices[key]['text'] === "Other") {
+      hasOther = true;
+      delete choices[key];
+    }
+  }); 
+
+  if (hasOther) {
+    let choicesLength = choices.length
+    choices[choicesLength] = { value: "other", text: "Other" };
+  };
+  
+  return choices
+
 }
