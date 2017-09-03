@@ -82,10 +82,7 @@ const react = require("react"),
 
     handleEdit(idx, e) {
       let items = Array.from(this.state.items);
-      if (idx === items.length) {
-        return this.setState({ lastItemValue: e.currentTarget.value });
-      }
-
+      this.props.onUpdate(idx, e.currentTarget.value);
       items.splice(idx, 1, { value: e.currentTarget.value, dirty: true });
       this.setState({ items });
     },
@@ -129,13 +126,16 @@ const react = require("react"),
             {
               onClick: newItem ? this.addItem : this.removeItem.bind(this, idx)
             },
-            react.createElement(newItem ? icons.add : icons.remove),
+            react.createElement(newItem ? icons.add : icons.remove)
           ),
-          newItem ?
-          // xx
-          react.createElement("span", { onClick: this.addItem, className: "prompt" }, this.props.prompt)
-          :
-          undefined
+          newItem
+            ? // xx
+              react.createElement(
+                "span",
+                { onClick: this.addItem, className: "prompt" },
+                this.props.prompt
+              )
+            : undefined
         );
       });
 
