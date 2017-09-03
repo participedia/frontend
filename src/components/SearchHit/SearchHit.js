@@ -75,8 +75,8 @@ export class SearchHit extends React.Component {
                 />
               </p>
             </div>
-          : <Row className="list-item">
-              <Col md="3" className="pt-1">
+          : <Row className="list-item pt-4">
+              <Col md="3">
                 {pic
                   ? <Link to={link}>
                       <div className="case-images">
@@ -87,7 +87,7 @@ export class SearchHit extends React.Component {
                       <div className={thumbnailClass} style={thumbnailStyle} />
                     </Link>}
               </Col>
-              <Col md="8" className="pt-1">
+              <Col md="9">
                 <small className="label">
                   {(result.featured
                     ? intl.formatMessage({ id: "featured" }) + " "
@@ -97,7 +97,7 @@ export class SearchHit extends React.Component {
                 <Link to={link}>
                   <div className="result-title-text">{title}</div>
                 </Link>
-                <div>{body}</div>
+                <div className="list-body">{body}</div>
                 <p>{intl.formatMessage({ id: "submitted" })}&nbsp;
                   <FormattedDate 
                     value={result.updated_date}

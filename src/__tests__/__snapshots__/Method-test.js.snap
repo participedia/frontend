@@ -425,15 +425,12 @@ exports[`Method editor renders correctly 1`] = `
           <p
             className="sub-heading"
           />
-          <div
-            className="itemPics pb-1 row"
-          >
+          <div>
             <div
-              className="p-0 col col-md-12"
-            >
-              <div>
-                Sorry, upload only works if you're logged in.
-              </div>
+              className="itemPics pb-3 row"
+            />
+            <div>
+              Sorry, upload only works if you're logged in.
             </div>
           </div>
           <div>

@@ -74,7 +74,7 @@ class ImageListEditorField extends Component {
       });
     }
     let bits = urls.map((photo, id) =>
-      <Col key={id} sm="6" md="3" className="pb-1">
+      <Col key={id} xs="12" md="6" lg="4" className="pl-0 box-container">
         <div className={id === 0 ? "box lead" : "box"}>
           <div
             className="checkbox"
@@ -96,12 +96,12 @@ class ImageListEditorField extends Component {
       </Col>
     );
     return (
-      <Row className="itemPics pb-1">
-        {bits}
-        <Col md="12" className="p-0">
-          <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
-        </Col>
-      </Row>
+      <div>
+        <Row className="itemPics pb-3">
+          {bits}
+        </Row>
+        <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
+      </div>
     );
   }
 }

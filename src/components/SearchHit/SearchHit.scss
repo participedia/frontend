@@ -41,7 +41,7 @@ small.label {
   }
   button {
     float: right;
-    right: -7px;
+    right: 14px;
   }
 }
 
@@ -122,6 +122,9 @@ small.label {
 .list-item {
   .thumbnail {
     margin-bottom:0;
+  }
+  .list-body {
+    padding-right: 7%;
   }
 }
 .result-type-text {
