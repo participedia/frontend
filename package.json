@@ -88,13 +88,14 @@
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
-    "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",date -u +%FT%TZ
-    "archiveprod": "zip -r archive/prod-`date -u +%FT%TZ` build",
-    "archivestage": "zip -r archive/stage-`date -u +%FT%TZ` build",
+    "start": "concurrently \"sass --watch src\"  \"react-scripts start\"",
+    "archiveprod": "zip -r archive/prod-$(date -u +%FT%TZ) build",
+    "archivestage": "zip -r archive/stage-$(date -u +%FT%TZ) build",
     "deployprod": "surge -p build -d participedia.xyz",
     "deploystage": "surge -p build -d ppedia.fun",
-    "buildprod": "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && npm run archiveprod; cp .envdev .env",
-    "buildstage": "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && npm run archivestage; cp .envdev .env",
+    "buildprod": "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archiveprod; cp .envdev .env",
+    "buildstage": "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archivestage; cp .envdev .env",
+    "rollbackto": "f(){ rm -rf build && unzip archive/${1}; }; f",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint \"src/**/**.js\"",
     "lint-staged": "prettier --write",
