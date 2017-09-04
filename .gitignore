@@ -1,7 +1,8 @@
 # IMPORTANT: don't check in environment variables
-.env
+.env*
 
 build
+archive
 .sass-cache
 *.css.map
 webpack.json
