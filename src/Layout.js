@@ -271,7 +271,7 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link className="d-none" to="/new">
+            <Link className="d-none d-sm-block d-md-block d-lg-block d-xl-block" to="/new">
               <div className="createButton">
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>

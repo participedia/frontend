@@ -34,7 +34,7 @@ export class LoginAvatar extends React.Component {
 
     if (isAuthenticated() && this.state.profile !== {}) {
       return (
-        <div className="avatar d-none d-sm-block d-md-block d-lg-block d-xl-block d-sm-block d-md-block d-lg-block d-xl-block d-sm-block d-md-block d-lg-block d-xl-blockd-sm-block d-md-block d-lg-block d-xl-block">
+        <div className="avatar d-none d-sm-block d-md-block d-lg-block d-xl-block">
           <IconMenu
             iconButtonElement={
               <IconButton>

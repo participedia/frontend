@@ -44,7 +44,7 @@ exports[`App 1`] = `
         />
       </div>
       <a
-        className="d-none"
+        className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
         href="/new"
         onClick={[Function]}
       >
@@ -822,7 +822,7 @@ exports[`Searching for a word 1`] = `
         />
       </div>
       <a
-        className="d-none"
+        className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
         href="/new"
         onClick={[Function]}
       >
