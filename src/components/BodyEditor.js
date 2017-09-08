@@ -63,7 +63,7 @@ class BodyEditor extends React.Component {
           <ReactQuill
             theme="snow"
             onChange={changes =>
-              setTimeout(() => this.props.onChange(changes), 1)}
+              setTimeout(() => this.props.onChange(changes), 0)}
             modules={_quillModules}
             formats={_quillFormats}
             bounds={"._quill"}
