@@ -62,7 +62,8 @@ class BodyEditor extends React.Component {
           <ScrollEvent handleScrollCallback={this.handleScroll} />
           <ReactQuill
             theme="snow"
-            onChange={this.props.onChange}
+            onChange={changes =>
+              setTimeout(() => this.props.onChange(changes), 1)}
             modules={_quillModules}
             formats={_quillFormats}
             bounds={"._quill"}
