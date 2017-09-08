@@ -50,6 +50,12 @@ class CaseEditor extends Component {
         id: "case_description_placeholder"
       });
     }
+    if (
+      thing.number_of_meeting_days === null ||
+      thing.number_of_meeting_days === "null"
+    ) {
+      thing.number_of_meeting_days = 0;
+    }
     this.setState({ thing });
   }
 
@@ -124,8 +130,11 @@ class CaseEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
-            <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block
- sidepanel" />
+            <Col
+              md="3"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block
+ sidepanel"
+            />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading top title-edit">
@@ -149,24 +158,28 @@ class CaseEditor extends Component {
                   "issue",
                   "general_issues"
                 )}
-                {issue && !isQuick
-                  ? <div>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "specific_topic",
-                        issue,
-                        "specific_topic"
-                      )}
-                    </div>
-                  : undefined}
+                {issue && !isQuick ? (
+                  <div>
+                    {makeLocalizedChoiceField(
+                      intl,
+                      "specific_topic",
+                      issue,
+                      "specific_topic"
+                    )}
+                  </div>
+                ) : (
+                  undefined
+                )}
                 {issue === "other" &&
-                  this.state.thing.specific_topic === "other"
-                  ? <b>
-                      {intl.formatMessage({
-                        id: "send_email_with_catgeory_additions"
-                      })}
-                    </b>
-                  : undefined}
+                this.state.thing.specific_topic === "other" ? (
+                  <b>
+                    {intl.formatMessage({
+                      id: "send_email_with_catgeory_additions"
+                    })}
+                  </b>
+                ) : (
+                  undefined
+                )}
                 <div className="case-location">
                   {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
@@ -192,137 +205,127 @@ class CaseEditor extends Component {
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
                 </p>
-                <div className="tags-field">
-                  {tagseditor}
-                </div>
+                <div className="tags-field">{tagseditor}</div>
               </div>
               <div>
-                {isQuick
-                  ? <div>
-                      {incomplete
-                        ? <div className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </div>
-                        : null}
-                      <RaisedButton
-                        className="new quick incomplete-warning"
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: "quick_submit_" + thing.type
+                {isQuick ? (
+                  <div>
+                    {incomplete ? (
+                      <div className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      <RaisedButton
-                        onClick={() => onExpand(this.state.thing)}
-                        className="full-submit"
-                        style={buttonStyle}
-                        label={intl.formatMessage({ id: "do_full_version" })}
-                      />
+                      </div>
+                    ) : null}
+                    <RaisedButton
+                      className="new quick incomplete-warning"
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: "quick_submit_" + thing.type
+                      })}
+                    />
+                    <RaisedButton
+                      onClick={() => onExpand(this.state.thing)}
+                      className="full-submit"
+                      style={buttonStyle}
+                      label={intl.formatMessage({ id: "do_full_version" })}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <div>
+                      <label className="sub-heading" htmlFor="body_en">
+                        {intl.formatMessage({
+                          id: thing.type + "_body_title"
+                        })}
+                      </label>
                     </div>
-                  : <div>
-                      <div>
-                        <label className="sub-heading" htmlFor="body_en">
+                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <div className="related-content">
+                      {makeLocalizedChoiceField(intl, "communication_mode")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "communication_with_audience"
+                      )}
+                      {makeLocalizedChoiceField(intl, "decision_method")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "facetoface_online_or_both"
+                      )}
+                      {makeLocalizedBooleanField(intl, "facilitated")}
+                      {makeLocalizedChoiceField(intl, "voting")}
+                      {makeLocalizedNumberField(intl, "number_of_meeting_days")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "targeted_participant_demographic"
+                      )}
+                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "targeted_participants_public_role"
+                      )}
+                      {makeLocalizedChoiceField(intl, "targeted_audience")}
+                      {makeLocalizedChoiceField(intl, "participant_selection")}
+                      {makeLocalizedChoiceField(intl, "type_of_funding_entity")}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "typical_implementing_entity"
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "typical_sponsoring_entity"
+                      )}
+                      {}
+                      {makeLocalizedBooleanField(intl, "ongoing")}
+                      {makeLocalizedTextField(intl, "staff_type")}
+                      {makeLocalizedTextField(
+                        intl,
+                        "who_else_supported_the_initiative"
+                      )}
+                      <div className="pb-1">
+                        <p className="sub-heading">
+                          {intl.formatMessage({ id: "related_cases" })}
+                        </p>
+                        {related_cases}
+                      </div>
+                      <div className="pb-1">
+                        <p className="sub-heading">
+                          {intl.formatMessage({ id: "related_methods" })}
+                        </p>
+                        {related_methods}
+                      </div>
+                      <div className="pb-1">
+                        <p className="sub-heading">
                           {intl.formatMessage({
-                            id: thing.type + "_body_title"
+                            id: "related_organizations"
                           })}
-                        </label>
-                      </div>
-                      <Field fieldName="body" type={LazyBodyEditor} />
-                      <div className="related-content">
-                        {makeLocalizedChoiceField(intl, "communication_mode")}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "communication_with_audience"
-                        )}
-                        {makeLocalizedChoiceField(intl, "decision_method")}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "facetoface_online_or_both"
-                        )}
-                        {makeLocalizedBooleanField(intl, "facilitated")}
-                        {makeLocalizedChoiceField(intl, "voting")}
-                        {makeLocalizedNumberField(
-                          intl,
-                          "number_of_meeting_days"
-                        )}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "targeted_participant_demographic"
-                        )}
-                        {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "targeted_participants_public_role"
-                        )}
-                        {makeLocalizedChoiceField(intl, "targeted_audience")}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "participant_selection"
-                        )}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "type_of_funding_entity"
-                        )}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "typical_implementing_entity"
-                        )}
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "typical_sponsoring_entity"
-                        )}
-                        {}
-                        {makeLocalizedBooleanField(intl, "ongoing")}
-                        {makeLocalizedTextField(intl, "staff_type")}
-                        {makeLocalizedTextField(
-                          intl,
-                          "who_else_supported_the_initiative"
-                        )}
-                        <div className="pb-1">
-                          <p className="sub-heading">
-                            {intl.formatMessage({ id: "related_cases" })}
-                          </p>
-                          {related_cases}
-                        </div>
-                        <div className="pb-1">
-                          <p className="sub-heading">
-                            {intl.formatMessage({ id: "related_methods" })}
-                          </p>
-                          {related_methods}
-                        </div>
-                        <div className="pb-1">
-                          <p className="sub-heading">
-                            {intl.formatMessage({
-                              id: "related_organizations"
-                            })}
-                          </p>
-                          {related_organizations}
-                        </div>{" "}
-                      </div>
-                      <RaisedButton
-                        className="incomplete-warning"
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: "submit_" + thing.type
+                        </p>
+                        {related_organizations}
+                      </div>{" "}
+                    </div>
+                    <RaisedButton
+                      className="incomplete-warning"
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: "submit_" + thing.type
+                      })}
+                    />
+                    {incomplete ? (
+                      <span className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      {incomplete
-                        ? <span className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </span>
-                        : null}
-                    </div>}
+                      </span>
+                    ) : null}
+                  </div>
+                )}
               </div>
-
             </Col>
           </Container>
         </div>
