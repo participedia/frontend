@@ -1,5 +1,4 @@
 import React from "react";
-import SearchLink from "./SearchLink";
 
 const LinkedPropertyGroupWithHeading = ({ heading, property, thing, intl }) =>
   thing[property] && thing[property] !== "null"

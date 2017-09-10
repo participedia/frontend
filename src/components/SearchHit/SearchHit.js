@@ -79,7 +79,7 @@ export class SearchHit extends React.Component {
               <Col md="3">
                 {pic
                   ? <Link to={link}>
-                      <div className="case-images">
+                      <div className="pt-2 case-images">
                         <img alt="" src={pic} />
                       </div>
                     </Link>
