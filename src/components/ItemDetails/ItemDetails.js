@@ -134,13 +134,6 @@ export default class ItemDetails extends React.Component {
     let currentUrl =
       process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
-
-    let lead;
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    if (thing && thing.images && thing.images.length) {
-      lead = awsUrl + encodeURIComponent(thing.images[0]);
-    }
-
     let first_author = thing.authors[0];
     let first_author_url = "/users/" + first_author.user_id;
     let first_author_name = first_author.name;
@@ -191,9 +184,7 @@ export default class ItemDetails extends React.Component {
                     <li>
                       <FacebookShareButton
                         url={currentUrl}
-                        title={thing.title}
-                        description={textFacebook}
-                        picture={lead}
+                        quote={textFacebook}
                       >
                         <img src={caseIconFB} alt="" />
                       </FacebookShareButton>
@@ -265,9 +256,7 @@ export default class ItemDetails extends React.Component {
                   {bookmarkIcon}
                   <FacebookShareButton
                     url={currentUrl}
-                    title={thing.title}
-                    description={textFacebook}
-                    picture={lead}
+                    quote={textFacebook}
                   >
                     <img src={caseIconFB} alt="" />
                   </FacebookShareButton>

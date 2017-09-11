@@ -237,8 +237,7 @@ export class SearchResultsView extends React.Component {
     return (
       <div className="main-contents">
         <Container className="search-results-component" fluid>
-          <Col md="3" className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none
-">
+          <Col md="3" className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none">
             <div
               className={
                 "sorting-options" +
@@ -408,7 +407,7 @@ export class SearchResultsView extends React.Component {
             {results}
           </Col>
         </Container>
-        <Link to={addLink}>
+        <Link className="d-block d-sm-none d-md-none d-lg-none d-xl-none" to={addLink}>
           <FloatingActionButton className="editButton">
             <Plus />
           </FloatingActionButton>

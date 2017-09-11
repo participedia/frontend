@@ -66,7 +66,6 @@ class CaseEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    let type = thing.type;
     thing.related_cases = fix_related(thing.related_cases);
     thing.related_methods = fix_related(thing.related_methods);
     thing.related_organizations = fix_related(thing.related_organizations);
