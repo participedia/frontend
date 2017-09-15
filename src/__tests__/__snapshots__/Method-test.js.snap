@@ -269,7 +269,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <TimeAgo />
+                <span>
+                  November 30, 2011
+                </span>
               </p>
               <p
                 className="author-line"
@@ -285,7 +287,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <TimeAgo />
+                <span>
+                  December 01, 2011
+                </span>
               </p>
             </div>
             <div
