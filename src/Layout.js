@@ -77,19 +77,16 @@ class Callback extends React.Component {
       backgroundColor: "white"
     };
 
-    return (
-      <div style={style}>
-        Loading.
-      </div>
-    );
+    return <div style={style}>Loading.</div>;
   }
 }
 
 const EnsureAuth = props =>
-  authService.isAuthenticated()
-    ? <div />
-    : <div>Must be logged in</div> &&
-        authService.login(window.location.pathname);
+  authService.isAuthenticated() ? (
+    <div />
+  ) : (
+    <div>Must be logged in</div> && authService.login(window.location.pathname)
+  );
 
 class Routes extends React.Component {
   render() {
@@ -121,25 +118,21 @@ class Routes extends React.Component {
         />
         <Route
           path="/show/:term"
-          render={props =>
-            <Redirect to={`/search?query=${props.match.params.term}`} />}
+          render={props => (
+            <Redirect to={`/search?query=${props.match.params.term}`} />
+          )}
         />
         <Route exact path="/" render={props => <Home auth={authService} />} />
         <Route path="/search" render={props => <Home auth={authService} />} />
         <Route component={ScrollToTop} />
-        <Route
-          exact
-          path="/profile"
-          component={props => <ProfileLoader intl={intl} />}
-        />
+        <Route exact path="/profile" component={props => <ProfileLoader />} />
         <Route
           path="/profile/edit"
           render={props => <EnsureAuth auth={authService} />}
         />
         <Route
           path="/profile/edit"
-          component={props =>
-            <ProfileEditor intl={intl} auth={authService} {...props} />}
+          component={props => <ProfileEditor auth={authService} {...props} />}
         />
         <Route path="/help/:id" component={HelpArticle} />
         <Route path="/about" component={About} />
@@ -157,65 +150,60 @@ class Routes extends React.Component {
         <Route
           exact
           path="/new/case"
-          component={props =>
-            <NewCaseContainer auth={authService} intl={intl} {...props} />}
+          component={props => (
+            <NewCaseContainer auth={authService} {...props} />
+          )}
         />
         <Route
           exact
           path="/new/method"
-          component={props =>
-            <NewMethodContainer auth={authService} intl={intl} {...props} />}
+          component={props => (
+            <NewMethodContainer auth={authService} {...props} />
+          )}
         />
         <Route
           exact
           path="/new/organization"
-          component={props =>
-            <NewOrganizationContainer
-              auth={authService}
-              intl={intl}
-              {...props}
-            />}
+          component={props => (
+            <NewOrganizationContainer auth={authService} {...props} />
+          )}
         />
         <Route path="/research" component={Research} />
         <Route
           path="/case/:nodeID"
           exact
-          component={props =>
-            <Case auth={authService} intl={intl} {...props} />}
+          component={props => <Case auth={authService} {...props} />}
         />
         <Route path="/case/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/case/:nodeID/edit"
-          component={props =>
-            <CaseEditorContainer auth={authService} intl={intl} {...props} />}
+          component={props => (
+            <CaseEditorContainer auth={authService} {...props} />
+          )}
         />
         <Route
           exact
           path="/method/:nodeID"
-          component={props =>
-            <Method auth={authService} intl={intl} {...props} />}
+          component={props => <Method auth={authService} {...props} />}
         />
         <Route path="/method/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/method/:nodeID/edit"
-          component={props =>
-            <MethodEditorContainer auth={authService} intl={intl} {...props} />}
+          component={props => (
+            <MethodEditorContainer auth={authService} {...props} />
+          )}
         />
         <Route
           exact
           path="/organization/:nodeID"
-          component={props =>
-            <Organization auth={authService} intl={intl} {...props} />}
+          component={props => <Organization auth={authService} {...props} />}
         />
         <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
         <Route
           path="/organization/:nodeID/edit"
-          component={props =>
-            <OrganizationEditorContainer
-              auth={authService}
-              intl={intl}
-              {...props}
-            />}
+          component={props => (
+            <OrganizationEditorContainer auth={authService} {...props} />
+          )}
         />
         <Route path="/users/:id" component={ProfileLoader} />
       </div>
@@ -253,7 +241,7 @@ export class Layout extends React.Component {
 
   render() {
     const { intl } = this.props;
-    let routes = <Routes intl={intl} auth={authService} />;
+    let routes = <Routes auth={authService} />;
     let isAuthenticated = authService.isAuthenticated();
 
     return (
@@ -271,7 +259,10 @@ export class Layout extends React.Component {
             <div className="search-box-area">
               <SearchQuery {...this.props} />
             </div>
-            <Link className="d-none d-sm-block d-md-block d-lg-block d-xl-block" to="/new">
+            <Link
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+              to="/new"
+            >
               <div className="createButton">
                 {this.props.intl.formatMessage({ id: "quick_submit" })}
               </div>
@@ -311,21 +302,23 @@ export class Layout extends React.Component {
             {this.props.intl.formatMessage({ id: "research" })}
           </MenuItem>
           <MenuItem className="d-md-none d-lg-none d-xl-none">
-            {isAuthenticated
-              ? <div className="profileButtonMenu">
-                  <FlatButton
-                    containerElement={<Link to={"/profile"} />}
-                    onClick={this.handleClose}
-                    label={this.props.intl.formatMessage({ id: "profile" })}
-                  />
-                </div>
-              : <div className="loginButtonMenu">
-                  <FlatButton
-                    onClick={() => authService.login()}
-                    onTouchTap={this.signIn}
-                    label={this.props.intl.formatMessage({ id: "login" })}
-                  />
-                </div>}
+            {isAuthenticated ? (
+              <div className="profileButtonMenu">
+                <FlatButton
+                  containerElement={<Link to={"/profile"} />}
+                  onClick={this.handleClose}
+                  label={this.props.intl.formatMessage({ id: "profile" })}
+                />
+              </div>
+            ) : (
+              <div className="loginButtonMenu">
+                <FlatButton
+                  onClick={() => authService.login()}
+                  onTouchTap={this.signIn}
+                  label={this.props.intl.formatMessage({ id: "login" })}
+                />
+              </div>
+            )}
           </MenuItem>
           <MenuItem
             className="d-md-none d-lg-none d-xl-none"
@@ -338,13 +331,15 @@ export class Layout extends React.Component {
               />
             </div>
           </MenuItem>
-          {isAuthenticated
-            ? <MenuItem
-                className="d-md-none d-lg-none d-xl-none"
-                primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-                onClick={() => authService.logout()}
-              />
-            : undefined}
+          {isAuthenticated ? (
+            <MenuItem
+              className="d-md-none d-lg-none d-xl-none"
+              primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
+              onClick={() => authService.logout()}
+            />
+          ) : (
+            undefined
+          )}
         </Drawer>
         {routes}
         <Footer />

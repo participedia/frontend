@@ -13,7 +13,7 @@ export default class OrganizationDetails extends React.Component {
     let tags = <div />;
     if (thing.tags) {
       tags = thing.tags.map(tag => (
-        <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
+        <SearchLink key={tag} tag="tag" value={tag} />
       ));
     }
     let ed = null;
@@ -40,16 +40,10 @@ export default class OrganizationDetails extends React.Component {
           <FormattedMessage id="tags_title" />
         </p>
         <div className="tags">{tags}</div>
-        <ListWithHeading
-          intl={intl}
-          heading="links"
-          property="links"
-          thing={thing}
-        />
+        <ListWithHeading heading="links" property="links" thing={thing} />
         {ed}
 
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="sector"
           property="sector"
           thing={thing}

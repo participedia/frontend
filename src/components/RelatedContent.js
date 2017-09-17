@@ -24,7 +24,7 @@ const RelatedThings = ({ title, relateds, intl }) =>
         <FormattedMessage id={title} /> :{" "}
       </div>
       {relateds.map(related => (
-        <LinkToThing key={related.id} thing={related} intl={intl} />
+        <LinkToThing key={related.id} thing={related} />
       ))}
     </div>
   ) : (
@@ -32,34 +32,25 @@ const RelatedThings = ({ title, relateds, intl }) =>
   );
 
 const RelatedCases = ({ thing, intl }) => (
-  <RelatedThings
-    title="related_cases"
-    relateds={thing.related_cases}
-    intl={intl}
-  />
+  <RelatedThings title="related_cases" relateds={thing.related_cases} />
 );
 
 const RelatedMethods = ({ thing, intl }) => (
-  <RelatedThings
-    title="related_methods"
-    relateds={thing.related_methods}
-    intl={intl}
-  />
+  <RelatedThings title="related_methods" relateds={thing.related_methods} />
 );
 
 const RelatedOrganizations = ({ thing, intl }) => (
   <RelatedThings
     title="related_organizations"
     relateds={thing.related_organizations}
-    intl={intl}
   />
 );
 
 const RelatedContent = props => {
   return (props.thing.related_cases && props.thing.related_cases.length) ||
-  (props.thing.related_methods && props.thing.related_methods.length) ||
-  (props.thing.related_organizations &&
-    props.thing.related_organizations.length) ? (
+    (props.thing.related_methods && props.thing.related_methods.length) ||
+    (props.thing.related_organizations &&
+      props.thing.related_organizations.length) ? (
     <div className="related-content">
       <p className="sub-heading">Related Content</p>
       <RelatedCases {...props} />

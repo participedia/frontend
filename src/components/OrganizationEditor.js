@@ -70,7 +70,6 @@ class OrganizationEditor extends Component {
         placeholder={intl.formatMessage({
           id: "tags_placeholder"
         })}
-        intl={intl}
       />
     );
     let related_cases = (
@@ -79,7 +78,6 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_methods = (
@@ -88,7 +86,6 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_organizations = (
@@ -97,7 +94,6 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
 
@@ -149,7 +145,6 @@ class OrganizationEditor extends Component {
                 <ImageListEditor
                   property="images"
                   auth={this.props.auth}
-                  intl={intl}
                   thing={thing}
                 />
                 {makeLocalizedListField(intl, "videos")}

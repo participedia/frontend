@@ -176,7 +176,7 @@ export default class ItemDetails extends React.Component {
                   toggleHidden={this.props.toggleHidden}
                 />
                 {detailedBits}
-                <RelatedContent thing={thing} intl={intl} />
+                <RelatedContent thing={thing} />
               </Col>
               <Col md="8" xs="12" className="main-area">
                 <div className="case-box">
@@ -213,7 +213,7 @@ export default class ItemDetails extends React.Component {
                   <div className="mobile-metadata accordion d-md-none d-lg-none d-xl-none">
                     <AccordionTab titleId="related_content">
                       <div className="content">
-                        <RelatedContent thing={thing} intl={intl} />
+                        <RelatedContent thing={thing} />
                       </div>
                     </AccordionTab>
                     <AccordionTab titleId={thing.type + "_data"}>

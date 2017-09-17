@@ -130,7 +130,6 @@ class EditorContainer extends Component {
     if (this.props.type === "case") {
       return (
         <CaseEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
@@ -145,7 +144,6 @@ class EditorContainer extends Component {
     } else if (this.props.type === "method") {
       return (
         <MethodEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
@@ -160,7 +158,6 @@ class EditorContainer extends Component {
     } else if (this.props.type === "organization") {
       return (
         <OrganizationEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
