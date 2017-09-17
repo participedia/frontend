@@ -319,7 +319,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <TimeAgo />
+                <span>
+                  May 13, 2015
+                </span>
               </p>
               <p
                 className="author-line"
@@ -335,7 +337,9 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <TimeAgo />
+                <span>
+                  May 13, 2015
+                </span>
               </p>
             </div>
             <div

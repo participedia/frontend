@@ -924,12 +924,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <time
-                  dateTime="2012-01-07T12:27:34.123Z"
-                  title="2012-01-07T12:27:34.1234Z"
-                >
-                  6 years ago
-                </time>
+                <span>
+                  January 07, 2012
+                </span>
               </p>
               <p
                 className="author-line"
@@ -945,12 +942,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <p
                 className="date-line"
               >
-                <time
-                  dateTime="2016-05-27T21:46:39.123Z"
-                  title="2016-05-27T21:46:39.1234Z"
-                >
-                  1 year ago
-                </time>
+                <span>
+                  May 27, 2016
+                </span>
               </p>
             </div>
             <div

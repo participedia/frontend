@@ -10,7 +10,7 @@ $grey-text: #323232;
 $primary-color: $black;
 $interactive-color: $red;
 
-.new {
+.new, .quick {
   transition:background .2s;
   color:$black;
   font-weight:500;
@@ -27,6 +27,15 @@ $interactive-color: $red;
       span {
         color: white !important;
         text-transform: none !important;
+      }
+    }
+  }
+}
+
+.new {
+  button {
+    div {
+      span {
         &:after {
           content: '|  +';
           padding-left: 9px;

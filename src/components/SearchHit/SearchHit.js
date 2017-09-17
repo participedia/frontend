@@ -50,8 +50,9 @@ export class SearchHit extends React.Component {
                  :   
                   video ? 
                     <ReactPlayer
+                      className="case-images"
                       width="100%"
-                      height="200"
+                      height="200px"
                       controls
                       url={video}
                     />

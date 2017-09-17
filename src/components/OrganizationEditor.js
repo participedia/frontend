@@ -103,6 +103,8 @@ class OrganizationEditor extends Component {
 
     let incomplete =
       (thing.title ? false : true);
+    let doFullVersion = this.props.new ? "do_full_version" : "edit_full_version"
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save"
     return (
       <Form
         onSubmit={onSubmit}
@@ -165,20 +167,20 @@ class OrganizationEditor extends Component {
                           </div>
                         : null}
                       <RaisedButton
-                        className="new quick incomplete-warning"
+                        className={this.props.new ? "new quick incomplete-warning" : "quick incomplete-warning"}
                         disabled={incomplete}
                         primary
                         style={buttonStyle}
                         type="submit"
                         label={intl.formatMessage({
-                          id: "quick_submit_" + thing.type
+                          id: quickSubmitText
                         })}
                       />
                       <RaisedButton
                         onClick={() => onExpand(this.state.thing)}
                         style={buttonStyle}
                         className="full-submit"
-                        label={intl.formatMessage({ id: "do_full_version" })}
+                        label={intl.formatMessage({ id: doFullVersion })}
                       />
                     </div>
                   : <div>
