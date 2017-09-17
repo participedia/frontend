@@ -90,8 +90,6 @@ const EnsureAuth = props =>
 
 class Routes extends React.Component {
   render() {
-    let intl = this.props.intl;
-
     return (
       <div className="contentArea">
         <Route
@@ -240,7 +238,6 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { intl } = this.props;
     let routes = <Routes auth={authService} />;
     let isAuthenticated = authService.isAuthenticated();
 

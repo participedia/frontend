@@ -15,7 +15,6 @@ import {
 export default class CaseDetails extends React.Component {
   render() {
     let thing = this.props.case;
-    let intl = this.props.intl;
     return (
       <div>
         {thing.location ? (

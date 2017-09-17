@@ -9,7 +9,6 @@ import ListWithHeading from "../components/ListWithHeading";
 export default class OrganizationDetails extends React.Component {
   render() {
     let thing = this.props.case;
-    let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {
       tags = thing.tags.map(tag => (

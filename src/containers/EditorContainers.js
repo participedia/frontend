@@ -120,7 +120,6 @@ class EditorContainer extends Component {
         />
       );
     }
-    let intl = this.props.intl;
     let cases = dict2list(this.state.cases);
     let methods = dict2list(this.state.methods);
     let organizations = dict2list(this.state.organizations);

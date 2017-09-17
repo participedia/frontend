@@ -202,12 +202,9 @@ class NumberEditor extends React.Component {
       <TextField
         onChange={onChange}
         value={
-          typeof this.state.value !== "undefined" &&
-          this.state.value !== null ? (
-            this.state.value
-          ) : (
-            ""
-          )
+          typeof this.state.value !== "undefined" && this.state.value !== null
+            ? this.state.value
+            : ""
         }
         fullWidth
         name={name}
@@ -258,12 +255,9 @@ class TextEditor extends React.Component {
       <TextField
         onChange={onChange}
         value={
-          typeof this.state.value !== "undefined" &&
-          this.state.value !== null ? (
-            this.state.value
-          ) : (
-            ""
-          )
+          typeof this.state.value !== "undefined" && this.state.value !== null
+            ? this.state.value
+            : ""
         }
         fullWidth
         name={name}

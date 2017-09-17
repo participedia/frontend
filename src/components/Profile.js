@@ -56,7 +56,6 @@ class Profile extends Component {
     ];
 
     let authored = [];
-    let intl = this.props.intl;
 
     data.forEach(function(batch) {
       batch.hits.forEach(function(hit, index) {

@@ -124,7 +124,7 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let { data, intl, pages, total } = this.props;
+    let { data, pages, total } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
