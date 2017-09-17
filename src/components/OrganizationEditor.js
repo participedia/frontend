@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import { intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
@@ -102,10 +101,11 @@ class OrganizationEditor extends Component {
       />
     );
 
-    let incomplete =
-      (thing.title ? false : true);
-    let doFullVersion = this.props.new ? "do_full_version" : "edit_full_version"
-    let quickSubmitText = this.props.new ? "quick_submit_case" : "save"
+    let incomplete = thing.title ? false : true;
+    let doFullVersion = this.props.new
+      ? "do_full_version"
+      : "edit_full_version";
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
     return (
       <Form
         onSubmit={onSubmit}
@@ -116,13 +116,14 @@ class OrganizationEditor extends Component {
           <Container className="detailed-case-component" fluid>
             <Col
               md="3"
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block
+ sidepanel"
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading top title-edit">
                   <label htmlFor="title">
-                    <FormattedMessage id={thing.type + "_title_label"} />
+                    {intl.formatMessage({ id: thing.type + "_title_label" })}
                   </label>
                 </div>
                 <Field
@@ -138,12 +139,12 @@ class OrganizationEditor extends Component {
                 <div className="case-location">
                   {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
-                    <FormattedMessage id="links" />
+                    {intl.formatMessage({ id: "links" })}
                   </p>
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">
-                  <FormattedMessage id="media" />
+                  {intl.formatMessage({ id: "media" })}
                 </p>
                 <ImageListEditor
                   property="images"
@@ -153,51 +154,64 @@ class OrganizationEditor extends Component {
                 />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
-                  <FormattedMessage id="tags_title" />
+                  {intl.formatMessage({ id: "tags_title" })}
                 </p>
                 <div className="tags-field">{tagseditor}</div>
               </div>
               <div>
-
-                {isQuick
-                  ? <div>
-                      {incomplete
-                        ? <div className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </div>
-                        : null}
-                      <RaisedButton
-                        className={this.props.new ? "new quick incomplete-warning" : "quick incomplete-warning"}
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: quickSubmitText
+                {isQuick ? (
+                  <div>
+                    {incomplete ? (
+                      <div className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      <RaisedButton
-                        onClick={() => onExpand(this.state.thing)}
-                        style={buttonStyle}
-                        className="full-submit"
-                        label={intl.formatMessage({ id: doFullVersion })}
-                      />
+                      </div>
+                    ) : null}
+                    <RaisedButton
+                      className={
+                        this.props.new
+                          ? "new quick incomplete-warning"
+                          : "quick incomplete-warning"
+                      }
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: quickSubmitText
+                      })}
+                    />
+                    <RaisedButton
+                      onClick={() => onExpand(this.state.thing)}
+                      style={buttonStyle}
+                      className="full-submit"
+                      label={intl.formatMessage({ id: doFullVersion })}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <div>
+                      {makeLocalizedTextField(intl, "executive_director")}
+                      {makeLocalizedChoiceField(intl, "sector")}
+                      {makeLocalizedChoiceField(intl, "specific_topic")}
+                      <label className="sub-heading" htmlFor="body_en">
+                        {intl.formatMessage({ id: thing.type + "_body_title" })}
+                      </label>
                     </div>
                     <Field fieldName="body" type={LazyBodyEditor} />
                     <p className="sub-heading">Related Content</p>
                     <div className="related-content">
                       <div className="sub-sub-heading">
-                        <FormattedMessage id="related_cases" />
+                        {intl.formatMessage({ id: "related_cases" })}
                       </div>
                       {related_cases}
                       <div className="sub-sub-heading">
-                        <FormattedMessage id="related_methods" />
+                        {intl.formatMessage({ id: "related_methods" })}
                       </div>
                       {related_methods}
                       <div className="sub-sub-heading">
-                        <FormattedMessage id="related_organizations" />
+                        {intl.formatMessage({ id: "related_organizations" })}
                       </div>
                       {related_organizations}
                     </div>
