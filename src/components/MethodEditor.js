@@ -98,8 +98,10 @@ class MethodEditor extends Component {
 
     let issue = this.state.thing.issue;
     let incomplete = thing.title ? false : true;
-    let doFullVersion = this.props.new ? "do_full_version" : "edit_full_version"
-    let quickSubmitText = this.props.new ? "quick_submit_method" : "save"
+    let doFullVersion = this.props.new
+      ? "do_full_version"
+      : "edit_full_version";
+    let quickSubmitText = this.props.new ? "quick_submit_method" : "save";
     return (
       <Form
         onSubmit={onSubmit}
@@ -149,57 +151,45 @@ class MethodEditor extends Component {
                 <div className="tags-field">{tagseditor}</div>
               </div>
               <div>
-                {isQuick
-                  ? <div>
-                      {incomplete
-                        ? <div className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </div>
-                        : null}
-                      <RaisedButton
-                        className={this.props.new ? "new quick incomplete-warning" : "quick incomplete-warning"}
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: quickSubmitText
+                {isQuick ? (
+                  <div>
+                    {incomplete ? (
+                      <div className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      <RaisedButton
-                        onClick={() => onExpand(this.state.thing)}
-                        className="full-submit"
-                        style={buttonStyle}
-                        label={intl.formatMessage({ id: doFullVersion })}
-                      />
-                    </div>
-                  : <div>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "general_issues",
-                        "issue",
-                        "general_issues"
-                      )}
-                      {issue
-                        ? <div>
-                            {makeLocalizedChoiceField(
-                              intl,
-                              "specific_topic",
-                              issue,
-                              "specific_topic"
-                            )}
-                          </div>
-                        : undefined}
-                      {issue === "other" &&
-                        this.state.thing.specific_topic === "other"
-                        ? <b>
-                            {intl.formatMessage({
-                              id: "send_email_with_catgeory_additions"
-                            })}
-                          </b>
-                        : undefined}
+                      </div>
+                    ) : null}
+                    <RaisedButton
+                      className={
+                        this.props.new
+                          ? "new quick incomplete-warning"
+                          : "quick incomplete-warning"
+                      }
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: quickSubmitText
+                      })}
+                    />
+                    <RaisedButton
+                      onClick={() => onExpand(this.state.thing)}
+                      className="full-submit"
+                      style={buttonStyle}
+                      label={intl.formatMessage({ id: doFullVersion })}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    {makeLocalizedChoiceField(
+                      intl,
+                      "general_issues",
+                      "issue",
+                      "general_issues"
+                    )}
+                    {issue ? (
                       <div>
                         {makeLocalizedChoiceField(
                           intl,
@@ -211,6 +201,25 @@ class MethodEditor extends Component {
                     ) : (
                       undefined
                     )}
+                    {issue === "other" &&
+                    this.state.thing.specific_topic === "other" ? (
+                      <b>
+                        {intl.formatMessage({
+                          id: "send_email_with_catgeory_additions"
+                        })}
+                      </b>
+                    ) : (
+                      undefined
+                    )}
+                    <div>
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "specific_topic",
+                        issue,
+                        "specific_topic"
+                      )}
+                    </div>
+                    ) : ( undefined )
                     {issue === "other" &&
                     this.state.thing.specific_topic === "other" ? (
                       <b>
