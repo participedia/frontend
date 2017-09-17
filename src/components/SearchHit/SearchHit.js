@@ -41,56 +41,24 @@ export class SearchHit extends React.Component {
     );
     let blob = (
       <Col xs="12" md={this.props.selectedViewType === "grid" ? "3" : "12"}>
-        {this.props.selectedViewType === "grid" ? (
-          <div className="grid-item">
-            <Link to={link} className="result-title">
-              {pic ? (
-                <div className="case-images">
-                  <img alt="" src={pic} />
-                </div>
-              ) : video ? (
-                <ReactPlayer width="100%" height="200" controls url={video} />
-              ) : (
-                <div className={thumbnailClass} style={thumbnailStyle} />
-              )}
-            </Link>
-            <small className="label">
-              {result.featured ? (
-                <FormattedMessage id={"featured-" + result.type} />
-              ) : (
-                ""
-              )}
-            </small>
-            {bookmarkIcon}
-            <Link to={link} className="result-title">
-              <div className="result-title-text">{title}</div>
-            </Link>
-            <p>
-              <FormattedMessage id="submitted" />&nbsp;
-              <FormattedDate
-                value={result.updated_date}
-                year="numeric"
-                month="long"
-                day="2-digit"
-              />
-            </p>
-          </div>
-        ) : (
-          <Row className="list-item pt-4">
-            <Col md="3">
-              {pic ? (
-                <Link to={link}>
-                  <div className="pt-2 case-images">
-                    <img alt="" src={pic} />
-                  </div>
-                </Link>
-              ) : (
-                <Link to={link}>
-                  <div className={thumbnailClass} style={thumbnailStyle} />
-                </Link>
-              )}
-            </Col>
-            <Col md="9">
+        {this.props.selectedViewType === "grid"
+          ? <div className="grid-item">
+              <Link to={link} className="result-title">
+                {pic
+                  ? <div className="case-images">
+                      <img alt="" src={pic} />
+                    </div>
+                 :   
+                  video ? 
+                    <ReactPlayer
+                      className="case-images"
+                      width="100%"
+                      height="200px"
+                      controls
+                      url={video}
+                    />
+                  : <div className={thumbnailClass} style={thumbnailStyle} />}
+              </Link>
               <small className="label">
                 {result.featured ? (
                   <FormattedMessage id={"featured-" + result.type} />

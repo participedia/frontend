@@ -119,7 +119,7 @@ export class SearchResultsView extends React.Component {
   goPrevPage() {
     let restrictions = queryString.parse(myhistory.location.search);
     let currentPage = restrictions.page || 1;
-    currentPage = Math.min(1, currentPage - 1);
+    currentPage = Math.max(1, currentPage - 1);
     restrictions["page"] = String(currentPage);
     let newSearch = queryString.stringify(restrictions);
     myhistory.push(myhistory.location.pathname + "?" + newSearch);
@@ -179,34 +179,42 @@ export class SearchResultsView extends React.Component {
         }
       });
       const on_first_page = pageNo === 1;
-      const on_last_page = false;
+      const on_last_page = pageNo === pages ? true : false;
 
       results = (
         <div className="search-results">
           <div className="search-description">
-            {searchTerm ? (
-              <div className="search-description-text">
-                {resultsCount}&nbsp;
-                {this.props.intl.formatMessage({
-                  id: "result" + (resultsCount === 1 ? "" : "s")
-                })}{" "}
-                <FormattedMessage id="of" /> {total} {description}{" "}
-                <div className="search-term">{searchTerm}</div>
-                {" ("}
-                <FormattedMessage id="page" /> {pageNo}{" "}
-                <FormattedMessage id="of" /> {pages})
-                <div className="pagination">
-                  <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
-                    <NavigatePreviousIcon />
-                  </IconButton>
-                  <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
-                    <NavigateNextIcon />
-                  </IconButton>
+            <div className="search-description-text clearfix">
+              {searchTerm ? (
+                <div className="page-of">
+                  {resultsCount}&nbsp;
+                  <FormattedMessage
+                    id={"result" + (resultsCount === 1 ? "" : "s")}
+                  />{" "}
+                  <FormattedMessage id="of" /> {total} {description}{" "}
+                  <div className="search-term">{searchTerm}</div>
+                  {" ("}
+                  <FormattedMessage id="page" /> {pageNo}{" "}
+                  {this.props.intl.formatMessage({ id: "page" })} {pageNo}{" "}
+                  <FormattedMessage id="of" /> {pages}
                 </div>
+              ) : (
+                <div className="page-of">
+                  <span className="text-capitalize">
+                    <FormattedMessage id="page" />
+                  </span>{" "}
+                  {pageNo} {this.props.intl.formatMessage({ id: "of" })} {pages}
+                </div>
+              )}
+              <div className="pagination">
+                <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
+                  <NavigatePreviousIcon />
+                </IconButton>
+                <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
+                  <NavigateNextIcon />
+                </IconButton>
               </div>
-            ) : (
-              <div />
-            )}
+            </div>
             <FilterArray data={filters} />
           </div>
           <div className="result-count">
@@ -251,11 +259,9 @@ export class SearchResultsView extends React.Component {
               <div
                 onClick={this.props.onSortingChange.bind(this, "featured")}
                 className={
-                  this.props.sortingMethod === "featured" ? (
-                    "selected"
-                  ) : (
-                    "unselected"
-                  )
+                  this.props.sortingMethod === "featured"
+                    ? "selected"
+                    : "unselected"
                 }
               >
                 <FormattedMessage id="featured" />
@@ -263,11 +269,9 @@ export class SearchResultsView extends React.Component {
               <div
                 onClick={this.props.onSortingChange.bind(this, "chronological")}
                 className={
-                  this.props.sortingMethod === "chronological" ? (
-                    "selected"
-                  ) : (
-                    "unselected"
-                  )
+                  this.props.sortingMethod === "chronological"
+                    ? "selected"
+                    : "unselected"
                 }
               >
                 <FormattedMessage id="chronological" />
@@ -275,11 +279,9 @@ export class SearchResultsView extends React.Component {
               <div
                 onClick={this.props.onSortingChange.bind(this, "alphabetical")}
                 className={
-                  this.props.sortingMethod === "alphabetical" ? (
-                    "selected"
-                  ) : (
-                    "unselected"
-                  )
+                  this.props.sortingMethod === "alphabetical"
+                    ? "selected"
+                    : "unselected"
                 }
               >
                 <FormattedMessage id="alphabetical" />
@@ -301,11 +303,9 @@ export class SearchResultsView extends React.Component {
                   onClick={() =>
                     preventDefault(this.props.onCategoryChange("All"))}
                   className={
-                    this.props.selectedCategory === "All" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedCategory === "All"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <FormattedMessage id="all" />
@@ -314,11 +314,9 @@ export class SearchResultsView extends React.Component {
                   onClick={() =>
                     preventDefault(this.props.onCategoryChange("Cases"))}
                   className={
-                    this.props.selectedCategory === "Cases" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedCategory === "Cases"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <FormattedMessage id="cases" />
@@ -328,11 +326,9 @@ export class SearchResultsView extends React.Component {
                   onClick={() =>
                     preventDefault(this.props.onCategoryChange("Methods"))}
                   className={
-                    this.props.selectedCategory === "Methods" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedCategory === "Methods"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <FormattedMessage id="methods" />
@@ -344,11 +340,9 @@ export class SearchResultsView extends React.Component {
                       this.props.onCategoryChange("Organizations")
                     )}
                   className={
-                    this.props.selectedCategory === "Organizations" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedCategory === "Organizations"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <FormattedMessage id="organizations" />
@@ -377,11 +371,9 @@ export class SearchResultsView extends React.Component {
                   onClick={() =>
                     preventDefault(this.props.onLayoutChange("grid"))}
                   className={
-                    this.props.selectedViewType === "grid" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedViewType === "grid"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <img src={searchGridIcon} className="grid-icon" alt="" />
@@ -395,11 +387,9 @@ export class SearchResultsView extends React.Component {
                   onClick={() =>
                     preventDefault(this.props.onLayoutChange("list"))}
                   className={
-                    this.props.selectedViewType === "list" ? (
-                      "selected"
-                    ) : (
-                      "unselected"
-                    )
+                    this.props.selectedViewType === "list"
+                      ? "selected"
+                      : "unselected"
                   }
                 >
                   <img src={searchListIcon} className="list-icon" alt="" />

@@ -16,7 +16,7 @@ function dict2list(obj) {
 class EditorContainer extends Component {
   constructor(props) {
     super(props);
-    let isQuick = props.new;
+    let isQuick = true;
     this.state = {
       isQuick: isQuick,
       errorMessage: null,

@@ -102,7 +102,10 @@ class OrganizationEditor extends Component {
       />
     );
 
-    let incomplete = thing.title ? false : true;
+    let incomplete =
+      (thing.title ? false : true);
+    let doFullVersion = this.props.new ? "do_full_version" : "edit_full_version"
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save"
     return (
       <Form
         onSubmit={onSubmit}
@@ -155,41 +158,32 @@ class OrganizationEditor extends Component {
                 <div className="tags-field">{tagseditor}</div>
               </div>
               <div>
-                {isQuick ? (
-                  <div>
-                    {incomplete ? (
-                      <div className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
+
+                {isQuick
+                  ? <div>
+                      {incomplete
+                        ? <div className="incomplete">
+                            {intl.formatMessage({
+                              id: "incomplete_" + thing.type
+                            })}
+                          </div>
+                        : null}
+                      <RaisedButton
+                        className={this.props.new ? "new quick incomplete-warning" : "quick incomplete-warning"}
+                        disabled={incomplete}
+                        primary
+                        style={buttonStyle}
+                        type="submit"
+                        label={intl.formatMessage({
+                          id: quickSubmitText
                         })}
-                      </div>
-                    ) : null}
-                    <RaisedButton
-                      className="new quick incomplete-warning"
-                      disabled={incomplete}
-                      primary
-                      style={buttonStyle}
-                      type="submit"
-                      label={intl.formatMessage({
-                        id: "quick_submit_" + thing.type
-                      })}
-                    />
-                    <RaisedButton
-                      onClick={() => onExpand(this.state.thing)}
-                      style={buttonStyle}
-                      className="full-submit"
-                      label={intl.formatMessage({ id: "do_full_version" })}
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <div>
-                      {makeLocalizedTextField(intl, "executive_director")}
-                      {makeLocalizedChoiceField(intl, "sector")}
-                      {makeLocalizedChoiceField(intl, "specific_topic")}
-                      <label className="sub-heading" htmlFor="body_en">
-                        <FormattedMessage id={thing.type + "_body_title"} />
-                      </label>
+                      />
+                      <RaisedButton
+                        onClick={() => onExpand(this.state.thing)}
+                        style={buttonStyle}
+                        className="full-submit"
+                        label={intl.formatMessage({ id: doFullVersion })}
+                      />
                     </div>
                     <Field fieldName="body" type={LazyBodyEditor} />
                     <p className="sub-heading">Related Content</p>
