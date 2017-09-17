@@ -188,9 +188,17 @@ class AuthService {
     if (!store.get("id_token")) {
       return false;
     }
+    let authenticated = false;
     // we may have a token but it could be expired
-    let expiresAt = JSON.parse(store.get("expires_at"));
-    let authenticated = new Date().getTime() < expiresAt;
+    let expiresAt = store.get("expires_at");
+    try {
+      expiresAt = JSON.parse(expiresAt);
+      authenticated = new Date().getTime() < expiresAt;
+    } catch (e) {
+      // invalid JSON
+      // ignore it, authenticated is false by default.
+    }
+
     if (!authenticated) {
       // we should figure out how to do reauth XXX
       store.remove("access_token");
