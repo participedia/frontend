@@ -118,7 +118,7 @@ export class SearchResultsView extends React.Component {
   goPrevPage() {
     let restrictions = queryString.parse(myhistory.location.search);
     let currentPage = restrictions.page || 1;
-    currentPage = Math.min(1, currentPage - 1);
+    currentPage = Math.max(1, currentPage - 1);
     restrictions["page"] = String(currentPage);
     let newSearch = queryString.stringify(restrictions);
     myhistory.push(myhistory.location.pathname + "?" + newSearch);
@@ -178,13 +178,15 @@ export class SearchResultsView extends React.Component {
         }
       });
       const on_first_page = pageNo === 1;
-      const on_last_page = false;
+      const on_last_page = pageNo === pages ? true : false;
 
       results = (
         <div className="search-results">
           <div className="search-description">
-            {searchTerm
-              ? <div className="search-description-text">
+            <div className="search-description-text clearfix">
+              {searchTerm
+                ? 
+                <div className="page-of">
                   {resultsCount}&nbsp;
                   {this.props.intl.formatMessage({
                     id: "result" + (resultsCount === 1 ? "" : "s")
@@ -203,19 +205,30 @@ export class SearchResultsView extends React.Component {
                   {this.props.intl.formatMessage({ id: "of" })}
                   {" "}
                   {pages})
-                  <div className="pagination">
-                    <IconButton
-                      disabled={on_first_page}
-                      onTouchTap={goPrevPage}
-                    >
-                      <NavigatePreviousIcon />
-                    </IconButton>
-                    <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
-                      <NavigateNextIcon />
-                    </IconButton>
-                  </div>
                 </div>
-              : <div />}
+                : 
+                <div className="page-of">
+                  <span className="text-capitalize">{this.props.intl.formatMessage({ id: "page" })}</span>
+                  {" "}
+                  {pageNo}
+                  {" "}
+                  {this.props.intl.formatMessage({ id: "of" })}
+                  {" "}
+                  {pages}
+                </div>
+              }
+              <div className="pagination">
+                <IconButton
+                  disabled={on_first_page}
+                  onTouchTap={goPrevPage}
+                >
+                  <NavigatePreviousIcon />
+                </IconButton>
+                <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
+                  <NavigateNextIcon />
+                </IconButton>
+              </div>
+            </div>
             <FilterArray data={filters} />
           </div>
           <div className="result-count">
