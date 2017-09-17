@@ -41,12 +41,10 @@ class FeaturedSearches extends React.Component {
         <LinkToSearch
           label="mention_participatory_budgeting"
           query={{ query: "participatory budgeting" }}
-          intl={this.props.intl}
         />
         <LinkToSearch
           label="tag_infrastructure"
           query={{ tag: "infrastructure" }}
-          intl={this.props.intl}
         />
       </div>
     );
@@ -135,7 +133,6 @@ export class SearchResultsView extends React.Component {
           selectedViewType={selectedViewType}
           key={index}
           record={result}
-          intl={intl}
         />
       );
     });
@@ -292,7 +289,7 @@ export class SearchResultsView extends React.Component {
                 <FormattedMessage id="featured_searches" />
               </div>
               <div className="featured-searches">
-                <FeaturedSearches intl={this.props.intl} />
+                <FeaturedSearches />
               </div>
             </div>
           </Col>
