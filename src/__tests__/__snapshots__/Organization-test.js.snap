@@ -35,10 +35,18 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             </div>
             <p
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-            />
+            >
+              <span>
+                Data
+              </span>
+            </p>
             <p
               className="sub-sub-heading"
-            />
+            >
+              <span>
+                Tags
+              </span>
+            </p>
             <div
               className="tags"
             >
@@ -74,7 +82,11 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Relevant links (URLs)
+                </span>
+              </p>
               <div
                 className="links"
               >
@@ -116,7 +128,11 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
           >
             <h2
               className="category"
-            />
+            >
+              <span>
+                Organization
+              </span>
+            </h2>
             <h2
               className="case-title"
             >
@@ -192,7 +208,11 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Related Content
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
@@ -205,7 +225,11 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Organization Data
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
@@ -228,10 +252,18 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                     </div>
                     <p
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-                    />
+                    >
+                      <span>
+                        Data
+                      </span>
+                    </p>
                     <p
                       className="sub-sub-heading"
-                    />
+                    >
+                      <span>
+                        Tags
+                      </span>
+                    </p>
                     <div
                       className="tags"
                     >
@@ -267,7 +299,11 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Relevant links (URLs)
+                        </span>
+                      </p>
                       <div
                         className="links"
                       >
@@ -507,7 +543,9 @@ exports[`Organization editor renders correctly 1`] = `
               </div>
             </div>
             <div>
-              Sorry, upload only works if you're logged in.
+              <span>
+                Sorry, upload only works if you're logged in.
+              </span>
             </div>
           </div>
           <div>
