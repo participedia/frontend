@@ -1,6 +1,9 @@
 {
   "en": {
     "featured": "Featured",
+    "featured-case": "Featured Case",
+    "featured-method": "Featured Method",
+    "featured-organization": "Featured Organization",
     "chronological": "Most Recent",
     "alphabetical": "Alphabetical",
     "about": "About",

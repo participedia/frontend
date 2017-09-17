@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 export default class SearchLink extends React.Component {
@@ -7,9 +8,15 @@ export default class SearchLink extends React.Component {
     // console.log("VALUE", value);
     // console.log("href", encodeURI(value));
     let href = `/search?${tag}=${value}`;
-    return tag && value && intl
-      ? <Link className="tag" to={{ pathname: href }}>{value}</Link>
-      : <div>{intl.formatMessage({ id: "not_specified" })}</div>;
+    return tag && value && intl ? (
+      <Link className="tag" to={{ pathname: href }}>
+        {value}
+      </Link>
+    ) : (
+      <div>
+        <FormattedMessage id="not_specified" />
+      </div>
+    );
   }
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
@@ -90,17 +91,15 @@ export function makeLocalizedChoiceField(
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
 
       <Field
         fieldName={property}
         label={label}
         type={ChoiceEditor}
         placeholder={intl.formatMessage({
-            id: property + "_placeholder"
-          })}
+          id: property + "_placeholder"
+        })}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -151,14 +150,12 @@ export class BooleanEditor extends React.Component {
 }
 
 export function makeLocalizedBooleanField(intl, property) {
-  let label = intl.formatMessage({ id: property });
   return (
     <div>
       <p className="sub-heading">
-        {label}
+        <FormattedMessage id={property} />
       </p>
       <div className={property}>
-
         <Field
           fieldName={property}
           label={intl.formatMessage({ id: property })}
@@ -205,9 +202,12 @@ class NumberEditor extends React.Component {
       <TextField
         onChange={onChange}
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null
-            ? this.state.value
-            : ""
+          typeof this.state.value !== "undefined" &&
+          this.state.value !== null ? (
+            this.state.value
+          ) : (
+            ""
+          )
         }
         fullWidth
         name={name}
@@ -220,17 +220,14 @@ export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
-
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property })}
           type={NumberEditor}
+          label={intl.formatMessage({ id: property })}
         />
       </div>
     </div>
@@ -261,9 +258,12 @@ class TextEditor extends React.Component {
       <TextField
         onChange={onChange}
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null
-            ? this.state.value
-            : ""
+          typeof this.state.value !== "undefined" &&
+          this.state.value !== null ? (
+            this.state.value
+          ) : (
+            ""
+          )
         }
         fullWidth
         name={name}
@@ -276,17 +276,14 @@ export function makeLocalizedTextField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
-
         <Field
           fieldName={property}
           name={property}
           id={property}
-          label={intl.formatMessage({ id: property })}
           type={TextEditor}
+          label={intl.formatMessage({ id: property })}
         />
       </div>
     </div>
@@ -400,9 +397,7 @@ export function makeLocalizedLocationField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
         <Field
           fieldName={property}

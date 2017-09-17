@@ -173,21 +173,27 @@ class EditorContainer extends Component {
         />
       );
     } else {
-      return <div>This shouldn't show up</div>;
+      return <div>This should not show up</div>;
     }
   }
 }
 
-export const CaseEditorContainer = props =>
-  <EditorContainer type="case" new={false} {...props} />;
-export const MethodEditorContainer = props =>
-  <EditorContainer type="method" new={false} {...props} />;
-export const OrganizationEditorContainer = props =>
-  <EditorContainer type="organization" new={false} {...props} />;
+export const CaseEditorContainer = props => (
+  <EditorContainer type="case" new={false} {...props} />
+);
+export const MethodEditorContainer = props => (
+  <EditorContainer type="method" new={false} {...props} />
+);
+export const OrganizationEditorContainer = props => (
+  <EditorContainer type="organization" new={false} {...props} />
+);
 
-export const NewCaseContainer = props =>
-  <EditorContainer type="case" new {...props} />;
-export const NewMethodContainer = props =>
-  <EditorContainer type="method" new {...props} />;
-export const NewOrganizationContainer = props =>
-  <EditorContainer type="organization" new {...props} />;
+export const NewCaseContainer = props => (
+  <EditorContainer type="case" new {...props} />
+);
+export const NewMethodContainer = props => (
+  <EditorContainer type="method" new {...props} />
+);
+export const NewOrganizationContainer = props => (
+  <EditorContainer type="organization" new {...props} />
+);

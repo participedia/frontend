@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import "./SearchHit.css";
 import { injectIntl, intlShape, FormattedDate } from "react-intl";
@@ -15,12 +16,12 @@ export class SearchHit extends React.Component {
   }
   render() {
     let result = this.props.record;
-    let intl = this.props.intl;
 
     let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
-    let pic = result.images && result.images.length
-      ? awsUrl + encodeURIComponent(result.images[0])
-      : "";
+    let pic =
+      result.images && result.images.length
+        ? awsUrl + encodeURIComponent(result.images[0])
+        : "";
     let video = result.videos ? result.videos[0] : "";
     let id = result.id;
     let type = result.type;
@@ -40,75 +41,81 @@ export class SearchHit extends React.Component {
     );
     let blob = (
       <Col xs="12" md={this.props.selectedViewType === "grid" ? "3" : "12"}>
-        {this.props.selectedViewType === "grid"
-          ? <div className="grid-item">
-              <Link to={link} className="result-title">
-                {pic
-                  ? <div className="case-images">
-                      <img alt="" src={pic} />
-                    </div>
-                 :   
-                  video ? 
-                    <ReactPlayer
-                      width="100%"
-                      height="200"
-                      controls
-                      url={video}
-                    />
-                  : <div className={thumbnailClass} style={thumbnailStyle} />}
-              </Link>
+        {this.props.selectedViewType === "grid" ? (
+          <div className="grid-item">
+            <Link to={link} className="result-title">
+              {pic ? (
+                <div className="case-images">
+                  <img alt="" src={pic} />
+                </div>
+              ) : video ? (
+                <ReactPlayer width="100%" height="200" controls url={video} />
+              ) : (
+                <div className={thumbnailClass} style={thumbnailStyle} />
+              )}
+            </Link>
+            <small className="label">
+              {result.featured ? (
+                <FormattedMessage id={"featured-" + result.type} />
+              ) : (
+                ""
+              )}
+            </small>
+            {bookmarkIcon}
+            <Link to={link} className="result-title">
+              <div className="result-title-text">{title}</div>
+            </Link>
+            <p>
+              <FormattedMessage id="submitted" />&nbsp;
+              <FormattedDate
+                value={result.updated_date}
+                year="numeric"
+                month="long"
+                day="2-digit"
+              />
+            </p>
+          </div>
+        ) : (
+          <Row className="list-item pt-4">
+            <Col md="3">
+              {pic ? (
+                <Link to={link}>
+                  <div className="pt-2 case-images">
+                    <img alt="" src={pic} />
+                  </div>
+                </Link>
+              ) : (
+                <Link to={link}>
+                  <div className={thumbnailClass} style={thumbnailStyle} />
+                </Link>
+              )}
+            </Col>
+            <Col md="9">
               <small className="label">
-                {(result.featured
-                  ? intl.formatMessage({ id: "featured" }) + " "
-                  : "") + result.type}
+                {result.featured ? (
+                  <FormattedMessage id={"featured-" + result.type} />
+                ) : (
+                  ""
+                )}
               </small>
               {bookmarkIcon}
-              <Link to={link} className="result-title">
+              <Link to={link}>
                 <div className="result-title-text">{title}</div>
               </Link>
-              <p>{intl.formatMessage({ id: "submitted" })}&nbsp;
-                <FormattedDate 
+              <div className="list-body">{body}</div>
+              <p>
+                <FormattedMessage id="submitted" />&nbsp;
+                <FormattedDate
                   value={result.updated_date}
-                  year='numeric'
-                  month='long'
-                  day='2-digit'
+                  year="numeric"
+                  month="long"
+                  day="2-digit"
                 />
               </p>
-            </div>
-          : <Row className="list-item pt-4">
-              <Col md="3">
-                {pic
-                  ? <Link to={link}>
-                      <div className="pt-2 case-images">
-                        <img alt="" src={pic} />
-                      </div>
-                    </Link>
-                  : <Link to={link}>
-                      <div className={thumbnailClass} style={thumbnailStyle} />
-                    </Link>}
-              </Col>
-              <Col md="9">
-                <small className="label">
-                  {(result.featured
-                    ? intl.formatMessage({ id: "featured" }) + " "
-                    : "") + result.type}
-                </small>
-                {bookmarkIcon}
-                <Link to={link}>
-                  <div className="result-title-text">{title}</div>
-                </Link>
-                <div className="list-body">{body}</div>
-                <p>{intl.formatMessage({ id: "submitted" })}&nbsp;
-                  <FormattedDate 
-                    value={result.updated_date}
-                    year='numeric'
-                    month='long'
-                    day='2-digit'
-                  />
-                </p>
-              </Col>
-              <div className="separator" />
-            </Row>}
+            </Col>
+            <div className="separator" />
+          </Row>
+        )}
       </Col>
     );
     return blob;

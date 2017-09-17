@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { intlShape } from "react-intl";
+import { FormattedMessage, intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
@@ -131,14 +131,13 @@ class CaseEditor extends Component {
           <Container className="detailed-case-component" fluid>
             <Col
               md="3"
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block
- sidepanel"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading top title-edit">
                   <label htmlFor="title">
-                    {intl.formatMessage({ id: thing.type + "_title_label" })}
+                    <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
                 <Field
@@ -182,17 +181,17 @@ class CaseEditor extends Component {
                 <div className="case-location">
                   {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
-                    {intl.formatMessage({ id: "date" })}
+                    <FormattedMessage id="date" />
                   </p>
                   {makeLocalizedDateField(intl, "start_date")}
                   {makeLocalizedDateField(intl, "end_date")}
                   <p className="sub-heading">
-                    {intl.formatMessage({ id: "links" })}
+                    <FormattedMessage id="links" />
                   </p>
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">
-                  {intl.formatMessage({ id: "media" })}
+                  <FormattedMessage id="media" />
                 </p>
                 <ImageListEditor
                   property="images"
@@ -202,7 +201,7 @@ class CaseEditor extends Component {
                 />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
-                  {intl.formatMessage({ id: "tags_title" })}
+                  <FormattedMessage id="tags_title" />
                 </p>
                 <div className="tags-field">{tagseditor}</div>
               </div>
@@ -211,9 +210,7 @@ class CaseEditor extends Component {
                   <div>
                     {incomplete ? (
                       <div className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
+                        <FormattedMessage id={"incomplete_" + thing.type} />
                       </div>
                     ) : null}
                     <RaisedButton
@@ -230,7 +227,9 @@ class CaseEditor extends Component {
                       onClick={() => onExpand(this.state.thing)}
                       className="full-submit"
                       style={buttonStyle}
-                      label={intl.formatMessage({ id: "do_full_version" })}
+                      label={intl.formatMessage({
+                        id: "do_full_version"
+                      })}
                     />
                   </div>
                 ) : (
@@ -286,13 +285,13 @@ class CaseEditor extends Component {
                       )}
                       <div className="pb-1">
                         <p className="sub-heading">
-                          {intl.formatMessage({ id: "related_cases" })}
+                          <FormattedMessage id="related_cases" />
                         </p>
                         {related_cases}
                       </div>
                       <div className="pb-1">
                         <p className="sub-heading">
-                          {intl.formatMessage({ id: "related_methods" })}
+                          <FormattedMessage id="related_methods" />
                         </p>
                         {related_methods}
                       </div>

@@ -10,30 +10,32 @@ class Research extends React.Component {
   render() {
     const methodologyLink = (
       <Link to="/somepage">
-        {this.props.intl.formatMessage({ id: "participedia_project" })}
+        <FormattedMessage id="participedia_project" />
       </Link>
     );
     // const participantSurvey = (
     //   <Link to="/somepage">
-    //     {this.props.intl.formatMessage({ id: "participant_survey" })}
+    //     <FormattedMessage id="participant_survey"  />
     //   </Link>
     // );
     // const observerSurvey = (
     //   <Link to="/somepage">
-    //     {this.props.intl.formatMessage({ id: "observer_survey" })}
+    //     <FormattedMessage id="observer_survey"  />
     //   </Link>
     // );
 
     return (
       <Container fluid={false} className="about static">
         <Row>
-          <Col lg={{ size: 8}} className="ml-auto mr-auto">
-            <h1>{this.props.intl.formatMessage({ id: "research" })}</h1>
-            <h2>{this.props.intl.formatMessage({ id: "research_intro" })}</h2>
+          <Col lg={{ size: 8 }} className="ml-auto mr-auto">
+            <h1>
+              <FormattedMessage id="research" />
+            </h1>
+            <h2>
+              <FormattedMessage id="research_intro" />
+            </h2>
             <div className="accordion">
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "methodology" })}
-              >
+              <AccordionTab titleId="methodology">
                 <div className="content">
                   <p className="text">
                     {this.props.intl.formatMessage({
@@ -48,9 +50,7 @@ class Research extends React.Component {
                   </p>
                 </div>
               </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "data_repository" })}
-              >
+              <AccordionTab titleId="data_repository">
                 <div className="content">
                   <p className="text pb-1">
                     {this.props.intl.formatMessage({
@@ -64,21 +64,19 @@ class Research extends React.Component {
                   </a>
                 </div>
               </AccordionTab>
-              <AccordionTab
-                title={this.props.intl.formatMessage({ id: "surveys" })}
-              >
+              <AccordionTab titleId="surveys">
                 <div className="content">
                   <p className="pb-1 text">
-                    {this.props.intl.formatMessage({ id: "surveys_text_1" })}
+                    <FormattedMessage id="surveys_text_1" />
                   </p>
                   <p className="pb-1 text">
-                    {this.props.intl.formatMessage({ id: "surveys_text_2" })}
+                    <FormattedMessage id="surveys_text_2" />
                   </p>
                   <p className="pb-1 text">
-                    {this.props.intl.formatMessage({ id: "surveys_text_3" })}
+                    <FormattedMessage id="surveys_text_3" />
                   </p>
                   <p className="pb-1 text">
-                    {this.props.intl.formatMessage({ id: "surveys_text_4" })}
+                    <FormattedMessage id="surveys_text_4" />
                   </p>
                 </div>
               </AccordionTab>

@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
@@ -37,31 +38,29 @@ export default class MethodDetails extends React.Component {
     let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {
-      tags = thing.tags.map(tag =>
+      tags = thing.tags.map(tag => (
         <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
-      );
+      ));
     }
     return (
       <div>
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
-          {intl.formatMessage({ id: "data" })}
+          <FormattedMessage id="data" />
         </p>
         <p className="sub-sub-heading">
-          {intl.formatMessage({ id: "tags_title" })}
+          <FormattedMessage id="tags_title" />
         </p>
-        <div className="tags">
-          {tags}
-        </div>
-        {thing.issue
-          ? <div>
-              <p className="sub-sub-heading">
-                {intl.formatMessage({ id: "specific_topic" })}
-              </p>
-              <div className="tags">
-                {thing.issue}
-              </div>
-            </div>
-          : <div />}
+        <div className="tags">{tags}</div>
+        {thing.issue ? (
+          <div>
+            <p className="sub-sub-heading">
+              <FormattedMessage id="specific_topic" />
+            </p>
+            <div className="tags">{thing.issue}</div>
+          </div>
+        ) : (
+          <div />
+        )}
 
         <ListWithHeading
           intl={intl}

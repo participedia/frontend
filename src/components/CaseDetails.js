@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import CountryMap from "./CountryMap";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
@@ -17,15 +18,17 @@ export default class CaseDetails extends React.Component {
     let intl = this.props.intl;
     return (
       <div>
-        {thing.location
-          ? <CountryMap
-              city={thing.location.city}
-              countrycode={thing.location.country}
-            />
-          : <div />}
+        {thing.location ? (
+          <CountryMap
+            city={thing.location.city}
+            countrycode={thing.location.country}
+          />
+        ) : (
+          <div />
+        )}
 
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
-          {intl.formatMessage({ id: "data" })}
+          <FormattedMessage id="data" />
         </p>
         <Tags thing={thing} intl={intl} />
         <LinkedPropertyGroupWithHeading

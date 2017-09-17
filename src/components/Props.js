@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FormattedDate } from "react-intl";
@@ -10,10 +11,10 @@ function BooleanProp({ label, property, thing, intl }) {
   return (
     <div>
       <p className="sub-sub-heading">
-        {intl.formatMessage({ id: label ? label : "not_specified" })}
+        <FormattedMessage id={label ? label : "not_specified"} />
       </p>
       <div className={property}>
-        {intl.formatMessage({ id: truthString })}
+        <FormattedMessage id={truthString} />
       </div>
     </div>
   );
@@ -26,16 +27,16 @@ BooleanProp.propTypes = {
 };
 
 const NumberProp = ({ label, property, thing, intl }) =>
-  thing[property] !== undefined && thing[property] !== null
-    ? <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <div className={property}>
-          {String(thing[property])}
-        </div>
-      </div>
-    : <div />;
+  thing[property] !== undefined && thing[property] !== null ? (
+    <div>
+      <p className="sub-sub-heading">
+        <FormattedMessage id={label ? label : "not_specified"} />
+      </p>
+      <div className={property}>{String(thing[property])}</div>
+    </div>
+  ) : (
+    <div />
+  );
 NumberProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -44,16 +45,16 @@ NumberProp.propTypes = {
 };
 
 const TextProp = ({ label, property, thing, intl }) =>
-  thing[property]
-    ? <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <div className={property}>
-          {thing[property]}
-        </div>
-      </div>
-    : <div />;
+  thing[property] ? (
+    <div>
+      <p className="sub-sub-heading">
+        <FormattedMessage id={label ? label : "not_specified"} />
+      </p>
+      <div className={property}>{thing[property]}</div>
+    </div>
+  ) : (
+    <div />
+  );
 TextProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
@@ -62,16 +63,18 @@ TextProp.propTypes = {
 };
 
 function DateProp({ label, property, thing, intl }) {
-  return thing[property]
-    ? <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <div className={property}>
-          <FormattedDate value={thing[property]} />
-        </div>
+  return thing[property] ? (
+    <div>
+      <p className="sub-sub-heading">
+        <FormattedMessage id={label ? label : "not_specified"} />
+      </p>
+      <div className={property}>
+        <FormattedDate value={thing[property]} />
       </div>
-    : <div />;
+    </div>
+  ) : (
+    <div />
+  );
 }
 DateProp.propTypes = {
   label: PropTypes.string.isRequired,
@@ -84,18 +87,20 @@ function ItemProp({ label, property, thing, intl, thingType }) {
   if (!(property in thing)) return <div />;
 
   let url = `/${thingType}/${thing[property]}`;
-  return thing[property]
-    ? <div>
-        <p className="sub-sub-heading">
-          {intl.formatMessage({ id: label ? label : "not_specified" })}
-        </p>
-        <div className={property}>
-          <Link to={url}>
-            {thingType}: {thing[property]}
-          </Link>
-        </div>
+  return thing[property] ? (
+    <div>
+      <p className="sub-sub-heading">
+        <FormattedMessage id={label ? label : "not_specified"} />
+      </p>
+      <div className={property}>
+        <Link to={url}>
+          {thingType}: {thing[property]}
+        </Link>
       </div>
-    : <div />;
+    </div>
+  ) : (
+    <div />
+  );
 }
 
 ItemProp.propTypes = {
