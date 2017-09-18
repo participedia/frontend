@@ -8,12 +8,14 @@
 import React from "react";
 import { IntlProvider, intlShape } from "react-intl";
 import { mount, shallow } from "enzyme";
+import { getBestMatchingMessages } from "../utils/l10n";
 
 // You can pass your messages to the IntlProvider. Optional: remove if unneeded.
-const messages = require("../../public/locales-en.json");
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
 
 // Create the IntlProvider to retrieve context for wrapping around.
-const intlProvider = new IntlProvider({ locale: "en-US", messages }, {});
+const intlProvider = new IntlProvider({ locale, messages }, {});
 const { intl } = intlProvider.getChildContext();
 
 /*
