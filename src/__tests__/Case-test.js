@@ -14,7 +14,6 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
 import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
 import caseData from "./case_data.json";
-import intlProps from "../helpers/intl-props-test-helper.js";
 import afterPromises from "../helpers/afterPromises";
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
@@ -44,10 +43,11 @@ jest.mock("material-ui/SvgIcon");
 jest.mock("react-geosuggest");
 jest.mock("material-ui-chip-input");
 jest.mock("../vendor/react-items-list");
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
 
 function setup() {
   const props = {
-    intl: intlProps,
     auth: {
       getProfile: cb => cb({}),
       getToken: () => "foo",
@@ -72,6 +72,9 @@ function setup() {
   };
 }
 
+let props = setup().props;
+props["details"] = CaseDetails;
+
 describe("containers", () => {
   describe("Case", () => {
     it("should render proper data for case", done => {
@@ -84,16 +87,13 @@ describe("containers", () => {
   });
 });
 
-let props = setup().props;
-let locale = "en-US";
-props["details"] = CaseDetails;
-let messages = getBestMatchingMessages(locale);
-
 test("ItemDetails for Case renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>
-        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+        <MemoryRouter>
+          <ItemDetails toggleHidden={function() {}} {...props} />
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();

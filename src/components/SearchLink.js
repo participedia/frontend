@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 export default class SearchLink extends React.Component {
   render() {
-    let { tag, value, intl } = this.props;
-    // console.log("VALUE", value);
-    // console.log("href", encodeURI(value));
+    let { tag, value } = this.props;
     let href = `/search?${tag}=${value}`;
-    return tag && value && intl ? (
-      <Link className="tag" to={{ pathname: href }}>
-        {value}
-      </Link>
-    ) : (
+    if (tag && value)
+      return (
+        <Link className="tag" to={{ pathname: href }}>
+          {value}
+        </Link>
+      );
+    return (
       <div>
         <FormattedMessage id="not_specified" />
       </div>

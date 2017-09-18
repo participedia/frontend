@@ -1,18 +1,38 @@
 import React from "react";
 import { MemoryRouter } from "react-router";
 import { SearchHit } from "../components/SearchHit/SearchHit";
-import { shallowWithIntl } from "../helpers/intl-enzyme-test-helper.js";
 import resultData from "./result_data.json";
-import intlProps from "../helpers/intl-props-test-helper.js";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+const muiTheme = getMuiTheme({});
+import { IntlProvider } from "react-intl";
+import { getBestMatchingMessages } from "../utils/l10n";
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
+import { mount } from "enzyme";
 
-function setup() {
+const intlProvider = new IntlProvider({ locale: locale }, {});
+const { intl } = intlProvider.getChildContext();
+
+jest.mock("material-ui/IconButton");
+
+function setup(nprops) {
   const props = {
-    intl: intlProps,
-    selectedViewType: "grid",
+    intl: intl,
+    selectedViewType:
+      nprops && nprops.selectedViewType ? nprops.selectedViewType : "grid",
     record: resultData
   };
 
-  const enzymeWrapper = shallowWithIntl(<SearchHit {...props} />);
+  const enzymeWrapper = mount(
+    <IntlProvider locale={locale} messages={messages}>
+      <MuiThemeProvider theme={muiTheme}>
+        <MemoryRouter>
+          <SearchHit {...props} />
+        </MemoryRouter>
+      </MuiThemeProvider>
+    </IntlProvider>
+  );
   return {
     props,
     enzymeWrapper
@@ -27,8 +47,7 @@ describe("components", () => {
     });
 
     it("should show list when selectedViewType is list", () => {
-      const { enzymeWrapper } = setup();
-      enzymeWrapper.setProps({ selectedViewType: "list" });
+      const { enzymeWrapper } = setup({ selectedViewType: "list" });
       expect(enzymeWrapper.find(".list-item").length).toBe(1);
     });
 

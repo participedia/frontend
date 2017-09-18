@@ -22,8 +22,7 @@ function BooleanProp({ label, property, thing, intl }) {
 BooleanProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
+  thing: PropTypes.object.isRequired
 };
 
 const NumberProp = ({ label, property, thing, intl }) =>
@@ -40,8 +39,7 @@ const NumberProp = ({ label, property, thing, intl }) =>
 NumberProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
+  thing: PropTypes.object.isRequired
 };
 
 const TextProp = ({ label, property, thing, intl }) =>
@@ -58,8 +56,7 @@ const TextProp = ({ label, property, thing, intl }) =>
 TextProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
+  thing: PropTypes.object.isRequired
 };
 
 function DateProp({ label, property, thing, intl }) {
@@ -79,8 +76,7 @@ function DateProp({ label, property, thing, intl }) {
 DateProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
-  thing: PropTypes.object.isRequired,
-  intl: PropTypes.object.isRequired
+  thing: PropTypes.object.isRequired
 };
 
 function ItemProp({ label, property, thing, intl, thingType }) {
@@ -107,8 +103,7 @@ ItemProp.propTypes = {
   label: PropTypes.string.isRequired,
   property: PropTypes.string.isRequired,
   thing: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
-  intl: PropTypes.object.isRequired
+  type: PropTypes.string.isRequired
 };
 
 export { BooleanProp, DateProp, ItemProp, NumberProp, TextProp };

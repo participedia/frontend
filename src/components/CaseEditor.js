@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage, intlShape } from "react-intl";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
@@ -337,4 +337,4 @@ CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default CaseEditor;
+export default injectIntl(CaseEditor);

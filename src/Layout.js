@@ -212,7 +212,6 @@ class Routes extends React.Component {
 export class Layout extends React.Component {
   static propTypes = {
     isAuthenticated: bool.isRequired,
-    profile: object.isRequired,
     checkLogin: func,
     intl: intlShape.isRequired
   };

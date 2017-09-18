@@ -469,7 +469,9 @@ exports[`Organization editor renders correctly 1`] = `
           >
             <label
               htmlFor="title"
-            />
+            >
+              Name of Organization
+            </label>
           </div>
           <Textfield
             className="custom-field org-title"
@@ -482,7 +484,7 @@ exports[`Organization editor renders correctly 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder={undefined}
+            placeholder="Type to search for existing organization or enter title"
             type="text"
             value="Urban Interactive Studio"
           />
@@ -492,14 +494,18 @@ exports[`Organization editor renders correctly 1`] = `
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Location
+              </p>
               <div
                 className="location"
               />
             </div>
             <p
               className="sub-heading"
-            />
+            >
+              Relevant links (URLs)
+            </p>
             <div>
               <div
                 className="list links"
@@ -508,7 +514,9 @@ exports[`Organization editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            Media
+          </p>
           <div>
             <div
               className="itemPics pb-3 row"
@@ -555,7 +563,9 @@ exports[`Organization editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            Tags
+          </p>
           <div
             className="tags-field"
           />
@@ -566,7 +576,9 @@ exports[`Organization editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Executive Director
+                </p>
                 <div
                   className="executive_director"
                 >
@@ -581,17 +593,23 @@ exports[`Organization editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Sector
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Specific Topic
+                </p>
               </div>
               <label
                 className="sub-heading"
                 htmlFor="body_en"
-              />
+              >
+                Description of the organization
+              </label>
             </div>
             <p
               className="sub-heading"
@@ -603,13 +621,19 @@ exports[`Organization editor renders correctly 1`] = `
             >
               <div
                 className="sub-sub-heading"
-              />
+              >
+                Related cases
+              </div>
               <div
                 className="sub-sub-heading"
-              />
+              >
+                Related methods
+              </div>
               <div
                 className="sub-sub-heading"
-              />
+              >
+                Related organizations
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { intlShape } from "react-intl";
+import { injectIntl, intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
@@ -241,4 +241,4 @@ OrganizationEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default OrganizationEditor;
+export default injectIntl(OrganizationEditor);

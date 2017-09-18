@@ -29,7 +29,6 @@ export class Case extends React.Component {
   }
 }
 Case.propTypes = {
-  intl: intlShape.isRequired,
   isAuthenticated: bool,
   location: object
 };

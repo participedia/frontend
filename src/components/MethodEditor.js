@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
-import { intlShape } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
@@ -310,8 +309,4 @@ class MethodEditor extends Component {
   }
 }
 
-MethodEditor.propTypes = {
-  intl: intlShape.isRequired
-};
-
-export default MethodEditor;
+export default injectIntl(MethodEditor);

@@ -41,20 +41,24 @@ exports[`Case editor renders correctly 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder={undefined}
+            placeholder="Type to search for existing case or enter title"
             type="text"
             value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
           />
           <div>
             <p
               className="sub-heading"
-            />
+            >
+              General Issues
+            </p>
           </div>
           <div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Specific Topic
+              </p>
             </div>
           </div>
           <div
@@ -63,7 +67,9 @@ exports[`Case editor renders correctly 1`] = `
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Location
+              </p>
               <div
                 className="location"
               />
@@ -166,7 +172,9 @@ exports[`Case editor renders correctly 1`] = `
               <label
                 className="sub-heading"
                 htmlFor="body_en"
-              />
+              >
+                Case Description/Narrative
+              </label>
             </div>
             <div
               className="related-content"
@@ -174,22 +182,30 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Communication mode
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Communication with audience
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Decision method
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Face-to-face, online or both
+                </p>
               </div>
               <div>
                 <p
@@ -206,12 +222,16 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  voting
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Number of meeting days
+                </p>
                 <div
                   className="number_of_meeting_days"
                 >
@@ -226,42 +246,58 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted participant demographic
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Kind of influence
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted participants public role
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted audience
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Participant selection
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Type of funding entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Typical implementing entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Typical sponsoring entity
+                </p>
               </div>
               <div>
                 <p
@@ -278,7 +314,9 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Staff type
+                </p>
                 <div
                   className="staff_type"
                 >
@@ -293,7 +331,9 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Who else supported the initiative
+                </p>
                 <div
                   className="who_else_supported_the_initiative"
                 >
@@ -332,7 +372,9 @@ exports[`Case editor renders correctly 1`] = `
               >
                 <p
                   className="sub-heading"
-                />
+                >
+                  Related organizations
+                </p>
               </div>
                
             </div>

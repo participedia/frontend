@@ -75,7 +75,7 @@ export class SearchHit extends React.Component {
               <div className="result-title-text">{title}</div>
             </Link>
             <p>
-              {intl.formatMessage({ id: "submitted" })}&nbsp;
+              <FormattedMessage id="submitted" />{" "}
               <FormattedDate
                 value={result.updated_date}
                 year="numeric"

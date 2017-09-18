@@ -6,6 +6,8 @@ import OrganizationEditor from "../components/OrganizationEditor";
 import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
 
 import { MemoryRouter } from "react-router";
 import { Organization } from "../containers/Organization";
@@ -70,6 +72,9 @@ function setup() {
   };
 }
 
+let props = setup().props;
+props["details"] = OrganizationDetails;
+
 describe("containers", () => {
   describe("Organization", () => {
     it("should render proper data for org", done => {
@@ -82,16 +87,13 @@ describe("containers", () => {
   });
 });
 
-let props = setup().props;
-let locale = "en-US";
-props["details"] = OrganizationDetails;
-let messages = getBestMatchingMessages(locale);
-
 test("ItemDetails for Organization renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>
-        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+        <MemoryRouter>
+          <ItemDetails {...props} toggleHidden={function() {}} />
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();
