@@ -185,7 +185,7 @@ class AuthService {
   }
 
   isAuthenticated() {
-    if (!store.get("id_token")) {
+    if (!store.get("id_token") || !store.get("expires_at")) {
       return false;
     }
     let authenticated = false;

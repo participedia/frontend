@@ -16,7 +16,7 @@ function dict2list(obj) {
 class EditorContainer extends Component {
   constructor(props) {
     super(props);
-    let isQuick = props.new;
+    let isQuick = true;
     this.state = {
       isQuick: isQuick,
       errorMessage: null,
@@ -120,7 +120,6 @@ class EditorContainer extends Component {
         />
       );
     }
-    let intl = this.props.intl;
     let cases = dict2list(this.state.cases);
     let methods = dict2list(this.state.methods);
     let organizations = dict2list(this.state.organizations);
@@ -130,7 +129,6 @@ class EditorContainer extends Component {
     if (this.props.type === "case") {
       return (
         <CaseEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
@@ -145,7 +143,6 @@ class EditorContainer extends Component {
     } else if (this.props.type === "method") {
       return (
         <MethodEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
@@ -160,7 +157,6 @@ class EditorContainer extends Component {
     } else if (this.props.type === "organization") {
       return (
         <OrganizationEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
@@ -173,21 +169,27 @@ class EditorContainer extends Component {
         />
       );
     } else {
-      return <div>This shouldn't show up</div>;
+      return <div>This should not show up</div>;
     }
   }
 }
 
-export const CaseEditorContainer = props =>
-  <EditorContainer type="case" new={false} {...props} />;
-export const MethodEditorContainer = props =>
-  <EditorContainer type="method" new={false} {...props} />;
-export const OrganizationEditorContainer = props =>
-  <EditorContainer type="organization" new={false} {...props} />;
+export const CaseEditorContainer = props => (
+  <EditorContainer type="case" new={false} {...props} />
+);
+export const MethodEditorContainer = props => (
+  <EditorContainer type="method" new={false} {...props} />
+);
+export const OrganizationEditorContainer = props => (
+  <EditorContainer type="organization" new={false} {...props} />
+);
 
-export const NewCaseContainer = props =>
-  <EditorContainer type="case" new {...props} />;
-export const NewMethodContainer = props =>
-  <EditorContainer type="method" new {...props} />;
-export const NewOrganizationContainer = props =>
-  <EditorContainer type="organization" new {...props} />;
+export const NewCaseContainer = props => (
+  <EditorContainer type="case" new {...props} />
+);
+export const NewMethodContainer = props => (
+  <EditorContainer type="method" new {...props} />
+);
+export const NewOrganizationContainer = props => (
+  <EditorContainer type="organization" new {...props} />
+);

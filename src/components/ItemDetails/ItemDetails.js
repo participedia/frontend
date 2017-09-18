@@ -1,8 +1,10 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
+import { FormattedDate } from "react-intl";
 import Gallery from "../Gallery";
 import BookmarkToggle from "../BookmarkToggle";
 import AccordionTab from "../AccordionTab/AccordionTab";
@@ -14,7 +16,6 @@ import caseIconLN from "../../img/pp-case-icon-ln.png";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
-import TimeAgo from "react-timeago";
 import Toggle from "material-ui/Toggle";
 // import "../../StaticPages.css";
 
@@ -39,16 +40,18 @@ class Featured extends React.Component {
   render() {
     const { isAuthenticated, profile } = this.props;
     if (!isAuthenticated) return <div />;
-    return isCurator(profile)
-      ? <div className="featuretoggle">
-          <Toggle
-            onToggle={this.onToggle.bind(this)}
-            labelPosition="right"
-            defaultToggled={this.props.thing.featured}
-            label="Featured"
-          />
-        </div>
-      : <div />;
+    return isCurator(profile) ? (
+      <div className="featuretoggle">
+        <Toggle
+          onToggle={this.onToggle.bind(this)}
+          labelPosition="right"
+          defaultToggled={this.props.thing.featured}
+          label="Featured"
+        />
+      </div>
+    ) : (
+      <div />
+    );
   }
 }
 
@@ -66,16 +69,18 @@ class Hidden extends React.Component {
   render() {
     const { isAuthenticated, profile } = this.props;
     if (!isAuthenticated) return <div />;
-    return isCurator(profile)
-      ? <div className="featuretoggle">
-          <Toggle
-            onToggle={this.onToggle.bind(this)}
-            labelPosition="right"
-            defaultToggled={this.props.thing.hidden}
-            label="Hidden"
-          />
-        </div>
-      : <div />;
+    return isCurator(profile) ? (
+      <div className="featuretoggle">
+        <Toggle
+          onToggle={this.onToggle.bind(this)}
+          labelPosition="right"
+          defaultToggled={this.props.thing.hidden}
+          label="Hidden"
+        />
+      </div>
+    ) : (
+      <div />
+    );
   }
 }
 
@@ -154,8 +159,10 @@ export default class ItemDetails extends React.Component {
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
             <Row>
-              <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block
- sidepanel">
+              <Col
+                md="3"
+                className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
+              >
                 <Featured
                   thing={thing}
                   profile={this.state.profile}
@@ -169,16 +176,14 @@ export default class ItemDetails extends React.Component {
                   toggleHidden={this.props.toggleHidden}
                 />
                 {detailedBits}
-                <RelatedContent thing={thing} intl={intl} />
+                <RelatedContent thing={thing} />
               </Col>
               <Col md="8" xs="12" className="main-area">
                 <div className="case-box">
                   <h2 className="category">
-                    {intl.formatMessage({ id: thing.type })}
+                    <FormattedMessage id={thing.type} />
                   </h2>
-                  <h2 className="case-title">
-                    {thing.title}
-                  </h2>
+                  <h2 className="case-title">{thing.title}</h2>
                   <ul className="icons-mobile clearfix d-md-none d-lg-none d-xl-none">
                     <li>{bookmarkIcon}</li>
                     <li>
@@ -206,43 +211,47 @@ export default class ItemDetails extends React.Component {
                   </ul>
                   <Gallery thing={thing} />
                   <div className="mobile-metadata accordion d-md-none d-lg-none d-xl-none">
-                    <AccordionTab
-                      title={this.props.intl.formatMessage({ id: "related_content" })}
-                    >
+                    <AccordionTab titleId="related_content">
                       <div className="content">
-                        <RelatedContent thing={thing} intl={intl} />
+                        <RelatedContent thing={thing} />
                       </div>
-                    </AccordionTab>  
-                    <AccordionTab
-                      title={intl.formatMessage({ id: thing.type + "_data"})}
-                    >
-                      <div className="content">
-                        {detailedBits}
-                      </div>
-                    </AccordionTab> 
-                  </div>  
+                    </AccordionTab>
+                    <AccordionTab titleId={thing.type + "_data"}>
+                      <div className="content">{detailedBits}</div>
+                    </AccordionTab>
+                  </div>
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
-                      <Link to={first_author_url}>
-                        {first_author_name}
-                      </Link>
+                      <Link to={first_author_url}>{first_author_name}</Link>
                     </p>
                     <p className="date-line">
-                      {thing.post_date
-                        ? <TimeAgo date={thing.post_date} />
-                        : <span />}
+                      {thing.post_date ? (
+                        <FormattedDate
+                          value={thing.post_date}
+                          year="numeric"
+                          month="long"
+                          day="2-digit"
+                        />
+                      ) : (
+                        <span />
+                      )}
                     </p>
                     <p className="author-line">
                       Most recent changes by&nbsp;
-                      <Link to={last_author_url}>
-                        {last_author_name}
-                      </Link>
+                      <Link to={last_author_url}>{last_author_name}</Link>
                     </p>
                     <p className="date-line">
-                      {thing.updated_date
-                        ? <TimeAgo date={thing.updated_date} />
-                        : <span />}
+                      {thing.updated_date ? (
+                        <FormattedDate
+                          value={thing.updated_date}
+                          year="numeric"
+                          month="long"
+                          day="2-digit"
+                        />
+                      ) : (
+                        <span />
+                      )}
                     </p>
                   </div>
                   <div
@@ -251,13 +260,13 @@ export default class ItemDetails extends React.Component {
                   />
                 </div>
               </Col>
-              <Col md="1" className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block">
+              <Col
+                md="1"
+                className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block"
+              >
                 <div className="top-icons">
                   {bookmarkIcon}
-                  <FacebookShareButton
-                    url={currentUrl}
-                    quote={textFacebook}
-                  >
+                  <FacebookShareButton url={currentUrl} quote={textFacebook}>
                     <img src={caseIconFB} alt="" />
                   </FacebookShareButton>
                   <TwitterShareButton url={currentUrl} title={thing.title}>

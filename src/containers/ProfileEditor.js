@@ -59,7 +59,6 @@ export default class ProfileEditor extends React.Component {
         <EditProfile
           profile={this.state.profile}
           user={this.state.user}
-          intl={this.props.intl}
           organizations={this.state.organizations}
           auth={this.props.auth}
           onChange={this.onChange.bind(this)}

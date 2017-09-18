@@ -212,19 +212,25 @@ exports[`App 1`] = `
                 className="unselected"
                 onClick={[Function]}
               >
-                Featured
+                <span>
+                  Featured
+                </span>
               </div>
               <div
                 className="selected"
                 onClick={[Function]}
               >
-                Most Recent
+                <span>
+                  Most Recent
+                </span>
               </div>
               <div
                 className="unselected"
                 onClick={[Function]}
               >
-                Alphabetical
+                <span>
+                  Alphabetical
+                </span>
               </div>
             </div>
             <div
@@ -233,7 +239,9 @@ exports[`App 1`] = `
               <div
                 className="featured-searches-header"
               >
-                Featured Searches
+                <span>
+                  Featured Searches
+                </span>
               </div>
               <div
                 className="featured-searches"
@@ -244,7 +252,9 @@ exports[`App 1`] = `
                       href="/search?query=participatory%20budgeting"
                       onClick={[Function]}
                     >
-                      Mention "Participatory Budgeting"
+                      <span>
+                        Mention "Participatory Budgeting"
+                      </span>
                     </a>
                   </div>
                   <div>
@@ -252,7 +262,9 @@ exports[`App 1`] = `
                       href="/search?tag=infrastructure"
                       onClick={[Function]}
                     >
-                      Tagged as: Infrastructure
+                      <span>
+                        Tagged as: Infrastructure
+                      </span>
                     </a>
                   </div>
                 </div>
@@ -272,27 +284,35 @@ exports[`App 1`] = `
                   className="selected"
                   onClick={[Function]}
                 >
-                  All
+                  <span>
+                    All
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   onClick={[Function]}
                 >
-                  Cases
+                  <span>
+                    Cases
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  Methods
+                  <span>
+                    Methods
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  Organizations
+                  <span>
+                    Organizations
+                  </span>
                 </div>
               </div>
               <select
@@ -303,22 +323,30 @@ exports[`App 1`] = `
                 <option
                   value="All"
                 >
-                  All
+                  <span>
+                    All
+                  </span>
                 </option>
                 <option
                   value="Cases"
                 >
-                  Cases
+                  <span>
+                    Cases
+                  </span>
                 </option>
                 <option
                   value="Methods"
                 >
-                  Methods
+                  <span>
+                    Methods
+                  </span>
                 </option>
                 <option
                   value="Organizations"
                 >
-                  Organizations
+                  <span>
+                    Organizations
+                  </span>
                 </option>
               </select>
               <div
@@ -525,19 +553,25 @@ exports[`App 1`] = `
             href="/about"
             onClick={[Function]}
           >
-            About
+            <span>
+              About
+            </span>
           </a>
           <a
             href="/research"
             onClick={[Function]}
           >
-            Research
+            <span>
+              Research
+            </span>
           </a>
           <a
             href="/teaching"
             onClick={[Function]}
           >
-            Teaching
+            <span>
+              Teaching
+            </span>
           </a>
         </div>
         <div
@@ -547,13 +581,17 @@ exports[`App 1`] = `
             href="/news"
             onClick={[Function]}
           >
-            News
+            <span>
+              News
+            </span>
           </a>
           <a
             href="/help"
             onClick={[Function]}
           >
-            Help
+            <span>
+              Help
+            </span>
           </a>
           Contact
         </div>
@@ -568,19 +606,25 @@ exports[`App 1`] = `
             href="/cases"
             onClick={[Function]}
           >
-            Cases
+            <span>
+              Cases
+            </span>
           </a>
           <a
             href="/methods"
             onClick={[Function]}
           >
-            Methods
+            <span>
+              Methods
+            </span>
           </a>
           <a
             href="/organizations"
             onClick={[Function]}
           >
-            Organizations
+            <span>
+              Organizations
+            </span>
           </a>
         </div>
         <div
@@ -649,25 +693,33 @@ exports[`App 1`] = `
               href="/about"
               onClick={[Function]}
             >
-              About
+              <span>
+                About
+              </span>
             </a>
             <a
               href="/research"
               onClick={[Function]}
             >
-              Research
+              <span>
+                Research
+              </span>
             </a>
             <a
               href="/teaching"
               onClick={[Function]}
             >
-              Teaching
+              <span>
+                Teaching
+              </span>
             </a>
             <a
               href="/experiments"
               onClick={[Function]}
             >
-              Experiments
+              <span>
+                Experiments
+              </span>
             </a>
           </div>
           <div
@@ -677,19 +729,25 @@ exports[`App 1`] = `
               href="/cases"
               onClick={[Function]}
             >
-              Cases
+              <span>
+                Cases
+              </span>
             </a>
             <a
               href="/methods"
               onClick={[Function]}
             >
-              Methods
+              <span>
+                Methods
+              </span>
             </a>
             <a
               href="/organizations"
               onClick={[Function]}
             >
-              Organizations
+              <span>
+                Organizations
+              </span>
             </a>
           </div>
           <div
@@ -699,13 +757,17 @@ exports[`App 1`] = `
               href="/news"
               onClick={[Function]}
             >
-              News
+              <span>
+                News
+              </span>
             </a>
             <a
               href="/help"
               onClick={[Function]}
             >
-              Help
+              <span>
+                Help
+              </span>
             </a>
             Contact
           </div>
@@ -720,7 +782,9 @@ exports[`App 1`] = `
               Participedia
             </h4>
             <p>
-              A global community sharing knowledge and stories about public participation
+              <span>
+                A global community sharing knowledge and stories about public participation
+              </span>
             </p>
           </div>
           <div
@@ -990,19 +1054,25 @@ exports[`Searching for a word 1`] = `
                 className="unselected"
                 onClick={[Function]}
               >
-                Featured
+                <span>
+                  Featured
+                </span>
               </div>
               <div
                 className="selected"
                 onClick={[Function]}
               >
-                Most Recent
+                <span>
+                  Most Recent
+                </span>
               </div>
               <div
                 className="unselected"
                 onClick={[Function]}
               >
-                Alphabetical
+                <span>
+                  Alphabetical
+                </span>
               </div>
             </div>
             <div
@@ -1011,7 +1081,9 @@ exports[`Searching for a word 1`] = `
               <div
                 className="featured-searches-header"
               >
-                Featured Searches
+                <span>
+                  Featured Searches
+                </span>
               </div>
               <div
                 className="featured-searches"
@@ -1022,7 +1094,9 @@ exports[`Searching for a word 1`] = `
                       href="/search?query=participatory%20budgeting"
                       onClick={[Function]}
                     >
-                      Mention "Participatory Budgeting"
+                      <span>
+                        Mention "Participatory Budgeting"
+                      </span>
                     </a>
                   </div>
                   <div>
@@ -1030,7 +1104,9 @@ exports[`Searching for a word 1`] = `
                       href="/search?tag=infrastructure"
                       onClick={[Function]}
                     >
-                      Tagged as: Infrastructure
+                      <span>
+                        Tagged as: Infrastructure
+                      </span>
                     </a>
                   </div>
                 </div>
@@ -1050,27 +1126,35 @@ exports[`Searching for a word 1`] = `
                   className="selected"
                   onClick={[Function]}
                 >
-                  All
+                  <span>
+                    All
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   onClick={[Function]}
                 >
-                  Cases
+                  <span>
+                    Cases
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  Methods
+                  <span>
+                    Methods
+                  </span>
                 </div>
                 <div
                   className="unselected"
                   href="#"
                   onClick={[Function]}
                 >
-                  Organizations
+                  <span>
+                    Organizations
+                  </span>
                 </div>
               </div>
               <select
@@ -1081,22 +1165,30 @@ exports[`Searching for a word 1`] = `
                 <option
                   value="All"
                 >
-                  All
+                  <span>
+                    All
+                  </span>
                 </option>
                 <option
                   value="Cases"
                 >
-                  Cases
+                  <span>
+                    Cases
+                  </span>
                 </option>
                 <option
                   value="Methods"
                 >
-                  Methods
+                  <span>
+                    Methods
+                  </span>
                 </option>
                 <option
                   value="Organizations"
                 >
-                  Organizations
+                  <span>
+                    Organizations
+                  </span>
                 </option>
               </select>
               <div
@@ -1303,19 +1395,25 @@ exports[`Searching for a word 1`] = `
             href="/about"
             onClick={[Function]}
           >
-            About
+            <span>
+              About
+            </span>
           </a>
           <a
             href="/research"
             onClick={[Function]}
           >
-            Research
+            <span>
+              Research
+            </span>
           </a>
           <a
             href="/teaching"
             onClick={[Function]}
           >
-            Teaching
+            <span>
+              Teaching
+            </span>
           </a>
         </div>
         <div
@@ -1325,13 +1423,17 @@ exports[`Searching for a word 1`] = `
             href="/news"
             onClick={[Function]}
           >
-            News
+            <span>
+              News
+            </span>
           </a>
           <a
             href="/help"
             onClick={[Function]}
           >
-            Help
+            <span>
+              Help
+            </span>
           </a>
           Contact
         </div>
@@ -1346,19 +1448,25 @@ exports[`Searching for a word 1`] = `
             href="/cases"
             onClick={[Function]}
           >
-            Cases
+            <span>
+              Cases
+            </span>
           </a>
           <a
             href="/methods"
             onClick={[Function]}
           >
-            Methods
+            <span>
+              Methods
+            </span>
           </a>
           <a
             href="/organizations"
             onClick={[Function]}
           >
-            Organizations
+            <span>
+              Organizations
+            </span>
           </a>
         </div>
         <div
@@ -1427,25 +1535,33 @@ exports[`Searching for a word 1`] = `
               href="/about"
               onClick={[Function]}
             >
-              About
+              <span>
+                About
+              </span>
             </a>
             <a
               href="/research"
               onClick={[Function]}
             >
-              Research
+              <span>
+                Research
+              </span>
             </a>
             <a
               href="/teaching"
               onClick={[Function]}
             >
-              Teaching
+              <span>
+                Teaching
+              </span>
             </a>
             <a
               href="/experiments"
               onClick={[Function]}
             >
-              Experiments
+              <span>
+                Experiments
+              </span>
             </a>
           </div>
           <div
@@ -1455,19 +1571,25 @@ exports[`Searching for a word 1`] = `
               href="/cases"
               onClick={[Function]}
             >
-              Cases
+              <span>
+                Cases
+              </span>
             </a>
             <a
               href="/methods"
               onClick={[Function]}
             >
-              Methods
+              <span>
+                Methods
+              </span>
             </a>
             <a
               href="/organizations"
               onClick={[Function]}
             >
-              Organizations
+              <span>
+                Organizations
+              </span>
             </a>
           </div>
           <div
@@ -1477,13 +1599,17 @@ exports[`Searching for a word 1`] = `
               href="/news"
               onClick={[Function]}
             >
-              News
+              <span>
+                News
+              </span>
             </a>
             <a
               href="/help"
               onClick={[Function]}
             >
-              Help
+              <span>
+                Help
+              </span>
             </a>
             Contact
           </div>
@@ -1498,7 +1624,9 @@ exports[`Searching for a word 1`] = `
               Participedia
             </h4>
             <p>
-              A global community sharing knowledge and stories about public participation
+              <span>
+                A global community sharing knowledge and stories about public participation
+              </span>
             </p>
           </div>
           <div

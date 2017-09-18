@@ -1,7 +1,8 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import ReactPlayer from "react-player";
-import caseIconFB from "../img/play.png";
+import youtubeThumbnail from "youtube-thumbnail";
+import vidThumb from "../img/play.png";
 
 // This component knows how to process a "thing" (case, method, etc) and extract the images
 // and other data that the ImageGallery component needs.
@@ -89,9 +90,14 @@ class Gallery extends React.Component {
 
     const videos = this.state.videos.map(video => {
       const src = video;
+      let ytThumb;
+      let thumbnail = youtubeThumbnail(src);
+      if (!thumbnail['high']['url'].includes('null')) {
+        ytThumb = thumbnail['high']['url'];
+      }
       return {
         original: src,
-        thumbnail: caseIconFB,
+        thumbnail: ytThumb ? ytThumb : vidThumb,
         embedUrl: src,
       };
     });

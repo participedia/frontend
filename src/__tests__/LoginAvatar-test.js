@@ -1,11 +1,16 @@
 import React from "react";
-import { shallow } from "enzyme";
 import { LoginAvatar } from "../LoginAvatar";
-import {
-  mountWithIntl,
-  shallowWithIntl
-} from "../helpers/intl-enzyme-test-helper.js";
-import intlProps from "../helpers/intl-props-test-helper.js";
+import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
+// import intlProps from "../helpers/intl-props-test-helper.js";
+import { IntlProvider } from "react-intl";
+const intlProvider = new IntlProvider({ locale: "en-US" }, {});
+const { intl } = intlProvider.getChildContext();
+import { getBestMatchingMessages } from "../utils/l10n";
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
+jest.mock("material-ui/FlatButton");
+jest.mock("material-ui/IconMenu");
+intl.messages = messages;
 
 function setup(isAuthed) {
   const props = {
@@ -13,10 +18,10 @@ function setup(isAuthed) {
       getProfile: cb => cb(null, { user_metadata: "foo" }),
       isAuthenticated: () => isAuthed
     },
-    intl: intlProps
+    intl: intl
   };
 
-  const enzymeWrapper = shallowWithIntl(<LoginAvatar {...props} />);
+  const enzymeWrapper = mountWithIntl(<LoginAvatar {...props} />);
 
   return {
     props,

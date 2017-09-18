@@ -1,33 +1,32 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import "./ListWithHeading.css";
 
 export default class ListGroupWithHeading extends React.Component {
   render() {
-    let { heading, property, thing, intl } = this.props;
+    let { heading, property, thing } = this.props;
     if (!thing[property] || thing[property].length === 0) {
       return <div />;
     }
-    let items = thing[property].map(item =>
+    let items = thing[property].map(item => (
       <div key={item}>
-        { (!/^https?:\/\//i.test(item)) ?
-        <a target="_blank" href={'http://' + item}>
-          {item}
-        </a>
-        :
-        <a target="_blank" href={item}>
-          {item}
-        </a>
-        }
+        {!/^https?:\/\//i.test(item) ? (
+          <a target="_blank" href={"http://" + item}>
+            {item}
+          </a>
+        ) : (
+          <a target="_blank" href={item}>
+            {item}
+          </a>
+        )}
       </div>
-    );
+    ));
     return (
       <div>
         <p className="sub-sub-heading">
-          {intl.formatMessage({ id: heading ? heading : "not_specified" })}
+          <FormattedMessage id={heading ? heading : "not_specified"} />
         </p>
-        <div className={property}>
-          {items}
-        </div>
+        <div className={property}>{items}</div>
       </div>
     );
   }

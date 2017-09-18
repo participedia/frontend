@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import "./HelpBar.css";
 import { injectIntl } from "react-intl";
@@ -54,7 +55,7 @@ class HelpBar extends React.Component {
           <div className="top-area-inner">
             <div className="title-section">
               <h2 className="help-title">
-                {this.props.intl.formatMessage({ id: "participedia_help" })}
+                <FormattedMessage id="participedia_help" />
               </h2>
               <Link to={this.props.currentPath} className="close-help" />
             </div>
@@ -71,7 +72,7 @@ class HelpBar extends React.Component {
         </div>
         <div className="data-section">
           <h3 className="data-title">
-            {this.props.intl.formatMessage({ id: "faq" })}
+            <FormattedMessage id="faq" />
           </h3>
           <ul className="data-list">
             {this.state.filteredHelpItems.map((item, i) => (
@@ -79,13 +80,13 @@ class HelpBar extends React.Component {
                 <Link to="/help/1">{item}</Link>
               </li>
             ))}
-            {this.state.filteredHelpItems.length === 0
-              ? <li>
-                  <a>
-                    {this.props.intl.formatMessage({ id: "no_results_found" })}
-                  </a>
-                </li>
-              : null}
+            {this.state.filteredHelpItems.length === 0 ? (
+              <li>
+                <a>
+                  <FormattedMessage id="no_results_found" />
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
