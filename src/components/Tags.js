@@ -5,7 +5,9 @@ const Tags = ({ thing, intl }) =>
   thing.tags && thing.tags.length ? (
     <div>
       <p className="sub-sub-heading">Tags:</p>
-      <div className="tags">{thing.tags.map(tag => <span>{tag}</span>)}</div>
+      <div className="tags">
+        {thing.tags.map(tag => <span key={tag}>{tag}</span>)}
+      </div>
     </div>
   ) : (
     <div />

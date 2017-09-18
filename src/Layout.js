@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router";
-import { bool, object, func } from "prop-types";
+import { bool, func } from "prop-types";
 import { Link } from "react-router-dom";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";

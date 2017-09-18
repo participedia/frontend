@@ -1,10 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
 import { LoginAvatar } from "../LoginAvatar";
-import {
-  mountWithIntl,
-  shallowWithIntl
-} from "../helpers/intl-enzyme-test-helper.js";
+import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
 // import intlProps from "../helpers/intl-props-test-helper.js";
 import { IntlProvider } from "react-intl";
 const intlProvider = new IntlProvider({ locale: "en-US" }, {});

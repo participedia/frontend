@@ -12,7 +12,13 @@ function getLocale(acceptLang) {
 }
 
 function getLocation(location) {
-  return "/" + location.split("/").splice(2).join("/");
+  return (
+    "/" +
+    location
+      .split("/")
+      .splice(2)
+      .join("/")
+  );
 }
 
 export default function(acceptLang, location) {

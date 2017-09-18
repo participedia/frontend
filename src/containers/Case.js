@@ -1,6 +1,6 @@
 import React from "react";
 import { bool, object } from "prop-types";
-import { injectIntl, intlShape } from "react-intl";
+import { injectIntl } from "react-intl";
 import api from "../utils/api";
 import CaseDetails from "../components/CaseDetails";
 import ItemFetcher from "./ItemFetcher";
