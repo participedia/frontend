@@ -7,6 +7,11 @@ import ItemDetails from "../components/ItemDetails/ItemDetails";
 import { IntlProvider } from "react-intl";
 import { getBestMatchingMessages } from "../utils/l10n";
 
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
+const intlProvider = new IntlProvider({ locale: locale }, {});
+const { intl } = intlProvider.getChildContext();
+
 import { MemoryRouter } from "react-router";
 import { Method } from "../containers/Method";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -56,11 +61,13 @@ function setup() {
   };
 
   const enzymeWrapper = mountWithIntl(
-    <MemoryRouter>
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <Method {...props} />
-      </MuiThemeProvider>
-    </MemoryRouter>
+    <IntlProvider locale={locale} messages={messages}>
+      <MemoryRouter>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <Method {...props} intl={intl} />
+        </MuiThemeProvider>
+      </MemoryRouter>
+    </IntlProvider>
   );
   return {
     props,
@@ -81,15 +88,15 @@ describe("containers", () => {
 });
 
 let props = setup().props;
-let locale = "en-US";
 props["details"] = MethodDetails;
-let messages = getBestMatchingMessages(locale);
 
 test("ItemDetails for Method renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>
-        <MemoryRouter><ItemDetails {...props} /></MemoryRouter>
+        <MemoryRouter>
+          <ItemDetails {...props} toggleHidden={function() {}} intl={intl} />
+        </MemoryRouter>
       </IntlProvider>
     )
     .toJSON();
@@ -102,7 +109,7 @@ test("Method editor renders correctly", () => {
       <IntlProvider locale={locale} messages={messages}>
         <MemoryRouter>
           <MuiThemeProvider muiTheme={muiTheme}>
-            <MethodEditor {...props} type="method" thing={data} />
+            <MethodEditor {...props} type="method" thing={data} intl={intl} />
           </MuiThemeProvider>
         </MemoryRouter>
       </IntlProvider>

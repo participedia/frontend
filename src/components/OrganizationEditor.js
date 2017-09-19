@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { intlShape } from "react-intl";
+import { injectIntl, intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import Geosuggest from "react-geosuggest";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
@@ -48,7 +47,6 @@ class OrganizationEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    let type = thing.type;
     thing.related_cases = fix_related(thing.related_cases);
     thing.related_methods = fix_related(thing.related_methods);
     thing.related_organizations = fix_related(thing.related_organizations);
@@ -72,7 +70,6 @@ class OrganizationEditor extends Component {
         placeholder={intl.formatMessage({
           id: "tags_placeholder"
         })}
-        intl={intl}
       />
     );
     let related_cases = (
@@ -81,7 +78,6 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_methods = (
@@ -90,7 +86,6 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_organizations = (
@@ -99,12 +94,14 @@ class OrganizationEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
 
-    let incomplete =
-      (thing.title ? false : true);
+    let incomplete = thing.title ? false : true;
+    let doFullVersion = this.props.new
+      ? "do_full_version"
+      : "edit_full_version";
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
     return (
       <Form
         onSubmit={onSubmit}
@@ -113,8 +110,10 @@ class OrganizationEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid>
-            <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block
- sidepanel" />
+            <Col
+              md="3"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
+            />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading top title-edit">
@@ -145,89 +144,90 @@ class OrganizationEditor extends Component {
                 <ImageListEditor
                   property="images"
                   auth={this.props.auth}
-                  intl={intl}
                   thing={thing}
                 />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
                 </p>
-                <div className="tags-field">
-                  {tagseditor}
-                </div>
+                <div className="tags-field">{tagseditor}</div>
               </div>
               <div>
-                {isQuick
-                  ? <div>
-                      {incomplete
-                        ? <div className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </div>
-                        : null}
-                      <RaisedButton
-                        className="new quick incomplete-warning"
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: "quick_submit_" + thing.type
+                {isQuick ? (
+                  <div>
+                    {incomplete ? (
+                      <div className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      <RaisedButton
-                        onClick={() => onExpand(this.state.thing)}
-                        style={buttonStyle}
-                        className="full-submit"
-                        label={intl.formatMessage({ id: "do_full_version" })}
-                      />
+                      </div>
+                    ) : null}
+                    <RaisedButton
+                      className={
+                        this.props.new
+                          ? "new quick incomplete-warning"
+                          : "quick incomplete-warning"
+                      }
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: quickSubmitText
+                      })}
+                    />
+                    <RaisedButton
+                      onClick={() => onExpand(this.state.thing)}
+                      style={buttonStyle}
+                      className="full-submit"
+                      label={intl.formatMessage({ id: doFullVersion })}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <div>
+                      {makeLocalizedTextField(intl, "executive_director")}
+                      {makeLocalizedChoiceField(intl, "sector")}
+                      {makeLocalizedChoiceField(intl, "specific_topic")}
+                      <label className="sub-heading" htmlFor="body_en">
+                        {intl.formatMessage({ id: thing.type + "_body_title" })}
+                      </label>
                     </div>
-                  : <div>
-                      <div>
-                        {makeLocalizedTextField(intl, "executive_director")}
-                        {makeLocalizedChoiceField(intl, "sector")}
-                        {makeLocalizedChoiceField(intl, "specific_topic")}
-                        <label className="sub-heading" htmlFor="body_en">
-                          {intl.formatMessage({ id: thing.type + "_body_title" })}
-                        </label>
+                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <p className="sub-heading">Related Content</p>
+                    <div className="related-content">
+                      <div className="sub-sub-heading">
+                        {intl.formatMessage({ id: "related_cases" })}
                       </div>
-                      <Field fieldName="body" type={LazyBodyEditor} />
-                      <p className="sub-heading">
-                        Related Content
-                      </p>
-                      <div className="related-content">
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_cases" })}
-                        </div>
-                        {related_cases}
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_methods" })}
-                        </div>
-                        {related_methods}
-                        <div className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_organizations" })}
-                        </div>
-                        {related_organizations}
+                      {related_cases}
+                      <div className="sub-sub-heading">
+                        {intl.formatMessage({ id: "related_methods" })}
                       </div>
-                      <RaisedButton
-                        className="incomplete-warning"
-                        disabled={incomplete}
-                        primary
-                        style={buttonStyle}
-                        type="submit"
-                        label={intl.formatMessage({
-                          id: "submit_" + thing.type
+                      {related_methods}
+                      <div className="sub-sub-heading">
+                        {intl.formatMessage({ id: "related_organizations" })}
+                      </div>
+                      {related_organizations}
+                    </div>
+                    <RaisedButton
+                      className="incomplete-warning"
+                      disabled={incomplete}
+                      primary
+                      style={buttonStyle}
+                      type="submit"
+                      label={intl.formatMessage({
+                        id: "submit_" + thing.type
+                      })}
+                    />
+                    {incomplete ? (
+                      <span className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
                         })}
-                      />
-                      {incomplete
-                        ? <span className="incomplete">
-                            {intl.formatMessage({
-                              id: "incomplete_" + thing.type
-                            })}
-                          </span>
-                        : null}
-                    </div>}
+                      </span>
+                    ) : null}
+                  </div>
+                )}
               </div>
             </Col>
           </Container>
@@ -241,4 +241,4 @@ OrganizationEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default OrganizationEditor;
+export default injectIntl(OrganizationEditor);

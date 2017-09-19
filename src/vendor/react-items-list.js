@@ -7,14 +7,17 @@ const react = require("react"),
   removeSVG = require("material-ui/svg-icons/action/delete.js").default,
   colors = require("material-ui/styles/colors.js"),
   icons = { add: addSVG, remove: removeSVG },
+  createReactClass = require("create-react-class"),
+  PropTypes = require("prop-types"),
+  DOM = require("react-dom-factories"),
   noop = () => {},
-  listClass = react.createClass({
+  listClass = createReactClass({
     displayName: "react-items-list",
     propTypes: {
-      onAdd: react.PropTypes.func,
-      onUpdate: react.PropTypes.func,
-      onRemove: react.PropTypes.func,
-      items: react.PropTypes.array
+      onAdd: PropTypes.func,
+      onUpdate: PropTypes.func,
+      onRemove: PropTypes.func,
+      items: PropTypes.array
     },
 
     getDefaultProps() {
@@ -97,7 +100,7 @@ const react = require("react"),
       let listItems = this.state.items.concat("").map((item, idx) => {
         let newItem = idx === this.state.items.length;
 
-        return react.DOM.div(
+        return DOM.div(
           { key: idx },
           react.createElement(muiTextField, {
             name: newItem ? "newItem" : "propsProvidedItem",
@@ -142,7 +145,7 @@ const react = require("react"),
       return react.createElement(
         themeProvider,
         { muiTheme: getMuiTheme() },
-        react.DOM.div({}, listItems)
+        DOM.div({}, listItems)
       );
     }
   });

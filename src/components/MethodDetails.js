@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
@@ -34,146 +35,120 @@ import { BooleanProp } from "../components/Props";
 export default class MethodDetails extends React.Component {
   render() {
     let thing = this.props.case; // should thing be `this.props.method`?
-    let intl = this.props.intl;
     let tags = <div />;
     if (thing.tags) {
-      tags = thing.tags.map(tag =>
-        <SearchLink intl={intl} key={tag} tag="tag" value={tag} />
-      );
+      tags = thing.tags.map(tag => (
+        <SearchLink key={tag} tag="tag" value={tag} />
+      ));
     }
     return (
       <div>
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
-          {intl.formatMessage({ id: "data" })}
+          <FormattedMessage id="data" />
         </p>
         <p className="sub-sub-heading">
-          {intl.formatMessage({ id: "tags_title" })}
+          <FormattedMessage id="tags_title" />
         </p>
-        <div className="tags">
-          {tags}
-        </div>
-        {thing.issue
-          ? <div>
-              <p className="sub-sub-heading">
-                {intl.formatMessage({ id: "specific_topic" })}
-              </p>
-              <div className="tags">
-                {thing.issue}
-              </div>
-            </div>
-          : <div />}
+        <div className="tags">{tags}</div>
+        {thing.issue ? (
+          <div>
+            <p className="sub-sub-heading">
+              <FormattedMessage id="specific_topic" />
+            </p>
+            <div className="tags">{thing.issue}</div>
+          </div>
+        ) : (
+          <div />
+        )}
 
-        <ListWithHeading
-          intl={intl}
-          heading="links"
-          property="links"
-          thing={thing}
-        />
+        <ListWithHeading heading="links" property="links" thing={thing} />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="kind_of_influence"
           property="kind_of_influence"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="communication_mode"
           property="communication_mode"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="communication_with_audience"
           property="communication_with_audience"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="decision_method"
           property="decision_method"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="facetoface_online_or_both"
           property="facetoface_online_or_both"
           thing={thing}
         />
         <BooleanProp
-          intl={intl}
           heading="facilitated"
           label="facilitated"
           property="facilitated"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="best_for"
           property="best_for"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="decision_method"
           property="decision_method"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="governance_contribution"
           property="governance_contribution"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="issue_interdependency"
           property="issue_interdependency"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="issue_polarization"
           property="issue_polarization"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="issue_technical_complexity"
           property="issue_technical_complexity"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="kind_of_influence"
           property="kind_of_influence"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="method_of_interaction"
           property="method_of_interaction"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="public_interaction_method"
           property="public_interaction_method"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="typical_funding_source"
           property="typical_funding_source"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="typical_implementing_entity"
           property="typical_implementing_entity"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          intl={intl}
           heading="typical_sponsoring_entity"
           property="typical_sponsoring_entity"
           thing={thing}

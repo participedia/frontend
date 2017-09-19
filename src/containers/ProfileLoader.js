@@ -33,13 +33,7 @@ export default class ProfileLoader extends Component {
     if (this.state.error) {
       return <div>{this.state.error.message}</div>;
     } else if (this.state.user) {
-      return (
-        <Profile
-          auth={authService}
-          user={this.state.user}
-          intl={this.props.intl}
-        />
-      );
+      return <Profile auth={authService} user={this.state.user} />;
     } else {
       return <div>Loading user data.</div>;
     }

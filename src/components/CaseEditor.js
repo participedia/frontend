@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { intlShape } from "react-intl";
+import { FormattedMessage, intlShape, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import LazyBodyEditor from "./LazyBodyEditor";
 import { Container, Col } from "reactstrap";
@@ -66,7 +66,6 @@ class CaseEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    let type = thing.type;
     thing.related_cases = fix_related(thing.related_cases);
     thing.related_methods = fix_related(thing.related_methods);
     thing.related_organizations = fix_related(thing.related_organizations);
@@ -90,7 +89,6 @@ class CaseEditor extends Component {
         placeholder={intl.formatMessage({
           id: "tags_placeholder"
         })}
-        intl={intl}
       />
     );
     let related_cases = (
@@ -99,7 +97,6 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_methods = (
@@ -108,7 +105,6 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let related_organizations = (
@@ -117,11 +113,14 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
-        intl={intl}
       />
     );
     let incomplete = thing.title ? false : true;
     let issue = this.state.thing.issue;
+    let doFullVersion = this.props.new
+      ? "do_full_version"
+      : "edit_full_version";
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
     return (
       <Form
         onSubmit={onSubmit}
@@ -132,14 +131,13 @@ class CaseEditor extends Component {
           <Container className="detailed-case-component" fluid>
             <Col
               md="3"
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block
- sidepanel"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="sub-heading top title-edit">
                   <label htmlFor="title">
-                    {intl.formatMessage({ id: thing.type + "_title_label" })}
+                    <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
                 <Field
@@ -183,27 +181,26 @@ class CaseEditor extends Component {
                 <div className="case-location">
                   {makeLocalizedLocationField(intl, "location")}
                   <p className="sub-heading">
-                    {intl.formatMessage({ id: "date" })}
+                    <FormattedMessage id="date" />
                   </p>
                   {makeLocalizedDateField(intl, "start_date")}
                   {makeLocalizedDateField(intl, "end_date")}
                   <p className="sub-heading">
-                    {intl.formatMessage({ id: "links" })}
+                    <FormattedMessage id="links" />
                   </p>
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">
-                  {intl.formatMessage({ id: "media" })}
+                  <FormattedMessage id="media" />
                 </p>
                 <ImageListEditor
                   property="images"
                   auth={this.props.auth}
-                  intl={intl}
                   thing={thing}
                 />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
-                  {intl.formatMessage({ id: "tags_title" })}
+                  <FormattedMessage id="tags_title" />
                 </p>
                 <div className="tags-field">{tagseditor}</div>
               </div>
@@ -212,26 +209,28 @@ class CaseEditor extends Component {
                   <div>
                     {incomplete ? (
                       <div className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
+                        <FormattedMessage id={"incomplete_" + thing.type} />
                       </div>
                     ) : null}
                     <RaisedButton
-                      className="new quick incomplete-warning"
+                      className={
+                        this.props.new
+                          ? "new quick incomplete-warning"
+                          : "quick incomplete-warning"
+                      }
                       disabled={incomplete}
                       primary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "quick_submit_" + thing.type
+                        id: quickSubmitText
                       })}
                     />
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
                       className="full-submit"
                       style={buttonStyle}
-                      label={intl.formatMessage({ id: "do_full_version" })}
+                      label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
                 ) : (
@@ -287,13 +286,13 @@ class CaseEditor extends Component {
                       )}
                       <div className="pb-1">
                         <p className="sub-heading">
-                          {intl.formatMessage({ id: "related_cases" })}
+                          <FormattedMessage id="related_cases" />
                         </p>
                         {related_cases}
                       </div>
                       <div className="pb-1">
                         <p className="sub-heading">
-                          {intl.formatMessage({ id: "related_methods" })}
+                          <FormattedMessage id="related_methods" />
                         </p>
                         {related_methods}
                       </div>
@@ -338,4 +337,4 @@ CaseEditor.propTypes = {
   intl: intlShape.isRequired
 };
 
-export default CaseEditor;
+export default injectIntl(CaseEditor);

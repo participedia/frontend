@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import DropzoneS3Uploader from "./react-dropzone-s3-uploader";
 import api from "./utils/api";
 import { injectIntl } from "react-intl";
@@ -168,7 +169,7 @@ class Upload extends React.Component {
     if (!isAuthenticated()) {
       return (
         <div>
-          {this.props.intl.formatMessage({ id: "sorry_upload" })}
+          <FormattedMessage id="sorry_upload" />
         </div>
       );
     }

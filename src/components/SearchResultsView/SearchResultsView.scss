@@ -269,6 +269,9 @@
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 25px;
+  .page-of {
+    float: left;
+  }
 }
 div h3.searching-message {
   font-size:16px;
@@ -352,6 +355,7 @@ div h3.searching-message {
 
 .pagination {
   float: right;
+  margin-top: -1rem;
   .pagination_icon {
     cursor: pointer;
     display: inline-block;
