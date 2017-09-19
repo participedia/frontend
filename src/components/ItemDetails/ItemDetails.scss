@@ -24,6 +24,10 @@ section.image-gallery {
   }
 }
 
+.image-gallery-thumbnail.active {
+  border: 4px solid $interactive-color;
+}
+
 .image-gallery-thumbnails-container a {
   div {
     height: 70px;

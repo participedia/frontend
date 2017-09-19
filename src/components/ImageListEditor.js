@@ -19,7 +19,7 @@ class ImageListEditorField extends Component {
     let images = props.value;
     images = images.filter(function(img) {
       if (!img) return false;
-      if (!img.length && img.src == "") return false;
+      if (!img.length && img.src === "") return false;
       return true;
     });
     this.setState({
@@ -28,7 +28,6 @@ class ImageListEditorField extends Component {
   }
 
   makeLead(img) {
-    let src = img;
     // our convention is that the first image is the lead image
     let images = this.state.images;
     var index = images.indexOf(img);

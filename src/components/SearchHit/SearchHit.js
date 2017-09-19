@@ -50,8 +50,9 @@ export class SearchHit extends React.Component {
                  :   
                   video ? 
                     <ReactPlayer
+                      className="case-images"
                       width="100%"
-                      height="200"
+                      height="200px"
                       controls
                       url={video}
                     />
@@ -79,7 +80,7 @@ export class SearchHit extends React.Component {
               <Col md="3">
                 {pic
                   ? <Link to={link}>
-                      <div className="case-images">
+                      <div className="pt-2 case-images">
                         <img alt="" src={pic} />
                       </div>
                     </Link>

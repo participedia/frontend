@@ -66,7 +66,6 @@ class CaseEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    let type = thing.type;
     thing.related_cases = fix_related(thing.related_cases);
     thing.related_methods = fix_related(thing.related_methods);
     thing.related_organizations = fix_related(thing.related_organizations);
@@ -122,6 +121,8 @@ class CaseEditor extends Component {
     );
     let incomplete = thing.title ? false : true;
     let issue = this.state.thing.issue;
+    let doFullVersion = this.props.new ? "do_full_version" : "edit_full_version"
+    let quickSubmitText = this.props.new ? "quick_submit_case" : "save"
     return (
       <Form
         onSubmit={onSubmit}
@@ -218,20 +219,20 @@ class CaseEditor extends Component {
                       </div>
                     ) : null}
                     <RaisedButton
-                      className="new quick incomplete-warning"
+                      className={this.props.new ? "new quick incomplete-warning" : "quick incomplete-warning"}
                       disabled={incomplete}
                       primary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "quick_submit_" + thing.type
+                        id: quickSubmitText
                       })}
                     />
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
                       className="full-submit"
                       style={buttonStyle}
-                      label={intl.formatMessage({ id: "do_full_version" })}
+                      label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
                 ) : (

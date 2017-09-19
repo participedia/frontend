@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import RelatedContent from "../RelatedContent";
+import { FormattedDate } from "react-intl";
 import Gallery from "../Gallery";
 import BookmarkToggle from "../BookmarkToggle";
 import AccordionTab from "../AccordionTab/AccordionTab";
@@ -14,7 +15,6 @@ import caseIconLN from "../../img/pp-case-icon-ln.png";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
-import TimeAgo from "react-timeago";
 import Toggle from "material-ui/Toggle";
 // import "../../StaticPages.css";
 
@@ -134,13 +134,6 @@ export default class ItemDetails extends React.Component {
     let currentUrl =
       process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
-
-    let lead;
-    let awsUrl = process.env.REACT_APP_ASSETS_URL;
-    if (thing && thing.images && thing.images.length) {
-      lead = awsUrl + encodeURIComponent(thing.images[0]);
-    }
-
     let first_author = thing.authors[0];
     let first_author_url = "/users/" + first_author.user_id;
     let first_author_name = first_author.name;
@@ -191,9 +184,7 @@ export default class ItemDetails extends React.Component {
                     <li>
                       <FacebookShareButton
                         url={currentUrl}
-                        title={thing.title}
-                        description={textFacebook}
-                        picture={lead}
+                        quote={textFacebook}
                       >
                         <img src={caseIconFB} alt="" />
                       </FacebookShareButton>
@@ -239,7 +230,13 @@ export default class ItemDetails extends React.Component {
                     </p>
                     <p className="date-line">
                       {thing.post_date
-                        ? <TimeAgo date={thing.post_date} />
+                        ? 
+                        <FormattedDate 
+                          value={thing.post_date}
+                          year='numeric'
+                          month='long'
+                          day='2-digit'
+                        />
                         : <span />}
                     </p>
                     <p className="author-line">
@@ -250,7 +247,13 @@ export default class ItemDetails extends React.Component {
                     </p>
                     <p className="date-line">
                       {thing.updated_date
-                        ? <TimeAgo date={thing.updated_date} />
+                        ? 
+                        <FormattedDate 
+                          value={thing.updated_date}
+                          year='numeric'
+                          month='long'
+                          day='2-digit'
+                        />
                         : <span />}
                     </p>
                   </div>
@@ -265,9 +268,7 @@ export default class ItemDetails extends React.Component {
                   {bookmarkIcon}
                   <FacebookShareButton
                     url={currentUrl}
-                    title={thing.title}
-                    description={textFacebook}
-                    picture={lead}
+                    quote={textFacebook}
                   >
                     <img src={caseIconFB} alt="" />
                   </FacebookShareButton>
