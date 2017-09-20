@@ -2,7 +2,7 @@ import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import { FormattedMessage } from "react-intl";
 import CountryMap from "../CountryMap";
 import { object, array } from "prop-types";
-import { Container, Col } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
 import FloatingActionButton from "material-ui/FloatingActionButton";
@@ -80,12 +80,13 @@ export default class EditProfile extends Component {
     return (
       <Container fluid className="edit-profile">
         {isAuthenticated ? (
-          <div>
-            <Form
-              onSubmit={this.onSubmit.bind(this)}
-              state={user}
-              onChange={changes => this.setState({ user: changes })}
-            >
+        <div>
+          <Form
+            onSubmit={this.onSubmit.bind(this)}
+            state={user}
+            onChange={changes => this.setState({ user: changes })}
+          >
+            <div className="form-group row">
               <Col md="3" className="sidebar">
                 {avatarEditor}
 
@@ -180,8 +181,9 @@ export default class EditProfile extends Component {
               >
                 <FileUpload />
               </FloatingActionButton>
-            </Form>
-          </div>
+            </div>
+          </Form>
+        </div>
         ) : (
           <Col md={{ size: 9, offset: 1 }} className="main-area">
             <p>
