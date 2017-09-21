@@ -6,6 +6,12 @@
   position: absolute;
   width: 100%;
   color: white;
+  .open-help {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   .expanded-footer {
     padding-top: 32px;
@@ -43,7 +49,7 @@
         padding-bottom: 24px;
       }
 
-      a, p {
+      a, p, span.open-help {
         font-size: 1rem;
         font-weight: 500;
         line-height: 20px;
