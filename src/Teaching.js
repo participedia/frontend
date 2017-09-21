@@ -3,29 +3,47 @@ import { Container, Row, Col } from "reactstrap";
 import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
-import { injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 class Teaching extends React.Component {
   render() {
     return (
       <Container fluid={false} className="about static">
         <Row>
-          <Col lg={{ size: 8}} className="ml-auto mr-auto">
-            <h1>{this.props.intl.formatMessage({ id: "teaching" })}</h1>
-            <h2>{this.props.intl.formatMessage({ id: "teaching_subtitle" })}</h2>
-            <p>{this.props.intl.formatMessage({ id: "teaching_intro_1" })}</p>
-            <p className="pb-1">{this.props.intl.formatMessage({ id: "teaching_intro_2" })}</p>
-            <h2>{this.props.intl.formatMessage({ id: "resources" })}</h2>
-            <p className="pb-1">{this.props.intl.formatMessage({ id: "resources_intro" })}</p>
+          <Col lg={{ size: 8 }} className="ml-auto mr-auto">
+            <h1>
+              <FormattedMessage id="teaching" />
+            </h1>
+            <h2>
+              <FormattedMessage id="teaching_subtitle" />
+            </h2>
+            <p>
+              <FormattedMessage id="teaching_intro_1" />
+            </p>
+            <p className="pb-1">
+              <FormattedMessage id="teaching_intro_2" />
+            </p>
+            <h2>
+              <FormattedMessage id="resources" />
+            </h2>
+            <p className="pb-1">
+              <FormattedMessage id="resources_intro" />
+            </p>
             <div className="accordion">
-              <AccordionTab
-                title={this.props.intl.formatMessage({
-                  id: "course_assignments"
-                })}
-              >
+              <AccordionTab titleId="course_assignments">
                 <div className="content">
-                  <a className="d-block" href="http://participedia.net/content/participedia-sample-assignment-1-write-entry-case-method-or-organization">{this.props.intl.formatMessage({ id: "sample_assignment_1" })}</a>
-                  <a className="d-block" href="http://participedia.net/content/sample-grading-rubric">{this.props.intl.formatMessage({ id: "grading_rubric" })}</a>
+                  <a
+                    className="d-block"
+                    href="http://participedia.net/content/participedia-sample-assignment-1-write-entry-case-method-or-organization"
+                  >
+                    <FormattedMessage id="sample_assignment_1" />
+                  </a>
+                  <a
+                    className="d-block"
+                    href="http://participedia.net/content/sample-grading-rubric"
+                  >
+                    <FormattedMessage id="grading_rubric" />
+                  </a>
                 </div>
               </AccordionTab>
             </div>
@@ -36,4 +54,4 @@ class Teaching extends React.Component {
   }
 }
 
-export default injectIntl(Teaching);
+export default Teaching;

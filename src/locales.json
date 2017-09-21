@@ -1,6 +1,9 @@
 {
   "en": {
     "featured": "Featured",
+    "featured-case": "Featured Case",
+    "featured-method": "Featured Method",
+    "featured-organization": "Featured Organization",
     "chronological": "Most Recent",
     "alphabetical": "Alphabetical",
     "about": "About",
@@ -20,6 +23,7 @@
     "case_data": "Case Data",
     "method_data": "Method Data",
     "organization_data": "Organization Data",
+    "content_data": "Content",
     "survey": "Survey",
     "surveys": "Surveys",
     "home": "Home",

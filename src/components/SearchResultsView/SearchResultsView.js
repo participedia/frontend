@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
@@ -22,11 +23,11 @@ import searchListIconActive from "../../img/pp-search-list-icon-active.png";
 
 class LinkToSearch extends React.Component {
   render() {
-    let { label, query, intl } = this.props;
+    let { label, query } = this.props;
     return (
       <div>
         <Link to={`/search?${queryString.stringify(query)}`}>
-          {intl.formatMessage({ id: label })}
+          <FormattedMessage id={label} />
         </Link>
       </div>
     );
@@ -40,12 +41,10 @@ class FeaturedSearches extends React.Component {
         <LinkToSearch
           label="mention_participatory_budgeting"
           query={{ query: "participatory budgeting" }}
-          intl={this.props.intl}
         />
         <LinkToSearch
           label="tag_infrastructure"
           query={{ tag: "infrastructure" }}
-          intl={this.props.intl}
         />
       </div>
     );
@@ -125,7 +124,7 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let { data, intl, pages, total } = this.props;
+    let { data, pages, total } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
@@ -134,7 +133,6 @@ export class SearchResultsView extends React.Component {
           selectedViewType={selectedViewType}
           key={index}
           record={result}
-          intl={intl}
         />
       );
     });
@@ -184,44 +182,29 @@ export class SearchResultsView extends React.Component {
         <div className="search-results">
           <div className="search-description">
             <div className="search-description-text clearfix">
-              {searchTerm
-                ? 
+              {searchTerm ? (
                 <div className="page-of">
                   {resultsCount}&nbsp;
-                  {this.props.intl.formatMessage({
-                    id: "result" + (resultsCount === 1 ? "" : "s")
-                  })}
-                  {" "}
-                  {this.props.intl.formatMessage({ id: "of" })}
-                  {" "}
-                  {total}
-                  {" "}
-                  {description} <div className="search-term">{searchTerm}</div>
+                  <FormattedMessage
+                    id={"result" + (resultsCount === 1 ? "" : "s")}
+                  />{" "}
+                  <FormattedMessage id="of" /> {total} {description}{" "}
+                  <div className="search-term">{searchTerm}</div>
                   {" ("}
-                  {this.props.intl.formatMessage({ id: "page" })}
-                  {" "}
-                  {pageNo}
-                  {" "}
-                  {this.props.intl.formatMessage({ id: "of" })}
-                  {" "}
-                  {pages})
+                  <FormattedMessage id="page" /> {pageNo}{" "}
+                  {this.props.intl.formatMessage({ id: "page" })} {pageNo}{" "}
+                  <FormattedMessage id="of" /> {pages}
                 </div>
-                : 
+              ) : (
                 <div className="page-of">
-                  <span className="text-capitalize">{this.props.intl.formatMessage({ id: "page" })}</span>
-                  {" "}
-                  {pageNo}
-                  {" "}
-                  {this.props.intl.formatMessage({ id: "of" })}
-                  {" "}
-                  {pages}
+                  <span className="text-capitalize">
+                    <FormattedMessage id="page" />
+                  </span>{" "}
+                  {pageNo} {this.props.intl.formatMessage({ id: "of" })} {pages}
                 </div>
-              }
+              )}
               <div className="pagination">
-                <IconButton
-                  disabled={on_first_page}
-                  onTouchTap={goPrevPage}
-                >
+                <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
                   <NavigatePreviousIcon />
                 </IconButton>
                 <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
@@ -232,9 +215,7 @@ export class SearchResultsView extends React.Component {
             <FilterArray data={filters} />
           </div>
           <div className="result-count">
-            <div className="results-box">
-              {searchresults}
-            </div>
+            <div className="results-box">{searchresults}</div>
             <div className="pagination">
               <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
                 <NavigatePreviousIcon />
@@ -250,7 +231,10 @@ export class SearchResultsView extends React.Component {
     return (
       <div className="main-contents">
         <Container className="search-results-component" fluid>
-          <Col md="3" className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none">
+          <Col
+            md="3"
+            className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none"
+          >
             <div
               className={
                 "sorting-options" +
@@ -277,7 +261,7 @@ export class SearchResultsView extends React.Component {
                     : "unselected"
                 }
               >
-                {this.props.intl.formatMessage({ id: "featured" })}
+                <FormattedMessage id="featured" />
               </div>
               <div
                 onClick={this.props.onSortingChange.bind(this, "chronological")}
@@ -287,7 +271,7 @@ export class SearchResultsView extends React.Component {
                     : "unselected"
                 }
               >
-                {this.props.intl.formatMessage({ id: "chronological" })}
+                <FormattedMessage id="chronological" />
               </div>
               <div
                 onClick={this.props.onSortingChange.bind(this, "alphabetical")}
@@ -297,15 +281,15 @@ export class SearchResultsView extends React.Component {
                     : "unselected"
                 }
               >
-                {this.props.intl.formatMessage({ id: "alphabetical" })}
+                <FormattedMessage id="alphabetical" />
               </div>
             </div>
             <div className="featured-searches-area">
               <div className="featured-searches-header">
-                {this.props.intl.formatMessage({ id: "featured_searches" })}
+                <FormattedMessage id="featured_searches" />
               </div>
               <div className="featured-searches">
-                <FeaturedSearches intl={this.props.intl} />
+                <FeaturedSearches />
               </div>
             </div>
           </Col>
@@ -321,7 +305,7 @@ export class SearchResultsView extends React.Component {
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "all" })}
+                  <FormattedMessage id="all" />
                 </div>
                 <div
                   onClick={() =>
@@ -332,7 +316,7 @@ export class SearchResultsView extends React.Component {
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "cases" })}
+                  <FormattedMessage id="cases" />
                 </div>
                 <div
                   href="#"
@@ -344,7 +328,7 @@ export class SearchResultsView extends React.Component {
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "methods" })}
+                  <FormattedMessage id="methods" />
                 </div>
                 <div
                   href="#"
@@ -358,7 +342,7 @@ export class SearchResultsView extends React.Component {
                       : "unselected"
                   }
                 >
-                  {this.props.intl.formatMessage({ id: "organizations" })}
+                  <FormattedMessage id="organizations" />
                 </div>
               </div>
               <select
@@ -367,16 +351,16 @@ export class SearchResultsView extends React.Component {
                 onChange={this.handleChange}
               >
                 <option value="All">
-                  {this.props.intl.formatMessage({ id: "all" })}
+                  <FormattedMessage id="all" />
                 </option>
                 <option value="Cases">
-                  {this.props.intl.formatMessage({ id: "cases" })}
+                  <FormattedMessage id="cases" />
                 </option>
                 <option value="Methods">
-                  {this.props.intl.formatMessage({ id: "methods" })}
+                  <FormattedMessage id="methods" />
                 </option>
                 <option value="Organizations">
-                  {this.props.intl.formatMessage({ id: "organizations" })}
+                  <FormattedMessage id="organizations" />
                 </option>
               </select>
               <div className="view-types d-none d-md-block d-lg-block d-xl-block">
@@ -420,7 +404,10 @@ export class SearchResultsView extends React.Component {
             {results}
           </Col>
         </Container>
-        <Link className="d-block d-sm-none d-md-none d-lg-none d-xl-none" to={addLink}>
+        <Link
+          className="d-block d-sm-none d-md-none d-lg-none d-xl-none"
+          to={addLink}
+        >
           <FloatingActionButton className="editButton">
             <Plus />
           </FloatingActionButton>

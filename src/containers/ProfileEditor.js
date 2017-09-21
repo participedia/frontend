@@ -1,5 +1,6 @@
 import React from "react";
 import EditProfile from "../components/EditProfile/EditProfile";
+import { injectIntl } from "react-intl";
 import api from "../utils/api";
 import myhistory from "../utils/history";
 
@@ -9,7 +10,7 @@ function dict2list(obj) {
   });
 }
 
-export default class ProfileEditor extends React.Component {
+class ProfileEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +60,6 @@ export default class ProfileEditor extends React.Component {
         <EditProfile
           profile={this.state.profile}
           user={this.state.user}
-          intl={this.props.intl}
           organizations={this.state.organizations}
           auth={this.props.auth}
           onChange={this.onChange.bind(this)}
@@ -71,3 +71,5 @@ export default class ProfileEditor extends React.Component {
     }
   }
 }
+
+export default injectIntl(ProfileEditor);
