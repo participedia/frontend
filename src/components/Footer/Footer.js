@@ -10,6 +10,16 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 export class Footer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.openHelp = this.openHelp.bind(this);
+  }
+
+  openHelp() {
+    this.props.onHelpOpen();      
+  }
+
   render() {
     return (
       <div className="footer-component">
@@ -30,10 +40,7 @@ export class Footer extends React.Component {
               <Link to="/news">
                 <FormattedMessage id="news" />
               </Link>
-              <Link to="/help">
-                <FormattedMessage id="help" />
-              </Link>
-              Contact
+              <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
             </Col>
           </Row>
           <Row className="pt-4">
@@ -115,10 +122,7 @@ export class Footer extends React.Component {
                 <Link to="/news">
                   <FormattedMessage id="news" />
                 </Link>
-                <Link to="/help">
-                  <FormattedMessage id="help" />
-                </Link>
-                Contact
+                <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
               </div>
             </Col>
             <Col lg={{ size: 6 }}>
