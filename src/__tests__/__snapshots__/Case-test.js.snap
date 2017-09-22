@@ -111,6 +111,13 @@ exports[`Case editor renders correctly 1`] = `
               Media
             </span>
           </p>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              photos
+            </span>
+          </p>
           <div>
             <div
               className="itemPics pb-3 row"
@@ -150,6 +157,13 @@ exports[`Case editor renders correctly 1`] = `
               </span>
             </div>
           </div>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              Videos
+            </span>
+          </p>
           <div>
             <div
               className="list videos"
@@ -239,6 +253,7 @@ exports[`Case editor renders correctly 1`] = `
                     fullWidth={true}
                     name="number_of_meeting_days"
                     onChange={[Function]}
+                    type="number"
                     value="4"
                   />
                 </div>
@@ -711,22 +726,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </div>
             </div>
-            <div>
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Updated date
-                </span>
-              </p>
-              <div
-                className="updated_date"
-              >
-                <span>
-                  5/27/2016
-                </span>
-              </div>
-            </div>
             <div />
             <div />
             <div />
@@ -1141,22 +1140,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       >
                         <span>
                           2/11/2011
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Updated date
-                        </span>
-                      </p>
-                      <div
-                        className="updated_date"
-                      >
-                        <span>
-                          5/27/2016
                         </span>
                       </div>
                     </div>

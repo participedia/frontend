@@ -122,7 +122,6 @@ export default class CaseDetails extends React.Component {
         <BooleanProp label="ongoing" property="ongoing" thing={thing} />
         <DateProp label="start_date" property="start_date" thing={thing} />
         <DateProp label="end_date" property="end_date" thing={thing} />
-        <DateProp label="updated_date" property="updated_date" thing={thing} />
         <NumberProp
           label="total_number_of_participants"
           property="total_number_of_participants"

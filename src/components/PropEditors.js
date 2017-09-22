@@ -172,7 +172,7 @@ class NumberEditor extends React.Component {
   constructor(props) {
     super(props);
     let value;
-    if (typeof props.value === typeof undefined) {
+    if (typeof props.value === typeof undefined || props.value == 0) {
       value = "";
     } else {
       value = String(props.value);
@@ -182,15 +182,16 @@ class NumberEditor extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      value: this.state.value !== "" ? String(props.value) : props.value
-    });
-  }
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     value: this.state.value !== "" ? String(props.value) : props.value
+  //   });
+  // }
 
   onChange(event, value) {
-    this.setState({ value: value });
-    this.props.onChange(Number(value));
+    console.log(value,'value')
+    this.setState({ value: value > 0 ? value : null });
+    // this.props.onChange(Number(value));
   }
 
   // XXX add validation to ensure only numbers are input
@@ -201,8 +202,9 @@ class NumberEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
+        type="number"
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null
+          typeof this.state.value !== "undefined" && this.state.value !== null && this.state.value > 0
             ? this.state.value
             : ""
         }

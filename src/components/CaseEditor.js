@@ -193,11 +193,17 @@ class CaseEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="media" />
                 </p>
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="photos" />
+                </p>
                 <ImageListEditor
                   property="images"
                   auth={this.props.auth}
                   thing={thing}
                 />
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="videos" />
+                </p>
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />
