@@ -11,6 +11,7 @@
   }
   img.portrait {
     width: auto;
+    max-width: 100%;
   }
   img.landscape {
     width: 100%;
@@ -144,27 +145,7 @@ section.image-gallery {
 
     .related-content {
       a {
-        font-size: 14px;
-        font-weight: 500;
         color: $grey-text;
-        line-height: 18px;
-        margin-bottom: 8px;
-        margin-top: 8px;
-        position: relative;
-        display: block;
-        padding-left: 32px;
-
-        &:before {
-          content: "";
-          background-image: url("/img/arrow-down-icon.png");
-          display: block;
-          position: absolute;
-          left: 0;
-          width: 24px;
-          height: 24px;
-          opacity: 0.5;
-          margin-top: -4px;
-        }
       }
     }
   }
