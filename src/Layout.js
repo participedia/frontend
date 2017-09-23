@@ -15,6 +15,7 @@ import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
 import HelpArticle from "./HelpArticle";
+import HelpBar from "./components/HelpBar/HelpBar";
 import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
@@ -112,10 +113,12 @@ export class Layout extends React.Component {
   constructor(props, context) {
     super(props);
     this.context = context;
-    this.state = { open: false };
+    this.state = { open: false, showHelp: false };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.openHelp = this.openHelp.bind(this);
+    this.closeHelp = this.closeHelp.bind(this);
     this.touchTitle = this.touchTitle.bind(this);
   }
 
@@ -125,6 +128,17 @@ export class Layout extends React.Component {
 
   handleClose() {
     this.setState({ open: false });
+  }
+
+  closeHelp() {
+    this.setState({ showHelp: false });
+  }
+
+  openHelp() {
+    this.setState({
+      open: false,
+      showHelp: true
+    });
   }
 
   touchTitle() {
@@ -192,6 +206,9 @@ export class Layout extends React.Component {
               onTouchTap={this.handleClose}
             >
               <FormattedMessage id="research" />
+            </MenuItem>
+            <MenuItem onTouchTap={this.openHelp}>
+              <FormattedMessage id="help_contact" />
             </MenuItem>
             <MenuItem className="d-md-none d-lg-none d-xl-none">
               {isAuthenticated ? (
@@ -290,7 +307,15 @@ export class Layout extends React.Component {
             />
             <Route path="/users/:id" component={ProfileLoader} />
           </div>
-          <Footer />
+          <Footer onHelpOpen={this.openHelp} />
+          {this.state.showHelp ? (
+            <HelpBar
+              onHelpClose={this.closeHelp}
+              locale={this.props.intl.locale}
+            />
+          ) : (
+            undefined
+          )}
         </div>
       </BrowserRouter>
     );

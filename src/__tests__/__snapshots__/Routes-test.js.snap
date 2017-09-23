@@ -194,7 +194,7 @@ exports[`App 1`] = `
         className="main-contents"
       >
         <div
-          className="search-results-component container-fluid"
+          className="search-results-component pb-3 container-fluid"
         >
           <div
             className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none col col-md-3"
@@ -585,15 +585,12 @@ exports[`App 1`] = `
               News
             </span>
           </a>
-          <a
-            href="/help"
+          <span
+            className="open-help"
             onClick={[Function]}
           >
-            <span>
-              Help
-            </span>
-          </a>
-          Contact
+            Help & Contact
+          </span>
         </div>
       </div>
       <div
@@ -761,15 +758,12 @@ exports[`App 1`] = `
                 News
               </span>
             </a>
-            <a
-              href="/help"
+            <span
+              className="open-help"
               onClick={[Function]}
             >
-              <span>
-                Help
-              </span>
-            </a>
-            Contact
+              Help & Contact
+            </span>
           </div>
         </div>
         <div
@@ -1036,7 +1030,7 @@ exports[`Searching for a word 1`] = `
         className="main-contents"
       >
         <div
-          className="search-results-component container-fluid"
+          className="search-results-component pb-3 container-fluid"
         >
           <div
             className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none col col-md-3"
@@ -1427,15 +1421,12 @@ exports[`Searching for a word 1`] = `
               News
             </span>
           </a>
-          <a
-            href="/help"
+          <span
+            className="open-help"
             onClick={[Function]}
           >
-            <span>
-              Help
-            </span>
-          </a>
-          Contact
+            Help & Contact
+          </span>
         </div>
       </div>
       <div
@@ -1603,15 +1594,12 @@ exports[`Searching for a word 1`] = `
                 News
               </span>
             </a>
-            <a
-              href="/help"
+            <span
+              className="open-help"
               onClick={[Function]}
             >
-              <span>
-                Help
-              </span>
-            </a>
-            Contact
+              Help & Contact
+            </span>
           </div>
         </div>
         <div

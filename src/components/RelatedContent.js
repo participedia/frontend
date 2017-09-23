@@ -2,8 +2,8 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
-const LinkToThing = ({ thing, intl }) =>
-  thing && intl ? (
+const LinkToThing = ({ thing }) =>
+  thing ? (
     <Link
       to={{
         pathname: `/${thing.type}/${thing.id}`
@@ -21,9 +21,12 @@ const RelatedThings = ({ title, relateds, intl }) =>
   relateds && relateds.length ? (
     <div>
       <div className="sub-sub-heading">
-        <FormattedMessage id={title} /> :{" "}
+        <FormattedMessage id={title} />:&nbsp;
       </div>
-      {relateds.map(related => (
+      {relateds.map((related, index) => (
+        index < relateds.length -1 ?
+        <span key={related.id}><LinkToThing thing={related} />,&nbsp;</span>
+        :
         <LinkToThing key={related.id} thing={related} />
       ))}
     </div>
@@ -52,7 +55,7 @@ const RelatedContent = props => {
     (props.thing.related_organizations &&
       props.thing.related_organizations.length) ? (
     <div className="related-content">
-      <p className="sub-heading">Related Content</p>
+      <p className="sub-heading d-none d-sm-none">Related Content</p>
       <RelatedCases {...props} />
       <RelatedMethods {...props} />
       <RelatedOrganizations {...props} />
