@@ -12,12 +12,11 @@ jest.mock("material-ui/FlatButton");
 jest.mock("material-ui/IconMenu");
 intl.messages = messages;
 
+import authService from "../utils/AuthService";
+authService.isAuthenticated = jest.fn();
+
 function setup(isAuthed) {
   const props = {
-    auth: {
-      getProfile: cb => cb(null, { user_metadata: "foo" }),
-      isAuthenticated: () => isAuthed
-    },
     intl: intl
   };
 
@@ -32,12 +31,14 @@ function setup(isAuthed) {
 describe("components", () => {
   describe("LoginAvatar", () => {
     it("should render user menu if logged in", () => {
-      const { enzymeWrapper } = setup(true);
+      authService.isAuthenticated.mockImplementation(() => true);
+      const { enzymeWrapper } = setup();
       expect(enzymeWrapper.find("div").hasClass("avatar")).toBe(true);
     });
 
     it("should show login button if logged out", () => {
-      const { enzymeWrapper } = setup(false);
+      authService.isAuthenticated.mockImplementation(() => false);
+      const { enzymeWrapper } = setup();
       expect(enzymeWrapper.find("div").hasClass("loginButton")).toBe(true);
     });
   });
