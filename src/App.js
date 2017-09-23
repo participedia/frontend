@@ -5,7 +5,6 @@ import en from "react-intl/locale-data/en";
 import fr from "react-intl/locale-data/fr";
 import es from "react-intl/locale-data/es";
 import Layout from "./Layout";
-import authService from "./utils/AuthService";
 import { getFirstBrowserLanguage, getBestMatchingMessages } from "./utils/l10n";
 
 import Raven from "raven-js";
@@ -22,7 +21,7 @@ export default class App extends React.Component {
     let messages = getBestMatchingMessages(locale);
     return (
       <IntlProvider locale={locale} messages={messages}>
-        <Layout auth={authService} />
+        <Layout />
       </IntlProvider>
     );
   }
