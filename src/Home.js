@@ -14,36 +14,27 @@ class Home extends React.Component {
           <Map />
         </MediaQuery>
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <SearchResults {...this.props} />}
-          />
-          <Route
-            exact
-            path="/search"
-            component={() => <SearchResults {...this.props} />}
-          />
+          <Route exact path="/" component={SearchResults} />
+          <Route exact path="/search" component={SearchResults} />
           <Route
             path="/cases"
-            component={() =>
-              <SearchResults selectedCategory="Cases" {...this.props} />}
+            component={() => (
+              <SearchResults selectedCategory="Cases" {...this.props} />
+            )}
           />
           <Route
             path="/methods"
-            component={() =>
-              <SearchResults selectedCategory="Methods" {...this.props} />}
+            component={() => (
+              <SearchResults selectedCategory="Methods" {...this.props} />
+            )}
           />
           <Route
             path="/organizations"
-            component={() =>
-              <SearchResults
-                selectedCategory="Organizations"
-                {...this.props}
-              />}
+            component={() => (
+              <SearchResults selectedCategory="Organizations" {...this.props} />
+            )}
           />
         </Switch>
-
       </div>
     );
   }
