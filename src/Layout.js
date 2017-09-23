@@ -3,10 +3,6 @@ import { FormattedMessage } from "react-intl";
 
 import { BrowserRouter } from "react-router-dom";
 import { Route, Redirect } from "react-router";
-<<<<<<< HEAD
-=======
-import { bool, func } from "prop-types";
->>>>>>> routing-refactor
 import { Link } from "react-router-dom";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";
@@ -87,168 +83,33 @@ class Callback extends React.Component {
   }
 }
 
-const EnsureAuth = props =>
-  authService.isAuthenticated() ? (
-    <div />
-  ) : (
-    <div>Must be logged in</div> && authService.login(window.location.pathname)
-  );
-
-<<<<<<< HEAD
 const MixedRoute = ({ component: Component, auth, ...rest }) => (
   <Route {...rest} render={props => <Component {...props} auth={auth} />} />
 );
 
-// const PrivateRoute = ({ component: Component, auth, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props =>
-//       auth.isAuthenticated() ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect
-//           to={{
-//             pathname: "/login",
-//             state: { from: props.location }
-//           }}
-//         />
-//       )}
-//   />
-// );
+// export class DoLogin extends React.Component {
+//   render() {
+//     return <div />;
+//   }
+// }
+// authService.login(window.location.pathname);
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      console.log("in PrivateRoute, location is:", props.location) ||
+      authService.isAuthenticated() ? (
+        <Component {...props} auth={authService} />
+      ) : (
+        authService.login(props.location) || <div />
+      )}
+  />
+);
 
 export class Layout extends React.Component {
   static propTypes = {};
   constructor(props, context) {
-=======
-class Routes extends React.Component {
-  render() {
-    return (
-      <div className="contentArea">
-        <Route
-          path="/redirect"
-          render={props => {
-            // handleAuthentication(props);
-            return <Callback {...props} />;
-          }}
-        />
-        <Route
-          exact
-          path="/cases"
-          render={props => <Home auth={authService} />}
-        />
-        <Route
-          exact
-          path="/methods"
-          render={props => <Home auth={authService} />}
-        />
-        <Route
-          exact
-          path="/organizations"
-          render={props => <Home auth={authService} />}
-        />
-        <Route
-          path="/show/:term"
-          render={props => (
-            <Redirect to={`/search?query=${props.match.params.term}`} />
-          )}
-        />
-        <Route exact path="/" render={props => <Home auth={authService} />} />
-        <Route path="/search" render={props => <Home auth={authService} />} />
-        <Route component={ScrollToTop} />
-        <Route exact path="/profile" component={props => <ProfileLoader />} />
-        <Route
-          path="/profile/edit"
-          render={props => <EnsureAuth auth={authService} />}
-        />
-        <Route
-          path="/profile/edit"
-          component={props => <ProfileEditor auth={authService} {...props} />}
-        />
-        <Route path="/help/:id" component={HelpArticle} />
-        <Route path="/about" component={About} />
-        <Route path="/experiments" component={Experiments} />
-        <Route path="/teaching" component={Teaching} />
-        <Route
-          path="/new"
-          render={props => <EnsureAuth auth={authService} />}
-        />
-        <Route
-          exact
-          path="/new"
-          render={props => <QuickSubmitPicker auth={authService} />}
-        />
-        <Route
-          exact
-          path="/new/case"
-          component={props => (
-            <NewCaseContainer auth={authService} {...props} />
-          )}
-        />
-        <Route
-          exact
-          path="/new/method"
-          component={props => (
-            <NewMethodContainer auth={authService} {...props} />
-          )}
-        />
-        <Route
-          exact
-          path="/new/organization"
-          component={props => (
-            <NewOrganizationContainer auth={authService} {...props} />
-          )}
-        />
-        <Route path="/research" component={Research} />
-        <Route
-          path="/case/:nodeID"
-          exact
-          component={props => <Case auth={authService} {...props} />}
-        />
-        <Route path="/case/:nodeID/edit" component={EnsureAuth} />
-        <Route
-          path="/case/:nodeID/edit"
-          component={props => (
-            <CaseEditorContainer auth={authService} {...props} />
-          )}
-        />
-        <Route
-          exact
-          path="/method/:nodeID"
-          component={props => <Method auth={authService} {...props} />}
-        />
-        <Route path="/method/:nodeID/edit" component={EnsureAuth} />
-        <Route
-          path="/method/:nodeID/edit"
-          component={props => (
-            <MethodEditorContainer auth={authService} {...props} />
-          )}
-        />
-        <Route
-          exact
-          path="/organization/:nodeID"
-          component={props => <Organization auth={authService} {...props} />}
-        />
-        <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
-        <Route
-          path="/organization/:nodeID/edit"
-          component={props => (
-            <OrganizationEditorContainer auth={authService} {...props} />
-          )}
-        />
-        <Route path="/users/:id" component={ProfileLoader} />
-      </div>
-    );
-  }
-}
-
-export class Layout extends React.Component {
-  static propTypes = {
-    isAuthenticated: bool.isRequired,
-    checkLogin: func,
-    intl: intlShape.isRequired
-  };
-  constructor(props) {
->>>>>>> routing-refactor
     super(props);
     this.context = context;
     this.state = { open: false };
@@ -271,11 +132,7 @@ export class Layout extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
     const { intl } = this.props;
-=======
-    let routes = <Routes auth={authService} />;
->>>>>>> routing-refactor
     let isAuthenticated = authService.isAuthenticated();
 
     return (
@@ -304,21 +161,6 @@ export class Layout extends React.Component {
               </Link>
               <LoginAvatar auth={authService} className="login-area" />
             </div>
-<<<<<<< HEAD
-=======
-            <div className="search-box-area">
-              <SearchQuery {...this.props} />
-            </div>
-            <Link
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-              to="/new"
-            >
-              <div className="createButton">
-                {this.props.intl.formatMessage({ id: "quick_submit" })}
-              </div>
-            </Link>
-            <LoginAvatar auth={authService} className="login-area" />
->>>>>>> routing-refactor
           </div>
           <Drawer
             className="drawer"
@@ -327,7 +169,6 @@ export class Layout extends React.Component {
             open={this.state.open}
             onRequestChange={open => this.setState({ open })}
           >
-<<<<<<< HEAD
             <MenuItem
               containerElement={<Link to={"/"} />}
               onTouchTap={this.handleClose}
@@ -414,173 +255,44 @@ export class Layout extends React.Component {
             <MixedRoute path="/search" component={Home} />
             <Route component={ScrollToTop} />
             <MixedRoute exact path="/profile" component={ProfileLoader} />
-            <Route
-              path="/profile/edit"
-              render={props => <EnsureAuth auth={authService} />}
-            />
-            <Route
-              path="/profile/edit"
-              component={props => (
-                <ProfileEditor intl={intl} auth={authService} {...props} />
-              )}
-            />
+            <PrivateRoute path="/profile/edit" component={ProfileEditor} />
             <Route path="/help/:id" component={HelpArticle} />
             <Route path="/about" component={About} />
             <Route path="/experiments" component={Experiments} />
             <Route path="/teaching" component={Teaching} />
-            <Route
-              path="/new"
-              render={props => <EnsureAuth auth={authService} />}
-            />
-            <Route
-              exact
-              path="/new"
-              render={props => <QuickSubmitPicker auth={authService} />}
-            />
-            <Route
-              exact
-              path="/new/case"
-              component={props => (
-                <NewCaseContainer auth={authService} intl={intl} {...props} />
-              )}
-            />
-            <Route
-              exact
-              path="/new/method"
-              component={props => (
-                <NewMethodContainer auth={authService} intl={intl} {...props} />
-              )}
-            />
+            <PrivateRoute exact path="/new" component={QuickSubmitPicker} />
+            <Route exact path="/new/case" component={NewCaseContainer} />
+            <Route exact path="/new/method" component={NewMethodContainer} />
             <Route
               exact
               path="/new/organization"
-              component={props => (
-                <NewOrganizationContainer
-                  auth={authService}
-                  intl={intl}
-                  {...props}
-                />
-              )}
+              component={NewOrganizationContainer}
             />
             <Route path="/research" component={Research} />
+            <Route path="/case/:nodeID" exact component={Case} />
+            <Route path="/method/:nodeID" exact component={Method} />
             <Route
-              path="/case/:nodeID"
-              exact
-              component={props => (
-                <Case auth={authService} intl={intl} {...props} />
-              )}
-            />
-            <Route path="/case/:nodeID/edit" component={EnsureAuth} />
-            <Route
-              path="/case/:nodeID/edit"
-              component={props => (
-                <CaseEditorContainer
-                  auth={authService}
-                  intl={intl}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/method/:nodeID"
-              component={props => (
-                <Method auth={authService} intl={intl} {...props} />
-              )}
-            />
-            <Route path="/method/:nodeID/edit" component={EnsureAuth} />
-            <Route
-              path="/method/:nodeID/edit"
-              component={props => (
-                <MethodEditorContainer
-                  auth={authService}
-                  intl={intl}
-                  {...props}
-                />
-              )}
-            />
-            <Route
-              exact
               path="/organization/:nodeID"
-              component={props => (
-                <Organization auth={authService} intl={intl} {...props} />
-              )}
+              exact
+              component={Organization}
             />
-            <Route path="/organization/:nodeID/edit" component={EnsureAuth} />
-            <Route
+            <PrivateRoute
+              path="/case/:nodeID/edit"
+              component={CaseEditorContainer}
+            />
+            <PrivateRoute
+              path="/method/:nodeID/edit"
+              component={MethodEditorContainer}
+            />
+            <PrivateRoute
               path="/organization/:nodeID/edit"
-              component={props => (
-                <OrganizationEditorContainer
-                  auth={authService}
-                  intl={intl}
-                  {...props}
-                />
-              )}
+              component={OrganizationEditorContainer}
             />
             <Route path="/users/:id" component={ProfileLoader} />
           </div>
           <Footer />
         </div>
       </BrowserRouter>
-=======
-            {this.props.intl.formatMessage({ id: "about" })}
-          </MenuItem>
-          <MenuItem
-            containerElement={<Link to={"/teaching"} />}
-            onTouchTap={this.handleClose}
-          >
-            {this.props.intl.formatMessage({ id: "teaching" })}
-          </MenuItem>
-          <MenuItem
-            containerElement={<Link to={"/research"} />}
-            onTouchTap={this.handleClose}
-          >
-            {this.props.intl.formatMessage({ id: "research" })}
-          </MenuItem>
-          <MenuItem className="d-md-none d-lg-none d-xl-none">
-            {isAuthenticated ? (
-              <div className="profileButtonMenu">
-                <FlatButton
-                  containerElement={<Link to={"/profile"} />}
-                  onClick={this.handleClose}
-                  label={this.props.intl.formatMessage({ id: "profile" })}
-                />
-              </div>
-            ) : (
-              <div className="loginButtonMenu">
-                <FlatButton
-                  onClick={() => authService.login()}
-                  onTouchTap={this.signIn}
-                  label={this.props.intl.formatMessage({ id: "login" })}
-                />
-              </div>
-            )}
-          </MenuItem>
-          <MenuItem
-            className="d-md-none d-lg-none d-xl-none"
-            containerElement={<Link to={"/new"} />}
-            onTouchTap={this.handleClose}
-          >
-            <div className="new">
-              <FlatButton
-                label={this.props.intl.formatMessage({ id: "quick_submit" })}
-              />
-            </div>
-          </MenuItem>
-          {isAuthenticated ? (
-            <MenuItem
-              className="d-md-none d-lg-none d-xl-none"
-              primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
-              onClick={() => authService.logout()}
-            />
-          ) : (
-            undefined
-          )}
-        </Drawer>
-        {routes}
-        <Footer />
-      </div>
->>>>>>> routing-refactor
     );
   }
 }

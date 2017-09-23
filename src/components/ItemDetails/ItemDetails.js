@@ -1,4 +1,5 @@
 import React from "react";
+import auth from "../../utils/AuthService";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -38,7 +39,8 @@ class Featured extends React.Component {
   }
 
   render() {
-    const { isAuthenticated, profile } = this.props;
+    const { isAuthenticated } = auth;
+    const { profile } = this.props;
     if (!isAuthenticated) return <div />;
     return isCurator(profile) ? (
       <div className="featuretoggle">
@@ -106,7 +108,7 @@ const defaultThing = {
 export default class ItemDetails extends React.Component {
   componentWillMount() {
     this.setState({ profile: {} });
-    const { isAuthenticated, userProfile, getProfile } = this.props.auth;
+    const { isAuthenticated, userProfile, getProfile } = auth;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile, isAuthenticated: isAuthenticated() });
@@ -293,7 +295,3 @@ export default class ItemDetails extends React.Component {
     );
   }
 }
-
-ItemDetails.propTypes = {
-  auth: PropTypes.object.isRequired
-};

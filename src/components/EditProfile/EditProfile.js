@@ -22,7 +22,6 @@ export default class EditProfile extends Component {
     profile: object,
     user: object,
     intl: object.isRequired,
-    auth: object.isRequired,
     organizations: array.isRequired
   };
 

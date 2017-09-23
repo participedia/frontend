@@ -124,7 +124,7 @@ export class SearchResultsView extends React.Component {
   }
 
   render() {
-    let { data, pages, total } = this.props;
+    let { data, pages, total, intl } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
@@ -350,17 +350,15 @@ export class SearchResultsView extends React.Component {
                 value={this.state.value}
                 onChange={this.handleChange}
               >
-                <option value="All">
-                  <FormattedMessage id="all" />
-                </option>
+                <option value="All">{intl.formatMessage({ id: "all" })}</option>
                 <option value="Cases">
-                  <FormattedMessage id="cases" />
+                  {intl.formatMessage({ id: "cases" })}
                 </option>
                 <option value="Methods">
-                  <FormattedMessage id="methods" />
+                  {intl.formatMessage({ id: "methods" })}
                 </option>
                 <option value="Organizations">
-                  <FormattedMessage id="organizations" />
+                  {intl.formatMessage({ id: "organizations" })}
                 </option>
               </select>
               <div className="view-types d-none d-md-block d-lg-block d-xl-block">
