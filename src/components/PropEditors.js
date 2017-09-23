@@ -172,7 +172,7 @@ class NumberEditor extends React.Component {
   constructor(props) {
     super(props);
     let value;
-    if (typeof props.value === typeof undefined || props.value == 0) {
+    if (typeof props.value === typeof undefined || props.value === 0) {
       value = "";
     } else {
       value = String(props.value);
@@ -189,7 +189,7 @@ class NumberEditor extends React.Component {
   // }
 
   onChange(event, value) {
-    console.log(value,'value')
+    console.log(value, "value");
     this.setState({ value: value > 0 ? value : null });
     // this.props.onChange(Number(value));
   }
@@ -204,7 +204,9 @@ class NumberEditor extends React.Component {
         onChange={onChange}
         type="number"
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null && this.state.value > 0
+          typeof this.state.value !== "undefined" &&
+          this.state.value !== null &&
+          this.state.value > 0
             ? this.state.value
             : ""
         }
