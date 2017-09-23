@@ -150,7 +150,6 @@ export default class ItemDetails extends React.Component {
     let id = this.props.id;
     let type = thing.type;
     let editLinkUrl = `/${type}/${id}/edit`;
-    console.log(this.props.details,'print')
     let detailedBits = React.createElement(this.props.details, {
       case: thing,
       intl

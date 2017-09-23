@@ -2,7 +2,7 @@ import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import { FormattedMessage } from "react-intl";
 import CountryMap from "../CountryMap";
 import { object, array } from "prop-types";
-import { Container, Col, Row } from "reactstrap";
+import { Container, Col } from "reactstrap";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
 import FloatingActionButton from "material-ui/FloatingActionButton";
@@ -79,110 +79,110 @@ export default class EditProfile extends Component {
     return (
       <Container fluid className="edit-profile">
         {isAuthenticated ? (
-        <div>
-          <Form
-            onSubmit={this.onSubmit.bind(this)}
-            state={user}
-            onChange={changes => this.setState({ user: changes })}
-          >
-            <div className="form-group row">
-              <Col md="3" className="sidebar">
-                {avatarEditor}
+          <div>
+            <Form
+              onSubmit={this.onSubmit.bind(this)}
+              state={user}
+              onChange={changes => this.setState({ user: changes })}
+            >
+              <div className="form-group row">
+                <Col md="3" className="sidebar">
+                  {avatarEditor}
 
-                {location ? (
-                  <CountryMap
-                    city={location.city}
-                    countrycode={location.country}
+                  {location ? (
+                    <CountryMap
+                      city={location.city}
+                      countrycode={location.country}
+                    />
+                  ) : (
+                    <div />
+                  )}
+                </Col>
+                <Col md="9" className="main-area">
+                  <label className="form-label">
+                    <FormattedMessage id="name" />
+                  </label>
+                  <Field
+                    type={Text}
+                    fieldName="name"
+                    name="name"
+                    inputStyle={nameStyle}
+                    hintText={intl.formatMessage({ id: "name" })}
+                    className="name-input"
                   />
-                ) : (
-                  <div />
-                )}
-              </Col>
-              <Col md="9" className="main-area">
-                <label className="form-label">
-                  <FormattedMessage id="name" />
-                </label>
-                <Field
-                  type={Text}
-                  fieldName="name"
-                  name="name"
-                  inputStyle={nameStyle}
-                  hintText={intl.formatMessage({ id: "name" })}
-                  className="name-input"
-                />
-                <br />
-                <div className="divider" />
-                <label className="form-label">
-                  <FormattedMessage id="location" />
-                </label>
-                {locationEditor}
-                {/* <Geosuggest
+                  <br />
+                  <div className="divider" />
+                  <label className="form-label">
+                    <FormattedMessage id="location" />
+                  </label>
+                  {locationEditor}
+                  {/* <Geosuggest
                     className="org-input"
                     onSuggestSelect={function(data) {
                       user.location = encodeLocation(data);
                       onChange({ user });
                     }}
                   />*/}
-                <label className="form-label organization">
-                  <FormattedMessage id="organization" />
-                </label>
-                <div className="label-description">
-                  <FormattedMessage id="organization_text" />
-                </div>
-                <Field
-                  fieldName="organization"
-                  name="organization"
-                  type={Select}
-                  options={this.props.organizations}
-                />
-                <br />
-                <Field
-                  type={Text}
-                  fieldName="affiliation"
-                  hintText={this.props.intl.formatMessage({
-                    id: "department"
-                  })}
-                />
-                <br />
-                <Field
-                  type={Text}
-                  fieldName="title"
-                  hintText={this.props.intl.formatMessage({
-                    id: "job_title"
-                  })}
-                />
-                <br />
-                <Field
-                  type={Text}
-                  fieldName="website"
-                  hintText={this.props.intl.formatMessage({
-                    id: "website"
-                  })}
-                />
-                <br />
-                <div className="divider" />
-                <label className="form-label">
-                  <FormattedMessage id="biography" />
-                </label>
-                <Field
-                  type={Textarea}
-                  fieldName="bio"
-                  name="bio"
-                  className="biography-input"
-                  placeholder={this.props.intl.formatMessage({
-                    id: "tell_us"
-                  })}
-                />
-              </Col>
-              <FloatingActionButton
-                onTouchTap={this.onSubmit.bind(this)}
-                className="editButton"
-              >
-                <FileUpload />
-              </FloatingActionButton>
-            </div>
-          </Form>
-        </div>
+                  <label className="form-label organization">
+                    <FormattedMessage id="organization" />
+                  </label>
+                  <div className="label-description">
+                    <FormattedMessage id="organization_text" />
+                  </div>
+                  <Field
+                    fieldName="organization"
+                    name="organization"
+                    type={Select}
+                    options={this.props.organizations}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="affiliation"
+                    hintText={this.props.intl.formatMessage({
+                      id: "department"
+                    })}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="title"
+                    hintText={this.props.intl.formatMessage({
+                      id: "job_title"
+                    })}
+                  />
+                  <br />
+                  <Field
+                    type={Text}
+                    fieldName="website"
+                    hintText={this.props.intl.formatMessage({
+                      id: "website"
+                    })}
+                  />
+                  <br />
+                  <div className="divider" />
+                  <label className="form-label">
+                    <FormattedMessage id="biography" />
+                  </label>
+                  <Field
+                    type={Textarea}
+                    fieldName="bio"
+                    name="bio"
+                    className="biography-input"
+                    placeholder={this.props.intl.formatMessage({
+                      id: "tell_us"
+                    })}
+                  />
+                </Col>
+                <FloatingActionButton
+                  onTouchTap={this.onSubmit.bind(this)}
+                  className="editButton"
+                >
+                  <FileUpload />
+                </FloatingActionButton>
+              </div>
+            </Form>
+          </div>
         ) : (
           <Col md={{ size: 9, offset: 1 }} className="main-area">
             <p>
