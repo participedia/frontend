@@ -24,7 +24,6 @@ export class LoginAvatar extends React.Component {
 
   render() {
     const { isAuthenticated } = authService;
-    console.log("in loginavatar, isAuthenticated: ", isAuthenticated());
     let buttonStyle = { color: "black" };
     const profile = this.state.profile;
     let intl = this.props.intl; // injected
