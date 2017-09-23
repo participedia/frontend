@@ -527,7 +527,6 @@ export class AvatarEditor extends React.Component {
         <Upload
           customStyle={customStyle}
           className="change-avatar-button"
-          auth={this.props.passProps.auth}
           profile={this.props.passProps.profile}
           updatePicture
         />
@@ -536,55 +535,14 @@ export class AvatarEditor extends React.Component {
   }
 }
 
-export function makeLocalizedAvatarEditor(intl, property, profile, auth) {
+export function makeLocalizedAvatarEditor(intl, property, profile) {
   return (
     <Field
       fieldName={property}
       id={property}
       name={property}
       profile={profile}
-      auth={auth}
       type={AvatarEditor}
     />
   );
 }
-
-// export class OrganizationPicker extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value: props.value
-//     };
-//   }
-
-//   componentWillReceiveProps(props) {
-//     this.setState({
-//       value: props.value
-//     });
-//   }
-
-//   onUpdate(index, newtext) {
-//     let value = this.state.value;
-//     value[index] = newtext;
-//     this.update(value);
-//   }
-
-//   render() {
-//     return (
-
-//     );
-// }
-
-// export function OrganizationPicker(intl, property) {
-//   return (
-//     <Field
-//       fieldName={property}
-//       id={property}
-//       name={property}
-//       profile={profile}
-//       auth={auth}
-//       type={AvatarEditor}
-//     />
-//   );
-
-// }
