@@ -51,7 +51,9 @@ exports[`App 1`] = `
         <div
           className="createButton"
         >
-          Quick Submit
+          <span>
+            Quick Submit
+          </span>
         </div>
       </a>
       <div
@@ -323,30 +325,22 @@ exports[`App 1`] = `
                 <option
                   value="All"
                 >
-                  <span>
-                    All
-                  </span>
+                  All
                 </option>
                 <option
                   value="Cases"
                 >
-                  <span>
-                    Cases
-                  </span>
+                  Cases
                 </option>
                 <option
                   value="Methods"
                 >
-                  <span>
-                    Methods
-                  </span>
+                  Methods
                 </option>
                 <option
                   value="Organizations"
                 >
-                  <span>
-                    Organizations
-                  </span>
+                  Organizations
                 </option>
               </select>
               <div
@@ -887,7 +881,9 @@ exports[`Searching for a word 1`] = `
         <div
           className="createButton"
         >
-          Quick Submit
+          <span>
+            Quick Submit
+          </span>
         </div>
       </a>
       <div
@@ -1159,30 +1155,22 @@ exports[`Searching for a word 1`] = `
                 <option
                   value="All"
                 >
-                  <span>
-                    All
-                  </span>
+                  All
                 </option>
                 <option
                   value="Cases"
                 >
-                  <span>
-                    Cases
-                  </span>
+                  Cases
                 </option>
                 <option
                   value="Methods"
                 >
-                  <span>
-                    Methods
-                  </span>
+                  Methods
                 </option>
                 <option
                   value="Organizations"
                 >
-                  <span>
-                    Organizations
-                  </span>
+                  Organizations
                 </option>
               </select>
               <div
