@@ -84,24 +84,12 @@ class Callback extends React.Component {
   }
 }
 
-const MixedRoute = ({ component: Component, auth, ...rest }) => (
-  <Route {...rest} render={props => <Component {...props} auth={auth} />} />
-);
-
-// export class DoLogin extends React.Component {
-//   render() {
-//     return <div />;
-//   }
-// }
-// authService.login(window.location.pathname);
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      console.log("in PrivateRoute, location is:", props.location) ||
       authService.isAuthenticated() ? (
-        <Component {...props} auth={authService} />
+        <Component {...props} />
       ) : (
         authService.login(props.location) || <div />
       )}
@@ -259,19 +247,19 @@ export class Layout extends React.Component {
                 return <Callback {...props} />;
               }}
             />
-            <MixedRoute exact path="/cases" component={Home} />
-            <MixedRoute exact path="/methods" component={Home} />
-            <MixedRoute exact path="/organizations" component={Home} />
+            <Route exact path="/cases" component={Home} />
+            <Route exact path="/methods" component={Home} />
+            <Route exact path="/organizations" component={Home} />
             <Route
               path="/show/:term"
               render={props => (
                 <Redirect to={`/search?query=${props.match.params.term}`} />
               )}
             />
-            <MixedRoute exact path="/" component={Home} />
-            <MixedRoute path="/search" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route path="/search" component={Home} />
             <Route component={ScrollToTop} />
-            <MixedRoute exact path="/profile" component={ProfileLoader} />
+            <Route exact path="/profile" component={ProfileLoader} />
             <PrivateRoute path="/profile/edit" component={ProfileEditor} />
             <Route path="/help/:id" component={HelpArticle} />
             <Route path="/about" component={About} />

@@ -1,6 +1,7 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import { FormattedMessage } from "react-intl";
 import CountryMap from "../CountryMap";
+import authService from "../../utils/AuthService";
 import { object, array } from "prop-types";
 import { Container, Col } from "reactstrap";
 import "./EditProfile.css";
@@ -57,8 +58,8 @@ export default class EditProfile extends Component {
   }
 
   render() {
-    const { auth, profile, user, intl } = this.props;
-    const isAuthenticated = auth.isAuthenticated();
+    const { profile, user, intl } = this.props;
+    const isAuthenticated = authService.isAuthenticated();
 
     const nameStyle = {
       color: "#3f51b2",
@@ -68,12 +69,7 @@ export default class EditProfile extends Component {
     let location = null;
     if (!user) return <div />;
 
-    let avatarEditor = makeLocalizedAvatarEditor(
-      intl,
-      "picture_url",
-      profile,
-      auth
-    );
+    let avatarEditor = makeLocalizedAvatarEditor(intl, "picture_url", profile);
     let locationEditor = makeLocalizedLocationField(intl, "location");
 
     return (

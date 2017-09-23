@@ -77,7 +77,7 @@ export default class ItemEditor extends Component {
               <div className="case-box">
                 <h2 className="category">{type}</h2>
                 <h2 className="case-title">{thing.title}</h2>
-                <ImageListEditor auth={this.props.auth} thing={thing} />
+                <ImageListEditor thing={thing} />
                 <div className="title-edit">
                   <label htmlFor="title">
                     <FormattedMessage id={thing.type + "_title_label"} />

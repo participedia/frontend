@@ -16,7 +16,7 @@ export class LoginAvatar extends React.Component {
   };
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -27,7 +27,7 @@ export class LoginAvatar extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = authService;
     let buttonStyle = { color: "black" };
     const profile = this.state.profile;
     let intl = this.props.intl; // injected

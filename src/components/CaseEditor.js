@@ -196,11 +196,7 @@ class CaseEditor extends Component {
                 <p className="sub-sub-heading">
                   <FormattedMessage id="photos" />
                 </p>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  thing={thing}
-                />
+                <ImageListEditor property="images" thing={thing} />
                 <p className="sub-sub-heading">
                   <FormattedMessage id="videos" />
                 </p>

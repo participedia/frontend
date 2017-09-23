@@ -133,7 +133,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -147,7 +146,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -161,7 +159,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
