@@ -284,37 +284,51 @@ exports[`App 1`] = `
               >
                 <div
                   className="selected"
-                  onClick={[Function]}
                 >
-                  <span>
-                    All
-                  </span>
+                  <a
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      All
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Cases
-                  </span>
+                  <a
+                    href="/cases"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Cases
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  href="#"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Methods
-                  </span>
+                  <a
+                    href="/methods"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Methods
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  href="#"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Organizations
-                  </span>
+                  <a
+                    href="/organizations"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Organizations
+                    </span>
+                  </a>
                 </div>
               </div>
               <select
@@ -1114,37 +1128,51 @@ exports[`Searching for a word 1`] = `
               >
                 <div
                   className="selected"
-                  onClick={[Function]}
                 >
-                  <span>
-                    All
-                  </span>
+                  <a
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      All
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Cases
-                  </span>
+                  <a
+                    href="/cases"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Cases
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  href="#"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Methods
-                  </span>
+                  <a
+                    href="/methods"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Methods
+                    </span>
+                  </a>
                 </div>
                 <div
                   className="unselected"
-                  href="#"
-                  onClick={[Function]}
                 >
-                  <span>
-                    Organizations
-                  </span>
+                  <a
+                    href="/organizations"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Organizations
+                    </span>
+                  </a>
                 </div>
               </div>
               <select
