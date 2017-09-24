@@ -11,7 +11,8 @@ class Home extends React.Component {
     return (
       <div className="home">
         <MediaQuery query="(min-device-width: 992px)">
-          <Map />
+          {/* The next line is so that the Map has the route props */}
+          <Route path="/" component={Map} />
         </MediaQuery>
         <Switch>
           <Route exact path="/" component={SearchResults} />

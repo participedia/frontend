@@ -151,7 +151,8 @@ export class Layout extends React.Component {
                 </Link>
               </div>
               <div className="search-box-area">
-                <SearchQuery {...this.props} />
+                {/* The next line is so that the searchquery has the route props */}
+                <Route path="/" component={SearchQuery} />
               </div>
               <Link
                 className="d-none d-sm-block d-md-block d-lg-block d-xl-block"

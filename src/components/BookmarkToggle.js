@@ -4,7 +4,6 @@ import BookmarkBorder from "material-ui/svg-icons/action/bookmark-border";
 import IconButton from "material-ui/IconButton";
 import api from "../utils/api";
 import authService from "../utils/AuthService";
-import myhistory from "../utils/history";
 
 const styles = {
   smallIcon: {
@@ -62,7 +61,7 @@ export default class BookmarkToggle extends React.Component {
 
   toggleBookmark(thingType, thingid) {
     if (!authService.isAuthenticated()) {
-      authService.login(myhistory.location.pathname);
+      authService.login(this.props.location.pathname);
     } else {
       let effectSwitch = this.effectSwitch.bind(this);
       if (this.state.bookmarked) {

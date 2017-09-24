@@ -1,12 +1,23 @@
 import React from "react";
-import myhistory from "../utils/history";
 import SearchQueryField from "../components/SearchQueryField/SearchQueryField";
 import queryString from "query-string";
 
 export default class SearchQuery extends React.Component {
+  constructor(props) {
+    super(props);
+    let params = queryString.parse(this.props.location.search);
+    this.state = { params };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let params = queryString.parse(this.props.location.search);
+    this.setState({ params });
+  }
+
   render() {
-    let params = queryString.parse(myhistory.location.search);
     let searchTerm;
+    let params = queryString.parse(this.props.location.search);
+    // const params = this.state.params;
     if (params.query) {
       searchTerm = params.query;
     } else {
@@ -20,6 +31,6 @@ export default class SearchQuery extends React.Component {
     );
   }
   onPerformQuery(query, selectedCategory, sortingMethod) {
-    myhistory.push(`/search?query=${query}`);
+    this.props.history.push(`/search?query=${query}`);
   }
 }

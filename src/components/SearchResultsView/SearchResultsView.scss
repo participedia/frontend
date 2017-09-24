@@ -2,8 +2,8 @@
 
 .main-contents {
   min-height: 200px;
-  position:relative;
-  z-index:20;
+  position: relative;
+  z-index: 20;
 }
 
 .unselected {
@@ -11,15 +11,14 @@
 }
 
 .search-results-component {
-
   .sidepanel {
-    display:none; //sidebar override
+    display: none; //sidebar override
     padding: 0 15px;
     @include media-breakpoint-up(lg) {
-      padding:0 30px 0 15px;
+      padding: 0 30px 0 15px;
     }
     @include media-breakpoint-up(xl) {
-      padding:0 60px 0 15px;
+      padding: 0 60px 0 15px;
     }
 
     .sorting-options {
@@ -32,14 +31,16 @@
         color: #666;
         display: block;
         line-height: 26px;
-        padding:12px 10px;
-        border-bottom:1px solid $dark-grey;
+        padding: 12px 10px;
+        border-bottom: 1px solid $dark-grey;
         transition: 100ms ease-in-out color;
         text-transform: capitalize;
-        cursor:pointer;
-        &.selected, &:hover, &:focus {
+        cursor: pointer;
+        &.selected,
+        &:hover,
+        &:focus {
           color: $interactive-color;
-          background: lighten($light-grey,3%);
+          background: lighten($light-grey, 3%);
         }
       }
 
@@ -53,26 +54,24 @@
         display: none;
       }
     }
-
-    .open-mobile-menu {}
   }
 }
 
 .search-actions-area {
   padding: 0;
-  position:relative;
+  position: relative;
   @include media-breakpoint-up(lg) {
-    background:#fff;
-    height:60px;
+    background: #fff;
+    height: 60px;
   }
   &:before {
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    background:rgba(0,0,0,.05);
-    height:1px;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05);
+    height: 1px;
   }
 
   .filters {
@@ -88,12 +87,13 @@
     display: block;
     line-height: 26px;
     padding: 18px 18px 14px;
-    transition: 100ms ease-in-out color, 100ms ease-in-out border, 100ms ease-in-out background;
-    position:relative;
-    
+    transition: 100ms ease-in-out color, 100ms ease-in-out border,
+      100ms ease-in-out background;
+    position: relative;
+
     float: none;
     border: 0 !important;
-    
+
     @include media-breakpoint-up(sm) {
       float: left;
     }
@@ -112,16 +112,16 @@
     border-bottom: 4px solid $black;
     color: $interactive-color;
     &:hover {
-      border-bottom: 4px solid darken($interactive-color,10%);
+      border-bottom: 4px solid darken($interactive-color, 10%);
     }
     &:after {
-      content:"";
-      position:absolute;
-      height:4px;
-      bottom:0;
-      right:0;
-      left:0;
-      background:$interactive-color;
+      content: "";
+      position: absolute;
+      height: 4px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background: $interactive-color;
     }
   }
   .filters div:hover {
@@ -131,17 +131,17 @@
     border-bottom: 4px solid $interactive-color;
   }
   .filters div:focus {
-    text-decoration:none;
+    text-decoration: none;
   }
 
   .view-types {
     float: right;
-    margin-right:10px;
+    margin-right: 10px;
     @include media-breakpoint-up(md) {
-      margin-top:10px;
+      margin-top: 10px;
     }
     @include media-breakpoint-up(lg) {
-      margin-top:20px;
+      margin-top: 20px;
     }
 
     div {
@@ -166,7 +166,9 @@
       }
     }
 
-    div.selected, div:hover, div:focus {
+    div.selected,
+    div:hover,
+    div:focus {
       img:first-child {
         display: none;
       }
@@ -180,11 +182,11 @@
 
 .search-results-component {
   .col-md-9 {
-    padding:0;
+    padding: 0;
     @include media-breakpoint-up(md) {
-      padding-left:15px;
-      padding-right:15px;
-      width:100%; //sidebar override
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 100%; //sidebar override
     }
   }
 }
@@ -193,40 +195,41 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-items: stretch;
-  justify-content:flex-start;
+  justify-content: flex-start;
   .col-md-4 {
-    width:100%;
-    margin-bottom:30px;
-    padding:0;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 0;
     @include media-breakpoint-up(sm) {
-      width:50%;
-      padding:0 24px 0 0;
-      &:nth-child(2n+2) {
-        padding-right:0;
+      width: 50%;
+      padding: 0 24px 0 0;
+      &:nth-child(2n + 2) {
+        padding-right: 0;
       }
     }
-    @include media-breakpoint-up(md) { //sidebar override - this whole block
-      width:33.333333%;
-      padding:0 24px 0 0;
-      &:nth-child(2n+2) {
-        padding-right:24px;
+    @include media-breakpoint-up(md) {
+      //sidebar override - this whole block
+      width: 33.333333%;
+      padding: 0 24px 0 0;
+      &:nth-child(2n + 2) {
+        padding-right: 24px;
       }
-      &:nth-child(3n+3) { 
-        padding-right:0; 
+      &:nth-child(3n + 3) {
+        padding-right: 0;
       }
     }
     @include media-breakpoint-up(lg) {
-      width:33.333333%;
-      width:25%; //sidebar override
-      padding:0 24px 0 0;
-      &:nth-child(2n+2) {
-        padding-right:24px;
+      width: 33.333333%;
+      width: 25%; //sidebar override
+      padding: 0 24px 0 0;
+      &:nth-child(2n + 2) {
+        padding-right: 24px;
       }
-      &:nth-child(3n+3) {
-        padding-right:24px; //sidebar override
+      &:nth-child(3n + 3) {
+        padding-right: 24px; //sidebar override
       }
-      &:nth-child(4n+4) { 
-        padding-right:0; //sidebar override
+      &:nth-child(4n + 4) {
+        padding-right: 0; //sidebar override
       }
       /* don't delete - sidebar override
       &:nth-child(3n+3) {
@@ -236,7 +239,7 @@
     }
   }
   .col-md-12 {
-    padding:0;
+    padding: 0;
   }
   .category-title {
     font-size: 1.8rem;
@@ -252,18 +255,17 @@
 }
 
 .search-results {
-  margin-top:20px;
+  margin-top: 20px;
   @include media-breakpoint-up(lg) {
-    padding:0;
-    position:relative;
+    padding: 0;
+    position: relative;
     // top:-80px; // XXX don't understand what this is doing.
   }
-  
 }
 
 .search-description {
-  font-weight:600;
-  font-size:20px;
+  font-weight: 600;
+  font-size: 20px;
 }
 .search-description-text {
   font-size: 16px;
@@ -274,18 +276,18 @@
   }
 }
 div h3.searching-message {
-  font-size:16px;
-  font-weight:400;
-  margin-top:30px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 30px;
 }
 .search-term {
-  display:inline;
-  position:relative;
+  display: inline;
+  position: relative;
   &:before {
-    content:"\201C";
+    content: "\201C";
   }
   &:after {
-    content:"\201D";
+    content: "\201D";
   }
 }
 
@@ -298,10 +300,10 @@ div h3.searching-message {
     line-height: 26px;
   }
   .result-author {
-    margin-bottom:0;
-    color:$primary-color;
-    line-height:1rem;
-    margin-top:10px;
+    margin-bottom: 0;
+    color: $primary-color;
+    line-height: 1rem;
+    margin-top: 10px;
   }
 }
 
@@ -312,8 +314,8 @@ div h3.searching-message {
   padding: 7px;
   background-color: white;
   appearance: none;
-  background: url('../../img/dropdown.png') no-repeat right;
-  background-size:30px;
+  background: url("../../img/dropdown.png") no-repeat right;
+  background-size: 30px;
 }
 
 .featured-searches-header {
@@ -323,8 +325,8 @@ div h3.searching-message {
 }
 
 .featured-searches {
-  margin-top:10px;
-  border-top:1px solid #e6e6e6;
+  margin-top: 10px;
+  border-top: 1px solid #e6e6e6;
   a {
     color: $primary-color;
     font-size: 1rem;
@@ -337,20 +339,26 @@ div h3.searching-message {
     transition: 100ms ease-in-out color;
     text-transform: capitalize;
     cursor: pointer;
-    &.selected, &:hover, &:focus {
+    &.selected,
+    &:hover,
+    &:focus {
       color: $interactive-color;
-      background: lighten($light-grey,3%);
-      text-decoration:none;
+      background: lighten($light-grey, 3%);
+      text-decoration: none;
     }
   }
 }
 
 .spinner {
   background-image: url("../../img/loading-dots.gif");
-  background-repeat:no-repeat;
-  background-position:center center;
-  display:inline-block;
-  width:34px; height:20px; margin-left:5px; position:relative; top:5px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  margin-left: 5px;
+  position: relative;
+  top: 5px;
 }
 
 .pagination {
@@ -360,7 +368,7 @@ div h3.searching-message {
     cursor: pointer;
     display: inline-block;
     border: 1px solid black;
-    margin: .5ex;
+    margin: 0.5ex;
     text-align: center;
     vertical-align: middle;
     // margin: .2ex .4ex;
@@ -371,8 +379,8 @@ div h3.searching-message {
     padding-right: 1em;
     &:hover {
       color: $interactive-color;
-      background: lighten($light-grey,3%);
-      text-decoration:none;
+      background: lighten($light-grey, 3%);
+      text-decoration: none;
     }
   }
 }
