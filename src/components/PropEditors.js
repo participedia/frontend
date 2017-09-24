@@ -92,7 +92,9 @@ export function makeLocalizedChoiceField(
   return (
     <div>
       <p className="sub-heading">{label}</p>
-
+      <p className="m-0">{intl.formatMessage({
+          id: property + "_placeholder"
+        })}</p>
       <Field
         fieldName={property}
         label={label}

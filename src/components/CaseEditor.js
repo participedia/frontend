@@ -140,14 +140,15 @@ class CaseEditor extends Component {
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
+                <FormattedMessage id={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })} />
                 <Field
                   fieldName="title"
                   name="title"
                   className="custom-field"
                   type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
+                  placeholder=""
                   fullWidth
                 />
                 {makeLocalizedChoiceField(
