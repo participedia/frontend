@@ -67,10 +67,10 @@ class FilterArray extends React.Component {
   }
 
   handleRequestDelete = key => {
-    let parameters = queryString.parse(myhistory.location.search);
+    let parameters = queryString.parse(myhistory.location.search); // XXX this is likely wrong, should be props.location
     delete parameters[key];
     let newquerystring = queryString.stringify(parameters);
-    myhistory.push(`/search?${newquerystring}`);
+    myhistory.push(`/search?${newquerystring}`); // XXX wrong, should be a <Link> somewhere.
   };
 
   renderChip(data) {
@@ -97,34 +97,40 @@ class FilterArray extends React.Component {
 export class SearchResultsView extends React.Component {
   constructor() {
     super();
-    this.state = { value: "All" };
+    this.state = { selectedCategory: "All" };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
-    this.props.onCategoryChange.bind(this, event.target.value)();
+    let href = "";
+    if (event.target.value === "All") {
+      href = "/" + this.props.location.search;
+    } else if (event.target.value === "Cases") {
+      href = "/cases" + this.props.location.search;
+    } else if (event.target.value === "Methods") {
+      href = "/methods" + this.props.location.search;
+    } else if (event.target.value === "Organizations") {
+      href = "/organizations" + this.props.location.search;
+    } else {
+      return;
+    }
+
+    this.props.history.push(href);
   }
 
-  goNextPage() {
-    let restrictions = queryString.parse(myhistory.location.search);
-    let currentPage = restrictions["page"] || 1;
-    currentPage++;
-    restrictions["page"] = String(currentPage);
-    let newSearch = queryString.stringify(restrictions);
-    myhistory.push(myhistory.location.pathname + "?" + newSearch);
-  }
-  goPrevPage() {
-    let restrictions = queryString.parse(myhistory.location.search);
-    let currentPage = restrictions.page || 1;
-    currentPage = Math.max(1, currentPage - 1);
-    restrictions["page"] = String(currentPage);
-    let newSearch = queryString.stringify(restrictions);
-    myhistory.push(myhistory.location.pathname + "?" + newSearch);
+  make_href(bits, restrictions) {
+    let new_restrictions = {};
+    Object.keys(restrictions).forEach(function(key, index) {
+      new_restrictions[key] = restrictions[key];
+    });
+    Object.keys(bits).forEach(function(key, index) {
+      new_restrictions[key] = bits[key];
+    });
+    return "?" + queryString.stringify(new_restrictions);
   }
 
   render() {
-    let { data, pages, total } = this.props;
+    let { data, pages, total, intl } = this.props;
 
     let selectedViewType = this.props.selectedViewType;
     let searchresults = data.map(function(result, index) {
@@ -141,8 +147,6 @@ export class SearchResultsView extends React.Component {
     let resultsCount = data.length;
     let { searching, query } = this.props;
     let results = "";
-    let goNextPage = this.goNextPage.bind(this);
-    let goPrevPage = this.goPrevPage.bind(this);
     if (this.props.searching) {
       results = (
         <div>
@@ -159,7 +163,7 @@ export class SearchResultsView extends React.Component {
       if (searching) {
         description = "for";
       }
-      let restrictions = queryString.parse(myhistory.location.search);
+      let restrictions = queryString.parse(this.props.location.search);
       let filters = [];
       let pageNo = 1;
       let searchTerm = "";
@@ -178,6 +182,15 @@ export class SearchResultsView extends React.Component {
       const on_first_page = pageNo === 1;
       const on_last_page = pageNo === pages ? true : false;
 
+      let nextPage = Math.min(pageNo + 1, total);
+      restrictions["page"] = String(nextPage);
+      let newSearch = queryString.stringify(restrictions);
+      const next_href = this.props.location.pathname + "?" + newSearch;
+      let prevPage = Math.max(1, pageNo - 1);
+      restrictions["page"] = String(prevPage);
+      newSearch = queryString.stringify(restrictions);
+      const prev_href = this.props.location.pathname + "?" + newSearch;
+
       results = (
         <div className="search-results">
           <div className="search-description">
@@ -192,8 +205,8 @@ export class SearchResultsView extends React.Component {
                   <div className="search-term">{searchTerm}</div>
                   {" ("}
                   <FormattedMessage id="page" /> {pageNo}{" "}
-                  {this.props.intl.formatMessage({ id: "page" })} {pageNo}{" "}
                   <FormattedMessage id="of" /> {pages}
+                  {")"}
                 </div>
               ) : (
                 <div className="page-of">
@@ -204,10 +217,16 @@ export class SearchResultsView extends React.Component {
                 </div>
               )}
               <div className="pagination">
-                <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
+                <IconButton
+                  disabled={on_first_page}
+                  containerElement={<Link to={prev_href} />}
+                >
                   <NavigatePreviousIcon />
                 </IconButton>
-                <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
+                <IconButton
+                  disabled={on_last_page}
+                  containerElement={<Link to={next_href} />}
+                >
                   <NavigateNextIcon />
                 </IconButton>
               </div>
@@ -217,10 +236,16 @@ export class SearchResultsView extends React.Component {
           <div className="result-count">
             <div className="results-box">{searchresults}</div>
             <div className="pagination">
-              <IconButton disabled={on_first_page} onTouchTap={goPrevPage}>
+              <IconButton
+                disabled={on_first_page}
+                containerElement={<Link to={prev_href} />}
+              >
                 <NavigatePreviousIcon />
               </IconButton>
-              <IconButton disabled={on_last_page} onTouchTap={goNextPage}>
+              <IconButton
+                disabled={on_last_page}
+                containerElement={<Link to={next_href} />}
+              >
                 <NavigateNextIcon />
               </IconButton>
             </div>
@@ -228,10 +253,19 @@ export class SearchResultsView extends React.Component {
         </div>
       );
     }
+    // let restrictions = queryString.parse(this.props.location.search);
+    const cases_href = "/cases" + this.props.location.search;
+    const methods_href = "/methods" + this.props.location.search;
+    const organizations_href = "/organizations" + this.props.location.search;
+    const all_href = "/" + this.props.location.search;
+
     return (
       <div className="main-contents">
         <Container className="search-results-component pb-3" fluid>
-          <Col md="3" className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none">
+          <Col
+            md="3"
+            className="sidepanel d-none d-sm-none d-md-none d-lg-none d-xl-none"
+          >
             <div
               className={
                 "sorting-options" +
@@ -294,70 +328,64 @@ export class SearchResultsView extends React.Component {
             <div className="clearfix search-actions-area">
               <div className="filters d-none d-md-block d-lg-block d-xl-block">
                 <div
-                  onClick={() =>
-                    preventDefault(this.props.onCategoryChange("All"))}
                   className={
                     this.props.selectedCategory === "All"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  <FormattedMessage id="all" />
+                  <Link to={all_href}>
+                    <FormattedMessage id="all" />
+                  </Link>
                 </div>
                 <div
-                  onClick={() =>
-                    preventDefault(this.props.onCategoryChange("Cases"))}
                   className={
                     this.props.selectedCategory === "Cases"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  <FormattedMessage id="cases" />
+                  <Link to={cases_href}>
+                    <FormattedMessage id="cases" />
+                  </Link>
                 </div>
                 <div
-                  href="#"
-                  onClick={() =>
-                    preventDefault(this.props.onCategoryChange("Methods"))}
                   className={
                     this.props.selectedCategory === "Methods"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  <FormattedMessage id="methods" />
+                  <Link to={methods_href}>
+                    <FormattedMessage id="methods" />
+                  </Link>
                 </div>
                 <div
-                  href="#"
-                  onClick={() =>
-                    preventDefault(
-                      this.props.onCategoryChange("Organizations")
-                    )}
                   className={
                     this.props.selectedCategory === "Organizations"
                       ? "selected"
                       : "unselected"
                   }
                 >
-                  <FormattedMessage id="organizations" />
+                  <Link to={organizations_href}>
+                    <FormattedMessage id="organizations" />
+                  </Link>
                 </div>
               </div>
               <select
                 className="mobile-select d-md-none"
-                value={this.state.value}
+                value={this.props.selectedCategory}
                 onChange={this.handleChange}
               >
-                <option value="All">
-                  <FormattedMessage id="all" />
-                </option>
+                <option value="All">{intl.formatMessage({ id: "all" })}</option>
                 <option value="Cases">
-                  <FormattedMessage id="cases" />
+                  {intl.formatMessage({ id: "cases" })}
                 </option>
                 <option value="Methods">
-                  <FormattedMessage id="methods" />
+                  {intl.formatMessage({ id: "methods" })}
                 </option>
                 <option value="Organizations">
-                  <FormattedMessage id="organizations" />
+                  {intl.formatMessage({ id: "organizations" })}
                 </option>
               </select>
               <div className="view-types d-none d-md-block d-lg-block d-xl-block">

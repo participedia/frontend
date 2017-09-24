@@ -10,6 +10,9 @@ class SearchQueryField extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ query: nextProps.query });
+  }
 
   onChange(event) {
     this.setState({ query: event.target.value });

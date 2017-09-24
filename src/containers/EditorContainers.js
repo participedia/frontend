@@ -82,7 +82,7 @@ class EditorContainer extends Component {
     saveFunc(thing.type, thing)
       .then(function(thing) {
         // console.log("after saveFunc, thing:", thing);
-        myhistory.push(`../../${thing.type}/${thing.id}`);
+        myhistory.push(`../../${thing.type}/${thing.id}`); // XXX move to Link
       })
       .catch(function(exception) {
         comp.setState({ errorMessage: JSON.stringify(exception) });
@@ -133,7 +133,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -147,7 +146,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -161,7 +159,6 @@ class EditorContainer extends Component {
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}

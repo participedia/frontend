@@ -172,7 +172,7 @@ class NumberEditor extends React.Component {
   constructor(props) {
     super(props);
     let value;
-    if (typeof props.value === typeof undefined || props.value == 0) {
+    if (typeof props.value === typeof undefined || props.value === 0) {
       value = "";
     } else {
       value = String(props.value);
@@ -189,7 +189,7 @@ class NumberEditor extends React.Component {
   // }
 
   onChange(event, value) {
-    console.log(value,'value')
+    console.log(value, "value");
     this.setState({ value: value > 0 ? value : null });
     // this.props.onChange(Number(value));
   }
@@ -204,7 +204,9 @@ class NumberEditor extends React.Component {
         onChange={onChange}
         type="number"
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null && this.state.value > 0
+          typeof this.state.value !== "undefined" &&
+          this.state.value !== null &&
+          this.state.value > 0
             ? this.state.value
             : ""
         }
@@ -525,7 +527,6 @@ export class AvatarEditor extends React.Component {
         <Upload
           customStyle={customStyle}
           className="change-avatar-button"
-          auth={this.props.passProps.auth}
           profile={this.props.passProps.profile}
           updatePicture
         />
@@ -534,55 +535,14 @@ export class AvatarEditor extends React.Component {
   }
 }
 
-export function makeLocalizedAvatarEditor(intl, property, profile, auth) {
+export function makeLocalizedAvatarEditor(intl, property, profile) {
   return (
     <Field
       fieldName={property}
       id={property}
       name={property}
       profile={profile}
-      auth={auth}
       type={AvatarEditor}
     />
   );
 }
-
-// export class OrganizationPicker extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value: props.value
-//     };
-//   }
-
-//   componentWillReceiveProps(props) {
-//     this.setState({
-//       value: props.value
-//     });
-//   }
-
-//   onUpdate(index, newtext) {
-//     let value = this.state.value;
-//     value[index] = newtext;
-//     this.update(value);
-//   }
-
-//   render() {
-//     return (
-
-//     );
-// }
-
-// export function OrganizationPicker(intl, property) {
-//   return (
-//     <Field
-//       fieldName={property}
-//       id={property}
-//       name={property}
-//       profile={profile}
-//       auth={auth}
-//       type={AvatarEditor}
-//     />
-//   );
-
-// }

@@ -18,7 +18,7 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 const muiTheme = getMuiTheme({});
 
 let fetchMock = require("fetch-mock");
-jest.mock("../containers/Map", () => "Map");
+jest.mock("../containers/Map", () => {});
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/search?page=1",
@@ -68,10 +68,11 @@ const renderTestSequence = ({
           initialEntries={initialEntries}
         >
           <Route
-            render={props =>
+            render={props => (
               <Assert {...props}>
                 <Subject />
-              </Assert>}
+              </Assert>
+            )}
           />
         </MemoryRouter>
       );

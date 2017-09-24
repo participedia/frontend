@@ -1,5 +1,4 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
@@ -11,12 +10,9 @@ import "./LoginAvatar.css";
 import authService from "./utils/AuthService";
 
 export class LoginAvatar extends React.Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -27,7 +23,7 @@ export class LoginAvatar extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = authService;
     let buttonStyle = { color: "black" };
     const profile = this.state.profile;
     let intl = this.props.intl; // injected

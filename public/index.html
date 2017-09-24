@@ -5,11 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDu9-3exLQ5PsDiyGHkwsdqRNAPG6NdBac&libraries=places"></script>
-  <script async defer src="https://api.usersnap.com/load/a4211a15-055c-4663-b113-0bf3b4ea6724.js"></script>
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-  <script src="https://cdn.ravenjs.com/3.16.0/raven.min.js" crossorigin="anonymous"></script>
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <!--
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <script async defer src="https://api.usersnap.com/load/a4211a15-055c-4663-b113-0bf3b4ea6724.js"></script>
+    <script src="https://cdn.ravenjs.com/3.16.0/raven.min.js" crossorigin="anonymous"></script>
+    <% } %>
+      <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+      <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -18,7 +20,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Participedia</title>
+      <title>Participedia</title>
 </head>
 
 <body>

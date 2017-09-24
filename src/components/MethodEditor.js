@@ -133,11 +133,7 @@ class MethodEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="media" />
                 </p>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  thing={thing}
-                />
+                <ImageListEditor property="images" thing={thing} />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />

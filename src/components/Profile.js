@@ -1,5 +1,6 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
+import authService from "../utils/AuthService";
 import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
 import { injectIntl } from "react-intl";
@@ -33,7 +34,7 @@ class Profile extends Component {
 
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });

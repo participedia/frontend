@@ -141,11 +141,7 @@ class OrganizationEditor extends Component {
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "media" })}
                 </p>
-                <ImageListEditor
-                  property="images"
-                  auth={this.props.auth}
-                  thing={thing}
-                />
+                <ImageListEditor property="images" thing={thing} />
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
