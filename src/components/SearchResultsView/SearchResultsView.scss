@@ -76,6 +76,13 @@
 
   .filters {
     float: left;
+    a {
+      color: $primary-color;
+      &:hover {
+        color: $interactive-color;
+        text-decoration: none;
+      }
+    }
   }
 
   .filters div {
@@ -110,7 +117,9 @@
   .filters div.selected {
     background: transparent;
     border-bottom: 4px solid $black;
-    color: $interactive-color;
+    a {
+      color: $interactive-color;
+    }
     &:hover {
       border-bottom: 4px solid darken($interactive-color, 10%);
     }
