@@ -497,6 +497,11 @@ exports[`Organization editor renders correctly 1`] = `
               >
                 Location
               </p>
+              <p
+                className="m-0"
+              >
+                Type to search for known location
+              </p>
               <div
                 className="location"
               />
@@ -507,6 +512,13 @@ exports[`Organization editor renders correctly 1`] = `
               Relevant links (URLs)
             </p>
             <div>
+              <p
+                className="m-0"
+              >
+                <span>
+                  Add a link
+                </span>
+              </p>
               <div
                 className="list links"
               />
@@ -515,7 +527,16 @@ exports[`Organization editor renders correctly 1`] = `
           <p
             className="sub-heading"
           >
-            Media
+            <span>
+              Media
+            </span>
+          </p>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              Photos
+            </span>
           </p>
           <div>
             <div
@@ -550,13 +571,34 @@ exports[`Organization editor renders correctly 1`] = `
                 </div>
               </div>
             </div>
+            <p
+              className="m-0"
+            >
+              <span>
+                Select a photo from your device
+              </span>
+            </p>
             <div>
               <span>
                 Sorry, upload only works if you're logged in.
               </span>
             </div>
           </div>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              Videos
+            </span>
+          </p>
           <div>
+            <p
+              className="m-0"
+            >
+              <span>
+                Add a video (Vimeo, YouTube)
+              </span>
+            </p>
             <div
               className="list videos"
             />
@@ -568,7 +610,17 @@ exports[`Organization editor renders correctly 1`] = `
           </p>
           <div
             className="tags-field"
-          />
+          >
+            <div>
+              <p
+                className="m-0"
+              >
+                <span>
+                  Type to search for an existing tag
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
         <div>
           <div>
@@ -578,6 +630,11 @@ exports[`Organization editor renders correctly 1`] = `
                   className="sub-heading"
                 >
                   Executive Director
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Enter Executive Director
                 </p>
                 <div
                   className="executive_director"
@@ -596,12 +653,22 @@ exports[`Organization editor renders correctly 1`] = `
                 >
                   Sector
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select Sector
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Specific Topic
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select an specific Topic
                 </p>
               </div>
               <label
@@ -622,17 +689,44 @@ exports[`Organization editor renders correctly 1`] = `
               <div
                 className="sub-sub-heading"
               >
-                Related cases
+                Enter Related Cases
+              </div>
+              <div>
+                <p
+                  className="m-0"
+                >
+                  <span>
+                    Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                  </span>
+                </p>
               </div>
               <div
                 className="sub-sub-heading"
               >
-                Related methods
+                Enter Related Methods
+              </div>
+              <div>
+                <p
+                  className="m-0"
+                >
+                  <span>
+                    Related methods include participatory methods or tools used during this particular case.
+                  </span>
+                </p>
               </div>
               <div
                 className="sub-sub-heading"
               >
-                Related organizations
+                Enter Related Organizations
+              </div>
+              <div>
+                <p
+                  className="m-0"
+                >
+                  <span>
+                    Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                  </span>
+                </p>
               </div>
             </div>
           </div>
