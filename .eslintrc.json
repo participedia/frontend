@@ -5,18 +5,11 @@
     "prettier",
     "prettier/react"
   ],
-  "plugins": [
-    "flowtype",
-    "react",
-    "prettier"
-  ],
+  "plugins": ["flowtype", "react", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2016,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "sourceType": "module"
   },
   "env": {
     "es6": true,

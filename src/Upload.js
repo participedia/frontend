@@ -1,6 +1,8 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import DropzoneS3Uploader from "./react-dropzone-s3-uploader";
 import api from "./utils/api";
+import authService from "./utils/AuthService";
 import { injectIntl } from "react-intl";
 import CheckCircle from "material-ui/svg-icons/action/check-circle";
 import AddToPhotos from "material-ui/svg-icons/image/add-to-photos";
@@ -119,7 +121,7 @@ class Upload extends React.Component {
   }
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -164,15 +166,15 @@ class Upload extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = authService;
     if (!isAuthenticated()) {
       return (
         <div>
-          {this.props.intl.formatMessage({ id: "sorry_upload" })}
+          <FormattedMessage id="sorry_upload" />
         </div>
       );
     }
-    const token = this.props.auth.getToken();
+    const token = authService.getToken();
     const uploaderProps = {
       style: this.props.customStyle ? this.props.customStyle : box,
       server: process.env.REACT_APP_API_URL,

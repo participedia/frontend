@@ -17,7 +17,6 @@ export class Organization extends React.Component {
     return (
       <ItemFetcher
         api={api.fetchOrgById}
-        auth={this.props.auth}
         id={Number(this.props.match.params.nodeID)}
         details={OrganizationDetails}
         toggleFeatured={this.toggleFeatured.bind(this)}

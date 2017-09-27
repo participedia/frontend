@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
@@ -90,17 +91,15 @@ export function makeLocalizedChoiceField(
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
 
       <Field
         fieldName={property}
         label={label}
         type={ChoiceEditor}
         placeholder={intl.formatMessage({
-            id: property + "_placeholder"
-          })}
+          id: property + "_placeholder"
+        })}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -151,14 +150,12 @@ export class BooleanEditor extends React.Component {
 }
 
 export function makeLocalizedBooleanField(intl, property) {
-  let label = intl.formatMessage({ id: property });
   return (
     <div>
       <p className="sub-heading">
-        {label}
+        <FormattedMessage id={property} />
       </p>
       <div className={property}>
-
         <Field
           fieldName={property}
           label={intl.formatMessage({ id: property })}
@@ -175,7 +172,7 @@ class NumberEditor extends React.Component {
   constructor(props) {
     super(props);
     let value;
-    if (typeof props.value === typeof undefined) {
+    if (typeof props.value === typeof undefined || props.value === 0) {
       value = "";
     } else {
       value = String(props.value);
@@ -185,15 +182,16 @@ class NumberEditor extends React.Component {
     };
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      value: this.state.value !== "" ? String(props.value) : props.value
-    });
-  }
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     value: this.state.value !== "" ? String(props.value) : props.value
+  //   });
+  // }
 
   onChange(event, value) {
-    this.setState({ value: value });
-    this.props.onChange(Number(value));
+    console.log(value, "value");
+    this.setState({ value: value > 0 ? value : null });
+    // this.props.onChange(Number(value));
   }
 
   // XXX add validation to ensure only numbers are input
@@ -204,8 +202,11 @@ class NumberEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
+        type="number"
         value={
-          typeof this.state.value !== "undefined" && this.state.value !== null
+          typeof this.state.value !== "undefined" &&
+          this.state.value !== null &&
+          this.state.value > 0
             ? this.state.value
             : ""
         }
@@ -220,17 +221,14 @@ export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
-
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property })}
           type={NumberEditor}
+          label={intl.formatMessage({ id: property })}
         />
       </div>
     </div>
@@ -276,17 +274,14 @@ export function makeLocalizedTextField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
-
         <Field
           fieldName={property}
           name={property}
           id={property}
-          label={intl.formatMessage({ id: property })}
           type={TextEditor}
+          label={intl.formatMessage({ id: property })}
         />
       </div>
     </div>
@@ -400,9 +395,7 @@ export function makeLocalizedLocationField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div>
-      <p className="sub-heading">
-        {label}
-      </p>
+      <p className="sub-heading">{label}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -534,7 +527,6 @@ export class AvatarEditor extends React.Component {
         <Upload
           customStyle={customStyle}
           className="change-avatar-button"
-          auth={this.props.passProps.auth}
           profile={this.props.passProps.profile}
           updatePicture
         />
@@ -543,55 +535,14 @@ export class AvatarEditor extends React.Component {
   }
 }
 
-export function makeLocalizedAvatarEditor(intl, property, profile, auth) {
+export function makeLocalizedAvatarEditor(intl, property, profile) {
   return (
     <Field
       fieldName={property}
       id={property}
       name={property}
       profile={profile}
-      auth={auth}
       type={AvatarEditor}
     />
   );
 }
-
-// export class OrganizationPicker extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value: props.value
-//     };
-//   }
-
-//   componentWillReceiveProps(props) {
-//     this.setState({
-//       value: props.value
-//     });
-//   }
-
-//   onUpdate(index, newtext) {
-//     let value = this.state.value;
-//     value[index] = newtext;
-//     this.update(value);
-//   }
-
-//   render() {
-//     return (
-
-//     );
-// }
-
-// export function OrganizationPicker(intl, property) {
-//   return (
-//     <Field
-//       fieldName={property}
-//       id={property}
-//       name={property}
-//       profile={profile}
-//       auth={auth}
-//       type={AvatarEditor}
-//     />
-//   );
-
-// }

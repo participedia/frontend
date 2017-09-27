@@ -66,13 +66,13 @@ class MapVisualization extends React.Component {
     if (!items) return <div />;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
-    const itemFeatures = items.map((st, index) =>
+    const itemFeatures = items.map((st, index) => (
       <Feature
         key={st.id}
         onClick={this._markerClick.bind(this, st)}
         coordinates={st.position}
       />
-    );
+    ));
 
     return (
       <div className="map-component">
@@ -89,19 +89,20 @@ class MapVisualization extends React.Component {
           containerStyle={styles.container}
           accessToken={accessToken}
         >
-
           <ZoomControl zoomDiff={1} />
-          {itemFeatures
-            ? <Layer
-                type="symbol"
-                id="items"
-                layout={this.props.markerLayout}
-                paint={itemMarkerPaint}
-              >
-                {itemFeatures}
-              </Layer>
-            : <div />}
-          {focus &&
+          {itemFeatures ? (
+            <Layer
+              type="symbol"
+              id="items"
+              layout={this.props.markerLayout}
+              paint={itemMarkerPaint}
+            >
+              {itemFeatures}
+            </Layer>
+          ) : (
+            <div />
+          )}
+          {focus && (
             <Popup
               key={focus.id}
               offset={[0, -50]}
@@ -130,7 +131,8 @@ class MapVisualization extends React.Component {
                   {popupShowLabel ? "Hide" : "Show"}
                 </div>
               </div>
-            </Popup>}
+            </Popup>
+          )}
         </Map>
       </div>
     );

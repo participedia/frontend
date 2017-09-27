@@ -1,7 +1,9 @@
 import React from "react";
 import EditProfile from "../components/EditProfile/EditProfile";
+import { injectIntl } from "react-intl";
 import api from "../utils/api";
 import myhistory from "../utils/history";
+import authService from "../utils/AuthService";
 
 function dict2list(obj) {
   return Object.getOwnPropertyNames(obj).map(function(e) {
@@ -9,7 +11,7 @@ function dict2list(obj) {
   });
 }
 
-export default class ProfileEditor extends React.Component {
+class ProfileEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +21,7 @@ export default class ProfileEditor extends React.Component {
   }
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -59,9 +61,7 @@ export default class ProfileEditor extends React.Component {
         <EditProfile
           profile={this.state.profile}
           user={this.state.user}
-          intl={this.props.intl}
           organizations={this.state.organizations}
-          auth={this.props.auth}
           onChange={this.onChange.bind(this)}
           {...this.props}
         />
@@ -71,3 +71,5 @@ export default class ProfileEditor extends React.Component {
     }
   }
 }
+
+export default injectIntl(ProfileEditor);

@@ -1,4 +1,5 @@
 import React from "react"; // eslint-disable-line no-unused-vars
+import { FormattedMessage } from "react-intl";
 import { Container, Row, Col } from "reactstrap";
 import "./Footer.css";
 import ccIcon from "../../img/cc-icon.png";
@@ -9,6 +10,16 @@ import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 export class Footer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.openHelp = this.openHelp.bind(this);
+  }
+
+  openHelp() {
+    this.props.onHelpOpen();      
+  }
+
   render() {
     return (
       <div className="footer-component">
@@ -16,35 +27,32 @@ export class Footer extends React.Component {
           <Row className="pt-4">
             <Col xs={{ size: 5, offset: 1 }}>
               <Link to="/about">
-                {this.props.intl.formatMessage({ id: "about" })}
+                <FormattedMessage id="about" />
               </Link>
               <Link to="/research">
-                {this.props.intl.formatMessage({ id: "research" })}
+                <FormattedMessage id="research" />
               </Link>
               <Link to="/teaching">
-                {this.props.intl.formatMessage({ id: "teaching" })}
+                <FormattedMessage id="teaching" />
               </Link>
             </Col>
             <Col xs={{ size: 6 }}>
               <Link to="/news">
-                {this.props.intl.formatMessage({ id: "news" })}
+                <FormattedMessage id="news" />
               </Link>
-              <Link to="/help">
-                {this.props.intl.formatMessage({ id: "help" })}
-              </Link>
-              Contact
+              <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
             </Col>
           </Row>
           <Row className="pt-4">
             <Col xs={{ size: 5, offset: 1 }}>
               <Link to="/cases">
-                {this.props.intl.formatMessage({ id: "cases" })}
+                <FormattedMessage id="cases" />
               </Link>
               <Link to="/methods">
-                {this.props.intl.formatMessage({ id: "methods" })}
+                <FormattedMessage id="methods" />
               </Link>
               <Link to="/organizations">
-                {this.props.intl.formatMessage({ id: "organizations" })}
+                <FormattedMessage id="organizations" />
               </Link>
             </Col>
             <Col xs={{ size: 6 }}>
@@ -79,48 +87,50 @@ export class Footer extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container className="expanded-footer d-lg-block d-md-block d-sm-none d-none" fluid={true}>
-          <Row> 
+        <Container
+          className="expanded-footer d-lg-block d-md-block d-sm-none d-none"
+          fluid={true}
+        >
+          <Row>
             <Col lg={{ size: 6 }}>
               <div className="column list">
                 <Link to="/about">
-                  {this.props.intl.formatMessage({ id: "about" })}
+                  <FormattedMessage id="about" />
                 </Link>
                 <Link to="/research">
-                  {this.props.intl.formatMessage({ id: "research" })}
+                  <FormattedMessage id="research" />
                 </Link>
                 <Link to="/teaching">
-                  {this.props.intl.formatMessage({ id: "teaching" })}
+                  <FormattedMessage id="teaching" />
                 </Link>
                 <Link to="/experiments">
-                  {this.props.intl.formatMessage({ id: "experiments" })}
+                  <FormattedMessage id="experiments" />
                 </Link>
               </div>
               <div className="column list">
                 <Link to="/cases">
-                  {this.props.intl.formatMessage({ id: "cases" })}
+                  <FormattedMessage id="cases" />
                 </Link>
                 <Link to="/methods">
-                  {this.props.intl.formatMessage({ id: "methods" })}
+                  <FormattedMessage id="methods" />
                 </Link>
                 <Link to="/organizations">
-                  {this.props.intl.formatMessage({ id: "organizations" })}
+                  <FormattedMessage id="organizations" />
                 </Link>
               </div>
               <div className="column list">
                 <Link to="/news">
-                  {this.props.intl.formatMessage({ id: "news" })}
+                  <FormattedMessage id="news" />
                 </Link>
-                <Link to="/help">
-                  {this.props.intl.formatMessage({ id: "help" })}
-                </Link>
-                Contact
+                <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
               </div>
             </Col>
             <Col lg={{ size: 6 }}>
               <div className="column xl">
                 <h4>Participedia</h4>
-                <p>{this.props.intl.formatMessage({ id: "about_intro" })}</p>
+                <p>
+                  <FormattedMessage id="about_intro" />
+                </p>
               </div>
               <div className="column right">
                 <a

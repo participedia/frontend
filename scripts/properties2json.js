@@ -3,7 +3,6 @@ let properties = require("properties-parser");
 let path = require("path");
 let FS = require("q-io/fs");
 let Habitat = require("habitat");
-let Hoek = require("hoek");
 
 Habitat.load();
 let env = new Habitat();
@@ -58,20 +57,7 @@ function getContentMessages(locale) {
           return reject(messageError);
         }
 
-        properties.read(
-          path.join(process.cwd(), config.src, locale, "email.properties"),
-          function(emailError, emailProperties) {
-            if (emailError && emailError.code !== "ENOENT") {
-              return reject(emailError);
-            }
-
-            let mergedProperties = {};
-            Hoek.merge(mergedProperties, messageProperties);
-            Hoek.merge(mergedProperties, emailProperties);
-
-            resolve({ content: mergedProperties || {}, locale: locale });
-          }
-        );
+        resolve({ content: messageProperties || {}, locale: locale });
       }
     );
   });
@@ -81,6 +67,9 @@ function processMessageFiles(locales) {
   return Promise.all(locales.map(getContentMessages));
 }
 
-getListLocales().then(processMessageFiles).then(writeFile).catch(function(err) {
-  console.error(err);
-});
+getListLocales()
+  .then(processMessageFiles)
+  .then(writeFile)
+  .catch(function(err) {
+    console.error(err);
+  });

@@ -1,22 +1,26 @@
 import React from "react";
-import { shallow } from "enzyme";
 import { LoginAvatar } from "../LoginAvatar";
-import {
-  mountWithIntl,
-  shallowWithIntl
-} from "../helpers/intl-enzyme-test-helper.js";
-import intlProps from "../helpers/intl-props-test-helper.js";
+import { mountWithIntl } from "../helpers/intl-enzyme-test-helper.js";
+// import intlProps from "../helpers/intl-props-test-helper.js";
+import { IntlProvider } from "react-intl";
+const intlProvider = new IntlProvider({ locale: "en-US" }, {});
+const { intl } = intlProvider.getChildContext();
+import { getBestMatchingMessages } from "../utils/l10n";
+let locale = "en-US";
+let messages = getBestMatchingMessages(locale);
+jest.mock("material-ui/FlatButton");
+jest.mock("material-ui/IconMenu");
+intl.messages = messages;
+
+import authService from "../utils/AuthService";
+authService.isAuthenticated = jest.fn();
 
 function setup(isAuthed) {
   const props = {
-    auth: {
-      getProfile: cb => cb(null, { user_metadata: "foo" }),
-      isAuthenticated: () => isAuthed
-    },
-    intl: intlProps
+    intl: intl
   };
 
-  const enzymeWrapper = shallowWithIntl(<LoginAvatar {...props} />);
+  const enzymeWrapper = mountWithIntl(<LoginAvatar {...props} />);
 
   return {
     props,
@@ -27,12 +31,14 @@ function setup(isAuthed) {
 describe("components", () => {
   describe("LoginAvatar", () => {
     it("should render user menu if logged in", () => {
-      const { enzymeWrapper } = setup(true);
+      authService.isAuthenticated.mockImplementation(() => true);
+      const { enzymeWrapper } = setup();
       expect(enzymeWrapper.find("div").hasClass("avatar")).toBe(true);
     });
 
     it("should show login button if logged out", () => {
-      const { enzymeWrapper } = setup(false);
+      authService.isAuthenticated.mockImplementation(() => false);
+      const { enzymeWrapper } = setup();
       expect(enzymeWrapper.find("div").hasClass("loginButton")).toBe(true);
     });
   });

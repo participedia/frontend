@@ -1,23 +1,18 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
 import FlatButton from "material-ui/FlatButton";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import { Link } from "react-router-dom";
-import { injectIntl, intlShape } from "react-intl";
+import { injectIntl } from "react-intl";
 import "./LoginAvatar.css";
 import authService from "./utils/AuthService";
 
 export class LoginAvatar extends React.Component {
-  static propTypes = {
-    intl: intlShape.isRequired,
-    auth: PropTypes.object.isRequired
-  };
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -28,9 +23,10 @@ export class LoginAvatar extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = authService;
     let buttonStyle = { color: "black" };
     const profile = this.state.profile;
+    let intl = this.props.intl; // injected
 
     if (isAuthenticated() && this.state.profile !== {}) {
       return (
@@ -60,7 +56,7 @@ export class LoginAvatar extends React.Component {
             </MenuItem>
             <MenuItem
               style={buttonStyle}
-              primaryText={this.props.intl.formatMessage({ id: "sign_out" })}
+              primaryText={intl.formatMessage({ id: "sign_out" })}
               onClick={() => authService.logout()}
             />
           </IconMenu>
@@ -72,7 +68,7 @@ export class LoginAvatar extends React.Component {
           <FlatButton
             onClick={() => authService.login()}
             onTouchTap={this.signIn}
-            label={this.props.intl.formatMessage({ id: "login" })}
+            label={intl.formatMessage({ id: "login" })}
           />
         </div>
       );

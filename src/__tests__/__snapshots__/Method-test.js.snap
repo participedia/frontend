@@ -19,10 +19,18 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div>
             <p
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-            />
+            >
+              <span>
+                Data
+              </span>
+            </p>
             <p
               className="sub-sub-heading"
-            />
+            >
+              <span>
+                Tags
+              </span>
+            </p>
             <div
               className="tags"
             />
@@ -30,7 +38,11 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Relevant links (URLs)
+                </span>
+              </p>
               <div
                 className="links"
               >
@@ -68,10 +80,18 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Facilitated
+                </span>
+              </p>
               <div
                 className="facilitated"
-              />
+              >
+                <span>
+                  false
+                </span>
+              </div>
             </div>
             <div />
             <div />
@@ -96,7 +116,11 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           >
             <h2
               className="category"
-            />
+            >
+              <span>
+                Method
+              </span>
+            </h2>
             <h2
               className="case-title"
             >
@@ -162,7 +186,11 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Related Content
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
@@ -175,17 +203,29 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Method Data
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
                   <div>
                     <p
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-                    />
+                    >
+                      <span>
+                        Data
+                      </span>
+                    </p>
                     <p
                       className="sub-sub-heading"
-                    />
+                    >
+                      <span>
+                        Tags
+                      </span>
+                    </p>
                     <div
                       className="tags"
                     />
@@ -193,7 +233,11 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Relevant links (URLs)
+                        </span>
+                      </p>
                       <div
                         className="links"
                       >
@@ -231,10 +275,18 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Facilitated
+                        </span>
+                      </p>
                       <div
                         className="facilitated"
-                      />
+                      >
+                        <span>
+                          false
+                        </span>
+                      </div>
                     </div>
                     <div />
                     <div />
@@ -401,7 +453,11 @@ exports[`Method editor renders correctly 1`] = `
           >
             <label
               htmlFor="title"
-            />
+            >
+              <span>
+                Name of Method
+              </span>
+            </label>
           </div>
           <Textfield
             className="custom-field"
@@ -414,13 +470,17 @@ exports[`Method editor renders correctly 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder={undefined}
+            placeholder="Type to search for existing method or enter title"
             type="text"
             value="Petition"
           />
           <p
             className="sub-heading"
-          />
+          >
+            <span>
+              Relevant links (URLs)
+            </span>
+          </p>
           <div>
             <div
               className="list links"
@@ -428,13 +488,19 @@ exports[`Method editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            <span>
+              Media
+            </span>
+          </p>
           <div>
             <div
               className="itemPics pb-3 row"
             />
             <div>
-              Sorry, upload only works if you're logged in.
+              <span>
+                Sorry, upload only works if you're logged in.
+              </span>
             </div>
           </div>
           <div>
@@ -444,7 +510,11 @@ exports[`Method editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            <span>
+              Tags
+            </span>
+          </p>
           <div
             className="tags-field"
           />
@@ -454,38 +524,64 @@ exports[`Method editor renders correctly 1`] = `
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                General Issues
+              </p>
             </div>
+            <div>
+              <div>
+                <p
+                  className="sub-heading"
+                >
+                  Specific Topic
+                </p>
+              </div>
+            </div>
+            ) : ( undefined )
             <div>
               <label
                 className="sub-heading"
                 htmlFor="body_en"
-              />
+              >
+                Method description
+              </label>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Kind of influence
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Communication mode
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Communication with audience
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Face-to-face, online or both
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                <span>
+                  Facilitated
+                </span>
+              </p>
               <div
                 className="facilitated"
               />
@@ -493,57 +589,79 @@ exports[`Method editor renders correctly 1`] = `
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Best for
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Decision method
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Governance contribution
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Issue interdependency
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Issue polarization
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Issue technical complexity
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Public interaction method
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Method of interaction
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Typical funding source
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Typical implementing entity
+              </p>
             </div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Typical sponsoring entity
+              </p>
             </div>
             <p
               className="sub-heading"
@@ -555,13 +673,25 @@ exports[`Method editor renders correctly 1`] = `
             >
               <div
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Related cases
+                </span>
+              </div>
               <div
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Related methods
+                </span>
+              </div>
               <div
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Related organizations
+                </span>
+              </div>
             </div>
           </div>
         </div>

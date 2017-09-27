@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
-import myhistory from "../utils/history";
 
 const defaultMarkerLayout = {
   "text-line-height": 1,
@@ -69,7 +68,7 @@ export default class Map extends Component {
   componentWillMount() {
     let component = this;
 
-    api.searchMapTokens(myhistory.location.search).then(function(results) {
+    api.searchMapTokens(this.props.location.search).then(function(results) {
       let items = extractData(results);
       component.setState({
         items: items

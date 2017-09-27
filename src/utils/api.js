@@ -120,7 +120,7 @@ class API {
       thingType !== "method" &&
       thingType !== "organization"
     ) {
-      let error = `Can only create cases, methods, and organizations. You sent: ${thingType}`;
+      let error = `Can only create cases, methods, and organizations. You sent: ${thingType}`;
       console.error(error);
       throw error;
     }

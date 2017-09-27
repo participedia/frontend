@@ -11,39 +11,31 @@ class Home extends React.Component {
     return (
       <div className="home">
         <MediaQuery query="(min-device-width: 992px)">
-          <Map />
+          {/* The next line is so that the Map has the route props */}
+          <Route path="/" component={Map} />
         </MediaQuery>
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={() => <SearchResults {...this.props} />}
-          />
-          <Route
-            exact
-            path="/search"
-            component={() => <SearchResults {...this.props} />}
-          />
+          <Route exact path="/" component={SearchResults} />
+          <Route exact path="/search" component={SearchResults} />
           <Route
             path="/cases"
-            component={() =>
-              <SearchResults selectedCategory="Cases" {...this.props} />}
+            component={() => (
+              <SearchResults selectedCategory="Cases" {...this.props} />
+            )}
           />
           <Route
             path="/methods"
-            component={() =>
-              <SearchResults selectedCategory="Methods" {...this.props} />}
+            component={() => (
+              <SearchResults selectedCategory="Methods" {...this.props} />
+            )}
           />
           <Route
             path="/organizations"
-            component={() =>
-              <SearchResults
-                selectedCategory="Organizations"
-                {...this.props}
-              />}
+            component={() => (
+              <SearchResults selectedCategory="Organizations" {...this.props} />
+            )}
           />
         </Switch>
-
       </div>
     );
   }

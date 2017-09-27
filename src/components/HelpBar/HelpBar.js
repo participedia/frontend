@@ -1,92 +1,117 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./HelpBar.css";
+import HelpArticle from "../../HelpArticle";
+import HelpArticle13 from "../../HelpArticle13";
+import NavigateBack from "material-ui/svg-icons/navigation/arrow-back";
+import MailIcon from "material-ui/svg-icons/communication/message";
+import CloseIcon from "material-ui/svg-icons/navigation/close";
+import { white } from "material-ui/styles/colors";
 import { injectIntl } from "react-intl";
 
 class HelpBar extends React.Component {
   constructor(props) {
     super(props);
-    const helpItems = [
-      this.props.intl.formatMessage({ id: "help_q1" }),
-      this.props.intl.formatMessage({ id: "help_q2" }),
-      this.props.intl.formatMessage({ id: "help_q3" }),
-      this.props.intl.formatMessage({ id: "help_q4" }),
-      this.props.intl.formatMessage({ id: "help_q5" }),
-      this.props.intl.formatMessage({ id: "help_q6" }),
-      this.props.intl.formatMessage({ id: "help_q7" }),
-      this.props.intl.formatMessage({ id: "help_q8" }),
-      this.props.intl.formatMessage({ id: "help_q9" }),
-      this.props.intl.formatMessage({ id: "help_q10" }),
-      this.props.intl.formatMessage({ id: "help_q11" }),
-      this.props.intl.formatMessage({ id: "help_q12" }),
-      this.props.intl.formatMessage({ id: "help_q13" }),
-      this.props.intl.formatMessage({ id: "help_q14" })
-    ];
+    const helpItems = [1, 2, 3, 4, 5, 6, 7, 9, 11, 13, 15];
     this.state = {
-      query: "",
       helpItems: helpItems,
-      filteredHelpItems: helpItems
+      all: true,
+      helpItem: 1
     };
-    this.onChange = this.onChange.bind(this);
+    this.pickHelpItem = this.pickHelpItem.bind(this);
+    this.resetHelp = this.resetHelp.bind(this);
+    this.closeHelp = this.closeHelp.bind(this);
   }
 
-  onChange(event) {
-    this.setState({ query: event.target.value }, () => this.filterHelp());
+  pickHelpItem(item) {
+    this.setState({
+      helpItem: item,
+      all: false
+    });
   }
 
-  filterHelp() {
-    let query = this.state.query;
-    let allItems = this.state.helpItems;
-    let filteredItems = [];
-    for (let i = 0; i < allItems.length; i++) {
-      let item = allItems[i];
-      if (item.toLowerCase().indexOf(query.toLowerCase()) > -1)
-        filteredItems.push(item);
-    }
-    this.setState({ filteredHelpItems: filteredItems });
+  resetHelp() {
+    this.setState({ all: true });
+  }
+
+  closeHelp() {
+    this.props.onHelpClose();
   }
 
   render() {
-    let onChange = this.onChange;
     return (
       <div className="help-bar">
         <div className="top-area">
-          <div className="top-area-inner">
-            <div className="title-section">
-              <h2 className="help-title">
-                {this.props.intl.formatMessage({ id: "participedia_help" })}
-              </h2>
-              <Link to={this.props.currentPath} className="close-help" />
-            </div>
-            <div className="search-box-section">
-              <input
-                className="search-input"
-                value={this.state.query || ""}
-                type="text"
-                placeholder="Search Help"
-                onChange={onChange}
+          <div className="title-section">
+            {!this.state.all ? (
+              <NavigateBack
+                className="go-back"
+                color={white}
+                onClick={() => {
+                  this.resetHelp();
+                }}
               />
-            </div>
+            ) : (
+              undefined
+            )}
+            <h5 className="help-title">
+              {this.props.intl.formatMessage({ id: "participedia_help" })}
+            </h5>
+            <CloseIcon
+              className="close-help"
+              color={white}
+              onClick={() => {
+                this.closeHelp();
+              }}
+            />{" "}
+            :
           </div>
         </div>
         <div className="data-section">
-          <h3 className="data-title">
-            {this.props.intl.formatMessage({ id: "faq" })}
-          </h3>
-          <ul className="data-list">
-            {this.state.filteredHelpItems.map((item, i) => (
-              <li key={i}>
-                <Link to="/help/1">{item}</Link>
-              </li>
-            ))}
-            {this.state.filteredHelpItems.length === 0
-              ? <li>
-                  <a>
-                    {this.props.intl.formatMessage({ id: "no_results_found" })}
-                  </a>
-                </li>
-              : null}
-          </ul>
+          {this.state.all ? (
+            <div>
+              <div className="card pt-3">
+                <h5 className="data-title">
+                  {this.props.intl.formatMessage({ id: "faq" })}
+                </h5>
+                <ul className="data-list">
+                  {this.state.helpItems.map((item, i) => (
+                    <li key={i}>
+                      <a
+                        onClick={() => {
+                          this.pickHelpItem(item);
+                        }}
+                      >
+                        {this.props.intl.formatMessage({ id: "help_q" + item })}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="card contact">
+                <p>{this.props.intl.formatMessage({ id: "contact_us" })}</p>
+                <a href="mailto: info@participedia.net">
+                  <MailIcon color={"#ec1414"} />
+                  {this.props.intl.formatMessage({ id: "email_support" })}
+                </a>
+              </div>
+            </div>
+          ) : (
+            [
+              this.state.helpItem === 13 ? (
+                <HelpArticle13
+                  key={this.state.helpItem}
+                  intl={this.props.intl}
+                  item={this.state.helpItem}
+                />
+              ) : (
+                <HelpArticle
+                  key={this.state.helpItem}
+                  intl={this.props.intl}
+                  item={this.state.helpItem}
+                />
+              )
+            ]
+          )}
         </div>
       </div>
     );

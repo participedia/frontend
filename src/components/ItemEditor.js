@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
@@ -66,21 +67,20 @@ export default class ItemEditor extends Component {
       >
         <div className="main-contents">
           <Container className="detailed-case-component" fluid={true}>
-            <Col md="3" className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel">
+            <Col
+              md="3"
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sidepanel"
+            >
               {sidebar}
             </Col>
             <Col md="8" xs="12" className="main-area">
               <div className="case-box">
-                <h2 className="category">
-                  {type}
-                </h2>
-                <h2 className="case-title">
-                  {thing.title}
-                </h2>
-                <ImageListEditor auth={this.props.auth} thing={thing} />
+                <h2 className="category">{type}</h2>
+                <h2 className="case-title">{thing.title}</h2>
+                <ImageListEditor thing={thing} />
                 <div className="title-edit">
                   <label htmlFor="title">
-                    {intl.formatMessage({ id: thing.type + "_title_label" })}
+                    <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
                 <Field
@@ -94,7 +94,7 @@ export default class ItemEditor extends Component {
                 />
                 <div>
                   <label htmlFor="body_en">
-                    {intl.formatMessage({ id: thing.type + "_body_title" })}
+                    <FormattedMessage id={thing.type + "_body_title"} />
                   </label>
                 </div>
                 <Field fieldName="body" type={LazyBodyEditor} />

@@ -24,7 +24,11 @@ exports[`Case editor renders correctly 1`] = `
           >
             <label
               htmlFor="title"
-            />
+            >
+              <span>
+                Name of Case
+              </span>
+            </label>
           </div>
           <Textfield
             className="custom-field"
@@ -37,20 +41,24 @@ exports[`Case editor renders correctly 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder={undefined}
+            placeholder="Type to search for existing case or enter title"
             type="text"
             value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
           />
           <div>
             <p
               className="sub-heading"
-            />
+            >
+              General Issues
+            </p>
           </div>
           <div>
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Specific Topic
+              </p>
             </div>
           </div>
           <div
@@ -59,14 +67,20 @@ exports[`Case editor renders correctly 1`] = `
             <div>
               <p
                 className="sub-heading"
-              />
+              >
+                Location
+              </p>
               <div
                 className="location"
               />
             </div>
             <p
               className="sub-heading"
-            />
+            >
+              <span>
+                Date
+              </span>
+            </p>
             <div>
               <div
                 className="date-field start_date"
@@ -79,7 +93,11 @@ exports[`Case editor renders correctly 1`] = `
             </div>
             <p
               className="sub-heading"
-            />
+            >
+              <span>
+                Relevant links (URLs)
+              </span>
+            </p>
             <div>
               <div
                 className="list links"
@@ -88,7 +106,18 @@ exports[`Case editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            <span>
+              Media
+            </span>
+          </p>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              photos
+            </span>
+          </p>
           <div>
             <div
               className="itemPics pb-3 row"
@@ -123,9 +152,18 @@ exports[`Case editor renders correctly 1`] = `
               </div>
             </div>
             <div>
-              Sorry, upload only works if you're logged in.
+              <span>
+                Sorry, upload only works if you're logged in.
+              </span>
             </div>
           </div>
+          <p
+            className="sub-sub-heading"
+          >
+            <span>
+              Videos
+            </span>
+          </p>
           <div>
             <div
               className="list videos"
@@ -133,7 +171,11 @@ exports[`Case editor renders correctly 1`] = `
           </div>
           <p
             className="sub-heading"
-          />
+          >
+            <span>
+              Tags
+            </span>
+          </p>
           <div
             className="tags-field"
           />
@@ -144,7 +186,9 @@ exports[`Case editor renders correctly 1`] = `
               <label
                 className="sub-heading"
                 htmlFor="body_en"
-              />
+              >
+                Case Description/Narrative
+              </label>
             </div>
             <div
               className="related-content"
@@ -152,27 +196,39 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Communication mode
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Communication with audience
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Decision method
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Face-to-face, online or both
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  <span>
+                    Facilitated
+                  </span>
+                </p>
                 <div
                   className="facilitated"
                 />
@@ -180,12 +236,16 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  voting
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Number of meeting days
+                </p>
                 <div
                   className="number_of_meeting_days"
                 >
@@ -193,6 +253,7 @@ exports[`Case editor renders correctly 1`] = `
                     fullWidth={true}
                     name="number_of_meeting_days"
                     onChange={[Function]}
+                    type="number"
                     value="4"
                   />
                 </div>
@@ -200,47 +261,67 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted participant demographic
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Kind of influence
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted participants public role
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Targeted audience
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Participant selection
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Type of funding entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Typical implementing entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Typical sponsoring entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  <span>
+                    Ongoing
+                  </span>
+                </p>
                 <div
                   className="ongoing"
                 />
@@ -248,7 +329,9 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Staff type
+                </p>
                 <div
                   className="staff_type"
                 >
@@ -263,7 +346,9 @@ exports[`Case editor renders correctly 1`] = `
               <div>
                 <p
                   className="sub-heading"
-                />
+                >
+                  Who else supported the initiative
+                </p>
                 <div
                   className="who_else_supported_the_initiative"
                 >
@@ -280,21 +365,31 @@ exports[`Case editor renders correctly 1`] = `
               >
                 <p
                   className="sub-heading"
-                />
+                >
+                  <span>
+                    Related cases
+                  </span>
+                </p>
               </div>
               <div
                 className="pb-1"
               >
                 <p
                   className="sub-heading"
-                />
+                >
+                  <span>
+                    Related methods
+                  </span>
+                </p>
               </div>
               <div
                 className="pb-1"
               >
                 <p
                   className="sub-heading"
-                />
+                >
+                  Related organizations
+                </p>
               </div>
                
             </div>
@@ -343,12 +438,20 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             </div>
             <p
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-            />
+            >
+              <span>
+                Data
+              </span>
+            </p>
             <div />
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Issue
+                </span>
+              </p>
               <div
                 className="issue"
               >
@@ -358,7 +461,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Specific Topic
+                </span>
+              </p>
               <div
                 className="specific_topic"
               >
@@ -368,7 +475,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Relevant links (URLs)
+                </span>
+              </p>
               <div
                 className="links"
               >
@@ -401,7 +512,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Communication mode
+                </span>
+              </p>
               <div
                 className="communication_mode"
               >
@@ -412,7 +527,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Decision method
+                </span>
+              </p>
               <div
                 className="decision_method"
               >
@@ -422,7 +541,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Face-to-face, online or both
+                </span>
+              </p>
               <div
                 className="facetoface_online_or_both"
               >
@@ -432,7 +555,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Facilitated
+                </span>
+              </p>
               <div
                 className="facilitated"
               />
@@ -440,7 +567,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  voting
+                </span>
+              </p>
               <div
                 className="voting"
               >
@@ -450,7 +581,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Number of meeting days
+                </span>
+              </p>
               <div
                 className="number_of_meeting_days"
               >
@@ -462,7 +597,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Targeted participants public role
+                </span>
+              </p>
               <div
                 className="targeted_participants_public_role"
               >
@@ -472,7 +611,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Targeted audience
+                </span>
+              </p>
               <div
                 className="targeted_audience"
               >
@@ -482,7 +625,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Participant selection
+                </span>
+              </p>
               <div
                 className="participant_selection"
               >
@@ -492,7 +639,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Type of funding entity
+                </span>
+              </p>
               <div
                 className="type_of_funding_entity"
               >
@@ -502,7 +653,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Typical implementing entity
+                </span>
+              </p>
               <div
                 className="typical_implementing_entity"
               >
@@ -512,7 +667,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Typical sponsoring entity
+                </span>
+              </p>
               <div
                 className="typical_sponsoring_entity"
               >
@@ -522,15 +681,27 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Ongoing
+                </span>
+              </p>
               <div
                 className="ongoing"
-              />
+              >
+                <span>
+                  false
+                </span>
+              </div>
             </div>
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  Start date
+                </span>
+              </p>
               <div
                 className="start_date"
               >
@@ -542,24 +713,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div>
               <p
                 className="sub-sub-heading"
-              />
+              >
+                <span>
+                  End date
+                </span>
+              </p>
               <div
                 className="end_date"
               >
                 <span>
                   2/11/2011
-                </span>
-              </div>
-            </div>
-            <div>
-              <p
-                className="sub-sub-heading"
-              />
-              <div
-                className="updated_date"
-              >
-                <span>
-                  5/27/2016
                 </span>
               </div>
             </div>
@@ -577,7 +740,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           >
             <h2
               className="category"
-            />
+            >
+              <span>
+                Case
+              </span>
+            </h2>
             <h2
               className="case-title"
             >
@@ -642,7 +809,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Related Content
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
@@ -655,7 +826,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               >
                 <p
                   className="title"
-                />
+                >
+                  <span>
+                    Case Data
+                  </span>
+                </p>
                 <div
                   className="content"
                 >
@@ -680,12 +855,20 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     </div>
                     <p
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
-                    />
+                    >
+                      <span>
+                        Data
+                      </span>
+                    </p>
                     <div />
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Issue
+                        </span>
+                      </p>
                       <div
                         className="issue"
                       >
@@ -695,7 +878,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Specific Topic
+                        </span>
+                      </p>
                       <div
                         className="specific_topic"
                       >
@@ -705,7 +892,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Relevant links (URLs)
+                        </span>
+                      </p>
                       <div
                         className="links"
                       >
@@ -738,7 +929,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Communication mode
+                        </span>
+                      </p>
                       <div
                         className="communication_mode"
                       >
@@ -749,7 +944,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Decision method
+                        </span>
+                      </p>
                       <div
                         className="decision_method"
                       >
@@ -759,7 +958,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Face-to-face, online or both
+                        </span>
+                      </p>
                       <div
                         className="facetoface_online_or_both"
                       >
@@ -769,7 +972,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Facilitated
+                        </span>
+                      </p>
                       <div
                         className="facilitated"
                       />
@@ -777,7 +984,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          voting
+                        </span>
+                      </p>
                       <div
                         className="voting"
                       >
@@ -787,7 +998,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Number of meeting days
+                        </span>
+                      </p>
                       <div
                         className="number_of_meeting_days"
                       >
@@ -799,7 +1014,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Targeted participants public role
+                        </span>
+                      </p>
                       <div
                         className="targeted_participants_public_role"
                       >
@@ -809,7 +1028,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Targeted audience
+                        </span>
+                      </p>
                       <div
                         className="targeted_audience"
                       >
@@ -819,7 +1042,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Participant selection
+                        </span>
+                      </p>
                       <div
                         className="participant_selection"
                       >
@@ -829,7 +1056,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Type of funding entity
+                        </span>
+                      </p>
                       <div
                         className="type_of_funding_entity"
                       >
@@ -839,7 +1070,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Typical implementing entity
+                        </span>
+                      </p>
                       <div
                         className="typical_implementing_entity"
                       >
@@ -849,7 +1084,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Typical sponsoring entity
+                        </span>
+                      </p>
                       <div
                         className="typical_sponsoring_entity"
                       >
@@ -859,15 +1098,27 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Ongoing
+                        </span>
+                      </p>
                       <div
                         className="ongoing"
-                      />
+                      >
+                        <span>
+                          false
+                        </span>
+                      </div>
                     </div>
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          Start date
+                        </span>
+                      </p>
                       <div
                         className="start_date"
                       >
@@ -879,24 +1130,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div>
                       <p
                         className="sub-sub-heading"
-                      />
+                      >
+                        <span>
+                          End date
+                        </span>
+                      </p>
                       <div
                         className="end_date"
                       >
                         <span>
                           2/11/2011
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <p
-                        className="sub-sub-heading"
-                      />
-                      <div
-                        className="updated_date"
-                      >
-                        <span>
-                          5/27/2016
                         </span>
                       </div>
                     </div>

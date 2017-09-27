@@ -30,7 +30,7 @@ class ImageListEditorField extends Component {
   makeLead(img) {
     // our convention is that the first image is the lead image
     let images = this.state.images;
-    var index = images.indexOf(img);
+    let index = images.indexOf(img);
     images.splice(index, 1);
     images.unshift(img);
     this.setState({ images });
@@ -72,7 +72,7 @@ class ImageListEditorField extends Component {
         }
       });
     }
-    let bits = urls.map((photo, id) =>
+    let bits = urls.map((photo, id) => (
       <Col key={id} xs="12" md="6" lg="4" className="pl-0 box-container">
         <div className={id === 0 ? "box lead" : "box"}>
           <div
@@ -93,12 +93,10 @@ class ImageListEditorField extends Component {
           {this.state.lead === photo ? <small>Lead Image</small> : undefined}
         </div>
       </Col>
-    );
+    ));
     return (
       <div>
-        <Row className="itemPics pb-3">
-          {bits}
-        </Row>
+        <Row className="itemPics pb-3">{bits}</Row>
         <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
       </div>
     );

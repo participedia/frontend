@@ -1,5 +1,6 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
+import authService from "../utils/AuthService";
 import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
 import { injectIntl } from "react-intl";
@@ -23,7 +24,7 @@ class Profile extends Component {
 
   constructor() {
     super();
-    this.state = {selectedViewType: "grid"};
+    this.state = { selectedViewType: "grid" };
     this.onLayoutChange = this.onLayoutChange.bind(this);
   }
 
@@ -33,7 +34,7 @@ class Profile extends Component {
 
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getProfile } = authService;
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
@@ -56,7 +57,6 @@ class Profile extends Component {
     ];
 
     let authored = [];
-    let intl = this.props.intl;
 
     data.forEach(function(batch) {
       batch.hits.forEach(function(hit, index) {
@@ -65,7 +65,6 @@ class Profile extends Component {
             selectedViewType={selectedViewType}
             key={"authored-" + batch.type + "-" + index}
             record={hit}
-            intl={intl}
           />
         );
       });
@@ -73,14 +72,13 @@ class Profile extends Component {
     if (authored.length === 0) {
       authored = <div className="nothing-yet">Nothing yet</div>;
     }
-    let bookmarked = user.bookmarks.map((hit, index) =>
+    let bookmarked = user.bookmarks.map((hit, index) => (
       <SearchHit
         selectedViewType={selectedViewType}
         key={"bookmarked-" + index}
         record={hit}
-        intl={intl}
       />
-    );
+    ));
     if (bookmarked.length === 0) {
       bookmarked = <div className="nothing-yet">Nothing yet</div>;
     }
@@ -100,9 +98,13 @@ class Profile extends Component {
               <p>{user.title}</p>
               <p>{user.affiliation}</p>
               <p>{location}</p>
-              {user.join_date
-                ? <p>Joined <TimeAgo date={user.join_date} /></p>
-                : <div />}
+              {user.join_date ? (
+                <p>
+                  Joined <TimeAgo date={user.join_date} />
+                </p>
+              ) : (
+                <div />
+              )}
               <p>{user.bio}</p>
             </div>
             <div className="heading">Authored Content</div>
@@ -110,8 +112,7 @@ class Profile extends Component {
               <div className="view-types-cont">
                 <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
                   <div
-                    onClick={() =>
-                      preventDefault(this.onLayoutChange("grid"))}
+                    onClick={() => preventDefault(this.onLayoutChange("grid"))}
                     className={
                       this.state.selectedViewType === "grid"
                         ? "selected"
@@ -126,8 +127,7 @@ class Profile extends Component {
                     />
                   </div>
                   <div
-                    onClick={() =>
-                      preventDefault(this.onLayoutChange("list"))}
+                    onClick={() => preventDefault(this.onLayoutChange("list"))}
                     className={
                       this.state.selectedViewType === "list"
                         ? "selected"
@@ -143,28 +143,25 @@ class Profile extends Component {
                   </div>
                 </div>
               </div>
-              <Row className="authored-content">
-                  {authored}
-              </Row>
+              <Row className="authored-content">{authored}</Row>
             </div>
           </Col>
         </Row>
         <Row className="profile-info-section">
-          <Col lg={{size: 9}} md={{size: 8}} className="ml-auto main-area">
+          <Col lg={{ size: 9 }} md={{ size: 8 }} className="ml-auto main-area">
             <div className="heading pb-1">Bookmarked Content</div>
-            <Row className="bookmarked-content">
-              {bookmarked}
-            </Row>
+            <Row className="bookmarked-content">{bookmarked}</Row>
           </Col>
         </Row>
-        {user.email === profile.email ?
+        {user.email === profile.email ? (
           <Link to="/profile/edit">
             <FloatingActionButton className="editButton">
               <ContentPencil />
             </FloatingActionButton>
           </Link>
-          : <div />
-        }
+        ) : (
+          <div />
+        )}
       </Container>
     );
   }

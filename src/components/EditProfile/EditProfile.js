@@ -1,5 +1,7 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import { FormattedMessage } from "react-intl";
 import CountryMap from "../CountryMap";
+import authService from "../../utils/AuthService";
 import { object, array } from "prop-types";
 import { Container, Col } from "reactstrap";
 import "./EditProfile.css";
@@ -21,7 +23,6 @@ export default class EditProfile extends Component {
     profile: object,
     user: object,
     intl: object.isRequired,
-    auth: object.isRequired,
     organizations: array.isRequired
   };
 
@@ -33,9 +34,10 @@ export default class EditProfile extends Component {
   propsToDefaultState(props) {
     let { user, profile } = props;
     if (user) {
-      user.picture = profile.user_metadata && profile.user_metadata.customPic
-        ? profile.user_metadata.customPic
-        : profile.picture;
+      user.picture =
+        profile.user_metadata && profile.user_metadata.customPic
+          ? profile.user_metadata.customPic
+          : profile.picture;
       if (!user.location) {
         user.location = "";
       }
@@ -56,8 +58,8 @@ export default class EditProfile extends Component {
   }
 
   render() {
-    const { auth, profile, user, intl } = this.props;
-    const isAuthenticated = auth.isAuthenticated();
+    const { profile, user, intl } = this.props;
+    const isAuthenticated = authService.isAuthenticated();
 
     const nameStyle = {
       color: "#3f51b2",
@@ -67,51 +69,47 @@ export default class EditProfile extends Component {
     let location = null;
     if (!user) return <div />;
 
-    let avatarEditor = makeLocalizedAvatarEditor(
-      intl,
-      "picture_url",
-      profile,
-      auth
-    );
+    let avatarEditor = makeLocalizedAvatarEditor(intl, "picture_url", profile);
     let locationEditor = makeLocalizedLocationField(intl, "location");
 
     return (
       <Container fluid className="edit-profile">
-        {isAuthenticated
-          ? <div>
-              <Form
-                onSubmit={this.onSubmit.bind(this)}
-                state={user}
-                onChange={changes => this.setState({ user: changes })}
-              >
-
+        {isAuthenticated ? (
+          <div>
+            <Form
+              onSubmit={this.onSubmit.bind(this)}
+              state={user}
+              onChange={changes => this.setState({ user: changes })}
+            >
+              <div className="form-group row">
                 <Col md="3" className="sidebar">
                   {avatarEditor}
 
-                  {location
-                    ? <CountryMap
-                        city={location.city}
-                        countrycode={location.country}
-                      />
-                    : <div />}
-
+                  {location ? (
+                    <CountryMap
+                      city={location.city}
+                      countrycode={location.country}
+                    />
+                  ) : (
+                    <div />
+                  )}
                 </Col>
                 <Col md="9" className="main-area">
                   <label className="form-label">
-                    {this.props.intl.formatMessage({ id: "name" })}
+                    <FormattedMessage id="name" />
                   </label>
                   <Field
                     type={Text}
                     fieldName="name"
                     name="name"
                     inputStyle={nameStyle}
-                    hintText={this.props.intl.formatMessage({ id: "name" })}
+                    hintText={intl.formatMessage({ id: "name" })}
                     className="name-input"
                   />
                   <br />
                   <div className="divider" />
                   <label className="form-label">
-                    {this.props.intl.formatMessage({ id: "location" })}
+                    <FormattedMessage id="location" />
                   </label>
                   {locationEditor}
                   {/* <Geosuggest
@@ -122,10 +120,10 @@ export default class EditProfile extends Component {
                     }}
                   />*/}
                   <label className="form-label organization">
-                    {this.props.intl.formatMessage({ id: "organization" })}
+                    <FormattedMessage id="organization" />
                   </label>
                   <div className="label-description">
-                    {this.props.intl.formatMessage({ id: "organization_text" })}
+                    <FormattedMessage id="organization_text" />
                   </div>
                   <Field
                     fieldName="organization"
@@ -153,12 +151,14 @@ export default class EditProfile extends Component {
                   <Field
                     type={Text}
                     fieldName="website"
-                    hintText={this.props.intl.formatMessage({ id: "website" })}
+                    hintText={this.props.intl.formatMessage({
+                      id: "website"
+                    })}
                   />
                   <br />
                   <div className="divider" />
                   <label className="form-label">
-                    {this.props.intl.formatMessage({ id: "biography" })}
+                    <FormattedMessage id="biography" />
                   </label>
                   <Field
                     type={Textarea}
@@ -176,11 +176,16 @@ export default class EditProfile extends Component {
                 >
                   <FileUpload />
                 </FloatingActionButton>
-              </Form>
-            </div>
-          : <Col md={{ size: 9, offset: 1 }} className="main-area">
-              <p>{this.props.intl.formatMessage({ id: "sorry" })}</p>
-            </Col>}
+              </div>
+            </Form>
+          </div>
+        ) : (
+          <Col md={{ size: 9, offset: 1 }} className="main-area">
+            <p>
+              <FormattedMessage id="sorry" />
+            </p>
+          </Col>
+        )}
       </Container>
     );
   }

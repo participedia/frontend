@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../utils/api";
-import myhistory from "../utils/history";
 import queryString from "query-string";
 
 import SearchResultsView from "../components/SearchResultsView/SearchResultsView";
@@ -23,8 +22,8 @@ export default class SearchResults extends React.Component {
   }
   componentDidMount() {
     let queryArgs = { query: "" };
-    if (myhistory.location.search) {
-      queryArgs = queryString.parse(myhistory.location.search);
+    if (this.props.location.search) {
+      queryArgs = queryString.parse(this.props.location.search);
     }
     this._updateSearch(queryArgs);
   }
@@ -119,6 +118,7 @@ export default class SearchResults extends React.Component {
         onLayoutChange={onLayoutChange}
         startDownload={startDownload}
         onSortingChange={onSortingChange}
+        history={this.props.history}
       />
     );
   }

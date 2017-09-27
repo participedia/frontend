@@ -82,7 +82,7 @@ class EditorContainer extends Component {
     saveFunc(thing.type, thing)
       .then(function(thing) {
         // console.log("after saveFunc, thing:", thing);
-        myhistory.push(`../../${thing.type}/${thing.id}`);
+        myhistory.push(`../../${thing.type}/${thing.id}`); // XXX move to Link
       })
       .catch(function(exception) {
         comp.setState({ errorMessage: JSON.stringify(exception) });
@@ -120,7 +120,6 @@ class EditorContainer extends Component {
         />
       );
     }
-    let intl = this.props.intl;
     let cases = dict2list(this.state.cases);
     let methods = dict2list(this.state.methods);
     let organizations = dict2list(this.state.organizations);
@@ -130,12 +129,10 @@ class EditorContainer extends Component {
     if (this.props.type === "case") {
       return (
         <CaseEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -145,12 +142,10 @@ class EditorContainer extends Component {
     } else if (this.props.type === "method") {
       return (
         <MethodEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -160,12 +155,10 @@ class EditorContainer extends Component {
     } else if (this.props.type === "organization") {
       return (
         <OrganizationEditor
-          intl={intl}
           cases={cases}
           methods={methods}
           organizations={organizations}
           new={isNew}
-          auth={this.props.auth}
           isQuick={isQuick}
           thing={thing}
           onExpand={this.onExpand.bind(this)}
@@ -173,21 +166,27 @@ class EditorContainer extends Component {
         />
       );
     } else {
-      return <div>This shouldn't show up</div>;
+      return <div>This should not show up</div>;
     }
   }
 }
 
-export const CaseEditorContainer = props =>
-  <EditorContainer type="case" new={false} {...props} />;
-export const MethodEditorContainer = props =>
-  <EditorContainer type="method" new={false} {...props} />;
-export const OrganizationEditorContainer = props =>
-  <EditorContainer type="organization" new={false} {...props} />;
+export const CaseEditorContainer = props => (
+  <EditorContainer type="case" new={false} {...props} />
+);
+export const MethodEditorContainer = props => (
+  <EditorContainer type="method" new={false} {...props} />
+);
+export const OrganizationEditorContainer = props => (
+  <EditorContainer type="organization" new={false} {...props} />
+);
 
-export const NewCaseContainer = props =>
-  <EditorContainer type="case" new {...props} />;
-export const NewMethodContainer = props =>
-  <EditorContainer type="method" new {...props} />;
-export const NewOrganizationContainer = props =>
-  <EditorContainer type="organization" new {...props} />;
+export const NewCaseContainer = props => (
+  <EditorContainer type="case" new {...props} />
+);
+export const NewMethodContainer = props => (
+  <EditorContainer type="method" new {...props} />
+);
+export const NewOrganizationContainer = props => (
+  <EditorContainer type="organization" new {...props} />
+);

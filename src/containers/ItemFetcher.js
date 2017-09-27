@@ -1,7 +1,6 @@
 import React from "react";
 import ItemDetails from "../components/ItemDetails/ItemDetails";
-import { intlShape } from "react-intl";
-import { number, func, object } from "prop-types";
+import { number, func } from "prop-types";
 
 export default class ItemFetcher extends React.Component {
   componentDidMount() {
@@ -9,8 +8,7 @@ export default class ItemFetcher extends React.Component {
     let props = this.props;
     props.api(props.id).then(function(data) {
       component.setState({
-        data: data,
-        isAuthenticated: props.isAuthenticated
+        data: data
       });
     });
   }
@@ -25,8 +23,6 @@ export default class ItemFetcher extends React.Component {
 }
 
 ItemFetcher.propTypes = {
-  intl: intlShape.isRequired,
-  auth: object.isRequired,
   api: func,
   id: number
 };
