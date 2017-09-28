@@ -16,6 +16,8 @@ exports[`ItemDetails for Method renders correctly 1`] = `
         >
           <div />
           <div />
+          <div />
+          <div />
           <div>
             <p
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
@@ -40,7 +42,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant links (URLs)
+                  Relevant Links (URLs)
                 </span>
               </p>
               <div
@@ -106,7 +108,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div />
             <div />
           </div>
-          <div />
         </div>
         <div
           className="main-area col-12 col-md-8"
@@ -235,7 +236,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant links (URLs)
+                          Relevant Links (URLs)
                         </span>
                       </p>
                       <div
@@ -478,7 +479,7 @@ exports[`Method editor renders correctly 1`] = `
             className="sub-heading"
           >
             <span>
-              Relevant links (URLs)
+              Relevant Links (URLs)
             </span>
           </p>
           <div>
@@ -529,16 +530,6 @@ exports[`Method editor renders correctly 1`] = `
               </p>
             </div>
             <div>
-              <div>
-                <p
-                  className="sub-heading"
-                >
-                  Specific Topic
-                </p>
-              </div>
-            </div>
-            ) : ( undefined )
-            <div>
               <label
                 className="sub-heading"
                 htmlFor="body_en"
@@ -557,7 +548,7 @@ exports[`Method editor renders correctly 1`] = `
               <p
                 className="sub-heading"
               >
-                Communication mode
+                Communication Mode
               </p>
             </div>
             <div>
@@ -653,14 +644,14 @@ exports[`Method editor renders correctly 1`] = `
               <p
                 className="sub-heading"
               >
-                Typical implementing entity
+                typical_implementing_entity
               </p>
             </div>
             <div>
               <p
                 className="sub-heading"
               >
-                Typical sponsoring entity
+                typical_sponsoring_entity
               </p>
             </div>
             <p

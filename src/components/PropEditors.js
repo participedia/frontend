@@ -55,6 +55,7 @@ export class ChoiceEditor extends React.Component {
     this.props.onChange(value);
   }
 
+
   render() {
     let onChange = this.onChange.bind(this);
     let { property } = this.props;
@@ -523,13 +524,14 @@ export class AvatarEditor extends React.Component {
     return (
       <div className="user-avatar">
         <Avatar size={200} src={this.state.value} />
-
-        <Upload
-          customStyle={customStyle}
-          className="change-avatar-button"
-          profile={this.props.passProps.profile}
-          updatePicture
-        />
+        <div>
+          <Upload
+            customStyle={customStyle}
+            customClass="change-avatar-button"
+            profile={this.props.passProps.profile}
+            updatePicture
+          />
+        </div>
       </div>
     );
   }

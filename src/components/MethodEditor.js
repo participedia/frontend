@@ -91,7 +91,7 @@ class MethodEditor extends Component {
       />
     );
 
-    let issue = this.state.thing.issue;
+    let issue = this.state.thing.general_issues;
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
       ? "do_full_version"
@@ -191,25 +191,6 @@ class MethodEditor extends Component {
                     ) : (
                       undefined
                     )}
-                    {issue === "other" &&
-                    this.state.thing.specific_topic === "other" ? (
-                      <b>
-                        {intl.formatMessage({
-                          id: "send_email_with_catgeory_additions"
-                        })}
-                      </b>
-                    ) : (
-                      undefined
-                    )}
-                    <div>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "specific_topic",
-                        issue,
-                        "specific_topic"
-                      )}
-                    </div>
-                    ) : ( undefined )
                     {issue === "other" &&
                     this.state.thing.specific_topic === "other" ? (
                       <b>

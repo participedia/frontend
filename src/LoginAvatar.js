@@ -30,7 +30,7 @@ export class LoginAvatar extends React.Component {
 
     if (isAuthenticated() && this.state.profile !== {}) {
       return (
-        <div className="avatar d-none d-sm-block d-md-block d-lg-block d-xl-block">
+        <div className="avatar">
           <IconMenu
             iconButtonElement={
               <IconButton>
@@ -64,7 +64,7 @@ export class LoginAvatar extends React.Component {
       );
     } else {
       return (
-        <div className="loginButton d-none d-sm-block d-md-block d-lg-block d-xl-block">
+        <div className="loginButton">
           <FlatButton
             onClick={() => authService.login()}
             onTouchTap={this.signIn}

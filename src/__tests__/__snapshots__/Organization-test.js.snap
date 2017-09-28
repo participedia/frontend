@@ -16,6 +16,23 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
         >
           <div />
           <div />
+          <div
+            className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
+          >
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
+            <p
+              className="case-location"
+            >
+              Italy
+            </p>
+          </div>
+          <div />
           <div>
             <div
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
@@ -84,7 +101,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant links (URLs)
+                  Relevant Links (URLs)
                 </span>
               </p>
               <div
@@ -118,7 +135,6 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
             </div>
             <div />
           </div>
-          <div />
         </div>
         <div
           className="main-area col-12 col-md-8"
@@ -301,7 +317,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant links (URLs)
+                          Relevant Links (URLs)
                         </span>
                       </p>
                       <div
@@ -504,7 +520,7 @@ exports[`Organization editor renders correctly 1`] = `
             <p
               className="sub-heading"
             >
-              Relevant links (URLs)
+              Relevant Links (URLs)
             </p>
             <div>
               <div

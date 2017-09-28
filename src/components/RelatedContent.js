@@ -55,7 +55,7 @@ const RelatedContent = props => {
     (props.thing.related_organizations &&
       props.thing.related_organizations.length) ? (
     <div className="related-content">
-      <p className="sub-heading d-none d-sm-none">Related Content</p>
+      <p className="sub-heading">Related Content</p>
       <RelatedCases {...props} />
       <RelatedMethods {...props} />
       <RelatedOrganizations {...props} />

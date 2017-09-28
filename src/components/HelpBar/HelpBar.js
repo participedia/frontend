@@ -69,6 +69,13 @@ class HelpBar extends React.Component {
         <div className="data-section">
           {this.state.all ? (
             <div>
+              <div className="card contact">
+                <h5>{this.props.intl.formatMessage({ id: "contact_us" })}</h5>
+                <a href="mailto: info@participedia.net">
+                  <MailIcon color={"#ec1414"} />
+                  {this.props.intl.formatMessage({ id: "email_support" })}
+                </a>
+              </div>
               <div className="card pt-3">
                 <h5 className="data-title">
                   {this.props.intl.formatMessage({ id: "faq" })}
@@ -86,13 +93,6 @@ class HelpBar extends React.Component {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="card contact">
-                <p>{this.props.intl.formatMessage({ id: "contact_us" })}</p>
-                <a href="mailto: info@participedia.net">
-                  <MailIcon color={"#ec1414"} />
-                  {this.props.intl.formatMessage({ id: "email_support" })}
-                </a>
               </div>
             </div>
           ) : (

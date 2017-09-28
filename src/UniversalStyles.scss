@@ -32,19 +32,19 @@ $interactive-color: $red;
   }
 }
 
-.new {
-  button {
-    div {
-      span {
-        &:after {
-          content: '|  +';
-          padding-left: 9px;
-          white-space: pre;
-        }
-      }
-    }
-  }
-}
+// .new {
+//   button {
+//     div {
+//       span {
+//         &:after {
+//           content: '|  +';
+//           padding-left: 9px;
+//           white-space: pre;
+//         }
+//       }
+//     }
+//   }
+// }
 
 .full-submit {
   button {
