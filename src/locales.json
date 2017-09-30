@@ -450,6 +450,7 @@
     "end_date_placeholder": "Select an end date, if applicable",
     "ongoing": "Ongoing",
     "videos": "Videos",
+    "photos": "Photos",
     "videos_placeholder": "Add a video (Vimeo, YouTube)",
     "links_placeholder": "Add a link",
     "targeted_participant_demographic": "Targeted participant demographic",

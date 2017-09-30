@@ -115,7 +115,7 @@ exports[`Case editor renders correctly 1`] = `
             className="sub-sub-heading"
           >
             <span>
-              photos
+              Photos
             </span>
           </p>
           <div>
