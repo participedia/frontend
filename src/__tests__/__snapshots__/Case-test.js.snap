@@ -461,7 +461,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="issue"
               >
-                Budgeting
+                <span>
+                  Budgeting
+                </span>
               </div>
             </div>
             <div>
@@ -475,7 +477,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="specific_topic"
               >
-                Sustainable Development
+                <span>
+                  Sustainable Development
+                </span>
               </div>
             </div>
             <div>
@@ -526,7 +530,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="communication_mode"
               >
-                Discussion, Dialogue, or Deliberation
+                <span>
+                  Discussion, Dialogue, or Deliberation
+                </span>
               </div>
             </div>
             <div />
@@ -541,7 +547,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="decision_method"
               >
-                Getting sense of room/group (i.e. no formal voting)
+                <span>
+                  Getting sense of room/group (i.e. no formal voting)
+                </span>
               </div>
             </div>
             <div>
@@ -555,7 +563,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="facetoface_online_or_both"
               >
-                facetoface
+                <span>
+                  Face-to-face
+                </span>
               </div>
             </div>
             <div>
@@ -568,7 +578,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               </p>
               <div
                 className="facilitated"
-              />
+              >
+                <span>
+                  true
+                </span>
+              </div>
             </div>
             <div>
               <p
@@ -581,7 +595,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="voting"
               >
-                true
+                <span>
+                  true
+                </span>
               </div>
             </div>
             <div>
@@ -595,7 +611,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="number_of_meeting_days"
               >
-                4
+                <span>
+                  4
+                </span>
               </div>
             </div>
             <div />
@@ -611,7 +629,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="targeted_participants_public_role"
               >
-                Stakeholder Organizations
+                <span>
+                  Stakeholder Organizations
+                </span>
               </div>
             </div>
             <div>
@@ -625,7 +645,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="targeted_audience"
               >
-                General Public
+                <span>
+                  General Public
+                </span>
               </div>
             </div>
             <div>
@@ -639,7 +661,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="participant_selection"
               >
-                Open to all with targeted recruitment
+                <span>
+                  Open to all with targeted recruitment
+                </span>
               </div>
             </div>
             <div>
@@ -653,7 +677,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="type_of_funding_entity"
               >
-                Regional Government (e.g. State, Provincial, Territorial)
+                <span>
+                  Regional Government (e.g. State, Provincial, Territorial)
+                </span>
               </div>
             </div>
             <div />
@@ -833,7 +859,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="issue"
                       >
-                        Budgeting
+                        <span>
+                          Budgeting
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -847,7 +875,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="specific_topic"
                       >
-                        Sustainable Development
+                        <span>
+                          Sustainable Development
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -898,7 +928,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="communication_mode"
                       >
-                        Discussion, Dialogue, or Deliberation
+                        <span>
+                          Discussion, Dialogue, or Deliberation
+                        </span>
                       </div>
                     </div>
                     <div />
@@ -913,7 +945,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="decision_method"
                       >
-                        Getting sense of room/group (i.e. no formal voting)
+                        <span>
+                          Getting sense of room/group (i.e. no formal voting)
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -927,7 +961,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="facetoface_online_or_both"
                       >
-                        facetoface
+                        <span>
+                          Face-to-face
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -940,7 +976,11 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       </p>
                       <div
                         className="facilitated"
-                      />
+                      >
+                        <span>
+                          true
+                        </span>
+                      </div>
                     </div>
                     <div>
                       <p
@@ -953,7 +993,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="voting"
                       >
-                        true
+                        <span>
+                          true
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -967,7 +1009,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="number_of_meeting_days"
                       >
-                        4
+                        <span>
+                          4
+                        </span>
                       </div>
                     </div>
                     <div />
@@ -983,7 +1027,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="targeted_participants_public_role"
                       >
-                        Stakeholder Organizations
+                        <span>
+                          Stakeholder Organizations
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -997,7 +1043,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="targeted_audience"
                       >
-                        General Public
+                        <span>
+                          General Public
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -1011,7 +1059,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="participant_selection"
                       >
-                        Open to all with targeted recruitment
+                        <span>
+                          Open to all with targeted recruitment
+                        </span>
                       </div>
                     </div>
                     <div>
@@ -1025,7 +1075,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="type_of_funding_entity"
                       >
-                        Regional Government (e.g. State, Provincial, Territorial)
+                        <span>
+                          Regional Government (e.g. State, Provincial, Territorial)
+                        </span>
                       </div>
                     </div>
                     <div />

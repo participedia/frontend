@@ -147,6 +147,7 @@ class Upload extends React.Component {
     }
     if (this.props.updatePicture) {
       // dispatch(
+        console.log('updatePic for user');
         api.updateUserMetaData(profile.user_id, {
           customPic: `${UPLOADS_CDN_URL}cropped-to-square/${args.filename}`
         })
