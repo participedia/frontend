@@ -41,11 +41,12 @@ export class SearchHit extends React.Component {
       <BookmarkToggle
         thingType={result.type}
         thingid={result.id}
+        count={result.id}
         bookmarked={result.bookmarked}
       />
     );
     let blob = (
-      <Col xs="12" md={this.props.selectedViewType === "grid" ? "3" : "12"}>
+      <Col xs="12" className={'result'+this.props.count} md={this.props.selectedViewType === "grid" ? "3" : "12"}>
         {this.props.selectedViewType === "grid" ? (
           <div className="grid-item">
             <Link to={link} className="result-title">

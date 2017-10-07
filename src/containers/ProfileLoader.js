@@ -11,6 +11,11 @@ export default class ProfileLoader extends Component {
       user: false
     };
   }
+  
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+
   componentDidMount() {
     let component = this;
     let userId = null;

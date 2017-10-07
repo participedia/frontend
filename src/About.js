@@ -8,6 +8,11 @@ import { Link } from "react-router-dom";
 import { injectIntl, FormattedMessage } from "react-intl";
 
 class About extends React.Component {
+
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+  
   render() {
     const communityLink = (
       <Link target="_blank" to="http://participedia.net/en/user/register">

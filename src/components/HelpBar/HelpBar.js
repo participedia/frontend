@@ -20,6 +20,7 @@ class HelpBar extends React.Component {
     this.pickHelpItem = this.pickHelpItem.bind(this);
     this.resetHelp = this.resetHelp.bind(this);
     this.closeHelp = this.closeHelp.bind(this);
+    this.showTour = this.showTour.bind(this);
   }
 
   pickHelpItem(item) {
@@ -35,6 +36,10 @@ class HelpBar extends React.Component {
 
   closeHelp() {
     this.props.onHelpClose();
+  }
+
+  showTour() {
+    this.props.showTour();
   }
 
   render() {
@@ -75,6 +80,9 @@ class HelpBar extends React.Component {
                   <MailIcon color={"#ec1414"} />
                   {this.props.intl.formatMessage({ id: "email_support" })}
                 </a>
+              </div>
+              <div onClick={() => { this.showTour() }} className="card tour">
+                <h5 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h5>
               </div>
               <div className="card pt-3">
                 <h4 className="data-title">

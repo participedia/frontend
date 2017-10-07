@@ -6,24 +6,33 @@ import CaseDetails from "../components/CaseDetails";
 import ItemFetcher from "./ItemFetcher";
 
 export class Case extends React.Component {
+
   toggleFeatured(thing, featured) {
     thing.featured = featured;
     api.saveThing(thing.type, thing);
   }
+
   toggleHidden(thing, hidden) {
     thing.hidden = hidden;
     api.saveThing(thing.type, thing);
   }
+
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+
   render() {
     return (
-      <ItemFetcher
-        api={api.fetchCaseById}
-        id={Number(this.props.match.params.nodeID)}
-        details={CaseDetails}
-        toggleFeatured={this.toggleFeatured.bind(this)}
-        toggleHidden={this.toggleHidden.bind(this)}
-        {...this.props}
-      />
+      <div>
+        <ItemFetcher
+          api={api.fetchCaseById}
+          id={Number(this.props.match.params.nodeID)}
+          details={CaseDetails}
+          toggleFeatured={this.toggleFeatured.bind(this)}
+          toggleHidden={this.toggleHidden.bind(this)}
+          {...this.props}
+        />
+      </div>
     );
   }
 }

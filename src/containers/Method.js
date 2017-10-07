@@ -9,10 +9,16 @@ export class Method extends React.Component {
     thing.featured = featured;
     api.saveThing(thing.type, thing);
   }
+
   toggleHidden(thing, hidden) {
     thing.hidden = hidden;
     api.saveThing(thing.type, thing);
   }
+  
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+
   render() {
     return (
       <ItemFetcher

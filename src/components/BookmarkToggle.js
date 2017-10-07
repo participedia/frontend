@@ -95,7 +95,7 @@ export default class BookmarkToggle extends React.Component {
     let toggle = this.toggleBookmark.bind(this);
     let bookmarked = this.state.bookmarked;
     return (
-      <IconButton style={styles.medium} onClick={toggle}>
+      <IconButton className="bookmark" style={styles.medium} onClick={toggle}>
         <BookmarkIcon bookmarked={bookmarked} />
       </IconButton>
     );

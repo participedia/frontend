@@ -16,8 +16,8 @@ export default class CaseDetails extends React.Component {
   render() {
     let thing = this.props.case;
     return (
-      <div>
-        <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading">
+      <div className="details">
+        <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
         </h2>
         <Tags thing={thing} />

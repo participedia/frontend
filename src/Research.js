@@ -7,6 +7,11 @@ import { injectIntl, FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 class Research extends React.Component {
+
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+
   render() {
     const methodologyLink = (
       <Link to="/somepage">

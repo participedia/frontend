@@ -105,6 +105,7 @@ export default class SearchResults extends React.Component {
     let startDownload = this.startDownload.bind(this);
     return (
       <SearchResultsView
+        addSteps={this.props.addSteps}
         location={this.props.location}
         selectedViewType={this.state.selectedViewType}
         selectedCategory={this.state.selectedCategory}

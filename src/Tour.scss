@@ -1,0 +1,15 @@
+$joyride-color: $interactive-color;
+$joyride-tooltip-border-radius: 2px;
+$joyride-button-border-radius: 2px;
+
+.joyride-tooltip__header {
+	font-weight: bold;
+	color: $black !important;
+	border-bottom: none !important;
+}
+
+.joyride-tooltip__button--skip {
+	padding-top: 0.5rem !important;
+}
+
+@import '../node_modules/react-joyride/lib/react-joyride';

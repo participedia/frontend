@@ -223,3 +223,27 @@ label {
     }
   }
 }
+
+.new {
+  button {
+    div div {
+      span {
+        &:after {
+          content: '|  +';
+          padding-left: 9px;
+          white-space: pre;
+        }
+      }
+    }
+  }
+}
+
+.submitUIButton {
+  z-index: 3000;
+  position: fixed;
+  right: 120px;
+  bottom: 40px;
+  button {
+    background-color: $interactive-color !important;
+  }
+}
