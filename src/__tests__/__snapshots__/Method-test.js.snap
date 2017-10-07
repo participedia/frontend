@@ -763,7 +763,7 @@ exports[`Method editor renders correctly 1`] = `
               <p
                 className="m-0"
               >
-                Select typical implementing entity
+                typical_implementing_entity_placeholder
               </p>
             </div>
             <div>
@@ -775,7 +775,7 @@ exports[`Method editor renders correctly 1`] = `
               <p
                 className="m-0"
               >
-                Select typical sponsoring entity
+                typical_sponsoring_entity_placeholder
               </p>
             </div>
             <p

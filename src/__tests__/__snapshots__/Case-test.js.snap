@@ -31,7 +31,7 @@ exports[`Case editor renders correctly 1`] = `
             </label>
           </div>
           <span>
-            Type to search for existing case or enter title
+            Enter title
           </span>
           <Textfield
             className="custom-field"
@@ -324,7 +324,7 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="sub-heading"
                 >
-                  Number of Meeting Days
+                  Number of meeting days
                 </p>
                 <p
                   className="m-0"
@@ -347,7 +347,7 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="sub-heading"
                 >
-                  Targeted Participant Demographic
+                  Targeted participant demographic
                 </p>
                 <p
                   className="m-0"
@@ -424,7 +424,7 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="m-0"
                 >
-                  Select typical implementing entity
+                  Select type of implementing entity
                 </p>
               </div>
               <div>
@@ -436,7 +436,7 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="m-0"
                 >
-                  Select typical sponsoring entity
+                  Select type of sponsoring entity
                 </p>
               </div>
               <div>
@@ -560,7 +560,7 @@ exports[`Case editor renders correctly 1`] = `
                   </p>
                 </div>
               </div>
-
+               
             </div>
           </div>
         </div>
@@ -600,7 +600,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               className="case-location"
             >
               Forlì
-              ,
+              , 
               Italy
             </p>
           </div>
@@ -769,7 +769,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Number of Meeting Days
+                  Number of meeting days
                 </span>
               </p>
               <div
@@ -1167,7 +1167,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Number of Meeting Days
+                          Number of meeting days
                         </span>
                       </p>
                       <div
