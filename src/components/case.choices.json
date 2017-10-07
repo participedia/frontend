@@ -423,7 +423,7 @@
     "other",
     "men",
     "immigrants",
-    "eldlerly",
+    "elderly",
     "general_public",
     "youth",
     "religious_groups"
@@ -452,7 +452,7 @@
     "local_government_eg_village_town_city",
     "nongovernmental_organization_nonprofit"
   ],
-  "typical_implementing_entity": [
+  "type_of_implementing_entity": [
     "governmentowned_corporation",
     "national_government",
     "regional_government_eg_state_provincial_territorial",
@@ -465,7 +465,7 @@
     "nongovernmental_organization_nonprofit",
     "local_government_eg_village_town_city"
   ],
-  "typical_sponsoring_entity": [
+  "type_of_sponsoring_entity": [
     "governmentowned_corporation",
     "not_applicable",
     "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",

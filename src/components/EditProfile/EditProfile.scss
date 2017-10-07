@@ -29,9 +29,10 @@
     position: relative;
     overflow: hidden;
     .change-avatar-button {
+      display: none;
       background-color: rgba(0, 0, 0, 0.5);
-      border: solid 2px red;
-      height: 40px;
+      // border: solid 2px red;
+      height: 50px;
       position: absolute;
       bottom: 0;
       left: 0;

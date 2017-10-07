@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import CountryMap from "./CountryMap";
+// import CountryMap from "./CountryMap";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
 import Tags from "./Tags";
@@ -17,15 +17,6 @@ export default class CaseDetails extends React.Component {
     let thing = this.props.case;
     return (
       <div>
-        {thing.location ? (
-          <CountryMap
-            city={thing.location.city}
-            countrycode={thing.location.country}
-          />
-        ) : (
-          <div />
-        )}
-
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
         </p>
@@ -110,13 +101,13 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          heading="typical_implementing_entity"
-          property="typical_implementing_entity"
+          heading="type_of_implementing_entity"
+          property="type_of_implementing_entity"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          heading="typical_sponsoring_entity"
-          property="typical_sponsoring_entity"
+          heading="type_of_sponsoring_entity"
+          property="type_of_sponsoring_entity"
           thing={thing}
         />
         <BooleanProp label="ongoing" property="ongoing" thing={thing} />

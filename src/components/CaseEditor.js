@@ -144,14 +144,16 @@ class CaseEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="sub-heading top title-edit">
+                <div className="sub-heading top">
                   <label htmlFor="title">
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
-                <FormattedMessage id={intl.formatMessage({
+                <FormattedMessage
+                  id={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
-                  })} />
+                  })}
+                />
                 <Field
                   fieldName="title"
                   name="title"
@@ -283,11 +285,11 @@ class CaseEditor extends Component {
                       {makeLocalizedChoiceField(intl, "type_of_funding_entity")}
                       {makeLocalizedChoiceField(
                         intl,
-                        "typical_implementing_entity"
+                        "type_of_implementing_entity"
                       )}
                       {makeLocalizedChoiceField(
                         intl,
-                        "typical_sponsoring_entity"
+                        "type_of_sponsoring_entity"
                       )}
                       {}
                       {makeLocalizedBooleanField(intl, "ongoing")}

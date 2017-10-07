@@ -79,10 +79,13 @@
   &.top {
     border: none;
   }
-  text-transform: capitalize;
   &.org {
     font-size: 0.6rem;
   }
+}
+
+#undefined-Selectanissue-* {
+  color: blue !important;
 }
 
 
@@ -187,6 +190,20 @@
       }
       .checkbox {
         background-image: url("../img/star.png");
+      }
+    }
+  }
+}
+
+.new {
+  button {
+    div div {
+      span {
+        &:after {
+          content: '|  +';
+          padding-left: 9px;
+          white-space: pre;
+        }
       }
     }
   }

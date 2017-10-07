@@ -18,6 +18,7 @@ import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import Toggle from "material-ui/Toggle";
+import CountryMap from "../CountryMap";
 // import "../../StaticPages.css";
 
 function isCurator(profile) {
@@ -177,8 +178,16 @@ export default class ItemDetails extends React.Component {
                   isAuthenticated={this.state.isAuthenticated}
                   toggleHidden={this.props.toggleHidden}
                 />
-                {detailedBits}
+                {thing.location ? (
+                  <CountryMap
+                    city={thing.location.city}
+                    countrycode={thing.location.country}
+                  />
+                ) : (
+                  <div />
+                )}
                 <RelatedContent thing={thing} />
+                {detailedBits}
               </Col>
               <Col md="8" xs="12" className="main-area">
                 <div className="case-box">
