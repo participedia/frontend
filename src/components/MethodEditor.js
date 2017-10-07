@@ -72,6 +72,9 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_cases_placeholder"
+        })}
       />
     );
     let related_methods = (
@@ -80,6 +83,9 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_method_placeholder"
+        })}
       />
     );
     let related_organizations = (
@@ -88,9 +94,11 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_organizations_placeholder"
+        })}
       />
     );
-
     let issue = this.state.thing.general_issues;
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
@@ -116,14 +124,17 @@ class MethodEditor extends Component {
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
+                <FormattedMessage
+                  id={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}
+                />
                 <Field
                   fieldName="title"
                   name="title"
                   className="custom-field"
                   type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
+                  placeholder=""
                   fullWidth
                 />
                 <p className="sub-heading">
@@ -133,18 +144,24 @@ class MethodEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="media" />
                 </p>
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="photos" />
+                </p>
                 <ImageListEditor property="images" thing={thing} />
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="videos" />
+                </p>
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />
                 </p>
-                <div className="tags-field">{tagseditor}</div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete">
+                      <div className="pt-3 incomplete">
                         {intl.formatMessage({
                           id: "incomplete_" + thing.type
                         })}
@@ -258,6 +275,13 @@ class MethodEditor extends Component {
                       </div>
                       {related_organizations}
                     </div>
+                    {incomplete ? (
+                      <p className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
+                        })}
+                      </p>
+                    ) : null}
                     <RaisedButton
                       className="incomplete-warning"
                       disabled={incomplete}
@@ -268,13 +292,6 @@ class MethodEditor extends Component {
                         id: "submit_" + thing.type
                       })}
                     />
-                    {incomplete ? (
-                      <span className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </div>

@@ -93,14 +93,13 @@ export function makeLocalizedChoiceField(
   return (
     <div>
       <p className="sub-heading">{label}</p>
-
+      <p className="m-0">{intl.formatMessage({
+          id: property + "_placeholder"
+        })}</p>
       <Field
         fieldName={property}
         label={label}
         type={ChoiceEditor}
-        placeholder={intl.formatMessage({
-          id: property + "_placeholder"
-        })}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -223,6 +222,7 @@ export function makeLocalizedNumberField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -276,6 +276,7 @@ export function makeLocalizedTextField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -323,12 +324,13 @@ class DateEditor extends React.Component {
 export function makeLocalizedDateField(intl, property) {
   return (
     <div>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={"date-field " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property + "_placeholder" })}
+          label={intl.formatMessage({ id: property })}
           type={DateEditor}
         />
       </div>
@@ -397,14 +399,15 @@ export function makeLocalizedLocationField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({
+            id: "location_placeholder"
+          })}</p>
       <div className={property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({
-            id: "location_placeholder"
-          })}
+          label=""
           type={LocationEditor}
         />
       </div>
@@ -467,6 +470,9 @@ export class ListEditor extends React.Component {
 export function makeLocalizedListField(intl, property) {
   return (
     <div>
+      <p className="m-0"><FormattedMessage id={intl.formatMessage({
+            id: property + "_placeholder"
+          })} /></p> 
       <div className={"list " + property}>
         <Field
           fieldName={property}

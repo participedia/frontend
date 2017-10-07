@@ -97,6 +97,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_cases_placeholder"
+        })}
       />
     );
     let related_methods = (
@@ -105,6 +108,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_methods_placeholder"
+        })}
       />
     );
     let related_organizations = (
@@ -113,6 +119,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_organizations_placeholder"
+        })}
       />
     );
     let incomplete = thing.title ? false : true;
@@ -140,15 +149,17 @@ class CaseEditor extends Component {
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
-                <p><FormattedMessage id={thing.type + "_title_exp_text"} /></p>
+                <FormattedMessage
+                  id={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}
+                />
                 <Field
                   fieldName="title"
                   name="title"
                   className="custom-field"
                   type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
+                  placeholder=""
                   fullWidth
                 />
                 {makeLocalizedChoiceField(
@@ -205,13 +216,13 @@ class CaseEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />
                 </p>
-                <div className="tags-field">{tagseditor}</div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete">
+                      <div className="incomplete pt-3">
                         <FormattedMessage id={"incomplete_" + thing.type} />
                       </div>
                     ) : null}
@@ -289,18 +300,21 @@ class CaseEditor extends Component {
                       )}
                       <div className="pb-1">
                         <p className="sub-heading">
-                          <FormattedMessage id="related_cases" />
+                          <FormattedMessage id="related_content" />
+                        </p>
+                        <p className="sub-sub-heading">
+                          <FormattedMessage id="related_cases_label" />
                         </p>
                         {related_cases}
                       </div>
                       <div className="pb-1">
-                        <p className="sub-heading">
-                          <FormattedMessage id="related_methods" />
+                        <p className="sub-sub-heading">
+                          <FormattedMessage id="related_methods_label" />
                         </p>
                         {related_methods}
                       </div>
                       <div className="pb-1">
-                        <p className="sub-heading">
+                        <p className="sub-sub-heading">
                           {intl.formatMessage({
                             id: "related_organizations"
                           })}
@@ -308,6 +322,13 @@ class CaseEditor extends Component {
                         {related_organizations}
                       </div>{" "}
                     </div>
+                    {incomplete ? (
+                      <p className="pt-3 incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
+                        })}
+                      </p>
+                    ) : null}
                     <RaisedButton
                       className="incomplete-warning"
                       disabled={incomplete}
@@ -318,13 +339,6 @@ class CaseEditor extends Component {
                         id: "submit_" + thing.type
                       })}
                     />
-                    {incomplete ? (
-                      <span className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </div>

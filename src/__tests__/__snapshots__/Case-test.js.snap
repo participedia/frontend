@@ -30,11 +30,9 @@ exports[`Case editor renders correctly 1`] = `
               </span>
             </label>
           </div>
-          <p>
-            <span>
-              Please give this case a descriptive title in 15 words or less. For example, “Brazilian Dialogue on Diversity" or "New York City Public Issues Forum."
-            </span>
-          </p>
+          <span>
+            Enter title
+          </span>
           <Textfield
             className="custom-field"
             disabled={false}
@@ -46,7 +44,7 @@ exports[`Case editor renders correctly 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onKeyDown={[Function]}
-            placeholder="Enter title"
+            placeholder=""
             type="text"
             value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
           />
@@ -56,6 +54,11 @@ exports[`Case editor renders correctly 1`] = `
             >
               General Issues
             </p>
+            <p
+              className="m-0"
+            >
+              Select an issue
+            </p>
           </div>
           <div>
             <div>
@@ -63,6 +66,11 @@ exports[`Case editor renders correctly 1`] = `
                 className="sub-heading"
               >
                 Specific Topic
+              </p>
+              <p
+                className="m-0"
+              >
+                Select an specific Topic
               </p>
             </div>
           </div>
@@ -74,6 +82,11 @@ exports[`Case editor renders correctly 1`] = `
                 className="sub-heading"
               >
                 Location
+              </p>
+              <p
+                className="m-0"
+              >
+                Type to search for known location
               </p>
               <div
                 className="location"
@@ -87,11 +100,21 @@ exports[`Case editor renders correctly 1`] = `
               </span>
             </p>
             <div>
+              <p
+                className="m-0"
+              >
+                Select a start date or date of single event
+              </p>
               <div
                 className="date-field start_date"
               />
             </div>
             <div>
+              <p
+                className="m-0"
+              >
+                Select an end date, if applicable
+              </p>
               <div
                 className="date-field end_date"
               />
@@ -104,6 +127,13 @@ exports[`Case editor renders correctly 1`] = `
               </span>
             </p>
             <div>
+              <p
+                className="m-0"
+              >
+                <span>
+                  Add a link
+                </span>
+              </p>
               <div
                 className="list links"
               />
@@ -156,6 +186,13 @@ exports[`Case editor renders correctly 1`] = `
                 </div>
               </div>
             </div>
+            <p
+              className="m-0"
+            >
+              <span>
+                Select a photo from your device
+              </span>
+            </p>
             <div>
               <span>
                 Sorry, upload only works if you're logged in.
@@ -170,6 +207,13 @@ exports[`Case editor renders correctly 1`] = `
             </span>
           </p>
           <div>
+            <p
+              className="m-0"
+            >
+              <span>
+                Add a video (Vimeo, YouTube)
+              </span>
+            </p>
             <div
               className="list videos"
             />
@@ -181,9 +225,15 @@ exports[`Case editor renders correctly 1`] = `
               Tags
             </span>
           </p>
-          <div
-            className="tags-field"
-          />
+          <div>
+            <p
+              className="m-0"
+            >
+              <span>
+                Type to search for an existing tag
+              </span>
+            </p>
+          </div>
         </div>
         <div>
           <div>
@@ -204,12 +254,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Communication Mode
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select a communication mode
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Communication with audience
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select a communication with audience
                 </p>
               </div>
               <div>
@@ -218,12 +278,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Decision method
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select a decision method
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Face-to-face, online or both
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select face-to-face, online or both
                 </p>
               </div>
               <div>
@@ -244,12 +314,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Voting
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select type of voting
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
-                  Number of Meeting Days
+                  Number of meeting days
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Enter number of meeting days
                 </p>
                 <div
                   className="number_of_meeting_days"
@@ -267,7 +347,12 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="sub-heading"
                 >
-                  Targeted Participant Demographic
+                  Targeted participant demographic
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select targeted participant demographic
                 </p>
               </div>
               <div>
@@ -276,12 +361,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Kind of influence
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select kind of influence
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Targeted participants public role
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select targeted participants public role
                 </p>
               </div>
               <div>
@@ -290,12 +385,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Targeted audience
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select targeted audience
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Participant selection
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select participant selection
                 </p>
               </div>
               <div>
@@ -304,6 +409,11 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Type of funding entity
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select type of funding entity
+                </p>
               </div>
               <div>
                 <p
@@ -311,12 +421,22 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Type of implementing entity
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Select type of implementing entity
+                </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
                   Type of sponsoring entity
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Select type of sponsoring entity
                 </p>
               </div>
               <div>
@@ -337,6 +457,11 @@ exports[`Case editor renders correctly 1`] = `
                 >
                   Staff type
                 </p>
+                <p
+                  className="m-0"
+                >
+                  Enter staff type
+                </p>
                 <div
                   className="staff_type"
                 >
@@ -353,6 +478,11 @@ exports[`Case editor renders correctly 1`] = `
                   className="sub-heading"
                 >
                   Who else supported the initiative
+                </p>
+                <p
+                  className="m-0"
+                >
+                  Enter who else supported the initiative
                 </p>
                 <div
                   className="who_else_supported_the_initiative"
@@ -372,29 +502,63 @@ exports[`Case editor renders correctly 1`] = `
                   className="sub-heading"
                 >
                   <span>
-                    Related cases
+                    Related Content
                   </span>
                 </p>
-              </div>
-              <div
-                className="pb-1"
-              >
                 <p
-                  className="sub-heading"
+                  className="sub-sub-heading"
                 >
                   <span>
-                    Related methods
+                    Cases
                   </span>
                 </p>
+                <div>
+                  <p
+                    className="m-0"
+                  >
+                    <span>
+                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                    </span>
+                  </p>
+                </div>
               </div>
               <div
                 className="pb-1"
               >
                 <p
-                  className="sub-heading"
+                  className="sub-sub-heading"
                 >
-                  Related organizations
+                  <span>
+                    Methods
+                  </span>
                 </p>
+                <div>
+                  <p
+                    className="m-0"
+                  >
+                    <span>
+                      Related methods include participatory methods or tools used during this particular case.
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="pb-1"
+              >
+                <p
+                  className="sub-sub-heading"
+                >
+                  Enter Related Organizations
+                </p>
+                <div>
+                  <p
+                    className="m-0"
+                  >
+                    <span>
+                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                    </span>
+                  </p>
+                </div>
               </div>
                
             </div>
@@ -605,7 +769,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Number of Meeting Days
+                  Number of meeting days
                 </span>
               </p>
               <div
@@ -1003,7 +1167,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Number of Meeting Days
+                          Number of meeting days
                         </span>
                       </p>
                       <div

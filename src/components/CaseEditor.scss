@@ -22,7 +22,11 @@
   }
 }
 
-.custom-field, .tags-field {
+.list.videos {
+  margin-top: -7px;
+}
+
+.custom-field {
   border: 2px solid $black;
   padding-left: 1rem;
   @include media-breakpoint-up(lg) {
@@ -36,8 +40,15 @@
   }
 }
 
-.tags-field {
+.related-fields {
+  border: 2px solid $black;
+  padding-left: 1rem;
+  @include media-breakpoint-up(lg) {
+    width: 60% !important;
+  }
   padding-bottom: 0.5rem;
+  display: block !important;
+  // height: 44px;
   div {
     margin-bottom: 0 !important;
   }
