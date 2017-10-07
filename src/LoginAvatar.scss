@@ -1,14 +1,14 @@
 .avatar {
-  position: fixed;
-  right: 1em;
-  top: 0.5em;
+  float: right;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
   color: black;
 }
 
 .loginButton {
-  position: fixed;
-  right: 1em;
-  top: 12px;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 0.7rem;
   border-radius:2px;
   background:#444;
   
