@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, intlShape, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import LazyBodyEditor from "./LazyBodyEditor";
+import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
@@ -41,6 +41,12 @@ class CaseEditor extends Component {
       });
     }
     this.state = { thing };
+    this.updateBody = this.updateBody.bind(this);
+  }
+
+  updateBody(body) {
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,6 +69,7 @@ class CaseEditor extends Component {
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
+  
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
@@ -244,7 +251,7 @@ class CaseEditor extends Component {
                         })}
                       </label>
                     </div>
-                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     <div className="related-content">
                       {makeLocalizedChoiceField(intl, "communication_mode")}
                       {makeLocalizedChoiceField(

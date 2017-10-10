@@ -38,7 +38,7 @@ jest.mock("material-ui/SvgIcon");
 jest.mock("react-geosuggest");
 jest.mock("material-ui-chip-input");
 jest.mock("../vendor/react-items-list");
-jest.mock("../components/LazyBodyEditor");
+jest.mock("../components/BodyEditor");
 
 fetchMock.get(
   process.env.REACT_APP_API_URL + "/organization/4219",

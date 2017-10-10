@@ -30,7 +30,7 @@ fetchMock.get(
 );
 
 jest.mock("../components/Gallery");
-jest.mock("../components/LazyBodyEditor");
+jest.mock("../components/BodyEditor");
 jest.mock("../utils/s3upload");
 jest.mock("material-ui/FloatingActionButton");
 jest.mock("../components/BookmarkToggle");
