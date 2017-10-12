@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import LazyBodyEditor from "./LazyBodyEditor";
+import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
@@ -31,12 +31,21 @@ class MethodEditor extends Component {
     if (!props.thing.images) {
       props.thing.images = [];
     }
+    if (!props.thing.body) {
+      props.thing.body = "";
+    }
     this.state = { thing: props.thing };
+    this.updateBody = this.updateBody.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
     this.setState({ thing });
+  }
+
+  updateBody(body) {
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   onSubmit() {
@@ -225,7 +234,7 @@ class MethodEditor extends Component {
                         })}
                       </label>
                     </div>
-                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     {makeLocalizedChoiceField(intl, "kind_of_influence")}
                     {makeLocalizedChoiceField(intl, "communication_mode")}
                     {makeLocalizedChoiceField(
