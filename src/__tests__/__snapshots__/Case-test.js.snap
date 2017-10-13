@@ -30,9 +30,13 @@ exports[`Case editor renders correctly 1`] = `
               </span>
             </label>
           </div>
-          <span>
-            Enter title
-          </span>
+          <p
+            className="m-0"
+          >
+            <span>
+              Enter title
+            </span>
+          </p>
           <Textfield
             className="custom-field"
             disabled={false}
@@ -548,7 +552,9 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="sub-sub-heading"
                 >
-                  Enter Related Organizations
+                  <span>
+                    Organizations
+                  </span>
                 </p>
                 <div>
                   <p
