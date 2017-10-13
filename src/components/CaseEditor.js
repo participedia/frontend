@@ -156,11 +156,10 @@ class CaseEditor extends Component {
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
-                <FormattedMessage
+                <p className="m-0"><FormattedMessage
                   id={intl.formatMessage({
                     id: thing.type + "_title_placeholder"
-                  })}
-                />
+                  })}/></p>
                 <Field
                   fieldName="title"
                   name="title"
@@ -322,9 +321,7 @@ class CaseEditor extends Component {
                       </div>
                       <div className="pb-1">
                         <p className="sub-sub-heading">
-                          {intl.formatMessage({
-                            id: "related_organizations"
-                          })}
+                          <FormattedMessage id="related_organizations_label" />
                         </p>
                         {related_organizations}
                       </div>{" "}
