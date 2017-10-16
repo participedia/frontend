@@ -758,24 +758,24 @@ exports[`Method editor renders correctly 1`] = `
               <p
                 className="sub-heading"
               >
-                typical_implementing_entity
+                Type of implementing entity
               </p>
               <p
                 className="m-0"
               >
-                typical_implementing_entity_placeholder
+                Select type of implementing entity
               </p>
             </div>
             <div>
               <p
                 className="sub-heading"
               >
-                typical_sponsoring_entity
+                Type of sponsoring entity
               </p>
               <p
                 className="m-0"
               >
-                typical_sponsoring_entity_placeholder
+                Select type of sponsoring entity
               </p>
             </div>
             <p

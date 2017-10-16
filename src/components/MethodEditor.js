@@ -93,7 +93,7 @@ class MethodEditor extends Component {
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
-          id: "related_method_placeholder"
+          id: "related_methods_placeholder"
         })}
       />
     );

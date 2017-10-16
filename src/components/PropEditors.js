@@ -13,6 +13,7 @@ import Avatar from "material-ui/Avatar";
 import Upload from "../Upload";
 import "./PropEditors.css";
 import { makePPLocation, stringifyLocation } from "./geoutils";
+import Clear from "material-ui/svg-icons/content/clear";
 
 function nickify(before) {
   if (!before) return "";
@@ -296,10 +297,16 @@ class DateEditor extends React.Component {
     this.state = {
       value: props.value
     };
+    this.clearDate = this.clearDate.bind(this);
   }
 
   componentWillReceiveProps(props) {
     this.setState({ value: props.value });
+  }
+
+  clearDate() {
+    this.setState({ value: null });
+    this.props.onChange(null);
   }
 
   onChange(event, value) {
@@ -311,12 +318,21 @@ class DateEditor extends React.Component {
     let onChange = this.onChange.bind(this);
     let property = this.props.passProps.name;
     return (
-      <DatePicker
-        onChange={onChange}
-        value={this.state.value}
-        placeholder={this.props.label}
-        name={property}
-      />
+      <div className="clearable-datepicker">
+        <DatePicker
+          onChange={onChange}
+          onClick={() => {this.clearDate()}}
+          value={this.state.value}
+          placeholder={this.props.label}
+          name={property}
+        />
+        {this.state.value ?
+          <div className="dismiss" onTouchTap={() => {this.clearDate()}}>
+            <Clear/>
+          </div>
+         : undefined 
+        } 
+      </div>
     );
   }
 }
