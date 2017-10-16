@@ -111,7 +111,16 @@ exports[`Case editor renders correctly 1`] = `
               </p>
               <div
                 className="date-field start_date"
-              />
+              >
+                <div
+                  className="clearable-datepicker"
+                >
+                  <div
+                    className="dismiss"
+                    onTouchTap={[Function]}
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <p
@@ -121,7 +130,16 @@ exports[`Case editor renders correctly 1`] = `
               </p>
               <div
                 className="date-field end_date"
-              />
+              >
+                <div
+                  className="clearable-datepicker"
+                >
+                  <div
+                    className="dismiss"
+                    onTouchTap={[Function]}
+                  />
+                </div>
+              </div>
             </div>
             <p
               className="sub-heading"
@@ -423,24 +441,24 @@ exports[`Case editor renders correctly 1`] = `
                 <p
                   className="sub-heading"
                 >
-                  Type of implementing entity
+                  type_of_implementing_entity
                 </p>
                 <p
                   className="m-0"
                 >
-                  Select type of implementing entity
+                  type_of_implementing_entity_placeholder
                 </p>
               </div>
               <div>
                 <p
                   className="sub-heading"
                 >
-                  Type of sponsoring entity
+                  type_of_sponsoring_entity
                 </p>
                 <p
                   className="m-0"
                 >
-                  Select type of sponsoring entity
+                  type_of_sponsoring_entity_placeholder
                 </p>
               </div>
               <div>
