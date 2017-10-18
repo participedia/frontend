@@ -19,6 +19,7 @@ export default class BodyEditor extends Component {
       };
     }
      this.onEditorStateChange = this.onEditorStateChange.bind(this);
+     this.handlePastedText = this.handlePastedText.bind(this);
   }
 
   onEditorStateChange(final){
@@ -27,6 +28,10 @@ export default class BodyEditor extends Component {
     editorState:final,
     });        
     this.props.onEditorChange(toSave);      
+  }
+
+  handlePastedText(text) {
+    const { editorState } = this.state
   }
 
 
@@ -42,6 +47,7 @@ export default class BodyEditor extends Component {
           editorClassName="rdw-storybook-editor"
           toolbar={{options: ["inline", "blockType", "list", "link"]}}
           onEditorStateChange={this.onEditorStateChange}
+          handlePastedText={event => this.handlePastedText(event)}
         />
       </div>
     );
