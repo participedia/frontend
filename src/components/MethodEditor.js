@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import LazyBodyEditor from "./LazyBodyEditor";
+import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
@@ -31,12 +31,21 @@ class MethodEditor extends Component {
     if (!props.thing.images) {
       props.thing.images = [];
     }
+    if (!props.thing.body) {
+      props.thing.body = "";
+    }
     this.state = { thing: props.thing };
+    this.updateBody = this.updateBody.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
     this.setState({ thing });
+  }
+
+  updateBody(body) {
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   onSubmit() {
@@ -72,6 +81,9 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_cases_placeholder"
+        })}
       />
     );
     let related_methods = (
@@ -80,6 +92,9 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_methods_placeholder"
+        })}
       />
     );
     let related_organizations = (
@@ -88,10 +103,12 @@ class MethodEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_organizations_placeholder"
+        })}
       />
     );
-
-    let issue = this.state.thing.issue;
+    let issue = this.state.thing.general_issues;
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
       ? "do_full_version"
@@ -116,14 +133,17 @@ class MethodEditor extends Component {
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
+                <FormattedMessage
+                  id={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}
+                />
                 <Field
                   fieldName="title"
                   name="title"
                   className="custom-field"
                   type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
+                  placeholder=""
                   fullWidth
                 />
                 <p className="sub-heading">
@@ -133,18 +153,24 @@ class MethodEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="media" />
                 </p>
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="photos" />
+                </p>
                 <ImageListEditor property="images" thing={thing} />
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="videos" />
+                </p>
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />
                 </p>
-                <div className="tags-field">{tagseditor}</div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete">
+                      <div className="pt-3 incomplete">
                         {intl.formatMessage({
                           id: "incomplete_" + thing.type
                         })}
@@ -202,32 +228,13 @@ class MethodEditor extends Component {
                       undefined
                     )}
                     <div>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "specific_topic",
-                        issue,
-                        "specific_topic"
-                      )}
-                    </div>
-                    ) : ( undefined )
-                    {issue === "other" &&
-                    this.state.thing.specific_topic === "other" ? (
-                      <b>
-                        {intl.formatMessage({
-                          id: "send_email_with_catgeory_additions"
-                        })}
-                      </b>
-                    ) : (
-                      undefined
-                    )}
-                    <div>
                       <label className="sub-heading" htmlFor="body_en">
                         {intl.formatMessage({
                           id: thing.type + "_body_title"
                         })}
                       </label>
                     </div>
-                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     {makeLocalizedChoiceField(intl, "kind_of_influence")}
                     {makeLocalizedChoiceField(intl, "communication_mode")}
                     {makeLocalizedChoiceField(
@@ -277,6 +284,13 @@ class MethodEditor extends Component {
                       </div>
                       {related_organizations}
                     </div>
+                    {incomplete ? (
+                      <p className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
+                        })}
+                      </p>
+                    ) : null}
                     <RaisedButton
                       className="incomplete-warning"
                       disabled={incomplete}
@@ -287,13 +301,6 @@ class MethodEditor extends Component {
                         id: "submit_" + thing.type
                       })}
                     />
-                    {incomplete ? (
-                      <span className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, injectIntl, intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import LazyBodyEditor from "./LazyBodyEditor";
+import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
@@ -32,12 +32,21 @@ class OrganizationEditor extends Component {
     if (!thing.images) {
       thing.images = [];
     }
+    if (!props.thing.body) {
+      thing.body = "";
+    }
     this.state = { thing };
+    this.updateBody = this.updateBody.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
     this.setState({ thing });
+  }
+
+  updateBody(body) {
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   onSubmit() {
@@ -139,9 +148,15 @@ class OrganizationEditor extends Component {
                   {makeLocalizedListField(intl, "links")}
                 </div>
                 <p className="sub-heading">
-                  {intl.formatMessage({ id: "media" })}
+                  <FormattedMessage id="media" />
+                </p>
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="photos" />
                 </p>
                 <ImageListEditor property="images" thing={thing} />
+                <p className="sub-sub-heading">
+                  <FormattedMessage id="videos" />
+                </p>
                 {makeLocalizedListField(intl, "videos")}
                 <p className="sub-heading">
                   {intl.formatMessage({ id: "tags_title" })}
@@ -152,7 +167,7 @@ class OrganizationEditor extends Component {
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete">
+                      <div className="pt-3 incomplete">
                         {intl.formatMessage({
                           id: "incomplete_" + thing.type
                         })}
@@ -189,7 +204,7 @@ class OrganizationEditor extends Component {
                         {intl.formatMessage({ id: thing.type + "_body_title" })}
                       </label>
                     </div>
-                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     <p className="sub-heading">Related Content</p>
                     <div className="related-content">
                       <div className="sub-sub-heading">
@@ -205,6 +220,13 @@ class OrganizationEditor extends Component {
                       </div>
                       {related_organizations}
                     </div>
+                    {incomplete ? (
+                      <p className="incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
+                        })}
+                      </p>
+                    ) : null}
                     <RaisedButton
                       className="incomplete-warning"
                       disabled={incomplete}
@@ -215,13 +237,6 @@ class OrganizationEditor extends Component {
                         id: "submit_" + thing.type
                       })}
                     />
-                    {incomplete ? (
-                      <span className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </div>

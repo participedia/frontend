@@ -1,6 +1,7 @@
 import React from "react";
 import ChipInput from "material-ui-chip-input";
 import omit from "object-omit";
+import { FormattedMessage } from "react-intl";
 
 export default class Related extends React.Component {
   constructor(props) {
@@ -72,24 +73,28 @@ export default class Related extends React.Component {
     let handleRequestDelete = this.handleRequestDelete.bind(this);
     let value = this.state.value; // if no dataSourceConfig, assume a list of strings
     return (
-      <ChipInput
-        {...rest}
-        value={value}
-        onRequestAdd={handleRequestAdd}
-        maxSearchResults={this.props.passProps.maxSearchResults}
-        filter={this.props.passProps.filter}
-        onRequestDelete={handleRequestDelete}
-        placeholder={this.props.passProps.placeholder}
-        fullWidth
-        fullWidthInput
-        dataSource={this.props.passProps.dataSource}
-        dataSourceConfig={this.props.passProps.dataSourceConfig}
-        onBlur={event => {
-          if (this.props.addOnBlur && event.target.value) {
-            this.handleRequestAdd(event.target.value);
-          }
-        }}
-      />
+      <div>
+        <p className="m-0"><FormattedMessage id={this.props.fieldName + "_prompt"} /></p>
+        <ChipInput
+          {...rest}
+          className="related-fields clearfix"
+          value={value}
+          onRequestAdd={handleRequestAdd}
+          maxSearchResults={this.props.passProps.maxSearchResults}
+          filter={this.props.passProps.filter}
+          onRequestDelete={handleRequestDelete}
+          placeholder={this.props.passProps.placeholder}
+          fullWidth
+          fullWidthInput
+          dataSource={this.props.passProps.dataSource}
+          dataSourceConfig={this.props.passProps.dataSourceConfig}
+          onBlur={event => {
+            if (this.props.addOnBlur && event.target.value) {
+              this.handleRequestAdd(event.target.value);
+            }
+          }}
+        />
+      </div>
     );
   }
 }

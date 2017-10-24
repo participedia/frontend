@@ -13,6 +13,7 @@ import Avatar from "material-ui/Avatar";
 import Upload from "../Upload";
 import "./PropEditors.css";
 import { makePPLocation, stringifyLocation } from "./geoutils";
+import Clear from "material-ui/svg-icons/content/clear";
 
 function nickify(before) {
   if (!before) return "";
@@ -55,6 +56,7 @@ export class ChoiceEditor extends React.Component {
     this.props.onChange(value);
   }
 
+
   render() {
     let onChange = this.onChange.bind(this);
     let { property } = this.props;
@@ -92,14 +94,13 @@ export function makeLocalizedChoiceField(
   return (
     <div>
       <p className="sub-heading">{label}</p>
-
+      <p className="m-0">{intl.formatMessage({
+          id: property + "_placeholder"
+        })}</p>
       <Field
         fieldName={property}
         label={label}
         type={ChoiceEditor}
-        placeholder={intl.formatMessage({
-          id: property + "_placeholder"
-        })}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -222,6 +223,7 @@ export function makeLocalizedNumberField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -275,6 +277,7 @@ export function makeLocalizedTextField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -294,10 +297,16 @@ class DateEditor extends React.Component {
     this.state = {
       value: props.value
     };
+    this.clearDate = this.clearDate.bind(this);
   }
 
   componentWillReceiveProps(props) {
     this.setState({ value: props.value });
+  }
+
+  clearDate() {
+    this.setState({ value: null });
+    this.props.onChange(null);
   }
 
   onChange(event, value) {
@@ -309,12 +318,21 @@ class DateEditor extends React.Component {
     let onChange = this.onChange.bind(this);
     let property = this.props.passProps.name;
     return (
-      <DatePicker
-        onChange={onChange}
-        value={this.state.value}
-        placeholder={this.props.label}
-        name={property}
-      />
+      <div className="clearable-datepicker">
+        <DatePicker
+          onChange={onChange}
+          onClick={() => {this.clearDate()}}
+          value={this.state.value}
+          placeholder={this.props.label}
+          name={property}
+        />
+        {this.state.value ?
+          <div className="dismiss" onTouchTap={() => {this.clearDate()}}>
+            <Clear/>
+          </div>
+         : undefined 
+        } 
+      </div>
     );
   }
 }
@@ -322,12 +340,13 @@ class DateEditor extends React.Component {
 export function makeLocalizedDateField(intl, property) {
   return (
     <div>
+      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={"date-field " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property + "_placeholder" })}
+          label={intl.formatMessage({ id: property })}
           type={DateEditor}
         />
       </div>
@@ -396,14 +415,15 @@ export function makeLocalizedLocationField(intl, property) {
   return (
     <div>
       <p className="sub-heading">{label}</p>
+      <p className="m-0">{intl.formatMessage({
+            id: "location_placeholder"
+          })}</p>
       <div className={property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({
-            id: "location_placeholder"
-          })}
+          label=""
           type={LocationEditor}
         />
       </div>
@@ -466,6 +486,9 @@ export class ListEditor extends React.Component {
 export function makeLocalizedListField(intl, property) {
   return (
     <div>
+      <p className="m-0"><FormattedMessage id={intl.formatMessage({
+            id: property + "_placeholder"
+          })} /></p> 
       <div className={"list " + property}>
         <Field
           fieldName={property}
@@ -523,13 +546,14 @@ export class AvatarEditor extends React.Component {
     return (
       <div className="user-avatar">
         <Avatar size={200} src={this.state.value} />
-
-        <Upload
-          customStyle={customStyle}
-          className="change-avatar-button"
-          profile={this.props.passProps.profile}
-          updatePicture
-        />
+        <div>
+          <Upload
+            customStyle={customStyle}
+            customClass="change-avatar-button"
+            profile={this.props.passProps.profile}
+            updatePicture
+          />
+        </div>
       </div>
     );
   }

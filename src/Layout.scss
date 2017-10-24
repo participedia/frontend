@@ -129,7 +129,6 @@
     .menu-icon {
       float: left;
       padding: 16px 20px;
-      background:#222;
       margin-right:10px;
       cursor:pointer;
       @include media-breakpoint-up(sm){
@@ -137,23 +136,20 @@
       }
       &:hover{
         cursor:pointer;
-        img {
-          opacity: 1;
+        svg {
+          fill: grey !important;
         }
-      }
-      img {
-        width: 32px;
-        height: 32px;
-        opacity: 0.5;
       }
     }
 
     .logo {
       float: left;
-      padding: 14px 0;
-
-      img {
-        height: 35px;
+      padding: 1rem 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: white;
+      &:hover {
+        text-decoration: none;
       }
     }
   }

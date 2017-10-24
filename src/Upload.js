@@ -146,11 +146,12 @@ class Upload extends React.Component {
       this.props.onChange(args.filename);
     }
     if (this.props.updatePicture) {
-      dispatch(
+      // dispatch(
+        console.log('updatePic for user');
         api.updateUserMetaData(profile.user_id, {
           customPic: `${UPLOADS_CDN_URL}cropped-to-square/${args.filename}`
         })
-      );
+      // );
     }
     if (this.props.addToList) {
       this.props.addToList(args.filename);
@@ -194,6 +195,7 @@ class Upload extends React.Component {
           onProgress={this.handleProgress.bind(this)}
           onFinish={this.handleFinishedUpload.bind(this)}
           upload={uploaderProps}
+          className={this.props.customClass}
         >
           <Preview
             preview={preview}

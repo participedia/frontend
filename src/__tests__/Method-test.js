@@ -48,7 +48,7 @@ jest.mock("material-ui/SvgIcon");
 jest.mock("react-geosuggest");
 jest.mock("material-ui-chip-input");
 jest.mock("../vendor/react-items-list");
-jest.mock("../components/LazyBodyEditor");
+jest.mock("../components/BodyEditor");
 
 function setup() {
   const props = {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, intlShape, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
-import LazyBodyEditor from "./LazyBodyEditor";
+import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
@@ -41,6 +41,12 @@ class CaseEditor extends Component {
       });
     }
     this.state = { thing };
+    this.updateBody = this.updateBody.bind(this);
+  }
+
+  updateBody(body) {
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,6 +69,7 @@ class CaseEditor extends Component {
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
+  
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
@@ -97,6 +104,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_cases_placeholder"
+        })}
       />
     );
     let related_methods = (
@@ -105,6 +115,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_methods_placeholder"
+        })}
       />
     );
     let related_organizations = (
@@ -113,6 +126,9 @@ class CaseEditor extends Component {
         type={RelatedEditor}
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "related_organizations_placeholder"
+        })}
       />
     );
     let incomplete = thing.title ? false : true;
@@ -135,19 +151,21 @@ class CaseEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="sub-heading top title-edit">
+                <div className="sub-heading top">
                   <label htmlFor="title">
                     <FormattedMessage id={thing.type + "_title_label"} />
                   </label>
                 </div>
+                <p className="m-0"><FormattedMessage
+                  id={intl.formatMessage({
+                    id: thing.type + "_title_placeholder"
+                  })}/></p>
                 <Field
                   fieldName="title"
                   name="title"
                   className="custom-field"
                   type={Text}
-                  placeholder={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
+                  placeholder=""
                   fullWidth
                 />
                 {makeLocalizedChoiceField(
@@ -204,13 +222,13 @@ class CaseEditor extends Component {
                 <p className="sub-heading">
                   <FormattedMessage id="tags_title" />
                 </p>
-                <div className="tags-field">{tagseditor}</div>
+                {tagseditor}
               </div>
               <div>
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete">
+                      <div className="incomplete pt-3">
                         <FormattedMessage id={"incomplete_" + thing.type} />
                       </div>
                     ) : null}
@@ -244,7 +262,7 @@ class CaseEditor extends Component {
                         })}
                       </label>
                     </div>
-                    <Field fieldName="body" type={LazyBodyEditor} />
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     <div className="related-content">
                       {makeLocalizedChoiceField(intl, "communication_mode")}
                       {makeLocalizedChoiceField(
@@ -273,11 +291,11 @@ class CaseEditor extends Component {
                       {makeLocalizedChoiceField(intl, "type_of_funding_entity")}
                       {makeLocalizedChoiceField(
                         intl,
-                        "typical_implementing_entity"
+                        "type_of_implementing_entity"
                       )}
                       {makeLocalizedChoiceField(
                         intl,
-                        "typical_sponsoring_entity"
+                        "type_of_sponsoring_entity"
                       )}
                       {}
                       {makeLocalizedBooleanField(intl, "ongoing")}
@@ -288,25 +306,33 @@ class CaseEditor extends Component {
                       )}
                       <div className="pb-1">
                         <p className="sub-heading">
-                          <FormattedMessage id="related_cases" />
+                          <FormattedMessage id="related_content" />
+                        </p>
+                        <p className="sub-sub-heading">
+                          <FormattedMessage id="related_cases_label" />
                         </p>
                         {related_cases}
                       </div>
                       <div className="pb-1">
-                        <p className="sub-heading">
-                          <FormattedMessage id="related_methods" />
+                        <p className="sub-sub-heading">
+                          <FormattedMessage id="related_methods_label" />
                         </p>
                         {related_methods}
                       </div>
                       <div className="pb-1">
-                        <p className="sub-heading">
-                          {intl.formatMessage({
-                            id: "related_organizations"
-                          })}
+                        <p className="sub-sub-heading">
+                          <FormattedMessage id="related_organizations_label" />
                         </p>
                         {related_organizations}
                       </div>{" "}
                     </div>
+                    {incomplete ? (
+                      <p className="pt-3 incomplete">
+                        {intl.formatMessage({
+                          id: "incomplete_" + thing.type
+                        })}
+                      </p>
+                    ) : null}
                     <RaisedButton
                       className="incomplete-warning"
                       disabled={incomplete}
@@ -317,13 +343,6 @@ class CaseEditor extends Component {
                         id: "submit_" + thing.type
                       })}
                     />
-                    {incomplete ? (
-                      <span className="incomplete">
-                        {intl.formatMessage({
-                          id: "incomplete_" + thing.type
-                        })}
-                      </span>
-                    ) : null}
                   </div>
                 )}
               </div>

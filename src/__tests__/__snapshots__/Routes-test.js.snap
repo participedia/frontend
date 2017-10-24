@@ -15,20 +15,34 @@ exports[`App 1`] = `
           className="menu-icon"
           onClick={[Function]}
         >
-          <img
-            alt=""
-            src="menu-icon.png"
-          />
+          <svg
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "color": "rgba(0, 0, 0, 0.87)",
+                "display": "inline-block",
+                "fill": "white",
+                "height": 32,
+                "muiPrepared": true,
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "userSelect": "none",
+                "width": 32,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+            />
+          </svg>
         </a>
         <a
           className="logo"
           href="/"
           onClick={[Function]}
         >
-          <img
-            alt="Go Home"
-            src="pp-logo.png"
-          />
+          Participedia
         </a>
       </div>
       <div
@@ -57,7 +71,7 @@ exports[`App 1`] = `
         </div>
       </a>
       <div
-        className="loginButton d-none d-sm-block d-md-block d-lg-block d-xl-block"
+        className="loginButton"
       >
         <button
           disabled={false}
@@ -859,20 +873,34 @@ exports[`Searching for a word 1`] = `
           className="menu-icon"
           onClick={[Function]}
         >
-          <img
-            alt=""
-            src="menu-icon.png"
-          />
+          <svg
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "color": "rgba(0, 0, 0, 0.87)",
+                "display": "inline-block",
+                "fill": "white",
+                "height": 32,
+                "muiPrepared": true,
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "userSelect": "none",
+                "width": 32,
+              }
+            }
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+            />
+          </svg>
         </a>
         <a
           className="logo"
           href="/"
           onClick={[Function]}
         >
-          <img
-            alt="Go Home"
-            src="pp-logo.png"
-          />
+          Participedia
         </a>
       </div>
       <div
@@ -901,7 +929,7 @@ exports[`Searching for a word 1`] = `
         </div>
       </a>
       <div
-        className="loginButton d-none d-sm-block d-md-block d-lg-block d-xl-block"
+        className="loginButton"
       >
         <button
           disabled={false}

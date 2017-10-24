@@ -39,8 +39,8 @@ import globalStyles from "./global.css";
 /* eslint-enable no-unused-vars */
 import "./Layout.css";
 import { injectIntl } from "react-intl";
-import menuIcon from "./img/menu-icon.png";
-import ppLogo from "./img/pp-logo.png";
+// import menuIcon from "./img/menu-icon.png";
+import MenuIcon from "material-ui/svg-icons/navigation/menu";
 
 import "./UniversalStyles.css";
 
@@ -137,6 +137,18 @@ export class Layout extends React.Component {
     const { intl } = this.props;
     let isAuthenticated = authService.isAuthenticated();
 
+    const menuOpen = {
+      width: 32,
+      height: 32,
+      fill: "grey"
+    }
+
+    const menuClosed = {
+      width: 32,
+      height: 32,
+      fill: "white"
+    }
+
     return (
       <BrowserRouter>
         <div>
@@ -144,10 +156,10 @@ export class Layout extends React.Component {
             <div className="nav-bar-wrapper">
               <div className="logo-area">
                 <a onClick={this.handleToggle} className="menu-icon">
-                  <img src={menuIcon} alt="" />
+                  <MenuIcon style={this.state.open ? menuOpen : menuClosed} />
                 </a>
                 <Link to="/" className="logo">
-                  <img src={ppLogo} alt="Go Home" />
+                  Participedia
                 </Link>
               </div>
               <div className="search-box-area">

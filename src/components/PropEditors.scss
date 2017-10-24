@@ -8,24 +8,6 @@
   border-radius: 100px;
   position: relative;
   overflow: hidden;
-  .change-avatar-button {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: solid 2px red;
-    height: 40px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    padding: 16px 0 24px;
-    box-sizing: border-box;
-    font-size: 20px;
-    cursor: pointer;
-    &:hover, &:focus {
-      background-color: rgba(0, 0, 0, 0.75);
-    }
-  }
 }
 
 .date-field {
@@ -36,12 +18,24 @@
   margin-bottom: 1rem;
   div>div {
     width: 100% !important;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     hr {
       display: none;
     }
   }
+  .clearable-datepicker {
+    position: relative;
+    .dismiss {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 20px !important;
+      padding: 0 !important;
+      cursor: pointer;
+    }
+  }
 }
+
 
 .list {
   >div>div>div {
