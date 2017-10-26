@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import SearchHit from "../../components/SearchHit/SearchHit";
-import { Container, Col } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import IconButton from "material-ui/IconButton";
 import DownloadButton from "material-ui/svg-icons/action/get-app";
@@ -233,7 +233,7 @@ export class SearchResultsView extends React.Component {
             </div>
             <FilterArray data={filters} />
           </div>
-          <div className="result-count">
+          <Row>
             <div className="results-box">{searchresults}</div>
             <div className="pagination">
               <IconButton
@@ -249,7 +249,7 @@ export class SearchResultsView extends React.Component {
                 <NavigateNextIcon />
               </IconButton>
             </div>
-          </div>
+          </Row>
         </div>
       );
     }

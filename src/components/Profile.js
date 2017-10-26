@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import authService from "../utils/AuthService";
 import Avatar from "material-ui/Avatar";
 import { Container, Row, Col } from "reactstrap";
-import { injectIntl } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
-import FloatingActionButton from "material-ui/FloatingActionButton";
+import Membership from "material-ui/svg-icons/action/card-membership";
+import Location from "material-ui/svg-icons/maps/place";
 import ContentPencil from "material-ui/svg-icons/image/edit";
+import DownloadButton from "material-ui/svg-icons/action/get-app";
+import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 import { stringifyLocation } from "./geoutils";
 import preventDefault from "react-prevent-default";
 import searchGridIcon from "../img/pp-search-grid-icon.png";
@@ -16,6 +19,8 @@ import searchGridIconActive from "../img/pp-search-grid-icon-active.png";
 import searchListIcon from "../img/pp-search-list-icon.png";
 import searchListIconActive from "../img/pp-search-list-icon-active.png";
 import "./Profile.css";
+import "./SearchResultsView/SearchResultsView.css";
+
 
 class Profile extends Component {
   static propTypes = {
@@ -24,8 +29,9 @@ class Profile extends Component {
 
   constructor() {
     super();
-    this.state = { selectedViewType: "grid" };
+    this.state = { selectedViewType: "grid", selectedCategory: "Authored" };
     this.onLayoutChange = this.onLayoutChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   onLayoutChange(layout) {
@@ -42,6 +48,10 @@ class Profile extends Component {
     } else {
       this.setState({ profile: userProfile });
     }
+  }
+
+  handleChange(event) {
+    this.setState({ selectedCategory: event.target.value });
   }
 
   render() {
@@ -87,81 +97,143 @@ class Profile extends Component {
     return (
       <Container fluid className="profile pb-3">
         <Row className="profile-info-section">
-          <Col lg={3} md={4} className="sidebar">
+          {user.email === profile.email ? (
+            <Link to="/profile/edit">
+              <div className="editProfile">
+                <EditIcon color={"#ec1414"} />
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+          <Col xs={12} lg={3} md={4} className="sidebar">
             <div className="user-avatar">
-              <Avatar size={200} src={user.picture_url} />
+              <Avatar size={160} src={user.picture_url} />
             </div>
           </Col>
-          <Col lg={9} md={8} className="main-area">
+          <Col xs={12} lg={9} md={8} className="main-area">
             <h2 className="name">{user.name}</h2>
             <div className="credentials">
-              <p>{user.title}</p>
-              <p>{user.affiliation}</p>
-              <p>{location}</p>
+              <span>{user.title}</span>
+              <span>{user.affiliation}</span>
               {user.join_date ? (
-                <p>
-                  Joined <TimeAgo date={user.join_date} />
-                </p>
+                <div>
+                  <Membership/> 
+                  <span>
+                   Joined <TimeAgo date={user.join_date} />
+                  </span>
+                </div>
               ) : (
                 <div />
               )}
-              <p>{user.bio}</p>
-            </div>
-            <div className="heading">Authored Content</div>
-            <div className="main-contents">
-              <div className="view-types-cont">
-                <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                  <div
-                    onClick={() => preventDefault(this.onLayoutChange("grid"))}
-                    className={
-                      this.state.selectedViewType === "grid"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    <img src={searchGridIcon} className="grid-icon" alt="" />
-                    <img
-                      src={searchGridIconActive}
-                      className="grid-icon"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    onClick={() => preventDefault(this.onLayoutChange("list"))}
-                    className={
-                      this.state.selectedViewType === "list"
-                        ? "selected"
-                        : "unselected"
-                    }
-                  >
-                    <img src={searchListIcon} className="list-icon" alt="" />
-                    <img
-                      src={searchListIconActive}
-                      className="list-icon"
-                      alt=""
-                    />
-                  </div>
+              {location ?
+                <div>
+                  <Location/>
+                  <span>{location}</span>
                 </div>
-              </div>
-              <Row className="authored-content">{authored}</Row>
+                :
+                <div />
+              }
             </div>
-          </Col>
+            <p>{user.bio}</p>
+          </Col>  
         </Row>
-        <Row className="profile-info-section">
-          <Col lg={{ size: 9 }} md={{ size: 8 }} className="ml-auto main-area">
-            <div className="heading pb-1">Bookmarked Content</div>
-            <Row className="bookmarked-content">{bookmarked}</Row>
-          </Col>
-        </Row>
-        {user.email === profile.email ? (
-          <Link to="/profile/edit">
-            <FloatingActionButton className="editButton">
-              <ContentPencil />
-            </FloatingActionButton>
-          </Link>
-        ) : (
-          <div />
-        )}
+        <Col md={12}>
+          <div className="clearfix search-actions-area">
+            <div className="filters d-none d-md-block d-lg-block d-xl-block">
+              <div
+                onClick={() => {
+                  this.setState({
+                    selectedCategory: "Authored"
+                  });
+                }}
+                className={
+                  this.state.selectedCategory === "Authored"
+                    ? "selected"
+                    : "unselected"
+                }
+              >
+                <FormattedMessage id="authored" />
+              </div>
+              {user.email === profile.email ?
+                <div
+                  onClick={() => {
+                    this.setState({
+                      selectedCategory: "Bookmarked"
+                    });
+                  }}
+                  className={
+                    this.state.selectedCategory === "Bookmarked"
+                      ? "selected"
+                      : "unselected"
+                  }
+                >
+                  <FormattedMessage id="bookmarked" />
+                </div>
+                :
+                undefined
+              }
+            </div>
+            {user.email === profile.email ?
+              <select
+                className="mobile-select d-md-none"
+                value={this.state.selectedCategory}
+                onChange={this.handleChange}
+              >
+                <option value="Authored">
+                  <FormattedMessage id="authored" />
+                </option>
+                <option value="Bookmarked">
+                  <FormattedMessage id="bookmarked" />
+                </option>
+              </select>
+              :
+              undefined
+            }  
+            <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
+              <div
+                onClick={() => preventDefault(this.onLayoutChange("grid"))}
+                className={
+                  this.state.selectedViewType === "grid"
+                    ? "selected"
+                    : "unselected"
+                }
+              >
+                <img src={searchGridIcon} className="grid-icon" alt="" />
+                <img
+                  src={searchGridIconActive}
+                  className="grid-icon"
+                  alt=""
+                />
+              </div>
+              <div
+                onClick={() => preventDefault(this.onLayoutChange("list"))}
+                className={
+                  this.state.selectedViewType === "list"
+                    ? "selected"
+                    : "unselected"
+                }
+              >
+                <img src={searchListIcon} className="list-icon" alt="" />
+                <img
+                  src={searchListIconActive}
+                  className="list-icon"
+                  alt=""
+                />
+              </div>
+              <div>
+                <DownloadButton />
+              </div>
+            </div>
+          </div>
+          <Row>
+            { this.state.selectedCategory === "Authored" ?
+              authored
+              :
+              bookmarked
+            }
+          </Row>
+        </Col>
       </Container>
     );
   }
