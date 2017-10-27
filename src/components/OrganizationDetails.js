@@ -5,16 +5,11 @@ import SearchLink from "../components/SearchLink";
 import CountryMap from "../components/CountryMap";
 import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
 import ListWithHeading from "../components/ListWithHeading";
+import Tags from "./Tags";
 
 export default class OrganizationDetails extends React.Component {
   render() {
     let thing = this.props.case;
-    let tags = <div />;
-    if (thing.tags) {
-      tags = thing.tags.map(tag => (
-        <SearchLink key={tag} tag="tag" value={tag} />
-      ));
-    }
     let ed = null;
     if (thing.executive_director) {
       ed = (
@@ -35,10 +30,7 @@ export default class OrganizationDetails extends React.Component {
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
         </p>
-        <p className="sub-sub-heading">
-          <FormattedMessage id="tags_title" />
-        </p>
-        <div className="tags">{tags}</div>
+        <Tags thing={thing} />
         <ListWithHeading heading="links" property="links" thing={thing} />
         {ed}
 

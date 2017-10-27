@@ -151,23 +151,25 @@ class CaseEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="sub-heading top">
-                  <label htmlFor="title">
-                    <FormattedMessage id={thing.type + "_title_label"} />
-                  </label>
+                <div className="field-case top">
+                  <h2 className="sub-heading">
+                    <label htmlFor="title">
+                      <FormattedMessage id={thing.type + "_title_label"} />
+                    </label>
+                  </h2>
+                  <p className="explanatory-text"><FormattedMessage
+                    id={intl.formatMessage({
+                      id: thing.type + "_title_placeholder"
+                    })}/></p>
+                  <Field
+                    fieldName="title"
+                    name="title"
+                    className="custom-field"
+                    type={Text}
+                    placeholder=""
+                    fullWidth
+                  />
                 </div>
-                <p className="m-0"><FormattedMessage
-                  id={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}/></p>
-                <Field
-                  fieldName="title"
-                  name="title"
-                  className="custom-field"
-                  type={Text}
-                  placeholder=""
-                  fullWidth
-                />
                 {makeLocalizedChoiceField(
                   intl,
                   "issue",
@@ -198,31 +200,39 @@ class CaseEditor extends Component {
                 )}
                 <div className="case-location">
                   {makeLocalizedLocationField(intl, "location")}
-                  <p className="sub-heading">
+                </div>
+                <div className="field-case">
+                  <h2 className="sub-heading">
                     <FormattedMessage id="date" />
-                  </p>
+                  </h2>
                   {makeLocalizedDateField(intl, "start_date")}
                   {makeLocalizedDateField(intl, "end_date")}
-                  <p className="sub-heading">
+                </div>
+                <div className="field-case">
+                  <h2 className="sub-heading">
                     <FormattedMessage id="links" />
-                  </p>
+                  </h2>
                   {makeLocalizedListField(intl, "links")}
                 </div>
-                <p className="sub-heading">
-                  <FormattedMessage id="media" />
-                </p>
-                <p className="sub-sub-heading">
-                  <FormattedMessage id="photos" />
-                </p>
-                <ImageListEditor property="images" thing={thing} />
-                <p className="sub-sub-heading">
-                  <FormattedMessage id="videos" />
-                </p>
-                {makeLocalizedListField(intl, "videos")}
-                <p className="sub-heading">
-                  <FormattedMessage id="tags_title" />
-                </p>
-                {tagseditor}
+                <div className="field-case media">
+                  <h2 className="sub-heading">
+                    <FormattedMessage id="media" />
+                  </h2>
+                  <h3 className="sub-sub-heading">
+                    <FormattedMessage id="photos" />
+                  </h3>
+                  <ImageListEditor property="images" thing={thing} />
+                  <h3 className="sub-sub-heading">
+                    <FormattedMessage id="videos" />
+                  </h3>
+                  {makeLocalizedListField(intl, "videos")}
+                </div>
+                <div className={isQuick? "field-case last" : "field-case"}>
+                  <h2 className="sub-heading">
+                    <FormattedMessage id="tags_title" />
+                  </h2>
+                  {tagseditor}
+                </div>
               </div>
               <div>
                 {isQuick ? (
@@ -255,15 +265,15 @@ class CaseEditor extends Component {
                   </div>
                 ) : (
                   <div>
-                    <div>
-                      <label className="sub-heading" htmlFor="body_en">
+                    <div className="field-case">
+                      <h2 className="sub-heading" htmlFor="body_en">
                         {intl.formatMessage({
                           id: thing.type + "_body_title"
                         })}
-                      </label>
+                      </h2>
+                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     </div>
-                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
-                    <div className="related-content">
+                    <div>
                       {makeLocalizedChoiceField(intl, "communication_mode")}
                       {makeLocalizedChoiceField(
                         intl,
@@ -304,25 +314,21 @@ class CaseEditor extends Component {
                         intl,
                         "who_else_supported_the_initiative"
                       )}
-                      <div className="pb-1">
-                        <p className="sub-heading">
+                      <div className="field-case last related">
+                        <h2 className="sub-heading">
                           <FormattedMessage id="related_content" />
-                        </p>
-                        <p className="sub-sub-heading">
+                        </h2>
+                        <h3 className="sub-sub-heading">
                           <FormattedMessage id="related_cases_label" />
-                        </p>
+                        </h3>
                         {related_cases}
-                      </div>
-                      <div className="pb-1">
-                        <p className="sub-sub-heading">
+                        <h3 className="sub-sub-heading mt-3">
                           <FormattedMessage id="related_methods_label" />
-                        </p>
+                        </h3>
                         {related_methods}
-                      </div>
-                      <div className="pb-1">
-                        <p className="sub-sub-heading">
+                        <h3 className="sub-sub-heading mt-3">
                           <FormattedMessage id="related_organizations_label" />
-                        </p>
+                        </h3>
                         {related_organizations}
                       </div>{" "}
                     </div>

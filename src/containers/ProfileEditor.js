@@ -40,7 +40,13 @@ class ProfileEditor extends React.Component {
         if (a.label.toLowerCase() === b.label.toLowerCase()) return 0;
         return 1;
       });
-      component.setState({ organizations: orgs });
+      let orgsArray = []
+      Object.keys(orgs).forEach(function(key) {
+
+          orgsArray.push(orgs[key]['label']);
+
+      });
+      component.setState({ organizations: orgsArray });
     });
     api.fetchUser().then(function(user) {
       component.setState({ user: user.data });

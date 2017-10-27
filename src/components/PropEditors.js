@@ -92,9 +92,9 @@ export function makeLocalizedChoiceField(
   }
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
-    <div>
-      <p className="sub-heading">{label}</p>
-      <p className="m-0">{intl.formatMessage({
+    <div className="field-case select">
+      <h2 className="sub-heading">{label}</h2>
+      <p className="explanatory-text">{intl.formatMessage({
           id: property + "_placeholder"
         })}</p>
       <Field
@@ -152,10 +152,10 @@ export class BooleanEditor extends React.Component {
 
 export function makeLocalizedBooleanField(intl, property) {
   return (
-    <div>
-      <p className="sub-heading">
+    <div className="field-case">
+      <h2 className="sub-heading boolean">
         <FormattedMessage id={property} />
-      </p>
+      </h2>
       <div className={property}>
         <Field
           fieldName={property}
@@ -203,6 +203,7 @@ class NumberEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
+        className="custom-field"
         type="number"
         value={
           typeof this.state.value !== "undefined" &&
@@ -221,9 +222,9 @@ class NumberEditor extends React.Component {
 export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
-    <div>
-      <p className="sub-heading">{label}</p>
-      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+    <div className="field-case">
+      <h2 className="sub-heading">{label}</h2>
+      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -260,6 +261,7 @@ class TextEditor extends React.Component {
     return (
       <TextField
         onChange={onChange}
+        className="custom-field"
         value={
           typeof this.state.value !== "undefined" && this.state.value !== null
             ? this.state.value
@@ -275,9 +277,9 @@ class TextEditor extends React.Component {
 export function makeLocalizedTextField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
-    <div>
-      <p className="sub-heading">{label}</p>
-      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+    <div className="field-case">
+      <h2 className="sub-heading">{label}</h2>
+      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -340,7 +342,7 @@ class DateEditor extends React.Component {
 export function makeLocalizedDateField(intl, property) {
   return (
     <div>
-      <p className="m-0">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
       <div className={"date-field " + property}>
         <Field
           fieldName={property}
@@ -413,9 +415,9 @@ class LocationEditor extends React.Component {
 export function makeLocalizedLocationField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
-    <div>
-      <p className="sub-heading">{label}</p>
-      <p className="m-0">{intl.formatMessage({
+    <div className="field-case location-field">
+      <h2 className="sub-heading">{label}</h2>
+      <p className="explanatory-text">{intl.formatMessage({
             id: "location_placeholder"
           })}</p>
       <div className={property}>
@@ -486,7 +488,7 @@ export class ListEditor extends React.Component {
 export function makeLocalizedListField(intl, property) {
   return (
     <div>
-      <p className="m-0"><FormattedMessage id={intl.formatMessage({
+      <p className="explanatory-text"><FormattedMessage id={intl.formatMessage({
             id: property + "_placeholder"
           })} /></p> 
       <div className={"list " + property}>
@@ -545,7 +547,7 @@ export class AvatarEditor extends React.Component {
   render() {
     return (
       <div className="user-avatar">
-        <Avatar size={200} src={this.state.value} />
+        <Avatar size={160} src={this.state.value} />
         <div>
           <Upload
             customStyle={customStyle}

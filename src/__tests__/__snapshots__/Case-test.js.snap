@@ -20,59 +20,67 @@ exports[`Case editor renders correctly 1`] = `
           className="case-box"
         >
           <div
-            className="sub-heading top"
+            className="field-case top"
           >
-            <label
-              htmlFor="title"
+            <h2
+              className="sub-heading"
+            >
+              <label
+                htmlFor="title"
+              >
+                <span>
+                  Title of Case
+                </span>
+              </label>
+            </h2>
+            <p
+              className="explanatory-text"
             >
               <span>
-                Title of Case
+                Enter title
               </span>
-            </label>
+            </p>
+            <Textfield
+              className="custom-field"
+              disabled={false}
+              errorText={undefined}
+              floatingLabelText=""
+              fullWidth={true}
+              hintText={null}
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder=""
+              type="text"
+              value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
+            />
           </div>
-          <p
-            className="m-0"
+          <div
+            className="field-case select"
           >
-            <span>
-              Enter title
-            </span>
-          </p>
-          <Textfield
-            className="custom-field"
-            disabled={false}
-            errorText={undefined}
-            floatingLabelText=""
-            fullWidth={true}
-            hintText={null}
-            name="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder=""
-            type="text"
-            value="Agenda 21 Locale (Province of Forli-Cesena, Italy)"
-          />
-          <div>
-            <p
+            <h2
               className="sub-heading"
             >
               General Issues
-            </p>
+            </h2>
             <p
-              className="m-0"
+              className="explanatory-text"
             >
               Select an issue
             </p>
           </div>
           <div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Specific Topic
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select an specific Topic
               </p>
@@ -81,14 +89,16 @@ exports[`Case editor renders correctly 1`] = `
           <div
             className="case-location"
           >
-            <div>
-              <p
+            <div
+              className="field-case location-field"
+            >
+              <h2
                 className="sub-heading"
               >
                 Location
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Type to search for known location
               </p>
@@ -96,16 +106,20 @@ exports[`Case editor renders correctly 1`] = `
                 className="location"
               />
             </div>
-            <p
+          </div>
+          <div
+            className="field-case"
+          >
+            <h2
               className="sub-heading"
             >
               <span>
                 Date
               </span>
-            </p>
+            </h2>
             <div>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select a start date or date of single event
               </p>
@@ -124,7 +138,7 @@ exports[`Case editor renders correctly 1`] = `
             </div>
             <div>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select an end date, if applicable
               </p>
@@ -141,16 +155,20 @@ exports[`Case editor renders correctly 1`] = `
                 </div>
               </div>
             </div>
-            <p
+          </div>
+          <div
+            className="field-case"
+          >
+            <h2
               className="sub-heading"
             >
               <span>
                 Relevant Links (URLs)
               </span>
-            </p>
+            </h2>
             <div>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 <span>
                   Add a link
@@ -161,195 +179,217 @@ exports[`Case editor renders correctly 1`] = `
               />
             </div>
           </div>
-          <p
-            className="sub-heading"
+          <div
+            className="field-case media"
           >
-            <span>
-              Media
-            </span>
-          </p>
-          <p
-            className="sub-sub-heading"
-          >
-            <span>
-              Photos
-            </span>
-          </p>
-          <div>
-            <div
-              className="itemPics pb-3 row"
+            <h2
+              className="sub-heading"
             >
+              <span>
+                Media
+              </span>
+            </h2>
+            <h3
+              className="sub-sub-heading"
+            >
+              <span>
+                Photos
+              </span>
+            </h3>
+            <div>
               <div
-                className="pl-0 box-container col-12 col-md-6 col-lg-4"
+                className="itemPics row"
               >
                 <div
-                  className="box lead"
+                  className="pl-0 box-container col-12 col-md-6 col-lg-4"
                 >
                   <div
-                    className="checkbox"
-                    onClick={[Function]}
-                  />
-                  <div
-                    className="trash"
-                    onClick={[Function]}
-                  />
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/agenda21%2520.jpg"
-                    style={
-                      Object {
-                        "height": "100%",
-                        "objectFit": "contain",
-                        "width": "100%",
+                    className="box lead"
+                  >
+                    <div
+                      className="checkbox"
+                      onClick={[Function]}
+                    />
+                    <div
+                      className="trash"
+                      onClick={[Function]}
+                    />
+                    <img
+                      alt=""
+                      className="img-fluid"
+                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/agenda21%2520.jpg"
+                      style={
+                        Object {
+                          "height": "100%",
+                          "objectFit": "contain",
+                          "width": "100%",
+                        }
                       }
-                    }
-                  />
+                    />
+                  </div>
                 </div>
               </div>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Select a photo from your device
+                </span>
+              </p>
+              <div>
+                <span>
+                  Sorry, upload only works if you're logged in.
+                </span>
+              </div>
             </div>
-            <p
-              className="m-0"
+            <h3
+              className="sub-sub-heading"
             >
               <span>
-                Select a photo from your device
+                Videos
               </span>
-            </p>
+            </h3>
             <div>
-              <span>
-                Sorry, upload only works if you're logged in.
-              </span>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Add a video (Vimeo, YouTube)
+                </span>
+              </p>
+              <div
+                className="list videos"
+              />
             </div>
           </div>
-          <p
-            className="sub-sub-heading"
+          <div
+            className="field-case"
           >
-            <span>
-              Videos
-            </span>
-          </p>
-          <div>
-            <p
-              className="m-0"
+            <h2
+              className="sub-heading"
             >
               <span>
-                Add a video (Vimeo, YouTube)
+                Tags
               </span>
-            </p>
-            <div
-              className="list videos"
-            />
-          </div>
-          <p
-            className="sub-heading"
-          >
-            <span>
-              Tags
-            </span>
-          </p>
-          <div>
-            <p
-              className="m-0"
-            >
-              <span>
-                Type to search for an existing tag
-              </span>
-            </p>
+            </h2>
+            <div>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Type to search for an existing tag
+                </span>
+              </p>
+            </div>
           </div>
         </div>
         <div>
           <div>
-            <div>
-              <label
+            <div
+              className="field-case"
+            >
+              <h2
                 className="sub-heading"
                 htmlFor="body_en"
               >
                 Case Description/Narrative
-              </label>
+              </h2>
             </div>
-            <div
-              className="related-content"
-            >
-              <div>
-                <p
+            <div>
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Communication Mode
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select a communication mode
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Communication with audience
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select a communication with audience
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Decision method
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select a decision method
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Face-to-face, online or both
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select face-to-face, online or both
                 </p>
               </div>
-              <div>
-                <p
-                  className="sub-heading"
+              <div
+                className="field-case"
+              >
+                <h2
+                  className="sub-heading boolean"
                 >
                   <span>
                     Facilitated
                   </span>
-                </p>
+                </h2>
                 <div
                   className="facilitated"
                 />
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Voting
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select type of voting
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Number of meeting days
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Enter number of meeting days
                 </p>
@@ -357,6 +397,7 @@ exports[`Case editor renders correctly 1`] = `
                   className="number_of_meeting_days"
                 >
                   <Textfield
+                    className="custom-field"
                     fullWidth={true}
                     name="number_of_meeting_days"
                     onChange={[Function]}
@@ -365,122 +406,142 @@ exports[`Case editor renders correctly 1`] = `
                   />
                 </div>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Targeted participant demographic
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select targeted participant demographic
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Kind of influence
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select kind of influence
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Targeted participants public role
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select targeted participants public role
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Targeted audience
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select targeted audience
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Participant selection
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select participant selection
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Type of funding entity
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Select type of funding entity
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   type_of_implementing_entity
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   type_of_implementing_entity_placeholder
                 </p>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case select"
+              >
+                <h2
                   className="sub-heading"
                 >
                   type_of_sponsoring_entity
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   type_of_sponsoring_entity_placeholder
                 </p>
               </div>
-              <div>
-                <p
-                  className="sub-heading"
+              <div
+                className="field-case"
+              >
+                <h2
+                  className="sub-heading boolean"
                 >
                   <span>
                     Ongoing
                   </span>
-                </p>
+                </h2>
                 <div
                   className="ongoing"
                 />
               </div>
-              <div>
-                <p
+              <div
+                className="field-case"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Staff type
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Enter staff type
                 </p>
@@ -488,6 +549,7 @@ exports[`Case editor renders correctly 1`] = `
                   className="staff_type"
                 >
                   <Textfield
+                    className="custom-field"
                     fullWidth={true}
                     name="staff_type"
                     onChange={[Function]}
@@ -495,14 +557,16 @@ exports[`Case editor renders correctly 1`] = `
                   />
                 </div>
               </div>
-              <div>
-                <p
+              <div
+                className="field-case"
+              >
+                <h2
                   className="sub-heading"
                 >
                   Who else supported the initiative
-                </p>
+                </h2>
                 <p
-                  className="m-0"
+                  className="explanatory-text"
                 >
                   Enter who else supported the initiative
                 </p>
@@ -510,6 +574,7 @@ exports[`Case editor renders correctly 1`] = `
                   className="who_else_supported_the_initiative"
                 >
                   <Textfield
+                    className="custom-field"
                     fullWidth={true}
                     name="who_else_supported_the_initiative"
                     onChange={[Function]}
@@ -518,65 +583,57 @@ exports[`Case editor renders correctly 1`] = `
                 </div>
               </div>
               <div
-                className="pb-1"
+                className="field-case last related"
               >
-                <p
+                <h2
                   className="sub-heading"
                 >
                   <span>
                     Related Content
                   </span>
-                </p>
-                <p
+                </h2>
+                <h3
                   className="sub-sub-heading"
                 >
                   <span>
                     Cases
                   </span>
-                </p>
+                </h3>
                 <div>
                   <p
-                    className="m-0"
+                    className="explanatory-text"
                   >
                     <span>
                       Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
                     </span>
                   </p>
                 </div>
-              </div>
-              <div
-                className="pb-1"
-              >
-                <p
-                  className="sub-sub-heading"
+                <h3
+                  className="sub-sub-heading mt-3"
                 >
                   <span>
                     Methods
                   </span>
-                </p>
+                </h3>
                 <div>
                   <p
-                    className="m-0"
+                    className="explanatory-text"
                   >
                     <span>
                       Related methods include participatory methods or tools used during this particular case.
                     </span>
                   </p>
                 </div>
-              </div>
-              <div
-                className="pb-1"
-              >
-                <p
-                  className="sub-sub-heading"
+                <h3
+                  className="sub-sub-heading mt-3"
                 >
                   <span>
                     Organizations
                   </span>
-                </p>
+                </h3>
                 <div>
                   <p
-                    className="m-0"
+                    className="explanatory-text"
                   >
                     <span>
                       Related organizations include any organization that played a direct role in the planning or execution of this particular case.
@@ -630,15 +687,17 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           </div>
           <div />
           <div>
-            <p
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
+            <h2
+              className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading"
             >
               <span>
                 Data
               </span>
-            </p>
+            </h2>
             <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -647,14 +706,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="issue"
+                className="issue blond"
               >
                 <span>
                   Budgeting
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -663,7 +724,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="specific_topic"
+                className="specific_topic blond"
               >
                 <span>
                   Sustainable Development
@@ -707,7 +768,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -716,7 +779,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="communication_mode"
+                className="communication_mode blond"
               >
                 <span>
                   Discussion, Dialogue, or Deliberation
@@ -724,7 +787,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               </div>
             </div>
             <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -733,14 +798,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="decision_method"
+                className="decision_method blond"
               >
                 <span>
                   Getting sense of room/group (i.e. no formal voting)
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -749,14 +816,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="facetoface_online_or_both"
+                className="facetoface_online_or_both blond"
               >
                 <span>
                   Face-to-face
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -765,14 +834,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="facilitated"
+                className="facilitated blond"
               >
                 <span>
                   true
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -781,14 +852,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="voting"
+                className="voting blond"
               >
                 <span>
                   true
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -797,7 +870,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="number_of_meeting_days"
+                className="number_of_meeting_days blond"
               >
                 <span>
                   4
@@ -806,7 +879,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             </div>
             <div />
             <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -815,14 +890,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="targeted_participants_public_role"
+                className="targeted_participants_public_role blond"
               >
                 <span>
                   Stakeholder Organizations
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -831,14 +908,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="targeted_audience"
+                className="targeted_audience blond"
               >
                 <span>
                   General Public
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -847,14 +926,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="participant_selection"
+                className="participant_selection blond"
               >
                 <span>
                   Open to all with targeted recruitment
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -863,7 +944,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </p>
               <div
-                className="type_of_funding_entity"
+                className="type_of_funding_entity blond"
               >
                 <span>
                   Regional Government (e.g. State, Provincial, Territorial)
@@ -872,7 +953,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             </div>
             <div />
             <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -888,7 +971,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -904,7 +989,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </div>
             </div>
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -926,23 +1013,23 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="main-area col-12 col-md-8"
+          className="main-area col-12 col-md-6"
         >
           <div
             className="case-box"
           >
-            <h2
+            <h3
               className="category"
             >
               <span>
                 Case
               </span>
-            </h2>
-            <h2
+            </h3>
+            <h1
               className="case-title"
             >
               Agenda 21 Locale (Province of Forli-Cesena, Italy)
-            </h2>
+            </h1>
             <ul
               className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
@@ -1000,13 +1087,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Related Content
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
@@ -1017,26 +1104,28 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Case Data
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
                   <div>
-                    <p
-                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
+                    <h2
+                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading"
                     >
                       <span>
                         Data
                       </span>
-                    </p>
+                    </h2>
                     <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1045,14 +1134,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="issue"
+                        className="issue blond"
                       >
                         <span>
                           Budgeting
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1061,7 +1152,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="specific_topic"
+                        className="specific_topic blond"
                       >
                         <span>
                           Sustainable Development
@@ -1105,7 +1196,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1114,7 +1207,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="communication_mode"
+                        className="communication_mode blond"
                       >
                         <span>
                           Discussion, Dialogue, or Deliberation
@@ -1122,7 +1215,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       </div>
                     </div>
                     <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1131,14 +1226,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="decision_method"
+                        className="decision_method blond"
                       >
                         <span>
                           Getting sense of room/group (i.e. no formal voting)
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1147,14 +1244,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="facetoface_online_or_both"
+                        className="facetoface_online_or_both blond"
                       >
                         <span>
                           Face-to-face
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1163,14 +1262,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="facilitated"
+                        className="facilitated blond"
                       >
                         <span>
                           true
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1179,14 +1280,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="voting"
+                        className="voting blond"
                       >
                         <span>
                           true
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1195,7 +1298,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="number_of_meeting_days"
+                        className="number_of_meeting_days blond"
                       >
                         <span>
                           4
@@ -1204,7 +1307,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     </div>
                     <div />
                     <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1213,14 +1318,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="targeted_participants_public_role"
+                        className="targeted_participants_public_role blond"
                       >
                         <span>
                           Stakeholder Organizations
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1229,14 +1336,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="targeted_audience"
+                        className="targeted_audience blond"
                       >
                         <span>
                           General Public
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1245,14 +1354,16 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="participant_selection"
+                        className="participant_selection blond"
                       >
                         <span>
                           Open to all with targeted recruitment
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1261,7 +1372,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </p>
                       <div
-                        className="type_of_funding_entity"
+                        className="type_of_funding_entity blond"
                       >
                         <span>
                           Regional Government (e.g. State, Provincial, Territorial)
@@ -1270,7 +1381,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     </div>
                     <div />
                     <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1286,7 +1399,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1302,7 +1417,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -1376,7 +1493,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
+          className="text-center case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-3"
         >
           <div
             className="top-icons"

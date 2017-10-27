@@ -17,9 +17,9 @@ export default class CaseDetails extends React.Component {
     let thing = this.props.case;
     return (
       <div>
-        <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
+        <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading">
           <FormattedMessage id="data" />
-        </p>
+        </h2>
         <Tags thing={thing} />
         <LinkedPropertyGroupWithHeading
           heading="issue"
