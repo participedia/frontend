@@ -145,7 +145,6 @@
 
   .view-types {
     float: right;
-    margin-right: 10px;
     @include media-breakpoint-up(md) {
       margin-top: 10px;
     }
@@ -373,6 +372,7 @@ div h3.searching-message {
 .pagination {
   float: right;
   margin-top: -1rem;
+  margin-right: -1rem;
   .pagination_icon {
     cursor: pointer;
     display: inline-block;
@@ -380,8 +380,6 @@ div h3.searching-message {
     margin: 0.5ex;
     text-align: center;
     vertical-align: middle;
-    // margin: .2ex .4ex;
-    // padding: 0 .2em;
     font-size: 1.5rem;
     width: 1em;
     height: 1em;

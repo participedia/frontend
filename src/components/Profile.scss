@@ -2,6 +2,22 @@
 
 .profile {
   padding-top: 3%;
+  .search-actions-area {
+    margin-bottom: 3rem;
+    .filters {
+      div {
+        &:hover {
+          color: $interactive-color;
+        }
+      }
+      .unselected {
+        color: $primary-color;
+      }
+      .selected {
+        color: $interactive-color;
+      }
+    }
+  }
 }
 
 .view-types-cont {
@@ -10,7 +26,6 @@
 
 .view-types {
   float: right;
-  margin-right:10px;
   @include media-breakpoint-up(md) {
     margin-top:10px;
   }
@@ -40,6 +55,10 @@
     }
   }
 
+  svg {
+    transform: translateY(3px)
+  }
+
   div.selected, div:hover, div:focus {
     img:first-child {
       display: none;
@@ -53,10 +72,6 @@
 
 .main-contents {
   min-height: 200px;
-}
-
-.unselected {
-  color: black;
 }
 
 .sidebar {
@@ -80,45 +95,78 @@
   }
 }
 
-.profile-info-section .main-area {
-  .name {
-    color: #3f51b2;
-    font-weight: 500;
-    line-height: 72px;
+.profile-info-section {
+  @include media-breakpoint-only(md) {
+    padding-top: 7%;
   }
-  .credentials {
-    padding-left: 64px;
-    margin: 32px 0;
-    padding-bottom: 32px;
-    position: relative;
-    &:before {
-      content: '';
-      background-image: url("../img/pp-envelope-icon-red.png");
-      width: 40px;
-      height: 40px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
+  position: relative;
+    @include media-breakpoint-down(lg) {
+      .editProfile {
+        position: absolute;
+        display: block;
+        right: 30px;
+      }
     }
-    p {
-      color: $grey-text;
+    @include media-breakpoint-up(lg) {
+      .editProfile {
+        display: none;
+      }
+      svg {
+        width: 30px !important;
+        height: 30px !important;
+      }
+      &:hover {
+        .editProfile {
+          position: absolute;
+          display: block;
+          right: 30px;
+        }
+      }
+  }
+  .main-area {
+    .name {
+      font-weight: 600;
+      line-height: 60px;
+      @include media-breakpoint-down(sm) {
+        text-align: center;
+      }  
+    }
+    .credentials {
+      margin: 1rem 0;
+      position: relative;
+      @include media-breakpoint-down(sm) {
+        text-align: center;
+      } 
+      svg {
+        transform: translate(0, 11px);
+        width: 14px !important;
+      }
+      div {
+        margin-top: -7px;
+        span {
+          padding-left: 0.4rem;
+          font-size: 0.9rem;
+        }
+      }
+      >span {
+        font-size: 0.9rem;
+        display: block;
+        color: $grey-text;
+        margin: 0;
+        font-weight: 100;
+      }
+    }
+    .description {
       font-weight: 100;
       line-height: 32px;
     }
-  }
-  .description {
-    font-weight: 100;
-    line-height: 32px;
-  }
-  .authored-content,.bookmarked-content {
-    margin-top: 1em;
-    padding-top: 1em;
-    padding-bottom: 2em;
-  }
-  .heading {
-    font-size: 1.5rem;
+    .authored-content,.bookmarked-content {
+      margin-top: 1em;
+      padding-top: 1em;
+      padding-bottom: 2em;
+    }
+    .heading {
+      font-size: 1.5rem;
+    }
   }
 }
