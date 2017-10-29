@@ -31,7 +31,7 @@ class MapVisualization extends React.Component {
           let lng = position.coords.longitude;
           component.setState({
             center: [lng, lat],
-            zoom: [5]
+            zoom: [6]
           });
           store.set("geolocated_once", "true");
         });
@@ -40,8 +40,8 @@ class MapVisualization extends React.Component {
 
     this.state = {
       popupShowLabel: true,
-      center: props.center || [9.9215833, 35.4099109],
-      zoom: [2],
+      center: props.center || [15, 1],
+      zoom: [0],
       focus: null
     };
   }
