@@ -49,7 +49,7 @@ const fullscreenMarkerLayout = {
   "text-padding": 0,
   "text-anchor": "bottom",
   "text-allow-overlap": true,
-  "text-field": String.fromCharCode("0xe55f"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
+  "text-field": String.fromCharCode("0xe0C8"), // see https://github.com/mapbox/mapbox-gl-js/issues/3605#issuecomment-296486123 for the why.
   "icon-optional": true,
   "text-font": ["Material Icons Regular"], // ["FontAwesome Regular"] is also available
   "text-size": 18
