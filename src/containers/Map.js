@@ -36,9 +36,12 @@ function extractData(data) {
     return {
       id: obj.id,
       type: obj.type,
+      featured: obj.featured,
+      searchmatched: obj.searchmatched,
       position: coords,
       url: `/${obj.type}/${obj.id}`,
-      title: obj.title
+      title: obj.title,
+      images: obj.images
     };
   });
   newdata = newdata.filter(c => c.position[0] !== 0);

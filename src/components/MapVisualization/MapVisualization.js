@@ -11,7 +11,12 @@ const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
 const itemMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#000"
+  "text-color": "#767"
+};
+
+const itemSearchMarkerPaint = {
+  "text-translate-anchor": "viewport",
+  "text-color": "#010"
 };
 
 class MapVisualization extends React.Component {
@@ -26,7 +31,7 @@ class MapVisualization extends React.Component {
           let lng = position.coords.longitude;
           component.setState({
             center: [lng, lat],
-            zoom: [5]
+            zoom: [6]
           });
           store.set("geolocated_once", "true");
         });
@@ -35,8 +40,8 @@ class MapVisualization extends React.Component {
 
     this.state = {
       popupShowLabel: true,
-      center: props.center || [9.9215833, 35.4099109],
-      zoom: [2],
+      center: props.center || [15, 1],
+      zoom: [0],
       focus: null
     };
   }
@@ -66,13 +71,30 @@ class MapVisualization extends React.Component {
     if (!items) return <div />;
     let popupChange = this._popupChange.bind(this);
     let clearPopup = this._clearPopup.bind(this);
-    const itemFeatures = items.map((st, index) => (
-      <Feature
-        key={st.id}
-        onClick={this._markerClick.bind(this, st)}
-        coordinates={st.position}
-      />
-    ));
+    const itemSearchFeatures = items
+      .filter(st => st.searchmatched)
+      .map((st, index) => (
+        <Feature
+          key={st.id}
+          onClick={this._markerClick.bind(this, st)}
+          coordinates={st.position}
+        />
+      ));
+    const itemFeatures = items
+      .filter(st => !st.searchmatched)
+      .map((st, index) => (
+        <Feature
+          key={st.id}
+          coordinates={st.position}
+          paint={itemMarkerPaint}
+        />
+      ));
+    const markerLayout = Object.assign({}, this.props.markerLayout, {
+      // "text-field": String.fromCharCode("0xe55f")
+    });
+    const searchMarkerLayout = Object.assign({}, this.props.markerLayout, {
+      // "text-field": String.fromCharCode("0xe0C8")
+    });
 
     return (
       <div className="map-component">
@@ -91,13 +113,20 @@ class MapVisualization extends React.Component {
         >
           <ZoomControl zoomDiff={1} />
           {itemFeatures ? (
+            <Layer type="symbol" layout={markerLayout} paint={itemMarkerPaint}>
+              {itemFeatures}
+            </Layer>
+          ) : (
+            <div />
+          )}
+          {itemSearchFeatures ? (
             <Layer
               type="symbol"
               id="items"
-              layout={this.props.markerLayout}
-              paint={itemMarkerPaint}
+              layout={searchMarkerLayout}
+              paint={itemSearchMarkerPaint}
             >
-              {itemFeatures}
+              {itemSearchFeatures}
             </Layer>
           ) : (
             <div />
