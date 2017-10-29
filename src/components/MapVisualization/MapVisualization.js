@@ -10,15 +10,13 @@ const accessToken =
 const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
 const itemMarkerPaint = {
-  "circle-radius": 4,
-  "circle-color": "#AAA",
-  "circle-stroke-width": 1,
-  "circle-stroke-color": "#333"
+  "text-translate-anchor": "viewport",
+  "text-color": "#767"
 };
 
 const itemSearchMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#000"
+  "text-color": "#010"
 };
 
 class MapVisualization extends React.Component {
@@ -92,7 +90,10 @@ class MapVisualization extends React.Component {
         />
       ));
     const markerLayout = Object.assign({}, this.props.markerLayout, {
-      "icon-size": 3
+      // "text-field": String.fromCharCode("0xe55f")
+    });
+    const searchMarkerLayout = Object.assign({}, this.props.markerLayout, {
+      // "text-field": String.fromCharCode("0xe0C8")
     });
 
     return (
@@ -112,7 +113,7 @@ class MapVisualization extends React.Component {
         >
           <ZoomControl zoomDiff={1} />
           {itemFeatures ? (
-            <Layer type="circle" paint={itemMarkerPaint}>
+            <Layer type="symbol" layout={markerLayout} paint={itemMarkerPaint}>
               {itemFeatures}
             </Layer>
           ) : (
@@ -122,7 +123,7 @@ class MapVisualization extends React.Component {
             <Layer
               type="symbol"
               id="items"
-              layout={this.props.markerLayout}
+              layout={searchMarkerLayout}
               paint={itemSearchMarkerPaint}
             >
               {itemSearchFeatures}
