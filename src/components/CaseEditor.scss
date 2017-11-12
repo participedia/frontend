@@ -224,14 +224,22 @@ label {
   }
 }
 
-.new {
+.customButton {
+  margin-left: 0 !important;
   button {
-    div div {
+    div {
       span {
-        &:after {
-          content: '|  +';
-          padding-left: 9px;
-          white-space: pre;
+        font-size: 1rem;
+        padding-left: 6px !important;
+        text-transform: capitalize !important;
+        &:before {
+          // background-image: url("../img/icon-publish.png");
+          // background-size: cover;
+          // content:" ";
+          content:url("../img/icon-publish.png");
+          // border: solid 1px red;
+          width: 20px;
+          padding: 7px;
         }
       }
     }

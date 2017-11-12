@@ -171,7 +171,9 @@ export class Layout extends React.Component {
                 to="/new"
               >
                 <div className="createButton">
-                  <FormattedMessage id="quick_submit" />
+                  <div className="createButton-text">
+                    <FormattedMessage id="quick_submit" />
+                  </div>
                 </div>
               </Link>
               <LoginAvatar auth={authService} className="login-area" />
@@ -235,7 +237,7 @@ export class Layout extends React.Component {
               containerElement={<Link to={"/new"} />}
               onTouchTap={this.handleClose}
             >
-              <div className="new">
+              <div className="qs-mobile">
                 <FlatButton
                   label={intl.formatMessage({ id: "quick_submit" })}
                 />

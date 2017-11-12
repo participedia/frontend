@@ -14,7 +14,7 @@ $blond-weight: 300;
 $normal-weight: 400;
 $medium-weight: 600;
 
-.new, .quick {
+.qs-mobile {
   transition:background .2s;
   color:$black;
   font-weight:500;
@@ -31,6 +31,14 @@ $medium-weight: 600;
       span {
         color: white !important;
         text-transform: none !important;
+        font-size: 1rem !important;
+        &:before {
+          font-weight:$medium-weight;
+          content:"+";
+          padding-right: 7px;
+          font-size: 1.5rem;
+          font-weight:600;
+        }
       }
     }
   }

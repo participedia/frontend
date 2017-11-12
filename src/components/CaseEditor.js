@@ -12,6 +12,7 @@ import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
+import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedBooleanField,
@@ -136,7 +137,8 @@ class CaseEditor extends Component {
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
-    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
+    let quickSubmitText = "publish";
+    let fullSubmitText = "publish";
     return (
       <Form
         onSubmit={onSubmit}
@@ -245,8 +247,8 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className={
                         this.props.new
-                          ? "new quick incomplete-warning"
-                          : "quick incomplete-warning"
+                          ? "new publish customButton"
+                          : "publish customButton"
                       }
                       disabled={incomplete}
                       primary
@@ -340,13 +342,13 @@ class CaseEditor extends Component {
                       </p>
                     ) : null}
                     <RaisedButton
-                      className="incomplete-warning"
+                      className="publish customButton"
                       disabled={incomplete}
                       primary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "submit_" + thing.type
+                        id: fullSubmitText
                       })}
                     />
                   </div>
