@@ -223,17 +223,3 @@ label {
     }
   }
 }
-
-.new {
-  button {
-    div div {
-      span {
-        &:after {
-          content: '|  +';
-          padding-left: 9px;
-          white-space: pre;
-        }
-      }
-    }
-  }
-}
