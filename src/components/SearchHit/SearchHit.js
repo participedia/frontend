@@ -65,16 +65,16 @@ export class SearchHit extends React.Component {
                 <div className={thumbnailClass} style={thumbnailStyle} />
               )}
             </Link>
-            <small className="label">
+            <small className="label blond">
               {(result.featured
                 ? intl.formatMessage({ id: "featured" }) + " "
                 : "") + result.type}
             </small>
             {bookmarkIcon}
             <Link to={link} className="result-title">
-              <div className="result-title-text">{title}</div>
+              <h3 className="result-title-text">{title}</h3>
             </Link>
-            <p>
+            <p className="blond">
               <FormattedMessage id="submitted" />{" "}
               <FormattedDate
                 value={result.updated_date}
@@ -107,7 +107,7 @@ export class SearchHit extends React.Component {
               </small>
               {bookmarkIcon}
               <Link to={link}>
-                <div className="result-title-text">{title}</div>
+                <h3 className="result-title-text">{title}</h3>
               </Link>
               <div className="list-body">{body}</div>
               <p>

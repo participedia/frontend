@@ -9,7 +9,6 @@ import SearchHit from "./SearchHit/SearchHit";
 import TimeAgo from "react-timeago";
 import Membership from "material-ui/svg-icons/action/card-membership";
 import Location from "material-ui/svg-icons/maps/place";
-import ContentPencil from "material-ui/svg-icons/image/edit";
 import DownloadButton from "material-ui/svg-icons/action/get-app";
 import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 import { stringifyLocation } from "./geoutils";
@@ -80,7 +79,7 @@ class Profile extends Component {
       });
     });
     if (authored.length === 0) {
-      authored = <div className="nothing-yet">Nothing yet</div>;
+      authored = <Col md={{ size: 6 }} className="nothing-yet mr-auto">Nothing yet</Col>;
     }
     let bookmarked = user.bookmarks.map((hit, index) => (
       <SearchHit
@@ -90,32 +89,21 @@ class Profile extends Component {
       />
     ));
     if (bookmarked.length === 0) {
-      bookmarked = <div className="nothing-yet">Nothing yet</div>;
+      bookmarked = <Col md={{ size: 6 }} className="nothing-yet mr-auto">Nothing yet</Col>;
     }
     let location = stringifyLocation(user.location);
 
     return (
       <Container fluid className="profile pb-3">
         <Row className="profile-info-section">
-          {user.email === profile.email ? (
-            <Link to="/profile/edit">
-              <div className="editProfile">
-                <EditIcon color={"#ec1414"} />
-              </div>
-            </Link>
-          ) : (
-            <div />
-          )}
-          <Col xs={12} lg={3} md={4} className="sidebar">
+          <Col xs={12} md={3} className="sidebar">
             <div className="user-avatar">
               <Avatar size={160} src={user.picture_url} />
             </div>
           </Col>
-          <Col xs={12} lg={9} md={8} className="main-area">
+          <Col xs={12} md={6} className="main-area">
             <h2 className="name">{user.name}</h2>
             <div className="credentials">
-              <span>{user.title}</span>
-              <span>{user.affiliation}</span>
               {user.join_date ? (
                 <div>
                   <Membership/> 
@@ -135,7 +123,16 @@ class Profile extends Component {
                 <div />
               }
             </div>
-            <p>{user.bio}</p>
+            <div className="bio-profile"
+              dangerouslySetInnerHTML={{ __html: user.bio }}
+            />
+            {user.email === profile.email ? (
+                <Link  className="editProfile" to="/profile/edit">
+                  <EditIcon color={"#ec1414"} />
+                </Link>
+            ) : (
+              <div />
+            )}
           </Col>  
         </Row>
         <Col md={12}>

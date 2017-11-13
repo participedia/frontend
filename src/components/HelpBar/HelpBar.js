@@ -53,9 +53,9 @@ class HelpBar extends React.Component {
             ) : (
               undefined
             )}
-            <h5 className="help-title">
+            <h4 className="help-title">
               {this.props.intl.formatMessage({ id: "participedia_help" })}
-            </h5>
+            </h4>
             <CloseIcon
               className="close-help"
               color={white}
@@ -70,16 +70,16 @@ class HelpBar extends React.Component {
           {this.state.all ? (
             <div>
               <div className="card contact">
-                <h5>{this.props.intl.formatMessage({ id: "contact_us" })}</h5>
+                <h4>{this.props.intl.formatMessage({ id: "contact_us" })}</h4>
                 <a href="mailto: info@participedia.net">
                   <MailIcon color={"#ec1414"} />
                   {this.props.intl.formatMessage({ id: "email_support" })}
                 </a>
               </div>
               <div className="card pt-3">
-                <h5 className="data-title">
+                <h4 className="data-title">
                   {this.props.intl.formatMessage({ id: "faq" })}
-                </h5>
+                </h4>
                 <ul className="data-list">
                   {this.state.helpItems.map((item, i) => (
                     <li key={i}>

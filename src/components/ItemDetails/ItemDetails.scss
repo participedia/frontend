@@ -40,7 +40,7 @@ section.image-gallery {
   padding-bottom: 32px;
   padding-top: 32px;
   .row {
-    margin:0;
+    margin: 0;
   }
   .main-area {
     max-width:800px;
@@ -70,7 +70,7 @@ section.image-gallery {
     }
 
     .case-location {
-      font-weight: 500;
+      font-weight: $medium-weight;
       color: $black;
       margin-top: 16px;
       margin-bottom: 16px;
@@ -94,8 +94,7 @@ section.image-gallery {
     }
 
     .sub-heading {
-      font-size: 30px;
-      font-weight: 600;
+      font-weight: $medium-weight;
       line-height: 40px;
       margin-bottom: 10px;
       margin-top:40px;
@@ -104,50 +103,40 @@ section.image-gallery {
     }
 
     .sub-sub-heading {
-      font-size: 16px;
-      font-weight: 600;
+      font-weight: $medium-weight;
       color: $black;
       line-height: 18px;
       margin-bottom: 5px;
       margin-top: 14px;
       padding-top:14px;
-      display:inline-block;
+      display:inline;
     }
     .sub-sub-heading + div {
-      display:inline;
-      margin-left:5px;
-    }
-    .sub-sub-heading + div.tags {
-      display: block;
+      display: inline;
+      margin-left: 5px;
       word-wrap: break-word;
     }
-    
     .sub-sub-heading + div a {
-      color:$black;
-      font-size:16px;
-      position:relative;
+      color: $black;
+      font-size: 16px;
+      position: relative;
       &:hover {
-        color:$interactive-color;
+        color: $interactive-color;
       }
     }
 
     .tags {
       span {
-        display: inline-block;
-        font-size: 14px;
-        color: #888;
-        font-weight: 400;
+        display: inline;
         line-height: 18px;
         margin-bottom: 10px;
         padding-right: 1ex;
       }
     }
+  }
 
-    .related-content {
-      a {
-        color: $grey-text;
-      }
-    }
+  .linked-property {
+    padding-top: 1rem;
   }
 
   .case-tools {
@@ -156,7 +145,7 @@ section.image-gallery {
       margin-top: 40px;
 
       svg {
-        transform: translateX(-4px);
+        transform: translateX(-1px);
       }
 
       .SocialMediaShareButton {
@@ -258,16 +247,14 @@ section.image-gallery {
 
       .category {
         color: $grey-text;
-        font-weight: 600;
+        font-weight: $normal-weight;
         text-transform: uppercase;
         margin-bottom: 8px;
-        font-size:20px;
-        text-transform: uppercase;
       }
 
       .case-title {
         color: $primary-color;
-        font-weight: 600;
+        font-weight: $medium-weight;
         margin-bottom: 49px;
         max-width:720px;
         @include media-breakpoint-down(sm) { 
@@ -286,15 +273,15 @@ section.image-gallery {
         margin-bottom: 32px;
 
         .author-line {
-          font-size: 14px;
-          font-weight: 600;
+          font-size: 1rem;
+          font-weight: $medium-weight;
           color: $primary-color;
           line-height: 18px;
           margin-bottom:0;
 
           a {
             color: $primary-color;
-            font-weight: 400;
+            font-weight: $blond-weight;
             position:relative;
             cursor:pointer;
             &:after {
@@ -317,9 +304,9 @@ section.image-gallery {
         }
 
         .date-line {
-          font-size: 14px;
+          font-size: 1rem;
           color: $grey-text;
-          font-weight: 400;
+          font-weight: $blond-weight;
           line-height: 18px;
           margin-bottom: 16px;
         }
@@ -327,7 +314,7 @@ section.image-gallery {
 
       .case-html {
         h3 {
-          font-weight: 500;
+          font-weight: $medium-weight;
           line-height: 40px;
           margin-bottom: 12px;
           margin-top: 32px;
@@ -336,7 +323,7 @@ section.image-gallery {
 
         p, li {
           font-size: 1.2rem; 
-          font-weight: 400;
+          font-weight: $blond-weight;
           line-height: 1.9rem;
           margin-bottom: 20px;
           max-width:720px;
@@ -361,7 +348,7 @@ section.image-gallery {
 
         a {
           color: $primary-color;
-          font-weight: 400;
+          font-weight: $blond-weight;
           position:relative;
           cursor:pointer;
           &:after {
@@ -396,7 +383,7 @@ section.image-gallery {
 .editButton {
   z-index: 3000;
   position: fixed;
-  right: 20px;
+  right: 161px;
   bottom: 40px;
   button {
     background-color: $interactive-color !important;
@@ -408,4 +395,23 @@ section.image-gallery {
 }
 .suggest_tag {
   color: #333;
+}
+
+.related-content {
+  a {
+    color: $primary-color;
+    text-decoration: underline;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.line-heading {
+  line-height: 40px;
+  margin-bottom: 10px;
+  font-weight: $medium-weight;
+  margin-top:40px;
+  padding-top: 20px;
+  border-top:1px solid #ccc;
 }

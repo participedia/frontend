@@ -4,6 +4,7 @@ import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
 import { BooleanProp } from "../components/Props";
+import Tags from "./Tags";
 
 /* Properties that are specific to methods:
 // best_for
@@ -35,27 +36,18 @@ import { BooleanProp } from "../components/Props";
 export default class MethodDetails extends React.Component {
   render() {
     let thing = this.props.case; // should thing be `this.props.method`?
-    let tags = <div />;
-    if (thing.tags) {
-      tags = thing.tags.map(tag => (
-        <SearchLink key={tag} tag="tag" value={tag} />
-      ));
-    }
     return (
       <div>
-        <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
+        <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
-        </p>
-        <p className="sub-sub-heading">
-          <FormattedMessage id="tags_title" />
-        </p>
-        <div className="tags">{tags}</div>
+        </h2>
+        <Tags thing={thing} />
         {thing.issue ? (
           <div>
             <p className="sub-sub-heading">
               <FormattedMessage id="specific_topic" />
             </p>
-            <div className="tags">{thing.issue}</div>
+            <div>{thing.issue}</div>
           </div>
         ) : (
           <div />

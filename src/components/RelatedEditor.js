@@ -74,7 +74,7 @@ export default class Related extends React.Component {
     let value = this.state.value; // if no dataSourceConfig, assume a list of strings
     return (
       <div>
-        <p className="m-0"><FormattedMessage id={this.props.fieldName + "_prompt"} /></p>
+        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_prompt"} /></p>
         <ChipInput
           {...rest}
           className="related-fields clearfix"

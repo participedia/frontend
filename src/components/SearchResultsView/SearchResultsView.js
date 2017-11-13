@@ -211,7 +211,7 @@ export class SearchResultsView extends React.Component {
               ) : (
                 <div className="page-of">
                   <span className="text-capitalize">
-                    <FormattedMessage id="page" />
+                    <FormattedMessage className="text-capitalize" id="page" />
                   </span>{" "}
                   {pageNo} {this.props.intl.formatMessage({ id: "of" })} {pages}
                 </div>

@@ -127,8 +127,8 @@ export class Footer extends React.Component {
             </Col>
             <Col lg={{ size: 6 }}>
               <div className="column xl">
-                <h4>Participedia</h4>
-                <p>
+                <h3 className="medium">Participedia</h3>
+                <p className="blond">
                   <FormattedMessage id="about_intro" />
                 </p>
               </div>

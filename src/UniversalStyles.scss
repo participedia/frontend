@@ -10,6 +10,10 @@ $grey-text: #323232;
 $primary-color: $black;
 $interactive-color: $red;
 
+$blond-weight: 300;
+$normal-weight: 400;
+$medium-weight: 600;
+
 .new, .quick {
   transition:background .2s;
   color:$black;
@@ -32,19 +36,22 @@ $interactive-color: $red;
   }
 }
 
-// .new {
-//   button {
-//     div {
-//       span {
-//         &:after {
-//           content: '|  +';
-//           padding-left: 9px;
-//           white-space: pre;
-//         }
-//       }
-//     }
-//   }
-// }
+input {
+  font-family:'Fakt' !important;
+}
+
+.medium {
+  font-weight: $medium-weight;
+}
+
+.normal {
+  font-weight: $normal-weight;
+}
+
+.blond {
+  font-weight: $blond-weight;
+}
+
 
 .full-submit {
   button {

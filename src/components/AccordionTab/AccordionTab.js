@@ -23,9 +23,15 @@ class AccordionTab extends React.Component {
           this.handleClick();
         }}
       >
-        <p className="title">
+      { this.props.sub ? 
+        <p className="title sub">
           <FormattedMessage id={this.props.titleId} />
-        </p>
+        </p> 
+        : 
+        <h3 className="title">
+          <FormattedMessage id={this.props.titleId} />
+        </h3>
+      }
         {this.props.children}
       </div>
     );
