@@ -8,9 +8,9 @@ import { FormattedMessage } from "react-intl";
 class Teaching extends React.Component {
   render() {
     return (
-      <Container fluid={false} className="about static">
+      <Container fluid={true} className="about static">
         <Row>
-          <Col lg={{ size: 8 }} className="ml-auto mr-auto">
+          <Col md={{ size: 6 }} className="ml-auto mr-auto">
             <h1>
               <FormattedMessage id="teaching" />
             </h1>

@@ -68,10 +68,21 @@ export default class Map extends Component {
       }
     );
   }
+
   componentWillMount() {
     let component = this;
 
     api.searchMapTokens(this.props.location.search).then(function(results) {
+      let items = extractData(results);
+      component.setState({
+        items: items
+      });
+    });
+  }
+  componentWillReceiveProps(newProps) {
+    let component = this;
+
+    api.searchMapTokens(newProps.location.search).then(function(results) {
       let items = extractData(results);
       component.setState({
         items: items

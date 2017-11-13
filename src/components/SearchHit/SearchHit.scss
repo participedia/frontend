@@ -41,7 +41,7 @@ small.label {
   }
   button {
     float: right;
-    right: 14px;
+    right: -10px;
   }
 }
 
@@ -143,13 +143,11 @@ small.label {
 }
 .result-title-text {
   color: $primary-color;
-  font-size: 20px;
   line-height: 26px;
-  font-weight: 500;
+  font-weight: $medium-weight;
   margin-bottom: 6px;
   max-height: 78px;
   overflow: hidden;
-  font-weight:600;
   word-break:break-word;
   &:hover, &:focus {
     color:$interactive-color;

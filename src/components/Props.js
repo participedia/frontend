@@ -9,7 +9,7 @@ function BooleanProp({ label, property, thing, intl }) {
   let truthString = String(truth);
   if (truth === null || truth === undefined) return <div />;
   return (
-    <div>
+    <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
@@ -27,7 +27,7 @@ BooleanProp.propTypes = {
 
 const NumberProp = ({ label, property, thing, intl }) =>
   thing[property] !== undefined && thing[property] !== null ? (
-    <div>
+    <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
@@ -44,7 +44,7 @@ NumberProp.propTypes = {
 
 const TextProp = ({ label, property, thing, intl }) =>
   thing[property] ? (
-    <div>
+    <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
@@ -61,7 +61,7 @@ TextProp.propTypes = {
 
 function DateProp({ label, property, thing, intl }) {
   return thing[property] ? (
-    <div>
+    <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
@@ -84,7 +84,7 @@ function ItemProp({ label, property, thing, intl, thingType }) {
 
   let url = `/${thingType}/${thing[property]}`;
   return thing[property] ? (
-    <div>
+    <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>

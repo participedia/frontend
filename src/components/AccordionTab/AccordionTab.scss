@@ -12,8 +12,9 @@
 
   .title {
     color: $primary-color;
-    font-size: 1.2rem;
-    font-weight: 500;
+    span {
+      font-weight: $medium-weight;
+    }
     cursor: pointer;
     width: 100%;
     text-transform: capitalize;
@@ -26,6 +27,9 @@
     @include media-breakpoint-down(sm) { 
       padding: 16px;
       margin: -16px;
+    }
+    &.sub {
+      font-size: 1rem;
     }
   }
 

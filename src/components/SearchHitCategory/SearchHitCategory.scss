@@ -1,3 +1,4 @@
+@import "../../UniversalStyles";
 .result-category {
   color: #000;
   margin-bottom:20px;
@@ -5,7 +6,7 @@
 
 .category-title {
   font-size: 3rem;
-  font-weight: 600;
+  font-weight: $medium-weight;
   color: #323232;
   line-height: 30px;
   padding: 20px 0;

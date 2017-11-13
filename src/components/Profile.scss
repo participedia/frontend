@@ -84,7 +84,7 @@
     background-color: $interactive-color;
     color: #fff;
     font-size: 1.3rem;
-    font-weight: 100;
+    font-weight: $blond-weight;
     text-align: center;
     border-radius: 4px;
     line-height: 40px;
@@ -100,11 +100,14 @@
     padding-top: 7%;
   }
   position: relative;
+  .main-area {
     @include media-breakpoint-down(lg) {
       .editProfile {
         position: absolute;
         display: block;
         right: 30px;
+        z-index: 1;
+        top: 17px;
       }
     }
     @include media-breakpoint-up(lg) {
@@ -119,17 +122,27 @@
         .editProfile {
           position: absolute;
           display: block;
-          right: 30px;
+          right: 4px;
+          z-index: 1;
+          top: 10px;
         }
       }
-  }
-  .main-area {
+    }
     .name {
-      font-weight: 600;
+      font-weight: $medium-weight;
       line-height: 60px;
       @include media-breakpoint-down(sm) {
         text-align: center;
       }  
+    }
+    .bio-profile {
+      color: blue;
+      span, p {
+        font-size: 1rem;
+        span {
+          font-size: 1rem !important;
+        }
+      }
     }
     .credentials {
       margin: 1rem 0;
@@ -138,26 +151,32 @@
         text-align: center;
       } 
       svg {
-        transform: translate(0, 11px);
+        @include media-breakpoint-down(lg) {
+          transform: translate(0, 7px);
+        }
+        @include media-breakpoint-up(lg) {
+          transform: translate(0, 11px);
+        }  
         width: 14px !important;
       }
       div {
-        margin-top: -7px;
+        @include media-breakpoint-up(lg) {
+          margin-top: -14px;
+        }
         span {
+          font-weight: $blond-weight;
           padding-left: 0.4rem;
-          font-size: 0.9rem;
         }
       }
       >span {
-        font-size: 0.9rem;
         display: block;
         color: $grey-text;
         margin: 0;
-        font-weight: 100;
+        font-weight: $blond-weight;
       }
     }
     .description {
-      font-weight: 100;
+      font-weight: $blond-weight;
       line-height: 32px;
     }
     .authored-content,.bookmarked-content {

@@ -5,7 +5,7 @@ class HelpArticle13 extends React.Component {
   render() {
     return (
       <div className="faq-answer pt-4">
-        <h5 className="data-title">{this.props.intl.formatMessage({ id: "help_q" + this.props.item })}</h5>
+        <h4 className="data-title">{this.props.intl.formatMessage({ id: "help_q" + this.props.item })}</h4>
         <p>{this.props.intl.formatMessage({ id: "help_q" + this.props.item + "_p1" })}</p> 
         <p>{this.props.intl.formatMessage({ id: "help_q" + this.props.item + "_p2" })}</p> 
         <p>{this.props.intl.formatMessage({ id: "help_q" + this.props.item + "_p3" })}</p> 

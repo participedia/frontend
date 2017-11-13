@@ -794,10 +794,14 @@ exports[`App 1`] = `
           <div
             className="column xl"
           >
-            <h4>
+            <h3
+              className="medium"
+            >
               Participedia
-            </h4>
-            <p>
+            </h3>
+            <p
+              className="blond"
+            >
               <span>
                 A global community sharing knowledge and stories about public participation
               </span>
@@ -1652,10 +1656,14 @@ exports[`Searching for a word 1`] = `
           <div
             className="column xl"
           >
-            <h4>
+            <h3
+              className="medium"
+            >
               Participedia
-            </h4>
-            <p>
+            </h3>
+            <p
+              className="blond"
+            >
               <span>
                 A global community sharing knowledge and stories about public participation
               </span>
