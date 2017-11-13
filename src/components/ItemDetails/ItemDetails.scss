@@ -144,6 +144,10 @@ section.image-gallery {
     .top-icons {
       margin-top: 40px;
 
+      button {
+        margin-left: -3px !important;
+      }
+
       svg {
         transform: translateX(-1px);
       }
@@ -385,8 +389,9 @@ section.image-gallery {
   position: fixed;
   right: 161px;
   bottom: 40px;
-  button {
-    background-color: $interactive-color !important;
+  @include media-breakpoint-down(sm) {
+    right: 20px;
+    bottom: 40px;
   }
 }
 

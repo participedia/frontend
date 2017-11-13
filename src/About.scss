@@ -1,29 +1,13 @@
 @import "./UniversalStyles";
 
 .about {
-  padding-top: 3%;
-  h1 {
-    color: $primary-color;
-    font-weight: $medium-weight;
-    line-height: 72px;
-  }
-
-  h2 {
-    color: $primary-color;
-    font-weight: $medium-weight;
-    line-height: 40px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
-  @include media-breakpoint-down(sm) { 
-    h2, h3 {
-      line-height: 1;
-    }
-  }
-
   iframe {
-    margin-left: -60px;
+    @media (max-width: 1440px) {
+      margin-left: -60px;
+    }
+    @media (max-width: 1280px) {
+      margin-left: -15px;
+    }
   }
 
   .person {

@@ -5,7 +5,7 @@ import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
 import { Link } from "react-router-dom";
-import { injectIntl, FormattedMessage } from "react-intl";
+import { injectIntl, FormattedMessage, FormattedHTMLMessage } from "react-intl";
 
 class About extends React.Component {
   render() {
