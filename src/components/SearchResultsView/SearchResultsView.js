@@ -433,7 +433,7 @@ export class SearchResultsView extends React.Component {
           className="d-block d-sm-none d-md-none d-lg-none d-xl-none"
           to={addLink}
         >
-          <FloatingActionButton className="editButton">
+          <FloatingActionButton secondary={true} className="addFAB">
             <Plus />
           </FloatingActionButton>
         </Link>

@@ -65,9 +65,13 @@ exports[`App 1`] = `
         <div
           className="createButton"
         >
-          <span>
-            Quick Submit
-          </span>
+          <div
+            className="createButton-text"
+          >
+            <span>
+              Quick Submit
+            </span>
+          </div>
         </div>
       </a>
       <div
@@ -451,7 +455,7 @@ exports[`App 1`] = `
           onClick={[Function]}
         >
           <div
-            className="editButton"
+            className="addFAB"
             style={
               Object {
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
@@ -486,7 +490,7 @@ exports[`App 1`] = `
               style={
                 Object {
                   "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
-                  "backgroundColor": "#00bcd4",
+                  "backgroundColor": "#ff4081",
                   "border": 10,
                   "borderRadius": "50%",
                   "boxSizing": "border-box",
@@ -613,6 +617,14 @@ exports[`App 1`] = `
           >
             Help & Contact
           </span>
+          <a
+            href="/legal"
+            onClick={[Function]}
+          >
+            <span>
+              Terms of Use
+            </span>
+          </a>
         </div>
       </div>
       <div
@@ -786,6 +798,14 @@ exports[`App 1`] = `
             >
               Help & Contact
             </span>
+            <a
+              href="/legal"
+              onClick={[Function]}
+            >
+              <span>
+                Terms of Use
+              </span>
+            </a>
           </div>
         </div>
         <div
@@ -927,9 +947,13 @@ exports[`Searching for a word 1`] = `
         <div
           className="createButton"
         >
-          <span>
-            Quick Submit
-          </span>
+          <div
+            className="createButton-text"
+          >
+            <span>
+              Quick Submit
+            </span>
+          </div>
         </div>
       </a>
       <div
@@ -1313,7 +1337,7 @@ exports[`Searching for a word 1`] = `
           onClick={[Function]}
         >
           <div
-            className="editButton"
+            className="addFAB"
             style={
               Object {
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
@@ -1348,7 +1372,7 @@ exports[`Searching for a word 1`] = `
               style={
                 Object {
                   "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
-                  "backgroundColor": "#00bcd4",
+                  "backgroundColor": "#ff4081",
                   "border": 10,
                   "borderRadius": "50%",
                   "boxSizing": "border-box",
@@ -1475,6 +1499,14 @@ exports[`Searching for a word 1`] = `
           >
             Help & Contact
           </span>
+          <a
+            href="/legal"
+            onClick={[Function]}
+          >
+            <span>
+              Terms of Use
+            </span>
+          </a>
         </div>
       </div>
       <div
@@ -1648,6 +1680,14 @@ exports[`Searching for a word 1`] = `
             >
               Help & Contact
             </span>
+            <a
+              href="/legal"
+              onClick={[Function]}
+            >
+              <span>
+                Terms of Use
+              </span>
+            </a>
           </div>
         </div>
         <div

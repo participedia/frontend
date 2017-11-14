@@ -274,7 +274,7 @@ export default class ItemDetails extends React.Component {
               </Col>
               <Col
                 md="3"
-                className="text-center case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block"
+                className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block"
               >
                 <div className="top-icons">
                   {bookmarkIcon}
@@ -296,7 +296,7 @@ export default class ItemDetails extends React.Component {
             </Row>
           </Container>
           <Link to={editLinkUrl}>
-            <FloatingActionButton className="editButton">
+            <FloatingActionButton secondary={true} className="editButton">
               <ContentPencil />
             </FloatingActionButton>
           </Link>

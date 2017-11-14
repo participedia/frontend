@@ -1,8 +1,13 @@
+@import "./UniversalStyles";
+
 .avatar {
   float: right;
-  padding-right: 1rem;
-  padding-top: 0.3rem;
+  padding-right: 2.3rem;
+  padding-top: 0.2rem;
   color: black;
+  @include media-breakpoint-only(xs) { 
+    padding-right: 1rem;
+  }
 }
 
 .loginButton {

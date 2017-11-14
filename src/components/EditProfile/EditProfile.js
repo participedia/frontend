@@ -21,6 +21,7 @@ import { encodeLocation } from "../geoutils";
 import RelatedEditor from "../RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import BodyEditor from "../BodyEditor";
+import PublishIcon from "material-ui/svg-icons/editor/publish";
 
 const buttonStyle = {
   marginTop: "2rem"
@@ -142,12 +143,15 @@ export default class EditProfile extends Component {
                     <BodyEditor onEditorChange={this.updateBody} html={this.props.user.bio} />
                   </div>
                   <RaisedButton
-                    className="save-profile"
+                    className="customButton save-profile"
                     secondary
                     style={buttonStyle}
+                    label="Label after"
+                    labelPosition="after"
+                    icon={<PublishIcon />}
                     type="submit"
                     label={intl.formatMessage({
-                      id: "save_profile"
+                      id: "publish"
                     })}
                   />
                 </Col>
