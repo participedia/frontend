@@ -35,7 +35,7 @@ export class LoginAvatar extends React.Component {
             iconButtonElement={
               <IconButton>
                 <Avatar
-                  size={30}
+                  size={35}
                   src={
                     profile.user_metadata && profile.user_metadata.customPic
                       ? profile.user_metadata.customPic

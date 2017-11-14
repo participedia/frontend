@@ -243,7 +243,7 @@ exports[`Case editor renders correctly 1`] = `
               </div>
             </div>
             <h3
-              className="sub-sub-heading"
+              className="sub-sub-heading pt-3"
             >
               <span>
                 Videos
@@ -1493,7 +1493,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="text-center case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-3"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-3"
         >
           <div
             className="top-icons"

@@ -125,6 +125,9 @@
     @include media-breakpoint-up(lg){
       width:25%;
     } 
+    @include media-breakpoint-only(xs){
+      width: 207px;
+    } 
 
     .menu-icon {
       float: left;
@@ -134,6 +137,9 @@
       @include media-breakpoint-up(sm){
         margin-right:16px;
       }
+      @include media-breakpoint-only(xs){
+        padding: 16px 0 16px 11px;
+      } 
       &:hover{
         cursor:pointer;
         svg {
@@ -224,24 +230,55 @@
   border-radius:2px;
   transition:background .2s;
   color:$black;
-  font-weight:500;
   @include media-breakpoint-up(sm) {
     position:absolute;
     display:inline-block;
     padding:8px 16px 0;
     right:120px;
-    top:12px;
+  }
+  .createButton-text {
+    position:relative;
+    top: -7px;
+    &:before {
+      font-weight:$medium-weight;
+      content:"+";
+      padding-right: 7px;
+      color:#000;
+      font-size: 1.5rem;
+    }
+  }
+  &:hover {
+    background:#eee;
+  }
+}
+
+// Create content button 
+.publishButton {
+  background: #fff;
+  position:absolute;
+  display:inline-block;
+  right:110px;
+  top:12px;
+  height:40px;
+  padding:8px 14px 0;
+  border-radius:2px;
+  transition:background .2s;
+  color:$black;
+  @include media-breakpoint-up(sm) {
+    position:absolute;
+    display:inline-block;
+    padding:8px 16px 0;
     right:120px;
   }
-  &:after {
-    content:"+";
+  .publishButton-text {
     position:relative;
-    color:#000;
-    font-weight:500;
-    @include media-breakpoint-up(sm) {
-      border-left:1px solid #000;
-      margin-left:10px;
-      padding-left:10px;
+    top: -7px;
+    &:before {
+      font-weight:$medium-weight;
+      content:"+";
+      padding-right: 7px;
+      color:#000;
+      font-size: 1.5rem;
     }
   }
   &:hover {

@@ -12,6 +12,7 @@ import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
+import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedBooleanField,
@@ -27,6 +28,7 @@ const tags = tags_json["tags"];
 const buttonStyle = {
   margin: "1em"
 };
+
 
 class CaseEditor extends Component {
   constructor(props) {
@@ -136,7 +138,8 @@ class CaseEditor extends Component {
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
-    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
+    let quickSubmitText = "publish";
+    let fullSubmitText = "publish";
     return (
       <Form
         onSubmit={onSubmit}
@@ -222,7 +225,7 @@ class CaseEditor extends Component {
                     <FormattedMessage id="photos" />
                   </h3>
                   <ImageListEditor property="images" thing={thing} />
-                  <h3 className="sub-sub-heading">
+                  <h3 className="sub-sub-heading pt-3">
                     <FormattedMessage id="videos" />
                   </h3>
                   {makeLocalizedListField(intl, "videos")}
@@ -238,28 +241,29 @@ class CaseEditor extends Component {
                 {isQuick ? (
                   <div>
                     {incomplete ? (
-                      <div className="incomplete pt-3">
+                      <div className="incomplete pt-4">
                         <FormattedMessage id={"incomplete_" + thing.type} />
                       </div>
                     ) : null}
                     <RaisedButton
-                      className={
-                        this.props.new
-                          ? "new quick incomplete-warning"
-                          : "quick incomplete-warning"
-                      }
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
                         id: quickSubmitText
                       })}
                     />
+                    <span><FormattedMessage id="or" /></span>
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
-                      className="full-submit"
+                      className="customButton full-submit"
                       style={buttonStyle}
+                      primary
                       label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
@@ -340,13 +344,16 @@ class CaseEditor extends Component {
                       </p>
                     ) : null}
                     <RaisedButton
-                      className="incomplete-warning"
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "submit_" + thing.type
+                        id: fullSubmitText
                       })}
                     />
                   </div>

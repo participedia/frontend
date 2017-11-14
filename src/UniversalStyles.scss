@@ -14,7 +14,7 @@ $blond-weight: 300;
 $normal-weight: 400;
 $medium-weight: 600;
 
-.new, .quick {
+.qs-mobile {
   transition:background .2s;
   color:$black;
   font-weight:500;
@@ -31,6 +31,14 @@ $medium-weight: 600;
       span {
         color: white !important;
         text-transform: none !important;
+        font-size: 1rem !important;
+        &:before {
+          font-weight:$medium-weight;
+          content:"+";
+          padding-right: 7px;
+          font-size: 1.5rem;
+          font-weight:600;
+        }
       }
     }
   }
@@ -52,15 +60,25 @@ input {
   font-weight: $blond-weight;
 }
 
-
-.full-submit {
+.customButton {
+  &.left {
+    margin-left: 0 !important;
+  }
   button {
     div {
-      border-radius: 2px;
-      background: $black;
       span {
-        color: white !important;
+        font-size: 1rem !important;
+        // padding-left: 6px !important;
         text-transform: capitalize !important;
+      }
+    }
+  }
+  &.publish {
+    button div span {
+      &:before {
+        // content:url("../img/icon-publish.png");
+        // width: 20px;
+        // padding: 7px;
       }
     }
   }

@@ -10,6 +10,7 @@ import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import tags_json from "../autocomplete_data/tags.json";
+import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedTextField,
@@ -110,7 +111,8 @@ class OrganizationEditor extends Component {
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
-    let quickSubmitText = this.props.new ? "quick_submit_case" : "save";
+    let quickSubmitText = "publish";
+    let fullSubmitText = "publish";
     return (
       <Form
         onSubmit={onSubmit}
@@ -159,7 +161,7 @@ class OrganizationEditor extends Component {
                     <FormattedMessage id="photos" />
                   </h3>
                   <ImageListEditor property="images" thing={thing} />
-                  <h3 className="sub-sub-heading">
+                  <h3 className="sub-sub-heading pt-4">
                     <FormattedMessage id="videos" />
                   </h3>
                   {makeLocalizedListField(intl, "videos")}
@@ -182,13 +184,12 @@ class OrganizationEditor extends Component {
                       </div>
                     ) : null}
                     <RaisedButton
-                      className={
-                        this.props.new
-                          ? "new quick incomplete-warning"
-                          : "quick incomplete-warning"
-                      }
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
@@ -197,8 +198,9 @@ class OrganizationEditor extends Component {
                     />
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
+                      className="customButton full-submit"
                       style={buttonStyle}
-                      className="full-submit"
+                      primary
                       label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
@@ -238,13 +240,16 @@ class OrganizationEditor extends Component {
                       </p>
                     ) : null}
                     <RaisedButton
-                      className="incomplete-warning"
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "submit_" + thing.type
+                        id: fullSubmitText
                       })}
                     />
                   </div>
