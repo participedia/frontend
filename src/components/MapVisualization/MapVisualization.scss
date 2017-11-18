@@ -12,11 +12,41 @@
     width: calc(100vw);
     max-width: 100%;
 
-    .mapboxgl-popup {
-      width: 300px;
-      a {
-        color:$interactive-color;
-      }
+    // .mapboxgl-popup {
+    //   width: 300px;
+    //   a {
+    //     color:$interactive-color;
+    //   }
+    // }
+  }
+  .mapboxgl-popup-content {
+    width: 280px;
+    padding: 20px;
+    border-radius: 0;
+    img {
+      width: 240px;
+      display: block;
+      margin: 0 auto;
+    }
+    a {
+      color: $black;
+      margin-top: -3px;
+      display: block;
+    }
+    small {
+      display: block;
+    }
+    .type {
+      margin-bottom: 0;
+      margin-top: 3px;
+    }
+    svg {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      bottom: 9px;
+      width: 20px !important;
+      fill: $grey-text !important;
     }
   }
   position:relative;

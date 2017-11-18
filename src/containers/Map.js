@@ -73,6 +73,7 @@ export default class Map extends Component {
     let component = this;
 
     api.searchMapTokens(this.props.location.search).then(function(results) {
+      console.log(results,'RESULTS')
       let items = extractData(results);
       component.setState({
         items: items
