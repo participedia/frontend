@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 import store from "store";
+import Clear from "material-ui/svg-icons/content/clear";
 
 import "./MapVisualization.css";
 const accessToken =
@@ -67,6 +68,7 @@ class MapVisualization extends React.Component {
 
   render() {
     const { focus, popupShowLabel } = this.state;
+    console.log(focus,'focus')
     const { items, styles } = this.props;
     if (!items) return <div />;
     let popupChange = this._popupChange.bind(this);
@@ -96,6 +98,10 @@ class MapVisualization extends React.Component {
     const searchMarkerLayout = Object.assign({}, this.props.markerLayout, {
       // "text-field": String.fromCharCode("0xe0C8")
     });
+    let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
+    let pic = focus && focus.images && focus.images.length
+                  ? awsUrl + encodeURIComponent(focus.images[0])
+                  : "";
 
     return (
       <div className="map-component">
@@ -148,17 +154,14 @@ class MapVisualization extends React.Component {
                     ...styles.popup
                   }}
                 >
-                  <span
-                    style={{
-                      ...styles.type
-                    }}
-                  >
+                  <img alt="" src={pic} />  
+                  <small className="type" style={{...styles.type}}>
                     {focus.type}
-                  </span>
-                  <Link to={focus.url}> {focus.title}</Link>
+                  </small>
+                  <Link className="medium" to={focus.url}> {focus.title}</Link>
                 </span>
                 <div onClick={() => popupChange(!popupShowLabel)}>
-                  {popupShowLabel ? "Hide" : "Show"}
+                  {popupShowLabel ?  <Clear/> : "Show"}
                 </div>
               </div>
             </Popup>
