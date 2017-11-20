@@ -11,12 +11,12 @@ const styleURL = "mapbox://styles/davidascher/cj1u1ogkc00242sll48w3zzt8";
 
 const itemMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#767"
+  "text-color": "#000"
 };
 
 const itemSearchMarkerPaint = {
   "text-translate-anchor": "viewport",
-  "text-color": "#010"
+  "text-color": "#EC1414"
 };
 
 class MapVisualization extends React.Component {
