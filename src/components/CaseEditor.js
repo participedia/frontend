@@ -261,9 +261,9 @@ class CaseEditor extends Component {
                     />
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
-                      className="customButton full-submit"
+                      className="customButton fxull-submit"
                       style={buttonStyle}
-                      primary
+                      secondary
                       label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
