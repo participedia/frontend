@@ -11,7 +11,7 @@ import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
-
+import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedBooleanField,
@@ -113,7 +113,8 @@ class MethodEditor extends Component {
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
-    let quickSubmitText = this.props.new ? "quick_submit_method" : "save";
+    let quickSubmitText = "publish";
+    let fullSubmitText = "publish";
     return (
       <Form
         onSubmit={onSubmit}
@@ -128,43 +129,53 @@ class MethodEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="sub-heading top title-edit">
-                  <label htmlFor="title">
-                    <FormattedMessage id={thing.type + "_title_label"} />
-                  </label>
+                <div className="field-case top">
+                  <h2 className="sub-heading">
+                    <label htmlFor="title">
+                      <FormattedMessage id={thing.type + "_title_label"} />
+                    </label>
+                  </h2>
+                  <p className="explanatory-text">
+                    <FormattedMessage
+                      id={intl.formatMessage({
+                        id: thing.type + "_title_placeholder"
+                      })}
+                    />
+                  </p>
+                  <Field
+                    fieldName="title"
+                    name="title"
+                    className="custom-field"
+                    type={Text}
+                    placeholder=""
+                    fullWidth
+                  />
                 </div>
-                <FormattedMessage
-                  id={intl.formatMessage({
-                    id: thing.type + "_title_placeholder"
-                  })}
-                />
-                <Field
-                  fieldName="title"
-                  name="title"
-                  className="custom-field"
-                  type={Text}
-                  placeholder=""
-                  fullWidth
-                />
-                <p className="sub-heading">
-                  <FormattedMessage id="links" />
-                </p>
-                {makeLocalizedListField(intl, "links")}
-                <p className="sub-heading">
-                  <FormattedMessage id="media" />
-                </p>
-                <p className="sub-sub-heading">
-                  <FormattedMessage id="photos" />
-                </p>
-                <ImageListEditor property="images" thing={thing} />
-                <p className="sub-sub-heading">
-                  <FormattedMessage id="videos" />
-                </p>
-                {makeLocalizedListField(intl, "videos")}
-                <p className="sub-heading">
-                  <FormattedMessage id="tags_title" />
-                </p>
-                {tagseditor}
+                <div className="field-case">
+                  <h2 className="sub-heading">
+                    <FormattedMessage id="links" />
+                  </h2>
+                  {makeLocalizedListField(intl, "links")}
+                </div>
+                <div className="field-case media">
+                  <h2 className="sub-heading">
+                    <FormattedMessage id="media" />
+                  </h2>
+                  <h3 className="sub-sub-heading">
+                    <FormattedMessage id="photos" />
+                  </h3>
+                  <ImageListEditor property="images" thing={thing} />
+                  <h3 className="sub-sub-heading pt-4">
+                    <FormattedMessage id="videos" />
+                  </h3>
+                  {makeLocalizedListField(intl, "videos")}
+                </div>
+                <div className={isQuick? "field-case last" : "field-case"}>
+                  <h2 className="sub-heading">
+                    <FormattedMessage id="tags_title" />
+                  </h2>
+                  {tagseditor}
+                </div>
               </div>
               <div>
                 {isQuick ? (
@@ -177,13 +188,12 @@ class MethodEditor extends Component {
                       </div>
                     ) : null}
                     <RaisedButton
-                      className={
-                        this.props.new
-                          ? "new quick incomplete-warning"
-                          : "quick incomplete-warning"
-                      }
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
@@ -192,8 +202,9 @@ class MethodEditor extends Component {
                     />
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
-                      className="full-submit"
+                      className="customButton full-submit"
                       style={buttonStyle}
+                      primary
                       label={intl.formatMessage({ id: doFullVersion })}
                     />
                   </div>
@@ -227,14 +238,14 @@ class MethodEditor extends Component {
                     ) : (
                       undefined
                     )}
-                    <div>
-                      <label className="sub-heading" htmlFor="body_en">
+                    <div className="field-case">
+                      <h2 className="sub-heading" htmlFor="body_en">
                         {intl.formatMessage({
                           id: thing.type + "_body_title"
                         })}
-                      </label>
+                      </h2>
+                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     </div>
-                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
                     {makeLocalizedChoiceField(intl, "kind_of_influence")}
                     {makeLocalizedChoiceField(intl, "communication_mode")}
                     {makeLocalizedChoiceField(
@@ -269,20 +280,24 @@ class MethodEditor extends Component {
                       intl,
                       "typical_sponsoring_entity"
                     )}
-                    <p className="sub-heading">Related Content</p>
-                    <div className="related-content">
-                      <div className="sub-sub-heading">
-                        <FormattedMessage id="related_cases" />
+                    <div className="field-case last related">
+                      <h2 className="sub-heading">
+                        <FormattedMessage id="related_content" />
+                      </h2>
+                      <div className="related-content">
+                        <h3 className="sub-sub-heading">
+                          <FormattedMessage id="related_cases" />
+                        </h3>
+                        {related_cases}
+                        <h3 className="sub-sub-heading mt-3">
+                          <FormattedMessage id="related_methods" />
+                        </h3>
+                        {related_methods}
+                        <h3 className="sub-sub-heading mt-3">
+                          <FormattedMessage id="related_organizations" />
+                        </h3>
+                        {related_organizations}
                       </div>
-                      {related_cases}
-                      <div className="sub-sub-heading">
-                        <FormattedMessage id="related_methods" />
-                      </div>
-                      {related_methods}
-                      <div className="sub-sub-heading">
-                        <FormattedMessage id="related_organizations" />
-                      </div>
-                      {related_organizations}
                     </div>
                     {incomplete ? (
                       <p className="incomplete">
@@ -292,13 +307,16 @@ class MethodEditor extends Component {
                       </p>
                     ) : null}
                     <RaisedButton
-                      className="incomplete-warning"
+                      className="publish left customButton"
                       disabled={incomplete}
-                      primary
+                      label="Label after"
+                      labelPosition="after"
+                      icon={<PublishIcon />}
+                      secondary
                       style={buttonStyle}
                       type="submit"
                       label={intl.formatMessage({
-                        id: "submit_" + thing.type
+                        id: fullSubmitText
                       })}
                     />
                   </div>

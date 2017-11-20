@@ -5,7 +5,7 @@ import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
 import { Link } from "react-router-dom";
-import { injectIntl, FormattedMessage } from "react-intl";
+import { injectIntl, FormattedMessage, FormattedHTMLMessage } from "react-intl";
 
 class About extends React.Component {
   render() {
@@ -75,9 +75,9 @@ class About extends React.Component {
       </Link>
     );
     return (
-      <Container fluid={false} className="about static">
+      <Container fluid={true} className="about static">
         <Row>
-          <Col lg={{ size: 8 }} className="ml-auto mr-auto">
+          <Col md={{ size: 6 }} className="ml-auto mr-auto">
             <h1>
               <FormattedMessage id="welcome_participedia" />
             </h1>
@@ -85,7 +85,7 @@ class About extends React.Component {
               <FormattedMessage id="about_intro" />
             </h2>
             <ReactPlayer
-              width="100%"
+              width="110%"
               controls
               url="https://vimeo.com/219546454"
             />
@@ -96,20 +96,20 @@ class About extends React.Component {
               id="about_involved_1"
               values={{ communityLink, ccLink }}
             />
-            <h6 className="sub-head pt-1">
+            <h3 className="sub-head pt-1">
               <FormattedMessage id="explore" />
-            </h6>
+            </h3>
             <FormattedMessage
               id="explore_intro"
               values={{ caseLink, methodLink, orgLink }}
             />
-            <h6 className="sub-head pt-1">
+            <h3 className="sub-head pt-1">
               <FormattedMessage id="contribute" />
-            </h6>
+            </h3>
             <FormattedMessage id="contribute_intro" values={{ publishLink }} />
-            <h6 className="sub-head pt-1">
+            <h3 className="sub-head pt-1">
               <FormattedMessage id="teach" />
-            </h6>
+            </h3>
             <FormattedMessage id="teach_intro" values={{ teachLink }} />
             <h2>
               <FormattedMessage id="community" />
@@ -140,7 +140,7 @@ class About extends React.Component {
                     <FormattedMessage id="partners_intro" />
                   </p>
                   <div className="sub-accordion">
-                    <AccordionTab titleId="principal_investigator">
+                    <AccordionTab sub={true} titleId="principal_investigator">
                       <div className="sub-content">
                         <div className="person">
                           <span className="name">
@@ -156,7 +156,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="co_investigators">
+                    <AccordionTab sub={true} titleId="co_investigators">
                       <div className="sub-content">
                         <div className="person">
                           <span className="name">Julia Abelson</span>
@@ -457,7 +457,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="collaborators">
+                    <AccordionTab sub={true} titleId="collaborators">
                       <div className="sub-content">
                         <div className="person">
                           <span className="name">André Bächtiger</span>
@@ -688,7 +688,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="organizations">
+                    <AccordionTab sub={true} titleId="organizations">
                       <div className="sub-content">
                         <div className="person">
                           <span className="name">
@@ -999,7 +999,7 @@ class About extends React.Component {
                     <FormattedMessage id="committees_intro" />
                   </p>
                   <div className="sub-accordion">
-                    <AccordionTab titleId="executive_committee">
+                    <AccordionTab sub={true} titleId="executive_committee">
                       <div className="sub-content">
                         <FormattedMessage
                           id="executive_committee_intro"
@@ -1085,7 +1085,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="dt_committee">
+                    <AccordionTab sub={true} titleId="dt_committee">
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="dt_committee_intro" />
@@ -1143,7 +1143,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="communications_knowledge_committee">
+                    <AccordionTab sub={true} titleId="communications_knowledge_committee">
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="comms_know_intro" />
@@ -1228,7 +1228,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="teaching_training_committee">
+                    <AccordionTab sub={true} titleId="teaching_training_committee">
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="teaching_training_committee_intro" />
@@ -1382,7 +1382,7 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab titleId="research_design_committee">
+                    <AccordionTab sub={true} titleId="research_design_committee">
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="research_design_committee_intro" />

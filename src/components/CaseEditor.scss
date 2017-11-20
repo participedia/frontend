@@ -12,6 +12,24 @@
   padding-bottom: 0.5em;
 }
 
+.field-case {
+  padding-bottom: 3rem;
+  padding-top: 2.6rem;
+  border-bottom:1px solid #ccc;
+  &.top {
+    padding-top: 0;
+  }
+  &.select {
+    padding-bottom: 2.1rem;
+  }
+  &.related, &.media {
+    padding-bottom: 1.6rem;
+  }
+  &.last {
+    border: none;
+  }
+}
+
 .choicelist {
   opacity: 1;
 }
@@ -30,7 +48,7 @@
   border: 2px solid $black;
   padding-left: 1rem;
   @include media-breakpoint-up(lg) {
-    width: 60% !important;
+    width: 70% !important;
   }
   >div {
     display: none;
@@ -40,11 +58,15 @@
   }
 }
 
+label {
+  margin: 0 !important;
+}
+
 .related-fields {
   border: 2px solid $black;
   padding-left: 1rem;
   @include media-breakpoint-up(lg) {
-    width: 60% !important;
+    width: 70% !important;
   }
   padding-bottom: 0.5rem;
   display: block !important;
@@ -57,9 +79,20 @@
   }
 }
 
+.explanatory-text {
+  margin-bottom: 0.5rem;
+  font-weight: $blond-weight;
+  span {
+    font-weight: $blond-weight;
+  }
+  @include media-breakpoint-up(md) { 
+    width: 70%;
+  }
+}
+
 .custom-select {
   @include media-breakpoint-up(lg) {
-    width: 60% !important;
+    width: 70% !important;
   }
   border: 2px solid $black;
   padding-left: 1rem;
@@ -69,14 +102,12 @@
 }
 
 .sub-heading {
-  font-size: 30px;
-  font-weight: 600;
+  font-weight: $medium-weight;
   line-height: 40px;
-  margin-bottom: 10px;
-  margin-top:40px;
-  padding-top: 20px;
-  border-top:1px solid #ccc;
+  margin: 0;
+  padding-bottom: 0.6rem;
   &.top {
+    padding-top: 0;
     border: none;
   }
   &.org {
@@ -90,12 +121,10 @@
 
 
 .sub-sub-heading {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: $medium-weight;
   color: $black;
   line-height: 18px;
   margin-bottom: 5px;
-  margin-top: 14px;
   padding-top:14px;
   display:inline-block;
   text-transform: capitalize;
@@ -190,20 +219,6 @@
       }
       .checkbox {
         background-image: url("../img/star.png");
-      }
-    }
-  }
-}
-
-.new {
-  button {
-    div div {
-      span {
-        &:after {
-          content: '|  +';
-          padding-left: 9px;
-          white-space: pre;
-        }
       }
     }
   }

@@ -49,9 +49,9 @@
         padding-bottom: 24px;
       }
 
-      a, p, span.open-help {
+      a, span.open-help {
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: $medium-weight;
         line-height: 20px;
         margin-bottom: 8px;
         display: block;

@@ -151,6 +151,7 @@ export default class ItemDetails extends React.Component {
     let id = this.props.id;
     let type = thing.type;
     let editLinkUrl = `/${type}/${id}/edit`;
+    console.log(this.props.details, 'ROPS')
     let detailedBits = React.createElement(this.props.details, {
       case: thing,
       intl
@@ -189,12 +190,12 @@ export default class ItemDetails extends React.Component {
                 <RelatedContent thing={thing} />
                 {detailedBits}
               </Col>
-              <Col md="8" xs="12" className="main-area">
+              <Col md="6" xs="12" className="main-area">
                 <div className="case-box">
-                  <h2 className="category">
+                  <h3 className="category">
                     <FormattedMessage id={thing.type} />
-                  </h2>
-                  <h2 className="case-title">{thing.title}</h2>
+                  </h3>
+                  <h1 className="case-title">{thing.title}</h1>
                   <ul className="icons-mobile clearfix d-md-none d-lg-none d-xl-none">
                     <li>{bookmarkIcon}</li>
                     <li>
@@ -272,7 +273,7 @@ export default class ItemDetails extends React.Component {
                 </div>
               </Col>
               <Col
-                md="1"
+                md="3"
                 className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block"
               >
                 <div className="top-icons">
@@ -295,7 +296,7 @@ export default class ItemDetails extends React.Component {
             </Row>
           </Container>
           <Link to={editLinkUrl}>
-            <FloatingActionButton className="editButton">
+            <FloatingActionButton secondary={true} className="editButton">
               <ContentPencil />
             </FloatingActionButton>
           </Link>

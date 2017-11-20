@@ -19,23 +19,14 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div />
           <div />
           <div>
-            <p
+            <h2
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             >
               <span>
                 Data
               </span>
-            </p>
-            <p
-              className="sub-sub-heading"
-            >
-              <span>
-                Tags
-              </span>
-            </p>
-            <div
-              className="tags"
-            />
+            </h2>
+            <div />
             <div />
             <div>
               <p
@@ -79,7 +70,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
             <div />
             <div />
             <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
@@ -110,23 +103,23 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="main-area col-12 col-md-8"
+          className="main-area col-12 col-md-6"
         >
           <div
             className="case-box"
           >
-            <h2
+            <h3
               className="category"
             >
               <span>
                 Method
               </span>
-            </h2>
-            <h2
+            </h3>
+            <h1
               className="case-title"
             >
               Petition
-            </h2>
+            </h1>
             <ul
               className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
@@ -185,13 +178,13 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Related Content
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
@@ -202,34 +195,25 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Method Data
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
                   <div>
-                    <p
+                    <h2
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
                     >
                       <span>
                         Data
                       </span>
-                    </p>
-                    <p
-                      className="sub-sub-heading"
-                    >
-                      <span>
-                        Tags
-                      </span>
-                    </p>
-                    <div
-                      className="tags"
-                    />
+                    </h2>
+                    <div />
                     <div />
                     <div>
                       <p
@@ -273,7 +257,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                     <div />
                     <div />
                     <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
@@ -374,7 +360,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-3"
         >
           <div
             className="top-icons"
@@ -450,389 +436,451 @@ exports[`Method editor renders correctly 1`] = `
           className="case-box"
         >
           <div
-            className="sub-heading top title-edit"
+            className="field-case top"
           >
-            <label
-              htmlFor="title"
+            <h2
+              className="sub-heading"
             >
-              <span>
-                Name of Method
-              </span>
-            </label>
-          </div>
-          <span>
-            Type to search for existing method or enter title
-          </span>
-          <Textfield
-            className="custom-field"
-            disabled={false}
-            errorText={undefined}
-            floatingLabelText=""
-            fullWidth={true}
-            hintText={null}
-            name="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder=""
-            type="text"
-            value="Petition"
-          />
-          <p
-            className="sub-heading"
-          >
-            <span>
-              Relevant Links (URLs)
-            </span>
-          </p>
-          <div>
+              <label
+                htmlFor="title"
+              >
+                <span>
+                  Title of Method
+                </span>
+              </label>
+            </h2>
             <p
-              className="m-0"
+              className="explanatory-text"
             >
               <span>
-                Add a link
+                Enter title
               </span>
             </p>
-            <div
-              className="list links"
+            <Textfield
+              className="custom-field"
+              disabled={false}
+              errorText={undefined}
+              floatingLabelText=""
+              fullWidth={true}
+              hintText={null}
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder=""
+              type="text"
+              value="Petition"
             />
           </div>
-          <p
-            className="sub-heading"
+          <div
+            className="field-case"
           >
-            <span>
-              Media
-            </span>
-          </p>
-          <p
-            className="sub-sub-heading"
-          >
-            <span>
-              Photos
-            </span>
-          </p>
-          <div>
-            <div
-              className="itemPics pb-3 row"
-            />
-            <p
-              className="m-0"
+            <h2
+              className="sub-heading"
             >
               <span>
-                Select a photo from your device
+                Relevant Links (URLs)
               </span>
-            </p>
+            </h2>
             <div>
-              <span>
-                Sorry, upload only works if you're logged in.
-              </span>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Add a link
+                </span>
+              </p>
+              <div
+                className="list links"
+              />
             </div>
           </div>
-          <p
-            className="sub-sub-heading"
+          <div
+            className="field-case media"
           >
-            <span>
-              Videos
-            </span>
-          </p>
-          <div>
-            <p
-              className="m-0"
+            <h2
+              className="sub-heading"
             >
               <span>
-                Add a video (Vimeo, YouTube)
+                Media
               </span>
-            </p>
-            <div
-              className="list videos"
-            />
+            </h2>
+            <h3
+              className="sub-sub-heading"
+            >
+              <span>
+                Photos
+              </span>
+            </h3>
+            <div>
+              <div
+                className="itemPics row"
+              />
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Select a photo from your device
+                </span>
+              </p>
+              <div>
+                <span>
+                  Sorry, upload only works if you're logged in.
+                </span>
+              </div>
+            </div>
+            <h3
+              className="sub-sub-heading pt-4"
+            >
+              <span>
+                Videos
+              </span>
+            </h3>
+            <div>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Add a video (Vimeo, YouTube)
+                </span>
+              </p>
+              <div
+                className="list videos"
+              />
+            </div>
           </div>
-          <p
-            className="sub-heading"
+          <div
+            className="field-case"
           >
-            <span>
-              Tags
-            </span>
-          </p>
-          <div>
-            <p
-              className="m-0"
+            <h2
+              className="sub-heading"
             >
               <span>
-                Type to search for an existing tag
+                Tags
               </span>
-            </p>
+            </h2>
+            <div>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Type to search for an existing tag
+                </span>
+              </p>
+            </div>
           </div>
         </div>
         <div>
           <div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 General Issues
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select an issue
               </p>
             </div>
-            <div>
-              <label
+            <div
+              className="field-case"
+            >
+              <h2
                 className="sub-heading"
                 htmlFor="body_en"
               >
                 Method description
-              </label>
+              </h2>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Kind of influence
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select kind of influence
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Communication Mode
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select a communication mode
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Communication with audience
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select a communication with audience
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Face-to-face, online or both
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select face-to-face, online or both
               </p>
             </div>
-            <div>
-              <p
-                className="sub-heading"
+            <div
+              className="field-case"
+            >
+              <h2
+                className="sub-heading boolean"
               >
                 <span>
                   Facilitated
                 </span>
-              </p>
+              </h2>
               <div
                 className="facilitated"
               />
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Best for
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Best for
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Decision method
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select a decision method
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Governance contribution
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Governance contribution
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Issue interdependency
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Issue interdependency
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Issue polarization
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Issue polarization
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Issue technical complexity
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Issue technical complexity
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Public interaction method
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Public interaction method
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Method of interaction
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Method of interaction
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Typical funding source
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select Typical funding source
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Type of implementing entity
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select type of implementing entity
               </p>
             </div>
-            <div>
-              <p
+            <div
+              className="field-case select"
+            >
+              <h2
                 className="sub-heading"
               >
                 Type of sponsoring entity
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Select type of sponsoring entity
               </p>
             </div>
-            <p
-              className="sub-heading"
-            >
-              Related Content
-            </p>
             <div
-              className="related-content"
+              className="field-case last related"
             >
-              <div
-                className="sub-sub-heading"
+              <h2
+                className="sub-heading"
               >
                 <span>
-                  Enter Related Cases
+                  Related Content
                 </span>
-              </div>
-              <div>
-                <p
-                  className="m-0"
-                >
-                  <span>
-                    Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
-                  </span>
-                </p>
-              </div>
+              </h2>
               <div
-                className="sub-sub-heading"
+                className="related-content"
               >
-                <span>
-                  Enter Related Methods
-                </span>
-              </div>
-              <div>
-                <p
-                  className="m-0"
+                <h3
+                  className="sub-sub-heading"
                 >
                   <span>
-                    Related methods include participatory methods or tools used during this particular case.
+                    Related Cases
                   </span>
-                </p>
-              </div>
-              <div
-                className="sub-sub-heading"
-              >
-                <span>
-                  Enter Related Organizations
-                </span>
-              </div>
-              <div>
-                <p
-                  className="m-0"
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                    </span>
+                  </p>
+                </div>
+                <h3
+                  className="sub-sub-heading mt-3"
                 >
                   <span>
-                    Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                    Related Methods
                   </span>
-                </p>
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related methods include participatory methods or tools used during this particular case.
+                    </span>
+                  </p>
+                </div>
+                <h3
+                  className="sub-sub-heading mt-3"
+                >
+                  <span>
+                    Related Organizations
+                  </span>
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

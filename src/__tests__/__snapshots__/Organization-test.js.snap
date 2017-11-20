@@ -57,44 +57,31 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 Data
               </span>
             </p>
-            <p
-              className="sub-sub-heading"
-            >
-              <span>
+            <div>
+              <p
+                className="sub-sub-heading"
+              >
                 Tags
-              </span>
-            </p>
-            <div
-              className="tags"
-            >
-              <a
-                className="tag"
-                href="/search?tag=civic engagement"
-                onClick={[Function]}
+              </p>
+              <div
+                className="tags blond"
               >
-                civic engagement
-              </a>
-              <a
-                className="tag"
-                href="/search?tag=digital participation"
-                onClick={[Function]}
-              >
-                digital participation
-              </a>
-              <a
-                className="tag"
-                href="/search?tag=planning"
-                onClick={[Function]}
-              >
-                planning
-              </a>
-              <a
-                className="tag"
-                href="/search?tag=public"
-                onClick={[Function]}
-              >
-                public
-              </a>
+                <span>
+                  civic engagement
+                  ,
+                </span>
+                <span>
+                  digital participation
+                  ,
+                </span>
+                <span>
+                  planning
+                  ,
+                </span>
+                <span>
+                  public
+                </span>
+              </div>
             </div>
             <div>
               <p
@@ -137,23 +124,23 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="main-area col-12 col-md-8"
+          className="main-area col-12 col-md-6"
         >
           <div
             className="case-box"
           >
-            <h2
+            <h3
               className="category"
             >
               <span>
                 Organization
               </span>
-            </h2>
-            <h2
+            </h3>
+            <h1
               className="case-title"
             >
               Urban Interactive Studio
-            </h2>
+            </h1>
             <ul
               className="icons-mobile clearfix d-md-none d-lg-none d-xl-none"
             >
@@ -222,13 +209,13 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Related Content
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
@@ -239,13 +226,13 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="tab"
                 onClick={[Function]}
               >
-                <p
+                <h3
                   className="title"
                 >
                   <span>
                     Organization Data
                   </span>
-                </p>
+                </h3>
                 <div
                   className="content"
                 >
@@ -273,44 +260,31 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                         Data
                       </span>
                     </p>
-                    <p
-                      className="sub-sub-heading"
-                    >
-                      <span>
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      >
                         Tags
-                      </span>
-                    </p>
-                    <div
-                      className="tags"
-                    >
-                      <a
-                        className="tag"
-                        href="/search?tag=civic engagement"
-                        onClick={[Function]}
+                      </p>
+                      <div
+                        className="tags blond"
                       >
-                        civic engagement
-                      </a>
-                      <a
-                        className="tag"
-                        href="/search?tag=digital participation"
-                        onClick={[Function]}
-                      >
-                        digital participation
-                      </a>
-                      <a
-                        className="tag"
-                        href="/search?tag=planning"
-                        onClick={[Function]}
-                      >
-                        planning
-                      </a>
-                      <a
-                        className="tag"
-                        href="/search?tag=public"
-                        onClick={[Function]}
-                      >
-                        public
-                      </a>
+                        <span>
+                          civic engagement
+                          ,
+                        </span>
+                        <span>
+                          digital participation
+                          ,
+                        </span>
+                        <span>
+                          planning
+                          ,
+                        </span>
+                        <span>
+                          public
+                        </span>
+                      </div>
                     </div>
                     <div>
                       <p
@@ -405,7 +379,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
           </div>
         </div>
         <div
-          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-1"
+          className="case-tools d-none d-sm-block d-md-block d-lg-block d-xl-block col col-md-3"
         >
           <div
             className="top-icons"
@@ -481,40 +455,46 @@ exports[`Organization editor renders correctly 1`] = `
           className="case-box"
         >
           <div
-            className="sub-heading top title-edit"
+            className="field-case top"
           >
-            <label
-              htmlFor="title"
+            <h2
+              className="sub-heading"
             >
-              Name of Organization
-            </label>
+              <label
+                htmlFor="title"
+              >
+                Title of Organization
+              </label>
+            </h2>
+            <Textfield
+              className="custom-field org-title"
+              disabled={false}
+              errorText={undefined}
+              floatingLabelText=""
+              fullWidth={true}
+              hintText={null}
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Enter title"
+              type="text"
+              value="Urban Interactive Studio"
+            />
           </div>
-          <Textfield
-            className="custom-field org-title"
-            disabled={false}
-            errorText={undefined}
-            floatingLabelText=""
-            fullWidth={true}
-            hintText={null}
-            name="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="Type to search for existing organization or enter title"
-            type="text"
-            value="Urban Interactive Studio"
-          />
           <div
             className="case-location"
           >
-            <div>
-              <p
+            <div
+              className="field-case location-field"
+            >
+              <h2
                 className="sub-heading"
               >
                 Location
-              </p>
+              </h2>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 Type to search for known location
               </p>
@@ -522,14 +502,18 @@ exports[`Organization editor renders correctly 1`] = `
                 className="location"
               />
             </div>
-            <p
+          </div>
+          <div
+            className="field-case"
+          >
+            <h2
               className="sub-heading"
             >
               Relevant Links (URLs)
-            </p>
+            </h2>
             <div>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 <span>
                   Add a link
@@ -540,209 +524,230 @@ exports[`Organization editor renders correctly 1`] = `
               />
             </div>
           </div>
-          <p
-            className="sub-heading"
+          <div
+            className="field-case media"
           >
-            <span>
-              Media
-            </span>
-          </p>
-          <p
-            className="sub-sub-heading"
-          >
-            <span>
-              Photos
-            </span>
-          </p>
-          <div>
-            <div
-              className="itemPics pb-3 row"
+            <h2
+              className="sub-heading"
             >
+              <span>
+                Media
+              </span>
+            </h2>
+            <h3
+              className="sub-sub-heading"
+            >
+              <span>
+                Photos
+              </span>
+            </h3>
+            <div>
               <div
-                className="pl-0 box-container col-12 col-md-6 col-lg-4"
+                className="itemPics row"
               >
                 <div
-                  className="box lead"
+                  className="pl-0 box-container col-12 col-md-6 col-lg-4"
                 >
                   <div
-                    className="checkbox"
-                    onClick={[Function]}
-                  />
-                  <div
-                    className="trash"
-                    onClick={[Function]}
-                  />
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
-                    style={
-                      Object {
-                        "height": "100%",
-                        "objectFit": "contain",
-                        "width": "100%",
+                    className="box lead"
+                  >
+                    <div
+                      className="checkbox"
+                      onClick={[Function]}
+                    />
+                    <div
+                      className="trash"
+                      onClick={[Function]}
+                    />
+                    <img
+                      alt=""
+                      className="img-fluid"
+                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
+                      style={
+                        Object {
+                          "height": "100%",
+                          "objectFit": "contain",
+                          "width": "100%",
+                        }
                       }
-                    }
-                  />
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <p
-              className="m-0"
-            >
-              <span>
-                Select a photo from your device
-              </span>
-            </p>
-            <div>
-              <span>
-                Sorry, upload only works if you're logged in.
-              </span>
-            </div>
-          </div>
-          <p
-            className="sub-sub-heading"
-          >
-            <span>
-              Videos
-            </span>
-          </p>
-          <div>
-            <p
-              className="m-0"
-            >
-              <span>
-                Add a video (Vimeo, YouTube)
-              </span>
-            </p>
-            <div
-              className="list videos"
-            />
-          </div>
-          <p
-            className="sub-heading"
-          >
-            Tags
-          </p>
-          <div
-            className="tags-field"
-          >
-            <div>
               <p
-                className="m-0"
+                className="explanatory-text"
               >
                 <span>
-                  Type to search for an existing tag
+                  Select a photo from your device
                 </span>
               </p>
+              <div>
+                <span>
+                  Sorry, upload only works if you're logged in.
+                </span>
+              </div>
+            </div>
+            <h3
+              className="sub-sub-heading pt-4"
+            >
+              <span>
+                Videos
+              </span>
+            </h3>
+            <div>
+              <p
+                className="explanatory-text"
+              >
+                <span>
+                  Add a video (Vimeo, YouTube)
+                </span>
+              </p>
+              <div
+                className="list videos"
+              />
+            </div>
+          </div>
+          <div
+            className="field-case"
+          >
+            <h2
+              className="sub-heading"
+            >
+              Tags
+            </h2>
+            <div
+              className="tags-field"
+            >
+              <div>
+                <p
+                  className="explanatory-text"
+                >
+                  <span>
+                    Type to search for an existing tag
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div>
-            <div>
-              <div>
-                <p
-                  className="sub-heading"
-                >
-                  Executive Director
-                </p>
-                <p
-                  className="m-0"
-                >
-                  Enter Executive Director
-                </p>
-                <div
-                  className="executive_director"
-                >
-                  <Textfield
-                    fullWidth={true}
-                    name="executive_director"
-                    onChange={[Function]}
-                    value=""
-                  />
-                </div>
+            <div
+              className="field-case"
+            >
+              <h2
+                className="sub-heading"
+              >
+                Executive Director
+              </h2>
+              <p
+                className="explanatory-text"
+              >
+                Enter Executive Director
+              </p>
+              <div
+                className="executive_director"
+              >
+                <Textfield
+                  className="custom-field"
+                  fullWidth={true}
+                  name="executive_director"
+                  onChange={[Function]}
+                  value=""
+                />
               </div>
-              <div>
-                <p
-                  className="sub-heading"
-                >
-                  Sector
-                </p>
-                <p
-                  className="m-0"
-                >
-                  Select Sector
-                </p>
-              </div>
-              <div>
-                <p
-                  className="sub-heading"
-                >
-                  Specific Topic
-                </p>
-                <p
-                  className="m-0"
-                >
-                  Select an specific Topic
-                </p>
-              </div>
-              <label
+            </div>
+            <div
+              className="field-case select"
+            >
+              <h2
+                className="sub-heading"
+              >
+                Sector
+              </h2>
+              <p
+                className="explanatory-text"
+              >
+                Select Sector
+              </p>
+            </div>
+            <div
+              className="field-case select"
+            >
+              <h2
+                className="sub-heading"
+              >
+                Specific Topic
+              </h2>
+              <p
+                className="explanatory-text"
+              >
+                Select an specific Topic
+              </p>
+            </div>
+            <div
+              className="field-case"
+            >
+              <h2
                 className="sub-heading"
                 htmlFor="body_en"
               >
                 Description of the organization
-              </label>
+              </h2>
             </div>
-            <p
-              className="sub-heading"
-            >
-              Related Content
-            </p>
             <div
-              className="related-content"
+              className="field-case last related"
             >
-              <div
-                className="sub-sub-heading"
+              <h2
+                className="sub-heading"
               >
-                Enter Related Cases
-              </div>
-              <div>
-                <p
-                  className="m-0"
-                >
-                  <span>
-                    Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
-                  </span>
-                </p>
-              </div>
+                Related Content
+              </h2>
               <div
-                className="sub-sub-heading"
+                className="related-content"
               >
-                Enter Related Methods
-              </div>
-              <div>
-                <p
-                  className="m-0"
+                <h3
+                  className="sub-sub-heading"
                 >
-                  <span>
-                    Related methods include participatory methods or tools used during this particular case.
-                  </span>
-                </p>
-              </div>
-              <div
-                className="sub-sub-heading"
-              >
-                Enter Related Organizations
-              </div>
-              <div>
-                <p
-                  className="m-0"
+                  Related Cases
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                    </span>
+                  </p>
+                </div>
+                <h3
+                  className="sub-sub-heading mt-3"
                 >
-                  <span>
-                    Related organizations include any organization that played a direct role in the planning or execution of this particular case.
-                  </span>
-                </p>
+                  Related Methods
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related methods include participatory methods or tools used during this particular case.
+                    </span>
+                  </p>
+                </div>
+                <h3
+                  className="sub-sub-heading mt-3"
+                >
+                  Related Organizations
+                </h3>
+                <div>
+                  <p
+                    className="explanatory-text"
+                  >
+                    <span>
+                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import { Link } from "react-router-dom";
+import { Container, Col, Row } from "reactstrap";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
@@ -19,6 +20,7 @@ import HelpBar from "./components/HelpBar/HelpBar";
 import About from "./About";
 import Teaching from "./Teaching";
 import Research from "./Research";
+import Legal from "./Legal";
 import Experiments from "./components/Experiments";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
@@ -171,7 +173,9 @@ export class Layout extends React.Component {
                 to="/new"
               >
                 <div className="createButton">
-                  <FormattedMessage id="quick_submit" />
+                  <div className="createButton-text">
+                    <FormattedMessage id="quick_submit" />
+                  </div>
                 </div>
               </Link>
               <LoginAvatar auth={authService} className="login-area" />
@@ -211,6 +215,12 @@ export class Layout extends React.Component {
             <MenuItem onTouchTap={this.openHelp}>
               <FormattedMessage id="help_contact" />
             </MenuItem>
+            <MenuItem
+              containerElement={<Link to={"/legal"} />}
+              onTouchTap={this.handleClose}
+            >
+              <FormattedMessage id="terms_of_use" />
+            </MenuItem>
             <MenuItem className="d-md-none d-lg-none d-xl-none">
               {isAuthenticated ? (
                 <div className="profileButtonMenu">
@@ -235,7 +245,7 @@ export class Layout extends React.Component {
               containerElement={<Link to={"/new"} />}
               onTouchTap={this.handleClose}
             >
-              <div className="new">
+              <div className="qs-mobile mt-3">
                 <FlatButton
                   label={intl.formatMessage({ id: "quick_submit" })}
                 />
@@ -287,6 +297,7 @@ export class Layout extends React.Component {
               component={NewOrganizationContainer}
             />
             <Route path="/research" component={Research} />
+            <Route path="/legal" component={Legal} />
             <Route path="/case/:nodeID" exact component={Case} />
             <Route path="/method/:nodeID" exact component={Method} />
             <Route

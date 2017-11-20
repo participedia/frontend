@@ -7,7 +7,7 @@ import "./QuickSubmitPicker.css";
 const QuickSubmitPicker = props => (
   <div>
     <Container className="select-type">
-      <h2>Select type</h2>
+      <h2 className="medium">Select type</h2>
       <Row>
         <Col md="4" className="ml-auto mr-auto">
           <Link to={"/new/case"}>

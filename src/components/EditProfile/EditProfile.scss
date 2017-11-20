@@ -15,7 +15,7 @@
 }
 
 .edit-profile {
-  padding-top: 7%;
+  padding-top: 3%;
   padding-bottom: 7%;
 }
 
@@ -31,7 +31,6 @@
     .change-avatar-button {
       display: none;
       background-color: rgba(0, 0, 0, 0.5);
-      // border: solid 2px red;
       height: 50px;
       position: absolute;
       bottom: 0;
@@ -65,21 +64,37 @@
 }
 
 .edit-profile .main-area {
-  .form-label {
-    color: #666;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 48px;
-    margin-bottom: 21px;
-    display: block;
-    @include media-breakpoint-down(sm) {
-      font-size: 24px;
-      line-height: 32px;
+
+  .custom-autocomplete {
+    >div {
+      padding-top: 3px;
     }
-    &.organization {
-      padding-top: 28px;
+    width: 70% !important;
+    padding-left: 1rem;
+    border: 2px solid #323232;
+    hr {
+      display: none;
     }
   }
+
+  .save-profile {
+    // margin-left: -1rem;
+  }
+  // .form-label {
+  //   color: #666;
+  //   font-size: 2rem;
+  //   font-weight: 400;
+  //   line-height: 48px;
+  //   margin-bottom: 21px;
+  //   display: block;
+  //   @include media-breakpoint-down(sm) {
+  //     font-size: 24px;
+  //     line-height: 32px;
+  //   }
+  //   &.organization {
+  //     padding-top: 28px;
+  //   }
+  // }
   .biography-input {
     hr {
       display: none;
@@ -131,7 +146,7 @@
   .name {
     color: #3f51b2;
     font-size: 3.75rem;
-    font-weight: 500;
+    font-weight: $medium-weight;
     line-height: 72px;
   }
   .credentials {

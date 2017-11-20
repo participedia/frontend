@@ -1,9 +1,44 @@
+@import "./UniversalStyles";
+
 .static {
+  padding-top: 3%;
+  @include media-breakpoint-only(md) { 
+    padding-top: 14%;
+  }
+  h1 {
+    color: $primary-color;
+    font-weight: $medium-weight;
+    line-height: 72px;
+    @include media-breakpoint-down(md) { 
+      line-height: 36px;
+    }
+  }
+  h2 {
+    color: $primary-color;
+    font-weight: $medium-weight;
+    line-height: 40px;
+    @include media-breakpoint-down(md) { 
+      line-height: 30px;
+    }
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  @include media-breakpoint-down(sm) { 
+    h2, h3 {
+      line-height: 1;
+    }
+  }
   a {
     text-decoration: underline;
     color: #000;
     &:hover {
       color: #000;
+    }
+  }
+  h1, h2, h3 {
+    span {
+      font-weight: $medium-weight;
     }
   }
   .accordion {
@@ -14,6 +49,17 @@
     }
   }
   .sub-head {
-    font-weight: 500;
+    font-weight: $medium-weight;
+  }
+  &.legal {
+    padding-bottom: 5%;
+    ul {
+      list-style-type: disc;
+      padding-left: 1rem;
+      ul {
+        padding-left: 1.2rem;
+        list-style-type: circle;
+      }
+    }
   }
 }

@@ -27,7 +27,7 @@
 
       div {
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: $medium-weight;
         color: #666;
         display: block;
         line-height: 26px;
@@ -87,8 +87,7 @@
 
   .filters div {
     cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: $medium-weight;
     color: $primary-color;
     text-transform: capitalize;
     display: block;
@@ -272,12 +271,12 @@
 }
 
 .search-description {
-  font-weight: 600;
+  font-weight: $medium-weight;
   font-size: 20px;
 }
 .search-description-text {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: $blond-weight;
   margin-bottom: 25px;
   .page-of {
     float: left;
@@ -338,7 +337,7 @@ div h3.searching-message {
   a {
     color: $primary-color;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: $medium-weight;
     color: #666;
     display: block;
     line-height: 26px;
@@ -390,4 +389,11 @@ div h3.searching-message {
       text-decoration: none;
     }
   }
+}
+
+.addFAB {
+  z-index: 3000;
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
 }

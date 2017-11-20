@@ -10,7 +10,11 @@ $grey-text: #323232;
 $primary-color: $black;
 $interactive-color: $red;
 
-.new, .quick {
+$blond-weight: 300;
+$normal-weight: 400;
+$medium-weight: 600;
+
+.qs-mobile {
   transition:background .2s;
   color:$black;
   font-weight:500;
@@ -27,33 +31,54 @@ $interactive-color: $red;
       span {
         color: white !important;
         text-transform: none !important;
+        font-size: 1rem !important;
+        &:before {
+          font-weight:$medium-weight;
+          content:"+";
+          padding-right: 7px;
+          font-size: 1.5rem;
+          font-weight:600;
+        }
       }
     }
   }
 }
 
-// .new {
-//   button {
-//     div {
-//       span {
-//         &:after {
-//           content: '|  +';
-//           padding-left: 9px;
-//           white-space: pre;
-//         }
-//       }
-//     }
-//   }
-// }
+input {
+  font-family:'Fakt' !important;
+}
 
-.full-submit {
+.medium {
+  font-weight: $medium-weight;
+}
+
+.normal {
+  font-weight: $normal-weight;
+}
+
+.blond {
+  font-weight: $blond-weight;
+}
+
+.customButton {
+  &.left {
+    margin-left: 0 !important;
+  }
   button {
     div {
-      border-radius: 2px;
-      background: $black;
       span {
-        color: white !important;
+        font-size: 1rem !important;
+        // padding-left: 6px !important;
         text-transform: capitalize !important;
+      }
+    }
+  }
+  &.publish {
+    button div span {
+      &:before {
+        // content:url("../img/icon-publish.png");
+        // width: 20px;
+        // padding: 7px;
       }
     }
   }

@@ -1,24 +1,12 @@
 @import "./UniversalStyles";
 
 .about {
-  padding-top: 3%;
-  h1 {
-    color: $primary-color;
-    font-weight: 500;
-    line-height: 72px;
-  }
-
-  h2 {
-    color: $primary-color;
-    font-weight: 500;
-    line-height: 44px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-
-  @include media-breakpoint-down(sm) { 
-    h1, h2 {
-      line-height: 1;
+  iframe {
+    @media (max-width: 1440px) {
+      margin-left: -60px;
+    }
+    @media (max-width: 1280px) {
+      margin-left: -15px;
     }
   }
 
@@ -39,7 +27,7 @@
 
     a {
       color: $primary-color;
-      font-weight: 600;
+      font-weight: $medium-weight;
       text-decoration:underline;
       &:hover, &:focus {
         color:$interactive-color;
@@ -63,7 +51,7 @@
     .name {
       color: $black;
       line-height: 24px;
-      font-weight: 500;
+      font-weight: $medium-weight;
     }
 
     .sub-content {
@@ -90,7 +78,7 @@ img.article-image {
     padding-top: 24px;
     .title {
       color: $primary-color;
-      font-weight: 500;
+      font-weight: $medium-weight;
       padding: 24px 16px;
       font-size: 28px;
       &:hover, &:focus {

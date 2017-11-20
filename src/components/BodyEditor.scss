@@ -1,11 +1,7 @@
 @import "../UniversalStyles";
 
-.rdw-storybook-wrapper {
-  // border: 1px solid #ece8e6;
-}
-
 .rdw-editor-toolbar, .rdw-storybook-editor {
-  border: 1px solid #F1F1F1;
+ 	border: 2px solid $grey-text;
 }
 
 .rdw-option-wrapper {

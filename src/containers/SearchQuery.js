@@ -31,6 +31,9 @@ export default class SearchQuery extends React.Component {
     );
   }
   onPerformQuery(query, selectedCategory, sortingMethod) {
-    this.props.history.push(`/search?query=${query}`);
+    // We need to keep whatever search path may be current (/methods, etc.) but change the query parameter
+    this.props.history.push(
+      this.props.history.location.pathname + `?query=${query}`
+    );
   }
 }

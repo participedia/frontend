@@ -211,7 +211,7 @@ export class SearchResultsView extends React.Component {
               ) : (
                 <div className="page-of">
                   <span className="text-capitalize">
-                    <FormattedMessage id="page" />
+                    <FormattedMessage className="text-capitalize" id="page" />
                   </span>{" "}
                   {pageNo} {this.props.intl.formatMessage({ id: "of" })} {pages}
                 </div>
@@ -433,7 +433,7 @@ export class SearchResultsView extends React.Component {
           className="d-block d-sm-none d-md-none d-lg-none d-xl-none"
           to={addLink}
         >
-          <FloatingActionButton className="editButton">
+          <FloatingActionButton secondary={true} className="addFAB">
             <Plus />
           </FloatingActionButton>
         </Link>

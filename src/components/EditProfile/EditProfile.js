@@ -6,6 +6,7 @@ import { object, array } from "prop-types";
 import { Container, Col } from "reactstrap";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
+import "../CaseEditor.css";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import FileUpload from "material-ui/svg-icons/file/file-upload";
 import { Form, Field } from "simple-react-form";
@@ -17,6 +18,14 @@ import {
   makeLocalizedAvatarEditor
 } from "../PropEditors";
 import { encodeLocation } from "../geoutils";
+import RelatedEditor from "../RelatedEditor";
+import RaisedButton from "material-ui/RaisedButton";
+import BodyEditor from "../BodyEditor";
+import PublishIcon from "material-ui/svg-icons/editor/publish";
+
+const buttonStyle = {
+  marginTop: "2rem"
+};
 
 export default class EditProfile extends Component {
   static propTypes = {
@@ -29,6 +38,14 @@ export default class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = this.propsToDefaultState(props);
+    this.handleUpdateInput = this.handleUpdateInput.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+  }
+
+  updateBody(body) {
+    this.setState({
+      user : {...this.state.user, bio: body}
+    })
   }
 
   propsToDefaultState(props) {
@@ -53,25 +70,25 @@ export default class EditProfile extends Component {
     this.setState(this.propsToDefaultState(nextProps));
   }
   onSubmit(event) {
-    console.log("Submitting user", this.state.user);
+    // console.log("Submitting user", JSON.stringify(this.state.user));
     this.props.onChange(this.state.user);
   }
+
+  handleUpdateInput(value) {
+    this.setState({
+      user : {...this.state.user, organization: value}
+    })
+  };
 
   render() {
     const { profile, user, intl } = this.props;
     const isAuthenticated = authService.isAuthenticated();
 
-    const nameStyle = {
-      color: "#3f51b2",
-      fontSize: 1.2 + "rem",
-      paddingBottom: 7 + "px"
-    };
     let location = null;
     if (!user) return <div />;
 
     let avatarEditor = makeLocalizedAvatarEditor(intl, "picture_url", profile);
     let locationEditor = makeLocalizedLocationField(intl, "location");
-
     return (
       <Container fluid className="edit-profile">
         {isAuthenticated ? (
@@ -82,7 +99,7 @@ export default class EditProfile extends Component {
               onChange={changes => this.setState({ user: changes })}
             >
               <div className="form-group row">
-                <Col md="3" className="sidebar">
+                <Col xs={12} lg={3} md={4} className="sidebar">
                   {avatarEditor}
 
                   {location ? (
@@ -94,23 +111,21 @@ export default class EditProfile extends Component {
                     <div />
                   )}
                 </Col>
-                <Col md="9" className="main-area">
-                  <label className="form-label">
-                    <FormattedMessage id="name" />
-                  </label>
-                  <Field
-                    type={Text}
-                    fieldName="name"
-                    name="name"
-                    inputStyle={nameStyle}
-                    hintText={intl.formatMessage({ id: "name" })}
-                    className="name-input"
-                  />
-                  <br />
-                  <div className="divider" />
-                  <label className="form-label">
-                    <FormattedMessage id="location" />
-                  </label>
+                <Col xs={12} md={6} className="main-area mr-auto">
+                  <div className="field-case top">
+                    <h2 className="sub-heading">
+                      <label className="form-label">
+                        <FormattedMessage id="name" />
+                      </label>
+                    </h2>
+                    <Field
+                      type={Text}
+                      fieldName="name"
+                      name="name"
+                      hintText={intl.formatMessage({ id: "name" })}
+                      className="custom-field"
+                    />
+                  </div>
                   {locationEditor}
                   {/* <Geosuggest
                     className="org-input"
@@ -119,63 +134,27 @@ export default class EditProfile extends Component {
                       onChange({ user });
                     }}
                   />*/}
-                  <label className="form-label organization">
-                    <FormattedMessage id="organization" />
-                  </label>
-                  <div className="label-description">
-                    <FormattedMessage id="organization_text" />
+                  <div className="field-case last">
+                    <h2 className="sub-heading">
+                      <label className="form-label">
+                        <FormattedMessage id="biography" />
+                      </label>
+                    </h2>
+                    <BodyEditor onEditorChange={this.updateBody} html={this.props.user.bio} />
                   </div>
-                  <Field
-                    fieldName="organization"
-                    name="organization"
-                    type={Select}
-                    options={this.props.organizations}
-                  />
-                  <br />
-                  <Field
-                    type={Text}
-                    fieldName="affiliation"
-                    hintText={this.props.intl.formatMessage({
-                      id: "department"
-                    })}
-                  />
-                  <br />
-                  <Field
-                    type={Text}
-                    fieldName="title"
-                    hintText={this.props.intl.formatMessage({
-                      id: "job_title"
-                    })}
-                  />
-                  <br />
-                  <Field
-                    type={Text}
-                    fieldName="website"
-                    hintText={this.props.intl.formatMessage({
-                      id: "website"
-                    })}
-                  />
-                  <br />
-                  <div className="divider" />
-                  <label className="form-label">
-                    <FormattedMessage id="biography" />
-                  </label>
-                  <Field
-                    type={Textarea}
-                    fieldName="bio"
-                    name="bio"
-                    className="biography-input"
-                    placeholder={this.props.intl.formatMessage({
-                      id: "tell_us"
+                  <RaisedButton
+                    className="customButton save-profile"
+                    secondary
+                    style={buttonStyle}
+                    label="Label after"
+                    labelPosition="after"
+                    icon={<PublishIcon />}
+                    type="submit"
+                    label={intl.formatMessage({
+                      id: "publish"
                     })}
                   />
                 </Col>
-                <FloatingActionButton
-                  onTouchTap={this.onSubmit.bind(this)}
-                  className="editButton"
-                >
-                  <FileUpload />
-                </FloatingActionButton>
               </div>
             </Form>
           </div>

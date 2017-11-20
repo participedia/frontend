@@ -41,6 +41,9 @@ export class Footer extends React.Component {
                 <FormattedMessage id="news" />
               </Link>
               <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
+              <Link to="/legal">
+                <FormattedMessage id="terms_of_use" />
+              </Link>
             </Col>
           </Row>
           <Row className="pt-4">
@@ -123,12 +126,15 @@ export class Footer extends React.Component {
                   <FormattedMessage id="news" />
                 </Link>
                 <span className="open-help" onClick={() => { this.openHelp() }}>{this.props.intl.formatMessage({ id: "help_contact" })}</span>
+                <Link to="/legal">
+                  <FormattedMessage id="terms_of_use" />
+                </Link>
               </div>
             </Col>
             <Col lg={{ size: 6 }}>
               <div className="column xl">
-                <h4>Participedia</h4>
-                <p>
+                <h3 className="medium">Participedia</h3>
+                <p className="blond">
                   <FormattedMessage id="about_intro" />
                 </p>
               </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LinkToThing = ({ thing }) =>
   thing ? (
-    <Link
+    <Link className="blond"
       to={{
         pathname: `/${thing.type}/${thing.id}`
       }}
@@ -21,11 +21,11 @@ const RelatedThings = ({ title, relateds, intl }) =>
   relateds && relateds.length ? (
     <div>
       <div className="sub-sub-heading">
-        <FormattedMessage id={title} />:&nbsp;
+        <FormattedMessage id={title} />&nbsp;
       </div>
       {relateds.map((related, index) => (
         index < relateds.length -1 ?
-        <span key={related.id}><LinkToThing thing={related} />,&nbsp;</span>
+        <span className="blond" key={related.id}><LinkToThing thing={related} />,&nbsp;</span>
         :
         <LinkToThing key={related.id} thing={related} />
       ))}
@@ -55,7 +55,7 @@ const RelatedContent = props => {
     (props.thing.related_organizations &&
       props.thing.related_organizations.length) ? (
     <div className="related-content">
-      <p className="sub-heading">Related Content</p>
+      <h3 className="line-heading"><FormattedMessage id="related_content" /></h3>
       <RelatedCases {...props} />
       <RelatedMethods {...props} />
       <RelatedOrganizations {...props} />
