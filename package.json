@@ -99,12 +99,11 @@
     "archivestage": "zip -r archive/stage-$(date -u +%FT%TZ) build",
     "deployprod": "surge -p build -d https://participedia.xyz",
     "deploystage": "surge -p build -d https://ppedia.surge.sh",
-    "buildprod":
-      "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archiveprod; cp .envdev .env",
-    "buildstage":
-      "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archivestage; cp .envdev .env",
-    "builddev":
-      "rm -rf build && sass --update --force src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt",
+    "buildprod": "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archiveprod; cp .envdev .env",
+    "buildstage": "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archivestage; cp .envdev .env",
+    "builddev": "rm -rf build && sass --update --force src && react-scripts build && cp build/index.html build/200.html && node scripts/properties2json && echo $(date -u +%FT%TZ) > build/VERSION.txt",
+    "buildallprod": "npm install && sass --update --force src && npm run buildprod && npm test",
+    "buildallstage": "npm install && sass --update --force src && npm run buildstage && npm test",
     "rollbackto": "f(){ rm -rf build && unzip archive/${1}; }; f",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint \"src/**/**.js\"",
@@ -115,7 +114,10 @@
     "build-storybook": "build-storybook -s public"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "pre-commit": "lint-staged"
 }
