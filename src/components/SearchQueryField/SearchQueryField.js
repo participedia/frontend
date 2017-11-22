@@ -14,40 +14,6 @@ class SearchQueryField extends React.Component {
     this.setState({ query: nextProps.query });
   }
 
-  //joyride
-  // componentDidMount() {
-  //   const steps = [
-  //     {
-  //       title: 'Search',
-  //       text: 'Explain search here.',
-  //       selector: '.search-bar',
-  //       position: 'top',
-  //       type: 'hover',
-  //     },
-  //     // {
-  //     //   title: 'Search',
-  //     //   text: 'Quickly find cases, methods and organizations.',
-  //     //   selector: '.card-tasks',
-  //     //   position: 'top',
-  //     //   type: 'hover',
-  //     // },
-  //     // {
-  //     //   title: '3-Advance customization',
-  //     //   text: 'You can set individual styling options for beacons and tooltips. <br/>To advance click `NEXT` inside the hole.',
-  //     //   selector: '.cxard-tickets',
-  //     //   position: 'top',
-  //     //   // allowClicksThruHole: true,
-  //     //   style: {
-  //     //     mainColor: '#ec1414',
-  //     //     header: {
-  //     //       color: '#ec1414',
-  //     //     },
-  //     //   },
-  //     // },
-  //   ];
-  //   this.props.addSteps(steps);
-  // }
-
   handleClick = (e) => {
     e.preventDefault();
     const { next } = this.props;

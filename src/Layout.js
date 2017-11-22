@@ -223,15 +223,22 @@ export class Layout extends React.Component {
     const steps = [
       {
         title: 'Search',
-        text: 'Use the search bar at the top of any page to conduct a site-wide search using one or more keywords. You can do an advanced search using common syntax like “and”, “or”, and “not”, as well as quotations and parentheses (see FAQ’s for details).',
-        selector: '.search-bar',
-        position: 'top',
+        text: '<p>Conduct a site-wide search using one or more keywords.<p/><p>You can do an advanced search using common syntax like “and”, “or”, and “not”, as well as quotations and parentheses.</p><p>For example,<code>bicycle or rally</code> will match items with either or both words.<p>',
+        selector: '.search-box-area',
+        position: 'left',
         isFixed: true,
         type: 'hover',
       },
       {
+        title: 'Map',
+        text: 'The map shows cases and organizations around the world. Your search results are represented by red pins. Double click to zoom in. Select a red pin to find out more about.',
+        selector: '.map-component',
+        position: 'left',
+        type: 'hover',
+      },
+      {
         title: 'Sort',
-        text: 'Once your search results are displayed, sort the results by content type such as cases, methods or organizations.',
+        text: 'Sort the results by content type such as cases, methods or organizations.',
         selector: '.filters',
         position: 'bottom',
         type: 'hover',
@@ -246,7 +253,7 @@ export class Layout extends React.Component {
       },
       {
         title: 'Read',
-        text: 'Copy for read.',
+        text: 'Open any case, method or organization to read about it and see what data has been entered.',
         selector: '.result0',
         type: 'hover',
         position: 'top',
