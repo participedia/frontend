@@ -187,6 +187,7 @@ export class Layout extends React.Component {
   }
 
   showTourFromHelp() {
+    console.log(this,'this')
     this.setState({ 
       isRunning: true
     });
@@ -263,6 +264,14 @@ export class Layout extends React.Component {
         text: 'Bookmark content to review it later. Find your bookmarks on your profile page.',
         selector: '.result0 .bookmark',
         type: 'hover',
+        position: 'top',
+      },
+      {
+        title: 'Feedback',
+        text: 'Use the feedback button to suggest improvements or if something on the website isn’t working properly. Include your email address if you would like to be contacted about your feedback.',
+        selector: '#feedback',
+        type: 'hover',
+        isFixed: true,
         position: 'top',
       },
     ];
@@ -451,6 +460,7 @@ export class Layout extends React.Component {
             <Route path="/users/:id" component={ProfileLoader} />
           </div>
           <Footer onHelpOpen={this.openHelp} />
+          <div id="feedback"></div>
           {this.state.showHelp ? (
             <HelpBar
               onHelpClose={this.closeHelp}
