@@ -7,6 +7,8 @@ import MailIcon from "material-ui/svg-icons/communication/message";
 import CloseIcon from "material-ui/svg-icons/navigation/close";
 import { white } from "material-ui/styles/colors";
 import { injectIntl } from "react-intl";
+import { withRouter } from 'react-router'
+
 
 class HelpBar extends React.Component {
   constructor(props) {
@@ -126,4 +128,4 @@ class HelpBar extends React.Component {
   }
 }
 
-export default injectIntl(HelpBar);
+export default injectIntl(withRouter(HelpBar));
