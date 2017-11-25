@@ -1,7 +1,23 @@
 @import "../UniversalStyles";
 
 .profile {
-  padding-top: 3%;
+  min-height: 60vh;
+  padding-bottom: 7%;
+  .main-area {
+    position: relative;
+    .editProfile {
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+  }
+  .profile-info-section {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    @include media-breakpoint-down(lg) {
+      padding-top: 12%;
+    }
+  }
   .search-actions-area {
     margin-bottom: 3rem;
     .filters {
@@ -78,20 +94,6 @@
   .user-avatar {
     text-align: center;
   }
-  .edit-profile-button {
-    display: block;
-    background-color: $interactive-color;
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: $blond-weight;
-    text-align: center;
-    border-radius: 4px;
-    line-height: 40px;
-    padding-top: 6px;
-    margin: 14px auto;
-    width: 200px;
-    margin-bottom: 32px;
-  }
 }
 
 .profile-info-section {
@@ -109,24 +111,6 @@
         top: 17px;
       }
     }
-    @include media-breakpoint-up(lg) {
-      .editProfile {
-        display: none;
-      }
-      svg {
-        width: 30px !important;
-        height: 30px !important;
-      }
-      &:hover {
-        .editProfile {
-          position: absolute;
-          display: block;
-          right: 4px;
-          z-index: 1;
-          top: 10px;
-        }
-      }
-    }
     .name {
       font-weight: $medium-weight;
       line-height: 60px;
@@ -138,6 +122,7 @@
       color: blue;
       span, p {
         font-size: 1rem;
+        margin-bottom: 0;
         span {
           font-size: 1rem !important;
         }
@@ -150,17 +135,12 @@
         text-align: center;
       } 
       svg {
-        @include media-breakpoint-down(lg) {
-          transform: translate(0, 7px);
-        }
-        @include media-breakpoint-up(lg) {
-          transform: translate(0, 11px);
-        }  
+        transform: translate(0, 7px);
         width: 14px !important;
       }
       div {
         @include media-breakpoint-up(lg) {
-          margin-top: -14px;
+          margin-top: -9px;
         }
         span {
           font-weight: $blond-weight;
@@ -185,6 +165,15 @@
     }
     .heading {
       font-size: 1.5rem;
+    }
+  }
+}
+
+.nothing-yet {
+  &.bookmarks {
+    svg {
+      transform: translateY(5px);
+      width: 30px !important;
     }
   }
 }

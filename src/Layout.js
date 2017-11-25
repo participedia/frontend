@@ -8,6 +8,8 @@ import { Container, Col, Row } from "reactstrap";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
+import RaisedButton from "material-ui/RaisedButton";
+import AddIcon from "material-ui/svg-icons/content/add";
 import SearchQuery from "./containers/SearchQuery";
 import Footer from "./components/Footer/Footer";
 import LoginAvatar from "./LoginAvatar";
@@ -172,11 +174,13 @@ export class Layout extends React.Component {
                 className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
                 to="/new"
               >
-                <div className="createButton">
-                  <div className="createButton-text">
-                    <FormattedMessage id="quick_submit" />
-                  </div>
-                </div>
+              <div className="qs-button-case">
+                <RaisedButton 
+                className="qs-button customButton"
+                label={intl.formatMessage({id: "quick_submit"})} 
+                labelPosition="after"
+                icon={<AddIcon />}/>
+              </div>
               </Link>
               <LoginAvatar auth={authService} className="login-area" />
             </div>

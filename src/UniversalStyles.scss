@@ -68,18 +68,25 @@ input {
     div {
       span {
         font-size: 1rem !important;
-        // padding-left: 6px !important;
         text-transform: capitalize !important;
+        font-weight: $normal-weight !important;
       }
     }
   }
-  &.publish {
-    button div span {
-      &:before {
-        // content:url("../img/icon-publish.png");
-        // width: 20px;
-        // padding: 7px;
-      }
-    }
+}
+
+.qs-button {
+  @include media-breakpoint-up(sm) {
+    margin-left: 0.4rem;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-top: 0.4rem;
+  }
+  svg {
+    stroke: $black !important;
+    stroke-width: 1px;
+    width: 20px !important;
+    height: 20px !important;
+    transform: translateY(-1px);
   }
 }

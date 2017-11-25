@@ -2,7 +2,10 @@ import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import PropTypes from "prop-types";
 import authService from "../utils/AuthService";
 import Avatar from "material-ui/Avatar";
+import RaisedButton from "material-ui/RaisedButton";
 import UserIcon from "material-ui/svg-icons/social/person";
+import AddIcon from "material-ui/svg-icons/content/add";
+import BookmarkBorder from "material-ui/svg-icons/action/bookmark-border";
 import { Container, Row, Col } from "reactstrap";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
@@ -60,7 +63,7 @@ class Profile extends Component {
     if (profile === {}) {
       return <div />;
     }
-    const { user } = this.props;
+    const { user, intl } = this.props;
     let data = [
       { type: "case", hits: user.cases },
       { type: "method", hits: user.methods }
@@ -80,7 +83,17 @@ class Profile extends Component {
       });
     });
     if (authored.length === 0) {
-      authored = <Col md={{ size: 6 }} className="nothing-yet mr-auto">Nothing yet</Col>;
+      authored = (
+        <Col md={{ size: 12 }} className="nothing-yet mr-auto">
+          <FormattedMessage id="no_content_yet" />
+          <RaisedButton 
+            className="qs-button customButton"
+            label={intl.formatMessage({id: "quick_submit"})} 
+            labelPosition="after"
+            icon={<AddIcon />}
+          />
+        </Col>
+      );
     }
     let bookmarked = user.bookmarks.map((hit, index) => (
       <SearchHit
@@ -90,15 +103,20 @@ class Profile extends Component {
       />
     ));
     if (bookmarked.length === 0) {
-      bookmarked = <Col md={{ size: 6 }} className="nothing-yet mr-auto">Nothing yet</Col>;
+      bookmarked = (
+        <Col md={{ size: 12 }} className="nothing-yet bookmarks mr-auto">
+          <FormattedMessage id="no_bookmarks_yet_1" />
+          <BookmarkBorder />
+          <FormattedMessage id="no_bookmarks_yet_2" />
+        </Col>
+      );
     }
     let location = stringifyLocation(user.location);
-    console.log(user);
 
     return (
-      <Container fluid className="profile pb-3">
+      <Container fluid className="profile">
         <Row className="profile-info-section">
-          <Col xs={12} md={3} className="sidebar">
+          <Col xs={12} md={3} lg={3} className="sidebar">
             <div className="user-avatar">
               { user.picture_url ?
               <Avatar size={160} src={user.picture_url} />
@@ -107,8 +125,18 @@ class Profile extends Component {
               }
             </div>
           </Col>
-          <Col xs={12} md={6} className="main-area">
+          <Col xs={12} md={9} lg={6} className="main-area">
             <h2 className="name">{user.name}</h2>
+            <Link  className="d-block d-md-none d-lg-none d-xl-none text-center" to="/profile/edit">
+              <RaisedButton
+                className="customButton"
+                label={intl.formatMessage({id: "edit_profile"})} 
+                labelPosition="after"
+                icon={<EditIcon />}
+                secondary
+                type="submit"
+              />
+            </Link>
             <div className="credentials">
               {user.join_date ? (
                 <div>
@@ -133,8 +161,15 @@ class Profile extends Component {
               dangerouslySetInnerHTML={{ __html: user.bio }}
             />
             {user.email === profile.email ? (
-                <Link  className="editProfile" to="/profile/edit">
-                  <EditIcon color={"#ec1414"} />
+                <Link  className="editProfile d-none d-md-block d-lg-block d-xl-block" to="/profile/edit">
+                  <RaisedButton
+                    className="customButton"
+                    label={intl.formatMessage({id: "edit_profile"})} 
+                    labelPosition="after"
+                    icon={<EditIcon />}
+                    secondary
+                    type="submit"
+                  />
                 </Link>
             ) : (
               <div />

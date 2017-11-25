@@ -218,38 +218,11 @@
   margin-left: 12px;
 }
 
-// Create content button 
-.createButton {
-  background: #fff;
+// // Quick submit button 
+.qs-button-case {
   position:absolute;
-  display:inline-block;
   right:110px;
-  top:12px;
-  height:40px;
-  padding:8px 14px 0;
-  border-radius:2px;
-  transition:background .2s;
-  color:$black;
-  @include media-breakpoint-up(sm) {
-    position:absolute;
-    display:inline-block;
-    padding:8px 16px 0;
-    right:120px;
-  }
-  .createButton-text {
-    position:relative;
-    top: -7px;
-    &:before {
-      font-weight:$medium-weight;
-      content:"+";
-      padding-right: 7px;
-      color:#000;
-      font-size: 1.5rem;
-    }
-  }
-  &:hover {
-    background:#eee;
-  }
+  top:14px;
 }
 
 // Create content button 
