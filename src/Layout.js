@@ -80,6 +80,23 @@ class Callback extends React.Component {
   }
 }
 
+class PrivateRoute extends React.Component {
+  render() {
+    const { component: Component, ...rest } = this.props;
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          authService.isAuthenticated() ? (
+            <Component {...props} handleInternal={this.props.handleInternal} />
+          ) : (
+            authService.login(props.location) || <div />
+          )}
+      />
+    );
+  }
+}
+
 export class Layout extends React.Component {
   static propTypes = {};
 
@@ -179,18 +196,6 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-      <Route
-        {...rest}
-        render={props =>
-          authService.isAuthenticated() ? (
-            <Component {...props} handleInternal={this.handleInternal} />
-          ) : (
-            authService.login(props.location) || <div />
-          )}
-      />
-    );
-
     const { intl } = this.props;
     const {
       isRunning,
@@ -497,7 +502,12 @@ export class Layout extends React.Component {
               )}
             />
             <Route path="/experiments" component={Experiments} />
-            <PrivateRoute exact path="/new" component={QuickSubmitPicker} />
+            <PrivateRoute
+              exact
+              path="/new"
+              component={QuickSubmitPicker}
+              handleInternal={this.handleInternal}
+            />
             <Route
               exact
               path="/new/case"
