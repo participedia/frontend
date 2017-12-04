@@ -122,23 +122,20 @@
   .logo-area {
     float: left;
     width: 250px;
+    padding-left: 0.5rem;
     @include media-breakpoint-up(lg){
-      width:25%;
+      width:26%;
     } 
     @include media-breakpoint-only(xs){
-      width: 207px;
+      width: 196px;
     } 
 
     .menu-icon {
       float: left;
       padding: 16px 20px;
-      margin-right:10px;
       cursor:pointer;
-      @include media-breakpoint-up(sm){
-        margin-right:16px;
-      }
       @include media-breakpoint-only(xs){
-        padding: 16px 0 16px 11px;
+        padding: 16px 8px 16px 3px;
       } 
       &:hover{
         cursor:pointer;
@@ -162,18 +159,31 @@
 
   .search-box-area {
     float: left;
-    padding:0 15px;
+    // padding:0 15px;
     position: absolute;
     margin-top: 64px;
     background-color: lighten($black,10%);
     width: 100%;
     box-sizing: border-box;
     margin-top: 64px;
-    @include media-breakpoint-up(lg) {
-      padding:0;
+    @include media-breakpoint-only(md){
+      padding: 0 30px;
+    }
+    @include media-breakpoint-down(sm){
+      padding: 0 15px;
+    }  
+    @include media-breakpoint-up(md) {
+      padding-left:0.6rem;
       position:relative;
       margin-top:0;
-      width:45%;
+      width:44.5%;
+      background-color:transparent;
+    }
+    @include media-breakpoint-only(xl) {
+      padding-left:0.6rem;
+      position:relative;
+      margin-top:0;
+      width:47.5%;
       background-color:transparent;
     }
   }
@@ -221,7 +231,7 @@
 // // Quick submit button 
 .qs-button-case {
   position:absolute;
-  right:110px;
+  right:130px;
   top:14px;
 }
 

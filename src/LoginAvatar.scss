@@ -12,7 +12,10 @@
 
 .loginButton {
   float: right;
-  margin-right: 1rem;
+  margin-right: 2rem;
   margin-top: 0.9rem;
   border-radius:2px;
+  @include media-breakpoint-only(xs){
+    margin-right: 1rem;
+  } 
 }

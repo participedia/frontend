@@ -171,7 +171,7 @@ export class Layout extends React.Component {
                 <Route path="/" component={SearchQuery} />
               </div>
               <Link
-                className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+                className="d-none d-none d-md-block d-lg-block d-xl-block"
                 to="/new"
               >
               <div className="qs-button-case">

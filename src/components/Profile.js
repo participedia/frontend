@@ -85,13 +85,14 @@ class Profile extends Component {
     if (authored.length === 0) {
       authored = (
         <Col md={{ size: 12 }} className="nothing-yet mr-auto">
-          <FormattedMessage id="no_content_yet" />
+          <FormattedMessage id="no_content_yet_1" />
           <RaisedButton 
-            className="qs-button customButton"
+            className="qs-button customButton mr-2"
             label={intl.formatMessage({id: "quick_submit"})} 
             labelPosition="after"
             icon={<AddIcon />}
           />
+          <FormattedMessage id="no_content_yet_2" />
         </Col>
       );
     }

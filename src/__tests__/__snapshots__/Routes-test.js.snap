@@ -58,7 +58,7 @@ exports[`App 1`] = `
         />
       </div>
       <a
-        className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+        className="d-none d-none d-md-block d-lg-block d-xl-block"
         href="/new"
         onClick={[Function]}
       >
@@ -201,77 +201,113 @@ exports[`App 1`] = `
       <div
         className="loginButton"
       >
-        <button
-          disabled={false}
-          href={undefined}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onTouchStart={[Function]}
-          onTouchTap={[Function]}
+        <div
+          className="customButton"
           style={
             Object {
-              "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
-              "backgroundColor": "rgba(0, 0, 0, 0)",
-              "border": 10,
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+              "backgroundColor": "#ffffff",
               "borderRadius": 2,
+              "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
+                     0 1px 4px rgba(0, 0, 0, 0.12)",
               "boxSizing": "border-box",
               "color": "rgba(0, 0, 0, 0.87)",
-              "cursor": "pointer",
               "display": "inline-block",
               "fontFamily": "Roboto, sans-serif",
-              "fontSize": "inherit",
-              "fontWeight": "inherit",
-              "height": 36,
-              "lineHeight": "36px",
-              "margin": 0,
               "minWidth": 88,
               "muiPrepared": true,
-              "outline": "none",
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "textAlign": "center",
-              "textDecoration": "none",
               "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-              "userSelect": "none",
-              "verticalAlign": null,
-              "zIndex": 1,
             }
           }
-          tabIndex={0}
-          type="button"
         >
-          <div
+          <button
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
             onMouseDown={[Function]}
+            onMouseEnter={[Function]}
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
-          >
-            <span
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "muiPrepared": true,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "position": "relative",
-                  "textTransform": "uppercase",
-                  "verticalAlign": "middle",
-                }
+            onTouchTap={[Function]}
+            style={
+              Object {
+                "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                "backgroundColor": "#444",
+                "border": 10,
+                "borderRadius": 2,
+                "boxSizing": "border-box",
+                "cursor": "pointer",
+                "display": "inline-block",
+                "fontFamily": "Roboto, sans-serif",
+                "fontSize": "inherit",
+                "fontWeight": "inherit",
+                "height": 36,
+                "lineHeight": "36px",
+                "margin": 0,
+                "muiPrepared": true,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "textDecoration": "none",
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "verticalAlign": null,
+                "width": "100%",
+                "zIndex": 1,
               }
+            }
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
             >
-              Login
-            </span>
-          </div>
-        </button>
+              <div
+                style={
+                  Object {
+                    "backgroundColor": false,
+                    "borderRadius": 2,
+                    "height": 36,
+                    "muiPrepared": true,
+                    "top": 0,
+                    "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "white",
+                      "fontSize": 14,
+                      "fontWeight": 500,
+                      "letterSpacing": 0,
+                      "margin": 0,
+                      "muiPrepared": true,
+                      "opacity": 1,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "position": "relative",
+                      "textTransform": "uppercase",
+                      "userSelect": "none",
+                    }
+                  }
+                >
+                  Login
+                </span>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1064,7 +1100,7 @@ exports[`Searching for a word 1`] = `
         />
       </div>
       <a
-        className="d-none d-sm-block d-md-block d-lg-block d-xl-block"
+        className="d-none d-none d-md-block d-lg-block d-xl-block"
         href="/new"
         onClick={[Function]}
       >
@@ -1207,77 +1243,113 @@ exports[`Searching for a word 1`] = `
       <div
         className="loginButton"
       >
-        <button
-          disabled={false}
-          href={undefined}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          onTouchStart={[Function]}
-          onTouchTap={[Function]}
+        <div
+          className="customButton"
           style={
             Object {
-              "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
-              "backgroundColor": "rgba(0, 0, 0, 0)",
-              "border": 10,
+              "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+              "backgroundColor": "#ffffff",
               "borderRadius": 2,
+              "boxShadow": "0 1px 6px rgba(0, 0, 0, 0.12),
+                     0 1px 4px rgba(0, 0, 0, 0.12)",
               "boxSizing": "border-box",
               "color": "rgba(0, 0, 0, 0.87)",
-              "cursor": "pointer",
               "display": "inline-block",
               "fontFamily": "Roboto, sans-serif",
-              "fontSize": "inherit",
-              "fontWeight": "inherit",
-              "height": 36,
-              "lineHeight": "36px",
-              "margin": 0,
               "minWidth": 88,
               "muiPrepared": true,
-              "outline": "none",
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "textAlign": "center",
-              "textDecoration": "none",
               "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
-              "userSelect": "none",
-              "verticalAlign": null,
-              "zIndex": 1,
             }
           }
-          tabIndex={0}
-          type="button"
         >
-          <div
+          <button
+            disabled={false}
+            href={undefined}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
             onMouseDown={[Function]}
+            onMouseEnter={[Function]}
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
             onTouchStart={[Function]}
-          >
-            <span
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "muiPrepared": true,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "position": "relative",
-                  "textTransform": "uppercase",
-                  "verticalAlign": "middle",
-                }
+            onTouchTap={[Function]}
+            style={
+              Object {
+                "WebkitTapHighlightColor": "rgba(0, 0, 0, 0)",
+                "backgroundColor": "#444",
+                "border": 10,
+                "borderRadius": 2,
+                "boxSizing": "border-box",
+                "cursor": "pointer",
+                "display": "inline-block",
+                "fontFamily": "Roboto, sans-serif",
+                "fontSize": "inherit",
+                "fontWeight": "inherit",
+                "height": 36,
+                "lineHeight": "36px",
+                "margin": 0,
+                "muiPrepared": true,
+                "outline": "none",
+                "padding": 0,
+                "position": "relative",
+                "textAlign": "center",
+                "textDecoration": "none",
+                "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                "verticalAlign": null,
+                "width": "100%",
+                "zIndex": 1,
               }
+            }
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
             >
-              Login
-            </span>
-          </div>
-        </button>
+              <div
+                style={
+                  Object {
+                    "backgroundColor": false,
+                    "borderRadius": 2,
+                    "height": 36,
+                    "muiPrepared": true,
+                    "top": 0,
+                    "transition": "all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "white",
+                      "fontSize": 14,
+                      "fontWeight": 500,
+                      "letterSpacing": 0,
+                      "margin": 0,
+                      "muiPrepared": true,
+                      "opacity": 1,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "position": "relative",
+                      "textTransform": "uppercase",
+                      "userSelect": "none",
+                    }
+                  }
+                >
+                  Login
+                </span>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
