@@ -99,13 +99,12 @@ export class SearchHit extends React.Component {
                 </Link>
               )}
             </Col>
-            <Col md="9">
+            <Col md="6">
               <small className="label">
                 {(result.featured
                   ? intl.formatMessage({ id: "featured" }) + " "
                   : "") + result.type}
               </small>
-              {bookmarkIcon}
               <Link to={link}>
                 <h3 className="result-title-text">{title}</h3>
               </Link>
@@ -119,6 +118,9 @@ export class SearchHit extends React.Component {
                   day="2-digit"
                 />
               </p>
+            </Col>
+            <Col md="1">
+              {bookmarkIcon}
             </Col>
             <div className="separator" />
           </Row>
