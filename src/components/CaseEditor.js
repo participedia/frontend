@@ -15,6 +15,7 @@ import { encodeLocation } from "./geoutils";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
+  makeLocalizedMultiChoiceField,
   makeLocalizedBooleanField,
   makeLocalizedDateField,
   makeLocalizedNumberField,
@@ -175,7 +176,7 @@ class CaseEditor extends Component {
                     fullWidth
                   />
                 </div>
-                {makeLocalizedChoiceField(
+                {makeLocalizedMultiChoiceField(
                   intl,
                   "issue",
                   "issue",

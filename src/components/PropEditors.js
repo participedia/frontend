@@ -75,6 +75,85 @@ export class ChoiceEditor extends React.Component {
   }
 }
 
+const names = ['a','b','c','d'];
+export class MultiChoiceEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setState = this.setState.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      // value: nickify(props.value),
+      values:[],
+      // choices: this.makeChoices(props.passProps.choices)
+      // choices: this.props.passProps.choices
+    };
+  }
+
+
+  handleChange(event, index, values) {
+    this.setState({values});
+  } 
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     // value: nickify(props.value),
+  //     value:[],
+  //     choices: this.props.passProps.choices
+  //     // choices: this.makeChoices(props.passProps.choices)
+  //   });
+  // }
+
+  // makeChoices(choices) {
+  //   return choices.map(function(v) {
+  //     return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
+  //   });
+  // }
+
+  // onChange(event, index, value) {
+  //   this.setState({ value: value });
+  //   this.props.onChange(value);
+  // }
+
+  menuItems(values) {
+    return names.map((name) => (
+      <MenuItem
+        key={name}
+        insetChildren={true}
+        checked={values && values.indexOf(name) > -1}
+        value={name}
+        primaryText={name}
+      />
+    ));
+  }
+
+
+
+  render() {
+    // let handleChange = this.handleChange.bind(this);
+    const {values} = this.state;
+    let { property } = this.props;
+    return (
+      <div>
+      <SelectField
+        name={property}
+        fullWidth
+        multiple={true}
+        hintText="Select a name"
+        value={values}
+        onChange={this.handleChange}
+      >
+        {this.menuItems(values)}
+      </SelectField>
+      <p> 
+      {
+        this.state.values
+          
+      }
+      </p>
+      </div>
+    );
+  }
+}
+
 export function makeLocalizedChoiceField(
   intl,
   property,
@@ -101,6 +180,41 @@ export function makeLocalizedChoiceField(
         fieldName={property}
         label={label}
         type={ChoiceEditor}
+        choices={choices}
+        dataSource={choices}
+        dataSourceConfig={{ text: "text", value: "value" }}
+      />
+    </div>
+  );
+}
+
+export function makeLocalizedMultiChoiceField(
+  intl,
+  property,
+  tag_for_choices,
+  heading
+) {
+  if (typeof tag_for_choices === "undefined") {
+    tag_for_choices = property;
+  }
+  let label;
+  if (heading === undefined) {
+    label = intl.formatMessage({ id: tag_for_choices });
+  } else {
+    label = intl.formatMessage({ id: heading });
+  }
+  // let choices = makeLocalizedChoices(intl, tag_for_choices);
+  let choices = ["a",'b',"c"];
+  return (
+    <div className="field-case select">
+      <h2 className="sub-heading">{label}</h2>
+      <p className="explanatory-text">{intl.formatMessage({
+          id: property + "_placeholder"
+        })}</p>
+      <Field
+        fieldName={property}
+        label={label}
+        type={MultiChoiceEditor}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
