@@ -14,6 +14,8 @@ import Upload from "../Upload";
 import "./PropEditors.css";
 import { makePPLocation, stringifyLocation } from "./geoutils";
 import Clear from "material-ui/svg-icons/content/clear";
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import SortableList from './SortableList';
 
 function nickify(before) {
   if (!before) return "";
@@ -81,6 +83,7 @@ export class MultiChoiceEditor extends React.Component {
     super(props);
     this.setState = this.setState.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
       // value: nickify(props.value),
       values:[],
@@ -125,6 +128,12 @@ export class MultiChoiceEditor extends React.Component {
     ));
   }
 
+  onSortEnd ({oldIndex, newIndex}) {
+    this.setState({
+      values: arrayMove(this.state.values, oldIndex, newIndex),
+    });
+  };
+
 
 
   render() {
@@ -144,10 +153,7 @@ export class MultiChoiceEditor extends React.Component {
         {this.menuItems(values)}
       </SelectField>
       <p> 
-      {
-        this.state.values
-          
-      }
+      <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
       </p>
       </div>
     );
