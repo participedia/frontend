@@ -5,7 +5,7 @@ import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
 import { Link } from "react-router-dom";
-import { injectIntl, FormattedMessage } from "react-intl";
+import { injectIntl, FormattedMessage, FormattedHTMLMessage } from "react-intl";
 
 class About extends React.Component {
   render() {
@@ -1574,6 +1574,21 @@ class About extends React.Component {
                 <div className="content">
                   <p className="text">
                     <FormattedMessage id="organizations_content" />
+                  </p>
+                </div>
+              </AccordionTab>
+            </div>
+            <h2>
+              <FormattedMessage id="attribution" />
+            </h2>
+            <div className="text">
+              <FormattedMessage id="attribution_intro" />
+            </div>
+            <div className="accordion">
+              <AccordionTab titleId="csl_project">
+                <div className="content">
+                  <p className="text">
+                    <FormattedHTMLMessage id="csl_content" />
                   </p>
                 </div>
               </AccordionTab>

@@ -1,0 +1,24 @@
+{
+  "citation_human": [
+    "apa",
+    "harvard1",
+    "vancouver1",
+    "apsa",
+    "asa",
+    "chicago",
+    "mhra",
+    "nlm",
+    "nature",
+    "ieee",
+    "mla"
+  ],
+  "citation_machine": [
+    "bib",
+    "csl",
+    "end",
+    "isi",
+    "ris",
+    "wordbib",
+    "xml"
+  ]
+}

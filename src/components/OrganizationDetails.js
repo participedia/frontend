@@ -6,10 +6,12 @@ import CountryMap from "../components/CountryMap";
 import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
 import ListWithHeading from "../components/ListWithHeading";
 import Tags from "./Tags";
+import CiteThis from "./CiteThis";
 
 export default class OrganizationDetails extends React.Component {
   render() {
     let thing = this.props.case;
+    let intl = this.props.intl;
     let ed = null;
     if (thing.executive_director) {
       ed = (
@@ -37,6 +39,10 @@ export default class OrganizationDetails extends React.Component {
         <LinkedPropertyGroupWithHeading
           heading="sector"
           property="sector"
+          thing={thing}
+        />
+        <CiteThis
+          intl={intl}
           thing={thing}
         />
       </div>

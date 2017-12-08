@@ -1,9 +1,11 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
 import { BooleanProp } from "../components/Props";
 import Tags from "./Tags";
+import CiteThis from "./CiteThis";
 
 /* Properties that are specific to methods:
 // best_for
@@ -35,6 +37,7 @@ import Tags from "./Tags";
 export default class MethodDetails extends React.Component {
   render() {
     let thing = this.props.case; // should thing be `this.props.method`?
+    let intl = this.props.intl;
     return (
       <div>
         <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
@@ -142,6 +145,10 @@ export default class MethodDetails extends React.Component {
         <LinkedPropertyGroupWithHeading
           heading="typical_sponsoring_entity"
           property="typical_sponsoring_entity"
+          thing={thing}
+        />
+        <CiteThis
+          intl={intl}
           thing={thing}
         />
       </div>

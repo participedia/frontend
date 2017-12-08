@@ -11,10 +11,12 @@ import {
   TextProp,
   NumberProp
 } from "../components/Props";
+import CiteThis from "./CiteThis";
 
 export default class CaseDetails extends React.Component {
   render() {
     let thing = this.props.case;
+    let intl = this.props.intl;
     return (
       <div>
         <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading">
@@ -122,6 +124,10 @@ export default class CaseDetails extends React.Component {
         <TextProp
           label="who_else_supported_the_initiative"
           property="who_else_supported_the_initiative"
+          thing={thing}
+        />
+        <CiteThis
+          intl={intl}
           thing={thing}
         />
       </div>

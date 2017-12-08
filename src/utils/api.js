@@ -283,6 +283,29 @@ class API {
         return error;
       });
   };
+
+  fetchCitation = function(thingType, thingId, citationFormat) {
+    let url = APIURL + "/citation/" + thingType + "/" + thingId;
+    let opts = {
+      headers: {
+        "Citation-Format": citationFormat,
+        "Accept": "*/*",
+      },
+    };
+    return signedFetch(url, opts)
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      })
+      .catch(function(error) {
+        console.log(
+          `There has been a problem with API:fetchCitation: (${url}) ${error}`
+        );
+        return error;
+      });
+  }
 }
 
 export default new API();

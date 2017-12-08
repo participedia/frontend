@@ -2,6 +2,7 @@ const caseChoiceData = require("./case.choices.json");
 const methodChoiceData = require("./method.choices.json");
 const orgChoiceData = require("./organization.choices.json");
 const issueChoiceData = require("./issuemap.json");
+const citationChoiceData = require("./citation.choices.json");
 
 let choiceData = {};
 for (let key in caseChoiceData) {
@@ -19,6 +20,10 @@ for (let key in orgChoiceData) {
 for (let key in issueChoiceData) {
   if (!issueChoiceData.hasOwnProperty(key)) continue;
   choiceData[key] = issueChoiceData[key];
+}
+for (let key in citationChoiceData) {
+  if (!citationChoiceData.hasOwnProperty(key)) continue;
+  choiceData[key] = citationChoiceData[key];
 }
 
 export function getChoices(property) {
@@ -38,11 +43,12 @@ function toTitleCase(str) {
   }
 }
 
-export function makeLocalizedChoices(intl, property) {
+export function makeLocalizedChoices(intl, property, titleCase=true) {
   let hasOther;
   let choices = getChoices(property).map(function(v) {
+    var message = intl.formatMessage({ id: v });
     return {
-      text: toTitleCase(intl.formatMessage({ id: v })),
+      text: titleCase ? toTitleCase(message) : message,
       value: v
     };
   });
