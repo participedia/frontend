@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../utils/api";
 import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
+import queryString from "query-string";
 
 const defaultMarkerLayout = {
   "text-line-height": 1,
@@ -49,11 +50,18 @@ function extractData(data) {
 }
 
 export default class Map extends Component {
-  state = {
-    cases: [],
-    organizations: [],
-    MapVisualization: null
-  };
+
+  constructor(props) {
+    super(props);
+    this.updateItemsState = this.updateItemsState.bind(this);
+
+    this.state = {
+      cases: [],
+      organizations: [],
+      MapVisualization: null
+    };
+  }
+
   componentDidMount() {
     // There is probably a cleaner way to do this, but it seems to work
     let component = this;
@@ -70,19 +78,19 @@ export default class Map extends Component {
   }
 
   componentWillMount() {
-    let component = this;
-
-    api.searchMapTokens(this.props.location.search).then(function(results) {
-      let items = extractData(results);
-      component.setState({
-        items: items
-      });
-    });
+    this.updateItemsState(this.props);
   }
-  componentWillReceiveProps(newProps) {
-    let component = this;
 
-    api.searchMapTokens(newProps.location.search).then(function(results) {
+  componentWillReceiveProps(newProps) {
+    this.updateItemsState(newProps);
+  }
+
+  updateItemsState(props) {
+    let component = this;
+    let queryParams = queryString.parse(props.location.search);
+    queryParams["resultType"] = "map";
+    api.performSearch(queryParams)
+      .then(json => json.results).then(function(results) {
       let items = extractData(results);
       component.setState({
         items: items

@@ -13,14 +13,21 @@ if (!APIURL) {
   );
 }
 
-const signedFetch = function(url, method, payload) {
-  let opts = {
-    method: method || "get",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    }
-  };
+const signedFetch = function(url, opts={}) {
+  // Set some sensible defaults
+  opts.method = opts.method || "get";
+  opts.headers = opts.headers || {};
+  opts.headers["Accept"] = opts.headers["Accept"] || "application/json";
+  opts.headers["Content-Type"] = opts.headers["Content-Type"] || "application/json";
+  // We usually want to pass JSON
+  if (opts.body) opts.body = JSON.stringify(opts.body);
+
+  // Fetch with query params
+  if(opts.queryParams && Object.keys(opts.queryParams).length > 0){
+    let querystring = queryString.stringify(opts.queryParams);
+    url += "?" + querystring;
+  }
+
   let profile = store.get("profile");
   if (profile) {
     profile = JSON.parse(profile);
@@ -34,7 +41,6 @@ const signedFetch = function(url, method, payload) {
     // console.log("doing unsigned call to", url);
     delete opts["headers"]["authorization"];
   }
-  if (payload) opts.body = JSON.stringify(payload);
   return fetch(url, opts);
 };
 
@@ -68,12 +74,9 @@ class API {
       });
   };
 
-  performSearch = function(queryArgs) {
-    let querystring = queryString.stringify(queryArgs);
-    let url = `${APIURL}/search?${querystring}`;
-    // console.log("queryArgs", queryArgs);
-    // console.log("DOING SEARCH", url);
-    return signedFetch(url)
+  performSearch = function(queryParams) {
+    let url = APIURL + "/search";
+    return signedFetch(url, {queryParams: queryParams})
       .then(response => response.json())
       .catch(function(error) {
         console.log(
@@ -83,27 +86,9 @@ class API {
       });
   };
 
-  searchMapTokens = function(search) {
-    let url;
-    if (search) {
-      url = APIURL + `/search${search}&resultType=map`;
-    } else {
-      url = APIURL + `/search?resultType=map`;
-    }
-    return signedFetch(url, "get")
-      .then(response => response.json())
-      .then(json => json.results)
-      .catch(function(error) {
-        console.error(
-          `There has been a problem with your fetch operation: (${url}) ${error}`
-        );
-        throw error;
-      });
-  };
-
   fetchCaseById = function(caseId) {
     let url = APIURL + "/case/" + caseId;
-    return signedFetch(url, "get")
+    return signedFetch(url)
       .then(response => response.json())
       .then(json => json.data)
       .catch(function(error) {
@@ -127,7 +112,7 @@ class API {
     }
     let url = APIURL + "/" + thingType + "/new";
     // console.log("sending object", obj);
-    return signedFetch(url, "POST", obj)
+    return signedFetch(url, {method: "POST", body: obj})
       .then(response => response.json())
       .then(function(response) {
         if (!response.OK) {
@@ -169,7 +154,7 @@ class API {
     // console.log("saving", JSON.stringify(obj));
     delete obj.updated_date; // feels silly to have to do that.
 
-    return signedFetch(url, "PUT", obj)
+    return signedFetch(url, {method: "PUT", body: obj})
       .then(response => response.json())
       .then(function(response) {
         if (!response.OK) {
@@ -236,7 +221,7 @@ class API {
 
   addBookmark = function(bookmarkType, thingid) {
     let url = APIURL + "/bookmark/add";
-    return signedFetch(url, "POST", { bookmarkType, thingid })
+    return signedFetch(url, {method: "POST", body: { bookmarkType, thingid }})
       .then(response => response.json())
       .catch(function(error) {
         console.log(
@@ -247,10 +232,7 @@ class API {
   };
   removeBookmark = function(bookmarkType, thingid) {
     let url = APIURL + "/bookmark/delete";
-    return signedFetch(url, "delete", {
-      bookmarkType,
-      thingid
-    })
+    return signedFetch(url, {method: "delete", body: { bookmarkType, thingid }})
       .then(response => response.json())
       .catch(function(error) {
         console.log(
@@ -264,7 +246,7 @@ class API {
     if (userId) {
       url = APIURL + `/user/${userId}`;
     }
-    return signedFetch(url, "get")
+    return signedFetch(url)
       .then(response => response.json())
       .catch(function(error) {
         console.log(
@@ -279,14 +261,14 @@ class API {
     const payload = { user_metadata: data };
     console.log(data, "data being sent");
     const url = `https://participedia.auth0.com/api/v2/users/${userId}`;
-    return signedFetch(url, "PATCH", payload).then(response => {
+    return signedFetch(url, {method: "PATCH", body: payload}).then(response => {
       store.set("profile", JSON.stringify(response));
     });
   };
 
   saveUser = function(user) {
     let url = APIURL + `/user`;
-    return signedFetch(url, "post", user)
+    return signedFetch(url, {method: "post", body: user})
       .then(response => response.json())
       .then(function(response) {
         if (response.status >= 400) {
