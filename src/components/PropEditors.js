@@ -77,7 +77,7 @@ export class ChoiceEditor extends React.Component {
   }
 }
 
-const names = ['a','b','c','d'];
+// const names = ['a','b','c','d'];
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -87,7 +87,7 @@ export class MultiChoiceEditor extends React.Component {
     this.state = {
       // value: nickify(props.value),
       values:[],
-      // choices: this.makeChoices(props.passProps.choices)
+      choices: this.makeChoices(props.passProps.choices)
       // choices: this.props.passProps.choices
     };
   }
@@ -116,14 +116,14 @@ export class MultiChoiceEditor extends React.Component {
   //   this.props.onChange(value);
   // }
 
-  menuItems(values) {
-    return names.map((name) => (
+  makeChoices(choices) {
+    return choices.map((v) => (
       <MenuItem
-        key={name}
+        key={v.value}
         insetChildren={true}
-        checked={values && values.indexOf(name) > -1}
-        value={name}
-        primaryText={name}
+        checked={choices && choices.indexOf(v) > -1}
+        value={v.value}
+        primaryText={v.text}
       />
     ));
   }
@@ -138,7 +138,7 @@ export class MultiChoiceEditor extends React.Component {
 
   render() {
     // let handleChange = this.handleChange.bind(this);
-    const {values} = this.state;
+    const {values, choices} = this.state;
     let { property } = this.props;
     return (
       <div>
@@ -150,7 +150,7 @@ export class MultiChoiceEditor extends React.Component {
         value={values}
         onChange={this.handleChange}
       >
-        {this.menuItems(values)}
+        {this.state.choices}
       </SelectField>
       <p> 
       <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
@@ -209,8 +209,8 @@ export function makeLocalizedMultiChoiceField(
   } else {
     label = intl.formatMessage({ id: heading });
   }
-  // let choices = makeLocalizedChoices(intl, tag_for_choices);
-  let choices = ["a",'b',"c"];
+  let choices = makeLocalizedChoices(intl, tag_for_choices);
+  // let choices = ["a",'b',"c"];
   return (
     <div className="field-case select">
       <h2 className="sub-heading">{label}</h2>
