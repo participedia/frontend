@@ -122,6 +122,7 @@ export class Layout extends React.Component {
     this.closeHelp = this.closeHelp.bind(this);
     this.touchTitle = this.touchTitle.bind(this);
     this.showTourFromHelp = this.showTourFromHelp.bind(this);
+    this.goHomeFromHelp = this.goHomeFromHelp.bind(this);
     //joyride
     this.handleInternal = this.handleInternal.bind(this);
     this.handleHome = this.handleHome.bind(this);
@@ -189,6 +190,12 @@ export class Layout extends React.Component {
       isRunning: true
     });
     this.closeHelp();
+  }
+
+  goHomeFromHelp() {
+    store.remove("tutorial-was-shown")
+    // this.props.history.push("/");
+    console.log("go home",this);
   }
 
   touchTitle() {
@@ -492,6 +499,7 @@ export class Layout extends React.Component {
                 <About {...routeProps} handleInternal={this.handleInternal} />
               )}
             />
+            <Route path="/legal" component={Legal} />
             <Route
               path="/teaching"
               render={routeProps => (
@@ -593,6 +601,7 @@ export class Layout extends React.Component {
               onHelpClose={this.closeHelp}
               locale={this.props.intl.locale}
               showTour={this.showTourFromHelp}
+              goHome={this.goHomeFromHelp}
             />
           ) : (
             undefined

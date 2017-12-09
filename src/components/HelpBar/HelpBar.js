@@ -23,6 +23,7 @@ class HelpBar extends React.Component {
     this.resetHelp = this.resetHelp.bind(this);
     this.closeHelp = this.closeHelp.bind(this);
     this.showTour = this.showTour.bind(this);
+    this.goHome = this.goHome.bind(this);
   }
 
   pickHelpItem(item) {
@@ -42,6 +43,10 @@ class HelpBar extends React.Component {
 
   showTour() {
     this.props.showTour();
+  }
+
+  goHome() {
+    this.props.goHome();
   }
 
   render() {
@@ -83,9 +88,15 @@ class HelpBar extends React.Component {
                   {this.props.intl.formatMessage({ id: "email_support" })}
                 </a>
               </div>
-              <div onClick={() => { this.showTour() }} className="card tour">
-                <h5 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h5>
-              </div>
+              { this.props.location.pathname === "/" || this.props.location.pathname === "/organizations" || this.props.location.pathname === "/methods" || this.props.location.pathname === "/cases" ?
+                <div onClick={() => { this.showTour() }} className="card tour">
+                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
+                </div>
+                :
+                <div onClick={() => { this.goHome() }} className="card tour">
+                  <h4 className="data-title">show tour - go home</h4>
+                </div>
+              }
               <div className="card pt-3">
                 <h4 className="data-title">
                   {this.props.intl.formatMessage({ id: "faq" })}
