@@ -56,6 +56,7 @@ function setup() {
     location: { pathname: "/method/123" },
     match: { params: { nodeID: 123 } },
     toggleFeatured: function() {},
+    handleInternal: function() {},
     data: caseData
   };
 
@@ -71,6 +72,7 @@ function setup() {
     enzymeWrapper
   };
 }
+
 
 let props = setup().props;
 props["details"] = CaseDetails;

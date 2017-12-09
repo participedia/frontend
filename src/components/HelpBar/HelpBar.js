@@ -50,6 +50,20 @@ class HelpBar extends React.Component {
   }
 
   render() {
+    var showTour;
+    var pathname = this.props.location.pathname
+    if (pathname === "/" || pathname === "/organizations" || pathname === "/methods" || pathname === "/cases") {
+      showTour = (<div onClick={() => { this.showTour() }} className="card tour">
+                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
+                </div>);
+    } else if (pathname.substr(pathname.length - 4) == "edit" || pathname.substr(1,4) == "new/" ) {
+      showTour = undefined;
+    } else {
+      showTour = (<div onClick={() => { this.goHome() }} className="card tour">
+                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
+                </div>);
+    }
+
     return (
       <div className="help-bar">
         <div className="top-area">
@@ -88,15 +102,9 @@ class HelpBar extends React.Component {
                   {this.props.intl.formatMessage({ id: "email_support" })}
                 </a>
               </div>
-              { this.props.location.pathname === "/" || this.props.location.pathname === "/organizations" || this.props.location.pathname === "/methods" || this.props.location.pathname === "/cases" ?
-                <div onClick={() => { this.showTour() }} className="card tour">
-                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
-                </div>
-                :
-                <div onClick={() => { this.goHome() }} className="card tour">
-                  <h4 className="data-title">show tour - go home</h4>
-                </div>
-              }
+              <div className="some-container">
+              {showTour}
+              </div>
               <div className="card pt-3">
                 <h4 className="data-title">
                   {this.props.intl.formatMessage({ id: "faq" })}

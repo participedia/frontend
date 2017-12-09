@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import Home from "./Home";
@@ -16,6 +16,7 @@ import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
 import HelpArticle from "./HelpArticle";
+import history from "./history";
 import HelpBar from "./components/HelpBar/HelpBar";
 import About from "./About";
 import Teaching from "./Teaching";
@@ -45,6 +46,7 @@ import { injectIntl } from "react-intl";
 import MenuIcon from "material-ui/svg-icons/navigation/menu";
 
 import "./UniversalStyles.css";
+
 
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
@@ -102,7 +104,6 @@ export class Layout extends React.Component {
 
   constructor(props, context) {
     super(props);
-    this.context = context;
     this.state = {
       open: false,
       showHelp: false,
@@ -194,8 +195,7 @@ export class Layout extends React.Component {
 
   goHomeFromHelp() {
     store.remove("tutorial-was-shown")
-    // this.props.history.push("/");
-    console.log("go home",this);
+    history.push('/');
   }
 
   touchTitle() {
@@ -230,18 +230,16 @@ export class Layout extends React.Component {
         title: "Search",
         text:
           "<p>Conduct a site-wide search using one or more keywords.<p/><p>You can do an advanced search using common syntax like “and”, “or”, and “not”, as well as quotations and parentheses.</p><p>For example,<code>bicycle or rally</code> will match items with either or both words.<p>",
-        selector: ".search-box-area",
+        selector: ".search-bar",
         position: "left",
         isFixed: true,
-        type: "hover"
       },
       {
         title: "Map",
         text:
-          "The map shows cases and organizations around the world. Your search results are represented by red pins. Double click to zoom in. Select a red pin to find out more about.",
+          "The map shows cases and organizations around the world. Your search results are represented by red pins. Double click to zoom in. Select any pin to find out more about a Case or Organization. Note, methods don’t appear on the map because they’re not location specific.",
         selector: ".map-component",
         position: "left",
-        type: "hover"
       },
       {
         title: "Sort",
@@ -249,15 +247,13 @@ export class Layout extends React.Component {
           "Sort the results by content type such as cases, methods or organizations.",
         selector: ".filters",
         position: "bottom",
-        type: "hover"
       },
       {
         title: "Quick Submit",
         text:
           "Quick submit allows you to enter some basic information about a public participation case, method or organization in just minutes. You can then publish your entry as is, or click “do full version” if you have more details to add.",
-        selector: ".createButton",
+        selector: ".qs-button-case",
         position: "top",
-        type: "hover",
         isFixed: true
       },
       {
@@ -265,7 +261,6 @@ export class Layout extends React.Component {
         text:
           "Open any case, method or organization to read about it and see what data has been entered.",
         selector: ".result0",
-        type: "hover",
         position: "top"
       },
       {
@@ -273,22 +268,20 @@ export class Layout extends React.Component {
         text:
           "Bookmark content to review it later. Find your bookmarks on your profile page.",
         selector: ".result0 .bookmark",
-        type: "hover",
         position: "top"
       },
       {
         title: "Feedback",
         text:
-          "Use the feedback button to suggest improvements or if something on the website isn’t working properly. Include your email address if you would like to be contacted about your feedback.",
+          "Use the feedback button to suggest improvements or if something on the website isn’t working properly. Include your email address if you would like to be contacted about your feedback.<br/><p class='pt-4'>This is the end of the tour. You can restart it from Help & Contact.</p>",
         selector: "#feedback",
-        type: "hover",
         isFixed: true,
         position: "top"
       }
     ];
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Joyride
             ref={c => (this.joyride = c)}
@@ -607,7 +600,7 @@ export class Layout extends React.Component {
             undefined
           )}
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
