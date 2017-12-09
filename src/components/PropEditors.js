@@ -87,7 +87,7 @@ export class MultiChoiceEditor extends React.Component {
     this.state = {
       // value: nickify(props.value),
       values:[],
-      choices: this.makeChoices(props.passProps.choices)
+      choices: this.props.passProps.choices
       // choices: this.props.passProps.choices
     };
   }
@@ -116,7 +116,7 @@ export class MultiChoiceEditor extends React.Component {
   //   this.props.onChange(value);
   // }
 
-  makeChoices(choices) {
+  makeChoices(choices, values) {
     return choices.map((v) => (
       <MenuItem
         key={v.value}
@@ -150,7 +150,7 @@ export class MultiChoiceEditor extends React.Component {
         value={values}
         onChange={this.handleChange}
       >
-        {this.state.choices}
+        {this.makeChoices(choices, values)}
       </SelectField>
       <p> 
       <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
