@@ -3,6 +3,7 @@ import queryString from "query-string";
 import authService from "./AuthService";
 import store from "store";
 import Raven from "raven-js";
+import emojiStrip from "emoji-strip";
 
 let APIURL = process.env.REACT_APP_API_URL; // eslint-disable-line no-undef
 
@@ -25,7 +26,7 @@ const signedFetch = function(url, method, payload) {
     profile = JSON.parse(profile);
     if (authService.isAuthenticated()) {
       opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
-      opts["headers"]["X-Auth0-Name"] = profile.name;
+      opts["headers"]["X-Auth0-Name"] = emojiStrip(profile.name);
       opts["headers"]["X-Auth0-UserId"] = profile.user_id;
     }
     // console.log("doing signed call to", url);
