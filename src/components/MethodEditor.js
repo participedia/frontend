@@ -44,8 +44,8 @@ class MethodEditor extends Component {
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, {body: body});
-    this.setState({thing:updatedThing});
+    let updatedThing = Object.assign({}, this.state.thing, { body: body });
+    this.setState({ thing: updatedThing });
   }
 
   onSubmit() {
@@ -170,7 +170,7 @@ class MethodEditor extends Component {
                   </h3>
                   {makeLocalizedListField(intl, "videos")}
                 </div>
-                <div className={isQuick? "field-case last" : "field-case"}>
+                <div className={isQuick ? "field-case last" : "field-case"}>
                   <h2 className="sub-heading">
                     <FormattedMessage id="tags_title" />
                   </h2>
@@ -190,7 +190,6 @@ class MethodEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
@@ -244,7 +243,10 @@ class MethodEditor extends Component {
                           id: thing.type + "_body_title"
                         })}
                       </h2>
-                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
+                      <BodyEditor
+                        onEditorChange={this.updateBody}
+                        html={thing.body}
+                      />
                     </div>
                     {makeLocalizedChoiceField(intl, "kind_of_influence")}
                     {makeLocalizedChoiceField(intl, "communication_mode")}
@@ -309,7 +311,6 @@ class MethodEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary

@@ -29,7 +29,6 @@ const buttonStyle = {
   margin: "1em"
 };
 
-
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
@@ -47,8 +46,8 @@ class CaseEditor extends Component {
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, {body: body});
-    this.setState({thing:updatedThing});
+    let updatedThing = Object.assign({}, this.state.thing, { body: body });
+    this.setState({ thing: updatedThing });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,7 +70,7 @@ class CaseEditor extends Component {
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
-  
+
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
@@ -160,10 +159,13 @@ class CaseEditor extends Component {
                       <FormattedMessage id={thing.type + "_title_label"} />
                     </label>
                   </h2>
-                  <p className="explanatory-text"><FormattedMessage
-                    id={intl.formatMessage({
-                      id: thing.type + "_title_placeholder"
-                    })}/></p>
+                  <p className="explanatory-text">
+                    <FormattedMessage
+                      id={intl.formatMessage({
+                        id: thing.type + "_title_placeholder"
+                      })}
+                    />
+                  </p>
                   <Field
                     fieldName="title"
                     name="title"
@@ -230,7 +232,7 @@ class CaseEditor extends Component {
                   </h3>
                   {makeLocalizedListField(intl, "videos")}
                 </div>
-                <div className={isQuick? "field-case last" : "field-case"}>
+                <div className={isQuick ? "field-case last" : "field-case"}>
                   <h2 className="sub-heading">
                     <FormattedMessage id="tags_title" />
                   </h2>
@@ -248,7 +250,6 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
@@ -258,7 +259,9 @@ class CaseEditor extends Component {
                         id: quickSubmitText
                       })}
                     />
-                    <span><FormattedMessage id="or" /></span>
+                    <span>
+                      <FormattedMessage id="or" />
+                    </span>
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
                       className="customButton full-submit"
@@ -275,7 +278,10 @@ class CaseEditor extends Component {
                           id: thing.type + "_body_title"
                         })}
                       </h2>
-                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
+                      <BodyEditor
+                        onEditorChange={this.updateBody}
+                        html={thing.body}
+                      />
                     </div>
                     <div>
                       {makeLocalizedChoiceField(intl, "communication_mode")}
@@ -346,7 +352,6 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary

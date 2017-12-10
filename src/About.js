@@ -5,7 +5,7 @@ import AccordionTab from "./components/AccordionTab/AccordionTab";
 import "./About.css";
 import "./StaticPages.css";
 import { Link } from "react-router-dom";
-import { injectIntl, FormattedMessage, FormattedHTMLMessage } from "react-intl";
+import { injectIntl, FormattedMessage } from "react-intl";
 
 class About extends React.Component {
   render() {
@@ -1143,7 +1143,10 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab sub={true} titleId="communications_knowledge_committee">
+                    <AccordionTab
+                      sub={true}
+                      titleId="communications_knowledge_committee"
+                    >
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="comms_know_intro" />
@@ -1228,7 +1231,10 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab sub={true} titleId="teaching_training_committee">
+                    <AccordionTab
+                      sub={true}
+                      titleId="teaching_training_committee"
+                    >
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="teaching_training_committee_intro" />
@@ -1382,7 +1388,10 @@ class About extends React.Component {
                         </div>
                       </div>
                     </AccordionTab>
-                    <AccordionTab sub={true} titleId="research_design_committee">
+                    <AccordionTab
+                      sub={true}
+                      titleId="research_design_committee"
+                    >
                       <div className="sub-content">
                         <p className="text">
                           <FormattedMessage id="research_design_committee_intro" />
