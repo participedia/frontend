@@ -7,18 +7,13 @@ import { Container, Col } from "reactstrap";
 import "./EditProfile.css";
 import "../GeoSuggest/GeoSuggest.css";
 import "../CaseEditor.css";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import FileUpload from "material-ui/svg-icons/file/file-upload";
 import { Form, Field } from "simple-react-form";
 import Text from "simple-react-form-material-ui/lib/text";
-import Textarea from "simple-react-form-material-ui/lib/textarea";
-import Select from "simple-react-form-material-ui/lib/select";
 import {
   makeLocalizedLocationField,
   makeLocalizedAvatarEditor
 } from "../PropEditors";
 import { encodeLocation } from "../geoutils";
-import RelatedEditor from "../RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import BodyEditor from "../BodyEditor";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
@@ -44,8 +39,8 @@ export default class EditProfile extends Component {
 
   updateBody(body) {
     this.setState({
-      user : {...this.state.user, bio: body}
-    })
+      user: { ...this.state.user, bio: body }
+    });
   }
 
   propsToDefaultState(props) {
@@ -76,9 +71,9 @@ export default class EditProfile extends Component {
 
   handleUpdateInput(value) {
     this.setState({
-      user : {...this.state.user, organization: value}
-    })
-  };
+      user: { ...this.state.user, organization: value }
+    });
+  }
 
   render() {
     const { profile, user, intl } = this.props;
@@ -140,13 +135,15 @@ export default class EditProfile extends Component {
                         <FormattedMessage id="biography" />
                       </label>
                     </h2>
-                    <BodyEditor onEditorChange={this.updateBody} html={this.props.user.bio} />
+                    <BodyEditor
+                      onEditorChange={this.updateBody}
+                      html={this.props.user.bio}
+                    />
                   </div>
                   <RaisedButton
                     className="customButton save-profile"
                     secondary
                     style={buttonStyle}
-                    label="Label after"
                     labelPosition="after"
                     icon={<PublishIcon />}
                     type="submit"

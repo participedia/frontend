@@ -1,6 +1,5 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import SearchLink from "../components/SearchLink";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
 import { BooleanProp } from "../components/Props";

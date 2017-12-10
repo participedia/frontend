@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import { Container, Col, Row } from "reactstrap";
 import Home from "./Home";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
@@ -143,13 +142,13 @@ export class Layout extends React.Component {
       width: 32,
       height: 32,
       fill: "grey"
-    }
+    };
 
     const menuClosed = {
       width: 32,
       height: 32,
       fill: "white"
-    }
+    };
 
     return (
       <BrowserRouter>

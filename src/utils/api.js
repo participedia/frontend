@@ -276,7 +276,7 @@ class API {
 
   updateUserMetaData = function(userId, data) {
     const payload = { user_metadata: data };
-    console.log(data,'data being sent')
+    console.log(data, "data being sent");
     const url = `https://participedia.auth0.com/api/v2/users/${userId}`;
     return signedFetch(url, "PATCH", payload).then(response => {
       store.set("profile", JSON.stringify(response));

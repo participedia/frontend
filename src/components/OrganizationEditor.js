@@ -46,8 +46,8 @@ class OrganizationEditor extends Component {
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, {body: body});
-    this.setState({thing:updatedThing});
+    let updatedThing = Object.assign({}, this.state.thing, { body: body });
+    this.setState({ thing: updatedThing });
   }
 
   onSubmit() {
@@ -166,7 +166,7 @@ class OrganizationEditor extends Component {
                   </h3>
                   {makeLocalizedListField(intl, "videos")}
                 </div>
-                <div className={isQuick? "field-case last" : "field-case"}>
+                <div className={isQuick ? "field-case last" : "field-case"}>
                   <h2 className="sub-heading">
                     {intl.formatMessage({ id: "tags_title" })}
                   </h2>
@@ -186,7 +186,6 @@ class OrganizationEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
@@ -209,13 +208,16 @@ class OrganizationEditor extends Component {
                     {makeLocalizedTextField(intl, "executive_director")}
                     {makeLocalizedChoiceField(intl, "sector")}
                     {makeLocalizedChoiceField(intl, "specific_topic")}
-                     <div className="field-case">
+                    <div className="field-case">
                       <h2 className="sub-heading" htmlFor="body_en">
                         {intl.formatMessage({ id: thing.type + "_body_title" })}
                       </h2>
-                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
-                     </div>
-                     <div className="field-case last related">
+                      <BodyEditor
+                        onEditorChange={this.updateBody}
+                        html={thing.body}
+                      />
+                    </div>
+                    <div className="field-case last related">
                       <h2 className="sub-heading">Related Content</h2>
                       <div className="related-content">
                         <h3 className="sub-sub-heading">
@@ -231,7 +233,7 @@ class OrganizationEditor extends Component {
                         </h3>
                         {related_organizations}
                       </div>
-                     </div>
+                    </div>
                     {incomplete ? (
                       <p className="incomplete">
                         {intl.formatMessage({
@@ -242,7 +244,6 @@ class OrganizationEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
