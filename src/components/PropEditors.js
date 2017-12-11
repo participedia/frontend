@@ -77,7 +77,6 @@ export class ChoiceEditor extends React.Component {
   }
 }
 
-// const names = ['a','b','c','d'];
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -94,7 +93,15 @@ export class MultiChoiceEditor extends React.Component {
 
 
   handleChange(event, index, values) {
-    this.setState({values});
+    // console.log(values.length,'VLUES');
+    if (values.length > 3) {
+      console.log(values.length, 'INTERNO', values);
+      var b = values.slice(1, 4);
+      console.log(b,'b')
+      this.setState({values:b});
+    } else {
+      this.setState({values});
+    }
   } 
   // componentWillReceiveProps(props) {
   //   this.setState({
@@ -121,7 +128,7 @@ export class MultiChoiceEditor extends React.Component {
       <MenuItem
         key={v.value}
         insetChildren={true}
-        checked={choices && choices.indexOf(v) > -1}
+        checked={values && values.indexOf(v) > -1}
         value={v.value}
         primaryText={v.text}
       />
@@ -153,7 +160,11 @@ export class MultiChoiceEditor extends React.Component {
         {this.makeChoices(choices, values)}
       </SelectField>
       <p> 
-      <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
+      { this.state.values && this.state.values.length > 3 ?
+        <span>you can only sort 3 elements</span>
+        :
+        <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
+      }
       </p>
       </div>
     );
