@@ -86,42 +86,20 @@ export class MultiChoiceEditor extends React.Component {
     this.state = {
       // value: nickify(props.value),
       values:[],
+      texts:[],
       choices: this.props.passProps.choices
-      // choices: this.props.passProps.choices
     };
   }
 
 
   handleChange(event, index, values) {
-    // console.log(values.length,'VLUES');
     if (values.length > 3) {
-      console.log(values.length, 'INTERNO', values);
       var b = values.slice(1, 4);
-      console.log(b,'b')
       this.setState({values:b});
     } else {
       this.setState({values});
     }
   } 
-  // componentWillReceiveProps(props) {
-  //   this.setState({
-  //     // value: nickify(props.value),
-  //     value:[],
-  //     choices: this.props.passProps.choices
-  //     // choices: this.makeChoices(props.passProps.choices)
-  //   });
-  // }
-
-  // makeChoices(choices) {
-  //   return choices.map(function(v) {
-  //     return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
-  //   });
-  // }
-
-  // onChange(event, index, value) {
-  //   this.setState({ value: value });
-  //   this.props.onChange(value);
-  // }
 
   makeChoices(choices, values) {
     return choices.map((v) => (
