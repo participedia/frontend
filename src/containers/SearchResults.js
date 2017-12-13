@@ -3,8 +3,9 @@ import api from "../utils/api";
 import queryString from "query-string";
 
 import SearchResultsView from "../components/SearchResultsView/SearchResultsView";
+import ExportDataDialog from "../components/ExportDataDialog";
 const DEFAULT_SORTING_METHOD = "chronological";
-const DEFAULT_CATEGORY = "All";
+const DEFAULT_CATEGORY = "all";
 export default class SearchResults extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,8 @@ export default class SearchResults extends React.Component {
       selectedCategory: this.props.selectedCategory || DEFAULT_CATEGORY,
       sortingMethod: DEFAULT_SORTING_METHOD,
       selectedViewType: "grid",
-      error: false
+      error: false,
+      showExportDialog: false,
     };
   }
   componentDidMount() {
@@ -39,7 +41,7 @@ export default class SearchResults extends React.Component {
     let futureState = {};
     futureState.selectedCategory =
       newState.selectedCategory || this.state.selectedCategory;
-    if (futureState.selectedCategory === "All") {
+    if (futureState.selectedCategory === "all") {
       delete futureState.selectedCategory;
     }
     futureState.query = newState.query || this.state.query;
@@ -88,7 +90,9 @@ export default class SearchResults extends React.Component {
   onCategoryChange(category) {
     this._updateSearch({ selectedCategory: category });
   }
-  startDownload() {}
+  openExportDialog(category) {
+    this.setState({ showExportDialog: true });
+  }
 
   render() {
     if (this.state.error) {
@@ -102,24 +106,30 @@ export default class SearchResults extends React.Component {
     let onCategoryChange = this.onCategoryChange.bind(this);
     let onLayoutChange = this.onLayoutChange.bind(this);
     let onSortingChange = this.onSortingChange.bind(this);
-    let startDownload = this.startDownload.bind(this);
+    let openExportDialog = this.openExportDialog.bind(this);
     return (
-      <SearchResultsView
-        location={this.props.location}
-        selectedViewType={this.state.selectedViewType}
-        selectedCategory={this.state.selectedCategory}
-        sortingMethod={this.state.sortingMethod}
-        data={this.state.data}
-        total={this.state.total}
-        pages={this.state.pages}
-        searching={this.state.searching}
-        query={this.state.query}
-        onCategoryChange={onCategoryChange}
-        onLayoutChange={onLayoutChange}
-        startDownload={startDownload}
-        onSortingChange={onSortingChange}
-        history={this.props.history}
-      />
+      <div>
+        <ExportDataDialog
+			    open={this.state.showExportDialog}
+			    thingtype={this.state.selectedCategory}
+			  />
+        <SearchResultsView
+          location={this.props.location}
+          selectedViewType={this.state.selectedViewType}
+          selectedCategory={this.state.selectedCategory}
+          sortingMethod={this.state.sortingMethod}
+          data={this.state.data}
+          total={this.state.total}
+          pages={this.state.pages}
+          searching={this.state.searching}
+          query={this.state.query}
+          onCategoryChange={onCategoryChange}
+          onLayoutChange={onLayoutChange}
+          openExportDialog={openExportDialog}
+          onSortingChange={onSortingChange}
+          history={this.props.history}
+        />
+      </div>
     );
   }
 }

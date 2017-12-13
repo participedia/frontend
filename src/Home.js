@@ -20,19 +20,19 @@ class Home extends React.Component {
           <Route
             path="/cases"
             component={() => (
-              <SearchResults selectedCategory="Cases" {...this.props} />
+              <SearchResults selectedCategory="case" {...this.props} />
             )}
           />
           <Route
             path="/methods"
             component={() => (
-              <SearchResults selectedCategory="Methods" {...this.props} />
+              <SearchResults selectedCategory="method" {...this.props} />
             )}
           />
           <Route
             path="/organizations"
             component={() => (
-              <SearchResults selectedCategory="Organizations" {...this.props} />
+              <SearchResults selectedCategory="organization" {...this.props} />
             )}
           />
         </Switch>

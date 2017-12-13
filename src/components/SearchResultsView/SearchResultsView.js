@@ -97,19 +97,19 @@ class FilterArray extends React.Component {
 export class SearchResultsView extends React.Component {
   constructor() {
     super();
-    this.state = { selectedCategory: "All" };
+    this.state = { selectedCategory: "all" };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     let href = "";
-    if (event.target.value === "All") {
+    if (event.target.value === "all") {
       href = "/" + this.props.location.search;
-    } else if (event.target.value === "Cases") {
+    } else if (event.target.value === "case") {
       href = "/cases" + this.props.location.search;
-    } else if (event.target.value === "Methods") {
+    } else if (event.target.value === "method") {
       href = "/methods" + this.props.location.search;
-    } else if (event.target.value === "Organizations") {
+    } else if (event.target.value === "organization") {
       href = "/organizations" + this.props.location.search;
     } else {
       return;
@@ -329,7 +329,7 @@ export class SearchResultsView extends React.Component {
               <div className="filters d-none d-md-block d-lg-block d-xl-block">
                 <div
                   className={
-                    this.props.selectedCategory === "All"
+                    this.props.selectedCategory === "all"
                       ? "selected"
                       : "unselected"
                   }
@@ -340,7 +340,7 @@ export class SearchResultsView extends React.Component {
                 </div>
                 <div
                   className={
-                    this.props.selectedCategory === "Cases"
+                    this.props.selectedCategory === "case"
                       ? "selected"
                       : "unselected"
                   }
@@ -351,7 +351,7 @@ export class SearchResultsView extends React.Component {
                 </div>
                 <div
                   className={
-                    this.props.selectedCategory === "Methods"
+                    this.props.selectedCategory === "method"
                       ? "selected"
                       : "unselected"
                   }
@@ -362,7 +362,7 @@ export class SearchResultsView extends React.Component {
                 </div>
                 <div
                   className={
-                    this.props.selectedCategory === "Organizations"
+                    this.props.selectedCategory === "organization"
                       ? "selected"
                       : "unselected"
                   }
@@ -377,14 +377,14 @@ export class SearchResultsView extends React.Component {
                 value={this.props.selectedCategory}
                 onChange={this.handleChange}
               >
-                <option value="All">{intl.formatMessage({ id: "all" })}</option>
-                <option value="Cases">
+                <option value="all">{intl.formatMessage({ id: "all" })}</option>
+                <option value="case">
                   {intl.formatMessage({ id: "cases" })}
                 </option>
-                <option value="Methods">
+                <option value="method">
                   {intl.formatMessage({ id: "methods" })}
                 </option>
-                <option value="Organizations">
+                <option value="organization">
                   {intl.formatMessage({ id: "organizations" })}
                 </option>
               </select>
@@ -421,7 +421,10 @@ export class SearchResultsView extends React.Component {
                     alt=""
                   />
                 </div>
-                <div onClick={this.props.startDownload.bind(this)}>
+                <div
+                  onClick={() => preventDefault(this.props.openExportDialog(this.props.selectedCategory))}
+                  style={{display: this.props.selectedCategory !== "all" ? "block" : "none" }}
+                >
                   <DownloadButton />
                 </div>
               </div>

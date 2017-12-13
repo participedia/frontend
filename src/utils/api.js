@@ -99,6 +99,40 @@ class API {
       });
   };
 
+  fetchTemplate = function(thingtype) {
+    let url = APIURL + "/" + thingtype + "/template";
+    return signedFetch(url)
+      .then(response => response.json())
+      .then(json => json.data)
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        throw error;
+      });
+  };
+
+  fetchAllThings = function(thingtype, accept, excludes={}) {
+    let url = APIURL + "/" + thingtype + "/all";
+    let opts = {
+      headers: {"Accept": accept},
+      queryParams: { filter: JSON.stringify(excludes) },
+    };
+    return signedFetch(url, opts)
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      })
+      .catch(function(error) {
+        console.error(
+          `There has been a problem with your fetch operation: (${url}) ${error}`
+        );
+        return error;
+      });
+  }
+
   saveNewThing = function(thingType, obj) {
     // console.log("saveNewThing", thingType, obj);
     if (
