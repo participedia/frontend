@@ -259,9 +259,6 @@ class CaseEditor extends Component {
                         id: quickSubmitText
                       })}
                     />
-                    <span>
-                      <FormattedMessage id="or" />
-                    </span>
                     <RaisedButton
                       onClick={() => onExpand(this.state.thing)}
                       className="customButton full-submit"
