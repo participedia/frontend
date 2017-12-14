@@ -87,7 +87,7 @@ small.label {
   }
   &.case {
     background:url('../../img/background-case.png') repeat center center;
-    background-size:cover;
+    background-size:auto;
     &:after {
       background:url('../../img/icon-thumbnail-case.svg') no-repeat center center;
       background-size:20%;

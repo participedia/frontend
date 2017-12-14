@@ -107,7 +107,7 @@ export class MultiChoiceEditor extends React.Component {
         key={v.value}
         insetChildren={true}
         checked={values && values.indexOf(v) > -1}
-        value={v.value}
+        value={v.value + v.text}
         primaryText={v.text}
       />
     ));

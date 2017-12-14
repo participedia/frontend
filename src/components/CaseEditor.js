@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage, intlShape, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedHTMLMessage, intlShape, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
