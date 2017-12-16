@@ -1,4 +1,17 @@
 {
+  "influence_scope": [
+    "express_opinions/preferences_only",
+    "storytelling",
+    "other",
+    "discussion_dialogue_deliberation",
+    "formal_testimony",
+    "informal_social_activities",
+    "no_interaction_among_participants",
+    "organized_demonstrations",
+    "negotiate_bargain",
+    "listen/watch_as_spectator",
+    "acting/drama"
+  ],
   "relationship": [
     "express_opinions/preferences_only",
     "storytelling",

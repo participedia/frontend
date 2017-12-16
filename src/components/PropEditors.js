@@ -139,6 +139,7 @@ export class MultiChoiceEditor extends React.Component {
       <SelectField
         name={property}
         fullWidth
+        className="multichoice-select"
         multiple={true}
         hintText="Select a name"
         value={values}
@@ -176,9 +177,9 @@ export function makeLocalizedChoiceField(
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div className="field-case select">
-      <h2 className="sub-heading">{label}</h2>
+      <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">{intl.formatMessage({
-          id: property + "_placeholder"
+          id: property + "_instructional"
         })}</p>
       <Field
         fieldName={property}
@@ -532,8 +533,8 @@ class LocationEditor extends React.Component {
 export function makeLocalizedLocationField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
-    <div className="field-case location-field">
-      <h2 className="sub-heading">{label}</h2>
+    <div>
+      <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">{intl.formatMessage({
             id: property + "_instructional"
           })}</p>
