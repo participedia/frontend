@@ -1,4 +1,8 @@
 {
+  "time_limited": [
+    "express_opinions/preferences_only",
+    "storytelling"
+  ],
   "influence_scope": [
     "express_opinions/preferences_only",
     "storytelling",

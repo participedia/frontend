@@ -460,7 +460,7 @@ class DateEditor extends React.Component {
 export function makeLocalizedDateField(intl, property) {
   return (
     <div>
-      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+      <p className="explanatory-text">{intl.formatMessage({ id: property + "_instructional" })}</p>
       <div className={"date-field " + property}>
         <Field
           fieldName={property}
@@ -604,8 +604,10 @@ export class ListEditor extends React.Component {
 }
 
 export function makeLocalizedListField(intl, property) {
+  let label = intl.formatMessage({ id: property });
   return (
     <div>
+      <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text"><FormattedMessage id={intl.formatMessage({
             id: property + "_instructional"
           })} /></p> 
