@@ -535,7 +535,7 @@ export function makeLocalizedLocationField(intl, property) {
     <div className="field-case location-field">
       <h2 className="sub-heading">{label}</h2>
       <p className="explanatory-text">{intl.formatMessage({
-            id: "location_placeholder"
+            id: property + "_instructional"
           })}</p>
       <div className={property}>
         <Field
