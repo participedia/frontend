@@ -4,15 +4,21 @@ import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
+import FileListEditor from "./FileListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
+import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import Checkbox from 'simple-react-form-material-ui/lib/checkbox';
 import tags_json from "../autocomplete_data/tags.json";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
+import SearchableRelatedEditor from "./SearchableRelatedEditor";
+import InfoBox from "./InfoBox";
 import RaisedButton from "material-ui/RaisedButton";
 import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
+import preventDefault from "react-prevent-default";
 import {
   makeLocalizedChoiceField,
   makeLocalizedMultiChoiceField,
@@ -30,6 +36,7 @@ const buttonStyle = {
   margin: "1em"
 };
 
+
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
@@ -42,13 +49,13 @@ class CaseEditor extends Component {
         id: "case_description_placeholder"
       });
     }
-    this.state = { thing };
+    this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, { body: body });
-    this.setState({ thing: updatedThing });
+    let updatedThing = Object.assign({}, this.state.thing, {body: body});
+    this.setState({thing:updatedThing});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,7 +78,7 @@ class CaseEditor extends Component {
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
-
+  
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
@@ -111,6 +118,18 @@ class CaseEditor extends Component {
         })}
       />
     );
+    let process_methods = (
+      <Field
+        fieldName="process_methods"
+        type={RelatedEditor}
+        info="process_methods"
+        dataSource={methods}
+        dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "process_methods_placeholder"
+        })}
+      />
+    );
     let related_methods = (
       <Field
         fieldName="related_methods"
@@ -119,6 +138,18 @@ class CaseEditor extends Component {
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
           id: "related_methods_placeholder"
+        })}
+      />
+    );
+    let primary_organizer = (
+      <Field
+        fieldName="primary_organizer"
+        type={RelatedEditor}
+        info="primary_organizer"
+        dataSource={organizations}
+        dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "primary_organizer_placeholder"
         })}
       />
     );
@@ -133,8 +164,32 @@ class CaseEditor extends Component {
         })}
       />
     );
+    let has_components = (
+      <Field
+        fieldName="has_components"
+        info="has_components"
+        type={RelatedEditor}
+        dataSource={cases}
+        dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "has_components_placeholder"
+        })}
+      />
+    );
+    let is_component_of = (
+      <Field
+        fieldName="is_component_of"
+        info="is_component_of"
+        type={SearchableRelatedEditor}
+        dataSource={cases}
+        dataSourceConfig={{ text: "text", value: "value" }}
+        placeholder={intl.formatMessage({
+          id: "is_component_of_placeholder"
+        })}
+      />
+    );
     let incomplete = thing.title ? false : true;
-    let issue = this.state.thing.issue;
+    let issues = this.state.thing.issues;
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
@@ -154,91 +209,381 @@ class CaseEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="field-case top">
-                  <h2 className="sub-heading">
-                    <label htmlFor="title">
-                      <FormattedMessage id={thing.type + "_title_label"} />
-                    </label>
-                  </h2>
-                  <p className="explanatory-text">
-                    <FormattedMessage
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <div className="field-case top">
+                    <h2 className={isQuick ? "sub-heading hidden" : "sub-heading"}>
+                      <FormattedMessage id="overview"/>
+                    </h2>
+                    <h3 className="sub-heading">
+                      <label htmlFor="title">
+                        <FormattedMessage id={thing.type + "_title_label"} />
+                      </label>
+                    </h3>
+                    <p className="explanatory-text"><FormattedHTMLMessage
                       id={intl.formatMessage({
-                        id: thing.type + "_title_placeholder"
+                        id: thing.type + "_title_explanatory"
+                      })}/></p>
+                    <Field
+                      fieldName="title"
+                      name="title"
+                      className="custom-field"
+                      type={Text}
+                      placeholder={intl.formatMessage({
+                        id: "case_title_placeholder"
                       })}
+                      fullWidth
                     />
-                  </p>
-                  <Field
-                    fieldName="title"
-                    name="title"
-                    className="custom-field"
-                    type={Text}
-                    placeholder=""
-                    fullWidth
-                  />
+                  </div>
+                  {!isQuick ?
+                    makeLocalizedMultiChoiceField(
+                      intl,
+                      "relationships",
+                      "relationships",
+                      "relationships",
+                      true,
+                      3
+                    )
+                  :
+                  undefined  
+                  }
+                  {makeLocalizedMultiChoiceField(
+                    intl,
+                    "issues",
+                    "issues",
+                    "issues",
+                    true,
+                    3
+                  )}
+                  {issues ? 
+                    <div>
+                      {makeLocalizedMultiChoiceField(
+                        intl,
+                        "specific_topics",
+                        "specific_topics",
+                        "specific_topics",
+                        true,
+                        3
+                      )}
+                    </div>
+                  : (
+                    undefined
+                  )}
+                  <div className="field-case">
+                    <h3 className="sub-heading">
+                      <label htmlFor="title">
+                        <FormattedMessage id="brief_description" />
+                      </label>
+                    </h3>
+                    <p className="explanatory-text"><FormattedHTMLMessage
+                      id="brief_description_explanatory"/></p>
+                    <Field
+                      fieldName="brief_description"
+                      name="brief_description"
+                      className="custom-textarea"
+                      underlineShow={false}
+                      maxLength="140"
+                      type={Textarea}
+                      placeholder={intl.formatMessage({ id: "brief_description_placeholder"})}
+                      fullWidth
+                    />
+                  </div>
+                  {!isQuick ?
+                    <div className="field-case">
+                      <h3 className="sub-heading" htmlFor="body_en">
+                        {intl.formatMessage({
+                          id: thing.type + "_body_title"
+                        })}
+                      </h3>
+                      <p className="explanatory-text"><FormattedHTMLMessage
+                        id="case_description_instructional"/></p>
+                      <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
+                    </div>
+                  :
+                  undefined
+                  }
+                  <div className="field-case">
+                    {makeLocalizedListField(intl, "links")}
+                  </div>
+                  <div className="field-case">
+                    {tagseditor}
+                  </div>
                 </div>
-                {makeLocalizedMultiChoiceField(
-                  intl,
-                  "issue",
-                  "issue",
-                  "general_issues"
-                )}
-                {issue && !isQuick ? (
+                {!isQuick ?
+                <div className="form-section components">
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="components"/>
+                  </h2>
+                  <p><FormattedMessage id="components_intro"/></p>
+                  <div className="field-case">
+                    {has_components}
+                  </div>
+                  <div className="field-case">
+                    {is_component_of}
+                  </div>
+                </div>
+                :
+                undefined
+                }
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="location"/>
+                  </h2>
+                  <div className="case-location">
+                    <div className="field-case top">
+                      {makeLocalizedLocationField(intl, "primary_location")}
+                    </div>
+                    {!isQuick ?
+                      makeLocalizedChoiceField(intl, "scope_of_influence")
+                    :
+                      undefined  
+                    }
+                  </div>
+                </div>
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="media"/>
+                  </h2>
+                  <div className="field-case">
+                    <h3 className="sub-sub-heading">
+                      <FormattedMessage id="photos" />
+                    </h3>
+                    <ImageListEditor property="images" thing={thing} />
+                    {makeLocalizedListField(intl, "videos")}
+                    <h3 className="sub-sub-heading">
+                      <FormattedMessage id="files" />
+                    </h3>
+                    <FileListEditor property="files" thing={thing} />
+                  </div>
+                </div>
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="date_duration" />
+                  </h2>
+                  <div className="field-case">
+                    {makeLocalizedDateField(intl, "start_date")}
+                    {makeLocalizedDateField(intl, "end_date")}
+                    <Field
+                      fieldName="ongoing"
+                      name="ongoing"
+                      label="ok"
+                      type={Checkbox}
+                      label={intl.formatMessage({
+                        id: "ongoing_label"
+                      })}
+                      fullWidth
+                    />
+                    {!isQuick ?
+                      makeLocalizedChoiceField(intl, "time_limited")
+                      :
+                      undefined
+                    }
+                  </div>
+                </div>
+                {!isQuick ?
                   <div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="purpose_approach" />
+                    </h2>
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "purpose",
+                      "purpose",
+                      "purpose",
+                      true,
+                      3
+                    )}
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "approach",
+                      "approach",
+                      "approach",
+                      true,
+                      3
+                    )}
+                    {makeLocalizedChoiceField(intl, "public_spectrum")}
+                  </div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="participants" />
+                    </h2>
+                    {makeLocalizedNumberField(intl, "number_of_participants")}
+                    {makeLocalizedChoiceField(intl, "open_limited")}
+                    { thing && thing.open_limited==="limited_to_only_some_groups_or_individuals" ?
+                      makeLocalizedChoiceField(intl, "recruitment_method")
+                      :
+                      undefined
+                    }
+                    { thing && thing.open_limited==="open_to_all_with_special_effort_to_recruit_some_groups_eg_community_organizing_to_recruit_lowincome_earners" || thing.open_limited==="limited_to_only_some_groups_or_individuals" ?
+                      makeLocalizedChoiceField(intl, "targeted_participants")
+                      :
+                      undefined
+                    }
+                  </div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="process" />
+                    </h2>
+                    {process_methods}
+                    {makeLocalizedChoiceField(intl, "legality", "legality", "legality", false)}
+                    {makeLocalizedChoiceField(intl, "facilitators", "facilitators", "facilitators", false)}
+                    { thing && thing.facilitators==="yes" ?
+                      makeLocalizedChoiceField(intl, "facilitator_training")
+                      :
+                      undefined
+                    }
                     {makeLocalizedChoiceField(
                       intl,
-                      "specific_topic",
-                      issue,
-                      "specific_topic"
+                      "facetoface_online_or_both"
+                    )}
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "participants_interaction",
+                      "participants_interaction",
+                      "participants_interaction",
+                      true,
+                      3
+                    )}
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "learning_resources",
+                      "learning_resources",
+                      "learning_resources",
+                      false
+                    )}
+                    {makeLocalizedMultiChoiceField(
+                      intl, 
+                      "decision_methods",
+                      "decision_methods",
+                      "decision_methods",
+                      false
+                    )}
+                    { thing.decision_methods && thing.decision_methods.find(o => o.value === "voting") ?
+                      makeLocalizedMultiChoiceField(intl, "if_voting", "if_voting", "if_voting", false)
+                      :
+                      undefined
+                    }
+                    {makeLocalizedMultiChoiceField(
+                      intl, 
+                      "insights_outcomes",
+                      "insights_outcomes",
+                      "insights_outcomes",
+                      false,
+                      3
                     )}
                   </div>
-                ) : (
-                  undefined
-                )}
-                {issue === "other" &&
-                this.state.thing.specific_topic === "other" ? (
-                  <b>
-                    {intl.formatMessage({
-                      id: "send_email_with_catgeory_additions"
-                    })}
-                  </b>
-                ) : (
-                  undefined
-                )}
-                <div className="case-location">
-                  {makeLocalizedLocationField(intl, "location")}
-                </div>
-                <div className="field-case">
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="date" />
-                  </h2>
-                  {makeLocalizedDateField(intl, "start_date")}
-                  {makeLocalizedDateField(intl, "end_date")}
-                </div>
-                <div className="field-case">
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="links" />
-                  </h2>
-                  {makeLocalizedListField(intl, "links")}
-                </div>
-                <div className="field-case media">
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="media" />
-                  </h2>
-                  <h3 className="sub-sub-heading">
-                    <FormattedMessage id="photos" />
-                  </h3>
-                  <ImageListEditor property="images" thing={thing} />
-                  <h3 className="sub-sub-heading pt-3">
-                    <FormattedMessage id="videos" />
-                  </h3>
-                  {makeLocalizedListField(intl, "videos")}
-                </div>
-                <div className={isQuick ? "field-case last" : "field-case"}>
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="tags_title" />
-                  </h2>
-                  {tagseditor}
-                </div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="organizers_supporters" />
+                    </h2>
+                    {primary_organizer}
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "organizer_types",
+                      "organizer_types",
+                      "organizer_types",
+                      false,
+                      3
+                    )}
+                  </div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="resources" />
+                    </h2>
+                    <div className="field-case top">
+                      <h3 className="sub-heading">
+                        <label htmlFor="funder">
+                          <FormattedMessage id="funder_label" />
+                        </label>
+                      </h3>
+                      <p className="explanatory-text"><FormattedHTMLMessage
+                        id={intl.formatMessage({
+                          id: "funder_instructional"
+                        })}/>
+                        <InfoBox info="funder"/>
+                      </p>
+                      <Field
+                        fieldName="funder"
+                        name="funder"
+                        className="custom-field"
+                        type={Text}
+                        placeholder=""
+                        fullWidth
+                      />
+                    </div>
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "funder_types",
+                      "funder_types",
+                      "funder_types",
+                      true,
+                      3
+                    )}
+                    {makeLocalizedChoiceField(
+                      intl,
+                      "staff",
+                      "staff",
+                      "staff",
+                      false
+                    )}
+                    {makeLocalizedChoiceField(
+                      intl,
+                      "volunteers",
+                      "volunteers",
+                      "volunteers",
+                      false
+                    )}
+                  </div>
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="impact_evidence" />
+                    </h2>
+                    {makeLocalizedChoiceField(
+                      intl,
+                      "impact_evidence",
+                      "impact_evidence",
+                      "impact_evidence",
+                      false
+                    )}
+                    { thing && thing.impact_evidence==="yes" ?
+                      makeLocalizedMultiChoiceField(
+                        intl,
+                        "changes_types",
+                        "changes_types",
+                        "changes_types",
+                        true,
+                        5,
+                        true
+                      )
+                      :
+                      undefined
+                    }
+                    {makeLocalizedMultiChoiceField(
+                      intl,
+                      "implementers_of_change",
+                      "implementers_of_change",
+                      "implementers_of_change",
+                      false
+                    )}
+                    {makeLocalizedChoiceField(intl, "formal_evaluation", "formal_evaluation", "formal_evaluation", false)}
+                    { thing && thing.formal_evaluation==="yes" ?
+                      <div>
+                        <h3 className="sub-sub-heading">
+                          <FormattedMessage id="evaluation_reports" />
+                        </h3>
+                        <FileListEditor property="evaluation_links" thing={thing} />
+                        <div className="field-case">
+                          {makeLocalizedListField(intl, "evaluation_links")}
+                        </div>
+                      </div>
+                      :
+                      undefined
+                    }
+                  </div>
+                  </div>
+                :
+                undefined  
+                }  
               </div>
               <div>
                 {isQuick ? (
@@ -251,6 +596,7 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
+                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
@@ -270,76 +616,6 @@ class CaseEditor extends Component {
                   </div>
                 ) : (
                   <div>
-                    <div className="field-case">
-                      <h2 className="sub-heading" htmlFor="body_en">
-                        {intl.formatMessage({
-                          id: thing.type + "_body_title"
-                        })}
-                      </h2>
-                      <BodyEditor
-                        onEditorChange={this.updateBody}
-                        html={thing.body}
-                      />
-                    </div>
-                    <div>
-                      {makeLocalizedChoiceField(intl, "communication_mode")}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "communication_with_audience"
-                      )}
-                      {makeLocalizedChoiceField(intl, "decision_method")}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "facetoface_online_or_both"
-                      )}
-                      {makeLocalizedBooleanField(intl, "facilitated")}
-                      {makeLocalizedChoiceField(intl, "voting")}
-                      {makeLocalizedNumberField(intl, "number_of_meeting_days")}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "targeted_participant_demographic"
-                      )}
-                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "targeted_participants_public_role"
-                      )}
-                      {makeLocalizedChoiceField(intl, "targeted_audience")}
-                      {makeLocalizedChoiceField(intl, "participant_selection")}
-                      {makeLocalizedChoiceField(intl, "type_of_funding_entity")}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "type_of_implementing_entity"
-                      )}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "type_of_sponsoring_entity"
-                      )}
-                      {}
-                      {makeLocalizedBooleanField(intl, "ongoing")}
-                      {makeLocalizedTextField(intl, "staff_type")}
-                      {makeLocalizedTextField(
-                        intl,
-                        "who_else_supported_the_initiative"
-                      )}
-                      <div className="field-case last related">
-                        <h2 className="sub-heading">
-                          <FormattedMessage id="related_content" />
-                        </h2>
-                        <h3 className="sub-sub-heading">
-                          <FormattedMessage id="related_cases_label" />
-                        </h3>
-                        {related_cases}
-                        <h3 className="sub-sub-heading mt-3">
-                          <FormattedMessage id="related_methods_label" />
-                        </h3>
-                        {related_methods}
-                        <h3 className="sub-sub-heading mt-3">
-                          <FormattedMessage id="related_organizations_label" />
-                        </h3>
-                        {related_organizations}
-                      </div>{" "}
-                    </div>
                     {incomplete ? (
                       <p className="pt-3 incomplete">
                         {intl.formatMessage({
@@ -350,6 +626,7 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
+                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary

@@ -96,22 +96,31 @@ export class MultiChoiceEditor extends React.Component {
     if (values.length > 3) {
       var b = values.slice(1, 4);
       this.setState({values:b});
+      this.props.onChange(b);
     } else {
       this.setState({values});
+      this.props.onChange(values);
     }
   } 
 
   makeChoices(choices, values) {
-    return choices.map((v) => (
-      <MenuItem
-        key={v.value}
-        insetChildren={true}
-        checked={values && values.indexOf(v) > -1}
-        value={v.value + v.text}
-        primaryText={v.text}
-      />
-    ));
+
+    return choices.map((v) => {
+      return (
+        <MenuItem
+          key={v.value}
+          insetChildren={true}
+          checked={values && values.indexOf(v) > -1}
+          value={v}
+          primaryText={v.text}
+        />
+      )
+    });
   }
+
+  // onChange(event, index, value) {
+  //   this.setState({ value: value });
+  // }
 
   onSortEnd ({oldIndex, newIndex}) {
     this.setState({
@@ -199,12 +208,11 @@ export function makeLocalizedMultiChoiceField(
     label = intl.formatMessage({ id: heading });
   }
   let choices = makeLocalizedChoices(intl, tag_for_choices);
-  // let choices = ["a",'b',"c"];
   return (
     <div className="field-case select">
-      <h2 className="sub-heading">{label}</h2>
+      <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">{intl.formatMessage({
-          id: property + "_placeholder"
+          id: property + "_instructional"
         })}</p>
       <Field
         fieldName={property}
@@ -598,7 +606,7 @@ export function makeLocalizedListField(intl, property) {
   return (
     <div>
       <p className="explanatory-text"><FormattedMessage id={intl.formatMessage({
-            id: property + "_placeholder"
+            id: property + "_instructional"
           })} /></p> 
       <div className={"list " + property}>
         <Field

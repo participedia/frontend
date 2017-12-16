@@ -7,8 +7,8 @@ import "./SortableList.css";
 const SortableList = SortableContainer(({items}) => {
   return (
     <div className="sortable-list">
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} sortIndex={index} index={index} value={value} />
+      {items.map((obj, index) => (
+        <SortableItem key={`item-${index}`} sortIndex={index} index={index} text={obj.text} value={obj.value} />
       ))}
     </div>
   );
