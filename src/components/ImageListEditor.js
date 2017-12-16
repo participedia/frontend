@@ -98,7 +98,7 @@ class ImageListEditorField extends Component {
     return (
       <div>
         <Row className="itemPics">{bits}</Row>
-        <p className="explanatory-text"><FormattedMessage id="photos_placeholder" /></p> 
+        <p className="explanatory-text"><FormattedMessage id="photos_instructional" /></p> 
         <Upload auth={authService} itemEdit addToList={this.handleNewImg} />
       </div>
     );
