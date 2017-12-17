@@ -1,4 +1,48 @@
 {
+  "insights_outcomes": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "if_voting": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
+  "decision_method_case": [
+    "a",
+    "b",
+    "c",
+    "voting"
+  ],
+  "learning_resources": [
+    "yes",
+    "no",
+    "dont_know",
+    "dont_know1"
+  ],
+  "participants_interaction": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
+  "facilitator_training": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
+  "facilitators": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
+  "legality": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
   "targeted_participants": [
     "appointment",
     "option_b",
@@ -77,7 +121,7 @@
     "new_media_ie_internet_texting_etc",
     "traditional_media_ie_television_radio_newspapers"
   ],
-  "decision_method": [
+  "decision_emethod": [
     "not_applicable",
     "voting",
     "other",

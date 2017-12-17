@@ -93,9 +93,13 @@ export class MultiChoiceEditor extends React.Component {
 
 
   handleChange(event, index, values) {
-    if (values.length > 3) {
+    if (this.props.passProps.rankable && values.length > 3) {
       var b = values.slice(1, 4);
-      this.setState({values:b});
+      this.setState({values: b});
+      this.props.onChange(b);
+    } else if (values.length > this.props.passProps.limit) {
+      var b = values.slice(1, this.props.passProps.limit + 1);
+      this.setState({values: b});
       this.props.onChange(b);
     } else {
       this.setState({values});
@@ -148,10 +152,10 @@ export class MultiChoiceEditor extends React.Component {
         {this.makeChoices(choices, values)}
       </SelectField>
       <p> 
-      { this.state.values && this.state.values.length > 3 ?
-        <span>you can only sort 3 elements</span>
-        :
+      { this.props.passProps.rankable && this.state.values && this.state.values.length <= 3 ?
         <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
+        :
+        undefined
       }
       </p>
       </div>
@@ -197,7 +201,9 @@ export function makeLocalizedMultiChoiceField(
   intl,
   property,
   tag_for_choices,
-  heading
+  heading,
+  rankable,
+  limit
 ) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
@@ -220,6 +226,8 @@ export function makeLocalizedMultiChoiceField(
         label={label}
         type={MultiChoiceEditor}
         choices={choices}
+        rankable={rankable}
+        limit={limit}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
       />
