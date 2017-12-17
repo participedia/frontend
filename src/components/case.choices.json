@@ -1,4 +1,18 @@
 {
+  "volunteers": [
+    "yes",
+    "no"
+  ],
+  "staff": [
+    "yes",
+    "no"
+  ],
+  "funder_type": [
+    "a",
+    "b",
+    "c",
+    "d"
+  ],
   "organizer_type": [
     "a",
     "b",
