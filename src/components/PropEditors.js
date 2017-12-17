@@ -341,8 +341,8 @@ export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
   return (
     <div className="field-case">
-      <h2 className="sub-heading">{label}</h2>
-      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+      <h3 className="sub-heading">{label}</h3>
+      <p className="explanatory-text">{intl.formatMessage({ id: property + "_instructional" })}</p>
       <div className={property}>
         <Field
           fieldName={property}

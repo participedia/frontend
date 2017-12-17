@@ -1,4 +1,19 @@
 {
+  "targeted_participants": [
+    "appointment",
+    "option_b",
+    "option_c"
+  ],
+  "recruitment_method": [
+    "appointment",
+    "option_b",
+    "option_c"
+  ],
+  "open_limited": [
+    "option_a",
+    "option_b",
+    "option_c"
+  ],
   "public_spectrum": [
     "express_opinions/preferences_only",
     "storytelling"
