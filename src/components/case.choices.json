@@ -1,4 +1,16 @@
 {
+  "public_spectrum": [
+    "express_opinions/preferences_only",
+    "storytelling"
+  ],
+  "approach": [
+    "express_opinions/preferences_only",
+    "storytelling"
+  ],
+  "purpose": [
+    "express_opinions/preferences_only",
+    "storytelling"
+  ],
   "time_limited": [
     "express_opinions/preferences_only",
     "storytelling"

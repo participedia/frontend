@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedHTMLMessage, FormattedMessage } from "react-intl";
 import DatePicker from "material-ui/DatePicker";
 import TextField from "material-ui/TextField";
 import MenuItem from "material-ui/MenuItem";
@@ -178,9 +178,9 @@ export function makeLocalizedChoiceField(
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text">{intl.formatMessage({
-          id: property + "_instructional"
-        })}</p>
+      <p className="explanatory-text">
+        <FormattedHTMLMessage id={property + "_instructional"} />
+      </p>
       <Field
         fieldName={property}
         label={label}
