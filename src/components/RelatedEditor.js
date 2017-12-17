@@ -75,7 +75,7 @@ export default class Related extends React.Component {
     return (
       <div>
         <h3 className="sub-heading"><FormattedMessage id={this.props.fieldName} /></h3>
-        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_prompt"} /></p>
+        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_instructional"} /></p>
         <ChipInput
           {...rest}
           className="related-fields clearfix"
