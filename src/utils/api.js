@@ -88,7 +88,7 @@ class API {
     if (search) {
       url =
         APIURL +
-        `/search?selectedCategory=${selectedCategory}&query=${search}&resultType=map`;
+        `/search${search}&selectedCategory=${selectedCategory}&resultType=map`;
     } else {
       url =
         APIURL + `/search?selectedCategory=${selectedCategory}&resultType=map`;
