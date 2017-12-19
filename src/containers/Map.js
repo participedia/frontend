@@ -3,6 +3,19 @@ import api from "../utils/api";
 import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
 
+function getSelectedCategory(pathname) {
+  if (pathname == "/methods") {
+    return "Methods";
+  } else if (pathname == "/cases") {
+    return "Cases";
+  } else if (pathname == "/organizations") {
+    return "Organizations";
+  } else if (pathname == "/news") {
+    return "News";
+  }
+  return "All";
+}
+
 const defaultMarkerLayout = {
   "text-line-height": 1,
   "text-padding": 0,
@@ -72,22 +85,32 @@ export default class Map extends Component {
   componentWillMount() {
     let component = this;
 
-    api.searchMapTokens(this.props.location.search).then(function(results) {
-      let items = extractData(results);
-      component.setState({
-        items: items
+    api
+      .searchMapTokens(
+        getSelectedCategory(this.props.location.pathname),
+        this.props.location.search
+      )
+      .then(function(results) {
+        let items = extractData(results);
+        component.setState({
+          items: items
+        });
       });
-    });
   }
   componentWillReceiveProps(newProps) {
     let component = this;
 
-    api.searchMapTokens(newProps.location.search).then(function(results) {
-      let items = extractData(results);
-      component.setState({
-        items: items
+    api
+      .searchMapTokens(
+        getSelectedCategory(this.props.location.pathname),
+        newProps.location.search
+      )
+      .then(function(results) {
+        let items = extractData(results);
+        component.setState({
+          items: items
+        });
       });
-    });
   }
 
   render() {

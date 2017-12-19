@@ -83,12 +83,15 @@ class API {
       });
   };
 
-  searchMapTokens = function(search) {
+  searchMapTokens = function(selectedCategory, search) {
     let url;
     if (search) {
-      url = APIURL + `/search${search}&resultType=map`;
+      url =
+        APIURL +
+        `/search${search}&selectedCategory=${selectedCategory}&resultType=map`;
     } else {
-      url = APIURL + `/search?resultType=map`;
+      url =
+        APIURL + `/search?selectedCategory=${selectedCategory}&resultType=map`;
     }
     return signedFetch(url, "get")
       .then(response => response.json())
