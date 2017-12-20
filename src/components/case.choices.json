@@ -1,4 +1,30 @@
 {
+  "formal_evaluation": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
+  "change_implementers": [
+    "appointed_public_servants",
+    "corporations",
+    "elected_public_officials",
+    "experts",
+    "lay_public",
+    "stakeholder_organizations",
+    "none_that_we_know_of"
+  ],
+  "changes_type": [
+    "changes_in_peoples_knowledge_attitudes_and_behavior",
+    "changes_in_public_policy",
+    "changes_in_how_institutions_operate",
+    "changes_in_civic_capacities",
+    "conflict_transformation"
+  ],
+  "impact_evidence": [
+    "yes",
+    "no",
+    "dont_know"
+  ],
   "volunteers": [
     "yes",
     "no"
@@ -8,55 +34,101 @@
     "no"
   ],
   "funder_type": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "academic_institution",
+    "activist_network",
+    "community_based_organization",
+    "faithbased_organization",
+    "forprofit_business",
+    "governmentowned_corporation",
+    "individual",
+    "international_organization",
+    "local_government",
+    "nongovernmental_organization",
+    "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",
+    "regional_government_eg_state_provincial_territorial",
+    "social_movement",
+    "labor_trade_union",
+    "na"
   ],
   "organizer_type": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "academic_institution",
+    "activist_network",
+    "community_based_organization",
+    "faithbased_organization",
+    "forprofit_business",
+    "governmentowned_corporation",
+    "individual",
+    "international_organization",
+    "local_government",
+    "nongovernmental_organization",
+    "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",
+    "regional_government_eg_state_provincial_territorial",
+    "social_movement",
+    "labor_trade_union",
+    "na"
   ],
   "insights_outcomes": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "artistic_expression",
+    "traditional_media",
+    "new_media",
+    "independent_media",
+    "public_report",
+    "minority_report",
+    "petitions",
+    "protests_public_demonstrations",
+    "public_hearings_meetings",
+    "word_of_mouth",
+    "na"
   ],
   "if_voting": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "majoritarian_voting",
+    "supermajoritarian",
+    "plurality",
+    "preferential_voting",
+    "unanimous_decision",
+    "if_voting_unknown"
   ],
   "decision_method_case": [
-    "a",
-    "b",
-    "c",
+    "general_agreement/consensus",
+    "idea_generation",
+    "not_applicable",
+    "opinion_survey",
+    "unknown",
     "voting"
   ],
   "learning_resources": [
-    "yes",
-    "no",
-    "dont_know",
-    "dont_know1"
+    "expert_presentations",
+    "participant_presentations",
+    "site_visits",
+    "teachins",
+    "video_presentations_online_or_inperson",
+    "written_briefing_materials_online_or_as_handouts",
+    "no_information_was_provided_to_participants",
+    "not_relevant_to_this_type_of_initiative",
+    "other"
   ],
   "participants_interaction": [
-    "yes",
-    "no",
-    "dont_know"
+    "acting_drama",
+    "ask_and_answer_questions",
+    "discussion_dialogue_or_deliberation",
+    "express_opinions_preferences_only",
+    "formal_testimony",
+    "informal_social_activities",
+    "listen_watch_as_spectator",
+    "negotiation_bargaining",
+    "no_interaction_among_participants",
+    "storytelling",
+    "teaching_instructing"
   ],
   "facilitator_training": [
-    "yes",
-    "no",
-    "dont_know"
+    "professional_facilitators",
+    "trained_nonprofessional_facilitators",
+    "untrained_nonprofessional_facilitators"
   ],
   "facilitators": [
     "yes",
     "no",
-    "dont_know"
+    "na"
   ],
   "legality": [
     "yes",
@@ -64,61 +136,100 @@
     "dont_know"
   ],
   "targeted_participants": [
-    "appointment",
-    "option_b",
-    "option_c"
+    "appointed_public_servants_eg_bureaucrats",
+    "gay/lesbian/bisexual/transgender_ie_lgbt",
+    "elderly",
+    "elected_public_officials",
+    "experts_eg_scientists",
+    "indigenous_people",
+    "immigrants",
+    "lowincome_earners",
+    "men",
+    "people_with_disabilities",
+    "racial/ethnic_groups",
+    "religious_groups",
+    "stakeholder_organizations_eg_ngos_business_interests",
+    "students",
+    "women",
+    "youth",
+    "other"
   ],
   "recruitment_method": [
     "appointment",
-    "option_b",
-    "option_c"
+    "captive_sample",
+    "election",
+    "random_sample",
+    "na",
+    "other"
   ],
   "open_limited": [
-    "option_a",
-    "option_b",
-    "option_c"
+    "open_to_all",
+    "open_to_all_with_special_effort_to_recruit_some_groups_eg_community_organizing_to_recruit_lowincome_earners",
+    "limited_to_only_some_groups_or_individuals",
+    "other"
   ],
   "public_spectrum": [
-    "express_opinions/preferences_only",
-    "storytelling"
+    "inform",
+    "consult",
+    "involve",
+    "collaborate",
+    "empower"
   ],
   "approach": [
-    "express_opinions/preferences_only",
-    "storytelling"
+    "advocacy",
+    "citizenship_building",
+    "civil_society_building",
+    "cogovernance",
+    "coproduction_in_form_of_partnership_and/or_contract_with_government_and/or_public_bodies",
+    "coproduction_in_form_of_partnership_and/or_contract_with_private_organisations",
+    "consultation",
+    "direct_decision_making",
+    "independent_action",
+    "informal_engagement_by_intermediaries_with_nongovernmental_authorities",
+    "informal_engagement_by_intermediaries_with_political_authorities",
+    "leadership_development",
+    "oversight_and_social_auditing",
+    "protest",
+    "research",
+    "social_mobilization",
+    "other"
   ],
   "purpose": [
-    "express_opinions/preferences_only",
-    "storytelling"
+    "make_influence_or_challenge_decisions_of_government_and_public_bodies",
+    "make_influence_or_challenge_decisions_of_private_organizations_eg_civil_society_organizations_corporations",
+    "deliver_goods_and_services_eg_coproduction_of_public_safety_by_police_and_community",
+    "develop_the_civic_capacities_of_individuals_communities_and/or_civil_society_organizations_eg_increase_understanding_of_public_issues_strengthen_social_capital",
+    "academic_research",
+    "other"
   ],
   "time_limited": [
-    "express_opinions/preferences_only",
-    "storytelling"
+    "a_single_defined_period_of_time",
+    "repeated_over_time"
   ],
   "influence_scope": [
-    "express_opinions/preferences_only",
-    "storytelling",
-    "other",
-    "discussion_dialogue_deliberation",
-    "formal_testimony",
-    "informal_social_activities",
-    "no_interaction_among_participants",
-    "organized_demonstrations",
-    "negotiate_bargain",
-    "listen/watch_as_spectator",
-    "acting/drama"
+    "city/town",
+    "metropolitan_area",
+    "multinational",
+    "national",
+    "neighborhood",
+    "organization_eg_a_local_business_or_cooperative_using_participatory_methods_to_manage_and_govern_itself",
+    "regional_eg_state_province_autonomous_region"
   ],
   "relationship": [
-    "express_opinions/preferences_only",
-    "storytelling",
-    "other",
-    "discussion_dialogue_deliberation",
-    "formal_testimony",
-    "informal_social_activities",
-    "no_interaction_among_participants",
-    "organized_demonstrations",
-    "negotiate_bargain",
-    "listen/watch_as_spectator",
-    "acting/drama"
+    "i_am_a_professional_academic_researcher",
+    "i_am_an_undergraduate_student_researcher",
+    "i_am_a_graduate_student_researcher",
+    "i_was_a_participant",
+    "i_was_an_organizer",
+    "i_was_a_funder/sponsor",
+    "i_helped_run_the_process_as_a_facilitator_staff_etc",
+    "i_was_an_observer_of_the_process",
+    "i_am_a_representative_of_a_stakeholder_group",
+    "i_am_a_specialist_on_the_issue",
+    "i_am_a_journalist",
+    "i_am_an_elected_representative",
+    "i_am_a_public_official",
+    "i_am_interested_in_politics_but_have_no_direct_connection_to_this_case"
   ],  
   "communication_mode": [
     "express_opinions/preferences_only",
@@ -602,12 +713,5 @@
     "union",
     "local_government_eg_village_town_city",
     "nongovernmental_organization_nonprofit"
-  ],
-  "voting": [
-    "majority",
-    "none",
-    "supermajority",
-    "preferential",
-    "consensus"
   ]
 }

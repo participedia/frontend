@@ -93,8 +93,8 @@ export class MultiChoiceEditor extends React.Component {
 
 
   handleChange(event, index, values) {
-    if (this.props.passProps.rankable && values.length > 3) {
-      var b = values.slice(1, 4);
+    if (this.props.passProps.rankable && values.length > this.props.passProps.limit) {
+      var b = values.slice(1, this.props.passProps.limit + 1);
       this.setState({values: b});
       this.props.onChange(b);
     } else if (values.length > this.props.passProps.limit) {
@@ -152,7 +152,7 @@ export class MultiChoiceEditor extends React.Component {
         {this.makeChoices(choices, values)}
       </SelectField>
       <p> 
-      { this.props.passProps.rankable && this.state.values && this.state.values.length <= 3 ?
+      { this.props.passProps.rankable ?
         <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
         :
         undefined
