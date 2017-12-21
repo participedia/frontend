@@ -117,9 +117,9 @@ export class MultiChoiceEditor extends React.Component {
   makeChoices(choices, values) {
 
     return choices.map(function(v) {
-      // console.log(choices, 'choices');
-      // console.log(values, 'values');
-      // console.log(v);
+      console.log(choices, 'choices');
+      console.log(values, 'values');
+      console.log(v);
       return (
         <MenuItem
           key={v.value}
