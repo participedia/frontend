@@ -46,36 +46,36 @@ export function makeLocalizedChoices(intl, property) {
       value: v
     };
   });
-  choices.sort(function(a, b) {
-    if (typeof a === undefined) return -1;
-    if (typeof b === undefined) return 1;
-    if (!a.text) return -1;
-    if (!b.text) return 1;
-    if (typeof a === typeof {}) {
-      if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
-      if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
-    } else {
-      if (a < b) {
-        return -1;
-      }
-      if (a === b) {
-        return 0;
-      }
-    }
-    return 1;
-  });
+  // choices.sort(function(a, b) {
+  //   if (typeof a === undefined) return -1;
+  //   if (typeof b === undefined) return 1;
+  //   if (!a.text) return -1;
+  //   if (!b.text) return 1;
+  //   if (typeof a === typeof {}) {
+  //     if (a.text.toLowerCase() < b.text.toLowerCase()) return -1;
+  //     if (a.text.toLowerCase() === b.text.toLowerCase()) return 0;
+  //   } else {
+  //     if (a < b) {
+  //       return -1;
+  //     }
+  //     if (a === b) {
+  //       return 0;
+  //     }
+  //   }
+  //   return 1;
+  // });
 
-  Object.keys(choices).forEach(function(key) {
-    if (choices[key]['text'] === "Other") {
-      hasOther = true;
-      delete choices[key];
-    }
-  }); 
+  // Object.keys(choices).forEach(function(key) {
+  //   if (choices[key]['text'] === "Other") {
+  //     hasOther = true;
+  //     delete choices[key];
+  //   }
+  // }); 
 
-  if (hasOther) {
-    let choicesLength = choices.length
-    choices[choicesLength] = { value: "other", text: "Other" };
-  };
+  // if (hasOther) {
+  //   let choicesLength = choices.length
+  //   choices[choicesLength] = { value: "other", text: "Other" };
+  // };
   
   return choices
 

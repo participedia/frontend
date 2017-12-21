@@ -47,6 +47,7 @@ export class ChoiceEditor extends React.Component {
       choices: this.makeChoices(props.passProps.choices)
     });
   }
+  
   makeChoices(choices) {
     return choices.map(function(v) {
       return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
@@ -91,6 +92,13 @@ export class MultiChoiceEditor extends React.Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: nickify(props.value),
+      // choices: this.makeChoices(props.passProps.choices)
+    });
+  }
+
 
   handleChange(event, index, values) {
     if (this.props.passProps.rankable && values.length > this.props.passProps.limit) {
@@ -130,6 +138,7 @@ export class MultiChoiceEditor extends React.Component {
     this.setState({
       values: arrayMove(this.state.values, oldIndex, newIndex),
     });
+    this.props.onChange(this.state.values);
   };
 
 
@@ -143,7 +152,7 @@ export class MultiChoiceEditor extends React.Component {
       <SelectField
         name={property}
         fullWidth
-        className="multichoice-select"
+        className="custom-select"
         multiple={true}
         hintText="Select a name"
         value={values}
