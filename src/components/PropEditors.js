@@ -85,8 +85,8 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
-      // value: nickify(props.value),
-      values:[],
+      value: props.value,
+      // values:[],
       texts:[],
       choices: this.props.passProps.choices
     };
@@ -94,8 +94,7 @@ export class MultiChoiceEditor extends React.Component {
 
   componentWillReceiveProps(props) {
     this.setState({
-      value: nickify(props.value),
-      // choices: this.makeChoices(props.passProps.choices)
+      values: props.value,
     });
   }
 
@@ -117,22 +116,21 @@ export class MultiChoiceEditor extends React.Component {
 
   makeChoices(choices, values) {
 
-    return choices.map((v) => {
+    return choices.map(function(v) {
+      // console.log(choices, 'choices');
+      // console.log(values, 'values');
+      // console.log(v);
       return (
         <MenuItem
           key={v.value}
           insetChildren={true}
-          checked={values && values.indexOf(v) > -1}
+          checked={values && values.includes(v)}
           value={v}
           primaryText={v.text}
         />
       )
     });
   }
-
-  // onChange(event, index, value) {
-  //   this.setState({ value: value });
-  // }
 
   onSortEnd ({oldIndex, newIndex}) {
     this.setState({
@@ -144,7 +142,6 @@ export class MultiChoiceEditor extends React.Component {
 
 
   render() {
-    // let handleChange = this.handleChange.bind(this);
     const {values, choices} = this.state;
     let { property } = this.props;
     return (
@@ -161,7 +158,7 @@ export class MultiChoiceEditor extends React.Component {
         {this.makeChoices(choices, values)}
       </SelectField>
       <p> 
-      { this.props.passProps.rankable ?
+      { this.state.values && this.props.passProps.rankable ?
         <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
         :
         undefined
