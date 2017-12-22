@@ -85,6 +85,7 @@ class MapVisualization extends React.Component {
       .map((st, index) => (
         <Feature
           key={st.id}
+          onClick={this._markerClick.bind(this, st)}
           coordinates={st.position}
           paint={itemMarkerPaint}
         />
