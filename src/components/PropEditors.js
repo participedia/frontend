@@ -85,18 +85,18 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
-      value: props.value,
-      // values:[],
-      texts:[],
+      // values: props.value,
+      values:[],
+      // texts:[],
       choices: this.props.passProps.choices
     };
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      values: props.value,
-    });
-  }
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     values: props.value,
+  //   });
+  // }
 
 
   handleChange(event, index, values) {
@@ -117,9 +117,9 @@ export class MultiChoiceEditor extends React.Component {
   makeChoices(choices, values) {
 
     return choices.map(function(v) {
-      console.log(choices, 'choices');
-      console.log(values, 'values');
-      console.log(v);
+      // console.log(choices, 'choices');
+      // console.log(values, 'values');
+      // console.log(v);
       return (
         <MenuItem
           key={v.value}
@@ -173,7 +173,8 @@ export function makeLocalizedChoiceField(
   intl,
   property,
   tag_for_choices,
-  heading
+  heading,
+  alphabetical
 ) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
@@ -184,7 +185,7 @@ export function makeLocalizedChoiceField(
   } else {
     label = intl.formatMessage({ id: heading });
   }
-  let choices = makeLocalizedChoices(intl, tag_for_choices);
+  let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
@@ -474,6 +475,7 @@ class DateEditor extends React.Component {
 export function makeLocalizedDateField(intl, property) {
   return (
     <div>
+      <h3 className="sub-heading">{intl.formatMessage({ id: property })}</h3>
       <p className="explanatory-text">{intl.formatMessage({ id: property + "_instructional" })}</p>
       <div className={"date-field " + property}>
         <Field

@@ -14,6 +14,9 @@
 
 .form-section {
   border-bottom:1px solid #ccc;
+  &.quick {
+    border: none;
+  }
 }
 
 .field-case {
@@ -113,6 +116,9 @@ label {
 
 .section-heading {
   padding-top: 3rem;
+  &.hidden {
+    display: none;
+  }
 }
 
 .sub-heading {
@@ -126,6 +132,9 @@ label {
   }
   &.org {
     font-size: 0.6rem;
+  }
+  &.hidden {
+    display: none;
   }
 }
 
