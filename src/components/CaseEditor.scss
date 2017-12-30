@@ -112,6 +112,13 @@ label {
   hr {
     display: none;
   }
+  &.Select--single {
+    padding-left: 0;
+    .Select-control {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
 }
 
 .section-heading {
@@ -194,6 +201,26 @@ label {
     padding-bottom: 1rem;
     @include media-breakpoint-only(sm) {
       margin-bottom: 2rem;
+    }
+  }
+  .file {
+    position: relative;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    border: 2px solid $dark-grey;
+    margin-bottom: 0.5rem;
+    .trash {
+      position: absolute;
+      cursor: pointer;
+      width: 1.4rem;
+      height: 1.4rem;
+      bottom: 10px;
+      right: 12px;
+      background-image: url("../img/trash.png");
+      background-repeat: no-repeat;
+      background-size: 0.9rem;
+      background-color: #fff;
+      background-position: center;
+      z-index: 1;
     }
   }
   .box {

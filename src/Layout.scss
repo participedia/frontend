@@ -108,7 +108,7 @@
   height: 64px;
   position: fixed;
   width: 100%;
-  z-index: 1999;
+  z-index: 999;
 
   @include media-breakpoint-down(sm){
     position:relative;
@@ -281,4 +281,13 @@
 .error-message {
   padding: 2em;
   font-size: 2rem;
+}
+
+.infobox {
+  display: inline-block;
+  cursor: pointer;
+  svg {
+    width: 16px !important;
+    transform: translateY(7px);
+  }
 }

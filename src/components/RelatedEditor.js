@@ -2,6 +2,7 @@ import React from "react";
 import ChipInput from "material-ui-chip-input";
 import omit from "object-omit";
 import { FormattedMessage } from "react-intl";
+import InfoBox from "./InfoBox";
 
 export default class Related extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ export default class Related extends React.Component {
     return (
       <div>
         <h3 className="sub-heading"><FormattedMessage id={this.props.fieldName} /></h3>
-        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_instructional"} /></p>
+        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_instructional"} />{this.props.passProps.info ? <InfoBox info={this.props.passProps.info} /> : undefined}</p>
         <ChipInput
           {...rest}
           className="related-fields clearfix"

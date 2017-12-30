@@ -11,11 +11,11 @@
     visibility: hidden;
   }
   &:after {
-    content: 'Select a photo from your device';
+    content: 'Upload from your device';
     color: rgba(0, 0, 0, 0.47);
     position: absolute;
     left: 0;
-    top: 0; 
+    top: 3px; 
     padding-left: 1rem;
     padding-top: 0.5rem;
   }

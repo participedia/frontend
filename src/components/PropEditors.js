@@ -16,6 +16,7 @@ import { makePPLocation, stringifyLocation } from "./geoutils";
 import Clear from "material-ui/svg-icons/content/clear";
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import SortableList from './SortableList';
+import InfoBox from "./InfoBox";
 
 function nickify(before) {
   if (!before) return "";
@@ -33,6 +34,52 @@ function nickify(before) {
 }
 
 export class ChoiceEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: nickify(props.value),
+      choices: this.makeChoices(props.passProps.choices)
+    });
+  }
+  
+  makeChoices(choices) {
+    return choices.map(function(v) {
+      return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
+    });
+  }
+
+  onChange(event, index, value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    let { property } = this.props;
+    return (
+      <SelectField
+        name={property}
+        fullWidth
+        className="custom-select"
+        onChange={onChange}
+        hintText={this.props.passProps.placeholder}
+        value={this.state.value}
+      >
+        {this.state.choices}
+      </SelectField>
+    );
+  }
+}
+
+export class SearchChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -169,6 +216,41 @@ export class MultiChoiceEditor extends React.Component {
   }
 }
 
+export function makeLocalizedSearchChoiceField(
+  intl,
+  property,
+  tag_for_choices,
+  heading,
+  alphabetical
+) {
+  if (typeof tag_for_choices === "undefined") {
+    tag_for_choices = property;
+  }
+  let label;
+  if (heading === undefined) {
+    label = intl.formatMessage({ id: tag_for_choices });
+  } else {
+    label = intl.formatMessage({ id: heading });
+  }
+  let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
+  return (
+    <div className="field-case select">
+      <h3 className="sub-heading">{label}</h3>
+      <p className="explanatory-text">
+        <FormattedHTMLMessage id={property + "_instructional"} />
+      </p>
+      <Field
+        fieldName={property}
+        label={label}
+        type={SearchChoiceEditor}
+        choices={choices}
+        dataSource={choices}
+        dataSourceConfig={{ text: "text", value: "value" }}
+      />
+    </div>
+  );
+}
+
 export function makeLocalizedChoiceField(
   intl,
   property,
@@ -210,7 +292,8 @@ export function makeLocalizedMultiChoiceField(
   tag_for_choices,
   heading,
   rankable,
-  limit
+  limit,
+  info
 ) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
@@ -227,7 +310,9 @@ export function makeLocalizedMultiChoiceField(
       <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">{intl.formatMessage({
           id: property + "_instructional"
-        })}</p>
+        })}
+        {info ? <InfoBox info={tag_for_choices} /> : undefined}
+      </p>
       <Field
         fieldName={property}
         label={label}
