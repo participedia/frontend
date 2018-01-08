@@ -61,7 +61,6 @@ export default class DropzoneS3Uploader extends React.Component {
 
   constructor(props) {
     super();
-    console.log(props, 'props');
     const uploadedFiles = [];
     const { filename } = props;
     if (filename) {

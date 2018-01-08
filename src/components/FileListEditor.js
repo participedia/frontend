@@ -17,15 +17,17 @@ class FileListEditorField extends Component {
     };
   }
   componentWillReceiveProps(props) {
-    let files = props.value;
-    files = files.filter(function(img) {
-      if (!img) return false;
-      if (!img.length && img.src === "") return false;
-      return true;
-    });
-    this.setState({
-      files
-    });
+    if (props.value) {
+      let files = props.value;
+      files = files.filter(function(img) {
+        if (!img) return false;
+        if (!img.length && img.src === "") return false;
+        return true;
+      });
+      this.setState({
+        files
+      });
+    }
   }
 
   // makeLead(img) {
