@@ -4,6 +4,8 @@ import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 import store from "store";
 import Clear from "material-ui/svg-icons/content/clear";
+import { FormattedMessage, FormattedDate } from "react-intl";
+import htmlToText from "html-to-text";
 
 import "./MapVisualization.css";
 const accessToken =
@@ -68,7 +70,6 @@ class MapVisualization extends React.Component {
 
   render() {
     const { focus, popupShowLabel } = this.state;
-    console.log(focus, "focus");
     const { items, styles } = this.props;
     if (!items) return <div />;
     let popupChange = this._popupChange.bind(this);
@@ -155,15 +156,40 @@ class MapVisualization extends React.Component {
                     ...styles.popup
                   }}
                 >
-                  <img alt="" src={pic} />
+                  <div className="pic-case">
+                    <img alt="" src={pic} />
+                  </div>
                   <small className="type" style={{ ...styles.type }}>
                     {focus.type}
                   </small>
                   <Link className="medium" to={focus.url}>
                     {" "}
-                    {focus.title}
+                    <p className="m-0">{focus.title}</p>
                   </Link>
+                  <small className="pb-3">
+                    <FormattedMessage id="submitted" />&nbsp;
+                    <FormattedDate
+                      value={focus.updated}
+                      year="numeric"
+                      month="long"
+                      day="2-digit"
+                    />
+                  </small>
                 </span>
+                { focus.searchmatched && !focus.featured ?
+                  <small className="red">
+                    <FormattedMessage id="searchmatched" />
+                  </small>
+                  :
+                  undefined
+                }
+                { focus.featured ?
+                  <small className="red">
+                    <FormattedMessage id="featured_map" />
+                  </small>
+                  :
+                  undefined
+                }
                 <div onClick={() => popupChange(!popupShowLabel)}>
                   {popupShowLabel ? <Clear /> : "Show"}
                 </div>

@@ -51,6 +51,8 @@ function extractData(data) {
       type: obj.type,
       featured: obj.featured,
       searchmatched: obj.searchmatched,
+      updated: obj.updated_date,
+      body: obj.body,
       position: coords,
       url: `/${obj.type}/${obj.id}`,
       title: obj.title,

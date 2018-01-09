@@ -1416,7 +1416,9 @@
     "data": "Data",
     "specific_topic_placeholder": "Select an specific Topic",
     "tags": "Tags",
-    "case_description_placeholder": "<p>The following standard structure makes it easier to compare and analyze entries.</p><p>We recommend you use the headings below and refer to our guidelines as you prepare your case entry.</p><p>To view the guidelines, copy and paste this URL into your browser: <a href=\"https://goo.gl/V2SHQn\">https://goo.gl/V2SHQn</a></p><p/><h3>Problems and Purpose</h3><p/><h3>History</h3><p/><h3>Originating Entities and Funding</h3><p/><h3>Participant Selection</h3><p/><h3>Methods and Tools Used</h3><p/><h3>Deliberation, Decisions, and Public Interaction</h3><p/><h3>Influence, Outcomes, and Effects</h3><p/><h3>Analysis and Lessons Learned</h3><p/><h3>Secondary Sources</h3><p/><h3>External Links</h3><p/><h3>Notes</h3><p/>"
+    "case_description_placeholder": "<p>The following standard structure makes it easier to compare and analyze entries.</p><p>We recommend you use the headings below and refer to our guidelines as you prepare your case entry.</p><p>To view the guidelines, copy and paste this URL into your browser: <a href=\"https://goo.gl/V2SHQn\">https://goo.gl/V2SHQn</a></p><p/><h3>Problems and Purpose</h3><p/><h3>History</h3><p/><h3>Originating Entities and Funding</h3><p/><h3>Participant Selection</h3><p/><h3>Methods and Tools Used</h3><p/><h3>Deliberation, Decisions, and Public Interaction</h3><p/><h3>Influence, Outcomes, and Effects</h3><p/><h3>Analysis and Lessons Learned</h3><p/><h3>Secondary Sources</h3><p/><h3>External Links</h3><p/><h3>Notes</h3><p/>",
+    "searchmatched": "This matched your search.",
+    "featured_map": "This is a featured item."
   },
   "fr": {
     "chronological": "Plus Récentes"

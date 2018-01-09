@@ -4,6 +4,15 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
+
+  p {
+    font-size: 1rem;
+  }
+
+  small {
+    font-size: 0.75rem;
+  }
+
   .mapboxgl-map {
     // See http://stackoverflow.com/questions/30489594/prevent-100vw-from-creating-horizontal-scroll
     width: 100%; 
@@ -12,25 +21,23 @@
     width: calc(100vw);
     max-width: 100%;
 
-    // .mapboxgl-popup {
-    //   width: 300px;
-    //   a {
-    //     color:$interactive-color;
-    //   }
-    // }
   }
   .mapboxgl-popup-content {
     width: 280px;
     padding: 20px;
     border-radius: 0;
+    .pic-case {
+      overflow: hidden;
+      max-height: 200px;
+    }
     img {
-      width: 240px;
+      max-height: 200px;
+      max-width: 240px;
       display: block;
       margin: 0 auto;
     }
     a {
       color: $black;
-      margin-top: -3px;
       display: block;
     }
     small {
@@ -40,12 +47,17 @@
       margin-bottom: 0;
       margin-top: 3px;
     }
+    .red {
+      position: absolute;
+      bottom: 5px;
+    }
+
     svg {
       cursor: pointer;
       position: absolute;
       right: 15px;
-      bottom: 9px;
-      width: 20px !important;
+      bottom: 4px;
+      width: 16px !important;
       fill: $grey-text !important;
     }
   }
