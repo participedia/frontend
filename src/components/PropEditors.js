@@ -132,19 +132,10 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
-      // values: props.value,
       values:[],
-      // texts:[],
       choices: this.props.passProps.choices
     };
   }
-
-  // componentWillReceiveProps(props) {
-  //   this.setState({
-  //     values: props.value,
-  //   });
-  // }
-
 
   handleChange(event, index, values) {
     if (this.props.passProps.rankable && values.length > this.props.passProps.limit) {
@@ -164,9 +155,6 @@ export class MultiChoiceEditor extends React.Component {
   makeChoices(choices, values) {
 
     return choices.map(function(v) {
-      // console.log(choices, 'choices');
-      // console.log(values, 'values');
-      // console.log(v);
       return (
         <MenuItem
           key={v.value}
@@ -198,7 +186,7 @@ export class MultiChoiceEditor extends React.Component {
         fullWidth
         className="custom-select"
         multiple={true}
-        hintText="Select a name"
+        hintText={this.props.passProps.placeholder}
         value={values}
         onChange={this.handleChange}
       >
@@ -268,6 +256,7 @@ export function makeLocalizedChoiceField(
     label = intl.formatMessage({ id: heading });
   }
   let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
+  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
@@ -278,6 +267,7 @@ export function makeLocalizedChoiceField(
         fieldName={property}
         label={label}
         type={ChoiceEditor}
+        placeholder={placeholder}
         choices={choices}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -304,6 +294,7 @@ export function makeLocalizedMultiChoiceField(
   } else {
     label = intl.formatMessage({ id: heading });
   }
+  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div className="field-case select">
@@ -319,6 +310,7 @@ export function makeLocalizedMultiChoiceField(
         type={MultiChoiceEditor}
         choices={choices}
         rankable={rankable}
+        placeholder={placeholder}
         limit={limit}
         dataSource={choices}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -408,7 +400,6 @@ class NumberEditor extends React.Component {
   // }
 
   onChange(event, value) {
-    console.log(value, "value");
     this.setState({ value: value > 0 ? value : null });
     // this.props.onChange(Number(value));
   }
@@ -418,10 +409,11 @@ class NumberEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let name = this.props.passProps.name;
+    let placeholder = this.props.label;
     return (
       <TextField
         onChange={onChange}
-        className="custom-field"
+        className="custom-number-field"
         type="number"
         value={
           typeof this.state.value !== "undefined" &&
@@ -432,6 +424,8 @@ class NumberEditor extends React.Component {
         }
         fullWidth
         name={name}
+        hintText={placeholder}
+        underlineShow={false}
       />
     );
   }
@@ -439,6 +433,7 @@ class NumberEditor extends React.Component {
 
 export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
+  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
   return (
     <div className="field-case">
       <h3 className="sub-heading">{label}</h3>
@@ -449,7 +444,7 @@ export function makeLocalizedNumberField(intl, property) {
           id={property}
           name={property}
           type={NumberEditor}
-          label={intl.formatMessage({ id: property })}
+          label={placeholder}
         />
       </div>
     </div>
@@ -567,7 +562,7 @@ export function makeLocalizedDateField(intl, property) {
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property })}
+          label={intl.formatMessage({ id: property + "_placeholder"})}
           type={DateEditor}
         />
       </div>
@@ -632,7 +627,7 @@ class LocationEditor extends React.Component {
 }
 
 export function makeLocalizedLocationField(intl, property) {
-  let label = intl.formatMessage({ id: property });
+  let label = intl.formatMessage({ id: property + "_placeholder" });
   return (
     <div>
       <h3 className="sub-heading">{label}</h3>
@@ -644,7 +639,7 @@ export function makeLocalizedLocationField(intl, property) {
           fieldName={property}
           id={property}
           name={property}
-          label=""
+          label={label}
           type={LocationEditor}
         />
       </div>

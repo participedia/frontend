@@ -57,6 +57,14 @@
   min-height: 70px;
 }
 
+.custom-number-field {
+  border: 2px solid $black;
+  padding-left: 1rem;
+  @include media-breakpoint-up(lg) {
+    width: 70% !important;
+  }
+}
+
 .custom-field {
   border: 2px solid $black;
   padding-left: 1rem;

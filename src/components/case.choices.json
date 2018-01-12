@@ -4,7 +4,7 @@
     "no",
     "dont_know"
   ],
-  "change_implementers": [
+  "implementers_of_change": [
     "appointed_public_servants",
     "corporations",
     "elected_public_officials",
@@ -13,7 +13,7 @@
     "stakeholder_organizations",
     "none_that_we_know_of"
   ],
-  "changes_type": [
+  "changes_types": [
     "changes_in_peoples_knowledge_attitudes_and_behavior",
     "changes_in_public_policy",
     "changes_in_how_institutions_operate",
@@ -33,7 +33,7 @@
     "yes",
     "no"
   ],
-  "funder_type": [
+  "funder_types": [
     "academic_institution",
     "activist_network",
     "community_based_organization",
@@ -50,7 +50,7 @@
     "labor_trade_union",
     "na"
   ],
-  "organizer_type": [
+  "organizer_types": [
     "academic_institution",
     "activist_network",
     "community_based_organization",
@@ -88,7 +88,7 @@
     "unanimous_decision",
     "if_voting_unknown"
   ],
-  "decision_method_case": [
+  "decision_methods": [
     "general_agreement/consensus",
     "idea_generation",
     "not_applicable",
@@ -206,7 +206,7 @@
     "a_single_defined_period_of_time",
     "repeated_over_time"
   ],
-  "influence_scope": [
+  "scope_of_influence": [
     "city/town",
     "metropolitan_area",
     "multinational",
@@ -215,7 +215,7 @@
     "organization_eg_a_local_business_or_cooperative_using_participatory_methods_to_manage_and_govern_itself",
     "regional_eg_state_province_autonomous_region"
   ],
-  "relationship": [
+  "relationships": [
     "i_am_a_professional_academic_researcher",
     "i_am_an_undergraduate_student_researcher",
     "i_am_a_graduate_student_researcher",
@@ -244,21 +244,6 @@
     "listen/watch_as_spectator",
     "acting/drama"
   ],
-  "communication_with_audience": [
-    "policy_recommendations",
-    "public_hearings/meetings",
-    "other",
-    "public_report",
-    "new_media_ie_internet_texting_etc",
-    "traditional_media_ie_television_radio_newspapers"
-  ],
-  "decision_emethod": [
-    "not_applicable",
-    "voting",
-    "other",
-    "getting_sense_of_room/group_ie_no_formal_voting",
-    "opinion_survey"
-  ],
   "facetoface_online_or_both": [
     "both",
     "facetoface",
@@ -267,18 +252,6 @@
   "facilitated": [
     "no",
     "yes"
-  ],
-  "kind_of_influence": [
-    "other",
-    "community_building_eg_social_capital",
-    "collaborative_delivery_of_services_with_public_authorities",
-    "protest",
-    "consultation_ie_to_advise_decision_makers",
-    "develop_individual_capacities_eg_skills_learning",
-    "direct_delivery_of_public_services_ie_by_entities_other_than_government",
-    "cogovernance_ie_to_share_decision_making_with_public_authorities",
-    "raise_public_awareness",
-    "make_public_decisions_ie_exert_direct_authority"
   ],
   "ongoing": [
     "true",
@@ -292,7 +265,7 @@
     "other",
     "appointment"
   ],
-  "issue": [
+  "issues": [
     "agriculture_forestry_fishing_mining_industries",
     "arts_culture_recreation",
     "business",
@@ -317,7 +290,7 @@
     "transportation",
     "other"
   ],
-  "specific_topic": [
+  "specific_topics": [
     "ability/disability_issues",
     "abortion",
     "access_to_radio_television_frequencies",
@@ -579,14 +552,6 @@
     "city_councillors",
     "experts_from_the_university_of_venice"
   ],
-  "targeted_audience": [
-    "general_public",
-    "media",
-    "elected_public_official",
-    "other",
-    "organized_groups_eg_ngos_business_associations",
-    "appointed_public_servants_eg_bureaucrats"
-  ],
   "targeted_participant_demographic": [
     "people_with_disabilities",
     "lowincome_earners",
@@ -600,14 +565,6 @@
     "general_public",
     "youth",
     "religious_groups"
-  ],
-  "targeted_participants_public_role": [
-    "stakeholder_organizations_eg_ngos_neighbourhood_associations_industry_representatives",
-    "elected_public_official",
-    "appointed_public_servants_eg_bureaucrats",
-    "other",
-    "lay_public",
-    "experts_eg_scientists_engineers_criminologists_doctors_lawyers"
   ],
   "type_of_funding_entity": [
     "governmentowned_corporation",

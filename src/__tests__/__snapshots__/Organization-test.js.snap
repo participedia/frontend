@@ -477,7 +477,7 @@ exports[`Organization editor renders correctly 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               onKeyDown={[Function]}
-              placeholder="Enter title"
+              placeholder="organization_title_placeholder"
               type="text"
               value="Urban Interactive Studio"
             />
@@ -485,14 +485,12 @@ exports[`Organization editor renders correctly 1`] = `
           <div
             className="case-location"
           >
-            <div
-              className="field-case location-field"
-            >
-              <h2
+            <div>
+              <h3
                 className="sub-heading"
               >
-                Location
-              </h2>
+                location_placeholder
+              </h3>
               <p
                 className="explanatory-text"
               >
@@ -512,11 +510,16 @@ exports[`Organization editor renders correctly 1`] = `
               Relevant Links (URLs)
             </h2>
             <div>
+              <h3
+                className="sub-heading"
+              >
+                Relevant Links (URLs)
+              </h3>
               <p
                 className="explanatory-text"
               >
                 <span>
-                  Add a link
+                  If there is a main website for this case, enter it here. Add links to additional sources so that readers and editors can find more information about this case online. 
                 </span>
               </p>
               <div
@@ -578,7 +581,7 @@ exports[`Organization editor renders correctly 1`] = `
                 className="explanatory-text"
               >
                 <span>
-                  Select a photo from your device
+                  Select a photo from your device.
                 </span>
               </p>
               <div>
@@ -595,11 +598,16 @@ exports[`Organization editor renders correctly 1`] = `
               </span>
             </h3>
             <div>
+              <h3
+                className="sub-heading"
+              >
+                Videos
+              </h3>
               <p
                 className="explanatory-text"
               >
                 <span>
-                  Add a video (Vimeo, YouTube)
+                  Add a video link (Vimeo or YouTube)
                 </span>
               </p>
               <div
@@ -619,11 +627,18 @@ exports[`Organization editor renders correctly 1`] = `
               className="tags-field"
             >
               <div>
+                <h3
+                  className="sub-heading"
+                >
+                  <span>
+                    Tags
+                  </span>
+                </h3>
                 <p
                   className="explanatory-text"
                 >
                   <span>
-                    Type to search for an existing tag
+                    Select tags that best describe this case.
                   </span>
                 </p>
               </div>
@@ -643,7 +658,7 @@ exports[`Organization editor renders correctly 1`] = `
               <p
                 className="explanatory-text"
               >
-                Enter Executive Director
+                executive_director_placeholder
               </p>
               <div
                 className="executive_director"
@@ -660,29 +675,41 @@ exports[`Organization editor renders correctly 1`] = `
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Sector
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Sector
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Sector",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
-                Specific Topic
-              </h2>
+                Specific topic
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select an specific Topic
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "specific_topic_instructional",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
@@ -712,11 +739,18 @@ exports[`Organization editor renders correctly 1`] = `
                   Related Cases
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Cases
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                      Begin typing the title of an existing case
                     </span>
                   </p>
                 </div>
@@ -726,11 +760,18 @@ exports[`Organization editor renders correctly 1`] = `
                   Related Methods
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Methods
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related methods include participatory methods or tools used during this particular case.
+                      Begin typing the title of an existing method
                     </span>
                   </p>
                 </div>
@@ -740,11 +781,18 @@ exports[`Organization editor renders correctly 1`] = `
                   Related Organizations
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Organizations
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                      Begin typing the title of an existing organization
                     </span>
                   </p>
                 </div>

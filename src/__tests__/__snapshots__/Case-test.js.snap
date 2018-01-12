@@ -702,7 +702,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Issue
+                  issue
                 </span>
               </p>
               <div
@@ -720,7 +720,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Specific Topic
+                  Specific topic
                 </span>
               </p>
               <div
@@ -837,7 +837,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="facilitated blond"
               >
                 <span>
-                  true
+                  True
                 </span>
               </div>
             </div>
@@ -855,7 +855,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="voting blond"
               >
                 <span>
-                  true
+                  True
                 </span>
               </div>
             </div>
@@ -967,7 +967,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="ongoing"
               >
                 <span>
-                  false
+                  False
                 </span>
               </div>
             </div>
@@ -1130,7 +1130,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Issue
+                          issue
                         </span>
                       </p>
                       <div
@@ -1148,7 +1148,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Specific Topic
+                          Specific topic
                         </span>
                       </p>
                       <div
@@ -1265,7 +1265,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="facilitated blond"
                       >
                         <span>
-                          true
+                          True
                         </span>
                       </div>
                     </div>
@@ -1283,7 +1283,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="voting blond"
                       >
                         <span>
-                          true
+                          True
                         </span>
                       </div>
                     </div>
@@ -1395,7 +1395,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="ongoing"
                       >
                         <span>
-                          false
+                          False
                         </span>
                       </div>
                     </div>

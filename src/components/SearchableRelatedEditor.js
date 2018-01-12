@@ -9,7 +9,6 @@ export default class SearchableRelatedEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // value: props.value
       selectValue: null,
     };
     this.updateValue = this.updateValue.bind(this);
@@ -39,6 +38,7 @@ export default class SearchableRelatedEditor extends React.Component {
           className="custom-select"
           autoFocus
           options={myOptions}
+          placeholder={this.props.passProps.placeholder}
           simpleValue
           clearable={true}
           name="selected-state"
