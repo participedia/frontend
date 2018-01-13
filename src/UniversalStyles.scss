@@ -14,6 +14,10 @@ $blond-weight: 300;
 $normal-weight: 400;
 $medium-weight: 600;
 
+.red {
+  color: $red;
+}
+
 .qs-mobile {
   transition:background .2s;
   color:$black;
