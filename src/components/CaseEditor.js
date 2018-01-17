@@ -281,7 +281,7 @@ class CaseEditor extends Component {
                       name="brief_description"
                       className="custom-textarea"
                       underlineShow={false}
-                      maxLength="140"
+                      maxLength="280"
                       type={Textarea}
                       placeholder={intl.formatMessage({ id: "brief_description_placeholder"})}
                       fullWidth

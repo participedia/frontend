@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage, FormattedHTMLMessage, injectIntl } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
+import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import Checkbox from 'simple-react-form-material-ui/lib/checkbox';
 import tags_json from "../autocomplete_data/tags.json";
 
 import "./CaseEditor.css";
@@ -15,6 +17,7 @@ import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedBooleanField,
+  makeLocalizedNumberField,
   makeLocalizedListField
 } from "./PropEditors";
 import fix_related from "./fix-related.js";
@@ -32,7 +35,9 @@ class MethodEditor extends Component {
       props.thing.images = [];
     }
     if (!props.thing.body) {
-      props.thing.body = "";
+      props.thing.body = props.intl.formatMessage({
+        id: "method_description_placeholder"
+      });
     }
     this.state = { thing: props.thing };
     this.updateBody = this.updateBody.bind(this);
@@ -68,6 +73,7 @@ class MethodEditor extends Component {
       <Field
         fieldName="tags"
         type={RelatedEditor}
+        item_type="method"
         maxSearchResults={30}
         dataSource={tags}
         placeholder={intl.formatMessage({
@@ -130,32 +136,67 @@ class MethodEditor extends Component {
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="field-case top">
-                  <h2 className="sub-heading">
+                  <h2 className={isQuick ? "sub-heading hidden" : "sub-heading"}>
+                    <FormattedMessage id="overview"/>
+                  </h2>
+                  <h3 className="sub-heading">
                     <label htmlFor="title">
                       <FormattedMessage id={thing.type + "_title_label"} />
                     </label>
-                  </h2>
-                  <p className="explanatory-text">
-                    <FormattedMessage
-                      id={intl.formatMessage({
-                        id: thing.type + "_title_placeholder"
-                      })}
-                    />
-                  </p>
+                  </h3>
+                  <p className="explanatory-text"><FormattedHTMLMessage
+                    id={intl.formatMessage({
+                      id: thing.type + "_title_explanatory"
+                    })}/></p>
                   <Field
                     fieldName="title"
                     name="title"
                     className="custom-field"
                     type={Text}
-                    placeholder=""
+                    placeholder={intl.formatMessage({
+                      id: "method_title_placeholder"
+                    })}
                     fullWidth
                   />
                 </div>
                 <div className="field-case">
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="links" />
-                  </h2>
-                  {makeLocalizedListField(intl, "links")}
+                  <h3 className="sub-heading">
+                    <label htmlFor="title">
+                      <FormattedMessage id="brief_description" />
+                    </label>
+                  </h3>
+                  <p className="explanatory-text"><FormattedHTMLMessage
+                    id="method_brief_description_explanatory"/></p>
+                  <Field
+                    fieldName="brief_description"
+                    name="brief_description"
+                    className="custom-textarea"
+                    underlineShow={false}
+                    maxLength="280"
+                    type={Textarea}
+                    placeholder={intl.formatMessage({ id: "method_brief_description_placeholder"})}
+                    fullWidth
+                  />
+                </div>
+                {!isQuick ?
+                  <div className="field-case">
+                    <h3 className="sub-heading" htmlFor="body_en">
+                      {intl.formatMessage({
+                        id: thing.type + "_body_title"
+                      })}
+                    </h3>
+                    <p className="explanatory-text"><FormattedHTMLMessage
+                      id="method_description_instructional"/></p>
+                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
+                  </div>
+                :
+                undefined
+                }
+                <div className="field-case">
+                  {makeLocalizedListField(intl, "links", "method")}
+                </div>
+                <div className="field-case">
+                  {tagseditor}
                 </div>
                 <div className="field-case media">
                   <h2 className="sub-heading">
@@ -165,17 +206,44 @@ class MethodEditor extends Component {
                     <FormattedMessage id="photos" />
                   </h3>
                   <ImageListEditor property="images" thing={thing} />
-                  <h3 className="sub-sub-heading pt-4">
-                    <FormattedMessage id="videos" />
-                  </h3>
-                  {makeLocalizedListField(intl, "videos")}
+                  {makeLocalizedListField(intl, "videos", "method")}
                 </div>
-                <div className={isQuick ? "field-case last" : "field-case"}>
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="tags_title" />
-                  </h2>
-                  {tagseditor}
-                </div>
+                {!isQuick ? ( 
+                  <div>
+                    <div className="form-section">
+                      <h2 className="section-heading">
+                        <FormattedMessage id="basic_info" />
+                      </h2>
+                      {makeLocalizedNumberField(intl, "minimum_participants")}
+                      {makeLocalizedNumberField(intl, "maximum_participants")}
+                      {makeLocalizedNumberField(intl, "minimum_duration")}
+                      {makeLocalizedNumberField(intl, "maximum_duration")}
+                      {makeLocalizedNumberField(intl, "minimum_cost")}
+                      {makeLocalizedNumberField(intl, "maximum_cost")}
+                      <Field
+                        fieldName="facilitated"
+                        name="facilitated"
+                        label="ok"
+                        type={Checkbox}
+                        label={intl.formatMessage({
+                          id: "facilitated_label"
+                        })}
+                        fullWidth
+                      />
+                    </div>
+                    <div className="form-section">
+                      <h2 className="section-heading">
+                        <FormattedMessage id="classification" />
+                      </h2>
+                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
+                      {makeLocalizedChoiceField(intl, "participant_selection")}
+                      {makeLocalizedChoiceField(intl, "communication_mode")}
+                    </div>
+                  </div>
+                  ) 
+                  : 
+                  undefined
+                }
               </div>
               <div>
                 {isQuick ? (
@@ -237,19 +305,8 @@ class MethodEditor extends Component {
                     ) : (
                       undefined
                     )}
-                    <div className="field-case">
-                      <h2 className="sub-heading" htmlFor="body_en">
-                        {intl.formatMessage({
-                          id: thing.type + "_body_title"
-                        })}
-                      </h2>
-                      <BodyEditor
-                        onEditorChange={this.updateBody}
-                        html={thing.body}
-                      />
-                    </div>
-                    {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                    {makeLocalizedChoiceField(intl, "communication_mode")}
+                    
+                    
                     {makeLocalizedChoiceField(
                       intl,
                       "communication_with_audience"

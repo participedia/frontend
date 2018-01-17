@@ -699,22 +699,20 @@ export class ListEditor extends React.Component {
   }
 }
 
-export function makeLocalizedListField(intl, property) {
+export function makeLocalizedListField(intl, property, type) {
   let label = intl.formatMessage({ id: property });
+  let instructional = intl.formatMessage({ id: property + "_instructional_" + type});
+  let placeholder = intl.formatMessage({ id: property + "_placeholder_" + type});
   return (
     <div>
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text"><FormattedMessage id={intl.formatMessage({
-            id: property + "_instructional"
-          })} /></p> 
+      <p className="explanatory-text"><FormattedMessage id={instructional} /></p> 
       <div className={"list " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          placeholder={intl.formatMessage({
-            id: property + "_placeholder"
-          })}
+          placeholder={placeholder}
           prompt={intl.formatMessage({
             id: property + "_prompt"
           })}

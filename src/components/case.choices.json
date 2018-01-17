@@ -231,19 +231,6 @@
     "i_am_a_public_official",
     "i_am_interested_in_politics_but_have_no_direct_connection_to_this_case"
   ],  
-  "communication_mode": [
-    "express_opinions/preferences_only",
-    "storytelling",
-    "other",
-    "discussion_dialogue_deliberation",
-    "formal_testimony",
-    "informal_social_activities",
-    "no_interaction_among_participants",
-    "organized_demonstrations",
-    "negotiate_bargain",
-    "listen/watch_as_spectator",
-    "acting/drama"
-  ],
   "facetoface_online_or_both": [
     "both",
     "facetoface",

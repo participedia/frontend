@@ -85,16 +85,19 @@
     "5_highly_complex"
   ],
   "kind_of_influence": [
-    "other",
-    "community_building_eg_social_capital",
-    "collaborative_delivery_of_services_with_public_authorities",
-    "protest",
     "consultation_ie_to_advise_decision_makers",
-    "develop_individual_capacities_eg_skills_learning",
-    "direct_delivery_of_public_services_ie_by_entities_other_than_government",
     "cogovernance_ie_to_share_decision_making_with_public_authorities",
-    "make_public_decisions_ie_exert_direct_authority",
-    "raise_public_awareness"
+    "make_public_decisions_ie_exert_direct_authority"
+  ],
+  "participant_selection": [
+    "open_to_all",
+    "open_to_all_with_targeted_recruitment",
+    "random_selection"
+  ],
+  "communication_mode": [
+    "no_interaction_among_participants",
+    "discussion_dialogue_or_deliberation",
+    "negotiate_bargain"
   ],
   "method_of_interaction": [
     "online_voting",
