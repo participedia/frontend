@@ -244,7 +244,8 @@ export function makeLocalizedChoiceField(
   property,
   tag_for_choices,
   heading,
-  alphabetical
+  alphabetical,
+  type
 ) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
@@ -261,7 +262,11 @@ export function makeLocalizedChoiceField(
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">
+        { type ?
+        <FormattedHTMLMessage id={property + "_" + type + "_instructional"} />
+        :
         <FormattedHTMLMessage id={property + "_instructional"} />
+        }
       </p>
       <Field
         fieldName={property}

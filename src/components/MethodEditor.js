@@ -81,39 +81,6 @@ class MethodEditor extends Component {
         })}
       />
     );
-    let related_cases = (
-      <Field
-        fieldName="related_cases"
-        type={RelatedEditor}
-        dataSource={cases}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_cases_placeholder"
-        })}
-      />
-    );
-    let related_methods = (
-      <Field
-        fieldName="related_methods"
-        type={RelatedEditor}
-        dataSource={methods}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_methods_placeholder"
-        })}
-      />
-    );
-    let related_organizations = (
-      <Field
-        fieldName="related_organizations"
-        type={RelatedEditor}
-        dataSource={organizations}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_organizations_placeholder"
-        })}
-      />
-    );
     let issue = this.state.thing.general_issues;
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
@@ -238,6 +205,22 @@ class MethodEditor extends Component {
                       {makeLocalizedChoiceField(intl, "kind_of_influence")}
                       {makeLocalizedChoiceField(intl, "participant_selection")}
                       {makeLocalizedChoiceField(intl, "communication_mode")}
+                      {makeLocalizedChoiceField(intl, "method_of_interaction")}
+                      {makeLocalizedChoiceField(intl, "decision_method")}
+                      {makeLocalizedChoiceField(intl, "geographical_scope")}
+                      {makeLocalizedChoiceField(intl, "best_for")}
+                    </div>
+                    <div className="form-section">
+                      <h2 className="section-heading">
+                        <FormattedMessage id="other_info" />
+                      </h2>
+                      {makeLocalizedChoiceField(intl,"typical_sponsoring_entity")}
+                      {makeLocalizedChoiceField(intl,"typical_implementing_entity")}
+                      {makeLocalizedChoiceField(intl, "typical_funding_source")}
+                      {makeLocalizedChoiceField(intl, "governance_contribution","governance_contribution","governance_contribution", true,"method")}
+                      {makeLocalizedChoiceField(intl, "issue_polarization")}
+                      {makeLocalizedChoiceField(intl, "issue_technical_complexity")}
+                      {makeLocalizedChoiceField(intl, "issue_interdependency")}
                     </div>
                   </div>
                   ) 
@@ -277,87 +260,6 @@ class MethodEditor extends Component {
                   </div>
                 ) : (
                   <div>
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "general_issues",
-                      "issue",
-                      "general_issues"
-                    )}
-                    {issue ? (
-                      <div>
-                        {makeLocalizedChoiceField(
-                          intl,
-                          "specific_topic",
-                          issue,
-                          "specific_topic"
-                        )}
-                      </div>
-                    ) : (
-                      undefined
-                    )}
-                    {issue === "other" &&
-                    this.state.thing.specific_topic === "other" ? (
-                      <b>
-                        {intl.formatMessage({
-                          id: "send_email_with_catgeory_additions"
-                        })}
-                      </b>
-                    ) : (
-                      undefined
-                    )}
-                    
-                    
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "communication_with_audience"
-                    )}
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "facetoface_online_or_both"
-                    )}
-                    {makeLocalizedBooleanField(intl, "facilitated")}
-                    {makeLocalizedChoiceField(intl, "best_for")}
-                    {makeLocalizedChoiceField(intl, "decision_method")}
-                    {makeLocalizedChoiceField(intl, "governance_contribution")}
-                    {makeLocalizedChoiceField(intl, "issue_interdependency")}
-                    {makeLocalizedChoiceField(intl, "issue_polarization")}
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "issue_technical_complexity"
-                    )}
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "public_interaction_method"
-                    )}
-                    {makeLocalizedChoiceField(intl, "method_of_interaction")}
-                    {makeLocalizedChoiceField(intl, "typical_funding_source")}
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "typical_implementing_entity"
-                    )}
-                    {makeLocalizedChoiceField(
-                      intl,
-                      "typical_sponsoring_entity"
-                    )}
-                    <div className="field-case last related">
-                      <h2 className="sub-heading">
-                        <FormattedMessage id="related_content" />
-                      </h2>
-                      <div className="related-content">
-                        <h3 className="sub-sub-heading">
-                          <FormattedMessage id="related_cases" />
-                        </h3>
-                        {related_cases}
-                        <h3 className="sub-sub-heading mt-3">
-                          <FormattedMessage id="related_methods" />
-                        </h3>
-                        {related_methods}
-                        <h3 className="sub-sub-heading mt-3">
-                          <FormattedMessage id="related_organizations" />
-                        </h3>
-                        {related_organizations}
-                      </div>
-                    </div>
                     {incomplete ? (
                       <p className="incomplete">
                         {intl.formatMessage({

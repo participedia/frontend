@@ -99,6 +99,12 @@
     "discussion_dialogue_or_deliberation",
     "negotiate_bargain"
   ],
+  "geographical_scope": [
+    "local_eg_neighbourhood_city_town_metropolitan_area",
+    "regional_eg_state_province_autonomous_region",
+    "national",
+    "international"
+  ],
   "method_of_interaction": [
     "online_voting",
     "plenary_and_group_sessions",
