@@ -100,6 +100,7 @@ class CaseEditor extends Component {
       <Field
         fieldName="tags"
         type={RelatedEditor}
+        item_type="case"
         maxSearchResults={30}
         dataSource={tags}
         placeholder={intl.formatMessage({
@@ -302,7 +303,7 @@ class CaseEditor extends Component {
                   undefined
                   }
                   <div className="field-case">
-                    {makeLocalizedListField(intl, "links")}
+                    {makeLocalizedListField(intl, "links", "case")}
                   </div>
                   <div className="field-case">
                     {tagseditor}
@@ -348,7 +349,7 @@ class CaseEditor extends Component {
                       <FormattedMessage id="photos" />
                     </h3>
                     <ImageListEditor property="images" thing={thing} />
-                    {makeLocalizedListField(intl, "videos")}
+                    {makeLocalizedListField(intl, "videos", "case")}
                     <h3 className="sub-sub-heading">
                       <FormattedMessage id="files" />
                     </h3>

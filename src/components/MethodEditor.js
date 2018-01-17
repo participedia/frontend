@@ -219,7 +219,7 @@ class MethodEditor extends Component {
                       {makeLocalizedChoiceField(intl,"typical_sponsoring_entity")}
                       {makeLocalizedChoiceField(intl,"typical_implementing_entity")}
                       {makeLocalizedChoiceField(intl, "typical_funding_source")}
-                      {makeLocalizedChoiceField(intl, "governance_contribution","governance_contribution","governance_contribution", true,"method")}
+                      {makeLocalizedChoiceField(intl, "governance_contribution","governance_contribution","governance_contribution", true, "method")}
                       {makeLocalizedChoiceField(intl, "issue_polarization")}
                       {makeLocalizedChoiceField(intl, "issue_technical_complexity")}
                       {makeLocalizedChoiceField(intl, "issue_interdependency")}
