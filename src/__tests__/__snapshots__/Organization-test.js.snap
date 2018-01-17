@@ -519,7 +519,7 @@ exports[`Organization editor renders correctly 1`] = `
                 className="explanatory-text"
               >
                 <span>
-                  If there is a main website for this case, enter it here. Add links to additional sources so that readers and editors can find more information about this case online. 
+                  links_instructional_undefined
                 </span>
               </p>
               <div
@@ -607,7 +607,7 @@ exports[`Organization editor renders correctly 1`] = `
                 className="explanatory-text"
               >
                 <span>
-                  Add a video link (Vimeo or YouTube)
+                  videos_instructional_undefined
                 </span>
               </p>
               <div
@@ -638,7 +638,7 @@ exports[`Organization editor renders correctly 1`] = `
                   className="explanatory-text"
                 >
                   <span>
-                    Select tags that best describe this case.
+                    tags_instructional_undefined
                   </span>
                 </p>
               </div>
@@ -750,7 +750,7 @@ exports[`Organization editor renders correctly 1`] = `
                     className="explanatory-text"
                   >
                     <span>
-                      Begin typing the title of an existing case
+                      related_cases_instructional_undefined
                     </span>
                   </p>
                 </div>
@@ -771,7 +771,7 @@ exports[`Organization editor renders correctly 1`] = `
                     className="explanatory-text"
                   >
                     <span>
-                      Begin typing the title of an existing method
+                      related_methods_instructional_undefined
                     </span>
                   </p>
                 </div>
@@ -792,7 +792,7 @@ exports[`Organization editor renders correctly 1`] = `
                     className="explanatory-text"
                   >
                     <span>
-                      Begin typing the title of an existing organization
+                      related_organizations_instructional_undefined
                     </span>
                   </p>
                 </div>
