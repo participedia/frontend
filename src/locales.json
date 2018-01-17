@@ -1182,6 +1182,7 @@
     "national": "National",
     "international": "International",
     "governance_contribution_method_instructional": "What is the primary governance contributions of the method?",
+    "links_placeholder_method": "Add a link",
     "organization_title_label": "Title of Organization",
     "organization_title_instructional": "Enter title",
     "organization_body_title": "Description of the organization",

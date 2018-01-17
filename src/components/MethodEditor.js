@@ -165,15 +165,17 @@ class MethodEditor extends Component {
                 <div className="field-case">
                   {tagseditor}
                 </div>
-                <div className="field-case media">
-                  <h2 className="sub-heading">
-                    <FormattedMessage id="media" />
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="media"/>
                   </h2>
-                  <h3 className="sub-sub-heading">
-                    <FormattedMessage id="photos" />
-                  </h3>
-                  <ImageListEditor property="images" thing={thing} />
-                  {makeLocalizedListField(intl, "videos", "method")}
+                  <div className="field-case">
+                    <h3 className="sub-sub-heading">
+                      <FormattedMessage id="photos" />
+                    </h3>
+                    <ImageListEditor property="images" thing={thing} />
+                    {makeLocalizedListField(intl, "videos", "method")}
+                </div>
                 </div>
                 {!isQuick ? ( 
                   <div>
