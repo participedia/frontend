@@ -67,7 +67,7 @@ small.label {
   background-size: cover;
   background-position: center;
   margin-bottom: 10px;
-  background-color: $dark-grey;
+  // background-color: $dark-grey;
   cursor: pointer;
   position:relative;
   @include media-breakpoint-up(md) {
@@ -85,38 +85,38 @@ small.label {
     right:0;
     bottom:0;
   }
-  &.case {
-    background:url('../../img/background-case.png') repeat center center;
-    background-size:auto;
-    &:after {
-      background:url('../../img/icon-thumbnail-case.svg') no-repeat center center;
-      background-size:20%;
-    }
-  }
-  &.method {
-    background:url('../../img/background-method.png') repeat center center;
-    background-size:auto;
-    &:after {
-      background:url('../../img/icon-thumbnail-method.svg') no-repeat center center;
-      background-size:20%;
-    }
-  }
-  &.organization {
-    background:url('../../img/background-organization.png') repeat center center;
-    background-size:auto;
-    &:after {
-      background:url('../../img/icon-thumbnail-organization.svg') no-repeat center center;
-      background-size:20%;
-    }
-  }
-  &.news {
-    background:url('../../img/background-news.png') repeat center center;
-    background-size:auto;
-    &:after {
-      background:url('../../img/icon-thumbnail-news.svg') no-repeat center center;
-      background-size:20%;
-    }
-  }
+  // &.case {
+  //   background:url('../../img/background-case.png') repeat center center;
+  //   background-size:auto;
+  //   &:after {
+  //     background:url('../../img/icon-thumbnail-case.svg') no-repeat center center;
+  //     background-size:20%;
+  //   }
+  // }
+  // &.method {
+  //   background:url('../../img/background-method.png') repeat center center;
+  //   background-size:auto;
+  //   &:after {
+  //     background:url('../../img/icon-thumbnail-method.svg') no-repeat center center;
+  //     background-size:20%;
+  //   }
+  // }
+  // &.organization {
+  //   background:url('../../img/background-organization.png') repeat center center;
+  //   background-size:auto;
+  //   &:after {
+  //     background:url('../../img/icon-thumbnail-organization.svg') no-repeat center center;
+  //     background-size:20%;
+  //   }
+  // }
+  // &.news {
+  //   background:url('../../img/background-news.png') repeat center center;
+  //   background-size:auto;
+  //   &:after {
+  //     background:url('../../img/icon-thumbnail-news.svg') no-repeat center center;
+  //     background-size:20%;
+  //   }
+  // }
 }
 
 .list-item {
