@@ -103,7 +103,7 @@ test("ItemDetails for Method renders correctly", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("Method editor renders correctly", () => {
+test.skip("Method editor renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>

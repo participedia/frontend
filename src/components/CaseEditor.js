@@ -123,6 +123,7 @@ class CaseEditor extends Component {
       <Field
         fieldName="process_methods"
         type={RelatedEditor}
+        item_type="case"
         info="process_methods"
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -146,6 +147,7 @@ class CaseEditor extends Component {
       <Field
         fieldName="primary_organizer"
         type={RelatedEditor}
+        item_type="case"
         info="primary_organizer"
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
@@ -170,6 +172,7 @@ class CaseEditor extends Component {
         fieldName="has_components"
         info="has_components"
         type={RelatedEditor}
+        item_type="case"
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({

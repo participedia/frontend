@@ -87,7 +87,13 @@
   "kind_of_influence": [
     "consultation_ie_to_advise_decision_makers",
     "cogovernance_ie_to_share_decision_making_with_public_authorities",
-    "make_public_decisions_ie_exert_direct_authority"
+    "make_public_decisions_ie_exert_direct_authority",
+    "direct_delivery_of_public_services_ie_by_entities_other_than_government",
+    "collaborative_delivery_of_public_services_with_public_authorities",
+    "raise_public_awareness",
+    "community_building_eg_social_capital",
+    "develop_individual_capacities_eg_skills_learning",
+    "protest"
   ],
   "participant_selection": [
     "open_to_all",
@@ -97,7 +103,14 @@
   "communication_mode": [
     "no_interaction_among_participants",
     "discussion_dialogue_or_deliberation",
-    "negotiate_bargain"
+    "negotiate_bargain",
+    "express_opinions_preferences_only",
+    "listen_watch_as_spectator",
+    "acting_drama",
+    "formal_testimony",
+    "storytelling",
+    "informal_social_activities",
+    "organized_demonstrations"
   ],
   "geographical_scope": [
     "local_eg_neighbourhood_city_town_metropolitan_area",

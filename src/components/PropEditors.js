@@ -245,7 +245,8 @@ export function makeLocalizedChoiceField(
   tag_for_choices,
   heading,
   alphabetical,
-  type
+  type,
+  info
 ) {
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
@@ -267,6 +268,7 @@ export function makeLocalizedChoiceField(
         :
         <FormattedHTMLMessage id={property + "_instructional"} />
         }
+        {info ? <InfoBox info={tag_for_choices} /> : undefined}
       </p>
       <Field
         fieldName={property}
