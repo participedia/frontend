@@ -4,6 +4,19 @@ import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
 import queryString from "query-string";
 
+function getSelectedCategory(pathname) {
+  if (pathname == "/methods") {
+    return "Methods";
+  } else if (pathname == "/cases") {
+    return "Cases";
+  } else if (pathname == "/organizations") {
+    return "Organizations";
+  } else if (pathname == "/news") {
+    return "News";
+  }
+  return "All";
+}
+
 const defaultMarkerLayout = {
   "text-line-height": 1,
   "text-padding": 0,
@@ -39,6 +52,8 @@ function extractData(data) {
       type: obj.type,
       featured: obj.featured,
       searchmatched: obj.searchmatched,
+      updated: obj.updated_date,
+      body: obj.body,
       position: coords,
       url: `/${obj.type}/${obj.id}`,
       title: obj.title,
@@ -88,14 +103,15 @@ export default class Map extends Component {
   updateItemsState(props) {
     let component = this;
     let queryParams = queryString.parse(props.location.search);
+    let selectedCategory = getSelectedCategory(this.props.location.pathname);
     queryParams["resultType"] = "map";
+    queryParams["selectedCategory"] = selectedCategory;
     api.performSearch(queryParams)
       .then(json => json.results).then(function(results) {
       let items = extractData(results);
       component.setState({
         items: items
       });
-    });
   }
 
   render() {

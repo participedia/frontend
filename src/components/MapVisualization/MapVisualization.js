@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { func } from "prop-types";
 import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 import store from "store";
+import Clear from "material-ui/svg-icons/content/clear";
+import { FormattedMessage, FormattedDate } from "react-intl";
+import htmlToText from "html-to-text";
 
 import "./MapVisualization.css";
 const accessToken =
@@ -85,6 +88,7 @@ class MapVisualization extends React.Component {
       .map((st, index) => (
         <Feature
           key={st.id}
+          onClick={this._markerClick.bind(this, st)}
           coordinates={st.position}
           paint={itemMarkerPaint}
         />
@@ -95,6 +99,11 @@ class MapVisualization extends React.Component {
     const searchMarkerLayout = Object.assign({}, this.props.markerLayout, {
       // "text-field": String.fromCharCode("0xe0C8")
     });
+    let awsUrl = process.env.REACT_APP_UPLOADS_CDN_URL;
+    let pic =
+      focus && focus.images && focus.images.length
+        ? awsUrl + encodeURIComponent(focus.images[0])
+        : "";
 
     return (
       <div className="map-component">
@@ -147,17 +156,42 @@ class MapVisualization extends React.Component {
                     ...styles.popup
                   }}
                 >
-                  <span
-                    style={{
-                      ...styles.type
-                    }}
-                  >
+                  <div className="pic-case">
+                    <img alt="" src={pic} />
+                  </div>
+                  <small className="type" style={{ ...styles.type }}>
                     {focus.type}
-                  </span>
-                  <Link to={focus.url}> {focus.title}</Link>
+                  </small>
+                  <Link className="medium" to={focus.url}>
+                    {" "}
+                    <p className="m-0">{focus.title}</p>
+                  </Link>
+                  <small className="pb-3">
+                    <FormattedMessage id="submitted" />&nbsp;
+                    <FormattedDate
+                      value={focus.updated}
+                      year="numeric"
+                      month="long"
+                      day="2-digit"
+                    />
+                  </small>
                 </span>
+                { focus.searchmatched && !focus.featured ?
+                  <small className="red">
+                    <FormattedMessage id="searchmatched" />
+                  </small>
+                  :
+                  undefined
+                }
+                { focus.featured ?
+                  <small className="red">
+                    <FormattedMessage id="featured_map" />
+                  </small>
+                  :
+                  undefined
+                }
                 <div onClick={() => popupChange(!popupShowLabel)}>
-                  {popupShowLabel ? "Hide" : "Show"}
+                  {popupShowLabel ? <Clear /> : "Show"}
                 </div>
               </div>
             </Popup>
