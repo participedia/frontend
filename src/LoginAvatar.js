@@ -1,7 +1,7 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import Avatar from "material-ui/Avatar";
 import MenuItem from "material-ui/MenuItem";
-import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import { Link } from "react-router-dom";
@@ -65,8 +65,11 @@ export class LoginAvatar extends React.Component {
     } else {
       return (
         <div className="loginButton">
-          <FlatButton
+          <RaisedButton
             onClick={() => authService.login()}
+            backgroundColor="#444"
+            labelColor="white"
+            className="customButton"
             onTouchTap={this.signIn}
             label={intl.formatMessage({ id: "login" })}
           />

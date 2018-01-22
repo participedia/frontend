@@ -245,9 +245,6 @@
       */
     }
   }
-  .col-md-12 {
-    padding: 0;
-  }
   .category-title {
     font-size: 1.8rem;
     font-weight: 400;
@@ -263,17 +260,20 @@
 
 .search-results {
   margin-top: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
   @include media-breakpoint-up(lg) {
     padding: 0;
     position: relative;
-    // top:-80px; // XXX don't understand what this is doing.
   }
 }
 
 .search-description {
   font-weight: $medium-weight;
   font-size: 20px;
+  padding: 0 15px;
 }
+
 .search-description-text {
   font-size: 1rem;
   font-weight: $blond-weight;

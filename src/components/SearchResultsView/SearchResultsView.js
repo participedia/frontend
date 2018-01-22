@@ -233,8 +233,8 @@ export class SearchResultsView extends React.Component {
             </div>
             <FilterArray data={filters} />
           </div>
-          <Row>
-            <div className="results-box">{searchresults}</div>
+          <Container fluid={true}>
+            <Row className="results-box">{searchresults}</Row>
             <div className="pagination">
               <IconButton
                 disabled={on_first_page}
@@ -249,7 +249,7 @@ export class SearchResultsView extends React.Component {
                 <NavigateNextIcon />
               </IconButton>
             </div>
-          </Row>
+          </Container>
         </div>
       );
     }

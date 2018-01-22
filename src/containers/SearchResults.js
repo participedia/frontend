@@ -70,7 +70,7 @@ export default class SearchResults extends React.Component {
         if (results.error) {
           if (results.error.code)
             component.setState({
-              error: results.error.code
+              error: JSON.stringify(results.error)
             });
         } else {
           component.setState({
@@ -96,10 +96,10 @@ export default class SearchResults extends React.Component {
 
   render() {
     if (this.state.error) {
-      console.error(this.state.error);
+      console.error("Got Error displaying search results", this.state.error);
       return (
         <div className="error-message">
-          Error doing search: ${this.state.error}
+          Error doing search: {this.state.error}
         </div>
       );
     }
