@@ -258,7 +258,12 @@ export function makeLocalizedChoiceField(
     label = intl.formatMessage({ id: heading });
   }
   let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
-  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
+  let placeholder;
+  if (type) {
+    placeholder = intl.formatMessage({ id: property + '_' + type + '_placeholder' });
+  } else {
+    placeholder = intl.formatMessage({ id: property + '_placeholder' });
+  }
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>

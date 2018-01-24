@@ -16,6 +16,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
+  makeLocalizedMultiChoiceField,
   makeLocalizedBooleanField,
   makeLocalizedNumberField,
   makeLocalizedListField
@@ -204,11 +205,17 @@ class MethodEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="classification" />
                       </h2>
-                      {makeLocalizedChoiceField(intl, "kind_of_influence")}
-                      {makeLocalizedChoiceField(intl, "participant_selection")}
-                      {makeLocalizedChoiceField(intl, "communication_mode")}
-                      {makeLocalizedChoiceField(intl, "method_of_interaction")}
+                      {makeLocalizedMultiChoiceField(intl, "typical_purposes", "typical_purposes", "typical_purposes", true, 3)}
+                      {makeLocalizedChoiceField(intl, "participant_selection", "participant_selection", "participant_selection", true, null, true)}
+                      {makeLocalizedChoiceField(intl, "recruitment_method", "recruitment_method", "recruitment_method_method", true, "method", false)}
+                      {makeLocalizedMultiChoiceField(intl, "interaction_modes", "interaction_modes", "interaction_modes", true, 3)}
+                      {makeLocalizedMultiChoiceField(intl, "communication_outcomes", "communication_outcomes", "communication_outcomes", true, 3, true)}
                       {makeLocalizedChoiceField(intl, "decision_method")}
+                      { thing.decision_method && thing.decision_method === "voting" ?
+                        makeLocalizedChoiceField(intl, "if_voting", "if_voting", "if_voting", true)
+                        :
+                        undefined
+                      }
                       {makeLocalizedChoiceField(intl, "geographical_scope")}
                       {makeLocalizedChoiceField(intl, "best_for")}
                     </div>

@@ -775,7 +775,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Communication Mode
+                  communication_mode
                 </span>
               </p>
               <div
@@ -794,7 +794,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Decision method
+                  Decision Method
                 </span>
               </p>
               <div
@@ -922,7 +922,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Participant Selection 
+                  Participant selection
                 </span>
               </p>
               <div
@@ -1203,7 +1203,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Communication Mode
+                          communication_mode
                         </span>
                       </p>
                       <div
@@ -1222,7 +1222,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Decision method
+                          Decision Method
                         </span>
                       </p>
                       <div
@@ -1350,7 +1350,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Participant Selection 
+                          Participant selection
                         </span>
                       </p>
                       <div

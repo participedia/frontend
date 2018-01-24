@@ -2,7 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Question from "material-ui/svg-icons/communication/live-help";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedHTMLMessage, injectIntl } from "react-intl";
 
 class InfoBox extends React.Component {
   state = {
@@ -38,7 +38,7 @@ class InfoBox extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <FormattedMessage id={this.props.info + "_box_text"} />
+          <FormattedHTMLMessage id={this.props.info + "_box_text"} />
         </Dialog>
       </div>
     );
