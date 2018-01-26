@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl, intlShape } from "react-intl";
+import { FormattedMessage, FormattedHTMLMessage, injectIntl, intlShape } from "react-intl";
 import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
+import Textarea from 'simple-react-form-material-ui/lib/textarea';
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
@@ -34,7 +35,9 @@ class OrganizationEditor extends Component {
       thing.images = [];
     }
     if (!props.thing.body) {
-      thing.body = "";
+      thing.body = props.intl.formatMessage({
+        id: "org_description_placeholder"
+      });
     }
     this.state = { thing };
     this.updateBody = this.updateBody.bind(this);
@@ -71,41 +74,6 @@ class OrganizationEditor extends Component {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
-    let tagseditor = (
-      <Field
-        fieldName="tags"
-        type={RelatedEditor}
-        maxSearchResults={30}
-        dataSource={tags}
-        placeholder={intl.formatMessage({
-          id: "tags_placeholder"
-        })}
-      />
-    );
-    let related_cases = (
-      <Field
-        fieldName="related_cases"
-        type={RelatedEditor}
-        dataSource={cases}
-        dataSourceConfig={{ text: "text", value: "value" }}
-      />
-    );
-    let related_methods = (
-      <Field
-        fieldName="related_methods"
-        type={RelatedEditor}
-        dataSource={methods}
-        dataSourceConfig={{ text: "text", value: "value" }}
-      />
-    );
-    let related_organizations = (
-      <Field
-        fieldName="related_organizations"
-        type={RelatedEditor}
-        dataSource={organizations}
-        dataSourceConfig={{ text: "text", value: "value" }}
-      />
-    );
 
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
@@ -127,51 +95,84 @@ class OrganizationEditor extends Component {
             />
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
-                <div className="field-case top">
-                  <h2 className="sub-heading">
-                    <label htmlFor="title">
-                      {intl.formatMessage({ id: thing.type + "_title_label" })}
-                    </label>
+                <div className="form-section">
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                    <FormattedMessage id="overview"/>
                   </h2>
-                  <Field
-                    fieldName="title"
-                    name="title"
-                    className="custom-field org-title"
-                    type={Text}
-                    placeholder={intl.formatMessage({
-                      id: thing.type + "_title_placeholder"
-                    })}
-                    fullWidth
-                  />
+                  <div className="field-case top">
+                    <h3 className="sub-heading">
+                      <label htmlFor="title">
+                        <FormattedMessage id={thing.type + "_title_label"} />
+                      </label>
+                    </h3>
+                    <p className="explanatory-text"><FormattedHTMLMessage
+                      id={intl.formatMessage({
+                        id: thing.type + "_title_explanatory"
+                      })}/></p>
+                    <Field
+                      fieldName="title"
+                      name="title"
+                      className="custom-field org-title"
+                      type={Text}
+                      placeholder={intl.formatMessage({
+                        id: thing.type + "_title_placeholder"
+                      })}
+                      fullWidth
+                    />
+                    {makeLocalizedListField(intl, "links", "org")}
+                    <h3 className="sub-heading">
+                      <label htmlFor="title">
+                        <FormattedMessage id="brief_description" />
+                      </label>
+                    </h3>
+                    <p className="explanatory-text"><FormattedHTMLMessage
+                      id="brief_description_org_explanatory"/></p>
+                    <Field
+                      fieldName="brief_description"
+                      name="brief_description"
+                      className="custom-textarea"
+                      underlineShow={false}
+                      maxLength="280"
+                      type={Textarea}
+                      placeholder={intl.formatMessage({ id: "brief_description_org_placeholder"})}
+                      fullWidth
+                    />
+                    <div className="field-case">
+                      <h3 className="sub-heading" htmlFor="body_en">
+                        {intl.formatMessage({ id: thing.type + "_body_title" })}
+                      </h3>
+                      <p className="explanatory-text"><FormattedHTMLMessage
+                        id="org_description_instructional"/></p>
+                      <BodyEditor
+                        onEditorChange={this.updateBody}
+                        html={thing.body}
+                      />
+                    </div>
+                    {makeLocalizedLocationField(intl, "location")}
+                  </div>
                 </div>
-                <div className="case-location">
-                  {makeLocalizedLocationField(intl, "location")}
-                </div>
-                <div className="field-case">
-                  <h2 className="sub-heading">
-                    {intl.formatMessage({ id: "links" })}
-                  </h2>
-                  {makeLocalizedListField(intl, "links")}
-                </div>
-                <div className="field-case media">
-                  <h2 className="sub-heading">
+                <div className={isQuick ? "form-section quick" : "form-section"}>
+                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
                     <FormattedMessage id="media" />
                   </h2>
-                  <h3 className="sub-sub-heading">
-                    <FormattedMessage id="photos" />
-                  </h3>
-                  <ImageListEditor property="images" thing={thing} />
-                  <h3 className="sub-sub-heading pt-4">
-                    <FormattedMessage id="videos" />
-                  </h3>
-                  {makeLocalizedListField(intl, "videos")}
+                  <div className="field-case">
+                    <h3 className="sub-sub-heading">
+                      <FormattedMessage id="photos" />
+                    </h3>
+                    <ImageListEditor property="images" thing={thing} />
+                    {makeLocalizedListField(intl, "videos", "org")}
+                  </div>
                 </div>
-                <div className={isQuick ? "field-case last" : "field-case"}>
-                  <h2 className="sub-heading">
-                    {intl.formatMessage({ id: "tags_title" })}
+                {!isQuick ?
+                <div className="form-section">
+                  <h2 className="section-heading">
+                    <FormattedMessage id="classification" />
                   </h2>
-                  <div className="tags-field">{tagseditor}</div>
+                  {makeLocalizedChoiceField(intl, "sector")}
                 </div>
+                :
+                undefined
+                }
               </div>
               <div>
                 {isQuick ? (
@@ -205,35 +206,6 @@ class OrganizationEditor extends Component {
                   </div>
                 ) : (
                   <div>
-                    {makeLocalizedTextField(intl, "executive_director")}
-                    {makeLocalizedChoiceField(intl, "sector")}
-                    {makeLocalizedChoiceField(intl, "specific_topic")}
-                    <div className="field-case">
-                      <h2 className="sub-heading" htmlFor="body_en">
-                        {intl.formatMessage({ id: thing.type + "_body_title" })}
-                      </h2>
-                      <BodyEditor
-                        onEditorChange={this.updateBody}
-                        html={thing.body}
-                      />
-                    </div>
-                    <div className="field-case last related">
-                      <h2 className="sub-heading">Related Content</h2>
-                      <div className="related-content">
-                        <h3 className="sub-sub-heading">
-                          {intl.formatMessage({ id: "related_cases" })}
-                        </h3>
-                        {related_cases}
-                        <h3 className="sub-sub-heading mt-3">
-                          {intl.formatMessage({ id: "related_methods" })}
-                        </h3>
-                        {related_methods}
-                        <h3 className="sub-sub-heading mt-3">
-                          {intl.formatMessage({ id: "related_organizations" })}
-                        </h3>
-                        {related_organizations}
-                      </div>
-                    </div>
                     {incomplete ? (
                       <p className="incomplete">
                         {intl.formatMessage({

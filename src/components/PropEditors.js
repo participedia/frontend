@@ -639,7 +639,8 @@ class LocationEditor extends React.Component {
 }
 
 export function makeLocalizedLocationField(intl, property) {
-  let label = intl.formatMessage({ id: property + "_placeholder" });
+  let label = intl.formatMessage({ id: property });
+  let placeholder = intl.formatMessage({ id: property + "_placeholder" });
   return (
     <div>
       <h3 className="sub-heading">{label}</h3>
@@ -651,7 +652,7 @@ export function makeLocalizedLocationField(intl, property) {
           fieldName={property}
           id={property}
           name={property}
-          label={label}
+          label={placeholder}
           type={LocationEditor}
         />
       </div>

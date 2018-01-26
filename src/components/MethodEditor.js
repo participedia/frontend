@@ -163,9 +163,6 @@ class MethodEditor extends Component {
                 <div className="field-case">
                   {makeLocalizedListField(intl, "links", "method")}
                 </div>
-                <div className="field-case">
-                  {tagseditor}
-                </div>
                 <div className={isQuick ? "form-section quick" : "form-section"}>
                   <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
                     <FormattedMessage id="media"/>
@@ -184,12 +181,6 @@ class MethodEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="basic_info" />
                       </h2>
-                      {makeLocalizedNumberField(intl, "minimum_participants")}
-                      {makeLocalizedNumberField(intl, "maximum_participants")}
-                      {makeLocalizedNumberField(intl, "minimum_duration")}
-                      {makeLocalizedNumberField(intl, "maximum_duration")}
-                      {makeLocalizedNumberField(intl, "minimum_cost")}
-                      {makeLocalizedNumberField(intl, "maximum_cost")}
                       <Field
                         fieldName="facilitated"
                         name="facilitated"
@@ -217,16 +208,11 @@ class MethodEditor extends Component {
                         undefined
                       }
                       {makeLocalizedChoiceField(intl, "geographical_scope")}
-                      {makeLocalizedChoiceField(intl, "best_for")}
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
                         <FormattedMessage id="other_info" />
                       </h2>
-                      {makeLocalizedChoiceField(intl,"typical_sponsoring_entity")}
-                      {makeLocalizedChoiceField(intl,"typical_implementing_entity")}
-                      {makeLocalizedChoiceField(intl, "typical_funding_source")}
-                      {makeLocalizedChoiceField(intl, "governance_contribution","governance_contribution","governance_contribution", true, "method")}
                       {makeLocalizedChoiceField(intl, "issue_polarization", "issue_polarization", "issue_polarization", true, null, true)}
                       {makeLocalizedChoiceField(intl, "issue_technical_complexity", "issue_technical_complexity", "issue_technical_complexity", true, null, true)}
                       {makeLocalizedChoiceField(intl, "issue_interdependency","issue_interdependency","issue_interdependency", true, null, true)}
