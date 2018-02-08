@@ -14,8 +14,8 @@ import Upload from "../Upload";
 import "./PropEditors.css";
 import { makePPLocation, stringifyLocation } from "./geoutils";
 import Clear from "material-ui/svg-icons/content/clear";
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-import SortableList from './SortableList';
+import { arrayMove } from "react-sortable-hoc";
+import SortableList from "./SortableList";
 import InfoBox from "./InfoBox";
 
 function nickify(before) {
@@ -48,7 +48,7 @@ export class ChoiceEditor extends React.Component {
       choices: this.makeChoices(props.passProps.choices)
     });
   }
-  
+
   makeChoices(choices) {
     return choices.map(function(v) {
       return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
@@ -59,7 +59,6 @@ export class ChoiceEditor extends React.Component {
     this.setState({ value: value });
     this.props.onChange(value);
   }
-
 
   render() {
     let onChange = this.onChange.bind(this);
@@ -94,7 +93,7 @@ export class SearchChoiceEditor extends React.Component {
       choices: this.makeChoices(props.passProps.choices)
     });
   }
-  
+
   makeChoices(choices) {
     return choices.map(function(v) {
       return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
@@ -105,7 +104,6 @@ export class SearchChoiceEditor extends React.Component {
     this.setState({ value: value });
     this.props.onChange(value);
   }
-
 
   render() {
     let onChange = this.onChange.bind(this);
@@ -132,28 +130,31 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
-      values:[],
+      values: [],
       choices: this.props.passProps.choices
     };
   }
 
   handleChange(event, index, values) {
-    if (this.props.passProps.rankable && values.length > this.props.passProps.limit) {
-      var b = values.slice(1, this.props.passProps.limit + 1);
-      this.setState({values: b});
+    let b;
+    if (
+      this.props.passProps.rankable &&
+      values.length > this.props.passProps.limit
+    ) {
+      b = values.slice(1, this.props.passProps.limit + 1);
+      this.setState({ values: b });
       this.props.onChange(b);
     } else if (values.length > this.props.passProps.limit) {
-      var b = values.slice(1, this.props.passProps.limit + 1);
-      this.setState({values: b});
+      b = values.slice(1, this.props.passProps.limit + 1);
+      this.setState({ values: b });
       this.props.onChange(b);
     } else {
-      this.setState({values});
+      this.setState({ values });
       this.props.onChange(values);
     }
-  } 
+  }
 
   makeChoices(choices, values) {
-
     return choices.map(function(v) {
       return (
         <MenuItem
@@ -163,42 +164,43 @@ export class MultiChoiceEditor extends React.Component {
           value={v}
           primaryText={v.text}
         />
-      )
+      );
     });
   }
 
-  onSortEnd ({oldIndex, newIndex}) {
+  onSortEnd({ oldIndex, newIndex }) {
     this.setState({
-      values: arrayMove(this.state.values, oldIndex, newIndex),
+      values: arrayMove(this.state.values, oldIndex, newIndex)
     });
     this.props.onChange(this.state.values);
-  };
-
-
+  }
 
   render() {
-    const {values, choices} = this.state;
+    const { values, choices } = this.state;
     let { property } = this.props;
     return (
       <div>
-      <SelectField
-        name={property}
-        fullWidth
-        className="custom-select"
-        multiple={true}
-        hintText={this.props.passProps.placeholder}
-        value={values}
-        onChange={this.handleChange}
-      >
-        {this.makeChoices(choices, values)}
-      </SelectField>
-      <p> 
-      { this.state.values && this.props.passProps.rankable ?
-        <SortableList items={this.state.values} onSortEnd={this.onSortEnd} />
-        :
-        undefined
-      }
-      </p>
+        <SelectField
+          name={property}
+          fullWidth
+          className="custom-select"
+          multiple={true}
+          hintText={this.props.passProps.placeholder}
+          value={values}
+          onChange={this.handleChange}
+        >
+          {this.makeChoices(choices, values)}
+        </SelectField>
+        <p>
+          {this.state.values && this.props.passProps.rankable ? (
+            <SortableList
+              items={this.state.values}
+              onSortEnd={this.onSortEnd}
+            />
+          ) : (
+            undefined
+          )}
+        </p>
       </div>
     );
   }
@@ -260,19 +262,21 @@ export function makeLocalizedChoiceField(
   let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
   let placeholder;
   if (type) {
-    placeholder = intl.formatMessage({ id: property + '_' + type + '_placeholder' });
+    placeholder = intl.formatMessage({
+      id: property + "_" + type + "_placeholder"
+    });
   } else {
-    placeholder = intl.formatMessage({ id: property + '_placeholder' });
+    placeholder = intl.formatMessage({ id: property + "_placeholder" });
   }
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
       <p className="explanatory-text">
-        { type ?
-        <FormattedHTMLMessage id={property + "_" + type + "_instructional"} />
-        :
-        <FormattedHTMLMessage id={property + "_instructional"} />
-        }
+        {type ? (
+          <FormattedHTMLMessage id={property + "_" + type + "_instructional"} />
+        ) : (
+          <FormattedHTMLMessage id={property + "_instructional"} />
+        )}
         {info ? <InfoBox info={tag_for_choices} /> : undefined}
       </p>
       <Field
@@ -306,12 +310,13 @@ export function makeLocalizedMultiChoiceField(
   } else {
     label = intl.formatMessage({ id: heading });
   }
-  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
+  let placeholder = intl.formatMessage({ id: property + "_placeholder" });
   let choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text">{intl.formatMessage({
+      <p className="explanatory-text">
+        {intl.formatMessage({
           id: property + "_instructional"
         })}
         {info ? <InfoBox info={tag_for_choices} /> : undefined}
@@ -445,11 +450,13 @@ class NumberEditor extends React.Component {
 
 export function makeLocalizedNumberField(intl, property) {
   let label = intl.formatMessage({ id: property });
-  let placeholder = intl.formatMessage({ id: property + '_placeholder' });
+  let placeholder = intl.formatMessage({ id: property + "_placeholder" });
   return (
     <div className="field-case">
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text">{intl.formatMessage({ id: property + "_instructional" })}</p>
+      <p className="explanatory-text">
+        {intl.formatMessage({ id: property + "_instructional" })}
+      </p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -504,7 +511,9 @@ export function makeLocalizedTextField(intl, property) {
   return (
     <div className="field-case">
       <h2 className="sub-heading">{label}</h2>
-      <p className="explanatory-text">{intl.formatMessage({ id: property + "_placeholder" })}</p>
+      <p className="explanatory-text">
+        {intl.formatMessage({ id: property + "_placeholder" })}
+      </p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -548,17 +557,25 @@ class DateEditor extends React.Component {
       <div className="clearable-datepicker">
         <DatePicker
           onChange={onChange}
-          onClick={() => {this.clearDate()}}
+          onClick={() => {
+            this.clearDate();
+          }}
           value={this.state.value}
           placeholder={this.props.label}
           name={property}
         />
-        {this.state.value ?
-          <div className="dismiss" onTouchTap={() => {this.clearDate()}}>
-            <Clear/>
+        {this.state.value ? (
+          <div
+            className="dismiss"
+            onTouchTap={() => {
+              this.clearDate();
+            }}
+          >
+            <Clear />
           </div>
-         : undefined 
-        } 
+        ) : (
+          undefined
+        )}
       </div>
     );
   }
@@ -568,13 +585,15 @@ export function makeLocalizedDateField(intl, property) {
   return (
     <div>
       <h3 className="sub-heading">{intl.formatMessage({ id: property })}</h3>
-      <p className="explanatory-text">{intl.formatMessage({ id: property + "_instructional" })}</p>
+      <p className="explanatory-text">
+        {intl.formatMessage({ id: property + "_instructional" })}
+      </p>
       <div className={"date-field " + property}>
         <Field
           fieldName={property}
           id={property}
           name={property}
-          label={intl.formatMessage({ id: property + "_placeholder"})}
+          label={intl.formatMessage({ id: property + "_placeholder" })}
           type={DateEditor}
         />
       </div>
@@ -644,9 +663,11 @@ export function makeLocalizedLocationField(intl, property) {
   return (
     <div>
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text">{intl.formatMessage({
-            id: property + "_instructional"
-          })}</p>
+      <p className="explanatory-text">
+        {intl.formatMessage({
+          id: property + "_instructional"
+        })}
+      </p>
       <div className={property}>
         <Field
           fieldName={property}
@@ -714,12 +735,18 @@ export class ListEditor extends React.Component {
 
 export function makeLocalizedListField(intl, property, type) {
   let label = intl.formatMessage({ id: property });
-  let instructional = intl.formatMessage({ id: property + "_instructional_" + type});
-  let placeholder = intl.formatMessage({ id: property + "_placeholder_" + type});
+  let instructional = intl.formatMessage({
+    id: property + "_instructional_" + type
+  });
+  let placeholder = intl.formatMessage({
+    id: property + "_placeholder_" + type
+  });
   return (
     <div>
       <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text"><FormattedMessage id={instructional} /></p> 
+      <p className="explanatory-text">
+        <FormattedMessage id={instructional} />
+      </p>
       <div className={"list " + property}>
         <Field
           fieldName={property}

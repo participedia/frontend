@@ -1,31 +1,30 @@
 import React, { Component } from "react";
-import { FormattedMessage, FormattedHTMLMessage, injectIntl, intlShape } from "react-intl";
+import {
+  FormattedMessage,
+  FormattedHTMLMessage,
+  injectIntl,
+  intlShape
+} from "react-intl";
 import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import Textarea from 'simple-react-form-material-ui/lib/textarea';
+import Textarea from "simple-react-form-material-ui/lib/textarea";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
-import tags_json from "../autocomplete_data/tags.json";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
-  makeLocalizedTextField,
   makeLocalizedLocationField,
   makeLocalizedListField
 } from "./PropEditors";
-import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
 
 const buttonStyle = {
   margin: "1em"
 };
-
-const tags = tags_json["tags"];
 
 class OrganizationEditor extends Component {
   constructor(props) {
@@ -58,11 +57,8 @@ class OrganizationEditor extends Component {
     this.props.onSubmit(thing);
   }
   render() {
-    let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
+    let { isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    thing.related_cases = fix_related(thing.related_cases);
-    thing.related_methods = fix_related(thing.related_methods);
-    thing.related_organizations = fix_related(thing.related_organizations);
     if (!thing.location) {
       thing.location = "";
     }
@@ -96,8 +92,12 @@ class OrganizationEditor extends Component {
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="form-section">
-                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
-                    <FormattedMessage id="overview"/>
+                  <h2
+                    className={
+                      isQuick ? "section-heading hidden" : "section-heading"
+                    }
+                  >
+                    <FormattedMessage id="overview" />
                   </h2>
                   <div className="field-case top">
                     <h3 className="sub-heading">
@@ -105,10 +105,13 @@ class OrganizationEditor extends Component {
                         <FormattedMessage id={thing.type + "_title_label"} />
                       </label>
                     </h3>
-                    <p className="explanatory-text"><FormattedHTMLMessage
-                      id={intl.formatMessage({
-                        id: thing.type + "_title_explanatory"
-                      })}/></p>
+                    <p className="explanatory-text">
+                      <FormattedHTMLMessage
+                        id={intl.formatMessage({
+                          id: thing.type + "_title_explanatory"
+                        })}
+                      />
+                    </p>
                     <Field
                       fieldName="title"
                       name="title"
@@ -125,24 +128,28 @@ class OrganizationEditor extends Component {
                         <FormattedMessage id="brief_description" />
                       </label>
                     </h3>
-                    <p className="explanatory-text"><FormattedHTMLMessage
-                      id="brief_description_org_explanatory"/></p>
+                    <p className="explanatory-text">
+                      <FormattedHTMLMessage id="brief_description_org_explanatory" />
+                    </p>
                     <Field
-                      fieldName="brief_description"
+                      fieldName="description"
                       name="brief_description"
                       className="custom-textarea"
                       underlineShow={false}
                       maxLength="280"
                       type={Textarea}
-                      placeholder={intl.formatMessage({ id: "brief_description_org_placeholder"})}
+                      placeholder={intl.formatMessage({
+                        id: "brief_description_org_placeholder"
+                      })}
                       fullWidth
                     />
                     <div className="field-case">
                       <h3 className="sub-heading" htmlFor="body_en">
                         {intl.formatMessage({ id: thing.type + "_body_title" })}
                       </h3>
-                      <p className="explanatory-text"><FormattedHTMLMessage
-                        id="org_description_instructional"/></p>
+                      <p className="explanatory-text">
+                        <FormattedHTMLMessage id="org_description_instructional" />
+                      </p>
                       <BodyEditor
                         onEditorChange={this.updateBody}
                         html={thing.body}
@@ -151,8 +158,14 @@ class OrganizationEditor extends Component {
                     {makeLocalizedLocationField(intl, "location")}
                   </div>
                 </div>
-                <div className={isQuick ? "form-section quick" : "form-section"}>
-                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
+                <div
+                  className={isQuick ? "form-section quick" : "form-section"}
+                >
+                  <h2
+                    className={
+                      isQuick ? "section-heading hidden" : "section-heading"
+                    }
+                  >
                     <FormattedMessage id="media" />
                   </h2>
                   <div className="field-case">
@@ -163,16 +176,16 @@ class OrganizationEditor extends Component {
                     {makeLocalizedListField(intl, "videos", "org")}
                   </div>
                 </div>
-                {!isQuick ?
-                <div className="form-section">
-                  <h2 className="section-heading">
-                    <FormattedMessage id="classification" />
-                  </h2>
-                  {makeLocalizedChoiceField(intl, "sector")}
-                </div>
-                :
-                undefined
-                }
+                {!isQuick ? (
+                  <div className="form-section">
+                    <h2 className="section-heading">
+                      <FormattedMessage id="classification" />
+                    </h2>
+                    {makeLocalizedChoiceField(intl, "sector")}
+                  </div>
+                ) : (
+                  undefined
+                )}
               </div>
               <div>
                 {isQuick ? (

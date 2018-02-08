@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { FormattedMessage, FormattedHTMLMessage, intlShape, injectIntl } from "react-intl";
+import {
+  FormattedMessage,
+  FormattedHTMLMessage,
+  intlShape,
+  injectIntl
+} from "react-intl";
 import { Form, Field } from "simple-react-form";
 import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import Textarea from 'simple-react-form-material-ui/lib/textarea';
-import Checkbox from 'simple-react-form-material-ui/lib/checkbox';
+import Textarea from "simple-react-form-material-ui/lib/textarea";
+import Checkbox from "simple-react-form-material-ui/lib/checkbox";
 import tags_json from "../autocomplete_data/tags.json";
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
@@ -33,7 +38,6 @@ const buttonStyle = {
   margin: "1em"
 };
 
-
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
@@ -51,8 +55,8 @@ class CaseEditor extends Component {
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, {body: body});
-    this.setState({thing:updatedThing});
+    let updatedThing = Object.assign({}, this.state.thing, { body: body });
+    this.setState({ thing: updatedThing });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -75,13 +79,10 @@ class CaseEditor extends Component {
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
-  
+
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    thing.related_cases = fix_related(thing.related_cases);
-    thing.related_methods = fix_related(thing.related_methods);
-    thing.related_organizations = fix_related(thing.related_organizations);
     if (!thing.location) {
       thing.location = "";
     }
@@ -104,17 +105,6 @@ class CaseEditor extends Component {
         })}
       />
     );
-    let related_cases = (
-      <Field
-        fieldName="related_cases"
-        type={RelatedEditor}
-        dataSource={cases}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_cases_placeholder"
-        })}
-      />
-    );
     let process_methods = (
       <Field
         fieldName="process_methods"
@@ -123,17 +113,6 @@ class CaseEditor extends Component {
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
           id: "process_methods_placeholder"
-        })}
-      />
-    );
-    let related_methods = (
-      <Field
-        fieldName="related_methods"
-        type={RelatedEditor}
-        dataSource={methods}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_methods_placeholder"
         })}
       />
     );
@@ -148,19 +127,8 @@ class CaseEditor extends Component {
         })}
       />
     );
-    let related_organizations = (
-      <Field
-        fieldName="related_organizations"
-        type={RelatedEditor}
-        dataSource={organizations}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_organizations_placeholder"
-        })}
-      />
-    );
     let incomplete = thing.title ? false : true;
-    let issue = this.state.thing.issue;
+    let issues = this.state.thing.issues;
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
@@ -183,17 +151,20 @@ class CaseEditor extends Component {
                 <div className="form-section">
                   <div className="field-case top">
                     <h2 className="sub-heading">
-                      <FormattedMessage id="overview"/>
+                      <FormattedMessage id="overview" />
                     </h2>
                     <h3 className="sub-heading">
                       <label htmlFor="title">
                         <FormattedMessage id={thing.type + "_title_label"} />
                       </label>
                     </h3>
-                    <p className="explanatory-text"><FormattedHTMLMessage
-                      id={intl.formatMessage({
-                        id: thing.type + "_title_explanatory"
-                      })}/></p>
+                    <p className="explanatory-text">
+                      <FormattedHTMLMessage
+                        id={intl.formatMessage({
+                          id: thing.type + "_title_explanatory"
+                        })}
+                      />
+                    </p>
                     <Field
                       fieldName="title"
                       name="title"

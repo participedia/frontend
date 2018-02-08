@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field } from "simple-react-form";
-import { Row, Col } from "reactstrap";
+import { Row } from "reactstrap";
 import Upload from "../Upload";
 import authService from "../utils/AuthService";
 import { FormattedMessage } from "react-intl";
@@ -56,7 +56,6 @@ class FileListEditorField extends Component {
 
   render() {
     // don't use the CDN as it won't be there yet.
-    const awsUrl = process.env.REACT_APP_UPLOADS_S3_BUCKET;
     let files = this.state.files;
     let urls = [];
     if (files) {
@@ -78,18 +77,22 @@ class FileListEditorField extends Component {
     }
     let bits = urls.map((photo, id) => (
       <div className="file">
-        <div
-          className="trash"
-          onClick={this.deleteImg.bind(this, files[id])}
-        />
+        <div className="trash" onClick={this.deleteImg.bind(this, files[id])} />
         <span>{photo}</span>
       </div>
     ));
     return (
       <div>
-        <p className="explanatory-text"><FormattedMessage id="files_instructional" /></p> 
+        <p className="explanatory-text">
+          <FormattedMessage id="files_instructional" />
+        </p>
         <Row className="itemPics">{bits}</Row>
-        <Upload auth={authService} uploaderType="files" itemEdit addToList={this.handleNewImg} />
+        <Upload
+          auth={authService}
+          uploaderType="files"
+          itemEdit
+          addToList={this.handleNewImg}
+        />
       </div>
     );
   }

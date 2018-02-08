@@ -23,7 +23,7 @@ export default class CaseDetails extends React.Component {
         <Tags thing={thing} />
         <LinkedPropertyGroupWithHeading
           heading="issue"
-          property="issue"
+          property="issues"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading

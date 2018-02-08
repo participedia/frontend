@@ -124,8 +124,8 @@ export default class DropzoneS3Uploader extends React.Component {
   };
 
   handleDrop = (files, rejectedFiles) => {
-    console.log('Accepted files: ', files);
-    console.log('rejectedFiles files: ', rejectedFiles);
+    console.log("Accepted files: ", files);
+    console.log("rejectedFiles files: ", rejectedFiles);
     this.setState({ uploadedFiles: [], error: null, progress: null });
     const options = {
       files,
@@ -139,7 +139,9 @@ export default class DropzoneS3Uploader extends React.Component {
     `${s3Url.endsWith("/") ? s3Url.slice(0, -1) : s3Url}/${filename}`;
 
   renderImage = ({ uploadedFile }) => (
-    <div className="rdsu-image"><img alt="" src={uploadedFile.fileUrl} /></div>
+    <div className="rdsu-image">
+      <img alt="" src={uploadedFile.fileUrl} />
+    </div>
   );
 
   renderFile = ({ uploadedFile }) => (
@@ -194,9 +196,11 @@ export default class DropzoneS3Uploader extends React.Component {
               uploadedFile: uploadedFile,
               ...childProps
             };
-            return this.props.isImage(uploadedFile.fileUrl)
-              ? <ImageComponent {...props} />
-              : <FileComponent {...props} />;
+            return this.props.isImage(uploadedFile.fileUrl) ? (
+              <ImageComponent {...props} />
+            ) : (
+              <FileComponent {...props} />
+            );
           })}
           <ProgressComponent {...childProps} />
           <ErrorComponent {...childProps} />
@@ -205,9 +209,17 @@ export default class DropzoneS3Uploader extends React.Component {
     }
     return (
       <div>
-      <Dropzone className={this.props.uploaderType == "files" ? "react-dropzone-s3-uploader files" : "react-dropzone-s3-uploader images"} onDrop={this.handleDrop} {...dropzoneProps}>
-        {content}
-      </Dropzone>
+        <Dropzone
+          className={
+            this.props.uploaderType === "files"
+              ? "react-dropzone-s3-uploader files"
+              : "react-dropzone-s3-uploader images"
+          }
+          onDrop={this.handleDrop}
+          {...dropzoneProps}
+        >
+          {content}
+        </Dropzone>
       </div>
     );
   }

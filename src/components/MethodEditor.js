@@ -5,25 +5,18 @@ import BodyEditor from "./BodyEditor";
 import { Container, Col } from "reactstrap";
 import ImageListEditor from "./ImageListEditor";
 import Text from "simple-react-form-material-ui/lib/text";
-import Textarea from 'simple-react-form-material-ui/lib/textarea';
-import Checkbox from 'simple-react-form-material-ui/lib/checkbox';
-import tags_json from "../autocomplete_data/tags.json";
+import Textarea from "simple-react-form-material-ui/lib/textarea";
+import Checkbox from "simple-react-form-material-ui/lib/checkbox";
 
 import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
-import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
   makeLocalizedMultiChoiceField,
-  makeLocalizedBooleanField,
-  makeLocalizedNumberField,
   makeLocalizedListField
 } from "./PropEditors";
-import fix_related from "./fix-related.js";
-
-const tags = tags_json["tags"];
 
 const buttonStyle = {
   margin: "1em"
@@ -60,29 +53,13 @@ class MethodEditor extends Component {
     this.props.onSubmit(thing);
   }
   render() {
-    let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
+    let { isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    thing.related_cases = fix_related(thing.related_cases);
-    thing.related_methods = fix_related(thing.related_methods);
-    thing.related_organizations = fix_related(thing.related_organizations);
 
     if (!this.state.thing) {
       return <div />;
     }
     let onSubmit = this.onSubmit.bind(this);
-    let tagseditor = (
-      <Field
-        fieldName="tags"
-        type={RelatedEditor}
-        item_type="method"
-        maxSearchResults={30}
-        dataSource={tags}
-        placeholder={intl.formatMessage({
-          id: "tags_placeholder"
-        })}
-      />
-    );
-    let issue = this.state.thing.general_issues;
     let incomplete = thing.title ? false : true;
     let doFullVersion = this.props.new
       ? "do_full_version"
@@ -104,18 +81,23 @@ class MethodEditor extends Component {
             <Col md="6" className="ml-auto mr-auto">
               <div className="case-box">
                 <div className="field-case top">
-                  <h2 className={isQuick ? "sub-heading hidden" : "sub-heading"}>
-                    <FormattedMessage id="overview"/>
+                  <h2
+                    className={isQuick ? "sub-heading hidden" : "sub-heading"}
+                  >
+                    <FormattedMessage id="overview" />
                   </h2>
                   <h3 className="sub-heading">
                     <label htmlFor="title">
                       <FormattedMessage id={thing.type + "_title_label"} />
                     </label>
                   </h3>
-                  <p className="explanatory-text"><FormattedHTMLMessage
-                    id={intl.formatMessage({
-                      id: thing.type + "_title_explanatory"
-                    })}/></p>
+                  <p className="explanatory-text">
+                    <FormattedHTMLMessage
+                      id={intl.formatMessage({
+                        id: thing.type + "_title_explanatory"
+                      })}
+                    />
+                  </p>
                   <Field
                     fieldName="title"
                     name="title"
@@ -133,39 +115,52 @@ class MethodEditor extends Component {
                       <FormattedMessage id="brief_description" />
                     </label>
                   </h3>
-                  <p className="explanatory-text"><FormattedHTMLMessage
-                    id="method_brief_description_explanatory"/></p>
+                  <p className="explanatory-text">
+                    <FormattedHTMLMessage id="method_brief_description_explanatory" />
+                  </p>
                   <Field
-                    fieldName="brief_description"
+                    fieldName="description"
                     name="brief_description"
                     className="custom-textarea"
                     underlineShow={false}
                     maxLength="280"
                     type={Textarea}
-                    placeholder={intl.formatMessage({ id: "method_brief_description_placeholder"})}
+                    placeholder={intl.formatMessage({
+                      id: "method_brief_description_placeholder"
+                    })}
                     fullWidth
                   />
                 </div>
-                {!isQuick ?
+                {!isQuick ? (
                   <div className="field-case">
                     <h3 className="sub-heading" htmlFor="body_en">
                       {intl.formatMessage({
                         id: thing.type + "_body_title"
                       })}
                     </h3>
-                    <p className="explanatory-text"><FormattedHTMLMessage
-                      id="method_description_instructional"/></p>
-                    <BodyEditor onEditorChange={this.updateBody} html={thing.body} />
+                    <p className="explanatory-text">
+                      <FormattedHTMLMessage id="method_description_instructional" />
+                    </p>
+                    <BodyEditor
+                      onEditorChange={this.updateBody}
+                      html={thing.body}
+                    />
                   </div>
-                :
-                undefined
-                }
+                ) : (
+                  undefined
+                )}
                 <div className="field-case">
                   {makeLocalizedListField(intl, "links", "method")}
                 </div>
-                <div className={isQuick ? "form-section quick" : "form-section"}>
-                  <h2 className={isQuick ? "section-heading hidden" : "section-heading"}>
-                    <FormattedMessage id="media"/>
+                <div
+                  className={isQuick ? "form-section quick" : "form-section"}
+                >
+                  <h2
+                    className={
+                      isQuick ? "section-heading hidden" : "section-heading"
+                    }
+                  >
+                    <FormattedMessage id="media" />
                   </h2>
                   <div className="field-case">
                     <h3 className="sub-sub-heading">
@@ -173,9 +168,9 @@ class MethodEditor extends Component {
                     </h3>
                     <ImageListEditor property="images" thing={thing} />
                     {makeLocalizedListField(intl, "videos", "method")}
+                  </div>
                 </div>
-                </div>
-                {!isQuick ? ( 
+                {!isQuick ? (
                   <div>
                     <div className="form-section">
                       <h2 className="section-heading">
@@ -184,7 +179,6 @@ class MethodEditor extends Component {
                       <Field
                         fieldName="facilitated"
                         name="facilitated"
-                        label="ok"
                         type={Checkbox}
                         label={intl.formatMessage({
                           id: "facilitated_label"
@@ -196,32 +190,98 @@ class MethodEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="classification" />
                       </h2>
-                      {makeLocalizedMultiChoiceField(intl, "typical_purposes", "typical_purposes", "typical_purposes", true, 3)}
-                      {makeLocalizedChoiceField(intl, "participant_selection", "participant_selection", "participant_selection", true, null, true)}
-                      {makeLocalizedChoiceField(intl, "recruitment_method", "recruitment_method", "recruitment_method_method", true, "method", false)}
-                      {makeLocalizedMultiChoiceField(intl, "interaction_modes", "interaction_modes", "interaction_modes", true, 3)}
-                      {makeLocalizedMultiChoiceField(intl, "communication_outcomes", "communication_outcomes", "communication_outcomes", true, 3, true)}
+                      {makeLocalizedMultiChoiceField(
+                        intl,
+                        "typical_purposes",
+                        "typical_purposes",
+                        "typical_purposes",
+                        true,
+                        3
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "participant_selection",
+                        "participant_selection",
+                        "participant_selection",
+                        true,
+                        null,
+                        true
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "recruitment_method",
+                        "recruitment_method",
+                        "recruitment_method_method",
+                        true,
+                        "method",
+                        false
+                      )}
+                      {makeLocalizedMultiChoiceField(
+                        intl,
+                        "interaction_modes",
+                        "interaction_modes",
+                        "interaction_modes",
+                        true,
+                        3
+                      )}
+                      {makeLocalizedMultiChoiceField(
+                        intl,
+                        "communication_outcomes",
+                        "communication_outcomes",
+                        "communication_outcomes",
+                        true,
+                        3,
+                        true
+                      )}
                       {makeLocalizedChoiceField(intl, "decision_method")}
-                      { thing.decision_method && thing.decision_method === "voting" ?
-                        makeLocalizedChoiceField(intl, "if_voting", "if_voting", "if_voting", true)
-                        :
-                        undefined
-                      }
+                      {thing.decision_method &&
+                      thing.decision_method === "voting"
+                        ? makeLocalizedChoiceField(
+                            intl,
+                            "if_voting",
+                            "if_voting",
+                            "if_voting",
+                            true
+                          )
+                        : undefined}
                       {makeLocalizedChoiceField(intl, "geographical_scope")}
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
                         <FormattedMessage id="other_info" />
                       </h2>
-                      {makeLocalizedChoiceField(intl, "issue_polarization", "issue_polarization", "issue_polarization", true, null, true)}
-                      {makeLocalizedChoiceField(intl, "issue_technical_complexity", "issue_technical_complexity", "issue_technical_complexity", true, null, true)}
-                      {makeLocalizedChoiceField(intl, "issue_interdependency","issue_interdependency","issue_interdependency", true, null, true)}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "issue_polarization",
+                        "issue_polarization",
+                        "issue_polarization",
+                        true,
+                        null,
+                        true
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "issue_technical_complexity",
+                        "issue_technical_complexity",
+                        "issue_technical_complexity",
+                        true,
+                        null,
+                        true
+                      )}
+                      {makeLocalizedChoiceField(
+                        intl,
+                        "issue_interdependency",
+                        "issue_interdependency",
+                        "issue_interdependency",
+                        true,
+                        null,
+                        true
+                      )}
                     </div>
                   </div>
-                  ) 
-                  : 
+                ) : (
                   undefined
-                }
+                )}
               </div>
               <div>
                 {isQuick ? (

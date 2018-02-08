@@ -20,17 +20,13 @@ import RelatedEditor from "./RelatedEditor";
 import SearchableRelatedEditor from "./SearchableRelatedEditor";
 import InfoBox from "./InfoBox";
 import RaisedButton from "material-ui/RaisedButton";
-import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
-import preventDefault from "react-prevent-default";
 import {
   makeLocalizedChoiceField,
   makeLocalizedMultiChoiceField,
-  makeLocalizedBooleanField,
   makeLocalizedDateField,
   makeLocalizedNumberField,
-  makeLocalizedTextField,
   makeLocalizedLocationField,
   makeLocalizedListField
 } from "./PropEditors";
@@ -86,9 +82,6 @@ class CaseEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = this.state.thing;
-    thing.related_cases = fix_related(thing.related_cases);
-    thing.related_methods = fix_related(thing.related_methods);
-    thing.related_organizations = fix_related(thing.related_organizations);
     if (!thing.location) {
       thing.location = "";
     }
@@ -112,17 +105,6 @@ class CaseEditor extends Component {
         })}
       />
     );
-    let related_cases = (
-      <Field
-        fieldName="related_cases"
-        type={RelatedEditor}
-        dataSource={cases}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_cases_placeholder"
-        })}
-      />
-    );
     let process_methods = (
       <Field
         fieldName="process_methods"
@@ -136,17 +118,6 @@ class CaseEditor extends Component {
         })}
       />
     );
-    let related_methods = (
-      <Field
-        fieldName="related_methods"
-        type={RelatedEditor}
-        dataSource={methods}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_methods_placeholder"
-        })}
-      />
-    );
     let primary_organizer = (
       <Field
         fieldName="primary_organizer"
@@ -157,17 +128,6 @@ class CaseEditor extends Component {
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
           id: "primary_organizer_placeholder"
-        })}
-      />
-    );
-    let related_organizations = (
-      <Field
-        fieldName="related_organizations"
-        type={RelatedEditor}
-        dataSource={organizations}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        placeholder={intl.formatMessage({
-          id: "related_organizations_placeholder"
         })}
       />
     );
@@ -284,15 +244,15 @@ class CaseEditor extends Component {
                   <div className="field-case">
                     <h3 className="sub-heading">
                       <label htmlFor="title">
-                        <FormattedMessage id="brief_description" />
+                        <FormattedMessage id="description" />
                       </label>
                     </h3>
                     <p className="explanatory-text">
-                      <FormattedHTMLMessage id="brief_description_explanatory" />
+                      <FormattedHTMLMessage id="description_explanatory" />
                     </p>
                     <Field
-                      fieldName="brief_description"
-                      name="brief_description"
+                      fieldName="description"
+                      name="description"
                       className="custom-textarea"
                       underlineShow={false}
                       maxLength="280"
@@ -356,7 +316,11 @@ class CaseEditor extends Component {
                   </h2>
                   <div className="case-location">
                     <div className="field-case top">
-                      {makeLocalizedLocationField(intl, "primary_location")}
+                      {makeLocalizedLocationField(
+                        intl,
+                        "location",
+                        "primary_location"
+                      )}
                     </div>
                     {!isQuick
                       ? makeLocalizedChoiceField(intl, "scope_of_influence")
@@ -401,7 +365,6 @@ class CaseEditor extends Component {
                     <Field
                       fieldName="ongoing"
                       name="ongoing"
-                      label="ok"
                       type={Checkbox}
                       label={intl.formatMessage({
                         id: "ongoing_label"
@@ -421,17 +384,17 @@ class CaseEditor extends Component {
                       </h2>
                       {makeLocalizedMultiChoiceField(
                         intl,
-                        "purpose",
-                        "purpose",
-                        "purpose",
+                        "purposes",
+                        "purposes",
+                        "purposes",
                         true,
                         3
                       )}
                       {makeLocalizedMultiChoiceField(
                         intl,
-                        "approach",
-                        "approach",
-                        "approach",
+                        "approaches",
+                        "approaches",
+                        "approaches",
                         true,
                         3
                       )}
@@ -663,7 +626,6 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
@@ -693,7 +655,6 @@ class CaseEditor extends Component {
                     <RaisedButton
                       className="publish left customButton"
                       disabled={incomplete}
-                      label="Label after"
                       labelPosition="after"
                       icon={<PublishIcon />}
                       secondary
