@@ -17,7 +17,6 @@ import "./CaseEditor.css";
 import "./GeoSuggest/GeoSuggest.css";
 import RelatedEditor from "./RelatedEditor";
 import RaisedButton from "material-ui/RaisedButton";
-import fix_related from "./fix-related.js";
 import { encodeLocation } from "./geoutils";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import preventDefault from "react-prevent-default";

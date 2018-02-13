@@ -22,6 +22,7 @@ import InfoBox from "./InfoBox";
 import RaisedButton from "material-ui/RaisedButton";
 import { encodeLocation } from "./geoutils";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
+import { toTitleCase } from "../util.js";
 import {
   makeLocalizedChoiceField,
   makeLocalizedMultiChoiceField,
@@ -40,7 +41,8 @@ const buttonStyle = {
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
-    let thing = props.thing;
+    let thing = Object.assign({}, props.thing);
+    console.log("constructor thing: %o", thing);
     if (!thing.images) {
       thing.images = [];
     }
@@ -51,17 +53,21 @@ class CaseEditor extends Component {
     }
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
+    console.log("constructor thing: %o", thing);
   }
 
   updateBody(body) {
-    let updatedThing = Object.assign({}, this.state.thing, { body: body });
-    this.setState({ thing: updatedThing });
+    let thing = Object.assign({}, this.state.thing, { body: body });
+    console.log("updateBody thing: %o", thing);
+    this.setState({ thing });
   }
 
   componentWillReceiveProps(nextProps) {
     let thing = nextProps.thing;
+    let intl = nextProps.intl;
+    console.log("componentWillReceiveProps thing: %o", thing);
     if (!thing.body) {
-      thing.body = nextProps.intl.formatMessage({
+      thing.body = intl.formatMessage({
         id: "case_description_placeholder"
       });
     }
@@ -71,17 +77,28 @@ class CaseEditor extends Component {
     ) {
       thing.number_of_meeting_days = 0;
     }
+    if (thing.issues.length && typeof thing.issues[0] === "string") {
+      thing.issues = thing.issues.map(v => ({
+        text: toTitleCase(intl.formatMessage({ id: v })),
+        value: v
+      }));
+    }
     this.setState({ thing });
   }
 
   onSubmit() {
     let thing = this.state.thing;
+    console.log("onSubmit thing: %o", thing);
     this.props.onSubmit(thing);
   }
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
-    let thing = this.state.thing;
+    let thing = Object.assign({}, this.props.thing, this.state.thing);
+    if (thing.issues === undefined) {
+      return <div />;
+    }
+    console.log("render thing: %o", thing);
     if (!thing.location) {
       thing.location = "";
     }
@@ -89,9 +106,6 @@ class CaseEditor extends Component {
       thing.location = encodeLocation(thing.location);
     }
 
-    if (!this.state.thing) {
-      return <div />;
-    }
     let onSubmit = this.onSubmit.bind(this);
     let tagseditor = (
       <Field
@@ -157,12 +171,15 @@ class CaseEditor extends Component {
       />
     );
     let incomplete = thing.title ? false : true;
-    let issues = this.state.thing.issues;
+    let issues = thing.issues;
+    console.log("issues before breaking: %o", issues);
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
     let quickSubmitText = "publish";
     let fullSubmitText = "publish";
+    console.log("props: %o", this.props);
+    console.log("state: %o", this.state);
     return (
       <Form
         onSubmit={onSubmit}
@@ -193,9 +210,7 @@ class CaseEditor extends Component {
                     </h3>
                     <p className="explanatory-text">
                       <FormattedHTMLMessage
-                        id={intl.formatMessage({
-                          id: thing.type + "_title_explanatory"
-                        })}
+                        id={thing.type + "_title_explanatory"}
                       />
                     </p>
                     <Field
@@ -258,7 +273,7 @@ class CaseEditor extends Component {
                       maxLength="280"
                       type={Textarea}
                       placeholder={intl.formatMessage({
-                        id: "brief_description_placeholder"
+                        id: "description_placeholder"
                       })}
                       fullWidth
                     />
@@ -316,11 +331,7 @@ class CaseEditor extends Component {
                   </h2>
                   <div className="case-location">
                     <div className="field-case top">
-                      {makeLocalizedLocationField(
-                        intl,
-                        "location",
-                        "primary_location"
-                      )}
+                      {makeLocalizedLocationField(intl, "location", "location")}
                     </div>
                     {!isQuick
                       ? makeLocalizedChoiceField(intl, "scope_of_influence")
@@ -518,11 +529,7 @@ class CaseEditor extends Component {
                           </label>
                         </h3>
                         <p className="explanatory-text">
-                          <FormattedHTMLMessage
-                            id={intl.formatMessage({
-                              id: "funder_instructional"
-                            })}
-                          />
+                          <FormattedHTMLMessage id="funder_instructional" />
                           <InfoBox info="funder" />
                         </p>
                         <Field

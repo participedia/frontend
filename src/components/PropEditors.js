@@ -45,13 +45,21 @@ export class ChoiceEditor extends React.Component {
   componentWillReceiveProps(props) {
     this.setState({
       value: nickify(props.value),
-      choices: this.makeChoices(props.passProps.choices)
+      choices: this.makeChoices(props.passProps.choices, props.value)
     });
   }
 
-  makeChoices(choices) {
+  makeChoices(choices, values) {
+    const keys = values.map(v => v.value);
     return choices.map(function(v) {
-      return <MenuItem value={v.value} key={v.value} primaryText={v.text} />;
+      return (
+        <MenuItem
+          value={v.value}
+          key={v.value}
+          primaryText={v.text}
+          selected={keys.includes(v.value)}
+        />
+      );
     });
   }
 
@@ -126,11 +134,15 @@ export class SearchChoiceEditor extends React.Component {
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
+    console.log("mce props: %o", props);
+    if (props.fieldName === "issues" && typeof props.value[0] !== "object") {
+      debugger;
+    }
     this.setState = this.setState.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.state = {
-      values: [],
+      values: props.value,
       choices: this.props.passProps.choices
     };
   }
@@ -155,12 +167,14 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   makeChoices(choices, values) {
+    const keys = values.map(v => v.value);
+    console.log("makeChoices: %o, values: %o, keys: %o", choices, values, keys);
     return choices.map(function(v) {
       return (
         <MenuItem
           key={v.value}
           insetChildren={true}
-          checked={values && values.includes(v)}
+          checked={values && keys.includes(v.value)}
           value={v}
           primaryText={v.text}
         />
@@ -216,12 +230,10 @@ export function makeLocalizedSearchChoiceField(
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
   }
-  let label;
-  if (heading === undefined) {
-    label = intl.formatMessage({ id: tag_for_choices });
-  } else {
-    label = intl.formatMessage({ id: heading });
+  if (typeof heading === "undefined") {
+    heading = tag_for_choices;
   }
+  let label = intl.formatMessage({ id: heading });
   let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
   return (
     <div className="field-case select">
@@ -253,12 +265,10 @@ export function makeLocalizedChoiceField(
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
   }
-  let label;
-  if (heading === undefined) {
-    label = intl.formatMessage({ id: tag_for_choices });
-  } else {
-    label = intl.formatMessage({ id: heading });
+  if (typeof heading === "undefined") {
+    heading = tag_for_choices;
   }
+  let label = intl.formatMessage({ id: heading });
   let choices = makeLocalizedChoices(intl, tag_for_choices, alphabetical);
   let placeholder;
   if (type) {
@@ -304,14 +314,12 @@ export function makeLocalizedMultiChoiceField(
   if (typeof tag_for_choices === "undefined") {
     tag_for_choices = property;
   }
-  let label;
-  if (heading === undefined) {
-    label = intl.formatMessage({ id: tag_for_choices });
-  } else {
-    label = intl.formatMessage({ id: heading });
+  if (typeof heading === "undefined") {
+    heading = tag_for_choices;
   }
-  let placeholder = intl.formatMessage({ id: property + "_placeholder" });
-  let choices = makeLocalizedChoices(intl, tag_for_choices);
+  const label = intl.formatMessage({ id: tag_for_choices });
+  const placeholder = intl.formatMessage({ id: property + "_placeholder" });
+  const choices = makeLocalizedChoices(intl, tag_for_choices);
   return (
     <div className="field-case select">
       <h3 className="sub-heading">{label}</h3>

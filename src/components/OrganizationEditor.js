@@ -107,9 +107,7 @@ class OrganizationEditor extends Component {
                     </h3>
                     <p className="explanatory-text">
                       <FormattedHTMLMessage
-                        id={intl.formatMessage({
-                          id: thing.type + "_title_explanatory"
-                        })}
+                        id={thing.type + "_title_explanatory"}
                       />
                     </p>
                     <Field
@@ -125,21 +123,21 @@ class OrganizationEditor extends Component {
                     {makeLocalizedListField(intl, "links", "org")}
                     <h3 className="sub-heading">
                       <label htmlFor="title">
-                        <FormattedMessage id="brief_description" />
+                        <FormattedMessage id="description" />
                       </label>
                     </h3>
                     <p className="explanatory-text">
-                      <FormattedHTMLMessage id="brief_description_org_explanatory" />
+                      <FormattedHTMLMessage id="description_org_explanatory" />
                     </p>
                     <Field
                       fieldName="description"
-                      name="brief_description"
+                      name="description"
                       className="custom-textarea"
                       underlineShow={false}
                       maxLength="280"
                       type={Textarea}
                       placeholder={intl.formatMessage({
-                        id: "brief_description_org_placeholder"
+                        id: "description_org_placeholder"
                       })}
                       fullWidth
                     />

@@ -93,9 +93,7 @@ class MethodEditor extends Component {
                   </h3>
                   <p className="explanatory-text">
                     <FormattedHTMLMessage
-                      id={intl.formatMessage({
-                        id: thing.type + "_title_explanatory"
-                      })}
+                      id={thing.type + "_title_explanatory"}
                     />
                   </p>
                   <Field
@@ -112,21 +110,21 @@ class MethodEditor extends Component {
                 <div className="field-case">
                   <h3 className="sub-heading">
                     <label htmlFor="title">
-                      <FormattedMessage id="brief_description" />
+                      <FormattedMessage id="description" />
                     </label>
                   </h3>
                   <p className="explanatory-text">
-                    <FormattedHTMLMessage id="method_brief_description_explanatory" />
+                    <FormattedHTMLMessage id="method_description_explanatory" />
                   </p>
                   <Field
                     fieldName="description"
-                    name="brief_description"
+                    name="description"
                     className="custom-textarea"
                     underlineShow={false}
                     maxLength="280"
                     type={Textarea}
                     placeholder={intl.formatMessage({
-                      id: "method_brief_description_placeholder"
+                      id: "method_description_placeholder"
                     })}
                     fullWidth
                   />

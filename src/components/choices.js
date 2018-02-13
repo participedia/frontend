@@ -1,3 +1,4 @@
+import { toTitleCase } from "../util.js";
 const caseChoiceData = require("./case.choices.json");
 const methodChoiceData = require("./method.choices.json");
 const orgChoiceData = require("./organization.choices.json");
@@ -32,12 +33,6 @@ export function getChoices(property) {
   }
 }
 
-function toTitleCase(str) {
-  if (str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
-}
-
 export function makeLocalizedChoices(intl, property, alphabetical = true) {
   let hasOther;
   let choices = getChoices(property).map(function(v) {
@@ -67,18 +62,15 @@ export function makeLocalizedChoices(intl, property, alphabetical = true) {
     });
 
     Object.keys(choices).forEach(function(key) {
-      if (choices[key]['text'] === "Other") {
+      if (choices[key]["text"] === "Other") {
         hasOther = true;
         delete choices[key];
       }
-    }); 
+    });
 
     if (hasOther) {
-      let choicesLength = choices.length
-      choices[choicesLength] = { value: "other", text: "Other" };
-    };
+      choices.push({ value: "other", text: "Other" });
+    }
   }
-  
-  return choices
-
+  return choices;
 }

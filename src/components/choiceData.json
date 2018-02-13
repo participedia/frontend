@@ -29,16 +29,9 @@
     "getting_sense_of_room/group_ie_no_formal_voting",
     "opinion_survey"
   ],
-  "facetoface_online_or_both": [
-    "both",
-    "facetoface",
-    "online"
-  ],
-  "facilitated": [
-    "no",
-    "yes"
-  ],
-  "issue": [
+  "facetoface_online_or_both": ["both", "facetoface", "online"],
+  "facilitated": ["no", "yes"],
+  "issues": [
     "community_development",
     "environment",
     "international_trade_global_economy",
@@ -77,10 +70,7 @@
     "raise_public_awareness",
     "make_public_decisions_ie_exert_direct_authority"
   ],
-  "ongoing": [
-    "true",
-    "false"
-  ],
+  "ongoing": ["true", "false"],
   "participant_selection": [
     "open_to_all",
     "open_to_all_with_targeted_recruitment",
@@ -89,10 +79,7 @@
     "other",
     "appointment"
   ],
-  "specific_topic": [
-    "hello",
-    "yess"
-  ],
+  "specific_topics": ["hello", "yess"],
   "staff_type": [
     "government_officials",
     "volunteer",
@@ -244,13 +231,7 @@
     "local_government_eg_village_town_city",
     "nongovernmental_organization_nonprofit"
   ],
-  "voting": [
-    "majority",
-    "none",
-    "supermajority",
-    "preferential",
-    "consensus"
-  ],
+  "voting": ["majority", "none", "supermajority", "preferential", "consensus"],
   "issue_interdependency": [],
   "issue_polarization": [],
   "issue_technical_complexity": [],
