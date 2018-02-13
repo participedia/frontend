@@ -29,7 +29,7 @@ function nickify(before) {
       .replace(/\s+/g, "_")
       .toLowerCase();
   } catch (e) {
-    console.log("exception in nickify, before = ", before);
+    console.error("exception in nickify, before = ", before);
   }
 }
 
@@ -50,7 +50,13 @@ export class ChoiceEditor extends React.Component {
   }
 
   makeChoices(choices, values) {
-    const keys = values.map(v => v.value);
+    let keys;
+    try {
+      keys = values.map(v => v.value);
+    } catch (e) {
+      console.warn("Error in ChoiceEditor mapping keys for values %o", values);
+      keys = [];
+    }
     return choices.map(function(v) {
       return (
         <MenuItem
@@ -70,7 +76,8 @@ export class ChoiceEditor extends React.Component {
 
   render() {
     let onChange = this.onChange.bind(this);
-    let { property } = this.props;
+    let { fieldName: property } = this.props;
+    console.log("rendering ChoiceEditor for %s", property);
     return (
       <SelectField
         name={property}
@@ -134,7 +141,6 @@ export class SearchChoiceEditor extends React.Component {
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
-    console.log("mce props: %o", props);
     if (props.fieldName === "issues" && typeof props.value[0] !== "object") {
       debugger;
     }
@@ -167,8 +173,13 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   makeChoices(choices, values) {
-    const keys = values.map(v => v.value);
-    console.log("makeChoices: %o, values: %o, keys: %o", choices, values, keys);
+    let keys;
+    try {
+      keys = values ? values.map(v => v.value) : [];
+    } catch (e) {
+      console.warn("Error in makeChoices");
+      keys = [];
+    }
     return choices.map(function(v) {
       return (
         <MenuItem
@@ -190,8 +201,13 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   render() {
+    const { fieldName: property } = this.props;
+    if (property) {
+      console.log("rendering %s", property);
+    } else {
+      console.log("no property for %o", this.props);
+    }
     const { values, choices } = this.state;
-    let { property } = this.props;
     return (
       <div>
         <SelectField

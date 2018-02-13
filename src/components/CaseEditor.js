@@ -53,18 +53,34 @@ class CaseEditor extends Component {
     }
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
-    console.log("constructor thing: %o", thing);
   }
 
   updateBody(body) {
     let thing = Object.assign({}, this.state.thing, { body: body });
-    console.log("updateBody thing: %o", thing);
     this.setState({ thing });
   }
 
+  structureList(list) {
+    const intl = this.props.intl;
+    if (list && list.length && typeof list[0] === "string") {
+      return list.map(v => ({
+        text: toTitleCase(intl.formatMessage({ id: v })),
+        value: v
+      }));
+    } else {
+      return list;
+    }
+  }
+
+  structureLists(thing) {
+    thing.issues = this.structureList(thing.issues);
+    thing.specific_topics = this.structureList(thing.specific_topics);
+    return thing;
+  }
+
   componentWillReceiveProps(nextProps) {
+    const intl = nextProps.intl;
     let thing = nextProps.thing;
-    let intl = nextProps.intl;
     console.log("componentWillReceiveProps thing: %o", thing);
     if (!thing.body) {
       thing.body = intl.formatMessage({
@@ -77,18 +93,13 @@ class CaseEditor extends Component {
     ) {
       thing.number_of_meeting_days = 0;
     }
-    if (thing.issues.length && typeof thing.issues[0] === "string") {
-      thing.issues = thing.issues.map(v => ({
-        text: toTitleCase(intl.formatMessage({ id: v })),
-        value: v
-      }));
-    }
+    thing = this.structureLists(thing);
     this.setState({ thing });
   }
 
   onSubmit() {
     let thing = this.state.thing;
-    console.log("onSubmit thing: %o", thing);
+    console.log("onSubmit thing: %s", JSON.stringify(thing));
     this.props.onSubmit(thing);
   }
 
@@ -98,7 +109,7 @@ class CaseEditor extends Component {
     if (thing.issues === undefined) {
       return <div />;
     }
-    console.log("render thing: %o", thing);
+    thing = this.structureLists(thing);
     if (!thing.location) {
       thing.location = "";
     }
@@ -178,8 +189,6 @@ class CaseEditor extends Component {
       : "edit_full_version";
     let quickSubmitText = "publish";
     let fullSubmitText = "publish";
-    console.log("props: %o", this.props);
-    console.log("state: %o", this.state);
     return (
       <Form
         onSubmit={onSubmit}

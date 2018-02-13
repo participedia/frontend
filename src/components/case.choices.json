@@ -1,9 +1,5 @@
 {
-  "formal_evaluation": [
-    "yes",
-    "no",
-    "dont_know"
-  ],
+  "formal_evaluation": ["yes", "no", "dont_know"],
   "implementers_of_change": [
     "appointed_public_servants",
     "corporations",
@@ -20,19 +16,9 @@
     "changes_in_civic_capacities",
     "conflict_transformation"
   ],
-  "impact_evidence": [
-    "yes",
-    "no",
-    "dont_know"
-  ],
-  "volunteers": [
-    "yes",
-    "no"
-  ],
-  "staff": [
-    "yes",
-    "no"
-  ],
+  "impact_evidence": ["yes", "no", "dont_know"],
+  "volunteers": ["yes", "no"],
+  "staff": ["yes", "no"],
   "funder_types": [
     "academic_institution",
     "activist_network",
@@ -125,16 +111,8 @@
     "trained_nonprofessional_facilitators",
     "untrained_nonprofessional_facilitators"
   ],
-  "facilitators": [
-    "yes",
-    "no",
-    "na"
-  ],
-  "legality": [
-    "yes",
-    "no",
-    "dont_know"
-  ],
+  "facilitators": ["yes", "no", "na"],
+  "legality": ["yes", "no", "dont_know"],
   "targeted_participants": [
     "appointed_public_servants_eg_bureaucrats",
     "gay/lesbian/bisexual/transgender_ie_lgbt",
@@ -168,14 +146,8 @@
     "limited_to_only_some_groups_or_individuals",
     "other"
   ],
-  "public_spectrum": [
-    "inform",
-    "consult",
-    "involve",
-    "collaborate",
-    "empower"
-  ],
-  "approach": [
+  "public_spectrum": ["inform", "consult", "involve", "collaborate", "empower"],
+  "approaches": [
     "advocacy",
     "citizenship_building",
     "civil_society_building",
@@ -194,7 +166,7 @@
     "social_mobilization",
     "other"
   ],
-  "purpose": [
+  "purposes": [
     "make_influence_or_challenge_decisions_of_government_and_public_bodies",
     "make_influence_or_challenge_decisions_of_private_organizations_eg_civil_society_organizations_corporations",
     "deliver_goods_and_services_eg_coproduction_of_public_safety_by_police_and_community",
@@ -202,10 +174,7 @@
     "academic_research",
     "other"
   ],
-  "time_limited": [
-    "a_single_defined_period_of_time",
-    "repeated_over_time"
-  ],
+  "time_limited": ["a_single_defined_period_of_time", "repeated_over_time"],
   "scope_of_influence": [
     "city/town",
     "metropolitan_area",
@@ -230,20 +199,10 @@
     "i_am_an_elected_representative",
     "i_am_a_public_official",
     "i_am_interested_in_politics_but_have_no_direct_connection_to_this_case"
-  ],  
-  "facetoface_online_or_both": [
-    "both",
-    "facetoface",
-    "online"
   ],
-  "facilitated": [
-    "no",
-    "yes"
-  ],
-  "ongoing": [
-    "true",
-    "false"
-  ],
+  "facetoface_online_or_both": ["both", "facetoface", "online"],
+  "facilitated": ["no", "yes"],
+  "ongoing": ["true", "false"],
   "participant_selection": [
     "open_to_all",
     "open_to_all_with_targeted_recruitment",
