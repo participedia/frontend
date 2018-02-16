@@ -141,7 +141,12 @@ export class SearchChoiceEditor extends React.Component {
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
-    if (props.fieldName === "issues" && typeof props.value[0] !== "object") {
+    if (
+      props.fieldName === "issues" &&
+      props.value &&
+      props.value.length &&
+      typeof props.value[0] !== "object"
+    ) {
       debugger;
     }
     this.setState = this.setState.bind(this);

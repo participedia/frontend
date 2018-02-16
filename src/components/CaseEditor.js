@@ -41,16 +41,8 @@ const buttonStyle = {
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
-    let thing = Object.assign({}, props.thing);
+    let thing = this.ensureValues(Object.assign({}, props.thing));
     console.log("constructor thing: %o", thing);
-    if (!thing.images) {
-      thing.images = [];
-    }
-    if (!thing.body) {
-      thing.body = props.intl.formatMessage({
-        id: "case_description_placeholder"
-      });
-    }
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
   }
@@ -72,9 +64,33 @@ class CaseEditor extends Component {
     }
   }
 
+  ensureValues(thing) {
+    thing.images = thing.images || [];
+    thing.body =
+      thing.body ||
+      this.props.intl.formatMessage({ id: "case_description_placeholder" });
+    thing.issues = thing.issue || [];
+    thing.specific_topics = thing.specific_topics || [];
+    thing.relationships = thing.relationships || [];
+    thing.purposes = thing.purposes || [];
+    thing.approaches = thing.approaches || [];
+    thing.targeted_participants = thing.targeted_participants || [];
+    thing.participants_interactions = thing.participants_interactions || [];
+    return thing;
+  }
+
   structureLists(thing) {
     thing.issues = this.structureList(thing.issues);
     thing.specific_topics = this.structureList(thing.specific_topics);
+    thing.relationships = this.structureList(thing.relationships);
+    thing.purposes = this.structureList(thing.purposes);
+    thing.approaches = this.structureList(thing.approaches);
+    thing.targeted_participants = this.structureList(
+      thing.targeted_participants
+    );
+    thing.participants_interactions = this.structureList(
+      thing.participants_interactions
+    );
     return thing;
   }
 
