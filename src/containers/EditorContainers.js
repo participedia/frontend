@@ -53,6 +53,7 @@ class EditorContainer extends Component {
               thing.updated_date = new Date(thing.updated_date);
             }
           }
+          console.log("Loaded data from server: %o", thing);
           component.setState({ thing });
         });
       } else if (this.props.type === "method") {

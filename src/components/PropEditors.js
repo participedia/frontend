@@ -141,17 +141,11 @@ export class SearchChoiceEditor extends React.Component {
 export class MultiChoiceEditor extends React.Component {
   constructor(props) {
     super(props);
-    if (
-      props.fieldName === "issues" &&
-      props.value &&
-      props.value.length &&
-      typeof props.value[0] !== "object"
-    ) {
-      debugger;
-    }
     this.setState = this.setState.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
+    this.selectionRenderer = this.selectionRenderer.bind(this);
+    console.log("MultiChoiceEditor constructor value: %o", props.value);
     this.state = {
       values: props.value,
       choices: this.props.passProps.choices
@@ -160,10 +154,7 @@ export class MultiChoiceEditor extends React.Component {
 
   handleChange(event, index, values) {
     let b;
-    if (
-      this.props.passProps.rankable &&
-      values.length > this.props.passProps.limit
-    ) {
+    if (values.length > this.props.passProps.limit) {
       b = values.slice(1, this.props.passProps.limit + 1);
       this.setState({ values: b });
       this.props.onChange(b);
@@ -205,6 +196,10 @@ export class MultiChoiceEditor extends React.Component {
     this.props.onChange(this.state.values);
   }
 
+  selectionRenderer(value, menuItem) {
+    return this.props.passProps.placeholder;
+  }
+
   render() {
     const { fieldName: property } = this.props;
     if (property) {
@@ -220,22 +215,26 @@ export class MultiChoiceEditor extends React.Component {
           fullWidth
           className="custom-select"
           multiple={true}
-          hintText={this.props.passProps.placeholder}
           value={values}
           onChange={this.handleChange}
+          // selectionRenderer={this.selectionRenderer}
         >
           {this.makeChoices(choices, values)}
         </SelectField>
-        <p>
-          {this.state.values && this.props.passProps.rankable ? (
-            <SortableList
-              items={this.state.values}
-              onSortEnd={this.onSortEnd}
-            />
+        <div>
+          {this.state.values ? (
+            this.props.passProps.rankable ? (
+              <SortableList
+                items={this.state.values}
+                onSortEnd={this.onSortEnd}
+              />
+            ) : (
+              <List items={this.state.values} />
+            )
           ) : (
             undefined
           )}
-        </p>
+        </div>
       </div>
     );
   }
@@ -323,46 +322,102 @@ export function makeLocalizedChoiceField(
   );
 }
 
-export function makeLocalizedMultiChoiceField(
-  intl,
-  property,
-  tag_for_choices,
-  heading,
-  rankable,
-  limit,
-  info
-) {
-  if (typeof tag_for_choices === "undefined") {
-    tag_for_choices = property;
+export function makeLocalizedMultiChoiceField(props) {
+  // fuck off so much, React
+  return <div />;
+}
+
+export class LocalizedMultiChoiceField extends React.Component {
+  // Expected props:
+  // intl,
+  // property,
+  // tag_for_choices,
+  // heading,
+  // rankable,
+  // limit,
+  // info
+
+  constructor(props) {
+    super(props);
+    this.intl = props.intl;
+    this.state = {
+      label: props.intl.formatMessage({ id: props.tag_for_choices }),
+      placeholder: props.intl.formatMessage({
+        id: props.property + "_placeholder"
+      }),
+      value: props.value,
+      choices: makeLocalizedChoices(props.intl, props.tag_for_choices)
+    };
   }
-  if (typeof heading === "undefined") {
-    heading = tag_for_choices;
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      value: props.value,
+      choices: this.makeChoices(props.passProps.choices, props.value)
+    });
   }
-  const label = intl.formatMessage({ id: tag_for_choices });
-  const placeholder = intl.formatMessage({ id: property + "_placeholder" });
-  const choices = makeLocalizedChoices(intl, tag_for_choices);
-  return (
-    <div className="field-case select">
-      <h3 className="sub-heading">{label}</h3>
-      <p className="explanatory-text">
-        {intl.formatMessage({
-          id: property + "_instructional"
-        })}
-        {info ? <InfoBox info={tag_for_choices} /> : undefined}
-      </p>
-      <Field
-        fieldName={property}
-        label={label}
-        type={MultiChoiceEditor}
-        choices={choices}
-        rankable={rankable}
-        placeholder={placeholder}
-        limit={limit}
-        dataSource={choices}
-        dataSourceConfig={{ text: "text", value: "value" }}
-      />
-    </div>
-  );
+
+  makeChoices(choices, values) {
+    let keys;
+    try {
+      keys = values.map(v => v.value);
+    } catch (e) {
+      console.warn(
+        "Error in LocalizedMultichoiceField mapping keys for values %o",
+        values
+      );
+      keys = [];
+    }
+    return choices.map(function(v) {
+      return (
+        <MenuItem
+          value={v.value}
+          key={v.value}
+          primaryText={v.text}
+          selected={keys.includes(v.value)}
+        />
+      );
+    });
+  }
+
+  onChange(event, index, value) {
+    this.setState({ value: value });
+    this.props.onChange(value);
+  }
+
+  render() {
+    let onChange = this.onChange.bind(this);
+    console.log(
+      "rendering LocalizedMultichoiceField for %s",
+      this.state.property
+    );
+    return (
+      <div className="field-case select">
+        <h3 className="sub-heading">{this.state.label}</h3>
+        <p className="explanatory-text">
+          {this.intl.formatMessage({
+            id: this.state.property + "_instructional"
+          })}
+          {this.state.info ? (
+            <InfoBox info={this.state.tag_for_choices} />
+          ) : (
+            undefined
+          )}
+        </p>
+        <Field
+          fieldName={this.state.property}
+          label={this.state.label}
+          type={MultiChoiceEditor}
+          choices={this.state.choices}
+          rankable={this.state.rankable}
+          placeholder={this.state.placeholder}
+          limit={this.state.limit}
+          dataSource={this.state.choices}
+          dataSourceConfig={{ text: "text", value: "value" }}
+        />
+      </div>
+    );
+  }
 }
 
 export class BooleanEditor extends React.Component {

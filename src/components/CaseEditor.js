@@ -25,7 +25,7 @@ import PublishIcon from "material-ui/svg-icons/editor/publish";
 import { toTitleCase } from "../util.js";
 import {
   makeLocalizedChoiceField,
-  makeLocalizedMultiChoiceField,
+  LocalizedMultiChoiceField,
   makeLocalizedDateField,
   makeLocalizedNumberField,
   makeLocalizedLocationField,
@@ -41,8 +41,9 @@ const buttonStyle = {
 class CaseEditor extends Component {
   constructor(props) {
     super(props);
-    let thing = this.ensureValues(Object.assign({}, props.thing));
-    console.log("constructor thing: %o", thing);
+    let thing = Object.assign({}, props.thing);
+    console.log("constructor issues: %o", thing.issues);
+    thing = this.ensureValues(thing);
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
   }
@@ -65,11 +66,12 @@ class CaseEditor extends Component {
   }
 
   ensureValues(thing) {
+    console.log("ensure values issues: %o", thing.issues);
     thing.images = thing.images || [];
     thing.body =
       thing.body ||
       this.props.intl.formatMessage({ id: "case_description_placeholder" });
-    thing.issues = thing.issue || [];
+    thing.issues = thing.issues || [];
     thing.specific_topics = thing.specific_topics || [];
     thing.relationships = thing.relationships || [];
     thing.purposes = thing.purposes || [];
@@ -81,6 +83,7 @@ class CaseEditor extends Component {
 
   structureLists(thing) {
     thing.issues = this.structureList(thing.issues);
+    console.log("structureLists issues: %o", thing.issues);
     thing.specific_topics = this.structureList(thing.specific_topics);
     thing.relationships = this.structureList(thing.relationships);
     thing.purposes = this.structureList(thing.purposes);
@@ -122,6 +125,7 @@ class CaseEditor extends Component {
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     let thing = Object.assign({}, this.props.thing, this.state.thing);
+    console.log("Case Editor render issues: %o", thing.issues);
     if (thing.issues === undefined) {
       return <div />;
     }
@@ -198,8 +202,6 @@ class CaseEditor extends Component {
       />
     );
     let incomplete = thing.title ? false : true;
-    let issues = thing.issues;
-    console.log("issues before breaking: %o", issues);
     let doFullVersion = this.props.new
       ? "do_full_version"
       : "edit_full_version";
@@ -249,34 +251,36 @@ class CaseEditor extends Component {
                       fullWidth
                     />
                   </div>
-                  {!isQuick
-                    ? makeLocalizedMultiChoiceField(
-                        intl,
-                        "relationships",
-                        "relationships",
-                        "relationships",
-                        true,
-                        3
-                      )
-                    : undefined}
-                  {makeLocalizedMultiChoiceField(
-                    intl,
-                    "issues",
-                    "issues",
-                    "issues",
-                    true,
-                    3
+                  {!isQuick ? (
+                    <LocalizedMultiChoiceField
+                      intl={intl}
+                      property="relationships"
+                      tag_for_choices="relationships"
+                      heading="relationships"
+                      rankable={true}
+                      limit={3}
+                    />
+                  ) : (
+                    undefined
                   )}
-                  {issues ? (
+                  <LocalizedMultiChoiceField
+                    intl={intl}
+                    property="issues"
+                    tag_for_choices="issues"
+                    heading="issues"
+                    rankable={true}
+                    limit={3}
+                  />
+                  {thing.issues.length ? (
                     <div>
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "specific_topics",
-                        "specific_topics",
-                        "specific_topics",
-                        true,
-                        3
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="specific_topics"
+                        tag_for_choices="specific_topics"
+                        heading="specific_topics"
+                        rankable={true}
+                        limit={3}
+                      />
                     </div>
                   ) : (
                     undefined
@@ -418,22 +422,22 @@ class CaseEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="purpose_approach" />
                       </h2>
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "purposes",
-                        "purposes",
-                        "purposes",
-                        true,
-                        3
-                      )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "approaches",
-                        "approaches",
-                        "approaches",
-                        true,
-                        3
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="purposes"
+                        tag_for_choices="purposes"
+                        heading="purposes"
+                        rankable={true}
+                        limit={3}
+                      />
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="approaches"
+                        tag_for_choices="approaches"
+                        heading="approaches"
+                        rankable={true}
+                        limit={3}
+                      />
                       {makeLocalizedChoiceField(intl, "public_spectrum")}
                     </div>
                     <div className="form-section">
@@ -451,16 +455,18 @@ class CaseEditor extends Component {
                         thing.open_limited ===
                           "open_to_all_with_special_effort_to_recruit_some_groups_eg_community_organizing_to_recruit_lowincome_earners") ||
                       thing.open_limited ===
-                        "limited_to_only_some_groups_or_individuals"
-                        ? makeLocalizedMultiChoiceField(
-                            intl,
-                            "targeted_participants",
-                            "targeted_participants",
-                            "targeted_participants",
-                            false,
-                            3
-                          )
-                        : undefined}
+                        "limited_to_only_some_groups_or_individuals" ? (
+                        <LocalizedMultiChoiceField
+                          intl={intl}
+                          property="targeted_participants"
+                          tag_for_choices="targeted_participants"
+                          heading="targeted_participants"
+                          rankable={false}
+                          limit={3}
+                        />
+                      ) : (
+                        undefined
+                      )}
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
@@ -488,60 +494,62 @@ class CaseEditor extends Component {
                         intl,
                         "facetoface_online_or_both"
                       )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "participants_interaction",
-                        "participants_interaction",
-                        "participants_interaction",
-                        true,
-                        3
-                      )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "learning_resources",
-                        "learning_resources",
-                        "learning_resources",
-                        false
-                      )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "decision_methods",
-                        "decision_methods",
-                        "decision_methods",
-                        false
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="participants_interaction"
+                        tag_for_choices="participants_interaction"
+                        heading="participants_interaction"
+                        rankable={true}
+                        limit={3}
+                      />
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="learning_resources"
+                        tag_for_choices="learning_resources"
+                        heading="learning_resources"
+                        rankable={false}
+                      />
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="decision_methods"
+                        tag_for_choices="decision_methods"
+                        heading="decision_methods"
+                        rankable={false}
+                      />
                       {thing.decision_methods &&
-                      thing.decision_methods.find(o => o.value === "voting")
-                        ? makeLocalizedMultiChoiceField(
-                            intl,
-                            "if_voting",
-                            "if_voting",
-                            "if_voting",
-                            false
-                          )
-                        : undefined}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "insights_outcomes",
-                        "insights_outcomes",
-                        "insights_outcomes",
-                        false,
-                        3
+                      thing.decision_methods.find(o => o.value === "voting") ? (
+                        <LocalizedMultiChoiceField
+                          intl={intl}
+                          property="if_voting"
+                          tag_for_choices="if_voting"
+                          heading="if_voting"
+                          rankable={false}
+                        />
+                      ) : (
+                        undefined
                       )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="insights_outcomes"
+                        tag_for_choices="insights_outcomes"
+                        heading="insights_outcomes"
+                        rankable={false}
+                        limit={3}
+                      />
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
                         <FormattedMessage id="organizers_supporters" />
                       </h2>
                       {primary_organizer}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "organizer_types",
-                        "organizer_types",
-                        "organizer_types",
-                        false,
-                        3
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="organizer_types"
+                        tag_for_choices="organizer_types"
+                        heading="organizer_types"
+                        rankable={false}
+                        limit={3}
+                      />
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
@@ -566,14 +574,14 @@ class CaseEditor extends Component {
                           fullWidth
                         />
                       </div>
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "funder_types",
-                        "funder_types",
-                        "funder_types",
-                        true,
-                        3
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="funder_types"
+                        tag_for_choices="funder_types"
+                        heading="funder_types"
+                        rankable={true}
+                        limit={3}
+                      />
                       {makeLocalizedChoiceField(
                         intl,
                         "staff",
@@ -600,24 +608,26 @@ class CaseEditor extends Component {
                         "impact_evidence",
                         false
                       )}
-                      {thing && thing.impact_evidence === "yes"
-                        ? makeLocalizedMultiChoiceField(
-                            intl,
-                            "changes_types",
-                            "changes_types",
-                            "changes_types",
-                            true,
-                            5,
-                            true
-                          )
-                        : undefined}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "implementers_of_change",
-                        "implementers_of_change",
-                        "implementers_of_change",
-                        false
+                      {thing && thing.impact_evidence === "yes" ? (
+                        <LocalizedMultiChoiceField
+                          intl={intl}
+                          property="changes_types"
+                          tag_for_choices="changes_types"
+                          heading="changes_types"
+                          rankable={true}
+                          limit={5}
+                          info={true}
+                        />
+                      ) : (
+                        undefined
                       )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="implementers_of_change"
+                        tag_for_choices="implementers_of_change"
+                        heading="implementers_of_change"
+                        rankable={false}
+                      />
                       {makeLocalizedChoiceField(
                         intl,
                         "formal_evaluation",
