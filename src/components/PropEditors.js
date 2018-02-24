@@ -117,7 +117,7 @@ export class SearchChoiceEditor extends React.Component {
 
   onChange(event, index, value) {
     this.setState({ value: value });
-    this.props.onChange(value);
+    this.props.onChange(this.props.property, value);
   }
 
   render() {
@@ -147,17 +147,13 @@ export class MultiChoiceEditor extends React.Component {
     this.selectionRenderer = this.selectionRenderer.bind(this);
     console.log("MultiChoiceEditor constructor value: %o", props.value);
     this.state = {
-      value: props.value,
-      choices: props.choices || [],
-      rankable: props.rankable
+      value: props.value
     };
   }
 
   componentWillReceiveProps(props) {
     this.setState({
-      value: props.value,
-      choices: props.choices,
-      rankable: props.rankable
+      value: props.value
     });
   }
 
@@ -166,14 +162,14 @@ export class MultiChoiceEditor extends React.Component {
     if (value.length > this.props.limit) {
       b = value.slice(1, this.props.limit + 1);
       this.setState({ value: b });
-      this.props.onChange(b);
+      this.props.onChange(this.props.property, b);
     } else if (value.length > this.props.limit) {
       b = value.slice(1, this.props.limit + 1);
       this.setState({ value: b });
-      this.props.onChange(b);
+      this.props.onChange(this.props.property, b);
     } else {
       this.setState({ value });
-      this.props.onChange(value);
+      this.props.onChange(this.props.property, value);
     }
   }
 
@@ -203,7 +199,6 @@ export class MultiChoiceEditor extends React.Component {
     this.setState({
       value: arrayMove(this.state.value, oldIndex, newIndex)
     });
-    this.props.onChange(this.state.value);
   }
 
   selectionRenderer(value, menuItem) {
@@ -211,37 +206,38 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   render() {
-    const { fieldName: property } = this.props;
-    if (property) {
+    if (this.props.property) {
       console.log(
         "MultiChoiceEditor rendering (rankable: %s) %s: %o",
-        this.state.rankable,
-        property,
+        this.props.rankable,
+        this.props.property,
         this.state.value
       );
     } else {
       console.log("MultiChoiceEditor render(): no property for %o", this.props);
     }
-    const { value, choices } = this.state;
     return (
       <div>
         <SelectField
-          name={property}
+          name={this.props.property}
           fullWidth
           className="custom-select"
           multiple={true}
-          value={value}
+          value={this.state.value}
           onChange={this.handleChange}
           selectionRenderer={this.selectionRenderer}
         >
-          {this.makeChoices(choices, value)}
+          {this.makeChoices(this.props.choices, this.state.value)}
         </SelectField>
         <div>
-          {value && value.length ? (
+          {this.state.value && this.state.value.length ? (
             this.props.rankable ? (
-              <SortableList items={value} onSortEnd={this.onSortEnd} />
+              <SortableList
+                items={this.state.value}
+                onSortEnd={this.onSortEnd}
+              />
             ) : (
-              <List items={value} />
+              <List items={this.state.value} />
             )
           ) : (
             undefined
@@ -342,7 +338,6 @@ export class LocalizedMultiChoiceField extends React.Component {
 
   constructor(props) {
     super(props);
-    this.intl = props.intl;
     console.log(
       "LocalizedMultiChoiceField constructor %s: %o",
       props.property,
@@ -353,11 +348,6 @@ export class LocalizedMultiChoiceField extends React.Component {
       placeholder: props.intl.formatMessage({
         id: props.property + "_placeholder"
       }),
-      property: props.property,
-      rankable: props.rankable,
-      limit: props.limit,
-      info: props.info,
-      value: props.value,
       choices: makeLocalizedChoices(props.intl, props.property)
     };
   }
@@ -373,25 +363,11 @@ export class LocalizedMultiChoiceField extends React.Component {
       placeholder: props.intl.formatMessage({
         id: props.property + "_placeholder"
       }),
-      property: props.property,
-      rankable: props.rankable,
-      limit: props.limit,
-      info: props.info,
-      value: props.value,
       choices: makeLocalizedChoices(props.intl, props.property)
     });
   }
 
-  onChange(event, index, value) {
-    this.setState({
-      value: value
-      //      choices: this.makeChoices(this.state.choices, value)
-    });
-    this.props.onChange(value);
-  }
-
   render() {
-    let onChange = this.onChange.bind(this);
     console.log(
       "rendering LocalizedMultichoiceField for %s: %o",
       this.state.property,
@@ -402,19 +378,20 @@ export class LocalizedMultiChoiceField extends React.Component {
       <div className="field-case select">
         <h3 className="sub-heading">{this.state.label}</h3>
         <p className="explanatory-text">
-          {this.intl.formatMessage({
-            id: this.state.property + "_instructional"
+          {this.props.intl.formatMessage({
+            id: this.props.property + "_instructional"
           })}
-          {this.state.info ? <InfoBox info={this.state.property} /> : undefined}
+          {this.props.info ? <InfoBox info={this.props.property} /> : undefined}
         </p>
         <MultiChoiceEditor
-          fieldName={this.state.property}
+          property={this.props.property}
           label={this.state.label}
           choices={this.state.choices}
-          rankable={this.state.rankable}
+          rankable={this.props.rankable}
           placeholder={this.state.placeholder}
-          limit={this.state.limit}
-          value={this.state.value}
+          limit={this.props.limit}
+          value={this.props.value}
+          onChange={this.props.onChange}
         />
       </div>
     );

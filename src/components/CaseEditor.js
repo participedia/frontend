@@ -46,11 +46,13 @@ class CaseEditor extends Component {
     thing = this.ensureValues(thing);
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   updateBody(body) {
-    let thing = Object.assign({}, this.state.thing, { body: body });
-    this.setState({ thing });
+    this.setState((prevState, props) => ({
+      thing: Object.assign({}, prevState.thing, { body: body })
+    }));
   }
 
   structureList(list) {
@@ -116,6 +118,11 @@ class CaseEditor extends Component {
     this.setState({ thing });
   }
 
+  onChange(key, value) {
+    console.log("CaseEditor.onChange(%s, %o)", key, value);
+    this.setState((prevState, props) => (prevState.thing[key] = value));
+  }
+
   onSubmit() {
     let thing = this.state.thing;
     console.log("onSubmit thing: %s", JSON.stringify(thing));
@@ -124,12 +131,12 @@ class CaseEditor extends Component {
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
-    let thing = Object.assign({}, this.props.thing, this.state.thing);
-    console.log("Case Editor render issues: %o", thing.issues);
-    if (thing.issues === undefined) {
+    // let thing = Object.assign({}, this.props.thing, this.state.thing);
+    console.log("Case Editor render issues: %o", this.state.thing.issues);
+    if (this.state.thing.issues === undefined) {
       return <div />;
     }
-    thing = this.structureLists(thing);
+    let thing = this.structureLists(Object.assign({}, this.state.thing));
     if (!thing.location) {
       thing.location = "";
     }
@@ -267,6 +274,7 @@ class CaseEditor extends Component {
                     value={thing.issues}
                     rankable={true}
                     limit={3}
+                    onChange={this.onChange}
                   />
                   {thing.issues.length ? (
                     <div>
@@ -276,6 +284,7 @@ class CaseEditor extends Component {
                         value={thing.specific_topics}
                         rankable={true}
                         limit={3}
+                        onChange={this.onChange}
                       />
                     </div>
                   ) : (
@@ -424,6 +433,7 @@ class CaseEditor extends Component {
                         value={thing.purposes}
                         rankable={true}
                         limit={3}
+                        onChange={this.onChange}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
@@ -431,6 +441,7 @@ class CaseEditor extends Component {
                         value={thing.approaches}
                         rankable={true}
                         limit={3}
+                        onChange={this.onChange}
                       />
                       {makeLocalizedChoiceField(intl, "public_spectrum")}
                     </div>
@@ -456,6 +467,7 @@ class CaseEditor extends Component {
                           value={thing.targeted_participants}
                           rankable={false}
                           limit={3}
+                          onChange={this.onChange}
                         />
                       ) : (
                         undefined
@@ -481,18 +493,21 @@ class CaseEditor extends Component {
                         value={thing.participants_interactions}
                         rankable={true}
                         limit={3}
+                        onChange={this.onChange}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="learning_resources"
                         value={thing.learning_resources}
                         rankable={false}
+                        onChange={this.onChange}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="decision_methods"
                         value={thing.decision_methods}
                         rankable={false}
+                        onChange={this.onChange}
                       />
                       {thing.decision_methods &&
                       thing.decision_methods.find(o => o.value === "voting") ? (
@@ -501,6 +516,7 @@ class CaseEditor extends Component {
                           property="if_voting"
                           value={thing.if_voting}
                           rankable={false}
+                          onChange={this.onChange}
                         />
                       ) : (
                         undefined
@@ -511,6 +527,7 @@ class CaseEditor extends Component {
                         value={thing.insights_outcomes}
                         rankable={false}
                         limit={3}
+                        onChange={this.onChange}
                       />
                     </div>
                     <div className="form-section">
@@ -524,6 +541,7 @@ class CaseEditor extends Component {
                         value={thing.organizer_types}
                         rankable={false}
                         limit={3}
+                        onChange={this.onChange}
                       />
                     </div>
                     <div className="form-section">
@@ -555,6 +573,7 @@ class CaseEditor extends Component {
                         value={thing.funder_types}
                         rankable={true}
                         limit={3}
+                        onChange={this.onChange}
                       />
                       {makeLocalizedChoiceField(intl, "staff", false)}
                       {makeLocalizedChoiceField(intl, "volunteers", false)}
@@ -572,6 +591,7 @@ class CaseEditor extends Component {
                           rankable={true}
                           limit={5}
                           info={true}
+                          onChange={this.onChange}
                         />
                       ) : (
                         undefined
@@ -581,6 +601,7 @@ class CaseEditor extends Component {
                         property="implementers_of_change"
                         value={thing.changes_types}
                         rankable={false}
+                        onChange={this.onChange}
                       />
                       {makeLocalizedChoiceField(
                         intl,
