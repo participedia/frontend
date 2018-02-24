@@ -42,7 +42,6 @@ class CaseEditor extends Component {
   constructor(props) {
     super(props);
     let thing = Object.assign({}, props.thing);
-    console.log("constructor issues: %o", thing.issues);
     thing = this.ensureValues(thing);
     this.state = { thing, modal: false };
     this.updateBody = this.updateBody.bind(this);
@@ -68,7 +67,6 @@ class CaseEditor extends Component {
   }
 
   ensureValues(thing) {
-    console.log("ensure values issues: %o", thing.issues);
     thing.images = thing.images || [];
     thing.body =
       thing.body ||
@@ -85,7 +83,6 @@ class CaseEditor extends Component {
 
   structureLists(thing) {
     thing.issues = this.structureList(thing.issues);
-    console.log("structureLists issues: %o", thing.issues);
     thing.specific_topics = this.structureList(thing.specific_topics);
     thing.relationships = this.structureList(thing.relationships);
     thing.purposes = this.structureList(thing.purposes);
@@ -102,7 +99,6 @@ class CaseEditor extends Component {
   componentWillReceiveProps(nextProps) {
     const intl = nextProps.intl;
     let thing = nextProps.thing;
-    console.log("componentWillReceiveProps thing: %o", thing);
     if (!thing.body) {
       thing.body = intl.formatMessage({
         id: "case_description_placeholder"
@@ -119,20 +115,17 @@ class CaseEditor extends Component {
   }
 
   onChange(key, value) {
-    console.log("CaseEditor.onChange(%s, %o)", key, value);
     this.setState((prevState, props) => (prevState.thing[key] = value));
   }
 
   onSubmit() {
     let thing = this.state.thing;
-    console.log("onSubmit thing: %s", JSON.stringify(thing));
     this.props.onSubmit(thing);
   }
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
     // let thing = Object.assign({}, this.props.thing, this.state.thing);
-    console.log("Case Editor render issues: %o", this.state.thing.issues);
     if (this.state.thing.issues === undefined) {
       return <div />;
     }
@@ -264,6 +257,7 @@ class CaseEditor extends Component {
                       property="relationships"
                       rankable={true}
                       limit={3}
+                      onChange={this.onChange}
                     />
                   ) : (
                     undefined

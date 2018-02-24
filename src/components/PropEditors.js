@@ -8,7 +8,7 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
-import List from "../vendor/react-items-list";
+import List from "./List";
 import Avatar from "material-ui/Avatar";
 import Upload from "../Upload";
 import "./PropEditors.css";
@@ -77,7 +77,6 @@ export class ChoiceEditor extends React.Component {
   render() {
     let onChange = this.onChange.bind(this);
     let { fieldName: property } = this.props;
-    console.log("rendering ChoiceEditor for %s", property);
     return (
       <SelectField
         name={property}
@@ -145,7 +144,6 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.selectionRenderer = this.selectionRenderer.bind(this);
-    console.log("MultiChoiceEditor constructor value: %o", props.value);
     this.state = {
       value: props.value
     };
@@ -177,9 +175,7 @@ export class MultiChoiceEditor extends React.Component {
     let keys;
     try {
       keys = value ? value.map(v => v.value) : [];
-      console.log("MultiChoiceEditor keys: %o", keys);
     } catch (e) {
-      console.warn("Error in makeChoices");
       keys = [];
     }
     return choices.map(function(v) {
@@ -206,16 +202,6 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   render() {
-    if (this.props.property) {
-      console.log(
-        "MultiChoiceEditor rendering (rankable: %s) %s: %o",
-        this.props.rankable,
-        this.props.property,
-        this.state.value
-      );
-    } else {
-      console.log("MultiChoiceEditor render(): no property for %o", this.props);
-    }
     return (
       <div>
         <SelectField
@@ -322,27 +308,18 @@ export function makeLocalizedChoiceField(
   );
 }
 
-export function makeLocalizedMultiChoiceField(props) {
-  console.log("makeLocalizedMutltiChoiceField should not be getting called");
-  return <div />;
-}
-
 export class LocalizedMultiChoiceField extends React.Component {
   // Expected props:
-  // intl,
-  // property,
-  // value,
-  // rankable,
-  // limit,
+  // intl
+  // property
+  // value
+  // rankable
+  // limit
   // info
+  // onChange
 
   constructor(props) {
     super(props);
-    console.log(
-      "LocalizedMultiChoiceField constructor %s: %o",
-      props.property,
-      props.value
-    );
     this.state = {
       label: props.intl.formatMessage({ id: props.property }),
       placeholder: props.intl.formatMessage({
@@ -353,11 +330,6 @@ export class LocalizedMultiChoiceField extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(
-      "LocalizedMultiChoiceField componentWillReceiveProps %s: %o",
-      props.property,
-      props.value
-    );
     this.setState({
       label: props.intl.formatMessage({ id: props.property }),
       placeholder: props.intl.formatMessage({
@@ -368,12 +340,6 @@ export class LocalizedMultiChoiceField extends React.Component {
   }
 
   render() {
-    console.log(
-      "rendering LocalizedMultichoiceField for %s: %o",
-      this.state.property,
-      this.state.value
-    );
-    // let choices = this.makeChoices(this.state.choices, this.state.value);
     return (
       <div className="field-case select">
         <h3 className="sub-heading">{this.state.label}</h3>
@@ -676,30 +642,7 @@ class LocationEditor extends React.Component {
 
   componentWillReceiveProps(props) {
     this.setState({ value: stringifyLocation(props.value) });
-    // console.log("setting value", stringifyLocation(props.value));
-    // this.setLocationString(props.value);
   }
-
-  // setLocationString(value) {
-  //   let real_value = value;
-  //   if (value) {
-  //     if (value.label) {
-  //       value = value.label;
-  //     } else if (value.city) {
-  //       if (value.country) {
-  //         value = value.city + ", " + value.country;
-  //       } else {
-  //         value = value.city;
-  //       }
-  //     } else if (value.country) {
-  //       value = value.country;
-  //     }
-  //   } else {
-  //     value = "";
-  //   }
-
-  //   this.setState({ value, real_value });
-  // }
 
   onChange(value) {
     this.setState({ value: stringifyLocation(value) });

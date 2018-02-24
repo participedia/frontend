@@ -14,7 +14,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import PublishIcon from "material-ui/svg-icons/editor/publish";
 import {
   makeLocalizedChoiceField,
-  makeLocalizedMultiChoiceField,
+  LocalizedMultiChoiceField,
   makeLocalizedListField
 } from "./PropEditors";
 
@@ -188,14 +188,14 @@ class MethodEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="classification" />
                       </h2>
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "typical_purposes",
-                        "typical_purposes",
-                        "typical_purposes",
-                        true,
-                        3
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="typical_purposes"
+                        value={this.state.thing.typical_purposes}
+                        rankable={true}
+                        limit={3}
+                        onChange={this.onChange}
+                      />
                       {makeLocalizedChoiceField(
                         intl,
                         "participant_selection",
@@ -214,23 +214,23 @@ class MethodEditor extends Component {
                         "method",
                         false
                       )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "interaction_modes",
-                        "interaction_modes",
-                        "interaction_modes",
-                        true,
-                        3
-                      )}
-                      {makeLocalizedMultiChoiceField(
-                        intl,
-                        "communication_outcomes",
-                        "communication_outcomes",
-                        "communication_outcomes",
-                        true,
-                        3,
-                        true
-                      )}
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="interaction_modes"
+                        value={this.state.thing.interaction_modes}
+                        rankable={true}
+                        limit={3}
+                        onChange={this.onChange}
+                      />
+                      <LocalizedMultiChoiceField
+                        intl={intl}
+                        property="communication_outcomes"
+                        value={this.state.thing.communication_outcomes}
+                        rankable={true}
+                        limit={3}
+                        info={true}
+                        onChange={this.onChange}
+                      />
                       {makeLocalizedChoiceField(intl, "decision_method")}
                       {thing.decision_method &&
                       thing.decision_method === "voting"
