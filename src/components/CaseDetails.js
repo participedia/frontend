@@ -21,13 +21,14 @@ export default class CaseDetails extends React.Component {
           <FormattedMessage id="data" />
         </h2>
         <Tags thing={thing} />
+
         <LinkedPropertyGroupWithHeading
           heading="issue"
           property="issue"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
-          heading="specific_topic"
+          label="specific_topic"
           property="specific_topic"
           thing={thing}
         />
@@ -110,7 +111,9 @@ export default class CaseDetails extends React.Component {
           property="type_of_sponsoring_entity"
           thing={thing}
         />
+
         <BooleanProp label="ongoing" property="ongoing" thing={thing} />
+
         <DateProp label="start_date" property="start_date" thing={thing} />
         <DateProp label="end_date" property="end_date" thing={thing} />
         <NumberProp
@@ -124,6 +127,158 @@ export default class CaseDetails extends React.Component {
           property="who_else_supported_the_initiative"
           thing={thing}
         />
+
+        <TextProp
+          label="scope_of_influence"
+          property="scope_of_influence"
+          thing={thing}
+        />
+
+        <ListWithHeading
+          heading="images"
+          property="images"
+          thing={thing}
+        />
+
+        <ListWithHeading
+          heading="videos"
+          property="videos"
+          thing={thing}
+        />
+
+        <TextProp
+          label="time_limited"
+          property="time_limited"
+          thing={thing}
+        />
+
+        <TextProp
+          label="time_limited"
+          property="time_limited"
+          thing={thing}
+        />
+
+         <LinkedPropertyGroupWithHeading
+          heading="purposes"
+          property="purposes"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="approaches"
+          property="approaches"
+          thing={thing}
+        />
+        <TextProp
+          label="public_spectrum"
+          property="public_spectrum"
+          thing={thing}
+        />
+        <TextProp
+          label="open_limited"
+          property="open_limited"
+          thing={thing}
+        />
+        <TextProp
+          label="recruitment_method"
+          property="recruitment_method"
+          thing={thing}
+        />
+        <TextProp
+          label="recruitment_method"
+          property="recruitment_method"
+          thing={thing}
+        />
+        <TextProp
+          label="legality"
+          property="legality"
+          thing={thing}
+        />
+
+        <TextProp
+          label="facilitators"
+          property="facilitators"
+          thing={thing}
+        />
+
+        <TextProp
+          label="facilitator_training"
+          property="facilitator_training"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="participants_interactions"
+          property="participants_interactions"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="online_learning_resource"
+          property="online_learning_resource"
+          thing={thing}
+        />
+        <TextProp
+          label="if_voting"
+          property="if_voting"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="insights_outcomes"
+          property="insights_outcomes"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="organizer_types"
+          property="organizer_types"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="funders"
+          property="funders"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="funder_types"
+          property="funder_types"
+          thing={thing}
+        />
+        <BooleanProp label="staff" property="staff" thing={thing} />
+        <BooleanProp label="volunteers" property="volunteers" thing={thing} />
+        <TextProp
+          label="impact_evidence"
+          property="impact_evidence"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="change_types"
+          property="change_types"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="implementers_of_change"
+          property="implementers_of_change"
+          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="formal_evaluation"
+          property="formal_evaluation"
+          thing={thing}
+        />
+        <ListWithHeading
+          heading="evaluation_reports"
+          property="evaluation_reports"
+          thing={thing}
+        />
+        <ListWithHeading
+          heading="evaluation_links"
+          property="evaluation_links"
+          thing={thing}
+        />
+
+        <LinkedPropertyGroupWithHeading
+          label="tags"
+          property="tags"
+          thing={thing}
+        />
+
       </div>
     );
   }
