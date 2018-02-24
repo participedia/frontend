@@ -255,8 +255,6 @@ class CaseEditor extends Component {
                     <LocalizedMultiChoiceField
                       intl={intl}
                       property="relationships"
-                      tag_for_choices="relationships"
-                      heading="relationships"
                       rankable={true}
                       limit={3}
                     />
@@ -266,8 +264,7 @@ class CaseEditor extends Component {
                   <LocalizedMultiChoiceField
                     intl={intl}
                     property="issues"
-                    tag_for_choices="issues"
-                    heading="issues"
+                    value={thing.issues}
                     rankable={true}
                     limit={3}
                   />
@@ -276,8 +273,7 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="specific_topics"
-                        tag_for_choices="specific_topics"
-                        heading="specific_topics"
+                        value={thing.specific_topics}
                         rankable={true}
                         limit={3}
                       />
@@ -425,16 +421,14 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="purposes"
-                        tag_for_choices="purposes"
-                        heading="purposes"
+                        value={thing.purposes}
                         rankable={true}
                         limit={3}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="approaches"
-                        tag_for_choices="approaches"
-                        heading="approaches"
+                        value={thing.approaches}
                         rankable={true}
                         limit={3}
                       />
@@ -459,8 +453,7 @@ class CaseEditor extends Component {
                         <LocalizedMultiChoiceField
                           intl={intl}
                           property="targeted_participants"
-                          tag_for_choices="targeted_participants"
-                          heading="targeted_participants"
+                          value={thing.targeted_participants}
                           rankable={false}
                           limit={3}
                         />
@@ -473,20 +466,8 @@ class CaseEditor extends Component {
                         <FormattedMessage id="process" />
                       </h2>
                       {process_methods}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "legality",
-                        "legality",
-                        "legality",
-                        false
-                      )}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "facilitators",
-                        "facilitators",
-                        "facilitators",
-                        false
-                      )}
+                      {makeLocalizedChoiceField(intl, "legality", false)}
+                      {makeLocalizedChoiceField(intl, "facilitators", false)}
                       {thing && thing.facilitators === "yes"
                         ? makeLocalizedChoiceField(intl, "facilitator_training")
                         : undefined}
@@ -497,23 +478,20 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="participants_interaction"
-                        tag_for_choices="participants_interaction"
-                        heading="participants_interaction"
+                        value={thing.participants_interactions}
                         rankable={true}
                         limit={3}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="learning_resources"
-                        tag_for_choices="learning_resources"
-                        heading="learning_resources"
+                        value={thing.learning_resources}
                         rankable={false}
                       />
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="decision_methods"
-                        tag_for_choices="decision_methods"
-                        heading="decision_methods"
+                        value={thing.decision_methods}
                         rankable={false}
                       />
                       {thing.decision_methods &&
@@ -521,8 +499,7 @@ class CaseEditor extends Component {
                         <LocalizedMultiChoiceField
                           intl={intl}
                           property="if_voting"
-                          tag_for_choices="if_voting"
-                          heading="if_voting"
+                          value={thing.if_voting}
                           rankable={false}
                         />
                       ) : (
@@ -531,8 +508,7 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="insights_outcomes"
-                        tag_for_choices="insights_outcomes"
-                        heading="insights_outcomes"
+                        value={thing.insights_outcomes}
                         rankable={false}
                         limit={3}
                       />
@@ -545,8 +521,7 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="organizer_types"
-                        tag_for_choices="organizer_types"
-                        heading="organizer_types"
+                        value={thing.organizer_types}
                         rankable={false}
                         limit={3}
                       />
@@ -577,43 +552,23 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="funder_types"
-                        tag_for_choices="funder_types"
-                        heading="funder_types"
+                        value={thing.funder_types}
                         rankable={true}
                         limit={3}
                       />
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "staff",
-                        "staff",
-                        "staff",
-                        false
-                      )}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "volunteers",
-                        "volunteers",
-                        "volunteers",
-                        false
-                      )}
+                      {makeLocalizedChoiceField(intl, "staff", false)}
+                      {makeLocalizedChoiceField(intl, "volunteers", false)}
                     </div>
                     <div className="form-section">
                       <h2 className="section-heading">
                         <FormattedMessage id="impact_evidence" />
                       </h2>
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "impact_evidence",
-                        "impact_evidence",
-                        "impact_evidence",
-                        false
-                      )}
+                      {makeLocalizedChoiceField(intl, "impact_evidence", false)}
                       {thing && thing.impact_evidence === "yes" ? (
                         <LocalizedMultiChoiceField
                           intl={intl}
                           property="changes_types"
-                          tag_for_choices="changes_types"
-                          heading="changes_types"
+                          value={thing.changes_types}
                           rankable={true}
                           limit={5}
                           info={true}
@@ -624,14 +579,11 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="implementers_of_change"
-                        tag_for_choices="implementers_of_change"
-                        heading="implementers_of_change"
+                        value={thing.changes_types}
                         rankable={false}
                       />
                       {makeLocalizedChoiceField(
                         intl,
-                        "formal_evaluation",
-                        "formal_evaluation",
                         "formal_evaluation",
                         false
                       )}
