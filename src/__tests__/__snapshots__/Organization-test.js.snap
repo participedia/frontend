@@ -501,7 +501,15 @@ exports[`Organization editor renders correctly 1`] = `
                 </p>
                 <div
                   className="list links"
-                />
+                >
+                  <div
+                    className="list"
+                  >
+                    <div />
+                    <div />
+                    <div />
+                  </div>
+                </div>
               </div>
               <h3
                 className="sub-heading"
@@ -661,7 +669,11 @@ exports[`Organization editor renders correctly 1`] = `
                 </p>
                 <div
                   className="list videos"
-                />
+                >
+                  <div
+                    className="list"
+                  />
+                </div>
               </div>
             </div>
           </div>

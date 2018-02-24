@@ -378,7 +378,7 @@ class CaseEditor extends Component {
                   </h2>
                   <div className="field-case">
                     <h3 className="sub-sub-heading">
-                      <FormattedMessage id="photos" />
+                      <FormattedMessage id="images" />
                     </h3>
                     <ImageListEditor property="images" thing={thing} />
                     {makeLocalizedListField(intl, "videos", "case")}
