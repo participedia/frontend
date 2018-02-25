@@ -217,7 +217,7 @@ exports[`Case editor renders correctly 1`] = `
                     <img
                       alt=""
                       className="img-fluid"
-                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/agenda21%2520.jpg"
+                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.comagenda21%2520.jpg"
                       style={
                         Object {
                           "height": "100%",
@@ -720,7 +720,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Specific Topic
+                  Not specified
                 </span>
               </p>
               <div
@@ -1010,6 +1010,71 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             <div />
             <div />
             <div />
+            <div />
+            <div>
+              <p
+                className="sub-sub-heading"
+              >
+                <span>
+                  Photos
+                </span>
+              </p>
+              <div
+                className="images"
+              >
+                <div>
+                  <a
+                    href="http://agenda21%20.jpg"
+                    target="_blank"
+                  >
+                    agenda21%20.jpg
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div
+              className="linked-property"
+            >
+              <p
+                className="sub-sub-heading"
+              >
+                <span>
+                  Not specified
+                </span>
+              </p>
+              <div
+                className="tags blond"
+              >
+                <span />
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -1148,7 +1213,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Specific Topic
+                          Not specified
                         </span>
                       </p>
                       <div
@@ -1438,6 +1503,71 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     <div />
                     <div />
                     <div />
+                    <div />
+                    <div>
+                      <p
+                        className="sub-sub-heading"
+                      >
+                        <span>
+                          Photos
+                        </span>
+                      </p>
+                      <div
+                        className="images"
+                      >
+                        <div>
+                          <a
+                            href="http://agenda21%20.jpg"
+                            target="_blank"
+                          >
+                            agenda21%20.jpg
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div
+                      className="linked-property"
+                    >
+                      <p
+                        className="sub-sub-heading"
+                      >
+                        <span>
+                          Not specified
+                        </span>
+                      </p>
+                      <div
+                        className="tags blond"
+                      >
+                        <span />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
