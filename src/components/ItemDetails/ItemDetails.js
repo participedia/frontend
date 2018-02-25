@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import RelatedContent from "../RelatedContent";
 import { FormattedDate } from "react-intl";
 import Gallery from "../Gallery";
 import BookmarkToggle from "../BookmarkToggle";
@@ -186,7 +185,6 @@ export default class ItemDetails extends React.Component {
                 ) : (
                   <div />
                 )}
-                <RelatedContent thing={thing} />
                 {detailedBits}
               </Col>
               <Col md="6" xs="12" className="main-area">
@@ -222,11 +220,6 @@ export default class ItemDetails extends React.Component {
                   </ul>
                   <Gallery thing={thing} />
                   <div className="mobile-metadata accordion d-md-none d-lg-none d-xl-none">
-                    <AccordionTab titleId="related_content">
-                      <div className="content">
-                        <RelatedContent thing={thing} />
-                      </div>
-                    </AccordionTab>
                     <AccordionTab titleId={thing.type + "_data"}>
                       <div className="content">{detailedBits}</div>
                     </AccordionTab>

@@ -195,7 +195,7 @@ class Upload extends React.Component {
           onProgress={this.handleProgress.bind(this)}
           onFinish={this.handleFinishedUpload.bind(this)}
           upload={uploaderProps}
-          className={this.props.customClass}
+          uploaderType={this.props.uploaderType}
         >
           <Preview
             preview={preview}

@@ -36,7 +36,7 @@ export default class DropzoneS3Uploader extends React.Component {
 
   static defaultProps = {
     upload: {},
-    className: "react-dropzone-s3-uploader",
+    // className: "react-dropzone-s3-uploader",
     passChildrenProps: true,
     isImage: filename =>
       filename && filename.match(/\.(jpeg|jpg|gif|png|svg)/i),
@@ -75,7 +75,10 @@ export default class DropzoneS3Uploader extends React.Component {
   }
 
   componentWillMount = () => this.setUploaderOptions(this.props);
-  componentWillReceiveProps = props => this.setUploaderOptions(props);
+
+  componentWillReceiveProps(props) {
+    this.setUploaderOptions(props);
+  }
 
   setUploaderOptions = props => {
     this.setState({
@@ -121,6 +124,8 @@ export default class DropzoneS3Uploader extends React.Component {
   };
 
   handleDrop = (files, rejectedFiles) => {
+    console.log("Accepted files: ", files);
+    console.log("rejectedFiles files: ", rejectedFiles);
     this.setState({ uploadedFiles: [], error: null, progress: null });
     const options = {
       files,
@@ -134,7 +139,9 @@ export default class DropzoneS3Uploader extends React.Component {
     `${s3Url.endsWith("/") ? s3Url.slice(0, -1) : s3Url}/${filename}`;
 
   renderImage = ({ uploadedFile }) => (
-    <div className="rdsu-image"><img alt="" src={uploadedFile.fileUrl} /></div>
+    <div className="rdsu-image">
+      <img alt="" src={uploadedFile.fileUrl} />
+    </div>
   );
 
   renderFile = ({ uploadedFile }) => (
@@ -189,20 +196,31 @@ export default class DropzoneS3Uploader extends React.Component {
               uploadedFile: uploadedFile,
               ...childProps
             };
-            return this.props.isImage(uploadedFile.fileUrl)
-              ? <ImageComponent {...props} />
-              : <FileComponent {...props} />;
+            return this.props.isImage(uploadedFile.fileUrl) ? (
+              <ImageComponent {...props} />
+            ) : (
+              <FileComponent {...props} />
+            );
           })}
           <ProgressComponent {...childProps} />
           <ErrorComponent {...childProps} />
         </div>
       );
     }
-
     return (
-      <Dropzone onDrop={this.handleDrop} {...dropzoneProps}>
-        {content}
-      </Dropzone>
+      <div>
+        <Dropzone
+          className={
+            this.props.uploaderType === "files"
+              ? "react-dropzone-s3-uploader files"
+              : "react-dropzone-s3-uploader images"
+          }
+          onDrop={this.handleDrop}
+          {...dropzoneProps}
+        >
+          {content}
+        </Dropzone>
+      </div>
     );
   }
 }

@@ -17,3 +17,16 @@ export function readTextFile(file, callback) {
   };
   rawFile.send(null);
 }
+
+export function toTitleCase(str) {
+  try {
+    if (str) {
+      return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    }
+  } catch (e) {
+    console.trace(e);
+    return str;
+  }
+}
