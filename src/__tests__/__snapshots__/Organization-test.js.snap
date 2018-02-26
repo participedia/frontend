@@ -87,7 +87,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
@@ -273,7 +273,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
@@ -490,7 +490,7 @@ exports[`Organization editor renders correctly 1`] = `
                 <h3
                   className="sub-heading"
                 >
-                  Relevant Links (URLs)
+                  Links
                 </h3>
                 <p
                   className="explanatory-text"
