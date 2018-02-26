@@ -695,24 +695,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
             </h2>
             <div />
             <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Not specified
-                </span>
-              </p>
-              <div
-                className="specific_topic blond"
-              >
-                <span>
-                  Sustainable Development
-                </span>
-              </div>
-            </div>
+            <div />
             <div>
               <p
                 className="sub-sub-heading"
@@ -750,209 +733,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  communication_mode
-                </span>
-              </p>
-              <div
-                className="communication_mode blond"
-              >
-                <span>
-                  Discussion, Dialogue, or Deliberation
-                </span>
-              </div>
-            </div>
-            <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Decision Method
-                </span>
-              </p>
-              <div
-                className="decision_method blond"
-              >
-                <span>
-                  Getting sense of room/group (i.e. no formal voting)
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Face-to-face, online or both
-                </span>
-              </p>
-              <div
-                className="facetoface_online_or_both blond"
-              >
-                <span>
-                  Face-to-face
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Facilitated
-                </span>
-              </p>
-              <div
-                className="facilitated blond"
-              >
-                <span>
-                  Yes
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Voting
-                </span>
-              </p>
-              <div
-                className="voting blond"
-              >
-                <span>
-                  Yes
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Number of meeting days
-                </span>
-              </p>
-              <div
-                className="number_of_meeting_days blond"
-              >
-                <span>
-                  4
-                </span>
-              </div>
-            </div>
             <div />
             <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Targeted participants public role
-                </span>
-              </p>
-              <div
-                className="targeted_participants_public_role blond"
-              >
-                <span>
-                  Stakeholder Organizations
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Targeted audience
-                </span>
-              </p>
-              <div
-                className="targeted_audience blond"
-              >
-                <span>
-                  General Public
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Participant selection
-                </span>
-              </p>
-              <div
-                className="participant_selection blond"
-              >
-                <span>
-                  Open to all with targeted recruitment
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Type of funding entity
-                </span>
-              </p>
-              <div
-                className="type_of_funding_entity blond"
-              >
-                <span>
-                  Regional Government (e.g. State, Provincial, Territorial)
-                </span>
-              </div>
-            </div>
             <div />
-            <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Ongoing
-                </span>
-              </p>
-              <div
-                className="ongoing"
-              >
-                <span>
-                  No
-                </span>
-              </div>
-            </div>
             <div
               className="linked-property"
             >
@@ -989,47 +772,24 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </div>
             </div>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div>
+            <div
+              className="linked-property"
+            >
               <p
                 className="sub-sub-heading"
               >
                 <span>
-                  Photos
+                  Ongoing
                 </span>
               </p>
               <div
-                className="images"
+                className="ongoing"
               >
-                <div>
-                  <a
-                    href="http://agenda21%20.jpg"
-                    target="_blank"
-                  >
-                    agenda21%20.jpg
-                  </a>
-                </div>
+                <span>
+                  No
+                </span>
               </div>
             </div>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
             <div />
             <div />
             <div />
@@ -1048,15 +808,33 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Not specified
+                  Face-to-face, online or both
                 </span>
               </p>
               <div
-                className="tags blond"
+                className="facetoface_online_or_both blond"
               >
-                <span />
+                <span>
+                  Face-to-face
+                </span>
               </div>
             </div>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
           </div>
         </div>
         <div
@@ -1154,24 +932,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                     </h2>
                     <div />
                     <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Not specified
-                        </span>
-                      </p>
-                      <div
-                        className="specific_topic blond"
-                      >
-                        <span>
-                          Sustainable Development
-                        </span>
-                      </div>
-                    </div>
+                    <div />
                     <div>
                       <p
                         className="sub-sub-heading"
@@ -1209,209 +970,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          communication_mode
-                        </span>
-                      </p>
-                      <div
-                        className="communication_mode blond"
-                      >
-                        <span>
-                          Discussion, Dialogue, or Deliberation
-                        </span>
-                      </div>
-                    </div>
-                    <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Decision Method
-                        </span>
-                      </p>
-                      <div
-                        className="decision_method blond"
-                      >
-                        <span>
-                          Getting sense of room/group (i.e. no formal voting)
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Face-to-face, online or both
-                        </span>
-                      </p>
-                      <div
-                        className="facetoface_online_or_both blond"
-                      >
-                        <span>
-                          Face-to-face
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Facilitated
-                        </span>
-                      </p>
-                      <div
-                        className="facilitated blond"
-                      >
-                        <span>
-                          Yes
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Voting
-                        </span>
-                      </p>
-                      <div
-                        className="voting blond"
-                      >
-                        <span>
-                          Yes
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Number of meeting days
-                        </span>
-                      </p>
-                      <div
-                        className="number_of_meeting_days blond"
-                      >
-                        <span>
-                          4
-                        </span>
-                      </div>
-                    </div>
                     <div />
                     <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Targeted participants public role
-                        </span>
-                      </p>
-                      <div
-                        className="targeted_participants_public_role blond"
-                      >
-                        <span>
-                          Stakeholder Organizations
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Targeted audience
-                        </span>
-                      </p>
-                      <div
-                        className="targeted_audience blond"
-                      >
-                        <span>
-                          General Public
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Participant selection
-                        </span>
-                      </p>
-                      <div
-                        className="participant_selection blond"
-                      >
-                        <span>
-                          Open to all with targeted recruitment
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Type of funding entity
-                        </span>
-                      </p>
-                      <div
-                        className="type_of_funding_entity blond"
-                      >
-                        <span>
-                          Regional Government (e.g. State, Provincial, Territorial)
-                        </span>
-                      </div>
-                    </div>
                     <div />
-                    <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Ongoing
-                        </span>
-                      </p>
-                      <div
-                        className="ongoing"
-                      >
-                        <span>
-                          No
-                        </span>
-                      </div>
-                    </div>
                     <div
                       className="linked-property"
                     >
@@ -1448,47 +1009,24 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div>
+                    <div
+                      className="linked-property"
+                    >
                       <p
                         className="sub-sub-heading"
                       >
                         <span>
-                          Photos
+                          Ongoing
                         </span>
                       </p>
                       <div
-                        className="images"
+                        className="ongoing"
                       >
-                        <div>
-                          <a
-                            href="http://agenda21%20.jpg"
-                            target="_blank"
-                          >
-                            agenda21%20.jpg
-                          </a>
-                        </div>
+                        <span>
+                          No
+                        </span>
                       </div>
                     </div>
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
                     <div />
                     <div />
                     <div />
@@ -1507,15 +1045,33 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Not specified
+                          Face-to-face, online or both
                         </span>
                       </p>
                       <div
-                        className="tags blond"
+                        className="facetoface_online_or_both blond"
                       >
-                        <span />
+                        <span>
+                          Face-to-face
+                        </span>
                       </div>
                     </div>
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
                   </div>
                 </div>
               </div>
