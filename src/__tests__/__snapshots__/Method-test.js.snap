@@ -83,7 +83,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="facilitated"
               >
                 <span>
-                  False
+                  No
                 </span>
               </div>
             </div>
@@ -253,7 +253,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="facilitated"
                       >
                         <span>
-                          False
+                          No
                         </span>
                       </div>
                     </div>

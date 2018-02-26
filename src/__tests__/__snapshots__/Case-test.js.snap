@@ -819,7 +819,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="facilitated blond"
               >
                 <span>
-                  True
+                  Yes
                 </span>
               </div>
             </div>
@@ -837,7 +837,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="voting blond"
               >
                 <span>
-                  True
+                  Yes
                 </span>
               </div>
             </div>
@@ -949,7 +949,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="ongoing"
               >
                 <span>
-                  False
+                  No
                 </span>
               </div>
             </div>
@@ -1278,7 +1278,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="facilitated blond"
                       >
                         <span>
-                          True
+                          Yes
                         </span>
                       </div>
                     </div>
@@ -1296,7 +1296,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="voting blond"
                       >
                         <span>
-                          True
+                          Yes
                         </span>
                       </div>
                     </div>
@@ -1408,7 +1408,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="ongoing"
                       >
                         <span>
-                          False
+                          No
                         </span>
                       </div>
                     </div>
