@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 // import CountryMap from "./CountryMap";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
+import TextListWithHeading from "./TextListWithHeading";
 import Tags from "./Tags";
 import {
   DateProp,
@@ -22,14 +23,24 @@ export default class CaseDetails extends React.Component {
         </h2>
         <Tags thing={thing} />
 
-        <LinkedPropertyGroupWithHeading
-          heading="issue"
-          property="issue"
+        <ListWithHeading
+          heading="approaches"
+          property="approaches"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
-          label="specific_topic"
-          property="specific_topic"
+        <ListWithHeading
+          heading="change_types"
+          property="change_types"
+          thing={thing}
+        />
+        <TextListWithHeading
+          heading="issues"
+          property="issues"
+          thing={thing}
+        />
+        <TextListWithHeading
+          label="specific_topics"
+          property="specific_topics"
           thing={thing}
         />
         <ListWithHeading heading="links" property="links" thing={thing} />
@@ -44,9 +55,9 @@ export default class CaseDetails extends React.Component {
           property="communication_with_audience"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
-          heading="decision_method"
-          property="decision_method"
+        <TextListWithHeading
+          heading="decision_methods"
+          property="decision_methods"
           thing={thing}
         />
         <LinkedPropertyGroupWithHeading
@@ -134,18 +145,6 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <ListWithHeading
-          heading="images"
-          property="images"
-          thing={thing}
-        />
-
-        <ListWithHeading
-          heading="videos"
-          property="videos"
-          thing={thing}
-        />
-
         <TextProp
           label="time_limited"
           property="time_limited"
@@ -158,16 +157,12 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <LinkedPropertyGroupWithHeading
+         <TextListWithHeading
           heading="purposes"
           property="purposes"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
-          heading="approaches"
-          property="approaches"
-          thing={thing}
-        />
+
         <TextProp
           label="public_spectrum"
           property="public_spectrum"
@@ -200,12 +195,12 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextProp
+        <TextListWithHeading
           label="facilitator_training"
           property="facilitator_training"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
+        <TextListWithHeading
           heading="participants_interactions"
           property="participants_interactions"
           thing={thing}
@@ -220,12 +215,12 @@ export default class CaseDetails extends React.Component {
           property="if_voting"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
+        <TextListWithHeading
           heading="insights_outcomes"
           property="insights_outcomes"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
+        <TextListWithHeading
           heading="organizer_types"
           property="organizer_types"
           thing={thing}
@@ -235,7 +230,7 @@ export default class CaseDetails extends React.Component {
           property="funders"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
+        <TextListWithHeading
           heading="funder_types"
           property="funder_types"
           thing={thing}
@@ -247,12 +242,7 @@ export default class CaseDetails extends React.Component {
           property="impact_evidence"
           thing={thing}
         />
-        <LinkedPropertyGroupWithHeading
-          heading="change_types"
-          property="change_types"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
+        <TextListWithHeading
           heading="implementers_of_change"
           property="implementers_of_change"
           thing={thing}
@@ -273,12 +263,11 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <LinkedPropertyGroupWithHeading
-          label="tags"
-          property="tags"
+        <ListWithHeading
+          heading="files"
+          property="files"
           thing={thing}
         />
-
       </div>
     );
   }
