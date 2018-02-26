@@ -271,7 +271,7 @@ class CaseEditor extends Component {
                     limit={3}
                     onChange={this.onChange}
                   />
-                  {thing.issues.length ? (
+                  {thing.issues.length && !isQuick ? (
                     <div>
                       <LocalizedMultiChoiceField
                         intl={intl}
@@ -383,10 +383,18 @@ class CaseEditor extends Component {
                     </h3>
                     <ImageListEditor property="images" thing={thing} />
                     {makeLocalizedListField(intl, "videos", "case")}
-                    <h3 className="sub-sub-heading">
-                      <FormattedMessage id="files" />
-                    </h3>
-                    <FileListEditor property="files" thing={thing} />
+                    {!isQuick ? (
+                      <h3 className="sub-sub-heading">
+                        <FormattedMessage id="files" />
+                      </h3>
+                    ) : (
+                      undefined
+                    )}
+                    {!isQuick ? (
+                      <FileListEditor property="files" thing={thing} />
+                    ) : (
+                      undefined
+                    )}
                   </div>
                 </div>
                 <div
