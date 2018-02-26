@@ -8,7 +8,8 @@ import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import { Field } from "simple-react-form";
 import { makeLocalizedChoices } from "./choices";
 import Geosuggest from "react-geosuggest";
-import List from "./List";
+import SimpleList from "./SimpleList";
+import List from "../vendor/react-items-list";
 import Avatar from "material-ui/Avatar";
 import Upload from "../Upload";
 import "./PropEditors.css";
@@ -226,7 +227,7 @@ export class MultiChoiceEditor extends React.Component {
                 onSortEnd={this.onSortEnd}
               />
             ) : (
-              <List items={this.state.value} />
+              <SimpleList items={this.state.value} />
             )
           ) : (
             undefined
