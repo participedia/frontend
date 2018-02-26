@@ -148,19 +148,34 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.selectionRenderer = this.selectionRenderer.bind(this);
-    this.state = {
-      value: props.value
-    };
+    let value = props.value.map(item => {
+      if (item.value) {
+        return item;
+      }
+      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
+    });
+
+    this.state = { value };
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      value: props.value
+    let value = props.value.map(item => {
+      if (item.value) {
+        return item;
+      }
+      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
     });
+    this.setState({ value });
   }
 
   handleChange(event, index, incoming_value) {
-    let value = [].slice.call(incoming_value);
+    let value = incoming_value.map(item => {
+      if (item.value) {
+        return item;
+      }
+      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
+    });
+
     if (this.props.limit && value.length > this.props.limit) {
       value = value.slice(1, this.props.limit + 1);
     } else if (this.props.limit && value.length > this.props.limit) {
@@ -201,7 +216,6 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   render() {
-    if (typeof this.state.value === "undefined") debugger;
     return (
       <div>
         <SelectField
@@ -350,6 +364,7 @@ export class LocalizedMultiChoiceField extends React.Component {
           {this.props.info ? <InfoBox info={this.props.property} /> : undefined}
         </p>
         <MultiChoiceEditor
+          intl={this.props.intl}
           property={this.props.property}
           label={this.state.label}
           choices={this.state.choices}
@@ -446,7 +461,7 @@ class NumberEditor extends React.Component {
 
   onChange(event, value) {
     this.setState({ value: value > 0 ? value : null });
-    // this.props.onChange(Number(value));
+    this.props.onChange(Number(value));
   }
 
   // XXX add validation to ensure only numbers are input

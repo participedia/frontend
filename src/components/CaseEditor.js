@@ -602,7 +602,7 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="implementers_of_change"
-                        value={thing.changes_types}
+                        value={thing.implementers_of_change}
                         rankable={false}
                         onChange={this.onChange}
                       />
