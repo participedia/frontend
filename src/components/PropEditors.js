@@ -19,6 +19,12 @@ import SortableList from "./SortableList";
 import InfoBox from "./InfoBox";
 
 function nickify(before) {
+  if (before === false) {
+    return "false";
+  }
+  if (before === true) {
+    return "true";
+  }
   if (!before) return "";
   try {
     return before
@@ -50,26 +56,23 @@ export class ChoiceEditor extends React.Component {
   }
 
   makeChoices(choices, value) {
-    let keys;
-    try {
-      keys = value.map(v => v.value);
-    } catch (e) {
-      console.warn("Error in ChoiceEditor mapping keys for value %o", value);
-      keys = [];
-    }
     return choices.map(function(v) {
       return (
         <MenuItem
           value={v.value}
           key={v.value}
           primaryText={v.text}
-          selected={keys.includes(v.value)}
+          selected={v.value === value}
+          checked={v.value === value}
         />
       );
     });
   }
 
   onChange(event, index, value) {
+    if (value === this.state.value) {
+      value = null;
+    }
     this.setState({ value: value });
     this.props.onChange(value);
   }

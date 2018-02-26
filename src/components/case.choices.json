@@ -202,7 +202,7 @@
   ],
   "facetoface_online_or_both": ["both", "facetoface", "online"],
   "facilitated": ["no", "yes"],
-  "ongoing": ["true", "false"],
+  "ongoing": ["no", "yes"],
   "participant_selection": [
     "open_to_all",
     "open_to_all_with_targeted_recruitment",
