@@ -255,6 +255,7 @@ class CaseEditor extends Component {
                     <LocalizedMultiChoiceField
                       intl={intl}
                       property="relationships"
+                      value={thing.relationships}
                       rankable={true}
                       limit={3}
                       onChange={this.onChange}
@@ -483,7 +484,7 @@ class CaseEditor extends Component {
                       )}
                       <LocalizedMultiChoiceField
                         intl={intl}
-                        property="participants_interaction"
+                        property="participants_interactions"
                         value={thing.participants_interactions}
                         rankable={true}
                         limit={3}

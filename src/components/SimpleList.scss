@@ -1,0 +1,9 @@
+@import "./UniversalStyles";
+
+.simple-list {
+  list-style-type: none;
+  div {
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+  }
+}
