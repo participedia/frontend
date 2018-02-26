@@ -49,10 +49,23 @@ export class ChoiceEditor extends React.Component {
     };
   }
 
+  convertValue(value) {
+    if (value === true || value === false) {
+      return value;
+    }
+    if (value.toLowerCase() === "yes") {
+      return true;
+    } else if (value.toLowerCase() === "no") {
+      return false;
+    }
+    return value;
+  }
+
   componentWillReceiveProps(props) {
+    const returnValue = this.convertValue(props.value);
     this.setState({
       value: nickify(props.value),
-      choices: this.makeChoices(props.passProps.choices, props.value)
+      choices: this.makeChoices(props.passProps.choices, returnValue)
     });
   }
 
