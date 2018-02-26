@@ -92,6 +92,7 @@ class EditorContainer extends Component {
   }
 
   onExpand(thing) {
+    setTimeout(() => window.scrollTo(0, 0), 1000);
     this.setState({ thing, isQuick: false });
   }
 
