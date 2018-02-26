@@ -1,12 +1,12 @@
 import React from "react";
-import "./List.css";
+import "./SimpleList.css";
 
-function List(props) {
+function SimpleList(props) {
   return (
-    <div className="list">
+    <div className="simple-list">
       {props.items.map((obj, index) => <div>{obj.text}</div>)}
     </div>
   );
 }
 
-export default List;
+export default SimpleList;
