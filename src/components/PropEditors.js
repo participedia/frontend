@@ -159,20 +159,15 @@ export class MultiChoiceEditor extends React.Component {
     });
   }
 
-  handleChange(event, index, value) {
-    let b;
-    if (value.length > this.props.limit) {
-      b = value.slice(1, this.props.limit + 1);
-      this.setState({ value: b });
-      this.props.onChange(this.props.property, b);
-    } else if (value.length > this.props.limit) {
-      b = value.slice(1, this.props.limit + 1);
-      this.setState({ value: b });
-      this.props.onChange(this.props.property, b);
-    } else {
-      this.setState({ value });
-      this.props.onChange(this.props.property, value);
+  handleChange(event, index, incoming_value) {
+    let value = [].slice.call(incoming_value);
+    if (this.props.limit && value.length > this.props.limit) {
+      value = value.slice(1, this.props.limit + 1);
+    } else if (this.props.limit && value.length > this.props.limit) {
+      value = value.slice(1, this.props.limit + 1);
     }
+    this.setState({ value });
+    this.props.onChange(this.props.property, value);
   }
 
   makeChoices(choices, value) {
@@ -188,7 +183,7 @@ export class MultiChoiceEditor extends React.Component {
           key={v.value}
           insetChildren={true}
           checked={value && keys.includes(v.value)}
-          value={v}
+          value={v.value}
           primaryText={v.text}
         />
       );
@@ -206,6 +201,7 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   render() {
+    if (typeof this.state.value === "undefined") debugger;
     return (
       <div>
         <SelectField
@@ -213,7 +209,7 @@ export class MultiChoiceEditor extends React.Component {
           fullWidth
           className="custom-select"
           multiple={true}
-          value={this.state.value}
+          value={this.state.value.map(item => item.value || item)}
           onChange={this.handleChange}
           selectionRenderer={this.selectionRenderer}
         >
