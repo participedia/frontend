@@ -4,13 +4,13 @@ import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
 
 function getSelectedCategory(pathname) {
-  if (pathname == "/methods") {
+  if (pathname === "/methods") {
     return "Methods";
-  } else if (pathname == "/cases") {
+  } else if (pathname === "/cases") {
     return "Cases";
-  } else if (pathname == "/organizations") {
+  } else if (pathname === "/organizations") {
     return "Organizations";
-  } else if (pathname == "/news") {
+  } else if (pathname === "/news") {
     return "News";
   }
   return "All";

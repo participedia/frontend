@@ -77,7 +77,8 @@ class CaseForm extends Component {
     parts.push(
       this.makeFormBit({
         showIf: state => state.DirectDemocracy === "no",
-        heading: "Which of the following best describes the type of interaction between participants in this process:",
+        heading:
+          "Which of the following best describes the type of interaction between participants in this process:",
         key: "InteractionMethod",
         choices: [
           ["Face-to-face discussion", "facetoface"],
@@ -92,7 +93,8 @@ class CaseForm extends Component {
     );
     parts.push(
       this.makeFormBit({
-        heading: "Which of the following best describes the purpose of the process:",
+        heading:
+          "Which of the following best describes the purpose of the process:",
         key: "DecisionMaking",
         choices: [
           [
@@ -109,7 +111,8 @@ class CaseForm extends Component {
 
     parts.push(
       this.makeFormBit({
-        heading: "Please indicate which of the following best describes the relationship between participants in the process, and decision-makers (such as governments, or other powerful actors):",
+        heading:
+          "Please indicate which of the following best describes the relationship between participants in the process, and decision-makers (such as governments, or other powerful actors):",
         key: "DecisionMaking_DecisionRole",
         choices: [
           [
@@ -133,7 +136,8 @@ class CaseForm extends Component {
     );
     parts.push(
       this.makeFormBit({
-        heading: "Please indicate which method best describes how participants reached decisions among themselves, in this process:",
+        heading:
+          "Please indicate which method best describes how participants reached decisions among themselves, in this process:",
         key: "DecisionMaking_DecisionMethod",
         choices: [
           ["Voting", "voting"],

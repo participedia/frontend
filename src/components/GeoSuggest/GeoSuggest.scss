@@ -9,10 +9,6 @@
 }
 
 .geosuggest__input-wrapper {
-  width: 28%;
-  @include media-breakpoint-down(lg) {
-    width: 70%;
-  }
   input {
     border: none;
     width: 100%;

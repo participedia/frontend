@@ -26,7 +26,10 @@ export default class CaseDetails extends React.Component {
         <ListWithHeading
           heading="approaches"
           property="approaches"
-          thing={thing}
+        />
+        <LinkedPropertyGroupWithHeading
+          heading="issues"
+          property="issues"
         />
         <ListWithHeading
           heading="change_types"

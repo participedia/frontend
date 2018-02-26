@@ -5,7 +5,6 @@ import { Map, Layer, Feature, Popup, ZoomControl } from "react-mapbox-gl";
 import store from "store";
 import Clear from "material-ui/svg-icons/content/clear";
 import { FormattedMessage, FormattedDate } from "react-intl";
-import htmlToText from "html-to-text";
 
 import "./MapVisualization.css";
 const accessToken =
@@ -176,20 +175,20 @@ class MapVisualization extends React.Component {
                     />
                   </small>
                 </span>
-                { focus.searchmatched && !focus.featured ?
+                {focus.searchmatched && !focus.featured ? (
                   <small className="red">
                     <FormattedMessage id="searchmatched" />
                   </small>
-                  :
+                ) : (
                   undefined
-                }
-                { focus.featured ?
+                )}
+                {focus.featured ? (
                   <small className="red">
                     <FormattedMessage id="featured_map" />
                   </small>
-                  :
+                ) : (
                   undefined
-                }
+                )}
                 <div onClick={() => popupChange(!popupShowLabel)}>
                   {popupShowLabel ? <Clear /> : "Show"}
                 </div>

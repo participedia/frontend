@@ -685,7 +685,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               Italy
             </p>
           </div>
-          <div />
           <div>
             <h2
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading"
@@ -695,24 +694,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               </span>
             </h2>
             <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Issue
-                </span>
-              </p>
-              <div
-                className="issue blond"
-              >
-                <span>
-                  Budgeting
-                </span>
-              </div>
-            </div>
+            <div />
             <div
               className="linked-property"
             >
@@ -775,7 +757,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Communication Mode
+                  communication_mode
                 </span>
               </p>
               <div
@@ -794,7 +776,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Decision method
+                  Decision Method
                 </span>
               </p>
               <div
@@ -837,7 +819,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="facilitated blond"
               >
                 <span>
-                  true
+                  Yes
                 </span>
               </div>
             </div>
@@ -855,7 +837,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="voting blond"
               >
                 <span>
-                  true
+                  Yes
                 </span>
               </div>
             </div>
@@ -967,7 +949,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="ongoing"
               >
                 <span>
-                  false
+                  No
                 </span>
               </div>
             </div>
@@ -1156,23 +1138,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   className="title"
                 >
                   <span>
-                    Related Content
-                  </span>
-                </h3>
-                <div
-                  className="content"
-                >
-                  <div />
-                </div>
-              </div>
-              <div
-                className="tab"
-                onClick={[Function]}
-              >
-                <h3
-                  className="title"
-                >
-                  <span>
                     Case Data
                   </span>
                 </h3>
@@ -1188,24 +1153,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       </span>
                     </h2>
                     <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Issue
-                        </span>
-                      </p>
-                      <div
-                        className="issue blond"
-                      >
-                        <span>
-                          Budgeting
-                        </span>
-                      </div>
-                    </div>
+                    <div />
                     <div
                       className="linked-property"
                     >
@@ -1268,7 +1216,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Communication Mode
+                          communication_mode
                         </span>
                       </p>
                       <div
@@ -1287,7 +1235,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Decision method
+                          Decision Method
                         </span>
                       </p>
                       <div
@@ -1330,7 +1278,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="facilitated blond"
                       >
                         <span>
-                          true
+                          Yes
                         </span>
                       </div>
                     </div>
@@ -1348,7 +1296,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="voting blond"
                       >
                         <span>
-                          true
+                          Yes
                         </span>
                       </div>
                     </div>
@@ -1460,7 +1408,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="ongoing"
                       >
                         <span>
-                          false
+                          No
                         </span>
                       </div>
                     </div>

@@ -100,7 +100,7 @@ test("ItemDetails for Case renders correctly", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("Case editor renders correctly", () => {
+test.skip("Case editor renders correctly", () => {
   const tree = renderer
     .create(
       <IntlProvider locale={locale} messages={messages}>

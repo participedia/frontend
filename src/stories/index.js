@@ -23,10 +23,9 @@ injectTapEventPlugin();
 let locale = "en-US";
 let messages = getBestMatchingMessages(locale);
 
-const ThemeDecorator = storyFn =>
-  <MuiThemeProvider muiTheme={muiTheme}>
-    {storyFn()}
-  </MuiThemeProvider>;
+const ThemeDecorator = storyFn => (
+  <MuiThemeProvider muiTheme={muiTheme}>{storyFn()}</MuiThemeProvider>
+);
 addDecorator(ThemeDecorator);
 
 class MyForm extends React.Component {
@@ -60,7 +59,7 @@ class MyForm extends React.Component {
   }
 }
 
-storiesOf("Tags", module).add("no default", () =>
+storiesOf("Tags", module).add("no default", () => (
   <MyForm state={{ tags: [] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
@@ -70,9 +69,9 @@ storiesOf("Tags", module).add("no default", () =>
       dataSource={["one", "two", "three"]}
     />
   </MyForm>
-);
+));
 
-storiesOf("Tags", module).add("default tags", () =>
+storiesOf("Tags", module).add("default tags", () => (
   <MyForm state={{ tags: ["a", "b"] }}>
     <div className="sub-heading">Tag picker</div>
     <Field
@@ -81,43 +80,7 @@ storiesOf("Tags", module).add("default tags", () =>
       dataSource={["one", "two", "three"]}
     />
   </MyForm>
-);
-
-storiesOf("RelatedEditors", module).add("no defaults", () =>
-  <MyForm state={{ related_things: [] }}>
-    <div className="sub-heading">Related things</div>
-    <Field
-      fieldName="related_things"
-      type={RelatedEditor}
-      dataSource={[
-        { text: "one", value: 1 },
-        { text: "two", value: 2 },
-        { text: "three", value: 3 },
-        { text: "four", value: 4 },
-        { text: "five", value: 5 }
-      ]}
-      dataSourceConfig={{ text: "text", value: "value" }}
-    />
-  </MyForm>
-);
-
-storiesOf("RelatedEditors", module).add("some values", () =>
-  <MyForm state={{ related_things: [{ text: "one", value: 1 }] }}>
-    <div className="sub-heading">Related things</div>
-    <Field
-      fieldName="related_things"
-      type={RelatedEditor}
-      dataSource={[
-        { text: "one", value: 1 },
-        { text: "two", value: 2 },
-        { text: "three", value: 3 },
-        { text: "four", value: 4 },
-        { text: "five", value: 5 }
-      ]}
-      dataSourceConfig={{ text: "text", value: "value" }}
-    />
-  </MyForm>
-);
+));
 
 let choices = [
   {

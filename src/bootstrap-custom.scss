@@ -28,7 +28,7 @@ $h4-font-size: 1.125rem;
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/tables";
 @import "../node_modules/bootstrap/scss/forms";
-// @import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/buttons";
 
 // Components
 // @import "../node_modules/bootstrap/scss/animation";
@@ -50,7 +50,7 @@ $h4-font-size: 1.125rem;
 // @import "../node_modules/bootstrap/scss/close";
 
 // Components w/ JavaScript
-// @import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/modal";
 // @import "../node_modules/bootstrap/scss/tooltip";
 // @import "../node_modules/bootstrap/scss/popover";
 // @import "../node_modules/bootstrap/scss/carousel";
