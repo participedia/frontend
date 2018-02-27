@@ -87,7 +87,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
@@ -273,7 +273,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
@@ -490,7 +490,7 @@ exports[`Organization editor renders correctly 1`] = `
                 <h3
                   className="sub-heading"
                 >
-                  Relevant Links (URLs)
+                  Links
                 </h3>
                 <p
                   className="explanatory-text"
@@ -567,12 +567,12 @@ exports[`Organization editor renders correctly 1`] = `
                 <h3
                   className="sub-heading"
                 >
-                  Primary location
+                  Location
                 </h3>
                 <p
                   className="explanatory-text"
                 >
-                  Type to search for known location
+                  Type to select an address, city or country where the primary case activities occurred.
                 </p>
                 <div
                   className="location"

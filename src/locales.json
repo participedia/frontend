@@ -1,46 +1,5 @@
 {
   "en": {
-    "approaches":"Approaches",
-    "change_types":"Types of Change",
-    "decision_methods":"Decision Method(s)",
-    "evaluation_links":"Evaluation Links",
-    "evaluation_reports":"Evaluation Reports",
-    "facilitator_training":"Facilitator Training",
-    "files":"Files",
-    "formal_evaluation":"Formal Evaluation",
-    "funder":"funder",
-    "funder_types":"Type of Funder",
-    "has_components":"Components of this case",
-    "if_voting":"If Voting",
-    "images":"Photos",
-    "impact_evidence":"Evidence of Impact",
-    "implementers_of_change":"Implementers of Change",
-    "insights_outcomes":"Outcomes",
-    "is_component_of":"This case is a component of",
-    "issues":"General Issues",
-    "learning_resources":"Information and Learning Resources",
-    "legality":"Legality",
-    "links":"Links",
-    "location":"Primary location",
-    "number_of_participants":" Total number of participants",
-    "ongoing":"Ongoing",
-    "open_limited":"Open to all or limited to some?",
-    "organizer_types":"Type of organizer/manager",
-    "participants_interactions":"Type(s) of Interaction among participants",
-    "primary_organizer":"Organizers & Supporters",
-    "process_methods":"Methods",
-    "public_spectrum":"Spectrum of Public Participation",
-    "purposes":"Purposes",
-    "recruitment_method":"Recruitment method for limited subset of population",
-    "relationships":"Your relationship to this case",
-    "scope_of_influence":"Scope of Influence",
-    "specific_topics":"Specific Topics",
-    "staff":"Staff",
-    "tags":"Tags",
-    "targeted_participant":"Targeted Participants (Demographics)",
-    "time_limited":"Time Limited or Repeated?",
-    "videos":"Videos",
-    "volunteers":"Volunteers",
     "featured": "Featured",
     "featured-case": "Featured Case",
     "featured-method": "Featured Method",
@@ -70,7 +29,6 @@
     "home": "Home",
     "dataset": "Data Set",
     "teaching": "Teaching",
-    "teaching_instructing": "Teaching/Instructing",
     "profile": "Profile",
     "add_new": "Add New",
     "help": "Help",
@@ -641,7 +599,7 @@
     "no_bookmarks_yet_2": "to bookmark content.",
     "edit_profile": "Edit Profile",
     "name": "Name",
-    "location": "Primary location",
+    "location": "Location",
     "organization_text":
       "You can connect your profile to an organization that is published on Participedia. Begin typing on the organization field below and select the organization from the dropdown list. Or, if you think your organization belongs on Participedia, publish it now by clicking Quick Submit.",
     "type_org": "Begin Typing an Organization",
@@ -693,25 +651,28 @@
     "not_specified": "Not specified",
     "description": "Brief Description",
     "description_explanatory":
-      "Enter tweet-length (140 characters or less) description of this case",
-    "description_placeholder":
-      "Enter tweet-length (140 characters or less) description of this case",
-    "case_description_instructional":
+      "Enter tweet-length (280 characters or less) description of this case.",
+    "description_placeholder": "Enter tweet-length case description",
+    "case_body_instructional":
       "The following standard structure makes it easier to compare and analyze entries. Please use the headings below and refer to our guidelines as you prepare your case entry.",
+    "case_body_placeholder":
+      "<h3>Problems and Purpose</h3><p></p><h3>History</h3><p></p><h3>Originating Entities and Funding</h3><p></p><h3>Participant Recruitment and Selection</h3><p></p><h3>Methods and Tools Used</h3><p></p><h3>Deliberation, Decisions, and Public Interaction</h3><p></p><h3>Influence, Outcomes, and Effects</h3><p></p><h3>Analysis and Lessons Learned</h3><p></p><h3>Secondary Sources</h3><p></p><h3>External Links</h3><p></p><h3>Notes</h3><p></p>",
     "links_placeholder": "Add a link",
-    "location_instructional": "Type to search for known location",
-    "location_placeholder": "Type to search for a known location",
+    "location_instructional":
+      "Type to select an address, city or country where the primary case activities occurred.",
+    "location_placeholder":
+      "Type to select an address, city or country where the primary case activities occurred.",
     "ongoing_label": "This case is ongoing",
-    "time_limited": "Time limited",
+    "time_limited": "Time Limited or Repeated?",
     "time_limited_instructional":
       "Did this case take place over a single, defined period of days, weeks or months? Or was the entire process repeated over time? Select one.",
     "time_limited_placeholder": "Was this time limited, or repeated?",
     "purpose_approach": "Purpose/Goal",
-    "purposes": "Purposes",
+    "purposes": "Purpose",
     "purposes_instructional":
       "Select and rank up to three purposes, with “1” indicating the most relevant.",
     "purposes_placeholder": "Select & rank up to 3 purposes/goals",
-    "approaches": "Approaches",
+    "approaches": "Approach",
     "approaches_instructional":
       "Select and rank up to three approaches, with “1” indicating the most relevant.",
     "approaches_placeholder": "Select & rank up to 3 approaches",
@@ -729,10 +690,9 @@
       "Was this open to all or limited to a subset of the population?",
     "open_limited_placeholder":
       "Was this open to all or limited to a subset of the population?",
-    "recruitment_method_case": "Recruitment Method",
-    "recruitment_method_case_instructional":
-      "If relevant to this case, select the method used to recruit a limited subset of the population",
-    "recruitment_method_case_placeholder": "Select recruitment method",
+    "recruitment_method_instructional":
+      "Select the method used to recruit a limited subset of the population",
+    "recruitment_method_placeholder": "Select recruitment method",
     "targeted_participants": "Targeted Participants",
     "targeted_participants_instructional":
       "Select up to three of the most heavily recruited groups.",
@@ -751,11 +711,11 @@
     "facilitators_instructional":
       "Did facilitators help guide part or all of this case?",
     "facilitators_placeholder": "Did facilitators help guide participants?",
-    "facilitator_training": "Facilitator training",
+    "facilitator_training": "Facilitator Training",
     "facilitator_training_instructional": "If yes, were they…",
     "facilitator_training_placeholder":
       "Did facilitators help guide participants?",
-    "participants_interactions": "Type(s) of Interaction among participants",
+    "participants_interactions": "Type(s) of Interaction Among Participants",
     "participants_interactions_instructional":
       "Select and rank up to three types of interactions in order of relevance, with with “1” indicating the most often used form of interaction.",
     "participants_interactions_placeholder":
@@ -772,26 +732,27 @@
     "decision_methods_instructional":
       "How did participants in this case make group decisions?",
     "decision_methods_placeholder": "How were group decisions made?",
-    "insights_outcomes": "Communication of Insights and Outcomes",
+    "insights_outcomes": "Outcomes",
     "insights_outcomes_instructional":
       "Select up to three ways that insights and outcomes from this case were communicated to the intended audiences.",
     "insights_outcomes_placeholder":
       "How were insights & outcomes communicated?",
     "organizers_supporters": "Organizers & Supporters",
-    "primary_organizer": "Primary organizer / manager",
+    "primary_organizer": "Organizers & Supporters",
     "primary_organizer_instructional_case":
       "Who was primarily responsible for organizing / managing the initiative? Type to select name of any organization that already exists on Participedia. For new organizations, first publish this case to save your work then publish a new organization. To add your new organization, return to edit this case.",
     "primary_organizer_placeholder":
       "Type to search & generate possible database matches",
-    "organizer_types": "Type of organizer / manager",
+    "organizer_types": "Type of organizer/manager",
     "organizer_types_instructional":
       "Select up to three types of organizers or managers.",
     "organizer_types_placeholder":
       "Select up to three types of organizers or managers",
     "funder_label": "Funder",
+    "funder_placeholder": "Who funded this case?",
     "funder_instructional":
       "Who funded this case of public participation? Provide names of the organizations, government agencies, or individuals who paid for this initiative.",
-    "funder_types": "Type of funder",
+    "funder_types": "Type of Funder",
     "funder_types_instructional": "Select up to three types of funders.",
     "funder_types_placeholder": "Select up to three types of funders",
     "staff_instructional":
@@ -821,7 +782,7 @@
       "Was a formal evaluation of this initiative conducted?",
     "formal_evaluation_placeholder":
       "Was there a formal evaluation of this case?",
-    "scope_of_influence": "Scope of influence",
+    "scope_of_influence": "Scope of Influence",
     "scope_of_influence_instructional":
       "What is the geographical or jurisdictional scope of this case?",
     "scope_of_influence_placeholder":
@@ -835,10 +796,10 @@
     "preferential": "preferential",
     "supermajority": "supermajority",
     "consensus": "Consensus",
-    "specific_topics": "Specific Topic",
+    "specific_topics": "Specific Topics",
     "voting": "Voting",
-    "facetoface_online_or_both": "Face-to-face, online or both",
-    "issues": "Issues",
+    "facetoface_online_or_both": "Face-to-face, online or both-en/msg.prop",
+    "issues": "General Issues",
     "general_issues": "General Issues",
     "who_was_primarily_responsible_for_organizing_the_initiative":
       "Who was primarily responsible for organizing the initiative",
@@ -846,10 +807,10 @@
     "number_of_meeting_days_instructional": "Enter number of meeting days",
     "date": "Date",
     "date_duration": "Date & Duration",
-    "start_date": "Start date",
+    "start_date": "Start Date",
     "start_date_instructional": "Select a start date or date of single event",
     "start_date_placeholder": "Select a start date or date of single event",
-    "end_date": "End date",
+    "end_date": "End Date",
     "end_date_instructional": "Select an end date, if applicable",
     "end_date_placeholder": "Select an end date, if applicable",
     "ongoing": "Ongoing",
@@ -894,7 +855,8 @@
     "who_else_supported_the_initiative_instructional":
       "Enter who else supported the initiative",
     "general_issues_instructional": "Select an issue",
-    "issues_instructional": "Select an issue",
+    "issues_instructional":
+      "Rank order up to three of the most relevant issues addressed, with “1” indicating the most relevant issue.",
     "issues_placeholder": "Select & rank up to 3 issues",
     "typical_purposes": "Typical Purpose(s)",
     "typical_purposes_instructional":
@@ -942,7 +904,7 @@
     "strawberry": "Strawberry",
     "chocolate": "Chocolate",
     "vanilla": "Vanilla",
-    "relationships": "Relationship",
+    "relationships": "Your relationship to this case",
     "relationships_instructional":
       "Select and rank up to three ways you are related to this case, in order of relevance, with (1) being your primary relationship to the case.",
     "relationships_placeholder": "Select & rank up to 3 items",
@@ -978,7 +940,8 @@
     "planning_eg_urban_planning_transportation_etc":
       "Planning (e.g. Urban planning, Transportation, etc.)",
     "express_opinions/preferences_only": "Express opinions/preferences only",
-    "storytelling": "Story-Telling",
+    "storytelling": "Storytelling",
+    "teaching_instructing": "Teaching/Instructing",
     "discussion": "Discussion",
     "discussion_dialogue_deliberation": "Discussion, Dialogue, or Deliberation",
     "formal_testimony": "Formal Testimony",
@@ -1006,8 +969,8 @@
     "online": "Online",
     "no": "No",
     "yes": "Yes",
-    "true": "Yes",
-    "false": "No",
+    "true": "True",
+    "false": "False",
     "people_with_disabilities": "People with Disabilities",
     "lowincome_earners": "Low-Income Earners",
     "women": "Women",
@@ -1205,6 +1168,7 @@
     "poverty": "Poverty",
     "nongovernmental_participatory_body": "nongovernmental participatory body",
     "citizens_initiative_review": "Citizens Initiative Review",
+    "government_corruption": "Government Corruption",
     "corruption": "corruption",
     "rural_issues": "rural issues",
     "urban_development": "urban development",
@@ -1545,6 +1509,7 @@
     "unknown_title_label": "Unknown",
     "unknown_title_instructional": "Unknown",
     "unknown_body_title": "Unknown",
+    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made)",
     "best_for": "Best for",
     "best_for_instructional": "What is this method best used to accomplish?",
     "best_for_placeholder": "Select best use",
@@ -1621,6 +1586,8 @@
     "most_cases_unanimous_decision_by_voting":
       "most cases unanimous decision by voting",
     "made_through_consensus": "Made through consensus",
+    "voting_decision":
+      "Voting (i.e., any type of formal vote; please provide more detail in next field)",
     "user_decisions_are_made_through_a_stance_slider_tool":
       "User decisions are made through a stance slider tool",
     "list_of_solutions_narrowed_into_several_proposals_during_final_large_group_discussion":
@@ -1809,7 +1776,6 @@
       "Announcement of results at each level",
     "for_profit": "For Profit",
     "government": "Government",
-    "government_corruption": "Government Corruption",
     "nonprofit_or_non_governmental": "Non-Profit or Non Governmental",
     "university_or_research": "University or Research",
     "submit_case": "Submit Case",
@@ -2022,7 +1988,7 @@
     "youth_issues": "Youth Issues",
     "send_email_with_catgeory_additions":
       "If you believe we should add some categories or specific topics, please email info@participedia.net",
-    "links": "Relevant Links (URLs)",
+    "links": "Links",
     "previous_page": "Go to previous page",
     "next_page": "Go to next page",
     "page": "page",
@@ -2033,10 +1999,17 @@
       "Rank order up to three of the most relevant, specific topics, with “1” indicating the most relevant topic.",
     "specific_topics_placeholder": "Select & rank up to 3 sub-topics",
     "tags": "Tags",
-    "case_description_placeholder":
-      "<p>The following standard structure makes it easier to compare and analyze entries.</p><p>We recommend you use the headings below and refer to our guidelines as you prepare your case entry.</p><p>To view the guidelines, copy and paste this URL into your browser: <a href=\"https://goo.gl/V2SHQn\">https://goo.gl/V2SHQn</a></p>",
     "searchmatched": "This matched your search.",
     "featured_map": "This is a featured item.",
+    "change_types": "Types of Change",
+    "evaluation_links": "Evaluation Links",
+    "evaluation_reports": "Evaluation Reports",
+    "funder": "funder",
+    "has_components": "Add components to this case",
+    "is_component_of": "Make this case a component of another case",
+    "participants_interactions": "Type(s) of Interaction among participants",
+    "recruitment_method": "Recruitment method for limited subset of population",
+    "targeted_participant": "Targeted Participants (Demographics)",
     "i_am_a_professional_academic_researcher":
       "I am a professional academic researcher",
     "i_am_an_undergraduate_student_researcher":
@@ -2132,9 +2105,9 @@
     "untrained_nonprofessional_facilitators":
       "Untrained, nonprofessional facilitators",
     "acting_drama": "Acting/Drama",
-    "ask_and_answer_questions": "Ask and answer questions",
-    "express_opinions_preferences_only": "Express opinions/preferences only",
-    "listen_watch_as_spectator": "Listen/watch as spectator",
+    "ask_and_answer_questions": "Ask & Answer Questions",
+    "express_opinions_preferences_only": "Express Opinions/Preferences Only",
+    "listen_watch_as_spectator": "Listen/Watch as Spectator",
     "negotiation_bargaining": "Negotiation & Bargaining",
     "expert_presentations": "Expert presentations",
     "participant_presentations": "Participant presentations",
@@ -2201,8 +2174,6 @@
     "is_component_of_box_title": "Make this case a component of another case",
     "is_component_of_box_text":
       "If you can’t find the case you are looking for, please publish your current work, then use quick submit to publish the case you want to label this case as a component of. Once your new case is published, return to this form and label this case as a component of your new case.",
-    "evaluation_reports": "Evaluation Reports",
-    "evaluation_links": "Evaluation Links",
     "evaluation_links_prompt": "Add a link",
     "evaluation_links_instructional":
       "Provide links to evaluation reports here.",
@@ -2211,11 +2182,12 @@
     "components": "Components",
     "components_intro":
       "Some cases of public participation can be viewed as “components” of a single, overarching case. Any case can have multiple components, but can only be labeled as a component of a single case.",
-    "has_components": "Add components to this case",
+    "components_box_title": "Component Examples",
+    "components_box_text":
+      "Here are a few examples of why an event or process could be considered a component of a more comprehensive initiative:<ul class='givemebackmylists'><li>it is one of several phases or sessions that use very different methods as part of the same initiative;</li><li>it engages different subsets of participants in one or more of an initiative’s phases or sessions;</li><li>it is a repeat cycle of a similar process that took place at another time in the same geographic location;</li><li>it is one of many events held in different locations as part of a single participatory initiative;</li><li>etc.</li></ul>",
     "has_components_instructional_case":
       "A case can have multiple components, but they must already be published cases on Participedia. Type to search for an existing case in Participedia to label it as a component of this case. Select one or more.",
     "has_components_placeholder": "Search for existing case/component",
-    "is_component_of": "Make this case a component of another case",
     "is_component_of_instructional":
       "A case can only be a component of one other case, and the other case must already be published on Participedia. Type to search for an existing case in Participedia to label this case as a component of it. Select one.",
     "is_component_of_placeholder": "Search for existing case/component"
