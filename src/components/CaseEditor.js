@@ -225,10 +225,12 @@ class CaseEditor extends Component {
                   className={isQuick ? "form-section quick" : "form-section"}
                 >
                   <div className="field-case top">
-                    <h2
-                      className={isQuick ? "sub-heading hidden" : "sub-heading"}
-                    >
-                      <FormattedMessage id="overview" />
+                    <h2 className={"sub-heading"}>
+                      {isQuick ? (
+                        <FormattedMessage id="quick_submit" />
+                      ) : (
+                        <FormattedMessage id="overview" />
+                      )}
                     </h2>
                     <h3 className="sub-heading">
                       <label htmlFor="title">
