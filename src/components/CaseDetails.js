@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import LinkedPropertyGroupWithHeading from "./LinkedPropertyGroupWithHeading";
 import ListWithHeading from "./ListWithHeading";
 import TextListWithHeading from "./TextListWithHeading";
+import NestedTextListWithHeading from "./NestedTextListWithHeading";
 import Tags from "./Tags";
 import {
   DateProp,
@@ -22,13 +23,15 @@ export default class CaseDetails extends React.Component {
           <FormattedMessage id="data" />
         </h2>
 
+        <Tags thing={thing} />
+
         <ListWithHeading
           heading="relationships"
           property="relationships"
           thing={thing}
         />
 
-         <LinkedPropertyGroupWithHeading
+         <TextListWithHeading
           heading="issues"
           property="issues"
           thing={thing} />
@@ -41,7 +44,6 @@ export default class CaseDetails extends React.Component {
 
         <ListWithHeading heading="links" property="links" thing={thing} />
 
-        <Tags thing={thing} />
 
         {/* TODO: Create format for has_components: array of {case id, title}
         TODO: Create format for is_component_of: array of {case id, title}
@@ -61,13 +63,21 @@ export default class CaseDetails extends React.Component {
 
         {/* TODO: Create format for location (structure)
 
-        <TextProp
-          label="location"
+        <NestedTextListWithHeading
+          heading="location"
           property="location"
           thing={thing}
         />
 
            */}
+
+        <NestedTextListWithHeading
+          heading="location"
+          property="location"
+          thing={thing}
+        />
+
+
 
         <TextProp
           label="scope_of_influence"
@@ -186,7 +196,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextProp
+        <TextListWithHeading
           label="if_voting"
           property="if_voting"
           thing={thing}

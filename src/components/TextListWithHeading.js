@@ -11,7 +11,7 @@ export default class TextListGroupWithHeading extends React.Component {
       console.log("!value TextList %s: %o", property, value);
       return <div />;
     } else if (_.isArray(thing[property])) {
-      console.log("is Array TextList %s: %o", property, value);
+      console.log("is Array TextList %s: %o", property, value.children);
       let items = thing[property].map(item => (
         <div key={item.value}>
           <FormattedMessage id={item.value || item} />
