@@ -49,10 +49,26 @@ export class ChoiceEditor extends React.Component {
     };
   }
 
+  convertValue(value) {
+    if (value === true || value === false) {
+      return value;
+    }
+    if (!value) {
+      return "";
+    }
+    if (value.toLowerCase() === "yes") {
+      return true;
+    } else if (value.toLowerCase() === "no") {
+      return false;
+    }
+    return value;
+  }
+
   componentWillReceiveProps(props) {
+    const returnValue = this.convertValue(props.value);
     this.setState({
       value: nickify(props.value),
-      choices: this.makeChoices(props.passProps.choices, props.value)
+      choices: this.makeChoices(props.passProps.choices, returnValue)
     });
   }
 
@@ -148,31 +164,46 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.selectionRenderer = this.selectionRenderer.bind(this);
-    this.state = {
-      value: props.value
-    };
+    let value = props.value
+      ? props.value.map(item => {
+          if (item.value) {
+            return item;
+          }
+          return {
+            value: item,
+            text: this.props.intl.formatMessage({ id: item })
+          };
+        })
+      : [];
+
+    this.state = { value };
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      value: props.value
+    let value = (props.value || []).map(item => {
+      if (item.value) {
+        return item;
+      }
+      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
     });
+    this.setState({ value });
   }
 
-  handleChange(event, index, value) {
-    let b;
-    if (value.length > this.props.limit) {
-      b = value.slice(1, this.props.limit + 1);
-      this.setState({ value: b });
-      this.props.onChange(this.props.property, b);
-    } else if (value.length > this.props.limit) {
-      b = value.slice(1, this.props.limit + 1);
-      this.setState({ value: b });
-      this.props.onChange(this.props.property, b);
-    } else {
-      this.setState({ value });
-      this.props.onChange(this.props.property, value);
+  handleChange(event, index, incoming_value) {
+    let value = incoming_value.map(item => {
+      if (item.value) {
+        return item;
+      }
+      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
+    });
+
+    if (this.props.limit && value.length > this.props.limit) {
+      value = value.slice(1, this.props.limit + 1);
+    } else if (this.props.limit && value.length > this.props.limit) {
+      value = value.slice(1, this.props.limit + 1);
     }
+    this.setState({ value });
+    this.props.onChange(this.props.property, value);
   }
 
   makeChoices(choices, value) {
@@ -188,7 +219,7 @@ export class MultiChoiceEditor extends React.Component {
           key={v.value}
           insetChildren={true}
           checked={value && keys.includes(v.value)}
-          value={v}
+          value={v.value}
           primaryText={v.text}
         />
       );
@@ -213,7 +244,7 @@ export class MultiChoiceEditor extends React.Component {
           fullWidth
           className="custom-select"
           multiple={true}
-          value={this.state.value}
+          value={this.state.value.map(item => item.value || item)}
           onChange={this.handleChange}
           selectionRenderer={this.selectionRenderer}
         >
@@ -301,6 +332,7 @@ export function makeLocalizedChoiceField(
       </p>
       <Field
         fieldName={property}
+        property={property}
         label={label}
         type={ChoiceEditor}
         placeholder={placeholder}
@@ -354,6 +386,7 @@ export class LocalizedMultiChoiceField extends React.Component {
           {this.props.info ? <InfoBox info={this.props.property} /> : undefined}
         </p>
         <MultiChoiceEditor
+          intl={this.props.intl}
           property={this.props.property}
           label={this.state.label}
           choices={this.state.choices}
@@ -450,7 +483,7 @@ class NumberEditor extends React.Component {
 
   onChange(event, value) {
     this.setState({ value: value > 0 ? value : null });
-    // this.props.onChange(Number(value));
+    this.props.onChange(Number(value));
   }
 
   // XXX add validation to ensure only numbers are input

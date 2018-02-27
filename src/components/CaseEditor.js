@@ -70,7 +70,7 @@ class CaseEditor extends Component {
     thing.images = thing.images || [];
     thing.body =
       thing.body ||
-      this.props.intl.formatMessage({ id: "case_description_placeholder" });
+      this.props.intl.formatMessage({ id: "case_body_placeholder" });
     thing.issues = thing.issues || [];
     thing.specific_topics = thing.specific_topics || [];
     thing.relationships = thing.relationships || [];
@@ -101,7 +101,7 @@ class CaseEditor extends Component {
     let thing = nextProps.thing;
     if (!thing.body) {
       thing.body = intl.formatMessage({
-        id: "case_description_placeholder"
+        id: "case_body_placeholder"
       });
     }
     if (
@@ -225,10 +225,12 @@ class CaseEditor extends Component {
                   className={isQuick ? "form-section quick" : "form-section"}
                 >
                   <div className="field-case top">
-                    <h2
-                      className={isQuick ? "sub-heading hidden" : "sub-heading"}
-                    >
-                      <FormattedMessage id="overview" />
+                    <h2 className={"sub-heading"}>
+                      {isQuick ? (
+                        <FormattedMessage id="quick_submit" />
+                      ) : (
+                        <FormattedMessage id="overview" />
+                      )}
                     </h2>
                     <h3 className="sub-heading">
                       <label htmlFor="title">
@@ -315,7 +317,7 @@ class CaseEditor extends Component {
                         })}
                       </h3>
                       <p className="explanatory-text">
-                        <FormattedHTMLMessage id="case_description_instructional" />
+                        <FormattedHTMLMessage id="case_body_instructional" />
                       </p>
                       <BodyEditor
                         onEditorChange={this.updateBody}
@@ -341,6 +343,7 @@ class CaseEditor extends Component {
                     </h2>
                     <p>
                       <FormattedMessage id="components_intro" />
+                      <InfoBox info="components" />
                     </p>
                     <div className="field-case">{has_components}</div>
                     <div className="field-case">{is_component_of}</div>
@@ -513,7 +516,9 @@ class CaseEditor extends Component {
                         onChange={this.onChange}
                       />
                       {thing.decision_methods &&
-                      thing.decision_methods.find(o => o.value === "voting") ? (
+                      thing.decision_methods.find(
+                        o => o.value === "voting_decision"
+                      ) ? (
                         <LocalizedMultiChoiceField
                           intl={intl}
                           property="if_voting"
@@ -566,7 +571,9 @@ class CaseEditor extends Component {
                           name="funder"
                           className="custom-field"
                           type={Text}
-                          placeholder=""
+                          placeholder={intl.formatMessage({
+                            id: "funder_placeholder"
+                          })}
                           fullWidth
                         />
                       </div>
@@ -602,7 +609,7 @@ class CaseEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="implementers_of_change"
-                        value={thing.changes_types}
+                        value={thing.implementers_of_change}
                         rankable={false}
                         onChange={this.onChange}
                       />
@@ -617,11 +624,16 @@ class CaseEditor extends Component {
                             <FormattedMessage id="evaluation_reports" />
                           </h3>
                           <FileListEditor
-                            property="evaluation_links"
+                            property="evaluation_reports"
+                            instructional="evaluation_reports_instructional"
                             thing={thing}
                           />
                           <div className="field-case">
-                            {makeLocalizedListField(intl, "evaluation_links")}
+                            {makeLocalizedListField(
+                              intl,
+                              "evaluation_links",
+                              "case"
+                            )}
                           </div>
                         </div>
                       ) : (

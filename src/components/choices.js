@@ -1,4 +1,3 @@
-import { toTitleCase } from "../util.js";
 const caseChoiceData = require("./case.choices.json");
 const methodChoiceData = require("./method.choices.json");
 const orgChoiceData = require("./organization.choices.json");
@@ -33,11 +32,11 @@ export function getChoices(property) {
   }
 }
 
-export function makeLocalizedChoices(intl, property, alphabetical = true) {
+export function makeLocalizedChoices(intl, property, alphabetical = false) {
   let hasOther;
   let choices = getChoices(property).map(function(v) {
     return {
-      text: toTitleCase(intl.formatMessage({ id: v })),
+      text: intl.formatMessage({ id: v }),
       value: v
     };
   });
