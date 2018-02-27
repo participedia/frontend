@@ -14,9 +14,9 @@
   border: 2px solid $black;
   @include media-breakpoint-up(lg) {
     width: 70% !important;
-  };
+  }
   margin-bottom: 1rem;
-  div>div {
+  div > div {
     width: 100% !important;
     padding-left: 0.5rem;
     hr {
@@ -37,12 +37,12 @@
 }
 
 .list {
-  >div>div>div {
+  > div > div > div {
     border: 2px solid $black;
     padding-left: 1rem;
     @include media-breakpoint-up(sm) {
       width: 70% !important;
-    };
+    }
     hr {
       display: none;
     }
@@ -55,11 +55,21 @@
   input {
     @include media-breakpoint-only(md) {
       font-size: 0.9rem;
-    };
+    }
   }
   .prompt {
     @include media-breakpoint-down(sm) {
       display: none;
     }
   }
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
