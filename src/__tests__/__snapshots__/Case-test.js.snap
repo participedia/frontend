@@ -708,28 +708,19 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="links"
               >
                 <div>
-                  <a
-                    href="http://link 1"
-                    target="_blank"
-                  >
+                  <span>
                     link 1
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 2"
-                    target="_blank"
-                  >
+                  <span>
                     link 2
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 3"
-                    target="_blank"
-                  >
+                  <span>
                     link 3
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -945,28 +936,19 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="links"
                       >
                         <div>
-                          <a
-                            href="http://link 1"
-                            target="_blank"
-                          >
+                          <span>
                             link 1
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 2"
-                            target="_blank"
-                          >
+                          <span>
                             link 2
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 3"
-                            target="_blank"
-                          >
+                          <span>
                             link 3
-                          </a>
+                          </span>
                         </div>
                       </div>
                     </div>
