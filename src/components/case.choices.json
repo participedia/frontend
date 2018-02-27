@@ -91,8 +91,7 @@
     "video_presentations_online_or_inperson",
     "written_briefing_materials_online_or_as_handouts",
     "no_information_was_provided_to_participants",
-    "not_relevant_to_this_type_of_initiative",
-    "other"
+    "not_relevant_to_this_type_of_initiative"
   ],
   "participants_interactions": [
     "acting_drama",
@@ -130,22 +129,19 @@
     "stakeholder_organizations_eg_ngos_business_interests",
     "students",
     "women",
-    "youth",
-    "other"
+    "youth"
   ],
   "recruitment_method": [
     "appointment",
     "captive_sample",
     "election",
     "random_sample",
-    "na",
-    "other"
+    "na"
   ],
   "open_limited": [
     "open_to_all",
     "open_to_all_with_special_effort_to_recruit_some_groups_eg_community_organizing_to_recruit_lowincome_earners",
-    "limited_to_only_some_groups_or_individuals",
-    "other"
+    "limited_to_only_some_groups_or_individuals"
   ],
   "public_spectrum": ["inform", "consult", "involve", "collaborate", "empower"],
   "approaches": [
@@ -164,16 +160,14 @@
     "oversight_and_social_auditing",
     "protest",
     "research_focus_groups",
-    "social_mobilization",
-    "other"
+    "social_mobilization"
   ],
   "purposes": [
     "make_influence_or_challenge_decisions_of_government_and_public_bodies",
     "make_influence_or_challenge_decisions_of_private_organizations_eg_civil_society_organizations_corporations",
     "deliver_goods_and_services_eg_coproduction_of_public_safety_by_police_and_community",
     "develop_the_civic_capacities_of_individuals_communities_and/or_civil_society_organizations_eg_increase_understanding_of_public_issues_strengthen_social_capital",
-    "academic_research",
-    "other"
+    "academic_research"
   ],
   "time_limited": ["a_single_defined_period_of_time", "repeated_over_time"],
   "scope_of_influence": [
@@ -209,7 +203,6 @@
     "open_to_all_with_targeted_recruitment",
     "random_selection",
     "election",
-    "other",
     "appointment"
   ],
   "issues": [
@@ -234,8 +227,7 @@
     "planning_development",
     "science_technology",
     "social_welfare",
-    "transportation",
-    "other"
+    "transportation"
   ],
   "specific_topics": [
     "ability/disability_issues",
@@ -505,7 +497,6 @@
     "women",
     "students",
     "racial/ethnic_groups",
-    "other",
     "men",
     "immigrants",
     "elderly",
@@ -519,7 +510,6 @@
     "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",
     "national_government",
     "regional_government_eg_state_provincial_territorial",
-    "other",
     "international_organization",
     "community_based_organization",
     "academic_institution",
@@ -533,7 +523,6 @@
     "governmentowned_corporation",
     "national_government",
     "regional_government_eg_state_provincial_territorial",
-    "other",
     "international_organization",
     "community_based_organization",
     "academic_institution",
@@ -548,7 +537,6 @@
     "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",
     "national_government",
     "regional_government_eg_state_provincial_territorial",
-    "other",
     "international_organization",
     "faithbased_organization",
     "academic_institution",
