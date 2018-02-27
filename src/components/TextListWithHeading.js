@@ -9,7 +9,6 @@ export default class TextListGroupWithHeading extends React.Component {
     if (!value || (_.isArray(value) && !value.length)) {
       return <div />;
     } else if (_.isArray(thing[property])) {
-      console.log("TextList %s: %o", property, value);
       let items = thing[property].map(item => (
         <div key={item.value}>
           <FormattedMessage id={item.value || item} />
