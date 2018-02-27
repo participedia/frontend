@@ -855,7 +855,8 @@
     "who_else_supported_the_initiative_instructional":
       "Enter who else supported the initiative",
     "general_issues_instructional": "Select an issue",
-    "issues_instructional": "Select an issue",
+    "issues_instructional":
+      "Rank order up to three of the most relevant issues addressed, with “1” indicating the most relevant issue.",
     "issues_placeholder": "Select & rank up to 3 issues",
     "typical_purposes": "Typical Purpose(s)",
     "typical_purposes_instructional":
