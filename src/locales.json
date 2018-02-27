@@ -659,8 +659,10 @@
     "case_body_placeholder":
       "<h3>Problems and Purpose</h3><p></p><h3>History</h3><p></p><h3>Originating Entities and Funding</h3><p></p><h3>Participant Recruitment and Selection</h3><p></p><h3>Methods and Tools Used</h3><p></p><h3>Deliberation, Decisions, and Public Interaction</h3><p></p><h3>Influence, Outcomes, and Effects</h3><p></p><h3>Analysis and Lessons Learned</h3><p></p><h3>Secondary Sources</h3><p></p><h3>External Links</h3><p></p><h3>Notes</h3><p></p>",
     "links_placeholder": "Add a link",
-    "location_instructional": "Type to search for known location",
-    "location_placeholder": "Type to search for a known location",
+    "location_instructional":
+      "Type to select an address, city or country where the primary case activities occurred.",
+    "location_placeholder":
+      "Type to select an address, city or country where the primary case activities occurred.",
     "ongoing_label": "This case is ongoing",
     "time_limited": "Time Limited or Repeated?",
     "time_limited_instructional":
@@ -748,6 +750,7 @@
     "organizer_types_placeholder":
       "Select up to three types of organizers or managers",
     "funder_label": "Funder",
+    "funder_placeholder": "Who funded this case?",
     "funder_instructional":
       "Who funded this case of public participation? Provide names of the organizations, government agencies, or individuals who paid for this initiative.",
     "funder_types": "Type of Funder",
@@ -1506,6 +1509,7 @@
     "unknown_title_label": "Unknown",
     "unknown_title_instructional": "Unknown",
     "unknown_body_title": "Unknown",
+    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made)",
     "best_for": "Best for",
     "best_for_instructional": "What is this method best used to accomplish?",
     "best_for_placeholder": "Select best use",
@@ -1582,6 +1586,8 @@
     "most_cases_unanimous_decision_by_voting":
       "most cases unanimous decision by voting",
     "made_through_consensus": "Made through consensus",
+    "voting_decision":
+      "Voting (i.e., any type of formal vote; please provide more detail in next field)",
     "user_decisions_are_made_through_a_stance_slider_tool":
       "User decisions are made through a stance slider tool",
     "list_of_solutions_narrowed_into_several_proposals_during_final_large_group_discussion":

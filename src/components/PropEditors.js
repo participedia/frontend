@@ -180,11 +180,7 @@ export class MultiChoiceEditor extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (!props.value) {
-      console.log("No value for %s", props.property);
-      return;
-    }
-    let value = props.value.map(item => {
+    let value = (props.value || []).map(item => {
       if (item.value) {
         return item;
       }

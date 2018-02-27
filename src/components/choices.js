@@ -1,4 +1,3 @@
-import { toTitleCase } from "../util.js";
 const caseChoiceData = require("./case.choices.json");
 const methodChoiceData = require("./method.choices.json");
 const orgChoiceData = require("./organization.choices.json");
