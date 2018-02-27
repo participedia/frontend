@@ -11,6 +11,11 @@ export default class Related extends React.Component {
       value: props.value
     };
   }
+
+  onUpdateInput(searchText, dataSource, params) {
+    console.log("onUpdateInput(%s, %o, %o)", searchText, dataSource, params);
+  }
+
   componentWillReceiveProps(props) {
     this.setState({ value: props.value });
   }
@@ -75,8 +80,23 @@ export default class Related extends React.Component {
     let value = this.state.value; // if no dataSourceConfig, assume a list of strings
     return (
       <div>
-        <h3 className="sub-heading"><FormattedMessage id={this.props.fieldName} /></h3>
-        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_instructional_" + this.props.passProps.item_type} />{this.props.passProps.info ? <InfoBox info={this.props.passProps.info} /> : undefined}</p>
+        <h3 className="sub-heading">
+          <FormattedMessage id={this.props.fieldName} />
+        </h3>
+        <p className="explanatory-text">
+          <FormattedMessage
+            id={
+              this.props.fieldName +
+              "_instructional_" +
+              this.props.passProps.item_type
+            }
+          />
+          {this.props.passProps.info ? (
+            <InfoBox info={this.props.passProps.info} />
+          ) : (
+            undefined
+          )}
+        </p>
         <ChipInput
           {...rest}
           className="related-fields clearfix"
@@ -86,6 +106,7 @@ export default class Related extends React.Component {
           filter={this.props.passProps.filter}
           onRequestDelete={handleRequestDelete}
           placeholder={this.props.passProps.placeholder}
+          onUpdateInput={this.onUpdateInput}
           fullWidth
           fullWidthInput
           dataSource={this.props.passProps.dataSource}
