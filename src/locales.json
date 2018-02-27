@@ -754,8 +754,7 @@
     "facilitators_placeholder": "Did facilitators help guide participants?",
     "facilitator_training": "Facilitator training",
     "facilitator_training_instructional": "If yes, were they…",
-    "facilitator_training_placeholder":
-      "Did facilitators help guide participants?",
+    "facilitator_training_placeholder": "Select the type of facilitators",
     "participants_interactions": "Type(s) of Interaction among participants",
     "participants_interactions_instructional":
       "Select and rank up to three types of interactions in order of relevance, with with “1” indicating the most often used form of interaction.",
