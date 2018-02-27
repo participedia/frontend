@@ -654,8 +654,10 @@
       "Enter tweet-length (140 characters or less) description of this case",
     "description_placeholder":
       "Enter tweet-length (140 characters or less) description of this case",
-    "case_description_instructional":
+    "case_body_instructional":
       "The following standard structure makes it easier to compare and analyze entries. Please use the headings below and refer to our guidelines as you prepare your case entry.",
+    "case_body_placeholder":
+      "<h3>Problems and Purpose</h3><p></p><h3>History</h3><p></p><h3>Originating Entities and Funding</h3><p></p><h3>Participant Recruitment and Selection</h3><p></p><h3>Methods and Tools Used</h3><p></p><h3>Deliberation, Decisions, and Public Interaction</h3><p></p><h3>Influence, Outcomes, and Effects</h3><p></p><h3>Analysis and Lessons Learned</h3><p></p><h3>Secondary Sources</h3><p></p><h3>External Links</h3><p></p><h3>Notes</h3><p></p>",
     "links_placeholder": "Add a link",
     "location_instructional": "Type to search for known location",
     "location_placeholder": "Type to search for a known location",
@@ -1990,8 +1992,6 @@
       "Rank order up to three of the most relevant, specific topics, with “1” indicating the most relevant topic.",
     "specific_topics_placeholder": "Select & rank up to 3 sub-topics",
     "tags": "Tags",
-    "case_description_placeholder":
-      "<p>The following standard structure makes it easier to compare and analyze entries.</p><p>We recommend you use the headings below and refer to our guidelines as you prepare your case entry.</p><p>To view the guidelines, copy and paste this URL into your browser: <a href=\"https://goo.gl/V2SHQn\">https://goo.gl/V2SHQn</a></p>",
     "searchmatched": "This matched your search.",
     "featured_map": "This is a featured item.",
     "change_types": "Types of Change",

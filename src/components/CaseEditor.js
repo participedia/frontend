@@ -70,7 +70,7 @@ class CaseEditor extends Component {
     thing.images = thing.images || [];
     thing.body =
       thing.body ||
-      this.props.intl.formatMessage({ id: "case_description_placeholder" });
+      this.props.intl.formatMessage({ id: "case_body_placeholder" });
     thing.issues = thing.issues || [];
     thing.specific_topics = thing.specific_topics || [];
     thing.relationships = thing.relationships || [];
@@ -101,7 +101,7 @@ class CaseEditor extends Component {
     let thing = nextProps.thing;
     if (!thing.body) {
       thing.body = intl.formatMessage({
-        id: "case_description_placeholder"
+        id: "case_body_placeholder"
       });
     }
     if (
@@ -315,7 +315,7 @@ class CaseEditor extends Component {
                         })}
                       </h3>
                       <p className="explanatory-text">
-                        <FormattedHTMLMessage id="case_description_instructional" />
+                        <FormattedHTMLMessage id="case_body_instructional" />
                       </p>
                       <BodyEditor
                         onEditorChange={this.updateBody}
