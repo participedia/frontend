@@ -33,11 +33,11 @@ export function getChoices(property) {
   }
 }
 
-export function makeLocalizedChoices(intl, property, alphabetical = true) {
+export function makeLocalizedChoices(intl, property, alphabetical = false) {
   let hasOther;
   let choices = getChoices(property).map(function(v) {
     return {
-      text: toTitleCase(intl.formatMessage({ id: v })),
+      text: intl.formatMessage({ id: v }),
       value: v
     };
   });

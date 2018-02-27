@@ -1582,11 +1582,14 @@
       "Communication of Insights and Outcomes",
     "communication_outcomes_box_text":
       "<p>Examples of Artistic Expression include political rap, street theater, etc.</p><p>Examples of Traditional Media include television, radio, newspapers, etc.</p><p>Examples of New Media include social media, blogging, texting, etc.</p><p>Independent Media is media that is free of corporate or government influence.</p><p>Example of a Minority Report could be a dissenting opinion.</p>",
-    "artistic_expression": "Artistic Expression",
-    "traditional_media": "Traditional Media",
-    "new_media": "New Media",
-    "independent_media": "Independent Media",
-    "minority_report": "Minority Report",
+    "artistic_expression":
+      "Artistic Expression (e.g. political rap, street theatre)",
+    "traditional_media":
+      "Traditional Media (i.e. television, radio, newspapers)",
+    "new_media": "New Media (e.g. social media, blogging, texting)",
+    "independent_media":
+      "Independent Media (i.e. free of corporate or government influence)",
+    "minority_report": "Minority Report (i.e. a dissenting opinion)",
     "petitions": "Petitions",
     "protests_public_demonstrations": "Protests/Public Demonstrations",
     "public_hearings_meetings": "Public Hearings/Meetings",
@@ -2115,7 +2118,7 @@
       "Open to all with special effort to recruit some groups (e.g., community organizing to recruit low-income earners)",
     "limited_to_only_some_groups_or_individuals":
       "Limited to only some groups or individuals",
-    "na": "Not applicable",
+    "na": "Not Applicable",
     "dont_know": "Don’t Know",
     "captive_sample": "Captive sample",
     "random_sample": "Random sample",
