@@ -2160,8 +2160,7 @@
       "Unknown (i.e., we don’t know how the vote was conducted)",
     "activist_network": "Activist Network  ",
     "forprofit_business": "For-Profit Business",
-    "local_government":
-      "Local Government  (e.g. Village, Town, City, National Government)",
+    "local_government": "Local Government  (e.g. Village, Town, City)",
     "nongovernmental_organization":
       "Non-Governmental Organization  (Non-profit)",
     "social_movement": "Social Movement  ",
