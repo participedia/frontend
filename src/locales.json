@@ -665,11 +665,11 @@
       "Did this case take place over a single, defined period of days, weeks or months? Or was the entire process repeated over time? Select one.",
     "time_limited_placeholder": "Was this time limited, or repeated?",
     "purpose_approach": "Purpose/Goal",
-    "purposes": "Purposes",
+    "purposes": "Purpose",
     "purposes_instructional":
       "Select and rank up to three purposes, with “1” indicating the most relevant.",
     "purposes_placeholder": "Select & rank up to 3 purposes/goals",
-    "approaches": "Approaches",
+    "approaches": "Approach",
     "approaches_instructional":
       "Select and rank up to three approaches, with “1” indicating the most relevant.",
     "approaches_placeholder": "Select & rank up to 3 approaches",
