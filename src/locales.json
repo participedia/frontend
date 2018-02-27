@@ -651,9 +651,8 @@
     "not_specified": "Not specified",
     "description": "Brief Description",
     "description_explanatory":
-      "Enter tweet-length (140 characters or less) description of this case",
-    "description_placeholder":
-      "Enter tweet-length (140 characters or less) description of this case",
+      "Enter tweet-length (280 characters or less) description of this case.",
+    "description_placeholder": "Enter tweet-length case description",
     "case_body_instructional":
       "The following standard structure makes it easier to compare and analyze entries. Please use the headings below and refer to our guidelines as you prepare your case entry.",
     "case_body_placeholder":
