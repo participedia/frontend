@@ -9,6 +9,7 @@
     "files": "Files",
     "formal_evaluation": "Formal Evaluation",
     "funder": "funder",
+    "funder_placeholder": "Who funded this case?",
     "funder_types": "Type of Funder",
     "has_components": "Components of this case",
     "if_voting": "If Voting",

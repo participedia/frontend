@@ -566,7 +566,9 @@ class CaseEditor extends Component {
                           name="funder"
                           className="custom-field"
                           type={Text}
-                          placeholder=""
+                          placeholder={intl.formatMessage({
+                            id: "funder_placeholder"
+                          })}
                           fullWidth
                         />
                       </div>
