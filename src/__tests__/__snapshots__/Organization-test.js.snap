@@ -567,12 +567,12 @@ exports[`Organization editor renders correctly 1`] = `
                 <h3
                   className="sub-heading"
                 >
-                  Location
+                  Primary location
                 </h3>
                 <p
                   className="explanatory-text"
                 >
-                  Type to select an address, city or country where the primary case activities occurred.
+                  Type to search for known location
                 </p>
                 <div
                   className="location"
