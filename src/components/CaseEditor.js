@@ -513,7 +513,9 @@ class CaseEditor extends Component {
                         onChange={this.onChange}
                       />
                       {thing.decision_methods &&
-                      thing.decision_methods.find(o => o.value === "voting") ? (
+                      thing.decision_methods.find(
+                        o => o.value === "voting_decision"
+                      ) ? (
                         <LocalizedMultiChoiceField
                           intl={intl}
                           property="if_voting"

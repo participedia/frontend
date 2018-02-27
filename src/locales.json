@@ -1001,7 +1001,8 @@
     "voting_instructional": "Select type of voting",
     "getting_sense_of_room/group_ie_no_formal_voting":
       "Getting sense of room/group (i.e. no formal voting)",
-    "opinion_survey": "Opinion Survey",
+    "opinion_survey":
+      "Opinion Survey (i.e., taken before and/or after participants convened)",
     "both": "both",
     "facetoface": "Face-to-face",
     "online": "Online",
@@ -2149,9 +2150,13 @@
       "No information was provided to participants",
     "not_relevant_to_this_type_of_initiative":
       "Not relevant to this type of initiative",
-    "general_agreement/consensus": "General agreement/consensus",
-    "idea_generation": "Idea Generation",
-    "unknown": "Unknown",
+    "general_agreement/consensus":
+      "General agreement/consensus (i.e., broad acceptance of decisions; unanimous agreement desired but not necessary)",
+    "idea_generation":
+      "Idea Generation (i.e., potential solutions were generated, but no priorities were decided)",
+    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made)",
+    "voting_decision":
+      "Voting (i.e., any type of formal vote; please provide more detail in next field)",
     "majoritarian_voting": "Majoritarian Voting (i.e., 50% +1)",
     "supermajoritarian":
       "Super-Majoritarian (i.e., threshold more than 50% +1)",

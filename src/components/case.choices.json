@@ -80,8 +80,8 @@
     "idea_generation",
     "not_applicable",
     "opinion_survey",
-    "unknown",
-    "voting"
+    "unknown_decision",
+    "voting_decision"
   ],
   "learning_resources": [
     "expert_presentations",
