@@ -621,11 +621,16 @@ class CaseEditor extends Component {
                             <FormattedMessage id="evaluation_reports" />
                           </h3>
                           <FileListEditor
-                            property="evaluation_links"
+                            property="evaluation_reports"
+                            instructional="evaluation_reports_instructional"
                             thing={thing}
                           />
                           <div className="field-case">
-                            {makeLocalizedListField(intl, "evaluation_links")}
+                            {makeLocalizedListField(
+                              intl,
+                              "evaluation_links",
+                              "case"
+                            )}
                           </div>
                         </div>
                       ) : (

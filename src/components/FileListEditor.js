@@ -84,7 +84,9 @@ class FileListEditorField extends Component {
     return (
       <div>
         <p className="explanatory-text">
-          <FormattedMessage id="files_instructional" />
+          <FormattedMessage
+            id={this.props.passProps.instructional || "files_instructional"}
+          />
         </p>
         <Row className="itemPics">{bits}</Row>
         <Upload
@@ -107,6 +109,7 @@ export default class FileListEditor extends Component {
         id={property}
         name={property}
         type={FileListEditorField}
+        instructional={this.props.instructional}
       />
     );
   }
