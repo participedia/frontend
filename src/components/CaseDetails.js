@@ -31,8 +31,7 @@ export default class CaseDetails extends React.Component {
          <LinkedPropertyGroupWithHeading
           heading="issues"
           property="issues"
-          thing={thing}
-        />
+          thing={thing} />
 
         <TextListWithHeading
           label="specific_topics"
@@ -44,22 +43,31 @@ export default class CaseDetails extends React.Component {
 
         <Tags thing={thing} />
 
+        {/* TODO: Create format for has_components: array of {case id, title}
+        TODO: Create format for is_component_of: array of {case id, title}
+        */}
 
-        {/* TODO: Create format for array of {case id, title}
         <TextListWithHeading
           label="has_components"
           property="has_components"
           thing={thing}
         />
-        TODO: Create format for array of {case id, title}
+
         <TextListWithHeading
           label="is_component_of"
           property="is_component_of"
           thing={thing}
         />
 
-        TODO: Create format for location (structure)
-        */}
+        {/* TODO: Create format for location (structure)
+
+        <TextProp
+          label="location"
+          property="location"
+          thing={thing}
+        />
+
+           */}
 
         <TextProp
           label="scope_of_influence"
@@ -128,14 +136,12 @@ export default class CaseDetails extends React.Component {
         />
 
 
-        {/* TODO: Create format for array of {method id, title}
-        <
+        {/* TODO: Create format for array of {method id, title} */}
+        <TextListWithHeading
           label="process_methods"
           property="process_methods"
           thing={thing}
         />
-
-        */}
 
         <TextProp
           label="legality"
@@ -192,13 +198,13 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        {/* TODO: Create format for array of {id, title}
-        <TextProp
-          label="primary_organizer"
+        {/* TODO: Create format for array of {id, title} */}
+
+        <TextListWithHeading
+          heading="primary_organizer"
           property="primary_organizer"
           thing={thing}
         />
-        */}
 
         <TextListWithHeading
           heading="organizer_types"
@@ -255,77 +261,6 @@ export default class CaseDetails extends React.Component {
           property="evaluation_links"
           thing={thing}
         />
-
-
-         {/* Old
-        <LinkedPropertyGroupWithHeading
-          heading="communication_mode"
-          property="communication_mode"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="communication_with_audience"
-          property="communication_with_audience"
-          thing={thing}
-        />
-
-
-        <LinkedPropertyGroupWithHeading
-          heading="voting"
-          property="voting"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="number_of_meeting_days"
-          property="number_of_meeting_days"
-          thing={thing}
-        />
-
-
-        <LinkedPropertyGroupWithHeading
-          heading="kind_of_influence"
-          property="kind_of_influence"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="targeted_participants_public_role"
-          property="targeted_participants_public_role"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="targeted_audience"
-          property="targeted_audience"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="participant_selection"
-          property="participant_selection"
-          thing={thing}
-        />
-
-        <LinkedPropertyGroupWithHeading
-          heading="type_of_funding_entity"
-          property="type_of_funding_entity"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="type_of_implementing_entity"
-          property="type_of_implementing_entity"
-          thing={thing}
-        />
-        <LinkedPropertyGroupWithHeading
-          heading="type_of_sponsoring_entity"
-          property="type_of_sponsoring_entity"
-          thing={thing}
-        />
-        <TextProp label="staff_type" property="staff_type" thing={thing} />
-        <TextProp
-          label="who_else_supported_the_initiative"
-          property="who_else_supported_the_initiative"
-          thing={thing}
-        />
-
-         */}
 
       </div>
     );
