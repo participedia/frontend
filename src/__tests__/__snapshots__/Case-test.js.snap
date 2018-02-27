@@ -701,7 +701,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
@@ -743,7 +743,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Start date
+                  Start Date
                 </span>
               </p>
               <div
@@ -761,7 +761,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  End date
+                  End Date
                 </span>
               </p>
               <div
@@ -786,7 +786,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="ongoing"
               >
                 <span>
-                  No
+                  False
                 </span>
               </div>
             </div>
@@ -808,7 +808,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Face-to-face, online, or both
+                  Face-to-face, online or both-en/msg.prop
                 </span>
               </p>
               <div
@@ -938,7 +938,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
@@ -980,7 +980,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Start date
+                          Start Date
                         </span>
                       </p>
                       <div
@@ -998,7 +998,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          End date
+                          End Date
                         </span>
                       </p>
                       <div
@@ -1023,7 +1023,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="ongoing"
                       >
                         <span>
-                          No
+                          False
                         </span>
                       </div>
                     </div>
@@ -1045,7 +1045,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Face-to-face, online, or both
+                          Face-to-face, online or both-en/msg.prop
                         </span>
                       </p>
                       <div

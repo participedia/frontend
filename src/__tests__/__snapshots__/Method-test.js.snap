@@ -32,7 +32,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
@@ -83,7 +83,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="facilitated"
               >
                 <span>
-                  No
+                  False
                 </span>
               </div>
             </div>
@@ -202,7 +202,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
@@ -253,7 +253,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="facilitated"
                       >
                         <span>
-                          No
+                          False
                         </span>
                       </div>
                     </div>
