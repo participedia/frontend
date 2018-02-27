@@ -65,7 +65,6 @@ export class ChoiceEditor extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    // console.log("willReceiveProps %s: %o", props.passProps.property, props);
     const returnValue = this.convertValue(props.value);
     this.setState({
       value: nickify(props.value),
