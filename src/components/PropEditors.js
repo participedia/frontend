@@ -53,6 +53,9 @@ export class ChoiceEditor extends React.Component {
     if (value === true || value === false) {
       return value;
     }
+    if (!value) {
+      return "";
+    }
     if (value.toLowerCase() === "yes") {
       return true;
     } else if (value.toLowerCase() === "no") {
@@ -62,6 +65,7 @@ export class ChoiceEditor extends React.Component {
   }
 
   componentWillReceiveProps(props) {
+    // console.log("willReceiveProps %s: %o", props.passProps.property, props);
     const returnValue = this.convertValue(props.value);
     this.setState({
       value: nickify(props.value),
@@ -161,12 +165,17 @@ export class MultiChoiceEditor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSortEnd = this.onSortEnd.bind(this);
     this.selectionRenderer = this.selectionRenderer.bind(this);
-    let value = props.value.map(item => {
-      if (item.value) {
-        return item;
-      }
-      return { value: item, text: this.props.intl.formatMessage({ id: item }) };
-    });
+    let value = props.value
+      ? props.value.map(item => {
+          if (item.value) {
+            return item;
+          }
+          return {
+            value: item,
+            text: this.props.intl.formatMessage({ id: item })
+          };
+        })
+      : [];
 
     this.state = { value };
   }
@@ -324,6 +333,7 @@ export function makeLocalizedChoiceField(
       </p>
       <Field
         fieldName={property}
+        property={property}
         label={label}
         type={ChoiceEditor}
         placeholder={placeholder}
