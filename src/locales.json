@@ -2175,6 +2175,9 @@
     "components": "Components",
     "components_intro":
       "Some cases of public participation can be viewed as “components” of a single, overarching case. Any case can have multiple components, but can only be labeled as a component of a single case.",
+    "components_box_title": "Component Examples",
+    "components_box_text":
+      "Here are a few examples of why an event or process could be considered a component of a more comprehensive initiative:<ul class='givemebackmylists'><li>it is one of several phases or sessions that use very different methods as part of the same initiative;</li><li>it engages different subsets of participants in one or more of an initiative’s phases or sessions;</li><li>it is a repeat cycle of a similar process that took place at another time in the same geographic location;</li><li>it is one of many events held in different locations as part of a single participatory initiative;</li><li>etc.</li></ul>",
     "has_components_instructional_case":
       "A case can have multiple components, but they must already be published cases on Participedia. Type to search for an existing case in Participedia to label it as a component of this case. Select one or more.",
     "has_components_placeholder": "Search for existing case/component",

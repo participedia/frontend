@@ -341,6 +341,7 @@ class CaseEditor extends Component {
                     </h2>
                     <p>
                       <FormattedMessage id="components_intro" />
+                      <InfoBox info="components" />
                     </p>
                     <div className="field-case">{has_components}</div>
                     <div className="field-case">{is_component_of}</div>
