@@ -44,11 +44,6 @@ export default class CaseDetails extends React.Component {
 
         <ListWithHeading heading="links" property="links" thing={thing} />
 
-
-        {/* TODO: Create format for has_components: array of {case id, title}
-        TODO: Create format for is_component_of: array of {case id, title}
-        */}
-
         <TextListWithHeading
           label="has_components"
           property="has_components"
@@ -61,23 +56,11 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        {/* TODO: Create format for location (structure)
-
         <NestedTextListWithHeading
           heading="location"
           property="location"
           thing={thing}
         />
-
-           */}
-
-        <NestedTextListWithHeading
-          heading="location"
-          property="location"
-          thing={thing}
-        />
-
-
 
         <TextProp
           label="scope_of_influence"
@@ -145,8 +128,6 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-
-        {/* TODO: Create format for array of {method id, title} */}
         <TextListWithHeading
           label="process_methods"
           property="process_methods"
@@ -158,7 +139,6 @@ export default class CaseDetails extends React.Component {
           property="legality"
           thing={thing}
         />
-
 
         <TextProp
           label="facilitators"

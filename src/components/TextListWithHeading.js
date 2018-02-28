@@ -8,10 +8,8 @@ export default class TextListGroupWithHeading extends React.Component {
     let { heading, property, thing } = this.props;
     let value = thing[property];
     if (!value || (_.isArray(value) && !value.length)) {
-      console.log("!value TextList %s: %o", property, value);
       return <div />;
     } else if (_.isArray(thing[property])) {
-      console.log("is Array TextList %s: %o", property, value.children);
       let items = thing[property].map(item => (
         <div key={item.value}>
           <FormattedMessage id={item.value || item} />
@@ -26,7 +24,6 @@ export default class TextListGroupWithHeading extends React.Component {
         </div>
       );
     } else {
-      console.log("Else TextList %s: %o", property, value);
       return (
         <div className="linked-property">
           <p className="sub-sub-heading">
