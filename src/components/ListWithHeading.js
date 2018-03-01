@@ -11,9 +11,7 @@ export default class ListGroupWithHeading extends React.Component {
     let items = thing[property].map(item => (
       <div key={item}>
         {!/^https?:\/\//i.test(item) ? (
-          <a target="_blank" href={"http://" + item}>
-            {item}
-          </a>
+          <FormattedMessage id={item} />
         ) : (
           <a target="_blank" href={item}>
             {item}
