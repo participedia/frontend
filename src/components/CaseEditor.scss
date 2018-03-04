@@ -133,10 +133,14 @@ label {
 
 .custom-select {
   @include media-breakpoint-up(lg) {
-    width: 70% !important;
+    width: 100% !important;
   }
+
   border: 2px solid $black;
   padding-left: 1rem;
+  display: block !important;
+  height: auto !important;
+
   hr {
     display: none;
   }
@@ -148,6 +152,26 @@ label {
     }
   }
 }
+/*
+.custom-select > div {
+  @include media-breakpoint-up(md) {
+    width: 80% !important;
+    height: auto !important;
+    white-space: normal;
+    margin-top: 2% !important;
+
+  }
+  bottom: 30% !important;
+}
+.custom-select > div > div {
+}
+.custom-select > div > div > button {
+   @include media-breakpoint-up(md) {
+    right: -25% !important;
+    margin-top: 2% !important;
+  }
+  position: absolute;
+} */
 
 .section-heading {
   padding-top: 3rem;
