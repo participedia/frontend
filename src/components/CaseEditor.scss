@@ -79,6 +79,26 @@
   }
 }
 
+div[role=presentation] {
+  display: block;
+}
+
+div[role=menu]{
+  display: block !important;
+}
+
+span[role=menuitem] {
+  line-height: 23px !important;;
+  white-space: normal !important;;
+  padding-bottom: 20px !important;
+  padding-top: 7px !important;
+  min-height: 20px !important;
+}
+
+span[role=menuitem] > div > div > svg {
+  top: 0px !important;
+}
+
 label {
   margin: 0 !important;
 }
@@ -106,7 +126,7 @@ label {
   span {
     font-weight: $blond-weight;
   }
-  @include media-breakpoint-up(md) { 
+  @include media-breakpoint-up(md) {
     width: 70%;
   }
 }
