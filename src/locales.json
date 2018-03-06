@@ -1419,6 +1419,10 @@
       "Give this public participation project or event a descriptive title in <b>10 words or less</b>. For example, “Brazilian Dialogue on Diversity\" or \"New York City Public Issues Forum.\"",
     "case_title_placeholder": "Enter title in 10 words or less.",
     "case_body_title": "Case Description/Narrative",
+    "case_body_instructional":
+      "The following standard structure makes it easier to compare and analyze entries. Please use the headings below and refer to our guidelines as you prepare your case entry.",
+    "case_body_placeholder":
+      "<h3>Problems and Purpose</h3><p></p><h3>History</h3><p></p><h3>Originating Entities and Funding</h3><p></p><h3>Participant Recruitment and Selection</h3><p></p><h3>Methods and Tools Used</h3><p></p><h3>Deliberation, Decisions, and Public Interaction</h3><p></p><h3>Influence, Outcomes, and Effects</h3><p></p><h3>Analysis and Lessons Learned</h3><p></p><h3>Secondary Sources</h3><p></p><h3>External Links</h3><p></p><h3>Notes</h3><p></p>",
     "tags_instructional_case": "Select tags that best describe this case.",
     "method_title_label": "Title of Method",
     "method_title_explanatory":

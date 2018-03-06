@@ -149,7 +149,6 @@ class CaseEditor extends Component {
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
-    // let thing = Object.assign({}, this.props.thing, this.state.thing);
     isQuick = false;
     if (this.state.thing.issues === undefined) {
       return <div />;
@@ -228,7 +227,8 @@ class CaseEditor extends Component {
         info="is_component_of"
         type={SearchableRelatedEditor}
         dataSource={cases}
-        dataSourceConfig={{ text: "title", value: "id" }}
+        value={thing.is_component_of}
+        dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
           id: "is_component_of_placeholder"
         })}
