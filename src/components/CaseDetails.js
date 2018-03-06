@@ -31,10 +31,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <TextListWithHeading
-          heading="issues"
-          property="issues"
-          thing={thing} />
+        <TextListWithHeading heading="issues" property="issues" thing={thing} />
 
         <TextListWithHeading
           label="specific_topics"
@@ -46,13 +43,13 @@ export default class CaseDetails extends React.Component {
 
         <TextListWithHeading
           label="has_components"
-          property="has_components"
+          property="has_components.title"
           thing={thing}
         />
 
         <TextListWithHeading
           label="is_component_of"
-          property="is_component_of"
+          property="is_component_of.title"
           thing={thing}
         />
 
@@ -68,11 +65,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <ListWithHeading
-          heading="files"
-          property="files"
-          thing={thing}
-        />
+        <ListWithHeading heading="files" property="files" thing={thing} />
 
         <DateProp label="start_date" property="start_date" thing={thing} />
 
@@ -80,11 +73,7 @@ export default class CaseDetails extends React.Component {
 
         <BooleanProp label="ongoing" property="ongoing" thing={thing} />
 
-        <TextProp
-          label="time_limited"
-          property="time_limited"
-          thing={thing}
-        />
+        <TextProp label="time_limited" property="time_limited" thing={thing} />
 
         <TextListWithHeading
           heading="purposes"
@@ -110,11 +99,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextProp
-          label="open_limited"
-          property="open_limited"
-          thing={thing}
-        />
+        <TextProp label="open_limited" property="open_limited" thing={thing} />
 
         <TextProp
           label="recruitment_method"
@@ -122,7 +107,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <LinkedPropertyGroupWithHeading
+        <LinkedPropertyGroupWithHeading
           heading="targeted_participants"
           property="targeted_participants"
           thing={thing}
@@ -134,17 +119,9 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextProp
-          label="legality"
-          property="legality"
-          thing={thing}
-        />
+        <TextProp label="legality" property="legality" thing={thing} />
 
-        <TextProp
-          label="facilitators"
-          property="facilitators"
-          thing={thing}
-        />
+        <TextProp label="facilitators" property="facilitators" thing={thing} />
 
         <TextListWithHeading
           label="facilitator_training"
@@ -182,7 +159,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <TextListWithHeading
+        <TextListWithHeading
           heading="insights_outcomes"
           property="insights_outcomes"
           thing={thing}
@@ -191,8 +168,8 @@ export default class CaseDetails extends React.Component {
         {/* TODO: Create format for array of {id, title} */}
 
         <TextListWithHeading
-          heading="primary_organizer"
-          property="primary_organizer"
+          heading="primary_organizers"
+          property="primary_organizers"
           thing={thing}
         />
 
@@ -230,13 +207,13 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-         <TextListWithHeading
+        <TextListWithHeading
           heading="implementers_of_change"
           property="implementers_of_change"
           thing={thing}
         />
 
-         <LinkedPropertyGroupWithHeading
+        <LinkedPropertyGroupWithHeading
           heading="formal_evaluation"
           property="formal_evaluation"
           thing={thing}
@@ -251,7 +228,6 @@ export default class CaseDetails extends React.Component {
           property="evaluation_links"
           thing={thing}
         />
-
       </div>
     );
   }
