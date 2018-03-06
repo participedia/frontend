@@ -31,25 +31,21 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextListWithHeading heading="issues" property="issues" thing={thing} />
+        <TextListWithHeading property="issues" thing={thing} />
 
-        <TextListWithHeading
-          label="specific_topics"
-          property="specific_topics"
-          thing={thing}
-        />
+        <TextListWithHeading property="specific_topics" thing={thing} />
 
         <ListWithHeading heading="links" property="links" thing={thing} />
 
         <TextListWithHeading
-          label="has_components"
-          property="has_components.title"
+          heading="This case is a component of"
+          property="is_component_of"
           thing={thing}
         />
 
         <TextListWithHeading
-          label="is_component_of"
-          property="is_component_of.title"
+          heading="This case has these components"
+          property="has_components"
           thing={thing}
         />
 
@@ -75,11 +71,7 @@ export default class CaseDetails extends React.Component {
 
         <TextProp label="time_limited" property="time_limited" thing={thing} />
 
-        <TextListWithHeading
-          heading="purposes"
-          property="purposes"
-          thing={thing}
-        />
+        <TextListWithHeading property="purposes" thing={thing} />
 
         <ListWithHeading
           heading="approaches"
@@ -113,21 +105,13 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextListWithHeading
-          label="process_methods"
-          property="process_methods"
-          thing={thing}
-        />
+        <TextListWithHeading property="process_methods" thing={thing} />
 
         <TextProp label="legality" property="legality" thing={thing} />
 
         <TextProp label="facilitators" property="facilitators" thing={thing} />
 
-        <TextListWithHeading
-          label="facilitator_training"
-          property="facilitator_training"
-          thing={thing}
-        />
+        <TextListWithHeading property="facilitator_training" thing={thing} />
 
         <LinkedPropertyGroupWithHeading
           heading="facetoface_online_or_both"
@@ -136,7 +120,6 @@ export default class CaseDetails extends React.Component {
         />
 
         <TextListWithHeading
-          heading="participants_interactions"
           property="participants_interactions"
           thing={thing}
         />
@@ -147,37 +130,17 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextListWithHeading
-          heading="decision_methods"
-          property="decision_methods"
-          thing={thing}
-        />
+        <TextListWithHeading property="decision_methods" thing={thing} />
 
-        <TextListWithHeading
-          label="if_voting"
-          property="if_voting"
-          thing={thing}
-        />
+        <TextListWithHeading property="if_voting" thing={thing} />
 
-        <TextListWithHeading
-          heading="insights_outcomes"
-          property="insights_outcomes"
-          thing={thing}
-        />
+        <TextListWithHeading property="insights_outcomes" thing={thing} />
 
         {/* TODO: Create format for array of {id, title} */}
 
-        <TextListWithHeading
-          heading="primary_organizers"
-          property="primary_organizers"
-          thing={thing}
-        />
+        <TextListWithHeading property="primary_organizers" thing={thing} />
 
-        <TextListWithHeading
-          heading="organizer_types"
-          property="organizer_types"
-          thing={thing}
-        />
+        <TextListWithHeading property="organizer_types" thing={thing} />
 
         <LinkedPropertyGroupWithHeading
           heading="funder"
@@ -185,11 +148,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <TextListWithHeading
-          heading="funder_types"
-          property="funder_types"
-          thing={thing}
-        />
+        <TextListWithHeading property="funder_types" thing={thing} />
 
         <BooleanProp label="staff" property="staff" thing={thing} />
 
