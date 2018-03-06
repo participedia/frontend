@@ -149,7 +149,6 @@ class CaseEditor extends Component {
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
-    isQuick = false;
     if (this.state.thing.issues === undefined) {
       return <div />;
     }
