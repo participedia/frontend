@@ -7,8 +7,6 @@ import InfoBox from "./InfoBox";
 export default class Related extends React.Component {
   constructor(props) {
     super(props);
-    console.log("RelatedEditor constructor %s: %o", props.fieldName, props);
-    this.onUpdateInput = this.onUpdateInput.bind(this);
     this.handleRequestAdd = this.handleRequestAdd.bind(this);
     this.handleRequestDelete = this.handleRequestDelete.bind(this);
     this.state = {
@@ -16,32 +14,11 @@ export default class Related extends React.Component {
     };
   }
 
-  onUpdateInput(searchText, dataSource, params) {
-    console.log(
-      "%s onUpdateInput(%s, %o, %o)",
-      this.props.fieldName,
-      searchText,
-      dataSource,
-      params
-    );
-  }
-
   componentWillReceiveProps(props) {
-    console.log(
-      "RelatedEditor willReceiveProps %s: %o, %o",
-      props.fieldName,
-      props.value,
-      props
-    );
     this.setState({ value: props.value });
   }
 
   handleChange(value) {
-    console.log(
-      "RelatedEditor handleChange %s: %o",
-      this.props.fieldName,
-      value
-    );
     this.props.onChange(this.props.fieldName, value);
   }
 
@@ -124,7 +101,6 @@ export default class Related extends React.Component {
           filter={this.props.passProps.filter}
           onRequestDelete={this.handleRequestDelete}
           placeholder={this.props.passProps.placeholder}
-          onUpdateInput={this.onUpdateInput}
           fullWidth
           fullWidthInput
           dataSource={this.props.passProps.dataSource}

@@ -68,7 +68,7 @@ class CaseEditor extends Component {
 
   thingList(list) {
     if (!list || !list.map) {
-      console.log("Warning, expecting a list: %o", list);
+      console.warn("Warning, expecting a list: %o", list);
       return [];
     }
     return list.map(item => {
@@ -135,7 +135,6 @@ class CaseEditor extends Component {
   }
 
   onChange(key, value) {
-    console.log(">>> onChange: % => %o", key, value);
     this.setState((prevState, props) => {
       const thing = prevState.thing;
       thing[key] = value;
@@ -287,7 +286,7 @@ class CaseEditor extends Component {
                       fullWidth
                     />
                   </div>
-                  {/*  {!isQuick ? (
+                  {!isQuick ? (
                     <LocalizedMultiChoiceField
                       intl={intl}
                       property="relationships"
@@ -367,7 +366,6 @@ class CaseEditor extends Component {
                   <div className="field-case">{tagseditor}</div>
                 </div>
                 {!isQuick ? (
-                */}
                   <div className="form-section components">
                     <h2
                       className={
@@ -384,8 +382,9 @@ class CaseEditor extends Component {
                     <div className="field-case">{has_components}</div>
                     <div className="field-case">{is_component_of}</div>
                   </div>
-                  {/*
-                  ) : ( undefined )}
+                ) : (
+                  undefined
+                )}
                 <div
                   className={isQuick ? "form-section quick" : "form-section"}
                 >
@@ -518,9 +517,7 @@ class CaseEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="process" />
                       </h2>
-                    */}
-                  {process_methods}
-                  {/*
+                      {process_methods}
                       {makeLocalizedChoiceField(intl, "legality", false)}
                       {makeLocalizedChoiceField(intl, "facilitators", false)}
                       {thing && thing.facilitators === "yes"
@@ -579,9 +576,7 @@ class CaseEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="organizers_supporters" />
                       </h2>
-                      */}
-                  {primary_organizers}
-                  {/*
+                      {primary_organizers}
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="organizer_types"
@@ -686,7 +681,6 @@ class CaseEditor extends Component {
               </div>
               <div>
                 {isQuick ? (
-
                   <div>
                     {incomplete ? (
                       <div className="incomplete pt-4">
@@ -714,7 +708,6 @@ class CaseEditor extends Component {
                     />
                   </div>
                 ) : (
-              */}
                   <div>
                     {incomplete ? (
                       <p className="pt-3 incomplete">
@@ -736,10 +729,7 @@ class CaseEditor extends Component {
                       })}
                     />
                   </div>
-                  {/*
                 )}
-            */}
-                </div>
               </div>
             </Col>
           </Container>
