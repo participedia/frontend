@@ -29,6 +29,7 @@
     "home": "Home",
     "dataset": "Data Set",
     "teaching": "Teaching",
+    "teaching_instructing": "Teaching/Instructing",
     "profile": "Profile",
     "add_new": "Add New",
     "help": "Help",
@@ -1570,6 +1571,9 @@
     "aggregation_of_individual_preferences_to_create_survey_data":
       "Aggregation of Individual Preferences to Create Survey Data",
     "n/a": "N/A",
+    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made",
+    "voting_decision":
+      "Voting (i.e., any type of formal vote; please provide more detail in next field)",
     "the_decision_was_made_through_public_deliberation_":
       "The decision was made through  public deliberation",
     "voting_supermajoritarian": "Voting (Supermajoritarian)",
@@ -1821,7 +1825,7 @@
     "age_discrimination": "Age Discrimination",
     "aging_issues": "Aging Issues",
     "agricultural_biotechnology": "Agricultural Biotechnology",
-    "air_qualtiy": "Air Qualtiy",
+    "air_quality": "Air Quality",
     "air_travel": "Air Travel",
     "alternative_renewable_energy": "Alternative & Renewable Energy",
     "animal_welfare": "Animal Welfare",
@@ -1892,6 +1896,7 @@
     "government_funding_of_education": "Government Funding of Education",
     "government_spending": "Government Spending",
     "government_subsidies": "Government Subsidies",
+    "government_corruption": "Government Corruption",
     "hazardous_waste": "Hazardous Waste",
     "health_insurance": "Health Insurance",
     "higher_education": "Higher Education",
@@ -2166,6 +2171,10 @@
     "changes_type_box_title": "Types of Change",
     "changes_type_box_text":
       "Provide additional detail in the \"Influence, Outcomes, and Effects\" section of the case narrative.",
+    "components_box_title":
+      "Here are a few examples of why an event or process could be considered a component of a more comprehensive initiative:",
+    "components_box_text":
+      "<ul class='givemebackmylists'><li>it is one of several phases or sessions that use very different methods as part of the same initiative;</li><li>it engages different subsets of participants in one or more of an initiative’s phases or sessions;</li><li>it is a repeat cycle of a similar process that took place at another time in the same geographic location;</li><li>it is one of many events held in different locations as part of a single participatory initiative;</li><li>etc.</li></ul>",
     "has_components_box_title": "Add components to this case",
     "has_components_box_text":
       "If you can’t find the case you are looking for, please publish your current work, then use quick submit to publish the case you want to add as a component. Once your new case is published, return to this form to label it as a component of this case.",
