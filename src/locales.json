@@ -2001,8 +2001,8 @@
     "of": "of",
     "data": "Data",
     "specific_topics_instructional":
-      "Rank order up to three of the most relevant, specific topics, with “1” indicating the most relevant topic.",
-    "specific_topics_placeholder": "Select & rank up to 3 sub-topics",
+      "Select and rank up to three topics, with \"1\" indicating the most relevant",
+    "specific_topics_placeholder": "Select & rank up to 3 topics",
     "tags": "Tags",
     "case_description_placeholder":
       "<p>The following standard structure makes it easier to compare and analyze entries.</p><p>We recommend you use the headings below and refer to our guidelines as you prepare your case entry.</p><p>To view the guidelines, copy and paste this URL into your browser: <a href=\"https://goo.gl/V2SHQn\">https://goo.gl/V2SHQn</a></p>",
