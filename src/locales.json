@@ -2006,8 +2006,11 @@
     "searchmatched": "This matched your search.",
     "featured_map": "This is a featured item.",
     "change_types": "Types of Change",
-    "evaluation_links": "Evaluation Links",
-    "evaluation_reports": "Evaluation Reports",
+    "evaluation_links": "Evaluation Report Link",
+    "evaluation_reports": "Evaluation Report Document",
+    "evaluation_reports_instructional":
+      "Upload the evaluation report from your device.",
+    "evaluation_reports_placeholder": "Upload from device",
     "funder": "funder",
     "has_components": "Add components to this case",
     "is_component_of": "Make this case a component of another case",
@@ -2187,10 +2190,9 @@
     "is_component_of_box_text":
       "If you can’t find the case you are looking for, please publish your current work, then use quick submit to publish the case you want to label this case as a component of. Once your new case is published, return to this form and label this case as a component of your new case.",
     "evaluation_links_prompt": "Add a link",
-    "evaluation_links_instructional":
+    "evaluation_links_instructional_case":
       "Provide links to evaluation reports here.",
-    "evaluation_links_placeholder":
-      "Provide a link to a evaluation report here.",
+    "evaluation_links_placeholder_case": "Add a link",
     "components": "Components",
     "components_intro":
       "Some cases of public participation can be viewed as “components” of a single, overarching case. Any case can have multiple components, but can only be labeled as a component of a single case.",
