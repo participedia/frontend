@@ -734,7 +734,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Primary location
+                  Location
                 </span>
               </p>
               <div
@@ -841,7 +841,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Face-to-face, online or both
+                  Face-to-face, online, or both
                 </span>
               </p>
               <div
@@ -1005,7 +1005,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Primary location
+                          Location
                         </span>
                       </p>
                       <div
@@ -1112,7 +1112,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Face-to-face, online or both
+                          Face-to-face, online, or both
                         </span>
                       </p>
                       <div

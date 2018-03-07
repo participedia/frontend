@@ -549,7 +549,7 @@ exports[`Organization editor renders correctly 1`] = `
                 <h3
                   className="sub-heading"
                 >
-                  Primary location
+                  Location
                 </h3>
                 <p
                   className="explanatory-text"
