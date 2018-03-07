@@ -78,8 +78,8 @@
     font-size: 0.95rem !important;
   }
 }
-/* -------------- TODO Redo without use of !important;-------------------- */
 
+/* Targets Dropdown Menu Items */
 div[role=presentation]{
 
   & > div[role=menu]{
@@ -97,17 +97,6 @@ div[role=presentation]{
 
   }
 }
-
-/*
-span[role=menuitem] > div > div {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-span[role=menuitem] > div > div > svg {
-  top: 0px;
-}
-*/
 
 label {
   margin: 0;
@@ -129,7 +118,6 @@ label {
     display: none;
   }
 }
-/* -------------- TODO Redo without use of !important;-------------------- */
 
 .explanatory-text {
   margin-bottom: 0.5rem;
@@ -162,6 +150,36 @@ label {
       border: none;
       box-shadow: none;
     }
+  }
+
+/* -------------- TODO #733-------------------- */
+  & > div {
+    @include media-breakpoint-up(sm) {
+
+    }
+    padding: 0px;
+  }
+
+  & > div > div > div {
+    @include media-breakpoint-up(sm) {
+    }
+  }
+
+  & > div > div > button {
+     @include media-breakpoint-up(sm) {
+    }
+    position: absolute;
+    /* color: rgba(0, 0, 0, 0.87);
+    height: 56px;
+    line-height: 56px;
+    overflow: hidden;
+    opacity: 1;
+    position: relative;
+    padding-left: 0px;
+    padding-right: 56px;<<<<
+    text-overflow: ellipsis;
+    top: -4px;
+    white-space: nowrap; */
   }
 }
 /* -------------- TODO #733-------------------- */
