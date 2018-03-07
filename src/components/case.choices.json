@@ -78,7 +78,7 @@
   "decision_methods": [
     "general_agreement/consensus",
     "idea_generation",
-    "not_applicable",
+    "not_applicable_decision",
     "opinion_survey",
     "unknown_decision",
     "voting_decision"
