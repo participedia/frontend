@@ -797,7 +797,7 @@
     "consensus": "Consensus",
     "specific_topics": "Specific Topics",
     "voting": "Voting",
-    "facetoface_online_or_both": "Face-to-face, online or both",
+    "facetoface_online_or_both": "Face-to-face, online, or both",
     "issues": "General Issues",
     "general_issues": "General Issues",
     "who_was_primarily_responsible_for_organizing_the_initiative":
@@ -962,7 +962,7 @@
       "Getting sense of room/group (i.e. no formal voting)",
     "opinion_survey":
       "Opinion Survey (i.e., taken before and/or after participants convened)",
-    "both": "both",
+    "both": "Both",
     "facetoface": "Face-to-face",
     "online": "Online",
     "no": "No",
