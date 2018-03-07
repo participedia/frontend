@@ -78,33 +78,39 @@
     font-size: 0.95rem !important;
   }
 }
+/* -------------- TODO Redo without use of !important;-------------------- */
 
-div[role=presentation] {
-  display: block;
+div[role=presentation]{
+
+  & > div[role=menu]{
+    display: inline-block !important;
+  }
+
+  & > div[role=menu]
+  > div > span[role=menuitem] {
+    white-space: normal !important;
+
+    & > div > div {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+  }
 }
 
-div[role=menu]{
-  display: block !important;
-}
-
-span[role=menuitem] {
-  line-height: 23px !important;;
-  white-space: normal !important;;
-
-  min-height: 20px !important;
-}
-
+/*
 span[role=menuitem] > div > div {
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 span[role=menuitem] > div > div > svg {
-  top: 0px !important;
+  top: 0px;
 }
+*/
 
 label {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .related-fields {
@@ -123,6 +129,7 @@ label {
     display: none;
   }
 }
+/* -------------- TODO Redo without use of !important;-------------------- */
 
 .explanatory-text {
   margin-bottom: 0.5rem;
@@ -143,8 +150,8 @@ label {
 
   border: 2px solid $black;
   padding-left: 1rem;
-  display: block !important;
-  height: auto !important;
+  display: block;
+  height: auto;
 
   hr {
     display: none;
@@ -152,8 +159,8 @@ label {
   &.Select--single {
     padding-left: 0;
     .Select-control {
-      border: none !important;
-      box-shadow: none !important;
+      border: none;
+      box-shadow: none;
     }
   }
 }
