@@ -960,7 +960,8 @@
     "voting_instructional": "Select type of voting",
     "getting_sense_of_room/group_ie_no_formal_voting":
       "Getting sense of room/group (i.e. no formal voting)",
-    "opinion_survey": "Opinion Survey",
+    "opinion_survey":
+      "Opinion Survey (i.e., taken before and/or after participants convened)",
     "both": "both",
     "facetoface": "Face-to-face",
     "online": "Online",
@@ -1571,7 +1572,7 @@
     "aggregation_of_individual_preferences_to_create_survey_data":
       "Aggregation of Individual Preferences to Create Survey Data",
     "n/a": "N/A",
-    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made",
+    "unknown_decision": "Unknown (i.e., we don’t know how decisions were made)",
     "voting_decision":
       "Voting (i.e., any type of formal vote; please provide more detail in next field)",
     "the_decision_was_made_through_public_deliberation_":
@@ -2124,8 +2125,12 @@
       "No information was provided to participants",
     "not_relevant_to_this_type_of_initiative":
       "Not relevant to this type of initiative",
-    "general_agreement/consensus": "General agreement/consensus",
-    "idea_generation": "Idea Generation",
+    "general_agreement/consensus":
+      "General agreement/consensus (i.e., broad acceptance of decisions; unanimous agreement desired but not necessary)",
+    "idea_generation":
+      "Idea Generation (i.e., potential solutions were generated, but no priorities were decided)",
+    "not_applicable_decision":
+      "Not Applicable (e.g., votes are not typically taken at protest demonstrations)",
     "unknown": "Unknown",
     "majoritarian_voting": "Majoritarian Voting",
     "supermajoritarian": "Super-Majoritarian",
