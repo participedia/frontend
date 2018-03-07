@@ -731,7 +731,7 @@
     "decision_methods_instructional":
       "How did participants in this case make group decisions?",
     "decision_methods_placeholder": "How were group decisions made?",
-    "insights_outcomes": "Outcomes",
+    "insights_outcomes": "Communication of Insights and Outcomes",
     "insights_outcomes_instructional":
       "Select up to three ways that insights and outcomes from this case were communicated to the intended audiences.",
     "insights_outcomes_placeholder":
@@ -2168,8 +2168,8 @@
     "funder_box_title": "Funder",
     "funder_box_text":
       "Provide additional information about funders of the initiative in the 'Originating Entities and Funding' section of the case narrative.",
-    "changes_type_box_title": "Types of Change",
-    "changes_type_box_text":
+    "changes_types_box_title": "Types of Change",
+    "changes_types_box_text":
       "Provide additional detail in the \"Influence, Outcomes, and Effects\" section of the case narrative.",
     "components_box_title":
       "Here are a few examples of why an event or process could be considered a component of a more comprehensive initiative:",
@@ -2194,7 +2194,8 @@
     "has_components_placeholder": "Search for existing case/component",
     "is_component_of_instructional":
       "A case can only be a component of one other case, and the other case must already be published on Participedia. Type to search for an existing case in Participedia to label this case as a component of it. Select one.",
-    "is_component_of_placeholder": "Search for existing case/component"
+    "is_component_of_placeholder": "Search for existing case/component",
+    "#IPDConf2018": "#IPDConf2018"
   },
   "fr": {
     "chronological": "Plus Récentes"
