@@ -714,7 +714,7 @@
     "facilitator_training_instructional": "If yes, were they…",
     "facilitator_training_placeholder":
       "Did facilitators help guide participants?",
-    "participants_interactions": "Type(s) of Interaction among participants",
+    "participants_interactions": "Type(s) of Interaction Among Participants",
     "participants_interactions_instructional":
       "Select and rank up to three types of interactions in order of relevance, with with “1” indicating the most often used form of interaction.",
     "participants_interactions_placeholder":
@@ -938,7 +938,7 @@
     "planning_eg_urban_planning_transportation_etc":
       "Planning (e.g. Urban planning, Transportation, etc.)",
     "express_opinions/preferences_only": "Express opinions/preferences only",
-    "storytelling": "Story-Telling",
+    "storytelling": "Storytelling",
     "discussion": "Discussion",
     "discussion_dialogue_deliberation": "Discussion, Dialogue, or Deliberation",
     "formal_testimony": "Formal Testimony",
@@ -2115,9 +2115,9 @@
     "untrained_nonprofessional_facilitators":
       "Untrained, nonprofessional facilitators",
     "acting_drama": "Acting/Drama",
-    "ask_and_answer_questions": "Ask and answer questions",
-    "express_opinions_preferences_only": "Express opinions/preferences only",
-    "listen_watch_as_spectator": "Listen/watch as spectator",
+    "ask_and_answer_questions": "Ask & Answer Questions",
+    "express_opinions_preferences_only": "Express Opinions/Preferences Only",
+    "listen_watch_as_spectator": "Listen/Watch as Spectator",
     "negotiation_bargaining": "Negotiation & Bargaining",
     "expert_presentations": "Expert presentations",
     "participant_presentations": "Participant presentations",
