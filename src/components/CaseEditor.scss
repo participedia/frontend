@@ -158,6 +158,7 @@ label {
 
     }
     padding: 0px;
+    position: relative;
   }
 
   & > div > div > div {
@@ -168,27 +169,15 @@ label {
   & > div > div > button {
      @include media-breakpoint-up(sm) {
     }
-    position: absolute;
-    /* color: rgba(0, 0, 0, 0.87);
-    height: 56px;
-    line-height: 56px;
-    overflow: hidden;
-    opacity: 1;
-    position: relative;
-    padding-left: 0px;
-    padding-right: 56px;<<<<
-    text-overflow: ellipsis;
-    top: -4px;
-    white-space: nowrap; */
   }
 }
 /* -------------- TODO #733-------------------- */
-/*.custom-select > div {
+.custom-select > div {
   @include media-breakpoint-up(sm) {
     width: 80% !important;
     height: auto !important;
     white-space: normal;
-    margin-top: 2% !important;
+    //margin-top: 2% !important;
   }
   bottom: auto !important;
   top: auto !important;
@@ -198,13 +187,15 @@ label {
   @include media-breakpoint-up(sm) {
 
   }
-  min-height: 20px;
+  //min-height: 20px;
 }
 
 .custom-select > div > div > button {
    @include media-breakpoint-up(sm) {
+    padding: 0px;
     right: -25% !important;
-    margin-top: 2% !important;
+    //margin-top: 2% !important;
+    top: -7px !important;
   }
   position: absolute;
 }
@@ -214,14 +205,38 @@ label {
 }
 
 .related-fields > div > div > input {
-  top: -4px;
+  //top: -4px;
+}
+
+span.Select-multi-value-wrapper {
+  @include media-breakpoint-up(md) {
+    width: 100%;
+  }
 }
 
 div.Select-placeholder {
-  @include media-breakpoint-up(md) {
-    width: 90%;
+  @include media-breakpoint-up(sm) {
+    top: 2px;
   }
-} */
+  @include media-breakpoint-up(md) {
+    top: -2px;
+  }
+}
+
+span.Select-arrow-zone {
+  @include media-breakpoint-up(sm) {
+    top: 7px;
+  }
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+  }
+}
+
+div[name="scope_of_influence"].custom-select > div {
+  top: 8px;
+}
 /* -------------- TODO -------------------- */
 
 .section-heading {
