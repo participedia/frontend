@@ -48,6 +48,12 @@
 
 .list.videos {
   margin-top: -7px;
+
+  & > div > div > div {
+    @include media-breakpoint-up(md) {
+      width: 100% !important;
+    }
+  }
 }
 
 .custom-textarea {
@@ -247,10 +253,12 @@ div.Select-control {
   margin-top: 30px !important;
 }
 
-div.Select-value {
+.react-dropzone-s3-uploader {
   @include media-breakpoint-up(md) {
+    width: 100% !important;
   }
 }
+
 /* -------------- TODO #733-------------------- */
 
 .related-fields > div > div > input {
