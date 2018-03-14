@@ -136,6 +136,11 @@ label {
     width: 80% !important;
   }
 
+  @include media-breakpoint-up(md) {
+    height: auto !important;
+    max-height: 60px !important;
+  }
+
   border: 2px solid $black;
   padding-left: 1rem;
   display: block;
@@ -155,10 +160,13 @@ label {
 /* -------------- TODO #733-------------------- */
   & > div {
     @include media-breakpoint-up(sm) {
-
+      width: 80% !important;
+      height: auto !important;
+      white-space: normal !important;
+      bottom: 0px;
+      top: 4px;
     }
     padding: 0px;
-    position: relative;
   }
 
   & > div > div > div {
@@ -167,20 +175,22 @@ label {
   }
 
   & > div > div > button {
-     @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(sm) {
+      right: -25% !important;
     }
   }
 }
 /* -------------- TODO #733-------------------- */
 .custom-select > div {
   @include media-breakpoint-up(sm) {
-    width: 80% !important;
-    height: auto !important;
-    white-space: normal;
+    //width: 80% !important;
+    //height: auto !important;
+    //white-space: normal;
     //margin-top: 2% !important;
   }
-  bottom: auto !important;
-  top: auto !important;
+  //bottom: auto !important;
+  //top: auto !important;
+  //padding-right: 56px;
 
 }
 .custom-select > div > div {
@@ -192,17 +202,56 @@ label {
 
 .custom-select > div > div > button {
    @include media-breakpoint-up(sm) {
-    padding: 0px;
-    right: -25% !important;
+    //padding: 0px;
+    //margin-right: -25px;
     //margin-top: 2% !important;
-    top: -7px !important;
+    //top: -7px !important;
   }
+  //position: absolute;
+}
+
+.Select.custom-select{
+  @include media-breakpoint-up(md) {
+    position: relative !important;
+    max-height: 65px !important;
+    top: 0px !important;
+  }
+}
+
+div.Select-control {
+  @include media-breakpoint-up(md) {
+    width: 100% !important;
+    top: 0px;
+    background: 0;
+  }
+}
+
+.Select-menu-outer {
   position: absolute;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgb(255, 255, 255);
+  transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
+  position: fixed;
+  z-index: 2100;
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: left top 0px;
+  max-height: 1024px;
+  overflow-y: auto;
+  min-height: 200px;
+  margin-top: 30px !important;
 }
 
-.custom-select > .Select-control > span.Select-arrow-zone {
-
+div.Select-value {
+  @include media-breakpoint-up(md) {
+  }
 }
+/* -------------- TODO #733-------------------- */
 
 .related-fields > div > div > input {
   //top: -4px;
@@ -210,34 +259,34 @@ label {
 
 span.Select-multi-value-wrapper {
   @include media-breakpoint-up(md) {
-    width: 100%;
+    //width: 100%;
   }
 }
 
 div.Select-placeholder {
   @include media-breakpoint-up(sm) {
-    top: 2px;
+    //top: 2px;
   }
   @include media-breakpoint-up(md) {
-    top: -2px;
+    //top: -2px;
   }
 }
 
 span.Select-arrow-zone {
   @include media-breakpoint-up(sm) {
-    top: 7px;
+    //top: 7px;
   }
   @include media-breakpoint-up(md) {
-    position: absolute;
-    top: 2px;
-    right: 0px;
+    //position: absolute;
+    //top: 2px;
+    //right: 0px;
   }
 }
 
 div[name="scope_of_influence"].custom-select > div {
-  top: 8px;
+  //top: 8px;
 }
-/* -------------- TODO -------------------- */
+/* -------------- TODO #733-------------------- */
 
 .section-heading {
   padding-top: 3rem;
