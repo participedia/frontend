@@ -56,6 +56,7 @@ function setup() {
     location: { pathname: "/organization/4219" },
     match: { params: { nodeID: 4219 } },
     toggleFeatured: function() {},
+    handleInternal: function() {},
     data: data
   };
 

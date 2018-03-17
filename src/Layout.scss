@@ -1,7 +1,7 @@
 @import "./UniversalStyles";
 
 .auth0-lock-header-welcome {
-  >div {
+  > div {
     display: none;
     padding-top: 1rem;
   }
@@ -41,11 +41,12 @@
   div {
     z-index: 30000;
     color: black;
-    transition:background-color 0.25s;
+    transition: background-color 0.25s;
   }
 
-  >div>div>a>div, >div>div>span>div {
-    padding-left:20px;
+  > div > div > a > div,
+  > div > div > span > div {
+    padding-left: 20px;
   }
 
   > div:nth-child(2) {
@@ -54,38 +55,39 @@
     }
     padding: 70px 0 0 0;
     a {
-      &:hover, &:focus {
-       div {
-         background-color:$dark-grey;
-       }
+      &:hover,
+      &:focus {
+        div {
+          background-color: $dark-grey;
+        }
       }
     }
   }
   .loginButtonMenu {
     button {
       height: 40px !important;
-      font-family:'Fakt' !important;
+      font-family: "Fakt" !important;
       div {
-        border-radius:2px;
-        background:#444;
+        border-radius: 2px;
+        background: #444;
         span {
-          color:white;
-          text-transform:none !important;
-          font-size:100% !important;
+          color: white;
+          text-transform: none !important;
+          font-size: 100% !important;
         }
       }
     }
   }
   .profileButtonMenu {
     height: 40px !important;
-    font-family:'Fakt' !important;
+    font-family: "Fakt" !important;
     div {
-      border-radius:2px;
-      background:#444;
+      border-radius: 2px;
+      background: #444;
       span {
-        color:white;
-        text-transform:none !important;
-        font-size:100% !important;
+        color: white;
+        text-transform: none !important;
+        font-size: 100% !important;
       }
     }
   }
@@ -108,11 +110,11 @@
   height: 64px;
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 1399;
 
-  @include media-breakpoint-down(sm){
-    position:relative;
-  } 
+  @include media-breakpoint-down(sm) {
+    position: relative;
+  }
 
   .nav-bar-wrapper {
     width: 100%;
@@ -123,22 +125,22 @@
     float: left;
     width: 250px;
     padding-left: 0.5rem;
-    @include media-breakpoint-up(lg){
-      width:26%;
-    } 
-    @include media-breakpoint-only(xs){
+    @include media-breakpoint-up(lg) {
+      width: 26%;
+    }
+    @include media-breakpoint-only(xs) {
       width: 196px;
-    } 
+    }
 
     .menu-icon {
       float: left;
       padding: 16px 20px;
-      cursor:pointer;
-      @include media-breakpoint-only(xs){
+      cursor: pointer;
+      @include media-breakpoint-only(xs) {
         padding: 16px 8px 16px 3px;
-      } 
-      &:hover{
-        cursor:pointer;
+      }
+      &:hover {
+        cursor: pointer;
         svg {
           fill: grey !important;
         }
@@ -162,29 +164,29 @@
     // padding:0 15px;
     position: absolute;
     margin-top: 64px;
-    background-color: lighten($black,10%);
+    background-color: lighten($black, 10%);
     width: 100%;
     box-sizing: border-box;
     margin-top: 64px;
-    @include media-breakpoint-only(md){
+    @include media-breakpoint-only(md) {
       padding: 0 30px;
     }
-    @include media-breakpoint-down(sm){
+    @include media-breakpoint-down(sm) {
       padding: 0 15px;
-    }  
+    }
     @include media-breakpoint-up(md) {
-      padding-left:0.6rem;
-      position:relative;
-      margin-top:0;
-      width:44.5%;
-      background-color:transparent;
+      padding-left: 0.6rem;
+      position: relative;
+      margin-top: 0;
+      width: 44.5%;
+      background-color: transparent;
     }
     @include media-breakpoint-only(xl) {
-      padding-left:0.6rem;
-      position:relative;
-      margin-top:0;
-      width:47.5%;
-      background-color:transparent;
+      padding-left: 0.6rem;
+      position: relative;
+      margin-top: 0;
+      width: 47.5%;
+      background-color: transparent;
     }
   }
 
@@ -228,49 +230,48 @@
   margin-left: 12px;
 }
 
-// // Quick submit button 
+// // Quick submit button
 .qs-button-case {
-  position:absolute;
-  right:130px;
-  top:14px;
+  position: absolute;
+  right: 130px;
+  top: 14px;
 }
 
-// Create content button 
+// Create content button
 .publishButton {
   background: #fff;
-  position:absolute;
-  display:inline-block;
-  right:110px;
-  top:12px;
-  height:40px;
-  padding:8px 14px 0;
-  border-radius:2px;
-  transition:background .2s;
-  color:$black;
+  position: absolute;
+  display: inline-block;
+  right: 110px;
+  top: 12px;
+  height: 40px;
+  padding: 8px 14px 0;
+  border-radius: 2px;
+  transition: background 0.2s;
+  color: $black;
   @include media-breakpoint-up(sm) {
-    position:absolute;
-    display:inline-block;
-    padding:8px 16px 0;
-    right:120px;
+    position: absolute;
+    display: inline-block;
+    padding: 8px 16px 0;
+    right: 120px;
   }
   .publishButton-text {
-    position:relative;
+    position: relative;
     top: -7px;
     &:before {
-      font-weight:$medium-weight;
-      content:"+";
+      font-weight: $medium-weight;
+      content: "+";
       padding-right: 7px;
-      color:#000;
+      color: #000;
       font-size: 1.5rem;
     }
   }
   &:hover {
-    background:#eee;
+    background: #eee;
   }
 }
 
-
-// reset the extra padding in this div for consistency 
+// reset the extra padding in this div for consistency
 // set max width for this element
 // .container-fluid {
 //   padding-left:0;
@@ -281,6 +282,16 @@
 .error-message {
   padding: 2em;
   font-size: 2rem;
+}
+
+#feedback {
+  position: fixed;
+  height: 30px;
+  background: $black;
+  width: 120px;
+  bottom: 0;
+  left: 30px;
+  z-index: 20;
 }
 
 .infobox {

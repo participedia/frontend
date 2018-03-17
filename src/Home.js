@@ -7,6 +7,9 @@ import "./Home.css";
 import MediaQuery from "react-responsive";
 
 class Home extends React.Component {
+  componentWillMount(){
+    this.props.handleHome();
+  }
   render() {
     return (
       <div className="home">
@@ -15,7 +18,7 @@ class Home extends React.Component {
           <Route path="/" component={Map} />
         </MediaQuery>
         <Switch>
-          <Route exact path="/" component={SearchResults} />
+          <Route exact path="/" render={routeProps => <SearchResults {...routeProps} addSteps={this.props.addSteps} />} />
           <Route exact path="/search" component={SearchResults} />
           <Route
             path="/cases"

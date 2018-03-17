@@ -37,6 +37,12 @@ class EditorContainer extends Component {
     );
   }
 
+  componentWillMount(){
+    if (this.props.handleInternal) {
+      this.props.handleInternal();
+    }
+  }
+
   componentDidMount() {
     let component = this;
     if (!this.props.new) {

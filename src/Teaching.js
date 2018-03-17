@@ -6,6 +6,11 @@ import "./StaticPages.css";
 import { FormattedMessage } from "react-intl";
 
 class Teaching extends React.Component {
+
+  componentWillMount(){
+    this.props.handleInternal();
+  }
+
   render() {
     return (
       <Container fluid={true} className="about static">

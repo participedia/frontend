@@ -13,6 +13,9 @@ export class Organization extends React.Component {
     thing.hidden = hidden;
     api.saveThing(thing.type, thing);
   }
+  componentWillMount(){
+    this.props.handleInternal();
+  }
   render() {
     return (
       <ItemFetcher

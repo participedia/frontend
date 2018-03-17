@@ -101,6 +101,26 @@ export class SearchResultsView extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //JOYRIDE
+  // componentDidMount() {
+  //   if (this.props.location.pathname === "/") {
+  //     this.props.addSteps([
+  //       {
+  //         title: 'Filters',
+  //         text: 'Describe filters here',
+  //         selector: '.filters',
+  //         position: 'top',
+  //         style: {
+  //           skip: {
+  //             display: 'none',
+  //           },
+  //         },
+  //       },
+  //     ]);
+  //   }
+  // }
+  //JOYRIDE
+
   handleChange(event) {
     let href = "";
     if (event.target.value === "All") {
@@ -138,6 +158,7 @@ export class SearchResultsView extends React.Component {
         <SearchHit
           selectedViewType={selectedViewType}
           key={index}
+          count={index}
           record={result}
         />
       );

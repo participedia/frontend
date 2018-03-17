@@ -57,6 +57,7 @@ function setup() {
     location: { pathname: "/method/145" },
     match: { params: { nodeID: 145 } },
     toggleFeatured: function() {},
+    handleInternal: function() {},
     data: data
   };
 

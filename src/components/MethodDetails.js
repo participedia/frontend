@@ -36,7 +36,7 @@ export default class MethodDetails extends React.Component {
   render() {
     let thing = this.props.case; // should thing be `this.props.method`?
     return (
-      <div>
+      <div className="details">
         <h2 className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
         </h2>

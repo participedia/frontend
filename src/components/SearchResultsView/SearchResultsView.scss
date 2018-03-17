@@ -76,13 +76,6 @@
 
   .filters {
     float: left;
-    a {
-      color: $primary-color;
-      &:hover {
-        color: $interactive-color;
-        text-decoration: none;
-      }
-    }
   }
 
   .filters div {
@@ -113,23 +106,31 @@
     }
   }
 
-  .filters div.selected {
-    background: transparent;
-    border-bottom: 4px solid $black;
-    a {
-      color: $interactive-color;
+  .filters div{
+    &.unselected a {
+      color: $black;
+      &:hover {
+        text-decoration: none;
+      }
     }
-    &:hover {
-      border-bottom: 4px solid darken($interactive-color, 10%);
-    }
-    &:after {
-      content: "";
-      position: absolute;
-      height: 4px;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      background: $interactive-color;
+    &.selected {
+      background: transparent;
+      border-bottom: 4px solid $black;
+      a {
+        color: $interactive-color;
+      }
+      &:hover {
+        border-bottom: 4px solid darken($interactive-color, 10%);
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: $interactive-color;
+      }
     }
   }
   .filters div:hover {

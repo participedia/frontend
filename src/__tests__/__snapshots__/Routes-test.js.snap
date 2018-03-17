@@ -3,6 +3,9 @@
 exports[`App 1`] = `
 <div>
   <div
+    className="joyride"
+  />
+  <div
     className="nav-bar-component"
   >
     <div
@@ -1039,12 +1042,18 @@ exports[`App 1`] = `
       </div>
     </div>
   </div>
+  <div
+    id="feedback"
+  />
 </div>
 `;
 
 exports[`Searching for a word 1`] = `
 <div>
   <div
+    className="joyride"
+  />
+  <div
     className="nav-bar-component"
   >
     <div
@@ -2081,5 +2090,8 @@ exports[`Searching for a word 1`] = `
       </div>
     </div>
   </div>
+  <div
+    id="feedback"
+  />
 </div>
 `;

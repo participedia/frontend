@@ -14,6 +14,14 @@ class SearchQueryField extends React.Component {
     this.setState({ query: nextProps.query });
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    const { next } = this.props;
+
+    next();
+  }
+  //joyride ends
+
   onChange(event) {
     this.setState({ query: event.target.value });
   }

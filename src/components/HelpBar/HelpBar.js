@@ -7,6 +7,8 @@ import MailIcon from "material-ui/svg-icons/communication/message";
 import CloseIcon from "material-ui/svg-icons/navigation/close";
 import { white } from "material-ui/styles/colors";
 import { injectIntl } from "react-intl";
+import { withRouter } from 'react-router'
+
 
 class HelpBar extends React.Component {
   constructor(props) {
@@ -20,6 +22,8 @@ class HelpBar extends React.Component {
     this.pickHelpItem = this.pickHelpItem.bind(this);
     this.resetHelp = this.resetHelp.bind(this);
     this.closeHelp = this.closeHelp.bind(this);
+    this.showTour = this.showTour.bind(this);
+    this.goHome = this.goHome.bind(this);
   }
 
   pickHelpItem(item) {
@@ -37,7 +41,29 @@ class HelpBar extends React.Component {
     this.props.onHelpClose();
   }
 
+  showTour() {
+    this.props.showTour();
+  }
+
+  goHome() {
+    this.props.goHome();
+  }
+
   render() {
+    var showTour;
+    var pathname = this.props.location.pathname
+    if (pathname === "/" || pathname === "/organizations" || pathname === "/methods" || pathname === "/cases") {
+      showTour = (<div onClick={() => { this.showTour() }} className="card tour">
+                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
+                </div>);
+    } else if (pathname.substr(pathname.length - 4) == "edit" || pathname.substr(1,4) == "new/" ) {
+      showTour = undefined;
+    } else {
+      showTour = (<div onClick={() => { this.goHome() }} className="card tour">
+                  <h4 className="data-title">{this.props.intl.formatMessage({ id: "show_tour" })}</h4>
+                </div>);
+    }
+
     return (
       <div className="help-bar">
         <div className="top-area">
@@ -75,6 +101,9 @@ class HelpBar extends React.Component {
                   <MailIcon color={"#ec1414"} />
                   {this.props.intl.formatMessage({ id: "email_support" })}
                 </a>
+              </div>
+              <div className="some-container">
+              {showTour}
               </div>
               <div className="card pt-3">
                 <h4 className="data-title">
@@ -118,4 +147,4 @@ class HelpBar extends React.Component {
   }
 }
 
-export default injectIntl(HelpBar);
+export default injectIntl(withRouter(HelpBar));

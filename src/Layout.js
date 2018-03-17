@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import Home from "./Home";
@@ -17,6 +16,7 @@ import authService from "./utils/AuthService";
 import ProfileLoader from "./containers/ProfileLoader";
 import ProfileEditor from "./containers/ProfileEditor";
 import HelpArticle from "./HelpArticle";
+import history from "./history";
 import HelpBar from "./components/HelpBar/HelpBar";
 import About from "./About";
 import Teaching from "./Teaching";
@@ -26,7 +26,8 @@ import Experiments from "./components/Experiments";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
-
+import Joyride from "react-joyride";
+import store from "store";
 import {
   CaseEditorContainer,
   MethodEditorContainer,
@@ -42,7 +43,6 @@ import globalStyles from "./global.css";
 /* eslint-enable no-unused-vars */
 import "./Layout.css";
 import { injectIntl } from "react-intl";
-// import menuIcon from "./img/menu-icon.png";
 import MenuIcon from "material-ui/svg-icons/navigation/menu";
 
 import "./UniversalStyles.css";
@@ -61,12 +61,6 @@ const ScrollToTop = props => {
   window.scrollTo(0, 0);
   return null;
 };
-
-// const handleAuthentication = (nextState, replace) => {
-//   if (/access_token|id_token|error/.test(nextState.location.hash)) {
-//     authService.handleAuthentication(nextState.location.hash);
-//   }
-// };
 
 class Callback extends React.Component {
   render() {
@@ -87,38 +81,97 @@ class Callback extends React.Component {
   }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      authService.isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        authService.login(props.location) || <div />
-      )}
-  />
-);
+class PrivateRoute extends React.Component {
+  render() {
+    const { component: Component, ...rest } = this.props;
+    return (
+      <Route
+        {...rest}
+        render={props =>
+          authService.isAuthenticated() ? (
+            <Component {...props} handleInternal={this.props.handleInternal} />
+          ) : (
+            authService.login(props.location) || <div />
+          )}
+      />
+    );
+  }
+}
 
 export class Layout extends React.Component {
   static propTypes = {};
+
   constructor(props, context) {
     super(props);
-    this.context = context;
-    this.state = { open: false, showHelp: false };
+    this.state = {
+      open: false,
+      showHelp: false,
+      // joyride states
+      joyrideOverlay: true,
+      joyrideType: "continuous",
+      isRunning: store.get("tutorial-was-shown") ? false : true,
+      stepIndex: 0,
+      steps: [],
+      selector: ""
+    };
     this.setState = this.setState.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleCloseHome = this.handleCloseHome.bind(this);
     this.openHelp = this.openHelp.bind(this);
     this.closeHelp = this.closeHelp.bind(this);
     this.touchTitle = this.touchTitle.bind(this);
+    this.showTourFromHelp = this.showTourFromHelp.bind(this);
+    this.goHomeFromHelp = this.goHomeFromHelp.bind(this);
+    //joyride
+    this.handleInternal = this.handleInternal.bind(this);
+    this.handleHome = this.handleHome.bind(this);
+    this.callback = this.callback.bind(this);
+    this.next = this.next.bind(this);
+  }
+
+  handleInternal() {
+    this.setState({
+      isRunning: false
+    });
+  }
+
+  handleHome() {
+    this.setState({
+      isRunning: store.get("tutorial-was-shown") ? false : true
+    });
+  }
+
+  next() {
+    this.joyride.next();
+  }
+
+  callback(data) {
+    if (data.type === "step:before" && data.index === 2) {
+      store.set("tutorial-was-shown", true);
+    }
   }
 
   handleToggle() {
-    this.setState({ open: !this.state.open });
+    this.setState({
+      open: !this.state.open,
+      isRunning:
+        this.state.open && !store.get("tutorial-was-shown") ? true : false
+    });
   }
 
   handleClose() {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      isRunning: false
+    });
+  }
+
+  handleCloseHome() {
+    this.setState({
+      open: false,
+      isRunning: !store.get("tutorial-was-shown") ? true : false
+    });
   }
 
   closeHelp() {
@@ -132,12 +185,31 @@ export class Layout extends React.Component {
     });
   }
 
+  showTourFromHelp() {
+    this.setState({
+      isRunning: true
+    });
+    this.closeHelp();
+  }
+
+  goHomeFromHelp() {
+    store.remove("tutorial-was-shown");
+    history.push("/");
+  }
+
   touchTitle() {
     this.props.history.push("/");
   }
 
   render() {
     const { intl } = this.props;
+    const {
+      isRunning,
+      joyrideOverlay,
+      joyrideType,
+      selector,
+      stepIndex
+    } = this.state;
     let isAuthenticated = authService.isAuthenticated();
 
     const menuOpen = {
@@ -152,9 +224,85 @@ export class Layout extends React.Component {
       fill: "white"
     };
 
+    const steps = [
+      {
+        title: "Search",
+        text:
+          "<p>Conduct a site-wide search using one or more keywords.<p/><p>You can do an advanced search using common syntax like “and”, “or”, and “not”, as well as quotations and parentheses.</p><p>For example,<code>bicycle or rally</code> will match items with either or both words.<p>",
+        selector: ".search-bar",
+        position: "left",
+        isFixed: true
+      },
+      {
+        title: "Map",
+        text:
+          "The map shows cases and organizations around the world. Your search results are represented by red pins. Double click to zoom in. Select any pin to find out more about a Case or Organization. Note, methods don’t appear on the map because they’re not location specific.",
+        selector: ".map-component",
+        position: "left"
+      },
+      {
+        title: "Sort",
+        text:
+          "Sort the results by content type such as cases, methods or organizations.",
+        selector: ".filters",
+        position: "bottom"
+      },
+      {
+        title: "Quick Submit",
+        text:
+          "Quick submit allows you to enter some basic information about a public participation case, method or organization in just minutes. You can then publish your entry as is, or click “do full version” if you have more details to add.",
+        selector: ".qs-button-case",
+        position: "top",
+        isFixed: true
+      },
+      {
+        title: "Read",
+        text:
+          "Open any case, method or organization to read about it and see what data has been entered.",
+        selector: ".result0",
+        position: "top"
+      },
+      {
+        title: "Bookmark",
+        text:
+          "Bookmark content to review it later. Find your bookmarks on your profile page.",
+        selector: ".result0 .bookmark",
+        position: "top"
+      },
+      {
+        title: "Feedback",
+        text:
+          "Use the feedback button to suggest improvements or if something on the website isn’t working properly. Include your email address if you would like to be contacted about your feedback.<br/><p class='pt-4'>This is the end of the tour. You can restart it from Help & Contact.</p>",
+        selector: "#feedback",
+        isFixed: true,
+        position: "top"
+      }
+    ];
+
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
+          <Joyride
+            ref={c => (this.joyride = c)}
+            callback={this.callback}
+            debug={false}
+            disableOverlay={selector === ".card-tickets"}
+            allowClicksThruHole={true}
+            locale={{
+              back: <span>Back</span>,
+              close: <span>Close</span>,
+              last: <span>Last</span>,
+              next: <span>Next</span>,
+              skip: <span>Skip</span>
+            }}
+            run={isRunning}
+            showOverlay={joyrideOverlay}
+            showSkipButton={true}
+            showStepsProgress={true}
+            stepIndex={stepIndex}
+            steps={steps}
+            type={joyrideType}
+          />
           <div className="nav-bar-component">
             <div className="nav-bar-wrapper">
               <div className="logo-area">
@@ -167,21 +315,36 @@ export class Layout extends React.Component {
               </div>
               <div className="search-box-area">
                 {/* The next line is so that the searchquery has the route props */}
-                <Route path="/" component={SearchQuery} />
+                <Route
+                  path="/"
+                  render={routeProps => (
+                    <SearchQuery
+                      {...routeProps}
+                      addSteps={this.addSteps}
+                      selector={selector}
+                      next={this.next}
+                    />
+                  )}
+                />
               </div>
               <Link
                 className="d-none d-none d-md-block d-lg-block d-xl-block"
                 to="/new"
               >
-              <div className="qs-button-case">
-                <RaisedButton 
-                className="qs-button customButton"
-                label={intl.formatMessage({id: "quick_submit"})} 
-                labelPosition="after"
-                icon={<AddIcon />}/>
-              </div>
+                <div className="qs-button-case">
+                  <RaisedButton
+                    className="qs-button customButton"
+                    label={intl.formatMessage({ id: "quick_submit" })}
+                    labelPosition="after"
+                    icon={<AddIcon />}
+                  />
+                </div>
               </Link>
-              <LoginAvatar auth={authService} className="login-area" />
+              <LoginAvatar
+                addSteps={this.addSteps}
+                auth={authService}
+                className="login-area"
+              />
             </div>
           </div>
           <Drawer
@@ -193,7 +356,7 @@ export class Layout extends React.Component {
           >
             <MenuItem
               containerElement={<Link to={"/"} />}
-              onTouchTap={this.handleClose}
+              onTouchTap={this.handleCloseHome}
             >
               <FormattedMessage id="home" />
             </MenuItem>
@@ -273,42 +436,144 @@ export class Layout extends React.Component {
                 return <Callback {...props} />;
               }}
             />
-            <Route exact path="/cases" component={Home} />
-            <Route exact path="/methods" component={Home} />
-            <Route exact path="/organizations" component={Home} />
+            <Route
+              path="/cases"
+              render={routeProps => (
+                <Home {...routeProps} handleHome={this.handleHome} />
+              )}
+            />
+            <Route
+              path="/methods"
+              render={routeProps => (
+                <Home {...routeProps} handleHome={this.handleHome} />
+              )}
+            />
+            <Route
+              path="/organizations"
+              render={routeProps => (
+                <Home {...routeProps} handleHome={this.handleHome} />
+              )}
+            />
             <Route
               path="/show/:term"
               render={props => (
                 <Redirect to={`/search?query=${props.match.params.term}`} />
               )}
             />
-            <Route exact path="/" component={Home} />
-            <Route path="/search" component={Home} />
+            <Route
+              exact
+              path="/"
+              render={routeProps => (
+                <Home {...routeProps} handleHome={this.handleHome} />
+              )}
+            />
+            <Route
+              path="/search"
+              render={routeProps => (
+                <Home {...routeProps} handleHome={this.handleHome} />
+              )}
+            />
             <Route component={ScrollToTop} />
-            <Route exact path="/profile" component={ProfileLoader} />
+            <Route
+              exact
+              path="/profile"
+              render={routeProps => (
+                <ProfileLoader
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
             <PrivateRoute path="/profile/edit" component={ProfileEditor} />
             <Route path="/help/:id" component={HelpArticle} />
-            <Route path="/about" component={About} />
+            <Route
+              path="/about"
+              render={routeProps => (
+                <About {...routeProps} handleInternal={this.handleInternal} />
+              )}
+            />
+            <Route path="/legal" component={Legal} />
+            <Route
+              path="/teaching"
+              render={routeProps => (
+                <Teaching
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
             <Route path="/experiments" component={Experiments} />
-            <Route path="/teaching" component={Teaching} />
-            <PrivateRoute exact path="/new" component={QuickSubmitPicker} />
-            <Route exact path="/new/case" component={NewCaseContainer} />
-            <Route exact path="/new/method" component={NewMethodContainer} />
+            <PrivateRoute
+              exact
+              path="/new"
+              component={QuickSubmitPicker}
+              handleInternal={this.handleInternal}
+            />
+            <Route
+              exact
+              path="/new/case"
+              render={routeProps => (
+                <NewCaseContainer
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/new/method"
+              render={routeProps => (
+                <NewMethodContainer
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
             <Route
               exact
               path="/new/organization"
-              component={NewOrganizationContainer}
+              render={routeProps => (
+                <NewOrganizationContainer
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
             />
-            <Route path="/research" component={Research} />
-            <Route path="/legal" component={Legal} />
-            <Route path="/case/:nodeID" exact component={Case} />
-            <Route path="/method/:nodeID" exact component={Method} />
             <Route
-              path="/organization/:nodeID"
+              path="/research"
+              render={routeProps => (
+                <Research
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
+            <Route
               exact
-              component={Organization}
+              path="/case/:nodeID"
+              render={routeProps => (
+                <Case {...routeProps} handleInternal={this.handleInternal} />
+              )}
+            />
+            <Route
+              exact
+              path="/method/:nodeID"
+              render={routeProps => (
+                <Method {...routeProps} handleInternal={this.handleInternal} />
+              )}
+            />
+            <Route
+              exact
+              path="/organization/:nodeID"
+              render={routeProps => (
+                <Organization
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
             />
             <PrivateRoute
+              handleInternal={this.handleInternal}
               path="/case/:nodeID/edit"
               component={CaseEditorContainer}
             />
@@ -320,19 +585,30 @@ export class Layout extends React.Component {
               path="/organization/:nodeID/edit"
               component={OrganizationEditorContainer}
             />
-            <Route path="/users/:id" component={ProfileLoader} />
+            <Route
+              path="/users/:id"
+              render={routeProps => (
+                <ProfileLoader
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
           </div>
           <Footer onHelpOpen={this.openHelp} />
+          <div id="feedback" />
           {this.state.showHelp ? (
             <HelpBar
               onHelpClose={this.closeHelp}
               locale={this.props.intl.locale}
+              showTour={this.showTourFromHelp}
+              goHome={this.goHomeFromHelp}
             />
           ) : (
             undefined
           )}
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

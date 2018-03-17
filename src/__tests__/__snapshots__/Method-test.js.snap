@@ -17,7 +17,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div />
           <div />
           <div />
-          <div>
+          <div
+            className="details"
+          >
             <h2
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             >
@@ -178,7 +180,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 <div
                   className="content"
                 >
-                  <div>
+                  <div
+                    className="details"
+                  >
                     <h2
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
                     >

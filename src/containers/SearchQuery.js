@@ -25,6 +25,7 @@ export default class SearchQuery extends React.Component {
     }
     return (
       <SearchQueryField
+        addSteps={this.props.addSteps}
         query={searchTerm}
         onPerformQuery={this.onPerformQuery.bind(this)}
       />
