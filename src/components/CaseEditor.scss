@@ -164,6 +164,7 @@ label {
   }
 
 /* -------------- TODO #733-------------------- */
+/* Make text wrap and adjust height for dropdown menus with longer placeholder text on small screens */
   & > div {
     @include media-breakpoint-up(sm) {
       width: 80% !important;
@@ -175,10 +176,12 @@ label {
     padding: 0px;
   }
 
+  /*
   & > div > div > div {
     @include media-breakpoint-up(sm) {
     }
   }
+  */
 
   & > div > div > button {
     @include media-breakpoint-up(sm) {
@@ -216,14 +219,17 @@ label {
   //position: absolute;
 }
 
+/* Search for existing case/component': Adjust alignment of outer form container*/
 .Select.custom-select{
   @include media-breakpoint-up(md) {
     position: relative !important;
     max-height: 65px !important;
+    min-height: 40px;
     top: 0px !important;
   }
 }
 
+/* 'Search for existing case/component': Make sure text container width fills outer container */
 div.Select-control {
   @include media-breakpoint-up(md) {
     width: 100% !important;
@@ -232,6 +238,7 @@ div.Select-control {
   }
 }
 
+/* Fix drop down for 'Search for existing case/component' */
 .Select-menu-outer {
   position: absolute;
   color: rgba(0, 0, 0, 0.87);
@@ -253,6 +260,8 @@ div.Select-control {
   margin-top: 30px !important;
 }
 
+/* Make Photos, Videos, Files forms match width of other forms */
+
 .react-dropzone-s3-uploader {
   @include media-breakpoint-up(md) {
     width: 100% !important;
@@ -261,7 +270,7 @@ div.Select-control {
 
 /* -------------- TODO #733-------------------- */
 
-.related-fields > div > div > input {
+/*.related-fields > div > div > input {
   //top: -4px;
 }
 
@@ -293,7 +302,7 @@ span.Select-arrow-zone {
 
 div[name="scope_of_influence"].custom-select > div {
   //top: 8px;
-}
+} */
 /* -------------- TODO #733-------------------- */
 
 .section-heading {
