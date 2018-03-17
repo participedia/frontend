@@ -2,15 +2,18 @@ import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import Profile from "../components/Profile";
 import api from "../utils/api";
 import authService from "../utils/AuthService";
+import { Redirect } from "react-router";
 
 export default class ProfileLoader extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false,
-      user: false
+      user: false,
+      userId: false
     };
   }
+
   componentDidMount() {
     let component = this;
     let userId = null;
@@ -25,13 +28,15 @@ export default class ProfileLoader extends Component {
       if (results.error) {
         component.setState({ error: results.error });
       } else {
-        component.setState({ user: results.data });
+        component.setState({ user: results.data, userId });
       }
     });
   }
   render() {
     if (this.state.error) {
       return <div>{this.state.error.message}</div>;
+    } else if (this.state.user && !this.state.userId) {
+      return <Redirect to={"/users/" + this.state.user.id} />;
     } else if (this.state.user) {
       return <Profile auth={authService} user={this.state.user} />;
     } else {
