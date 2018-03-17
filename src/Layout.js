@@ -47,7 +47,6 @@ import MenuIcon from "material-ui/svg-icons/navigation/menu";
 
 import "./UniversalStyles.css";
 
-
 function onSearch(pathname) {
   return pathname === "/" || pathname === "/search";
 }
@@ -194,8 +193,8 @@ export class Layout extends React.Component {
   }
 
   goHomeFromHelp() {
-    store.remove("tutorial-was-shown")
-    history.push('/');
+    store.remove("tutorial-was-shown");
+    history.push("/");
   }
 
   touchTitle() {
@@ -232,21 +231,21 @@ export class Layout extends React.Component {
           "<p>Conduct a site-wide search using one or more keywords.<p/><p>You can do an advanced search using common syntax like “and”, “or”, and “not”, as well as quotations and parentheses.</p><p>For example,<code>bicycle or rally</code> will match items with either or both words.<p>",
         selector: ".search-bar",
         position: "left",
-        isFixed: true,
+        isFixed: true
       },
       {
         title: "Map",
         text:
           "The map shows cases and organizations around the world. Your search results are represented by red pins. Double click to zoom in. Select any pin to find out more about a Case or Organization. Note, methods don’t appear on the map because they’re not location specific.",
         selector: ".map-component",
-        position: "left",
+        position: "left"
       },
       {
         title: "Sort",
         text:
           "Sort the results by content type such as cases, methods or organizations.",
         selector: ".filters",
-        position: "bottom",
+        position: "bottom"
       },
       {
         title: "Quick Submit",
@@ -332,13 +331,14 @@ export class Layout extends React.Component {
                 className="d-none d-none d-md-block d-lg-block d-xl-block"
                 to="/new"
               >
-              <div className="qs-button-case">
-                <RaisedButton 
-                className="qs-button customButton"
-                label={intl.formatMessage({id: "quick_submit"})} 
-                labelPosition="after"
-                icon={<AddIcon />}/>
-              </div>
+                <div className="qs-button-case">
+                  <RaisedButton
+                    className="qs-button customButton"
+                    label={intl.formatMessage({ id: "quick_submit" })}
+                    labelPosition="after"
+                    icon={<AddIcon />}
+                  />
+                </div>
               </Link>
               <LoginAvatar
                 addSteps={this.addSteps}
@@ -585,7 +585,15 @@ export class Layout extends React.Component {
               path="/organization/:nodeID/edit"
               component={OrganizationEditorContainer}
             />
-            <Route path="/users/:id" component={ProfileLoader} />
+            <Route
+              path="/users/:id"
+              render={routeProps => (
+                <ProfileLoader
+                  {...routeProps}
+                  handleInternal={this.handleInternal}
+                />
+              )}
+            />
           </div>
           <Footer onHelpOpen={this.openHelp} />
           <div id="feedback" />
