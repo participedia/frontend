@@ -17,7 +17,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
           <div />
           <div />
           <div />
-          <div />
           <div
             className="details"
           >
@@ -35,35 +34,26 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
                 className="links"
               >
                 <div>
-                  <a
-                    href="http://link 1"
-                    target="_blank"
-                  >
+                  <span>
                     link 1
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 2"
-                    target="_blank"
-                  >
+                  <span>
                     link 2
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 3"
-                    target="_blank"
-                  >
+                  <span>
                     link 3
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -86,7 +76,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 className="facilitated"
               >
                 <span>
-                  false
+                  False
                 </span>
               </div>
             </div>
@@ -184,23 +174,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                   className="title"
                 >
                   <span>
-                    Related Content
-                  </span>
-                </h3>
-                <div
-                  className="content"
-                >
-                  <div />
-                </div>
-              </div>
-              <div
-                className="tab"
-                onClick={[Function]}
-              >
-                <h3
-                  className="title"
-                >
-                  <span>
                     Method Data
                   </span>
                 </h3>
@@ -224,35 +197,26 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
                         className="links"
                       >
                         <div>
-                          <a
-                            href="http://link 1"
-                            target="_blank"
-                          >
+                          <span>
                             link 1
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 2"
-                            target="_blank"
-                          >
+                          <span>
                             link 2
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 3"
-                            target="_blank"
-                          >
+                          <span>
                             link 3
-                          </a>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -275,7 +239,7 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         className="facilitated"
                       >
                         <span>
-                          false
+                          False
                         </span>
                       </div>
                     </div>
@@ -457,7 +421,7 @@ exports[`Method editor renders correctly 1`] = `
               className="explanatory-text"
             >
               <span>
-                Enter title
+                method_title_placeholder
               </span>
             </p>
             <Textfield
@@ -487,11 +451,16 @@ exports[`Method editor renders correctly 1`] = `
               </span>
             </h2>
             <div>
+              <h3
+                className="sub-heading"
+              >
+                Relevant Links (URLs)
+              </h3>
               <p
                 className="explanatory-text"
               >
                 <span>
-                  Add a link
+                  If there is a main website for this case, enter it here. Add links to additional sources so that readers and editors can find more information about this case online. 
                 </span>
               </p>
               <div
@@ -524,7 +493,7 @@ exports[`Method editor renders correctly 1`] = `
                 className="explanatory-text"
               >
                 <span>
-                  Select a photo from your device
+                  Select a photo from your device.
                 </span>
               </p>
               <div>
@@ -541,11 +510,16 @@ exports[`Method editor renders correctly 1`] = `
               </span>
             </h3>
             <div>
+              <h3
+                className="sub-heading"
+              >
+                Videos
+              </h3>
               <p
                 className="explanatory-text"
               >
                 <span>
-                  Add a video (Vimeo, YouTube)
+                  Add a video link (Vimeo or YouTube)
                 </span>
               </p>
               <div
@@ -564,11 +538,18 @@ exports[`Method editor renders correctly 1`] = `
               </span>
             </h2>
             <div>
+              <h3
+                className="sub-heading"
+              >
+                <span>
+                  Tags
+                </span>
+              </h3>
               <p
                 className="explanatory-text"
               >
                 <span>
-                  Type to search for an existing tag
+                  Select tags that best describe this case.
                 </span>
               </p>
             </div>
@@ -579,15 +560,21 @@ exports[`Method editor renders correctly 1`] = `
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 General Issues
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select an issue
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select an issue",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
@@ -603,57 +590,81 @@ exports[`Method editor renders correctly 1`] = `
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Kind of influence
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select kind of influence
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select kind of influence",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Communication Mode
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select a communication mode
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select a communication mode",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Communication with audience
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select a communication with audience
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select a communication with audience",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Face-to-face, online or both
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select face-to-face, online or both
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Did participants interact face-to-face, online, or both?",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
@@ -673,155 +684,221 @@ exports[`Method editor renders correctly 1`] = `
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Best for
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Best for
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Best for",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Decision method
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select a decision method
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select a decision method",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Governance contribution
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Governance contribution
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Governance contribution",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Issue interdependency
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Issue interdependency
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Issue interdependency",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Issue polarization
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Issue polarization
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Issue polarization",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Issue technical complexity
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Issue technical complexity
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Issue technical complexity",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Public interaction method
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Public interaction method
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Public interaction method",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Method of interaction
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Method of interaction
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Method of interaction",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Typical funding source
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select Typical funding source
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select Typical funding source",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Type of implementing entity
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select type of implementing entity
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select type of implementing entity",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
               className="field-case select"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
                 Type of sponsoring entity
-              </h2>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Select type of sponsoring entity
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Select type of sponsoring entity",
+                    }
+                  }
+                />
               </p>
             </div>
             <div
@@ -845,11 +922,18 @@ exports[`Method editor renders correctly 1`] = `
                   </span>
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Cases
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
+                      Begin typing the title of an existing case
                     </span>
                   </p>
                 </div>
@@ -861,11 +945,18 @@ exports[`Method editor renders correctly 1`] = `
                   </span>
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Methods
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related methods include participatory methods or tools used during this particular case.
+                      Begin typing the title of an existing method
                     </span>
                   </p>
                 </div>
@@ -877,11 +968,18 @@ exports[`Method editor renders correctly 1`] = `
                   </span>
                 </h3>
                 <div>
+                  <h3
+                    className="sub-heading"
+                  >
+                    <span>
+                      Related Organizations
+                    </span>
+                  </h3>
                   <p
                     className="explanatory-text"
                   >
                     <span>
-                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
+                      Begin typing the title of an existing organization
                     </span>
                   </p>
                 </div>

@@ -436,7 +436,7 @@ exports[`App 1`] = `
                       onClick={[Function]}
                     >
                       <span>
-                        Mention "Participatory Budgeting"
+                        Mention Participatory Budgeting
                       </span>
                     </a>
                   </div>
@@ -1484,7 +1484,7 @@ exports[`Searching for a word 1`] = `
                       onClick={[Function]}
                     >
                       <span>
-                        Mention "Participatory Budgeting"
+                        Mention Participatory Budgeting
                       </span>
                     </a>
                   </div>

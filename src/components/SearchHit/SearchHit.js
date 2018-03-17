@@ -9,10 +9,24 @@ import {
   FormattedMessage
 } from "react-intl";
 import { Row, Col } from "reactstrap";
-import backgroundImage from "../../img/pp-thumbnail-1.jpg";
+import backgroundImage1 from "../../img/texture_1.svg";
+import backgroundImage2 from "../../img/texture_2.svg";
+import backgroundImage3 from "../../img/texture_3.svg";
+import backgroundImage4 from "../../img/texture_4.svg";
+import backgroundImage5 from "../../img/texture_5.svg";
+import backgroundImage6 from "../../img/texture_6.svg";
 import BookmarkToggle from "../BookmarkToggle";
 import ReactPlayer from "react-player";
 import htmlToText from "html-to-text";
+
+const backgrounds = [
+  backgroundImage1,
+  backgroundImage2,
+  backgroundImage3,
+  backgroundImage4,
+  backgroundImage5,
+  backgroundImage6
+];
 
 export class SearchHit extends React.Component {
   getInnerHTML() {
@@ -34,8 +48,10 @@ export class SearchHit extends React.Component {
     let body = htmlToText.fromString(result.body).substring(0, 200) + "...";
     let link = `/${type}/${id}`;
     let thumbnailClass = "thumbnail " + type;
+    let textureNumber = Math.floor(Math.random() * 5) + 1;
+    let backgroundImage = backgrounds[textureNumber];
     let thumbnailStyle = {
-      backgroundImageSrc: backgroundImage
+      backgroundImage: `url(${backgroundImage})`
     };
     let bookmarkIcon = (
       <BookmarkToggle
@@ -120,9 +136,7 @@ export class SearchHit extends React.Component {
                 />
               </p>
             </Col>
-            <Col md="1">
-              {bookmarkIcon}
-            </Col>
+            <Col md="1">{bookmarkIcon}</Col>
             <div className="separator" />
           </Row>
         )}

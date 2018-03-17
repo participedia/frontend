@@ -217,7 +217,7 @@ exports[`Case editor renders correctly 1`] = `
                     <img
                       alt=""
                       className="img-fluid"
-                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/agenda21%2520.jpg"
+                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.comagenda21%2520.jpg"
                       style={
                         Object {
                           "height": "100%",
@@ -685,7 +685,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               Italy
             </p>
           </div>
-          <div />
           <div
             className="details"
           >
@@ -697,186 +696,76 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               </span>
             </h2>
             <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Issue
-                </span>
-              </p>
-              <div
-                className="issue blond"
-              >
-                <span>
-                  Budgeting
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Specific Topic
-                </span>
-              </p>
-              <div
-                className="specific_topic blond"
-              >
-                <span>
-                  Sustainable Development
-                </span>
-              </div>
-            </div>
+            <div />
+            <div />
+            <div />
             <div>
               <p
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
                 className="links"
               >
                 <div>
-                  <a
-                    href="http://link 1"
-                    target="_blank"
-                  >
+                  <span>
                     link 1
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 2"
-                    target="_blank"
-                  >
+                  <span>
                     link 2
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 3"
-                    target="_blank"
-                  >
+                  <span>
                     link 3
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Communication Mode
-                </span>
-              </p>
-              <div
-                className="communication_mode blond"
-              >
-                <span>
-                  Discussion, Dialogue, or Deliberation
-                </span>
-              </div>
-            </div>
+            <div />
             <div />
             <div
-              className="linked-property"
+              className="linked-property isarray"
             >
               <p
                 className="sub-sub-heading"
               >
                 <span>
-                  Decision method
+                  Location
                 </span>
               </p>
               <div
-                className="decision_method blond"
+                className="location blond"
               >
-                <span>
-                  Getting sense of room/group (i.e. no formal voting)
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Face-to-face, online or both
-                </span>
-              </p>
-              <div
-                className="facetoface_online_or_both blond"
-              >
-                <span>
-                  Face-to-face
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Facilitated
-                </span>
-              </p>
-              <div
-                className="facilitated blond"
-              >
-                <span>
-                  true
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Voting
-                </span>
-              </p>
-              <div
-                className="voting blond"
-              >
-                <span>
-                  true
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Number of meeting days
-                </span>
-              </p>
-              <div
-                className="number_of_meeting_days blond"
-              >
-                <span>
-                  4
-                </span>
+                <div>
+                  Italy
+                </div>
+                <div>
+                  Forlì-Cesena
+                </div>
+                <div>
+                  Forlì
+                </div>
+                <div>
+                  47100
+                </div>
+                <div>
+                  12° 2' 30.0048" E
+                </div>
+                <div>
+                  Piazza Morgagni 9&lt;br /&gt;Ufficio Risorse Idriche della provincia di Forlì e Cesena
+                </div>
+                <div>
+                  Ufficio Staff Agenda 21 Locale provincia di Forlì e Cesena
+                </div>
+                <div>
+                  44° 13' 12.666" N
+                </div>
               </div>
             </div>
             <div />
@@ -888,99 +777,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Targeted participants public role
-                </span>
-              </p>
-              <div
-                className="targeted_participants_public_role blond"
-              >
-                <span>
-                  Stakeholder Organizations
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Targeted audience
-                </span>
-              </p>
-              <div
-                className="targeted_audience blond"
-              >
-                <span>
-                  General Public
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Participant selection
-                </span>
-              </p>
-              <div
-                className="participant_selection blond"
-              >
-                <span>
-                  Open to all with targeted recruitment
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Type of funding entity
-                </span>
-              </p>
-              <div
-                className="type_of_funding_entity blond"
-              >
-                <span>
-                  Regional Government (e.g. State, Provincial, Territorial)
-                </span>
-              </div>
-            </div>
-            <div />
-            <div />
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Ongoing
-                </span>
-              </p>
-              <div
-                className="ongoing"
-              >
-                <span>
-                  false
-                </span>
-              </div>
-            </div>
-            <div
-              className="linked-property"
-            >
-              <p
-                className="sub-sub-heading"
-              >
-                <span>
-                  Start date
+                  Start Date
                 </span>
               </p>
               <div
@@ -998,7 +795,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  End date
+                  End Date
                 </span>
               </p>
               <div
@@ -1009,6 +806,68 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                 </span>
               </div>
             </div>
+            <div
+              className="linked-property"
+            >
+              <p
+                className="sub-sub-heading"
+              >
+                <span>
+                  Ongoing
+                </span>
+              </p>
+              <div
+                className="ongoing"
+              >
+                <span>
+                  False
+                </span>
+              </div>
+            </div>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div
+              className="linked-property"
+            >
+              <p
+                className="sub-sub-heading"
+              >
+                <span>
+                  Face-to-face, online, or both
+                </span>
+              </p>
+              <div
+                className="facetoface_online_or_both blond"
+              >
+                <span>
+                  Face-to-face
+                </span>
+              </div>
+            </div>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
             <div />
             <div />
             <div />
@@ -1093,23 +952,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   className="title"
                 >
                   <span>
-                    Related Content
-                  </span>
-                </h3>
-                <div
-                  className="content"
-                >
-                  <div />
-                </div>
-              </div>
-              <div
-                className="tab"
-                onClick={[Function]}
-              >
-                <h3
-                  className="title"
-                >
-                  <span>
                     Case Data
                   </span>
                 </h3>
@@ -1127,186 +969,76 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       </span>
                     </h2>
                     <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Issue
-                        </span>
-                      </p>
-                      <div
-                        className="issue blond"
-                      >
-                        <span>
-                          Budgeting
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Specific Topic
-                        </span>
-                      </p>
-                      <div
-                        className="specific_topic blond"
-                      >
-                        <span>
-                          Sustainable Development
-                        </span>
-                      </div>
-                    </div>
+                    <div />
+                    <div />
+                    <div />
                     <div>
                       <p
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
                         className="links"
                       >
                         <div>
-                          <a
-                            href="http://link 1"
-                            target="_blank"
-                          >
+                          <span>
                             link 1
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 2"
-                            target="_blank"
-                          >
+                          <span>
                             link 2
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 3"
-                            target="_blank"
-                          >
+                          <span>
                             link 3
-                          </a>
+                          </span>
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Communication Mode
-                        </span>
-                      </p>
-                      <div
-                        className="communication_mode blond"
-                      >
-                        <span>
-                          Discussion, Dialogue, or Deliberation
-                        </span>
-                      </div>
-                    </div>
+                    <div />
                     <div />
                     <div
-                      className="linked-property"
+                      className="linked-property isarray"
                     >
                       <p
                         className="sub-sub-heading"
                       >
                         <span>
-                          Decision method
+                          Location
                         </span>
                       </p>
                       <div
-                        className="decision_method blond"
+                        className="location blond"
                       >
-                        <span>
-                          Getting sense of room/group (i.e. no formal voting)
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Face-to-face, online or both
-                        </span>
-                      </p>
-                      <div
-                        className="facetoface_online_or_both blond"
-                      >
-                        <span>
-                          Face-to-face
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Facilitated
-                        </span>
-                      </p>
-                      <div
-                        className="facilitated blond"
-                      >
-                        <span>
-                          true
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Voting
-                        </span>
-                      </p>
-                      <div
-                        className="voting blond"
-                      >
-                        <span>
-                          true
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Number of meeting days
-                        </span>
-                      </p>
-                      <div
-                        className="number_of_meeting_days blond"
-                      >
-                        <span>
-                          4
-                        </span>
+                        <div>
+                          Italy
+                        </div>
+                        <div>
+                          Forlì-Cesena
+                        </div>
+                        <div>
+                          Forlì
+                        </div>
+                        <div>
+                          47100
+                        </div>
+                        <div>
+                          12° 2' 30.0048" E
+                        </div>
+                        <div>
+                          Piazza Morgagni 9&lt;br /&gt;Ufficio Risorse Idriche della provincia di Forlì e Cesena
+                        </div>
+                        <div>
+                          Ufficio Staff Agenda 21 Locale provincia di Forlì e Cesena
+                        </div>
+                        <div>
+                          44° 13' 12.666" N
+                        </div>
                       </div>
                     </div>
                     <div />
@@ -1318,99 +1050,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Targeted participants public role
-                        </span>
-                      </p>
-                      <div
-                        className="targeted_participants_public_role blond"
-                      >
-                        <span>
-                          Stakeholder Organizations
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Targeted audience
-                        </span>
-                      </p>
-                      <div
-                        className="targeted_audience blond"
-                      >
-                        <span>
-                          General Public
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Participant selection
-                        </span>
-                      </p>
-                      <div
-                        className="participant_selection blond"
-                      >
-                        <span>
-                          Open to all with targeted recruitment
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Type of funding entity
-                        </span>
-                      </p>
-                      <div
-                        className="type_of_funding_entity blond"
-                      >
-                        <span>
-                          Regional Government (e.g. State, Provincial, Territorial)
-                        </span>
-                      </div>
-                    </div>
-                    <div />
-                    <div />
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Ongoing
-                        </span>
-                      </p>
-                      <div
-                        className="ongoing"
-                      >
-                        <span>
-                          false
-                        </span>
-                      </div>
-                    </div>
-                    <div
-                      className="linked-property"
-                    >
-                      <p
-                        className="sub-sub-heading"
-                      >
-                        <span>
-                          Start date
+                          Start Date
                         </span>
                       </p>
                       <div
@@ -1428,7 +1068,7 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          End date
+                          End Date
                         </span>
                       </p>
                       <div
@@ -1439,6 +1079,68 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                         </span>
                       </div>
                     </div>
+                    <div
+                      className="linked-property"
+                    >
+                      <p
+                        className="sub-sub-heading"
+                      >
+                        <span>
+                          Ongoing
+                        </span>
+                      </p>
+                      <div
+                        className="ongoing"
+                      >
+                        <span>
+                          False
+                        </span>
+                      </div>
+                    </div>
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div
+                      className="linked-property"
+                    >
+                      <p
+                        className="sub-sub-heading"
+                      >
+                        <span>
+                          Face-to-face, online, or both
+                        </span>
+                      </p>
+                      <div
+                        className="facetoface_online_or_both blond"
+                      >
+                        <span>
+                          Face-to-face
+                        </span>
+                      </div>
+                    </div>
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
                     <div />
                     <div />
                     <div />

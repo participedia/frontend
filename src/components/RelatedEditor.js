@@ -2,20 +2,24 @@ import React from "react";
 import ChipInput from "material-ui-chip-input";
 import omit from "object-omit";
 import { FormattedMessage } from "react-intl";
+import InfoBox from "./InfoBox";
 
 export default class Related extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRequestAdd = this.handleRequestAdd.bind(this);
+    this.handleRequestDelete = this.handleRequestDelete.bind(this);
     this.state = {
       value: props.value
     };
   }
+
   componentWillReceiveProps(props) {
     this.setState({ value: props.value });
   }
 
   handleChange(value) {
-    this.props.onChange(value);
+    this.props.onChange(this.props.fieldName, value);
   }
 
   handleRequestAdd(chip) {
@@ -69,20 +73,33 @@ export default class Related extends React.Component {
       "schema",
       "passProps"
     ]);
-    let handleRequestAdd = this.handleRequestAdd.bind(this);
-    let handleRequestDelete = this.handleRequestDelete.bind(this);
-    let value = this.state.value; // if no dataSourceConfig, assume a list of strings
     return (
       <div>
-        <p className="explanatory-text"><FormattedMessage id={this.props.fieldName + "_prompt"} /></p>
+        <h3 className="sub-heading">
+          <FormattedMessage id={this.props.fieldName} />
+        </h3>
+        <p className="explanatory-text">
+          <FormattedMessage
+            id={
+              this.props.fieldName +
+              "_instructional_" +
+              this.props.passProps.item_type
+            }
+          />
+          {this.props.passProps.info ? (
+            <InfoBox info={this.props.passProps.info} />
+          ) : (
+            undefined
+          )}
+        </p>
         <ChipInput
           {...rest}
           className="related-fields clearfix"
-          value={value}
-          onRequestAdd={handleRequestAdd}
+          value={this.state.value}
+          onRequestAdd={this.handleRequestAdd}
           maxSearchResults={this.props.passProps.maxSearchResults}
           filter={this.props.passProps.filter}
-          onRequestDelete={handleRequestDelete}
+          onRequestDelete={this.handleRequestDelete}
           placeholder={this.props.passProps.placeholder}
           fullWidth
           fullWidthInput

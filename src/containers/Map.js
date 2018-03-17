@@ -4,13 +4,13 @@ import coordinates from "parse-dms";
 import defaultMapStyles from "./mapstyle.js";
 
 function getSelectedCategory(pathname) {
-  if (pathname == "/methods") {
+  if (pathname === "/methods") {
     return "Methods";
-  } else if (pathname == "/cases") {
+  } else if (pathname === "/cases") {
     return "Cases";
-  } else if (pathname == "/organizations") {
+  } else if (pathname === "/organizations") {
     return "Organizations";
-  } else if (pathname == "/news") {
+  } else if (pathname === "/news") {
     return "News";
   }
   return "All";
@@ -51,6 +51,8 @@ function extractData(data) {
       type: obj.type,
       featured: obj.featured,
       searchmatched: obj.searchmatched,
+      updated: obj.updated_date,
+      body: obj.body,
       position: coords,
       url: `/${obj.type}/${obj.id}`,
       title: obj.title,

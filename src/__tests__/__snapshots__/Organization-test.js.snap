@@ -32,7 +32,6 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               Italy
             </p>
           </div>
-          <div />
           <div>
             <div
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
@@ -88,35 +87,26 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 className="sub-sub-heading"
               >
                 <span>
-                  Relevant Links (URLs)
+                  Links
                 </span>
               </p>
               <div
                 className="links"
               >
                 <div>
-                  <a
-                    href="http://link 1"
-                    target="_blank"
-                  >
+                  <span>
                     link 1
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 2"
-                    target="_blank"
-                  >
+                  <span>
                     link 2
-                  </a>
+                  </span>
                 </div>
                 <div>
-                  <a
-                    href="http://link 3"
-                    target="_blank"
-                  >
+                  <span>
                     link 3
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -213,23 +203,6 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                   className="title"
                 >
                   <span>
-                    Related Content
-                  </span>
-                </h3>
-                <div
-                  className="content"
-                >
-                  <div />
-                </div>
-              </div>
-              <div
-                className="tab"
-                onClick={[Function]}
-              >
-                <h3
-                  className="title"
-                >
-                  <span>
                     Organization Data
                   </span>
                 </h3>
@@ -291,35 +264,26 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                         className="sub-sub-heading"
                       >
                         <span>
-                          Relevant Links (URLs)
+                          Links
                         </span>
                       </p>
                       <div
                         className="links"
                       >
                         <div>
-                          <a
-                            href="http://link 1"
-                            target="_blank"
-                          >
+                          <span>
                             link 1
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 2"
-                            target="_blank"
-                          >
+                          <span>
                             link 2
-                          </a>
+                          </span>
                         </div>
                         <div>
-                          <a
-                            href="http://link 3"
-                            target="_blank"
-                          >
+                          <span>
                             link 3
-                          </a>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -455,302 +419,268 @@ exports[`Organization editor renders correctly 1`] = `
           className="case-box"
         >
           <div
-            className="field-case top"
+            className="form-section"
           >
             <h2
-              className="sub-heading"
+              className="section-heading"
             >
-              <label
-                htmlFor="title"
-              >
-                Title of Organization
-              </label>
+              <span>
+                Overview
+              </span>
             </h2>
-            <Textfield
-              className="custom-field org-title"
-              disabled={false}
-              errorText={undefined}
-              floatingLabelText=""
-              fullWidth={true}
-              hintText={null}
-              name="title"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Enter title"
-              type="text"
-              value="Urban Interactive Studio"
-            />
-          </div>
-          <div
-            className="case-location"
-          >
             <div
-              className="field-case location-field"
+              className="field-case top"
             >
-              <h2
+              <h3
                 className="sub-heading"
               >
-                Location
-              </h2>
+                <label
+                  htmlFor="title"
+                >
+                  <span>
+                    Name of Organization
+                  </span>
+                </label>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                Type to search for known location
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Enter the name of this organization.",
+                    }
+                  }
+                />
               </p>
-              <div
-                className="location"
+              <Textfield
+                className="custom-field org-title"
+                disabled={false}
+                errorText={undefined}
+                floatingLabelText=""
+                fullWidth={true}
+                hintText={null}
+                name="title"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Enter name"
+                type="text"
+                value="Urban Interactive Studio"
               />
-            </div>
-          </div>
-          <div
-            className="field-case"
-          >
-            <h2
-              className="sub-heading"
-            >
-              Relevant Links (URLs)
-            </h2>
-            <div>
+              <div>
+                <h3
+                  className="sub-heading"
+                >
+                  Links
+                </h3>
+                <p
+                  className="explanatory-text"
+                >
+                  <span>
+                    If there is a main website for this organization, enter it here. Add links to additional sources so that readers and editors can find more information about this organization online.
+                  </span>
+                </p>
+                <div
+                  className="list links"
+                />
+              </div>
+              <h3
+                className="sub-heading"
+              >
+                <label
+                  htmlFor="title"
+                >
+                  <span>
+                    Brief Description
+                  </span>
+                </label>
+              </h3>
               <p
                 className="explanatory-text"
               >
-                <span>
-                  Add a link
-                </span>
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Enter tweet-length (140 characters or less) description of this organization.",
+                    }
+                  }
+                />
               </p>
-              <div
-                className="list links"
+              <Textfield
+                className="custom-textarea"
+                disabled={false}
+                errorText={undefined}
+                floatingLabelText=""
+                fullWidth={true}
+                hintText={null}
+                maxLength="280"
+                multiLine={true}
+                name="description"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Enter tweet-length organization description"
+                underlineShow={false}
+                value=""
               />
+              <div
+                className="field-case"
+              >
+                <h3
+                  className="sub-heading"
+                  htmlFor="body_en"
+                >
+                  Organization Description / Narrative
+                </h3>
+                <p
+                  className="explanatory-text"
+                >
+                  <span
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "The following standard structure makes it easier to compare and analyze entries. Please use the headings below as you prepare your organization entry.",
+                      }
+                    }
+                  />
+                </p>
+              </div>
+              <div>
+                <h3
+                  className="sub-heading"
+                >
+                  Location
+                </h3>
+                <p
+                  className="explanatory-text"
+                >
+                  Type to search for known location
+                </p>
+                <div
+                  className="location"
+                />
+              </div>
             </div>
           </div>
           <div
-            className="field-case media"
+            className="form-section"
           >
             <h2
-              className="sub-heading"
+              className="section-heading"
             >
               <span>
                 Media
               </span>
             </h2>
-            <h3
-              className="sub-sub-heading"
+            <div
+              className="field-case"
             >
-              <span>
-                Photos
-              </span>
-            </h3>
-            <div>
-              <div
-                className="itemPics row"
+              <h3
+                className="sub-sub-heading"
               >
+                <span>
+                  Photos
+                </span>
+              </h3>
+              <div>
                 <div
-                  className="pl-0 box-container col-12 col-md-6 col-lg-4"
+                  className="itemPics row"
                 >
                   <div
-                    className="box lead"
+                    className="pl-0 box-container col-12 col-md-6 col-lg-4"
                   >
                     <div
-                      className="checkbox"
-                      onClick={[Function]}
-                    />
-                    <div
-                      className="trash"
-                      onClick={[Function]}
-                    />
-                    <img
-                      alt=""
-                      className="img-fluid"
-                      src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
-                      style={
-                        Object {
-                          "height": "100%",
-                          "objectFit": "contain",
-                          "width": "100%",
+                      className="box lead"
+                    >
+                      <div
+                        className="checkbox"
+                        onClick={[Function]}
+                      />
+                      <div
+                        className="trash"
+                        onClick={[Function]}
+                      />
+                      <img
+                        alt=""
+                        className="img-fluid"
+                        src="http://uploads.participedia.xyz.s3-website-us-east-1.amazonaws.com/uis_favicon_0.png"
+                        style={
+                          Object {
+                            "height": "100%",
+                            "objectFit": "contain",
+                            "width": "100%",
+                          }
                         }
-                      }
-                    />
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <p
-                className="explanatory-text"
-              >
-                <span>
-                  Select a photo from your device
-                </span>
-              </p>
-              <div>
-                <span>
-                  Sorry, upload only works if you're logged in.
-                </span>
-              </div>
-            </div>
-            <h3
-              className="sub-sub-heading pt-4"
-            >
-              <span>
-                Videos
-              </span>
-            </h3>
-            <div>
-              <p
-                className="explanatory-text"
-              >
-                <span>
-                  Add a video (Vimeo, YouTube)
-                </span>
-              </p>
-              <div
-                className="list videos"
-              />
-            </div>
-          </div>
-          <div
-            className="field-case"
-          >
-            <h2
-              className="sub-heading"
-            >
-              Tags
-            </h2>
-            <div
-              className="tags-field"
-            >
-              <div>
                 <p
                   className="explanatory-text"
                 >
                   <span>
-                    Type to search for an existing tag
+                    Select a photo from your device.
                   </span>
                 </p>
+                <div>
+                  <span>
+                    Sorry, upload only works if you're logged in.
+                  </span>
+                </div>
               </div>
+              <div>
+                <h3
+                  className="sub-heading"
+                >
+                  Videos
+                </h3>
+                <p
+                  className="explanatory-text"
+                >
+                  <span>
+                    Add a video link from Vimeo or YouTube.
+                  </span>
+                </p>
+                <div
+                  className="list videos"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-section"
+          >
+            <h2
+              className="section-heading"
+            >
+              <span>
+                Classification
+              </span>
+            </h2>
+            <div
+              className="field-case select"
+            >
+              <h3
+                className="sub-heading"
+              >
+                Sector
+              </h3>
+              <p
+                className="explanatory-text"
+              >
+                <span
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "In what sector does this organization operate?",
+                    }
+                  }
+                />
+              </p>
             </div>
           </div>
         </div>
         <div>
-          <div>
-            <div
-              className="field-case"
-            >
-              <h2
-                className="sub-heading"
-              >
-                Executive Director
-              </h2>
-              <p
-                className="explanatory-text"
-              >
-                Enter Executive Director
-              </p>
-              <div
-                className="executive_director"
-              >
-                <Textfield
-                  className="custom-field"
-                  fullWidth={true}
-                  name="executive_director"
-                  onChange={[Function]}
-                  value=""
-                />
-              </div>
-            </div>
-            <div
-              className="field-case select"
-            >
-              <h2
-                className="sub-heading"
-              >
-                Sector
-              </h2>
-              <p
-                className="explanatory-text"
-              >
-                Select Sector
-              </p>
-            </div>
-            <div
-              className="field-case select"
-            >
-              <h2
-                className="sub-heading"
-              >
-                Specific Topic
-              </h2>
-              <p
-                className="explanatory-text"
-              >
-                Select an specific Topic
-              </p>
-            </div>
-            <div
-              className="field-case"
-            >
-              <h2
-                className="sub-heading"
-                htmlFor="body_en"
-              >
-                Description of the organization
-              </h2>
-            </div>
-            <div
-              className="field-case last related"
-            >
-              <h2
-                className="sub-heading"
-              >
-                Related Content
-              </h2>
-              <div
-                className="related-content"
-              >
-                <h3
-                  className="sub-sub-heading"
-                >
-                  Related Cases
-                </h3>
-                <div>
-                  <p
-                    className="explanatory-text"
-                  >
-                    <span>
-                      Related cases include public participation events that are part of a larger initiative. For example, this case could be considered a component part of another case or vice versa.
-                    </span>
-                  </p>
-                </div>
-                <h3
-                  className="sub-sub-heading mt-3"
-                >
-                  Related Methods
-                </h3>
-                <div>
-                  <p
-                    className="explanatory-text"
-                  >
-                    <span>
-                      Related methods include participatory methods or tools used during this particular case.
-                    </span>
-                  </p>
-                </div>
-                <h3
-                  className="sub-sub-heading mt-3"
-                >
-                  Related Organizations
-                </h3>
-                <div>
-                  <p
-                    className="explanatory-text"
-                  >
-                    <span>
-                      Related organizations include any organization that played a direct role in the planning or execution of this particular case.
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div />
         </div>
       </div>
     </div>

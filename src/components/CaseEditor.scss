@@ -12,19 +12,25 @@
   padding-bottom: 0.5em;
 }
 
-.field-case {
-  padding-bottom: 3rem;
-  padding-top: 2.6rem;
+.form-section {
   border-bottom:1px solid #ccc;
+  &.quick {
+    border: none;
+  }
+}
+
+.field-case {
+  padding-bottom: 2rem;
+  padding-top: 1rem;
   &.top {
     padding-top: 0;
   }
-  &.select {
-    padding-bottom: 2.1rem;
-  }
-  &.related, &.media {
-    padding-bottom: 1.6rem;
-  }
+  // &.select {
+  //   padding-bottom: 1rem;
+  // }
+  // &.related, &.media {
+  //   padding-bottom: 1.6rem;
+  // }
   &.last {
     border: none;
   }
@@ -42,6 +48,21 @@
 
 .list.videos {
   margin-top: -7px;
+}
+
+.custom-textarea {
+  border: 2px solid $black;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 70px;
+}
+
+.custom-number-field {
+  border: 2px solid $black;
+  padding-left: 1rem;
+  @include media-breakpoint-up(lg) {
+    width: 70% !important;
+  }
 }
 
 .custom-field {
@@ -99,6 +120,20 @@ label {
   hr {
     display: none;
   }
+  &.Select--single {
+    padding-left: 0;
+    .Select-control {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.section-heading {
+  padding-top: 3rem;
+  &.hidden {
+    display: none;
+  }
 }
 
 .sub-heading {
@@ -112,6 +147,9 @@ label {
   }
   &.org {
     font-size: 0.6rem;
+  }
+  &.hidden {
+    display: none;
   }
 }
 
@@ -171,6 +209,26 @@ label {
     padding-bottom: 1rem;
     @include media-breakpoint-only(sm) {
       margin-bottom: 2rem;
+    }
+  }
+  .file {
+    position: relative;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    border: 2px solid $dark-grey;
+    margin-bottom: 0.5rem;
+    .trash {
+      position: absolute;
+      cursor: pointer;
+      width: 1.4rem;
+      height: 1.4rem;
+      bottom: 10px;
+      right: 12px;
+      background-image: url("../img/trash.png");
+      background-repeat: no-repeat;
+      background-size: 0.9rem;
+      background-color: #fff;
+      background-position: center;
+      z-index: 1;
     }
   }
   .box {
