@@ -149,7 +149,8 @@ label {
 
   border: 2px solid $black;
   padding-left: 1rem;
-  display: block;
+  display: table !important;
+  vertical-align: middle;
   height: auto;
 
   hr {
@@ -171,43 +172,22 @@ label {
       height: auto !important;
       white-space: normal !important;
       bottom: 0px;
-      top: 4px;
+
     }
+    color: rgba(0, 0, 0, 0.57) !important;
     padding: 0px;
   }
 
-  /*
-  & > div > div > div {
-    @include media-breakpoint-up(sm) {
-    }
-  }
-  */
-
+  /* Move menu arrow back to right, after removing padding */
   & > div > div > button {
     @include media-breakpoint-up(sm) {
       right: -25% !important;
+      top: 4px !important;
     }
   }
 }
 /* -------------- TODO #733-------------------- */
-.custom-select > div {
-  @include media-breakpoint-up(sm) {
-    //width: 80% !important;
-    //height: auto !important;
-    //white-space: normal;
-    //margin-top: 2% !important;
-  }
-  //bottom: auto !important;
-  //top: auto !important;
-  //padding-right: 56px;
 
-}
-.custom-select > div > div {
-  @include media-breakpoint-up(sm) {
-
-  }
-  //min-height: 20px;
-}
 
 .custom-select > div > div > button {
    @include media-breakpoint-up(sm) {
@@ -219,13 +199,14 @@ label {
   //position: absolute;
 }
 
-/* Search for existing case/component': Adjust alignment of outer form container*/
+/* 'Search for existing case/component': Adjust alignment of outer form container */
 .Select.custom-select{
   @include media-breakpoint-up(md) {
     position: relative !important;
     max-height: 65px !important;
-    min-height: 40px;
+    min-height: 20px;
     top: 0px !important;
+    width: 100% !important;
   }
 }
 
@@ -241,7 +222,7 @@ div.Select-control {
 /* Fix drop down for 'Search for existing case/component' */
 .Select-menu-outer {
   position: absolute;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.57);
   background-color: rgb(255, 255, 255);
   transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   box-sizing: border-box;
@@ -260,7 +241,8 @@ div.Select-control {
   margin-top: 30px !important;
 }
 
-/* Make Photos, Videos, Files forms match width of other forms */
+/* Make Photos, Videos, Files forms match width of other forms
+TODO: Need to do the same for Links form */
 
 .react-dropzone-s3-uploader {
   @include media-breakpoint-up(md) {
@@ -268,41 +250,30 @@ div.Select-control {
   }
 }
 
-/* -------------- TODO #733-------------------- */
+/* Adjust placeholder font color to match and make long text wrap */
+div[style="cursor: pointer; height: 100%; position: relative; width: 100%;"] > div {
+  color: rgba(0, 0, 0,  0.57) !important;
+  white-space: normal !important;
+  padding-right: 0px !important;
+  top: 0px;
 
-/*.related-fields > div > div > input {
-  //top: -4px;
 }
 
-span.Select-multi-value-wrapper {
+div.custom-field > input {
+  color: rgba(0, 0, 0,  0.57) !important;
+}
+
+/* Specific alignment fixes */
+div[style="font-size: 16px; line-height: 24px; width: 100%; display: inline-block; position: relative; background-color: transparent; font-family: Roboto, sans-serif; transition: height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; cursor: text;"].related-fields {
   @include media-breakpoint-up(md) {
-    //width: 100%;
+    padding-bottom: 0.75rem;
   }
 }
 
-div.Select-placeholder {
-  @include media-breakpoint-up(sm) {
-    //top: 2px;
-  }
-  @include media-breakpoint-up(md) {
-    //top: -2px;
-  }
+div[name="time-limited"] > div[style="position: absolute;opacity: 1;color: rgba(0, 0, 0, 0.3);transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;bottom: 15px;"] {
+  top: 10px;
 }
 
-span.Select-arrow-zone {
-  @include media-breakpoint-up(sm) {
-    //top: 7px;
-  }
-  @include media-breakpoint-up(md) {
-    //position: absolute;
-    //top: 2px;
-    //right: 0px;
-  }
-}
-
-div[name="scope_of_influence"].custom-select > div {
-  //top: 8px;
-} */
 /* -------------- TODO #733-------------------- */
 
 .section-heading {
