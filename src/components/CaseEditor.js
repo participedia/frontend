@@ -66,6 +66,20 @@ class CaseEditor extends Component {
     }
   }
 
+  thingList(list) {
+    if (!list || !list.map) {
+      console.warn("Warning, expecting a list: %o", list);
+      return [];
+    }
+    return list.map(item => {
+      if (item.title && item.id) {
+        return { text: item.title, value: item.id };
+      } else {
+        return item;
+      }
+    });
+  }
+
   ensureValues(thing) {
     thing.images = thing.images || [];
     thing.body =
@@ -78,6 +92,9 @@ class CaseEditor extends Component {
     thing.approaches = thing.approaches || [];
     thing.targeted_participants = thing.targeted_participants || [];
     thing.participants_interactions = thing.participants_interactions || [];
+    thing.primary_organizers = thing.primary_organizers || [];
+    thing.has_components = thing.has_components || [];
+    thing.process_methods = thing.process_methods || [];
     return thing;
   }
 
@@ -93,6 +110,9 @@ class CaseEditor extends Component {
     thing.participants_interactions = this.structureList(
       thing.participants_interactions
     );
+    thing.primary_organizers = this.thingList(thing.primary_organizers);
+    thing.has_components = this.thingList(thing.has_components);
+    thing.process_methods = this.thingList(thing.process_methods);
     return thing;
   }
 
@@ -115,7 +135,11 @@ class CaseEditor extends Component {
   }
 
   onChange(key, value) {
-    this.setState((prevState, props) => (prevState.thing[key] = value));
+    this.setState((prevState, props) => {
+      const thing = prevState.thing;
+      thing[key] = value;
+      return { thing };
+    });
   }
 
   onSubmit() {
@@ -125,7 +149,6 @@ class CaseEditor extends Component {
 
   render() {
     let { cases, methods, organizations, isQuick, onExpand, intl } = this.props;
-    // let thing = Object.assign({}, this.props.thing, this.state.thing);
     if (this.state.thing.issues === undefined) {
       return <div />;
     }
@@ -145,6 +168,8 @@ class CaseEditor extends Component {
         item_type="case"
         maxSearchResults={30}
         dataSource={tags}
+        value={thing.tags}
+        onChange={this.onChange}
         placeholder={intl.formatMessage({
           id: "tags_placeholder"
         })}
@@ -158,21 +183,25 @@ class CaseEditor extends Component {
         info="process_methods"
         dataSource={methods}
         dataSourceConfig={{ text: "text", value: "value" }}
+        value={thing.process_methods}
+        onChange={this.onChange}
         placeholder={intl.formatMessage({
           id: "process_methods_placeholder"
         })}
       />
     );
-    let primary_organizer = (
+    let primary_organizers = (
       <Field
-        fieldName="primary_organizer"
+        fieldName="primary_organizers"
         type={RelatedEditor}
         item_type="case"
-        info="primary_organizer"
+        info="primary_organizers"
         dataSource={organizations}
         dataSourceConfig={{ text: "text", value: "value" }}
+        value={thing.primary_organizers}
+        onChange={this.onChange}
         placeholder={intl.formatMessage({
-          id: "primary_organizer_placeholder"
+          id: "primary_organizers_placeholder"
         })}
       />
     );
@@ -184,6 +213,8 @@ class CaseEditor extends Component {
         item_type="case"
         dataSource={cases}
         dataSourceConfig={{ text: "text", value: "value" }}
+        value={thing.has_components}
+        onChange={this.onChange}
         placeholder={intl.formatMessage({
           id: "has_components_placeholder"
         })}
@@ -195,6 +226,7 @@ class CaseEditor extends Component {
         info="is_component_of"
         type={SearchableRelatedEditor}
         dataSource={cases}
+        value={thing.is_component_of}
         dataSourceConfig={{ text: "text", value: "value" }}
         placeholder={intl.formatMessage({
           id: "is_component_of_placeholder"
@@ -341,6 +373,7 @@ class CaseEditor extends Component {
                     >
                       <FormattedMessage id="components" />
                     </h2>
+
                     <p>
                       <FormattedMessage id="components_intro" />
                       <InfoBox info="components" />
@@ -550,7 +583,7 @@ class CaseEditor extends Component {
                       <h2 className="section-heading">
                         <FormattedMessage id="organizers_supporters" />
                       </h2>
-                      {primary_organizer}
+                      {primary_organizers}
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="organizer_types"

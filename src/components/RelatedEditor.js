@@ -7,13 +7,11 @@ import InfoBox from "./InfoBox";
 export default class Related extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRequestAdd = this.handleRequestAdd.bind(this);
+    this.handleRequestDelete = this.handleRequestDelete.bind(this);
     this.state = {
       value: props.value
     };
-  }
-
-  onUpdateInput(searchText, dataSource, params) {
-    console.log("onUpdateInput(%s, %o, %o)", searchText, dataSource, params);
   }
 
   componentWillReceiveProps(props) {
@@ -21,7 +19,7 @@ export default class Related extends React.Component {
   }
 
   handleChange(value) {
-    this.props.onChange(value);
+    this.props.onChange(this.props.fieldName, value);
   }
 
   handleRequestAdd(chip) {
@@ -75,9 +73,6 @@ export default class Related extends React.Component {
       "schema",
       "passProps"
     ]);
-    let handleRequestAdd = this.handleRequestAdd.bind(this);
-    let handleRequestDelete = this.handleRequestDelete.bind(this);
-    let value = this.state.value; // if no dataSourceConfig, assume a list of strings
     return (
       <div>
         <h3 className="sub-heading">
@@ -100,13 +95,12 @@ export default class Related extends React.Component {
         <ChipInput
           {...rest}
           className="related-fields clearfix"
-          value={value}
-          onRequestAdd={handleRequestAdd}
+          value={this.state.value}
+          onRequestAdd={this.handleRequestAdd}
           maxSearchResults={this.props.passProps.maxSearchResults}
           filter={this.props.passProps.filter}
-          onRequestDelete={handleRequestDelete}
+          onRequestDelete={this.handleRequestDelete}
           placeholder={this.props.passProps.placeholder}
-          onUpdateInput={this.onUpdateInput}
           fullWidth
           fullWidthInput
           dataSource={this.props.passProps.dataSource}

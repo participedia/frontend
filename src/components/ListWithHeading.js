@@ -9,7 +9,7 @@ export default class ListGroupWithHeading extends React.Component {
       return <div />;
     }
     let items = thing[property].map(item => (
-      <div key={item}>
+      <div className="indented" key={item}>
         {!/^https?:\/\//i.test(item) ? (
           <FormattedMessage id={item} />
         ) : (
