@@ -708,17 +708,23 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="links"
               >
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 1
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 2
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 3
                   </span>
@@ -740,29 +746,35 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="location blond"
               >
-                <div>
+                <div
+                  className="indented"
+                >
                   Italy
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   Forlì-Cesena
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   Forlì
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   47100
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   12° 2' 30.0048" E
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   Piazza Morgagni 9&lt;br /&gt;Ufficio Risorse Idriche della provincia di Forlì e Cesena
-                </div>
-                <div>
-                  Ufficio Staff Agenda 21 Locale provincia di Forlì e Cesena
-                </div>
-                <div>
-                  44° 13' 12.666" N
                 </div>
               </div>
             </div>
@@ -781,9 +793,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="start_date"
               >
-                <span>
-                  5/14/2003
-                </span>
+                <div
+                  className="indented"
+                >
+                  <span>
+                    5/14/2003
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -799,9 +815,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="end_date"
               >
-                <span>
-                  2/11/2011
-                </span>
+                <div
+                  className="indented"
+                >
+                  <span>
+                    2/11/2011
+                  </span>
+                </div>
               </div>
             </div>
             <div
@@ -814,13 +834,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                   Ongoing
                 </span>
               </p>
-              <div
-                className="ongoing"
-              >
-                <span>
-                  False
-                </span>
-              </div>
+              <span>
+                No
+              </span>
             </div>
             <div />
             <div />
@@ -847,9 +863,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
               <div
                 className="facetoface_online_or_both blond"
               >
-                <span>
-                  Face-to-face
-                </span>
+                <div
+                  className="indented"
+                >
+                  <span>
+                    Face-to-face
+                  </span>
+                </div>
               </div>
             </div>
             <div />
@@ -979,17 +999,23 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="links"
                       >
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 1
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 2
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 3
                           </span>
@@ -1011,29 +1037,35 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="location blond"
                       >
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           Italy
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           Forlì-Cesena
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           Forlì
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           47100
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           12° 2' 30.0048" E
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           Piazza Morgagni 9&lt;br /&gt;Ufficio Risorse Idriche della provincia di Forlì e Cesena
-                        </div>
-                        <div>
-                          Ufficio Staff Agenda 21 Locale provincia di Forlì e Cesena
-                        </div>
-                        <div>
-                          44° 13' 12.666" N
                         </div>
                       </div>
                     </div>
@@ -1052,9 +1084,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="start_date"
                       >
-                        <span>
-                          5/14/2003
-                        </span>
+                        <div
+                          className="indented"
+                        >
+                          <span>
+                            5/14/2003
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -1070,9 +1106,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="end_date"
                       >
-                        <span>
-                          2/11/2011
-                        </span>
+                        <div
+                          className="indented"
+                        >
+                          <span>
+                            2/11/2011
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -1085,13 +1125,9 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                           Ongoing
                         </span>
                       </p>
-                      <div
-                        className="ongoing"
-                      >
-                        <span>
-                          False
-                        </span>
-                      </div>
+                      <span>
+                        No
+                      </span>
                     </div>
                     <div />
                     <div />
@@ -1118,9 +1154,13 @@ exports[`ItemDetails for Case renders correctly 1`] = `
                       <div
                         className="facetoface_online_or_both blond"
                       >
-                        <span>
-                          Face-to-face
-                        </span>
+                        <div
+                          className="indented"
+                        >
+                          <span>
+                            Face-to-face
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div />
