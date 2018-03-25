@@ -8,18 +8,17 @@ function nickify(before) {
       .replace(/\s+/g, "_")
       .toLowerCase();
   } catch (e) {
-    console.log("exception in nickify, before = ", before);
+    console.error("exception in nickify, before = ", before);
   }
 }
 
-var readline = require('readline');
+var readline = require("readline");
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   terminal: false
 });
 
-rl.on('line', function(line){
-    var nick = nickify(line)
-    console.log(nick+"="+line);
-})
+rl.on("line", function(line) {
+  var nick = nickify(line);
+});

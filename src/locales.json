@@ -691,7 +691,10 @@
     "recruitment_method_case": "Recruitment Method",
     "recruitment_method_case_instructional":
       "Select the method used to recruit a limited subset of the population",
+    "recruitment_method_instructional":
+      "Select the method used to recruit a limited subset of the population",
     "recruitment_method_case_placeholder": "Select recruitment method",
+    "recruitment_method_placeholder": "Select recruitment method",
     "targeted_participants": "Targeted Participants",
     "targeted_participants_instructional":
       "Select up to three of the most heavily recruited groups.",

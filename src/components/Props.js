@@ -6,7 +6,7 @@ import { FormattedDate } from "react-intl";
 
 function BooleanProp({ label, property, thing, intl }) {
   let truth = thing[property];
-  let truthString = String(truth);
+  let truthString = truth ? "Yes" : "No";
   if (truth === null || truth === undefined) return <div />;
   return (
     <div className="linked-property">
@@ -48,7 +48,9 @@ const TextProp = ({ label, property, thing, intl }) =>
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-      <div className={property}>{thing[property]}</div>
+      <div className="indented">
+        <FormattedMessage id={thing[property]} />
+      </div>
     </div>
   ) : (
     <div />

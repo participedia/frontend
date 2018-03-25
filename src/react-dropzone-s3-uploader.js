@@ -124,8 +124,8 @@ export default class DropzoneS3Uploader extends React.Component {
   };
 
   handleDrop = (files, rejectedFiles) => {
-    console.log("Accepted files: ", files);
-    console.log("rejectedFiles files: ", rejectedFiles);
+    console.info("Accepted files: ", files);
+    console.warn("rejectedFiles files: ", rejectedFiles);
     this.setState({ uploadedFiles: [], error: null, progress: null });
     const options = {
       files,
