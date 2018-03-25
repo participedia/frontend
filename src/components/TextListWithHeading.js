@@ -14,7 +14,7 @@ export default class TextListGroupWithHeading extends React.Component {
       return <div />;
     } else if (_.isArray(thing[property])) {
       let items = thing[property].map(item => (
-        <div key={item.value}>
+        <div className="indented" key={item.value}>
           <FormattedMessage id={item.text || item.title || item} />
         </div>
       ));
@@ -33,7 +33,10 @@ export default class TextListGroupWithHeading extends React.Component {
             <FormattedMessage id={heading} />
           </p>
           <div className={property + " blond"}>
-            <FormattedMessage id={value.text || value.title || value} />
+            <FormattedMessage
+              className="indented"
+              id={value.text || value.title || value}
+            />
           </div>
         </div>
       );
