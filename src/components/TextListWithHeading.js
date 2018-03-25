@@ -10,6 +10,7 @@ export default class TextListGroupWithHeading extends React.Component {
       heading = property;
     }
     let value = thing[property];
+    console.log("TextGroupWithHeading %s: %o", property, value);
     if (!value || (_.isArray(value) && !value.length)) {
       return <div />;
     } else if (_.isArray(thing[property])) {
