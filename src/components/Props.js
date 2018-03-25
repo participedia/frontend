@@ -13,7 +13,7 @@ function BooleanProp({ label, property, thing, intl }) {
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-        <FormattedMessage id={truthString} />
+      <FormattedMessage id={truthString} />
     </div>
   );
 }
@@ -29,7 +29,7 @@ const NumberProp = ({ label, property, thing, intl }) =>
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-      <span>{String(thing[property])}</span
+      <span>{String(thing[property])}</span>
     </div>
   ) : (
     <div />
@@ -68,7 +68,9 @@ function DateProp({ label, property, thing, intl }) {
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
       <div className={property}>
-        <div className="indented"><FormattedDate value={thing[property]} /></div>
+        <div className="indented">
+          <FormattedDate value={thing[property]} />
+        </div>
       </div>
     </div>
   ) : (
