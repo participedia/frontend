@@ -188,7 +188,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                 alt={undefined}
                 className="portrait"
                 sizes={undefined}
-                src="https://s3.amazonaws.com/uploads.participedia.xyz"
+                src="https://s3.amazonaws.com/uploads.participedia.xyz/uis_favicon_0.png"
                 srcSet={undefined}
               />
             </div>
