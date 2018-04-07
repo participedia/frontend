@@ -98,11 +98,8 @@ const defaultThing = {
     countrycode: ""
   },
   videos: [],
-  authors: [
-    {
-      name: "author name"
-    }
-  ]
+  creator: { name: "author name" },
+  last_updated_by: { name: "author name" }
 };
 
 export default class ItemDetails extends React.Component {
@@ -141,12 +138,12 @@ export default class ItemDetails extends React.Component {
     let currentUrl =
       process.env.REACT_APP_ROOT_URL + this.props.location.pathname;
     let textFacebook = bodyText.substring(0, 240) + "...";
-    let first_author = thing.authors[0];
-    let first_author_url = "/users/" + first_author.user_id;
-    let first_author_name = first_author.name;
-    let last_author = thing.authors.slice(-1)[0];
-    let last_author_name = last_author.name;
-    let last_author_url = "/users/" + last_author.user_id;
+    let creator = thing.creator;
+    let creator_url = "/users/" + creator.user_id;
+    let creator_name = creator.name;
+    let last_updated_by = thing.last_updated_by;
+    let last_updated_by_name = last_updated_by.name;
+    let last_updated_by_url = "/users/" + last_updated_by.user_id;
     let id = this.props.id;
     let type = thing.type;
     let editLinkUrl = `/${type}/${id}/edit`;
@@ -227,7 +224,7 @@ export default class ItemDetails extends React.Component {
                   <div className="authorship-details">
                     <p className="author-line">
                       First submitted by&nbsp;
-                      <Link to={first_author_url}>{first_author_name}</Link>
+                      <Link to={creator_url}>{creator_name}</Link>
                     </p>
                     <p className="date-line">
                       {thing.post_date ? (
@@ -243,7 +240,9 @@ export default class ItemDetails extends React.Component {
                     </p>
                     <p className="author-line">
                       Most recent changes by&nbsp;
-                      <Link to={last_author_url}>{last_author_name}</Link>
+                      <Link to={last_updated_by_url}>
+                        {last_updated_by_name}
+                      </Link>
                     </p>
                     <p className="date-line">
                       {thing.updated_date ? (
