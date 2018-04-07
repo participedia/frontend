@@ -1,5 +1,6 @@
 {
-  "body": "**Definition**\n\n**Problems and Purpose**\n\n**History**\n\n**Participant Selection**\n\n**Deliberation, Decisions, and Public Interaction**\n\n**Influence, Outcomes, and Effects**\n\n**Analysis and Criticism**\n\n**Secondary Sources**\n\n**External Links**\n\n**Notes**",
+  "body":
+    "**Definition**\n\n**Problems and Purpose**\n\n**History**\n\n**Participant Selection**\n\n**Deliberation, Decisions, and Public Interaction**\n\n**Influence, Outcomes, and Effects**\n\n**Analysis and Criticism**\n\n**Secondary Sources**\n\n**External Links**\n\n**Notes**",
   "published": true,
   "links": ["link 1", "link 2", "link 3"],
   "path": "/methods/petition",
@@ -16,7 +17,7 @@
   "id": "387",
   "title": "Petition",
   "updated_date": "2011-12-01T19:31:01",
-  "authors": [{
+  "creator": {
     "login": "1465335757",
     "language_1": "en",
     "type": "user",
@@ -29,5 +30,19 @@
     "lastmodified": 1484364693409,
     "name": "Gsmith",
     "language": "en"
-  }]
+  },
+  "last_updated_by": {
+    "login": "1465335757",
+    "language_1": "en",
+    "type": "user",
+    "status": "1",
+    "access": "1465436224",
+    "mail": "g.smith@westminster.ac.uk",
+    "accepted": "1355754791",
+    "id": "33",
+    "picture": "0",
+    "lastmodified": 1484364693409,
+    "name": "Gsmith",
+    "language": "en"
+  }
 }
