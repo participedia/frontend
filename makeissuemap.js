@@ -9,7 +9,7 @@ function nickify(before) {
       .replace(/\s+/g, "_")
       .toLowerCase();
   } catch (e) {
-    console.log("exception in nickify, before = ", before);
+    console.error("exception in nickify, before = ", before);
   }
 }
 
@@ -34,5 +34,4 @@ lr.on("line", function(line) {
 });
 lr.on("end", function() {
   issue_map["issue"] = issue_list;
-  console.log(JSON.stringify(issue_map, null, 4));
 });

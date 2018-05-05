@@ -53,7 +53,7 @@ class EditorContainer extends Component {
               thing.updated_date = new Date(thing.updated_date);
             }
           }
-          console.log("Loaded data from server: %o", thing);
+          console.info("Loaded data from server: %o", thing);
           component.setState({ thing });
         });
       } else if (this.props.type === "method") {
@@ -82,12 +82,11 @@ class EditorContainer extends Component {
 
     saveFunc(thing.type, thing)
       .then(function(thing) {
-        // console.log("after saveFunc, thing:", thing);
         myhistory.push(`../../${thing.type}/${thing.id}`); // XXX move to Link
       })
       .catch(function(exception) {
         comp.setState({ errorMessage: JSON.stringify(exception) });
-        console.log("Got exception saving a thing", exception);
+        console.error("Got exception saving a thing", exception);
       });
   }
 

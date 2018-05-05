@@ -7,7 +7,7 @@ global.navigator = {
 global.Image = window.Image;
 
 process.on("unhandledRejection", function(reason, p) {
-  console.log(
+  console.warn(
     "Possibly Unhandled Rejection at: Promise ",
     p,
     " reason: ",

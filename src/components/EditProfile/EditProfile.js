@@ -54,7 +54,6 @@ export default class EditProfile extends Component {
         user.location = "";
       }
       if (typeof user.location !== typeof "") {
-        // console.log("Have location of", user.location);
         user.location = encodeLocation(user.location);
       }
     }
@@ -65,7 +64,6 @@ export default class EditProfile extends Component {
     this.setState(this.propsToDefaultState(nextProps));
   }
   onSubmit(event) {
-    // console.log("Submitting user", JSON.stringify(this.state.user));
     this.props.onChange(this.state.user);
   }
 

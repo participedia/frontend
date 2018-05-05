@@ -6,16 +6,14 @@ import { FormattedDate } from "react-intl";
 
 function BooleanProp({ label, property, thing, intl }) {
   let truth = thing[property];
-  let truthString = String(truth);
   if (truth === null || truth === undefined) return <div />;
+  let truthString = String(truth);
   return (
     <div className="linked-property">
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-      <div className={property}>
-        <FormattedMessage id={truthString} />
-      </div>
+      <FormattedMessage id={truthString} />
     </div>
   );
 }
@@ -31,7 +29,7 @@ const NumberProp = ({ label, property, thing, intl }) =>
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-      <div className={property}>{String(thing[property])}</div>
+      <span>{String(thing[property])}</span>
     </div>
   ) : (
     <div />
@@ -48,7 +46,11 @@ const TextProp = ({ label, property, thing, intl }) =>
       <p className="sub-sub-heading">
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
-      <div className={property}>{thing[property]}</div>
+      <div>
+        <div className="indented">
+          <FormattedMessage id={thing[property]} />
+        </div>
+      </div>
     </div>
   ) : (
     <div />
@@ -66,7 +68,9 @@ function DateProp({ label, property, thing, intl }) {
         <FormattedMessage id={label ? label : "not_specified"} />
       </p>
       <div className={property}>
-        <FormattedDate value={thing[property]} />
+        <div className="indented">
+          <FormattedDate value={thing[property]} />
+        </div>
       </div>
     </div>
   ) : (

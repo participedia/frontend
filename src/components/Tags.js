@@ -7,14 +7,17 @@ const Tags = ({ thing, intl }) =>
       <p className="sub-sub-heading">Tags</p>
       <div className="tags blond">
         {thing.tags.map(
-            (tag, index) => 
-            index < thing.tags.length - 1 ? 
-              <span key={tag}>{tag},</span>
-            : 
-              <span key={tag}>{tag}</span>
-            
-          )
-        }
+          (tag, index) =>
+            index < thing.tags.length - 1 ? (
+              <div className="indented" key={tag}>
+                {tag},
+              </div>
+            ) : (
+              <div className="indented" key={tag}>
+                {tag}
+              </div>
+            )
+        )}
       </div>
     </div>
   ) : (
