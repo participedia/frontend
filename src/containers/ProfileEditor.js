@@ -40,11 +40,9 @@ class ProfileEditor extends React.Component {
         if (a.label.toLowerCase() === b.label.toLowerCase()) return 0;
         return 1;
       });
-      let orgsArray = []
+      let orgsArray = [];
       Object.keys(orgs).forEach(function(key) {
-
-          orgsArray.push(orgs[key]['label']);
-
+        orgsArray.push(orgs[key]["label"]);
       });
       component.setState({ organizations: orgsArray });
     });
@@ -56,7 +54,6 @@ class ProfileEditor extends React.Component {
   onChange(user) {
     // this.setState(newState);
     api.saveUser(user).then(function(user) {
-      // console.log("after saving user, user:", user);
       myhistory.push("/profile");
     });
   }

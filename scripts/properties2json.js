@@ -24,7 +24,7 @@ function getListLocales() {
           return resolve(list);
         })
         .catch(function(e) {
-          console.log(e);
+          console.error(e);
           reject(e);
         });
     } else {
@@ -41,10 +41,10 @@ function writeFile(entries) {
   let localesPath = path.join(process.cwd(), "src", "locales.json");
   FS.write(localesPath, JSON.stringify(dictionary, null, 2))
     .then(function() {
-      console.log("Done writing: " + localesPath);
+      console.info("Done writing: " + localesPath);
     })
     .catch(function(e) {
-      console.log(e);
+      console.error(e);
     });
 }
 

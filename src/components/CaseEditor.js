@@ -482,6 +482,14 @@ class CaseEditor extends Component {
                         limit={3}
                         onChange={this.onChange}
                       />
+                      {/*<LocalizedMultiChoiceField
+                        intl={intl}
+                        property="public_spectrum"
+                        value={thing.public_spectrum}
+                        rankable={false}
+                        limit={1}
+                        onChange={this.onChange}
+                      />*/}
                       {makeLocalizedChoiceField(intl, "public_spectrum")}
                     </div>
                     <div className="form-section">

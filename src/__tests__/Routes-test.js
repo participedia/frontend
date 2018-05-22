@@ -100,7 +100,7 @@ it.skip("navigates around", done => {
       });
     });
   } finally {
-    console.log(fetchMock.calls("*"));
+    console.warn(fetchMock.calls("*"));
   }
 });
 

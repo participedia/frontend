@@ -99,7 +99,7 @@ export default class CaseDetails extends React.Component {
           thing={thing}
         />
 
-        <LinkedPropertyGroupWithHeading
+        <ListWithHeading
           heading="targeted_participants"
           property="targeted_participants"
           thing={thing}

@@ -11,10 +11,9 @@ export default class NestedTextListGroupWithHeading extends React.Component {
     if (!value || (_.isArray(value) && !value.length)) {
       return <div />;
     } else {
-
-      let items = _.map(value, value.children);
-      let nests  = items.map(item => (
-        <div key={item.value}>
+      let items = _.map(value, value.children).slice(0, -2); // items is a list of location fields at this point
+      let nests = items.map((item, idx) => (
+        <div className="indented" key={idx}>
           {item}
         </div>
       ));

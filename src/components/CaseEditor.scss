@@ -48,6 +48,12 @@
 
 .list.videos {
   margin-top: -7px;
+
+  & > div > div > div {
+    @include media-breakpoint-up(md) {
+      width: 100% !important;
+    }
+  }
 }
 
 .custom-textarea {
@@ -79,8 +85,27 @@
   }
 }
 
+/* Targets Dropdown Menu Items */
+div[role=presentation]{
+
+  & > div[role=menu]{
+    display: inline-block !important;
+  }
+
+  & > div[role=menu]
+  > div > span[role=menuitem] {
+    white-space: normal !important;
+
+    & > div > div {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+  }
+}
+
 label {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .related-fields {
@@ -106,28 +131,158 @@ label {
   span {
     font-weight: $blond-weight;
   }
-  @include media-breakpoint-up(md) { 
+  @include media-breakpoint-up(md) {
     width: 70%;
   }
 }
 
+
 .custom-select {
   @include media-breakpoint-up(lg) {
-    width: 70% !important;
+    width: 80% !important;
   }
+
+  @include media-breakpoint-up(md) {
+    height: auto !important;
+    max-height: 60px !important;
+  }
+
   border: 2px solid $black;
   padding-left: 1rem;
+  display: table !important;
+  vertical-align: middle;
+  height: auto;
+
   hr {
     display: none;
   }
   &.Select--single {
     padding-left: 0;
     .Select-control {
-      border: none !important;
-      box-shadow: none !important;
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+/* -------------- TODO #733-------------------- */
+/* Make text wrap and adjust height for dropdown menus with longer placeholder text on small screens */
+  & > div {
+    @include media-breakpoint-up(sm) {
+      width: 80% !important;
+      height: auto !important;
+      white-space: normal !important;
+      bottom: 0px;
+
+    }
+    color: rgba(0, 0, 0, 0.57) !important;
+    padding: 0px;
+  }
+
+  /* Move menu arrow back to right, after removing padding */
+  & > div > div > button {
+    @include media-breakpoint-up(sm) {
+      right: -25% !important;
+      top: 4px !important;
     }
   }
 }
+/* -------------- TODO #733-------------------- */
+
+
+.custom-select > div > div > button {
+   @include media-breakpoint-up(sm) {
+    //padding: 0px;
+    //margin-right: -25px;
+    //margin-top: 2% !important;
+    //top: -7px !important;
+  }
+  //position: absolute;
+}
+
+/* 'Search for existing case/component': Adjust alignment of outer form container */
+.Select.custom-select{
+  @include media-breakpoint-up(md) {
+    position: relative !important;
+    max-height: 65px !important;
+    min-height: 20px;
+    top: 0px !important;
+    width: 100% !important;
+  }
+}
+
+/* 'Search for existing case/component': Make sure text container width fills outer container */
+div.Select-control {
+  @include media-breakpoint-up(md) {
+    width: 100% !important;
+    top: 0px;
+    background: 0;
+  }
+}
+
+/* Fix drop down for 'Search for existing case/component' */
+.Select-menu-outer {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.57);
+  background-color: rgb(255, 255, 255);
+  transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
+  position: fixed;
+  z-index: 2100;
+  opacity: 1;
+  transform: scaleY(1);
+  transform-origin: left top 0px;
+  max-height: 1024px;
+  overflow-y: auto;
+  min-height: 200px;
+  margin-top: 30px !important;
+}
+
+/* Make Photos, Videos, Files forms match width of other forms
+TODO: Need to do the same for Links form */
+
+.react-dropzone-s3-uploader {
+  @include media-breakpoint-up(md) {
+    width: 100% !important;
+  }
+}
+
+/* Adjust placeholder font color to match and make long text wrap */
+div[style="cursor: pointer; height: 100%; position: relative; width: 100%;"] > div {
+  color: rgba(0, 0, 0,  0.57) !important;
+  white-space: normal !important;
+  padding-right: 0px !important;
+  top: 0px;
+
+}
+
+div.custom-field > input {
+  color: rgba(0, 0, 0,  0.57) !important;
+}
+
+/* Specific alignment fixes */
+div[style="font-size: 16px; line-height: 24px; width: 100%; display: inline-block; position: relative; background-color: transparent; font-family: Roboto, sans-serif; transition: height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; cursor: text;"].related-fields {
+  @include media-breakpoint-up(md) {
+    padding-bottom: 0.75rem;
+  }
+}
+
+div[name="open_limited"] > div {
+  top: 4px;
+}
+
+#impactevidence-Didthisworkcontributetosocialorpoliticalchange-undefined-46219 > div {
+  top: 4px;
+}
+
+div[name="time-limited"] > div[style="position: absolute;opacity: 1;color: rgba(0, 0, 0, 0.3);transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;bottom: 15px;"] {
+  top: 10px;
+}
+
+/* -------------- TODO #733-------------------- */
 
 .section-heading {
   padding-top: 3rem;

@@ -38,17 +38,23 @@ exports[`ItemDetails for Method renders correctly 1`] = `
               <div
                 className="links"
               >
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 1
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 2
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 3
                   </span>
@@ -70,13 +76,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                   Facilitated
                 </span>
               </p>
-              <div
-                className="facilitated"
-              >
-                <span>
-                  False
-                </span>
-              </div>
+              <span>
+                No
+              </span>
             </div>
             <div />
             <div />
@@ -199,17 +201,23 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                       <div
                         className="links"
                       >
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 1
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 2
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 3
                           </span>
@@ -231,13 +239,9 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                           Facilitated
                         </span>
                       </p>
-                      <div
-                        className="facilitated"
-                      >
-                        <span>
-                          False
-                        </span>
-                      </div>
+                      <span>
+                        No
+                      </span>
                     </div>
                     <div />
                     <div />

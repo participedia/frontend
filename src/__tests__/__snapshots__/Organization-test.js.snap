@@ -65,21 +65,29 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               <div
                 className="tags blond"
               >
-                <span>
+                <div
+                  className="indented"
+                >
                   civic engagement
                   ,
-                </span>
-                <span>
+                </div>
+                <div
+                  className="indented"
+                >
                   digital participation
                   ,
-                </span>
-                <span>
+                </div>
+                <div
+                  className="indented"
+                >
                   planning
                   ,
-                </span>
-                <span>
+                </div>
+                <div
+                  className="indented"
+                >
                   public
-                </span>
+                </div>
               </div>
             </div>
             <div>
@@ -93,17 +101,23 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
               <div
                 className="links"
               >
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 1
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 2
                   </span>
                 </div>
-                <div>
+                <div
+                  className="indented"
+                >
                   <span>
                     link 3
                   </span>
@@ -242,21 +256,29 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                       <div
                         className="tags blond"
                       >
-                        <span>
+                        <div
+                          className="indented"
+                        >
                           civic engagement
                           ,
-                        </span>
-                        <span>
+                        </div>
+                        <div
+                          className="indented"
+                        >
                           digital participation
                           ,
-                        </span>
-                        <span>
+                        </div>
+                        <div
+                          className="indented"
+                        >
                           planning
                           ,
-                        </span>
-                        <span>
+                        </div>
+                        <div
+                          className="indented"
+                        >
                           public
-                        </span>
+                        </div>
                       </div>
                     </div>
                     <div>
@@ -270,17 +292,23 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                       <div
                         className="links"
                       >
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 1
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 2
                           </span>
                         </div>
-                        <div>
+                        <div
+                          className="indented"
+                        >
                           <span>
                             link 3
                           </span>
