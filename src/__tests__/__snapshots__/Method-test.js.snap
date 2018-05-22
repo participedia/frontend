@@ -16,7 +16,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
         >
           <div />
           <div />
-          <div />
           <div>
             <h2
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"

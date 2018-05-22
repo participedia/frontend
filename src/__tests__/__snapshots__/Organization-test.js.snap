@@ -16,39 +16,7 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
         >
           <div />
           <div />
-          <div
-            className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
-          >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "",
-                }
-              }
-            />
-            <p
-              className="case-location"
-            >
-              Italy
-            </p>
-          </div>
           <div>
-            <div
-              className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
-            >
-              <div
-                dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "",
-                  }
-                }
-              />
-              <p
-                className="case-location"
-              >
-                Italy
-              </p>
-            </div>
             <p
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
             >
@@ -210,22 +178,6 @@ exports[`ItemDetails for Organization renders correctly 1`] = `
                   className="content"
                 >
                   <div>
-                    <div
-                      className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
-                    >
-                      <div
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "",
-                          }
-                        }
-                      />
-                      <p
-                        className="case-location"
-                      >
-                        Italy
-                      </p>
-                    </div>
                     <p
                       className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading"
                     >
