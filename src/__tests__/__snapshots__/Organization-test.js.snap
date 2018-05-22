@@ -502,7 +502,7 @@ exports[`Organization editor renders correctly 1`] = `
                 <span
                   dangerouslySetInnerHTML={
                     Object {
-                      "__html": "Enter tweet-length (140 characters or less) description of this organization.",
+                      "__html": "Enter tweet-length (280 characters or less) description of this organization.",
                     }
                   }
                 />
