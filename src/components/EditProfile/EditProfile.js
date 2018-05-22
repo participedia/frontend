@@ -1,6 +1,5 @@
 import React, { Component } from "react"; // eslint-disable-line no-unused-vars
 import { FormattedMessage } from "react-intl";
-import CountryMap from "../CountryMap";
 import authService from "../../utils/AuthService";
 import { object, array } from "prop-types";
 import { Container, Col } from "reactstrap";
@@ -96,15 +95,6 @@ export default class EditProfile extends Component {
               <div className="form-group row">
                 <Col xs={12} lg={3} md={4} className="sidebar">
                   {avatarEditor}
-
-                  {location ? (
-                    <CountryMap
-                      city={location.city}
-                      countrycode={location.country}
-                    />
-                  ) : (
-                    <div />
-                  )}
                 </Col>
                 <Col xs={12} md={6} className="main-area mr-auto">
                   <div className="field-case top">
