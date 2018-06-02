@@ -652,9 +652,9 @@
     "not_specified": "Not specified",
     "description": "Brief Description",
     "description_explanatory":
-      "Enter tweet-length (140 characters or less) description of this case",
+      "Enter tweet-length (280 characters or less) description of this case",
     "description_placeholder":
-      "Enter tweet-length (140 characters or less) description of this case",
+      "Enter tweet-length (280 characters or less) description of this case",
     "case_description_instructional":
       "The following standard structure makes it easier to compare and analyze entries. Please use the headings below and refer to our guidelines as you prepare your case entry.",
     "links_placeholder": "Add a link",
@@ -1433,7 +1433,7 @@
     "method_body_title": "Method Description / Narrative",
     "method_title_placeholder": "Enter title in 10 words or less",
     "method_description_explanatory":
-      "Enter tweet-length (140 characters or less) description of this method.",
+      "Enter tweet-length (280 characters or less) description of this method.",
     "method_description_placeholder":
       "<h3>Definition</h3><h3>Problems and Purpose</h3><h3>History</h3><h3>Participant Selection</h3><h3>Deliberation, Decisions, and Public Interaction</h3><h3>Influence, Outcomes, and Effects</h3><h3>Analysis and Lessons Learned</h3><h3>Secondary Sources</h3><h3>External Links</h3><h3>Notes</h3>",
     "method_description_instructional":
@@ -1500,7 +1500,7 @@
     "videos_instructional_org": "Add a video link from Vimeo or YouTube.",
     "videos_placeholder_org": "Add a video link (Vimeo or YouTube)",
     "description_org_explanatory":
-      "Enter tweet-length (140 characters or less) description of this organization.",
+      "Enter tweet-length (280 characters or less) description of this organization.",
     "org_description_placeholder":
       "<h3>Mission and Purpose</h3><h3>History</h3><h3>Participant Selection</h3><h3>Specializations and Activities</h3><h3>Major projects and events</h3><h3>Funding</h3><h3>Publications</h3><h3>Secondary Sources</h3><h3>External Links</h3><h3>Notes</h3>",
     "description_org_placeholder":
