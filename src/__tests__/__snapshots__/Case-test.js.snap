@@ -667,24 +667,6 @@ exports[`ItemDetails for Case renders correctly 1`] = `
         >
           <div />
           <div />
-          <div
-            className="d-none d-sm-block d-md-block d-lg-block d-xl-block case-map"
-          >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "",
-                }
-              }
-            />
-            <p
-              className="case-location"
-            >
-              Forlì
-              , 
-              Italy
-            </p>
-          </div>
           <div>
             <h2
               className="d-none d-sm-block d-md-block d-lg-block d-xl-block line-heading"

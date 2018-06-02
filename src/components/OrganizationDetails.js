@@ -2,7 +2,6 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import SearchLink from "../components/SearchLink";
-import CountryMap from "../components/CountryMap";
 import LinkedPropertyGroupWithHeading from "../components/LinkedPropertyGroupWithHeading";
 import ListWithHeading from "../components/ListWithHeading";
 import Tags from "./Tags";
@@ -23,10 +22,6 @@ export default class OrganizationDetails extends React.Component {
     }
     return (
       <div>
-        <CountryMap
-          city={thing.location.city}
-          countrycode={thing.location.country}
-        />
         <p className="d-none d-sm-block d-md-block d-lg-block d-xl-block sub-heading">
           <FormattedMessage id="data" />
         </p>
