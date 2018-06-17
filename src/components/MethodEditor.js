@@ -35,6 +35,7 @@ class MethodEditor extends Component {
     }
     this.state = { thing: props.thing };
     this.updateBody = this.updateBody.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,6 +46,14 @@ class MethodEditor extends Component {
   updateBody(body) {
     let updatedThing = Object.assign({}, this.state.thing, { body: body });
     this.setState({ thing: updatedThing });
+  }
+
+  onChange(key, value) {
+    this.setState((prevState, props) => {
+      const thing = prevState.thing;
+      thing[key] = value;
+      return { thing };
+    });
   }
 
   onSubmit() {

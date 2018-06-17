@@ -24,8 +24,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 Data
               </span>
             </h2>
-            <div />
-            <div />
             <div>
               <p
                 className="sub-sub-heading"
@@ -54,11 +52,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 </div>
               </div>
             </div>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
             <div
               className="linked-property"
             >
@@ -77,8 +70,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                 </span>
               </div>
             </div>
-            <div />
-            <div />
             <div />
             <div />
             <div />
@@ -185,8 +176,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         Data
                       </span>
                     </h2>
-                    <div />
-                    <div />
                     <div>
                       <p
                         className="sub-sub-heading"
@@ -215,11 +204,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         </div>
                       </div>
                     </div>
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
                     <div
                       className="linked-property"
                     >
@@ -238,8 +222,6 @@ exports[`ItemDetails for Method renders correctly 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div />
-                    <div />
                     <div />
                     <div />
                     <div />
