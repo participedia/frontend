@@ -25,17 +25,22 @@ const buttonStyle = {
 class MethodEditor extends Component {
   constructor(props) {
     super(props);
-    if (!props.thing.images) {
-      props.thing.images = [];
-    }
-    if (!props.thing.body) {
-      props.thing.body = props.intl.formatMessage({
-        id: "method_description_placeholder"
-      });
-    }
-    this.state = { thing: props.thing };
+    let thing = Object.assign({}, props.thing);
+    thing = this.ensureValues(thing);
+    this.state = { thing };
     this.updateBody = this.updateBody.bind(this);
     this.onChange = this.onChange.bind(this);
+  }
+
+  ensureValues(thing) {
+    thing.images = thing.images || [];
+    thing.body =
+      thing.body ||
+      this.props.intl.formatMessage({ id: "method_description_placeholder" });
+    thing.typical_purposes = thing.typical_purposes || [];
+    thing.interaction_modes = thing.interaction_modes || [];
+    thing.communication_outcomes = thing.communication_outcomes || [];
+    return thing;
   }
 
   componentWillReceiveProps(nextProps) {
