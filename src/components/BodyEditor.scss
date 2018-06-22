@@ -1,7 +1,8 @@
 @import "../UniversalStyles";
 
-.rdw-editor-toolbar, .rdw-storybook-editor {
- 	border: 2px solid $grey-text;
+.rdw-editor-toolbar,
+.rdw-storybook-editor {
+  border: 2px solid $grey-text;
 }
 
 .rdw-option-wrapper {
@@ -10,4 +11,8 @@
 
 .rdw-storybook-editor {
   padding-left: 1rem;
+}
+
+.DraftEditor-root {
+  height: 25em;
 }
