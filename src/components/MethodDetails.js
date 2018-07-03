@@ -38,8 +38,8 @@ export default class MethodDetails extends React.Component {
         />
 
         <ListWithHeading
-          heading="interaction_modes"
-          property="interaction_modes"
+          heading="communication_modes"
+          property="communication_modes"
           thing={thing}
         />
 

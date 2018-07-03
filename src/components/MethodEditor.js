@@ -38,7 +38,7 @@ class MethodEditor extends Component {
       thing.body ||
       this.props.intl.formatMessage({ id: "method_description_placeholder" });
     thing.typical_purposes = thing.typical_purposes || [];
-    thing.interaction_modes = thing.interaction_modes || [];
+    thing.communication_modes = thing.communication_modes || [];
     thing.communication_outcomes = thing.communication_outcomes || [];
     return thing;
   }
@@ -62,7 +62,7 @@ class MethodEditor extends Component {
   }
 
   onSubmit() {
-    // is this now a do-nothing method?
+    console.log("MethodEditor onSubmit: %s", JSON.stringify(this.state.thing));
     let thing = this.state.thing;
     this.props.onSubmit(thing);
   }
@@ -205,33 +205,17 @@ class MethodEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="typical_purposes"
-                        value={this.state.thing.typical_purposes}
+                        value={thing.typical_purposes}
                         rankable={true}
                         limit={3}
                         onChange={this.onChange}
                       />
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "participant_selection",
-                        "participant_selection",
-                        "participant_selection",
-                        true,
-                        null,
-                        true
-                      )}
-                      {makeLocalizedChoiceField(
-                        intl,
-                        "recruitment_method",
-                        "recruitment_method",
-                        "recruitment_method_method",
-                        true,
-                        "method",
-                        false
-                      )}
+                      {makeLocalizedChoiceField(intl, "participant_selection")}
+                      {makeLocalizedChoiceField(intl, "recruitment_method")}
                       <LocalizedMultiChoiceField
                         intl={intl}
-                        property="interaction_modes"
-                        value={this.state.thing.interaction_modes}
+                        property="communication_modes"
+                        value={thing.communication_modes}
                         rankable={true}
                         limit={3}
                         onChange={this.onChange}
@@ -239,7 +223,7 @@ class MethodEditor extends Component {
                       <LocalizedMultiChoiceField
                         intl={intl}
                         property="communication_outcomes"
-                        value={this.state.thing.communication_outcomes}
+                        value={thing.communication_outcomes}
                         rankable={true}
                         limit={3}
                         info={true}

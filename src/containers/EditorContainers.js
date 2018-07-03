@@ -82,7 +82,7 @@ class EditorContainer extends Component {
 
     saveFunc(thing.type, thing)
       .then(function(thing) {
-        // console.log("after saveFunc, thing:", thing);
+        console.log("after saveFunc, thing:", thing);
         myhistory.push(`../../${thing.type}/${thing.id}`); // XXX move to Link
       })
       .catch(function(exception) {

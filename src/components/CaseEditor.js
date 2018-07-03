@@ -205,21 +205,6 @@ class CaseEditor extends Component {
         })}
       />
     );
-    let has_components = (
-      <Field
-        fieldName="has_components"
-        info="has_components"
-        type={RelatedEditor}
-        item_type="case"
-        dataSource={cases}
-        dataSourceConfig={{ text: "text", value: "value" }}
-        value={thing.has_components}
-        onChange={this.onChange}
-        placeholder={intl.formatMessage({
-          id: "has_components_placeholder"
-        })}
-      />
-    );
     let is_component_of = (
       <Field
         fieldName="is_component_of"
@@ -378,7 +363,6 @@ class CaseEditor extends Component {
                       <FormattedMessage id="components_intro" />
                       <InfoBox info="components" />
                     </p>
-                    <div className="field-case">{has_components}</div>
                     <div className="field-case">{is_component_of}</div>
                   </div>
                 ) : (

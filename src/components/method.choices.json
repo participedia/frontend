@@ -11,12 +11,9 @@
     "not_applicable",
     "opinion_survey",
     "unknown",
-    "voting"    
+    "voting"
   ],
-  "facilitated": [
-    "true",
-    "false"
-  ],
+  "facilitated": ["true", "false"],
   "governance_contribution": [
     "implementation",
     "decisionmaking",
@@ -63,7 +60,7 @@
     "open_to_all_with_targeted_recruitment",
     "random_selection"
   ],
-  "interaction_modes": [
+  "communication_modes": [
     "no_interaction_among_participants",
     "discussion_dialogue_or_deliberation",
     "negotiate_bargain",
@@ -146,9 +143,7 @@
     "press_releases",
     "announcement_of_results_at_each_level"
   ],
-  "published": [
-    "true"
-  ],
+  "published": ["true"],
   "typical_funding_source": [
     "not_applicable",
     "philanthropic_organization_ie_dedicated_to_making_monetary_grants_or_gifts",

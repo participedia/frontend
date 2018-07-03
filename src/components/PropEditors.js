@@ -393,7 +393,7 @@ export class LocalizedMultiChoiceField extends React.Component {
           rankable={this.props.rankable}
           placeholder={this.state.placeholder}
           limit={this.props.limit}
-          value={this.props.value}
+          value={this.state.value}
           onChange={this.props.onChange}
         />
       </div>

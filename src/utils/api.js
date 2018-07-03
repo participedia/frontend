@@ -118,7 +118,7 @@ class API {
   };
 
   saveNewThing = function(thingType, obj) {
-    // console.log("saveNewThing", thingType, obj);
+    console.log("saveNewThing", thingType, obj);
     if (
       thingType !== "case" &&
       thingType !== "method" &&
@@ -141,7 +141,7 @@ class API {
         return response.data;
       })
       .then(function(json) {
-        // console.log("GOT JSON", json);
+        console.log("GOT JSON", json);
         obj.id = json.thingid;
         return obj;
       })
