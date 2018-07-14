@@ -66,7 +66,7 @@ export class LoginAvatar extends React.Component {
       return (
         <div className="loginButton">
           <RaisedButton
-            onClick={() => authService.login()}
+            onClick={() => authService.login(window.location.pathname)}
             backgroundColor="#444"
             labelColor="white"
             className="customButton"

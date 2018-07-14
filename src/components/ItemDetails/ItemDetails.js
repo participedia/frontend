@@ -19,6 +19,7 @@ import "./ItemDetails.css";
 import Toggle from "material-ui/Toggle";
 
 function isCurator(profile) {
+  console.log("isCurator profile: %o", profile);
   if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
     return false;
   let groups = profile.app_metadata.authorization.groups;

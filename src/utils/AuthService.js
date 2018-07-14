@@ -109,6 +109,7 @@ class AuthService {
         }
         if (profile) {
           store.set("profile", profile);
+          console.log("profile: %o", profile);
           this.userProfile = profile;
         }
         cb(err, profile);
