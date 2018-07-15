@@ -173,13 +173,14 @@ export class Layout extends React.Component {
                 className="d-none d-none d-md-block d-lg-block d-xl-block"
                 to="/new"
               >
-              <div className="qs-button-case">
-                <RaisedButton 
-                className="qs-button customButton"
-                label={intl.formatMessage({id: "quick_submit"})} 
-                labelPosition="after"
-                icon={<AddIcon />}/>
-              </div>
+                <div className="qs-button-case">
+                  <RaisedButton
+                    className="qs-button customButton"
+                    label={intl.formatMessage({ id: "quick_submit" })}
+                    labelPosition="after"
+                    icon={<AddIcon />}
+                  />
+                </div>
               </Link>
               <LoginAvatar auth={authService} className="login-area" />
             </div>
@@ -236,7 +237,7 @@ export class Layout extends React.Component {
               ) : (
                 <div className="loginButtonMenu">
                   <FlatButton
-                    onClick={() => authService.login()}
+                    onClick={() => authService.login(window.location.pathname)}
                     onTouchTap={this.signIn}
                     label={intl.formatMessage({ id: "login" })}
                   />
