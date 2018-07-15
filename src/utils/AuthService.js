@@ -1,5 +1,6 @@
 import history from "./history";
 import store from "store";
+import api from "./api";
 
 // AUTH_V8
 // import auth0 from "auth0-js";
@@ -62,11 +63,14 @@ class AuthService {
         // store.set("expires_at", expiresAt);
         this.setProfile(profile);
         let state = JSON.parse(authResult.state);
-        if (state && state.redirectURL) {
-          history.replace(state.redirectURL);
-        } else {
-          history.replace("/");
-        }
+        api.fetchUser().then(user => {
+          store.set("user", user.data);
+          if (state && state.redirectURL) {
+            history.replace(state.redirectURL);
+          } else {
+            history.replace("/");
+          }
+        });
       });
     });
     this.getProfile = this.getProfile.bind(this);
@@ -91,6 +95,26 @@ class AuthService {
     return accessToken;
   }
 
+  getUser(cb) {
+    if (!store.get("user")) {
+      return cb(null, {});
+    }
+    let user = store.get("user");
+    if (user) {
+      if (typeof user === typeof "") {
+        user = JSON.parse(user);
+      }
+      cb(null, user);
+    } else {
+      this.getProfile(profile => {
+        api.fetchUser().then(user => {
+          store.set("user", user.data);
+          cb(user.data);
+        });
+      });
+    }
+  }
+
   getProfile(cb) {
     if (!store.get("access_token")) {
       return cb(null, {});
@@ -109,7 +133,6 @@ class AuthService {
         }
         if (profile) {
           store.set("profile", profile);
-          console.log("profile: %o", profile);
           this.userProfile = profile;
         }
         cb(err, profile);
@@ -121,18 +144,6 @@ class AuthService {
     if (!redirectURL) {
       redirectURL = "/";
     }
-    // AUTH_VERSION === 8
-
-    // this.auth0.authorize({
-    //   lang: {
-    //     signin: {
-    //       title: "Log in to Participedia"
-    //     }
-    //   },
-    //   audience: AUDIENCE,
-    //   scope: SCOPE,
-    //   state: JSON.stringify({ redirectURL })
-    // });
     let state = { redirectURL };
 
     this.lock.show({
@@ -145,28 +156,25 @@ class AuthService {
     });
   }
   handleAuthentication() {
-    //  authService.lock.on("authorization_error", error =>
-    //    dispatch(loginError(error))
-    //  );
-
     this.auth0.parseHash(window.location.hash, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         // Set the time that the access token will expire at
         let expiresAt = JSON.stringify(
           authResult.expiresIn * 1000 + new Date().getTime()
         );
-        console.log("epxiresAt", expiresAt);
         store.set("access_token", authResult.accessToken);
         store.set("id_token", authResult.idToken);
         store.set("expires_at", expiresAt);
-        let state = JSON.parse(authResult.state);
-        if (state && state.redirectURL) {
-          history.replace(state.redirectURL);
+        if (authResult.redirectURL) {
+          history.replace(authResult.redirectURL);
         } else {
           history.replace("/");
         }
       } else if (err) {
+        console.error("parseHash() error: %o", err);
         history.replace("/");
+      } else {
+        console.error("No authResult AND no error?");
       }
     });
   }
@@ -180,9 +188,19 @@ class AuthService {
     store.remove("access_token");
     store.remove("id_token");
     store.remove("expires_at");
-    store.remove("profile");
+    store.set("profile", "{}");
+    store.set("user", "{}");
     // navigate to the home route
     history.replace("/");
+  }
+
+  isAdmin(widget) {
+    const user = store.get("user");
+    if (!user) {
+      this.getUser(the_user => widget.setState({ the_user }));
+      return false;
+    }
+    return user.isadmin;
   }
 
   isAuthenticated() {
@@ -205,7 +223,8 @@ class AuthService {
       store.remove("access_token");
       store.remove("id_token");
       store.remove("expires_at");
-      store.remove("profile");
+      store.set("profile", "{}");
+      store.set("user", "{}");
     }
     return authenticated;
   }
@@ -215,5 +234,7 @@ const authService = new AuthService(
   process.env.REACT_APP_AUTH0_CLIENT_ID,
   process.env.REACT_APP_AUTH0_DOMAIN
 );
+
+authService.isAdmin = authService.isAdmin.bind(authService);
 
 export default authService;

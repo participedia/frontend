@@ -18,14 +18,6 @@ import htmlToText from "html-to-text";
 import "./ItemDetails.css";
 import Toggle from "material-ui/Toggle";
 
-function isCurator(profile) {
-  console.log("isCurator profile: %o", profile);
-  if (!profile || !profile.app_metadata || !profile.app_metadata.authorization)
-    return false;
-  let groups = profile.app_metadata.authorization.groups;
-  return groups.indexOf("Curators") !== -1;
-}
-
 class Featured extends React.Component {
   static propTypes = {
     toggleFeatured: PropTypes.func.isRequired,
@@ -38,10 +30,8 @@ class Featured extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = auth;
-    const { profile } = this.props;
-    if (!isAuthenticated) return <div />;
-    return isCurator(profile) ? (
+    const { isAdmin } = this.props;
+    return isAdmin ? (
       <div className="featuretoggle">
         <Toggle
           onToggle={this.onToggle.bind(this)}
@@ -68,9 +58,8 @@ class Hidden extends React.Component {
   }
 
   render() {
-    const { isAuthenticated, profile } = this.props;
-    if (!isAuthenticated) return <div />;
-    return isCurator(profile) ? (
+    const { isAdmin } = this.props;
+    return isAdmin ? (
       <div className="featuretoggle">
         <Toggle
           onToggle={this.onToggle.bind(this)}
@@ -104,15 +93,22 @@ const defaultThing = {
 export default class ItemDetails extends React.Component {
   componentWillMount() {
     this.setState({ profile: {} });
-    const { isAuthenticated, userProfile, getProfile } = auth;
+    const { isAuthenticated, isAdmin, userProfile, getProfile } = auth;
     if (!userProfile) {
       getProfile((err, profile) => {
-        this.setState({ profile, isAuthenticated: isAuthenticated() });
+        const self = this;
+        this.setState({
+          profile,
+          isAuthenticated: isAuthenticated(),
+          isAdmin: isAdmin(self)
+        });
       });
     } else {
+      const self = this;
       this.setState({
         profile: userProfile,
-        isAuthenticated: isAuthenticated()
+        isAuthenticated: isAuthenticated(),
+        isAdmin: isAdmin(self)
       });
     }
   }
@@ -164,13 +160,13 @@ export default class ItemDetails extends React.Component {
                 <Featured
                   thing={thing}
                   profile={this.state.profile}
-                  isAuthenticated={this.state.isAuthenticated}
+                  isAdmin={this.state.isAdmin}
                   toggleFeatured={this.props.toggleFeatured}
                 />
                 <Hidden
                   thing={thing}
                   profile={this.state.profile}
-                  isAuthenticated={this.state.isAuthenticated}
+                  isAdmin={this.state.isAdmin}
                   toggleHidden={this.props.toggleHidden}
                 />
                 {detailedBits}
