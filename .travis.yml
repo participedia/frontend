@@ -18,7 +18,6 @@ before_deploy:
 - react-scripts build
 - CI=true
 - cp build/index.html build/200.html
-- node scripts/properties2json
 deploy:
   skip_cleanup: true
   provider: surge
