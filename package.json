@@ -27,9 +27,7 @@
   },
   "dependencies": {
     "@storybook/addon-actions": "^3.1.2",
-    "auth0": "^2.6.0",
-    "auth0-js": "^8.7.0",
-    "auth0-lock": "^10.16.0",
+    "auth0-js": "9.7.2",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -54,7 +52,7 @@
     "mapbox-gl": "^0.38.0",
     "material-ui": "^0.18.3",
     "material-ui-chip-input": "^0.16.0",
-    "npm": "^6.0.1",
+    "npm": "^6.2.0",
     "object-omit": "^1.0.0",
     "parse-dms": "^0.0.3",
     "prettier": "^1.7.0",
@@ -103,16 +101,11 @@
     "archivestage": "zip -r archive/stage-$(date -u +%FT%TZ) build",
     "deployprod": "surge -p build -d https://participedia.xyz",
     "deploystage": "surge -p build -d https://ppedia.surge.sh",
-    "buildprod":
-      "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archiveprod; cp .envdev .env",
-    "buildstage":
-      "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archivestage; cp .envdev .env",
-    "builddev":
-      "rm -rf build && sass --update --force src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt",
-    "buildallprod":
-      "npm install && sass --update --force src && npm run buildprod && npm test",
-    "buildallstage":
-      "npm install && sass --update --force src && npm run buildstage && npm test",
+    "buildprod": "cp .envprod .env  && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archiveprod; cp .envdev .env",
+    "buildstage": "cp .envstage .env && rm -rf build && sass --update src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt && npm run archivestage; cp .envdev .env",
+    "builddev": "rm -rf build && sass --update --force src && react-scripts build && cp build/index.html build/200.html && echo $(date -u +%FT%TZ) > build/VERSION.txt",
+    "buildallprod": "npm install && sass --update --force src && npm run buildprod && npm test",
+    "buildallstage": "npm install && sass --update --force src && npm run buildstage && npm test",
     "rollbackto": "f(){ rm -rf build && unzip archive/${1}; }; f",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint \"src/**/**.js\"",
@@ -123,7 +116,10 @@
     "build-storybook": "build-storybook -s public"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "pre-commit": "lint-staged"
 }

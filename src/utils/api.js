@@ -23,10 +23,14 @@ const signedFetch = function(url, method, payload) {
   };
   let profile = store.get("profile");
   if (profile) {
-    profile = JSON.parse(profile);
+    if (typeof profile === "string") {
+      profile = JSON.parse(profile);
+    }
     if (authService.isAuthenticated()) {
       opts["headers"]["Authorization"] = "Bearer " + authService.getToken();
-      opts["headers"]["X-Auth0-Name"] = emojiStrip(profile.name);
+      if (profile.name) {
+        opts["headers"]["X-Auth0-Name"] = emojiStrip(profile.name);
+      }
       opts["headers"]["X-Auth0-UserId"] = profile.user_id;
     }
     // console.log("doing signed call to", url);

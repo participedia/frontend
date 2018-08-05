@@ -26,6 +26,7 @@ import Experiments from "./components/Experiments";
 import Case from "./containers/Case";
 import Organization from "./containers/Organization";
 import Method from "./containers/Method";
+import Login from "./components/Login";
 
 import {
   CaseEditorContainer,
@@ -68,24 +69,24 @@ const ScrollToTop = props => {
 //   }
 // };
 
-class Callback extends React.Component {
-  render() {
-    const style = {
-      position: "absolute",
-      display: "flex",
-      justifyContent: "center",
-      height: "100vh",
-      width: "100vw",
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: "white"
-    };
-
-    return <div style={style}>Loading.</div>;
-  }
-}
+// class Callback extends React.Component {
+//   render() {
+//     const style = {
+//       position: "absolute",
+//       display: "flex",
+//       justifyContent: "center",
+//       height: "100vh",
+//       width: "100vw",
+//       top: 0,
+//       bottom: 0,
+//       left: 0,
+//       right: 0,
+//       backgroundColor: "white"
+//     };
+//
+//     return <div style={style}>Loading.</div>;
+//   }
+// }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -268,12 +269,7 @@ export class Layout extends React.Component {
             )}
           </Drawer>
           <div className="contentArea">
-            <Route
-              path="/redirect"
-              render={props => {
-                return <Callback {...props} />;
-              }}
-            />
+            <Route exact path="/redirect" component={Login} />
             <Route exact path="/cases" component={Home} />
             <Route exact path="/methods" component={Home} />
             <Route exact path="/organizations" component={Home} />
