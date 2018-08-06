@@ -9,65 +9,20 @@ import ppLogo from "../img/pp-logo.png";
 
 // const AUTH_VERSION = 9;
 
-const SCOPE = "openid email picture";
+const SCOPE = "openid profile email picture";
 
 const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 
 class AuthService {
   constructor(clientId, domain) {
-    // // AUTH_VERSION === 7
-    // // this.lock = new Auth0Lock(
-    // process.env.REACT_APP_AUTH0_CLIENT_ID,
-    //   process.env.REACT_APP_AUTH0_DOMAIN,
-    //   {
-    //     auth: {
-    //       redirectUrl: window.location.origin + "/redirect",
-    //       responseType: "token",
-    //       params: {
-    //         scope: SCOPE,
-    //         state: JSON.stringify({ pathname: window.location.pathname })
-    //       }
-    //     },
-    //     theme: {
-    //       primaryColor: "#323232",
-    //       logo: ppLogo
-    //     },
-    //     languageDictionary: {
-    //       title: "Participedia"
-    //     }
-    //   };
-
-    // this.clientId = clientId;
-    // this.domain = domain;
     this.auth0 = new auth0.WebAuth({
       domain: process.env.REACT_APP_AUTH0_DOMAIN,
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       responseType: "token id_token",
       audience: AUDIENCE,
       scope: SCOPE,
-      // state: JSON.stringify({ pathname: window.location.pathname }),
       redirectUri: window.location.origin + "/redirect"
     });
-    // AUTH_VERSION=7
-    // this.lock.on("authenticated", authResult => {
-    //   this.lock.getProfile(authResult.idToken, (error, profile) => {
-    //     let expiresAt = JSON.stringify(authResult.idTokenPayload.exp * 1000);
-    //     store.set("expires_at", expiresAt);
-    //     store.set("access_token", authResult.accessToken);
-    //     store.set("id_token", authResult.idToken);
-    //     // store.set("expires_at", expiresAt);
-    //     this.setProfile(profile);
-    //     let state = JSON.parse(authResult.state);
-    //     api.fetchUser().then(user => {
-    //       store.set("user", user.data);
-    //       if (state && state.redirectURL) {
-    //         history.replace(state.redirectURL);
-    //       } else {
-    //         history.replace("/");
-    //       }
-    //     });
-    //   });
-    // });
     this.getProfile = this.getProfile.bind(this);
     // binds login functions to keep this context
     this.login = this.login.bind(this);
@@ -104,7 +59,9 @@ class AuthService {
     } else {
       this.getProfile(profile => {
         api.fetchUser().then(user => {
+          profile.name = user.name;
           store.set("user", user.data);
+          store.set("profile", profile);
           cb(user.data);
         });
       });
@@ -124,11 +81,13 @@ class AuthService {
     } else {
       let accessToken = this.getAccessToken();
       this.auth0.client.userInfo(accessToken, (err, profile) => {
+        if (err) {
+          console.error(err);
+        }
         if (typeof profile === typeof "") {
           profile = JSON.parse(profile);
         }
         if (profile) {
-          store.set("profile", profile);
           this.userProfile = profile;
         }
         cb(err, profile);
@@ -145,25 +104,14 @@ class AuthService {
   }
 
   handleAuthentication() {
-    console.log(
-      "handleAuthentication with %s keys in the store",
-      Object.keys(localStorage).length
-    );
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log("setting access_token: %s", authResult.accessToken);
         store.set("access_token", authResult.accessToken);
-        console.log("setting id_token: %s", authResult.idToken);
         store.set("id_token", authResult.idToken);
         let expiresAt = JSON.stringify(
           authResult.expiresIn * 1000 + new Date().getTime()
         );
-        console.log("setting expires_at: %s", expiresAt);
         store.set("expires_at", expiresAt);
-        console.log(
-          "you are now logged in, please return tray to upright position"
-        );
-        console.log("redirect_url: %s", store.get("redirect_url"));
         this.getUser(() => history.replace(store.get("redirect_url") || "/"));
       } else if (err) {
         console.error("handleAuthentication error: %o", err);
@@ -171,7 +119,6 @@ class AuthService {
         history.replace("/");
         return false;
       } else {
-        console.log("no login, no error: %o", authResult);
         return false;
       }
       // refresh UI to show logged-in state
@@ -223,22 +170,14 @@ class AuthService {
     let authenticated = false;
     // we may have a token but it could be expired
     let expiresAt = store.get("expires_at");
-    console.log("isAuthenticated expiresAt: %s", expiresAt);
     if (expiresAt) {
       try {
         expiresAt = JSON.parse(expiresAt);
         authenticated = new Date().getTime() < expiresAt;
       } catch (e) {
         // ignore it, authenticated is false by default.
-        console.log("tried to parse %o", expiresAt);
       }
     }
-
-    if (!authenticated) {
-      console.log("not logged in");
-      // store.clearAll();
-    }
-    console.log("isAuthenticated: %s", authenticated);
     return authenticated;
   }
 }
