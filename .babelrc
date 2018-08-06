@@ -1,9 +1,23 @@
 {
   "presets": ["es2015", "stage-0", "react", "stage-2"],
-  "plugins": [ "transform-es2015-modules-commonjs"],
+  "plugins": ["transform-es2015-modules-commonjs"],
   "env": {
     "development": {
-      "presets": ["react-hmre", "transform-object-rest-spread", "transform-es2015-destructuring"]
+      "presets": [
+        "react-hmre",
+        "transform-object-rest-spread",
+        "transform-es2015-destructuring"
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": "commonjs"
+          }
+        ]
+      ]
     }
   }
 }

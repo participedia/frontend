@@ -1,10 +1,10 @@
-{
-  "moduleFileExtensions": [
-    "js",
-    "jsx"
-  ],
-  "globals" : {
-    "fetch": true,
-    "REACT_APP_API_URL": "http://localhost:3001"
+module.exports = {
+  moduleFileExtensions: ["js", "jsx"],
+  transform: {
+    "^.+\\.js$": "babel-jest"
   },
-}
+  globals: {
+    fetch: true,
+    REACT_APP_API_URL: "http://localhost:3000"
+  }
+};
