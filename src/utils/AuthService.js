@@ -4,11 +4,7 @@ import api from "./api";
 
 // AUTH_V9
 import auth0 from "auth0-js";
-
 import ppLogo from "../img/pp-logo.png";
-
-// const AUTH_VERSION = 9;
-
 const SCOPE = "openid profile email picture";
 
 const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
@@ -59,7 +55,9 @@ class AuthService {
     } else {
       this.getProfile(profile => {
         api.fetchUser().then(user => {
-          profile.name = user.name;
+          if (user && user.name) {
+            profile.name = user.name;
+          }
           store.set("user", user.data);
           store.set("profile", profile);
           cb(user.data);
@@ -121,29 +119,7 @@ class AuthService {
       } else {
         return false;
       }
-      // refresh UI to show logged-in state
     });
-    // this.auth0.parseHash(window.location.hash, (err, authResult) => {
-    //   if (authResult && authResult.accessToken && authResult.idToken) {
-    //     // Set the time that the access token will expire at
-    //     let expiresAt = JSON.stringify(
-    //       authResult.expiresIn * 1000 + new Date().getTime()
-    //     );
-    //     store.set("access_token", authResult.accessToken);
-    //     store.set("id_token", authResult.idToken);
-    //     store.set("expires_at", expiresAt);
-    //     if (authResult.redirectURL) {
-    //       history.replace(authResult.redirectURL);
-    //     } else {
-    //       history.replace("/");
-    //     }
-    //   } else if (err) {
-    //     console.error("parseHash() error: %o", err);
-    //     history.replace("/");
-    //   } else {
-    //     console.error("No authResult AND no error?");
-    //   }
-    // });
   }
 
   getToken() {
