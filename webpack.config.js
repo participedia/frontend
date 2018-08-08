@@ -77,14 +77,12 @@ config.module.loaders.forEach(
 );
 
 config.module.loaders.push({
-  test: /node_modules[\\\/]auth0-lock[\\\/].*\.js$/,
   loaders: [
     "transform-loader/cacheable?brfs",
     "transform-loader/cacheable?packageify"
   ]
 });
 config.module.loaders.push({
-  test: /node_modules[\\\/]auth0-lock[\\\/].*\.ejs$/,
   loader: "transform-loader/cacheable?ejsify"
 });
 module.exports = config;
