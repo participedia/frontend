@@ -45,15 +45,17 @@ export default class EditProfile extends Component {
   propsToDefaultState(props) {
     let { user, profile } = props;
     if (user) {
-      user.picture =
-        profile.user_metadata && profile.user_metadata.customPic
-          ? profile.user_metadata.customPic
-          : profile.picture;
+      if (user.picture_url) {
+        user.picture = user.picture_url;
+      } else if (profile) {
+        user.picture = profile.picture;
+      } else {
+        console.error("No profile???");
+      }
       if (!user.location) {
         user.location = "";
       }
       if (typeof user.location !== typeof "") {
-        // console.log("Have location of", user.location);
         user.location = encodeLocation(user.location);
       }
     }
@@ -64,7 +66,6 @@ export default class EditProfile extends Component {
     this.setState(this.propsToDefaultState(nextProps));
   }
   onSubmit(event) {
-    // console.log("Submitting user", JSON.stringify(this.state.user));
     this.props.onChange(this.state.user);
   }
 

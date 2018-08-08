@@ -15,20 +15,19 @@ class ProfileEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      profile: {},
+      user: {},
       organizations: []
     };
   }
   componentWillMount() {
-    this.setState({ profile: {} });
-    const { userProfile, getProfile } = authService;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
-    }
+    const { getUser, getProfile } = authService;
+    getProfile((err, profile) => {
+      this.setState({ profile });
+    });
+    getUser((err, user) => {
+      this.setState({ user });
+    });
   }
 
   componentDidMount() {
@@ -40,11 +39,9 @@ class ProfileEditor extends React.Component {
         if (a.label.toLowerCase() === b.label.toLowerCase()) return 0;
         return 1;
       });
-      let orgsArray = []
+      let orgsArray = [];
       Object.keys(orgs).forEach(function(key) {
-
-          orgsArray.push(orgs[key]['label']);
-
+        orgsArray.push(orgs[key]["label"]);
       });
       component.setState({ organizations: orgsArray });
     });
@@ -56,7 +53,6 @@ class ProfileEditor extends React.Component {
   onChange(user) {
     // this.setState(newState);
     api.saveUser(user).then(function(user) {
-      // console.log("after saving user, user:", user);
       myhistory.push("/profile");
     });
   }

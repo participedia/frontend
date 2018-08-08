@@ -5,7 +5,7 @@ import api from "./api";
 // AUTH_V9
 import auth0 from "auth0-js";
 import ppLogo from "../img/pp-logo.png";
-const SCOPE = "openid profile email picture";
+const SCOPE = "openid profile email picture user_metadata";
 
 const AUDIENCE = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`;
 
@@ -35,17 +35,10 @@ class AuthService {
   }
 
   getAccessToken() {
-    const accessToken = store.get("access_token");
-    if (!accessToken) {
-      throw new Error("No access token found");
-    }
-    return accessToken;
+    return store.get("access_token");
   }
 
   getUser(cb) {
-    if (!store.get("user")) {
-      return cb(null, {});
-    }
     let user = store.get("user");
     if (user) {
       if (typeof user === typeof "") {
@@ -67,9 +60,6 @@ class AuthService {
   }
 
   getProfile(cb) {
-    if (!store.get("access_token")) {
-      return cb(null, {});
-    }
     let profile = store.get("profile");
     if (profile) {
       if (typeof profile === typeof "") {
@@ -78,18 +68,24 @@ class AuthService {
       cb(null, profile);
     } else {
       let accessToken = this.getAccessToken();
-      this.auth0.client.userInfo(accessToken, (err, profile) => {
-        if (err) {
-          console.error(err);
-        }
-        if (typeof profile === typeof "") {
-          profile = JSON.parse(profile);
-        }
-        if (profile) {
-          this.userProfile = profile;
-        }
-        cb(err, profile);
-      });
+      if (accessToken) {
+        this.auth0.client.userInfo(accessToken, (err, profile) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          if (typeof profile === typeof "") {
+            profile = JSON.parse(profile);
+          }
+          if (profile) {
+            this.userProfile = profile;
+            store.set("profile", profile);
+          }
+          cb(err, profile);
+        });
+      } else {
+        cb(null, null);
+      }
     }
   }
 
