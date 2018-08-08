@@ -10,30 +10,22 @@ export default class ProfileLoader extends Component {
     this.state = {
       error: false,
       user: false,
-      userId: false
+      userId: props.match.params.userId
     };
   }
 
   componentDidMount() {
-    let component = this;
-    let userId = null;
-    if (
-      this.props.match &&
-      this.props.match.params &&
-      this.props.match.params.id
-    ) {
-      userId = this.props.match.params.id;
-    }
-    api.fetchUser(userId).then(function(results) {
-      if (results.error) {
-        component.setState({ error: results.error });
-      } else {
-        component.setState({ user: results.data, userId });
+    authService.getUser((err, user) => {
+      if (err) {
+        return;
       }
+      this.setState({ user });
     });
   }
+
   render() {
     if (this.state.error) {
+      console.error("ProfileLoader error: %s", this.state.error.message);
       return <div>{this.state.error.message}</div>;
     } else if (this.state.user && !this.state.userId) {
       return <Redirect to={"/users/" + this.state.user.id} />;

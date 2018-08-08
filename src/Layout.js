@@ -317,7 +317,7 @@ export class Layout extends React.Component {
               path="/organization/:nodeID/edit"
               component={OrganizationEditorContainer}
             />
-            <Route path="/users/:id" component={ProfileLoader} />
+            <Route exact path="/users/:userId" component={ProfileLoader} />
           </div>
           <Footer onHelpOpen={this.openHelp} />
           {this.state.showHelp ? (

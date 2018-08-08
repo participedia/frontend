@@ -302,7 +302,7 @@ class API {
         return response;
       })
       .catch(function(error) {
-        console.log(
+        console.error(
           `There has been a problem with API:fetchUser: (${url}) ${error}`
         );
         return error;
