@@ -19,13 +19,18 @@ export default class ProfileLoader extends Component {
       if (err) {
         return;
       }
-      this.setState({ user });
+      if (user.id === this.state.userId) {
+        this.setState({ user });
+      } else {
+        api
+          .fetchUser(this.state.userId)
+          .then(userResponse => this.setState({ user: userResponse.data }));
+      }
     });
   }
 
   render() {
     if (this.state.error) {
-      console.error("ProfileLoader error: %s", this.state.error.message);
       return <div>{this.state.error.message}</div>;
     } else if (this.state.user && !this.state.userId) {
       return <Redirect to={"/users/" + this.state.user.id} />;
