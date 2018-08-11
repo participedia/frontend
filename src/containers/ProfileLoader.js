@@ -19,7 +19,13 @@ export default class ProfileLoader extends Component {
       if (err) {
         return;
       }
-      this.setState({ user });
+      if (user.id === this.state.userId) {
+        this.setState({ user });
+      } else {
+        api
+          .fetchUser(this.state.userId)
+          .then(userResponse => this.setState({ user: userResponse.data }));
+      }
     });
   }
 
@@ -28,8 +34,10 @@ export default class ProfileLoader extends Component {
       console.error("ProfileLoader error: %s", this.state.error.message);
       return <div>{this.state.error.message}</div>;
     } else if (this.state.user && !this.state.userId) {
+      console.log("User (no userId): %o", this.state.user);
       return <Redirect to={"/users/" + this.state.user.id} />;
     } else if (this.state.user) {
+      console.log("User for userId: %o", this.state.user);
       return <Profile auth={authService} user={this.state.user} />;
     } else {
       return <div>Loading user data.</div>;
