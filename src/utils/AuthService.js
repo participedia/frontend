@@ -102,6 +102,7 @@ class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         store.set("access_token", authResult.accessToken);
         store.set("id_token", authResult.idToken);
+        store.set("expires_in", authResult.expiresIn);
         let expiresAt = JSON.stringify(
           authResult.expiresIn * 1000 + new Date().getTime()
         );
@@ -138,17 +139,51 @@ class AuthService {
     return user.isadmin;
   }
 
-  isAuthenticated() {
-    let authenticated = false;
-    // we may have a token but it could be expired
+  getExpiresAt() {
+    /* Return a Date object */
     let expiresAt = store.get("expires_at");
     if (expiresAt) {
       try {
         expiresAt = JSON.parse(expiresAt);
-        authenticated = new Date().getTime() < expiresAt;
+        return new Date(expiresAt);
       } catch (e) {
-        // ignore it, authenticated is false by default.
+        // fall through to return a new date
       }
+    }
+    return new Date();
+  }
+
+  getExpiresIn() {
+    /* how many seconds until expiry? */
+    return Math.floor(
+      (this.getExpiresAt().getTime() - new Date().getTime()) / 1000
+    );
+  }
+
+  getExpiresInPretty() {
+    /* string representing how long until logout */
+    let exp = this.getExpiresIn();
+    let minute = 60;
+    let hour = 60 * 60;
+    switch (exp) {
+      case exp < 1:
+        return `Login has expired`;
+      case exp < minute:
+        return `Login expires in ${exp} seconds`;
+      case exp < hour:
+        return `Login expires in ${Math.floor(exp / minute)} minutes`;
+      default:
+        return `Login will expire in ${Math.floor(exp / hour)}:${Math.floor(
+          (exp % hour) / minute
+        )}`;
+    }
+  }
+
+  isAuthenticated() {
+    let authenticated = false;
+    // we may have a token but it could be expired
+    if (this.getExpiresIn() > 0) {
+      authenticated = new Date().getTime() < this.getExpiresAt();
     }
     return authenticated;
   }

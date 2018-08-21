@@ -20,6 +20,7 @@ export class LoginAvatar extends React.Component {
     } else {
       this.setState({ profile: userProfile });
     }
+    window.setInterval(() => this.setState({ time: new Date() }), 5000);
   }
 
   render() {
@@ -41,6 +42,7 @@ export class LoginAvatar extends React.Component {
                       ? profile.user_metadata.customPic
                       : profile.picture
                   }
+                  title={authService.getExpiresInPretty()}
                 />
               </IconButton>
             }
