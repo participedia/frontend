@@ -31,9 +31,21 @@ export default class SearchQuery extends React.Component {
     );
   }
   onPerformQuery(query, selectedCategory, sortingMethod) {
-    // We need to keep whatever search path may be current (/methods, etc.) but change the query parameter
-    this.props.history.push(
-      this.props.history.location.pathname + `?query=${query}`
-    );
+    const searchFilterTypes = ["case", "organization", "method"];
+
+    // if current url contains one of these filter types
+    // ie: /case/123
+    // then use filter url
+    // ie: case => /cases?query=${query}
+
+    // if not then use home/search url /?query=query
+
+    let searchFilter = "";
+    searchFilterTypes.forEach(type => {
+      if (window.location.pathname.indexOf(type) === 1) {
+        searchFilter = type + "s";
+      }
+    });
+    this.props.history.push(`/${searchFilter}?query=${query}`);
   }
 }
