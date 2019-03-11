@@ -57,6 +57,18 @@ class Profile extends Component {
     this.setState({ selectedCategory: event.target.value });
   }
 
+  deDupeThings(things) {
+    const thingIds = things.map(thing => thing.id);
+    const uniqueIds = Array.from(new Set(thingIds));
+
+    return uniqueIds.map(id => {
+      // filter things to create array of items for each id
+      const filteredItems = things.filter(m => m.id === id);
+      // select last item in filtered items list
+      return filteredItems[filteredItems.length - 1];
+    });
+  }
+
   render() {
     const profile = this.state.profile;
     const selectedViewType = this.state.selectedViewType;
@@ -65,8 +77,8 @@ class Profile extends Component {
     }
     const { user, intl } = this.props;
     let data = [
-      { type: "case", hits: user.cases },
-      { type: "method", hits: user.methods }
+      { type: "case", hits: this.deDupeThings(user.cases) },
+      { type: "method", hits: this.deDupeThings(user.methods) }
     ];
 
     let authored = [];
@@ -86,9 +98,9 @@ class Profile extends Component {
       authored = (
         <Col md={{ size: 12 }} className="nothing-yet mr-auto">
           <FormattedMessage id="no_content_yet_1" />
-          <RaisedButton 
+          <RaisedButton
             className="qs-button customButton mr-2"
-            label={intl.formatMessage({id: "quick_submit"})} 
+            label={intl.formatMessage({id: "quick_submit"})}
             labelPosition="after"
             icon={<AddIcon />}
           />
@@ -96,7 +108,7 @@ class Profile extends Component {
         </Col>
       );
     }
-    let bookmarked = user.bookmarks.map((hit, index) => (
+    let bookmarked = this.deDupeThings(user.bookmarks).map((hit, index) => (
       <SearchHit
         selectedViewType={selectedViewType}
         key={"bookmarked-" + index}
@@ -131,7 +143,7 @@ class Profile extends Component {
             <Link  className="d-block d-md-none d-lg-none d-xl-none text-center" to="/profile/edit">
               <RaisedButton
                 className="customButton"
-                label={intl.formatMessage({id: "edit_profile"})} 
+                label={intl.formatMessage({id: "edit_profile"})}
                 labelPosition="after"
                 icon={<EditIcon />}
                 secondary
@@ -141,7 +153,7 @@ class Profile extends Component {
             <div className="credentials">
               {user.join_date ? (
                 <div>
-                  <Membership/> 
+                  <Membership/>
                   <span>
                    Joined <TimeAgo date={user.join_date} />
                   </span>
@@ -165,7 +177,7 @@ class Profile extends Component {
                 <Link  className="editProfile d-none d-md-block d-lg-block d-xl-block" to="/profile/edit">
                   <RaisedButton
                     className="customButton"
-                    label={intl.formatMessage({id: "edit_profile"})} 
+                    label={intl.formatMessage({id: "edit_profile"})}
                     labelPosition="after"
                     icon={<EditIcon />}
                     secondary
@@ -175,7 +187,7 @@ class Profile extends Component {
             ) : (
               <div />
             )}
-          </Col>  
+          </Col>
         </Row>
         <Col md={12}>
           <div className="clearfix search-actions-area">
@@ -228,7 +240,7 @@ class Profile extends Component {
               </select>
               :
               undefined
-            }  
+            }
             <div className="view-types d-none d-sm-block d-md-block d-lg-block d-xl-block">
               <div
                 onClick={() => preventDefault(this.onLayoutChange("grid"))}
