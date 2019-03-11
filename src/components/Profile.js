@@ -78,7 +78,8 @@ class Profile extends Component {
     const { user, intl } = this.props;
     let data = [
       { type: "case", hits: this.deDupeThings(user.cases) },
-      { type: "method", hits: this.deDupeThings(user.methods) }
+      { type: "method", hits: this.deDupeThings(user.methods) },
+      { type: "organizations", hits: this.deDupeThings(user.organizations) },
     ];
 
     let authored = [];
