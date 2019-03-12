@@ -5,7 +5,7 @@ import "./ListWithHeading.css";
 export default class ListGroupWithHeading extends React.Component {
   render() {
     let { heading, property, thing } = this.props;
-    if (!thing[property] || thing[property].length === 0) {
+    if (!thing[property] || thing[property].length === 0 || thing[property][0] === "" ) {
       return <div />;
     }
     let items = thing[property].map(item => (
