@@ -9,21 +9,23 @@ export default class NestedTextListGroupWithHeading extends React.Component {
     let value = thing[property];
 
     if (!value || (_.isArray(value) && !value.length)) {
-      return <div />;
+      return null;
     } else {
+      const items = Object.keys(value).map(key => {
+        if (!value[key]) return null;
 
-      let items = _.map(value, value.children);
-      let nests  = items.map(item => (
-        <div key={item.value}>
-          {item}
-        </div>
-      ));
+        // don't display the name key for the location property
+        if (property === "location" && key === "name") return null;
+
+        return <div key={value[key]}>{value[key]}</div>;
+      }).filter(item => item !== null);
+
       return (
         <div className="linked-property isarray">
           <p className="sub-sub-heading">
             <FormattedMessage id={property} />
           </p>
-          <div className={property + " blond"}>{nests}</div>
+          <div className={property + " blond"}>{items}</div>
         </div>
       );
     }
