@@ -30,11 +30,6 @@
 .contentArea {
   padding-top: 64px;
   min-height: 20em;
-  .home {
-    @include media-breakpoint-down(md) {
-      padding-top: 28px;
-    }
-  }
 }
 
 .drawer {
@@ -112,7 +107,7 @@
 
   @include media-breakpoint-down(sm){
     position:relative;
-  } 
+  }
 
   .nav-bar-wrapper {
     width: 100%;
@@ -125,10 +120,10 @@
     padding-left: 0.5rem;
     @include media-breakpoint-up(lg){
       width:26%;
-    } 
+    }
     @include media-breakpoint-only(xs){
       width: 196px;
-    } 
+    }
 
     .menu-icon {
       float: left;
@@ -136,7 +131,7 @@
       cursor:pointer;
       @include media-breakpoint-only(xs){
         padding: 16px 8px 16px 3px;
-      } 
+      }
       &:hover{
         cursor:pointer;
         svg {
@@ -171,7 +166,7 @@
     }
     @include media-breakpoint-down(sm){
       padding: 0 15px;
-    }  
+    }
     @include media-breakpoint-up(md) {
       padding-left:0.6rem;
       position:relative;
@@ -228,14 +223,14 @@
   margin-left: 12px;
 }
 
-// // Quick submit button 
+// // Quick submit button
 .qs-button-case {
   position:absolute;
   right:130px;
   top:14px;
 }
 
-// Create content button 
+// Create content button
 .publishButton {
   background: #fff;
   position:absolute;
@@ -270,7 +265,7 @@
 }
 
 
-// reset the extra padding in this div for consistency 
+// reset the extra padding in this div for consistency
 // set max width for this element
 // .container-fluid {
 //   padding-left:0;
