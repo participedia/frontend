@@ -7,6 +7,7 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 import App from "./App";
 
 const muiTheme = getMuiTheme({
+  fontFamily: 'Fakt, sans-serif',
   palette: {
     primary1Color: "#323232",
     accent1Color: "#ec1414",

@@ -17,7 +17,7 @@ export class Footer extends React.Component {
   }
 
   openHelp() {
-    this.props.onHelpOpen();      
+    this.props.onHelpOpen();
   }
 
   render() {
@@ -85,7 +85,7 @@ export class Footer extends React.Component {
               </a>
               <div className="pt-4 copyright-area">
                 <img src={ccIcon} alt="" />
-                <span>Participedia 2017</span>
+                <span>Participedia 2019</span>
               </div>
             </Col>
           </Row>
@@ -165,7 +165,7 @@ export class Footer extends React.Component {
                 </a>
                 <div className="copyright-area">
                   <img src={ccIcon} alt="" />
-                  <span>Participedia 2017</span>
+                  <span>Participedia 2019</span>
                 </div>
               </div>
             </Col>

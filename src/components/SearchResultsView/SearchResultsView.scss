@@ -369,9 +369,8 @@ div h3.searching-message {
 }
 
 .pagination {
-  float: right;
-  margin-top: -1rem;
-  margin-right: -1rem;
+  display: flex;
+  justify-content: flex-end;
   .pagination_icon {
     cursor: pointer;
     display: inline-block;

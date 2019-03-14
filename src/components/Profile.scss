@@ -116,10 +116,10 @@
       line-height: 60px;
       @include media-breakpoint-down(sm) {
         text-align: center;
-      }  
+      }
     }
     .bio-profile {
-      color: blue;
+      color: #000;
       span, p {
         font-size: 1rem;
         margin-bottom: 0;
@@ -133,7 +133,7 @@
       position: relative;
       @include media-breakpoint-down(sm) {
         text-align: center;
-      } 
+      }
       svg {
         transform: translate(0, 7px);
         width: 14px !important;

@@ -226,6 +226,16 @@ export class Layout extends React.Component {
             >
               <FormattedMessage id="terms_of_use" />
             </MenuItem>
+
+            <div className="newsletter-button">
+              <RaisedButton
+                href="https://mailchi.mp/participedia/subscribe"
+                target="_blank"
+                label="Newsletter Signup"
+                primary={true}
+              />
+            </div>
+
             <MenuItem className="d-md-none d-lg-none d-xl-none">
               {isAuthenticated ? (
                 <div className="profileButtonMenu">

@@ -12,7 +12,7 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentPencil from "material-ui/svg-icons/image/edit";
 import caseIconFB from "../../img/pp-case-icon-fb.svg";
 import caseIconTW from "../../img/pp-case-icon-tw.svg";
-import caseIconLN from "../../img/pp-case-icon-ln.png";
+import caseIconLN from "../../img/pp-case-icon-ln.svg";
 import { ShareButtons } from "react-share";
 import htmlToText from "html-to-text";
 import "./ItemDetails.css";
@@ -184,12 +184,12 @@ export default class ItemDetails extends React.Component {
                         url={currentUrl}
                         quote={textFacebook}
                       >
-                        <img src={caseIconFB} alt="" />
+                        <img src={caseIconFB} alt="" width="24" />
                       </FacebookShareButton>
                     </li>
                     <li>
                       <TwitterShareButton url={currentUrl} title={thing.title}>
-                        <img src={caseIconTW} alt="" />
+                        <img src={caseIconTW} alt="" width="24" />
                       </TwitterShareButton>
                     </li>
                     <li>
@@ -198,7 +198,7 @@ export default class ItemDetails extends React.Component {
                         description={textFacebook}
                         title={thing.title}
                       >
-                        <img src={caseIconLN} alt="" />
+                        <img src={caseIconLN} alt="" width="24" />
                       </LinkedinShareButton>
                     </li>
                   </ul>
@@ -257,17 +257,17 @@ export default class ItemDetails extends React.Component {
                 <div className="top-icons">
                   {bookmarkIcon}
                   <FacebookShareButton url={currentUrl} quote={textFacebook}>
-                    <img src={caseIconFB} alt="" />
+                    <img src={caseIconFB} alt="" width="24" />
                   </FacebookShareButton>
                   <TwitterShareButton url={currentUrl} title={thing.title}>
-                    <img src={caseIconTW} alt="" />
+                    <img src={caseIconTW} alt="" width="24" />
                   </TwitterShareButton>
                   <LinkedinShareButton
                     url={currentUrl}
                     description={textFacebook}
                     title={thing.title}
                   >
-                    <img src={caseIconLN} alt="" />
+                    <img src={caseIconLN} alt="" width="24" />
                   </LinkedinShareButton>
                 </div>
               </Col>

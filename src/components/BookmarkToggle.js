@@ -7,8 +7,9 @@ import authService from "../utils/AuthService";
 
 const styles = {
   smallIcon: {
-    width: 36,
-    height: 36
+    width: 30,
+    height: 30,
+    color: "#808080",
   },
   mediumIcon: {
     width: 48,
@@ -38,9 +39,9 @@ const styles = {
 class BookmarkIcon extends React.Component {
   render() {
     if (this.props.bookmarked) {
-      return <Bookmark style={styles.mediumIcon} />;
+      return <Bookmark style={styles.smallIcon} />;
     } else {
-      return <BookmarkBorder style={styles.mediumIcon} />;
+      return <BookmarkBorder style={styles.smallIcon} />;
     }
   }
 }

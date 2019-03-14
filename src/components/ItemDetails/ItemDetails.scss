@@ -56,7 +56,6 @@ section.image-gallery {
 
   .sidepanel, .mobile-metadata {
     padding: 0 15px;
-    margin-top: 48px;
     position:relative;
     @include media-breakpoint-up(lg) {
       padding:0 30px 0 15px;
@@ -97,9 +96,6 @@ section.image-gallery {
       font-weight: $medium-weight;
       line-height: 40px;
       margin-bottom: 10px;
-      margin-top:40px;
-      padding-top: 20px;
-      border-top:1px solid #ccc;
     }
 
     .sub-sub-heading {
@@ -142,7 +138,7 @@ section.image-gallery {
   .case-tools {
 
     .top-icons {
-      margin-top: 40px;
+      margin-top: -5px;
 
       button {
         margin-left: -3px !important;
@@ -153,8 +149,9 @@ section.image-gallery {
       }
 
       .SocialMediaShareButton {
+        margin-left: 8px;
         img {
-          width: 40px;
+          width: 24px;
           margin-bottom: 16px;
           cursor: pointer;
         }
@@ -416,7 +413,4 @@ section.image-gallery {
   line-height: 40px;
   margin-bottom: 10px;
   font-weight: $medium-weight;
-  margin-top:40px;
-  padding-top: 20px;
-  border-top:1px solid #ccc;
 }
