@@ -266,7 +266,7 @@ export class Layout extends React.Component {
                 />
               </div>
             </MenuItem>
-            {isAuthenticated &&
+            {isAuthenticated ? (
               <MenuItem
                 className="d-md-none d-lg-none d-xl-none"
                 primaryText={this.props.intl.formatMessage({
@@ -274,7 +274,9 @@ export class Layout extends React.Component {
                 })}
                 onClick={() => authService.logout()}
               />
-            }
+            ) : (
+              undefined
+            )}
           </Drawer>
           <div className="contentArea">
             <Route exact path="/redirect" component={Login} />
