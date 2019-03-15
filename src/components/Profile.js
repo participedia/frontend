@@ -30,8 +30,8 @@ class Profile extends Component {
     user: PropTypes.object.isRequired
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { selectedViewType: "grid", selectedCategory: "Authored" };
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -67,6 +67,15 @@ class Profile extends Component {
       // select last item in filtered items list
       return filteredItems[filteredItems.length - 1];
     });
+  }
+
+  isProfileOwner() {
+    const { profile } = this.state;
+    const { user } = this.props;
+
+    if (!profile || !user) return false;
+
+    return user.email === profile.email;
   }
 
   render() {
@@ -174,7 +183,7 @@ class Profile extends Component {
             <div className="bio-profile"
               dangerouslySetInnerHTML={{ __html: user.bio }}
             />
-            {user.email === profile.email ? (
+            {this.isProfileOwner() ? (
                 <Link  className="editProfile d-none d-md-block d-lg-block d-xl-block" to="/profile/edit">
                   <RaisedButton
                     className="customButton"
@@ -207,7 +216,7 @@ class Profile extends Component {
               >
                 <FormattedMessage id="authored" />
               </div>
-              {user.email === profile.email ?
+              {this.isProfileOwner() ?
                 <div
                   onClick={() => {
                     this.setState({
@@ -226,7 +235,7 @@ class Profile extends Component {
                 undefined
               }
             </div>
-            {user.email === profile.email ?
+            {this.isProfileOwner() ?
               <select
                 className="mobile-select d-md-none"
                 value={this.state.selectedCategory}

@@ -19,7 +19,7 @@ export default class ProfileLoader extends Component {
       if (err) {
         return;
       }
-      if (user.id === this.state.userId) {
+      if (user && (user.id === this.state.userId)) {
         this.setState({ user });
       } else {
         api
