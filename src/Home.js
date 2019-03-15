@@ -15,7 +15,7 @@ class Home extends React.Component {
           <Route path="/" component={Map} />
         </MediaQuery>
 
-        <h2 className="home-search-tagline">Participedia is a global commmunity sharing knowledge and stories about public particpation.</h2>
+        <h2 className="home-search-tagline">Participedia is a global commmunity sharing knowledge and stories about public participation.</h2>
 
         <Switch>
           <Route exact path="/" component={SearchResults} />
