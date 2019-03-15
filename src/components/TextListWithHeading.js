@@ -14,7 +14,7 @@ export default class TextListGroupWithHeading extends React.Component {
     if (!value || (_.isArray(value) && !value.length)) {
       return null;
     } else if (_.isArray(value)) {
-      if (property === "has_components") {
+      if (property === "has_components" || property === "process_methods") {
         value = deDupeThings(value);
       }
       let items = value.map(item => (
