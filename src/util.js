@@ -30,3 +30,15 @@ export function toTitleCase(str) {
     return str;
   }
 }
+
+export function deDupeThings(things) {
+  const thingIds = things.map(thing => thing.id);
+  const uniqueIds = Array.from(new Set(thingIds));
+
+  return uniqueIds.map(id => {
+    // filter things to create array of items for each id
+    const filteredItems = things.filter(m => m.id === id);
+    // select last item in filtered items list
+    return filteredItems[filteredItems.length - 1];
+  });
+}

@@ -23,7 +23,7 @@ import searchListIcon from "../img/pp-search-list-icon.png";
 import searchListIconActive from "../img/pp-search-list-icon-active.png";
 import "./Profile.css";
 import "./SearchResultsView/SearchResultsView.css";
-
+import { deDupeThings } from "../util.js";
 
 class Profile extends Component {
   static propTypes = {
@@ -57,18 +57,6 @@ class Profile extends Component {
     this.setState({ selectedCategory: event.target.value });
   }
 
-  deDupeThings(things) {
-    const thingIds = things.map(thing => thing.id);
-    const uniqueIds = Array.from(new Set(thingIds));
-
-    return uniqueIds.map(id => {
-      // filter things to create array of items for each id
-      const filteredItems = things.filter(m => m.id === id);
-      // select last item in filtered items list
-      return filteredItems[filteredItems.length - 1];
-    });
-  }
-
   isProfileOwner() {
     const { profile } = this.state;
     const { user } = this.props;
@@ -86,9 +74,9 @@ class Profile extends Component {
     }
     const { user, intl } = this.props;
     let data = [
-      { type: "case", hits: this.deDupeThings(user.cases) },
-      { type: "method", hits: this.deDupeThings(user.methods) },
-      { type: "organizations", hits: this.deDupeThings(user.organizations) },
+      { type: "case", hits: deDupeThings(user.cases) },
+      { type: "method", hits: deDupeThings(user.methods) },
+      { type: "organizations", hits: deDupeThings(user.organizations) },
     ];
 
     let authored = [];
@@ -118,7 +106,7 @@ class Profile extends Component {
         </Col>
       );
     }
-    let bookmarked = this.deDupeThings(user.bookmarks).map((hit, index) => (
+    let bookmarked = deDupeThings(user.bookmarks).map((hit, index) => (
       <SearchHit
         selectedViewType={selectedViewType}
         key={"bookmarked-" + index}
